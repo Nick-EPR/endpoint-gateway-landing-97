@@ -79,21 +79,34 @@ const Security = () => {
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-neutral-900 to-neutral-800 overflow-hidden">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <div className="absolute inset-0 w-full h-full z-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80"
+            alt="Security Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
-              Security First, Always
+              <span className="text-primary">Security</span> First, Always
             </h1>
             <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
               At Lifetime EPR, we understand that data security is paramount. We implement rigorous measures to protect your sensitive information throughout the entire IT asset lifecycle.
             </p>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[50px] md:h-[100px]">
+            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-white"></path>
+          </svg>
+        </div>
       </section>
 
       {/* Primary Security Features Section */}
-      <section className="py-20 bg-white">
+      <section className="relative py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Enterprise-Grade Security Features
@@ -111,10 +124,15 @@ const Security = () => {
             ))}
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[50px] md:h-[100px]">
+            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-neutral-light"></path>
+          </svg>
+        </div>
       </section>
 
       {/* Additional Security Features */}
-      <section className="py-20 bg-neutral-light">
+      <section className="relative py-20 bg-neutral-light">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Comprehensive Security Solutions
@@ -131,6 +149,11 @@ const Security = () => {
               </div>
             ))}
           </div>
+        </div>
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
+          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[50px] md:h-[100px]">
+            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-white"></path>
+          </svg>
         </div>
       </section>
 
