@@ -40,7 +40,7 @@ const Solutions = () => {
       });
     }, {
       threshold: 0.1,
-      rootMargin: '0px'
+      rootMargin: '50px'
     });
 
     const cards = document.querySelectorAll('.solution-card');
@@ -49,6 +49,7 @@ const Solutions = () => {
       const cardElement = card as HTMLElement;
       cardElement.style.opacity = '0';
       cardElement.style.transitionDelay = `${index * 200}ms`;
+      cardElement.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
       observer.observe(card);
     });
 
@@ -84,7 +85,7 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div 
               key={index} 
-              className="solution-card p-8 glass-card rounded-xl hover:shadow-lg transition-all duration-500"
+              className="solution-card p-8 glass-card rounded-xl hover:shadow-lg transition-all duration-500 transform"
             >
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
