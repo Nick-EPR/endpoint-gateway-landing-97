@@ -1,18 +1,30 @@
 import { Shield, Lock, CheckCircle2, FileCheck } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 const Security = () => {
-  const [showNavbar, setShowNavbar] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleMouseEnter = () => {
-    setShowNavbar(true);
+    // Keep this for potential future use
   };
 
   return (
     <div className="min-h-screen">
-      <Navbar showNavbar={showNavbar} onMouseEnter={handleMouseEnter} />
+      <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">

@@ -4,38 +4,27 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
 const Contact = () => {
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const controlNavbar = () => {
-      if (typeof window !== 'undefined') {
-        if (window.scrollY === 0) {
-          setShowNavbar(true);
-        } else if (window.scrollY > lastScrollY) {
-          setShowNavbar(false);
-        } else {
-          setShowNavbar(true);
-        }
-        setLastScrollY(window.scrollY);
-      }
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const handleMouseEnter = () => {
-    setShowNavbar(true);
+    // Keep this for potential future use
   };
 
   return (
     <div className="min-h-screen">
-      <Navbar showNavbar={showNavbar} onMouseEnter={handleMouseEnter} />
+      <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Contact Info Section */}
       <section className="section-padding bg-white">
