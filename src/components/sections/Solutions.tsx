@@ -7,20 +7,16 @@ interface Solution {
 const Solutions = () => {
   const solutions: Solution[] = [
     {
-      title: "Toolbox Integration",
-      description: "Seamless interface between Lifetime EPR and repair depot services through our Toolbox product"
+      title: "Toolbox",
+      description: "Seamless interface between Lifetime EPR and repair depot services through our proven Toolbox product integration"
     },
     {
-      title: "Repair Tracking",
-      description: "Real-time visibility into repair status and process management via Lifetime Service integration"
+      title: "HeliAM",
+      description: "Complete asset lifecycle management platform for tracking and managing IT assets from procurement through retirement"
     },
     {
-      title: "Asset Lifecycle Management",
-      description: "Track and manage assets from procurement through repair or replacement to retirement"
-    },
-    {
-      title: "Cost Optimization",
-      description: "Identify cost-saving opportunities through efficient repair vs. replace decision making"
+      title: "Luemin",
+      description: "Unified Endpoint Management (UEM) solution integrated directly into the Lifetime EPR platform for comprehensive device management"
     }
   ];
 
@@ -35,10 +31,10 @@ const Solutions = () => {
             End-to-End ITAM Solutions
           </h2>
           <p className="text-lg text-neutral animate-on-scroll">
-            Streamline your IT asset management with our comprehensive suite of tools and services
+            Streamline your IT asset management with our comprehensive suite of integrated tools
           </p>
         </div>
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
             <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll">
               <h3 className="text-xl font-semibold mb-4">{solution.title}</h3>
