@@ -1,8 +1,10 @@
 
 import { useEffect, useRef, useState } from "react";
-import { Globe, Shield, Users, Server, Wrench, Replace } from "lucide-react";
-import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Hero from "../components/sections/Hero";
+import Features from "../components/sections/Features";
+import Solutions from "../components/sections/Solutions";
+import Partnership from "../components/sections/Partnership";
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -58,197 +60,15 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <Navbar showNavbar={showNavbar} onMouseEnter={handleMouseEnter} />
+      <Hero 
+        title="Comprehensive ITAM Solutions for Your Enterprise"
+        subtitle="Transform your IT asset management with our end-to-end solution"
+        buttonText="Get Started"
+      />
+      <Features />
+      <Solutions />
+      <Partnership />
       
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-        <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-black/30 z-10"></div>
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover"
-          >
-            <source src="/lovable-uploads/server-room.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
-              Comprehensive ITAM Solutions for Your Enterprise
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
-              Transform your IT asset management with our end-to-end solution
-            </p>
-            <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover-lift animate-fade-up" style={{ animationDelay: "0.4s" }}>
-              Get Started
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="section-padding bg-white">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
-            Comprehensive Features
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Wrench className="w-8 h-8 text-primary" />,
-                title: "Repair Management",
-                description: "Streamlined repair process management through Toolbox integration with Lifetime Service"
-              },
-              {
-                icon: <Replace className="w-8 h-8 text-primary" />,
-                title: "Replace Processing",
-                description: "Efficient device replacement workflow integrated with repair depot services"
-              },
-              {
-                icon: <Globe className="w-8 h-8 text-primary" />,
-                title: "Global Coverage",
-                description: "Manage assets across multiple locations and jurisdictions"
-              },
-              {
-                icon: <Shield className="w-8 h-8 text-primary" />,
-                title: "Security First",
-                description: "Enterprise-grade security and compliance measures"
-              },
-              {
-                icon: <Users className="w-8 h-8 text-primary" />,
-                title: "Team Collaboration",
-                description: "Streamlined workflows for enhanced team productivity"
-              },
-              {
-                icon: <Server className="w-8 h-8 text-primary" />,
-                title: "Asset Tracking",
-                description: "Real-time monitoring and lifecycle management"
-              }
-            ].map((feature, index) => (
-              <div key={index} className="p-6 glass-card rounded-xl hover-lift animate-on-scroll">
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                <p className="text-neutral">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions Section */}
-      <section id="solutions" className="section-padding bg-neutral-light">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-              End-to-End ITAM Solutions
-            </h2>
-            <p className="text-lg text-neutral animate-on-scroll">
-              Streamline your IT asset management with our comprehensive suite of tools and services
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {[
-              {
-                title: "Toolbox Integration",
-                description: "Seamless interface between Lifetime EPR and repair depot services through our Toolbox product"
-              },
-              {
-                title: "Repair Tracking",
-                description: "Real-time visibility into repair status and process management via Lifetime Service integration"
-              },
-              {
-                title: "Asset Lifecycle Management",
-                description: "Track and manage assets from procurement through repair or replacement to retirement"
-              },
-              {
-                title: "Cost Optimization",
-                description: "Identify cost-saving opportunities through efficient repair vs. replace decision making"
-              }
-            ].map((solution, index) => (
-              <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll">
-                <h3 className="text-xl font-semibold mb-4">{solution.title}</h3>
-                <p className="text-neutral">{solution.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Partnership Section */}
-      <section className="section-padding bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-                Strategic Partnership
-              </h2>
-              <p className="text-lg text-neutral mb-8 animate-on-scroll">
-                Enhancing our ITAM solutions through strategic collaboration
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="animate-on-scroll">
-                <h3 className="text-2xl font-semibold mb-4 text-primary">
-                  Partnership with Lifetime Service
-                </h3>
-                <p className="text-neutral mb-6">
-                  Through our exclusive partnership with Lifetime Service, we deliver comprehensive repair and maintenance solutions that set us apart in the industry.
-                </p>
-                <ul className="space-y-4 text-neutral">
-                  <li className="flex items-start">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
-                    </div>
-                    <span className="ml-3">Expert repair services for all IT assets</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
-                    </div>
-                    <span className="ml-3">Rapid response times and efficient resolution</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 rounded-full bg-primary"></div>
-                    </div>
-                    <span className="ml-3">Nationwide coverage for consistent service quality</span>
-                  </li>
-                </ul>
-                <a 
-                  href="https://lifetimeservice.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-block mt-8 text-primary hover:text-secondary transition-colors"
-                >
-                  Learn more about Lifetime Service →
-                </a>
-              </div>
-              <div className="bg-neutral-light p-8 rounded-xl animate-on-scroll">
-                <div className="text-center mb-6">
-                  <h4 className="text-xl font-semibold mb-2">Partnership Benefits</h4>
-                  <p className="text-neutral">Our collaboration delivers enhanced value to clients through:</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="p-4 bg-white rounded-lg shadow-sm">
-                    <p className="text-neutral">Integrated repair tracking within your ITAM system</p>
-                  </div>
-                  <div className="p-4 bg-white rounded-lg shadow-sm">
-                    <p className="text-neutral">Streamlined maintenance scheduling and reporting</p>
-                  </div>
-                  <div className="p-4 bg-white rounded-lg shadow-sm">
-                    <p className="text-neutral">Cost-effective repair solutions that extend asset lifecycle</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Contact Section */}
       <section id="contact" className="section-padding bg-white">
         <div className="container mx-auto px-4">
