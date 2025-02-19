@@ -39,7 +39,7 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
               />
             </Link>
           </div>
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => handleNavigation('features')} 
               className="text-neutral-600 hover:text-primary transition-colors duration-200"
@@ -64,6 +64,14 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
             >
               Contact
             </Link>
+            <a 
+              href="https://app.lifetimeepr.io"
+              className="bg-[#2E7D32] text-white px-6 py-2 rounded-lg hover:bg-[#1B5E20] transition-colors duration-200"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Login
+            </a>
           </nav>
         </div>
       </div>

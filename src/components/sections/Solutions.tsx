@@ -39,14 +39,14 @@ const Solutions = () => {
             End-to-End ITAM Solutions
           </h2>
           <p className="text-lg text-neutral animate-on-scroll">
-            Streamline your IT asset management with our comprehensive suite of integrated tools
+            Streamline your IT asset management with our comprehensive suite of integrated products
           </p>
         </div>
 
-        {/* Visual connector elements */}
-        <div className="relative max-w-5xl mx-auto">
+        {/* Visual connector elements with extended width */}
+        <div className="relative max-w-6xl mx-auto">
           <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
-          <div className="absolute top-8 left-1/4 right-1/4 h-0.5 bg-primary/20"></div>
+          <div className="absolute top-8 -left-4 -right-4 h-0.5 bg-primary/20"></div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
