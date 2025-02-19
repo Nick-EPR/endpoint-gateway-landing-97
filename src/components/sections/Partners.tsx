@@ -29,6 +29,12 @@ const Partners = () => {
       logo: "/lovable-uploads/c59ae9e5-4a85-4b97-bd93-82bceb58dc08.png",
       url: "https://www.dandh.com",
       description: "IT distribution and supply chain solutions"
+    },
+    {
+      name: "Lifetime Service",
+      logo: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
+      url: "https://www.lifetimeservice.com",
+      description: "Comprehensive IT lifecycle management solutions"
     }
   ];
 
