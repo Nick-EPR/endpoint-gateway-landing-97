@@ -42,9 +42,15 @@ const Features = () => {
       description: "Streamlined workflows for enhanced team productivity"
     },
     {
-      icon: <Server className="w-8 h-8 text-primary" />,
+      icon: (
+        <img 
+          src="/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png" 
+          alt="HeliAM Logo" 
+          className="w-8 h-8"
+        />
+      ),
       title: "Asset Tracking",
-      description: "Real-time monitoring and lifecycle management"
+      description: "Real-time monitoring and lifecycle management through HeliAM integration"
     }
   ];
 
