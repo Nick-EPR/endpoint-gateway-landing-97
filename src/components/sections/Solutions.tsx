@@ -32,15 +32,18 @@ const Solutions = () => {
   return (
     <section id="solutions" className="relative section-padding bg-neutral-light overflow-hidden">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2"></div>
+      <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
 
       {/* Background pattern */}
       <div 
         className="absolute inset-0 opacity-5"
         style={{
           backgroundImage: `url(${eprEmblem})`,
-          backgroundSize: '200px',
+          backgroundSize: '300px',
           backgroundRepeat: 'repeat',
+          backgroundPosition: 'center center',
+          marginTop: '2rem',
+          marginBottom: '2rem'
         }}
       ></div>
 
@@ -83,7 +86,7 @@ const Solutions = () => {
       </div>
 
       {/* Bottom slanted divider */}
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2 z-10"></div>
     </section>
   );
 };
