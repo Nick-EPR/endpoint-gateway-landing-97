@@ -15,7 +15,7 @@ const Features = () => {
         <img 
           src="/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png" 
           alt="Toolbox Logo" 
-          className="w-8 h-8"
+          className="w-8 h-8 invert"
         />
       ),
       title: "Repair Management",
