@@ -1,3 +1,4 @@
+
 import { Shield, Network, Smartphone, Check, Laptop, Cpu } from "lucide-react";
 
 const TMobileBusiness = () => {
@@ -36,7 +37,7 @@ const TMobileBusiness = () => {
           <div className="glass-card p-8 rounded-xl hover:shadow-lg transition-shadow">
             <div className="mb-6">
               <div className="flex items-center mb-4">
-                <Laptop className="w-8 h-8 text-[#9b87f5] mr-3" />
+                <Laptop className="w-8 h-8 text-[#E30074] mr-3" />
                 <h3 className="text-2xl font-semibold">Partner Plus Connected Laptop</h3>
               </div>
               <p className="text-neutral mb-6">
@@ -44,15 +45,15 @@ const TMobileBusiness = () => {
               </p>
               <div className="space-y-3">
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-primary mt-1 mr-2 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#E30074] mt-1 mr-2 flex-shrink-0" />
                   <p className="text-sm text-neutral">Built-in secure 5G connectivity for anywhere access</p>
                 </div>
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-primary mt-1 mr-2 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#E30074] mt-1 mr-2 flex-shrink-0" />
                   <p className="text-sm text-neutral">Seamless integration with enterprise applications</p>
                 </div>
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-primary mt-1 mr-2 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#E30074] mt-1 mr-2 flex-shrink-0" />
                   <p className="text-sm text-neutral">Enhanced security features for mobile workforce</p>
                 </div>
               </div>
@@ -62,7 +63,7 @@ const TMobileBusiness = () => {
           <div className="glass-card p-8 rounded-xl hover:shadow-lg transition-shadow">
             <div className="mb-6">
               <div className="flex items-center mb-4">
-                <Cpu className="w-8 h-8 text-[#9b87f5] mr-3" />
+                <Cpu className="w-8 h-8 text-[#E30074] mr-3" />
                 <h3 className="text-2xl font-semibold">PCaaS Solutions</h3>
               </div>
               <p className="text-neutral mb-6">
@@ -70,15 +71,15 @@ const TMobileBusiness = () => {
               </p>
               <div className="space-y-3">
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-primary mt-1 mr-2 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#E30074] mt-1 mr-2 flex-shrink-0" />
                   <p className="text-sm text-neutral">All-inclusive device lifecycle management</p>
                 </div>
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-primary mt-1 mr-2 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#E30074] mt-1 mr-2 flex-shrink-0" />
                   <p className="text-sm text-neutral">Predictable monthly costs for easier budgeting</p>
                 </div>
                 <div className="flex items-start">
-                  <Check className="w-5 h-5 text-primary mt-1 mr-2 flex-shrink-0" />
+                  <Check className="w-5 h-5 text-[#E30074] mt-1 mr-2 flex-shrink-0" />
                   <p className="text-sm text-neutral">Scalable services that grow with your business</p>
                 </div>
               </div>
@@ -93,7 +94,7 @@ const TMobileBusiness = () => {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 glass-card rounded-xl hover:shadow-lg transition-shadow">
               <div className="mb-4 flex justify-center">
-                <Shield className="w-12 h-12 text-[#9b87f5]" />
+                <Shield className="w-12 h-12 text-[#E30074]" />
               </div>
               <h4 className="text-xl font-semibold mb-3 text-center">Enterprise Security</h4>
               <p className="text-neutral text-center text-sm">
@@ -103,7 +104,7 @@ const TMobileBusiness = () => {
 
             <div className="p-6 glass-card rounded-xl hover:shadow-lg transition-shadow">
               <div className="mb-4 flex justify-center">
-                <Network className="w-12 h-12 text-[#9b87f5]" />
+                <Network className="w-12 h-12 text-[#E30074]" />
               </div>
               <h4 className="text-xl font-semibold mb-3 text-center">5G Connectivity</h4>
               <p className="text-neutral text-center text-sm">
@@ -113,7 +114,7 @@ const TMobileBusiness = () => {
 
             <div className="p-6 glass-card rounded-xl hover:shadow-lg transition-shadow">
               <div className="mb-4 flex justify-center">
-                <Smartphone className="w-12 h-12 text-[#9b87f5]" />
+                <Smartphone className="w-12 h-12 text-[#E30074]" />
               </div>
               <h4 className="text-xl font-semibold mb-3 text-center">Device Management</h4>
               <p className="text-neutral text-center text-sm">
@@ -124,7 +125,7 @@ const TMobileBusiness = () => {
         </div>
 
         <div className="max-w-xl mx-auto mt-16 text-center">
-          <button className="bg-[#9b87f5] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#8873e0] transition-colors duration-200">
+          <button className="bg-[#E30074] text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#cc0068] transition-colors duration-200">
             Schedule a Consultation
           </button>
         </div>
