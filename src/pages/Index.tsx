@@ -1,9 +1,12 @@
+
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
 import Solutions from "../components/sections/Solutions";
+import TMobileBusiness from "../components/sections/TMobileBusiness";
+import Partners from "../components/sections/Partners";
 import Partnership from "../components/sections/Partnership";
 import ROICalculator from "../components/sections/ROICalculator";
 
@@ -81,6 +84,8 @@ const Index = () => {
       />
       <Features />
       <Solutions />
+      <TMobileBusiness />
+      <Partners />
       <ROICalculator />
       <Partnership />
       
