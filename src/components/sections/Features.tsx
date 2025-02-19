@@ -1,9 +1,15 @@
+
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface Feature {
   icon: React.ReactNode;
   title: string;
   description: string;
+  link?: {
+    to: string;
+    text: string;
+  };
 }
 
 const Features = () => {
@@ -32,7 +38,11 @@ const Features = () => {
     {
       icon: <Shield className="w-8 h-8 text-primary" />,
       title: "Security First",
-      description: "Enterprise-grade security and compliance measures"
+      description: "Enterprise-grade security and compliance measures",
+      link: {
+        to: "/security",
+        text: "Learn More"
+      }
     },
     {
       icon: <Users className="w-8 h-8 text-primary" />,
@@ -70,7 +80,29 @@ const Features = () => {
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold mb-2 text-neutral-800">{feature.title}</h3>
-              <p className="text-neutral-600">{feature.description}</p>
+              <p className="text-neutral-600 mb-4">{feature.description}</p>
+              {feature.link && (
+                <Link
+                  to={feature.link.to}
+                  className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-medium transition-colors"
+                >
+                  {feature.link.text}
+                  <svg
+                    className="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              )}
             </div>
           ))}
         </div>
