@@ -1,6 +1,7 @@
 import { Users, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
 
 const Contact = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -34,32 +35,8 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header 
-        className={`fixed top-0 w-full z-50 glass-card transition-all duration-300 ${
-          showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-        }`}
-        onMouseEnter={handleMouseEnter}
-      >
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center">
-            <Link to="/">
-              <img 
-                src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
-                alt="Lifetime EndPoint Resources"
-                className="h-8 md:h-10"
-              />
-            </Link>
-          </div>
-          <nav className="hidden md:flex space-x-8">
-            <Link to="/#features" className="hover-lift text-neutral-600 hover:text-primary">Features</Link>
-            <Link to="/#solutions" className="hover-lift text-neutral-600 hover:text-primary">Solutions</Link>
-            <Link to="/security" className="hover-lift text-neutral-600 hover:text-primary">Security</Link>
-            <Link to="/contact" className="hover-lift text-primary font-medium">Contact</Link>
-          </nav>
-        </div>
-      </header>
-
+      <Navbar showNavbar={showNavbar} onMouseEnter={handleMouseEnter} />
+      
       {/* Contact Info Section */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4">

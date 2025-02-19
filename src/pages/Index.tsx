@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Globe, Shield, Users, Server } from "lucide-react";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -55,30 +56,8 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header 
-        className={`fixed top-0 w-full z-50 glass-card transition-all duration-300 ${
-          showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-        }`}
-        onMouseEnter={handleMouseEnter}
-      >
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center">
-            <img 
-              src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
-              alt="Lifetime EndPoint Resources"
-              className="h-8 md:h-10"
-            />
-          </div>
-          <nav className="hidden md:flex space-x-8">
-            <a href="#features" className="hover-lift text-neutral-600 hover:text-primary">Features</a>
-            <a href="#solutions" className="hover-lift text-neutral-600 hover:text-primary">Solutions</a>
-            <Link to="/security" className="hover-lift text-neutral-600 hover:text-primary">Security</Link>
-            <Link to="/contact" className="hover-lift text-neutral-600 hover:text-primary">Contact</Link>
-          </nav>
-        </div>
-      </header>
-
+      <Navbar showNavbar={showNavbar} onMouseEnter={handleMouseEnter} />
+      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
