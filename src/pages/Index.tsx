@@ -1,10 +1,38 @@
-
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Globe, Shield, Users, Server } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Index = () => {
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== 'undefined') {
+        if (window.scrollY === 0) {
+          // Always show at top
+          setShowNavbar(true);
+        } else if (window.scrollY > lastScrollY) {
+          // Scrolling down
+          setShowNavbar(false);
+        } else {
+          // Scrolling up
+          setShowNavbar(true);
+        }
+        setLastScrollY(window.scrollY);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', controlNavbar);
+
+      // Cleanup
+      return () => {
+        window.removeEventListener('scroll', controlNavbar);
+      };
+    }
+  }, [lastScrollY]);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -26,10 +54,19 @@ const Index = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
+  const handleMouseEnter = () => {
+    setShowNavbar(true);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 glass-card">
+      <header 
+        className={`fixed top-0 w-full z-50 glass-card transition-all duration-300 ${
+          showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        }`}
+        onMouseEnter={handleMouseEnter}
+      >
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img 
