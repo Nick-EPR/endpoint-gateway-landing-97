@@ -1,4 +1,3 @@
-
 import { Shield, Lock, CheckCircle2, FileCheck, Database, KeyRound, Building2, FileWarning } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -81,7 +80,7 @@ const Security = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10"></div>
           <img 
             src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80"
             alt="Security Background"
