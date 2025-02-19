@@ -2,6 +2,7 @@ import { Shield, Lock, CheckCircle2, FileCheck, Database, KeyRound, Building2, F
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+
 const Security = () => {
   const [scrolled, setScrolled] = useState(false);
   const {
@@ -61,7 +62,7 @@ const Security = () => {
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+      <section className="relative pt-32 pb-32 md:pt-40 md:pb-48 overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10"></div>
           <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80" alt="Security Background" className="w-full h-full object-cover" />
@@ -87,7 +88,7 @@ const Security = () => {
       </section>
 
       {/* Primary Security Features Section */}
-      <section className="relative py-20 bg-white">
+      <section className="relative py-32 md:py-48 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Enterprise-Grade Security Features
@@ -111,7 +112,7 @@ const Security = () => {
       </section>
 
       {/* Additional Security Features */}
-      <section className="relative py-20 bg-neutral-light">
+      <section className="relative py-32 md:py-48 bg-neutral-light">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Comprehensive Security Solutions
@@ -135,7 +136,7 @@ const Security = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-white">
+      <section className="py-32 md:py-48 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -157,4 +158,5 @@ const Security = () => {
       </section>
     </div>;
 };
+
 export default Security;
