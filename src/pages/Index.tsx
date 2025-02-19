@@ -5,6 +5,7 @@ import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
 import Solutions from "../components/sections/Solutions";
 import Partnership from "../components/sections/Partnership";
+import ROICalculator from "../components/sections/ROICalculator";
 
 const Index = () => {
   const [showNavbar, setShowNavbar] = useState(true);
@@ -67,6 +68,7 @@ const Index = () => {
       />
       <Features />
       <Solutions />
+      <ROICalculator />
       <Partnership />
       
       {/* Contact Section */}
