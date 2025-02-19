@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 interface NavbarProps {
   showNavbar: boolean;
@@ -7,10 +7,19 @@ interface NavbarProps {
 }
 
 const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleNavigation = (sectionId: string) => {
+    if (location.pathname === '/') {
+      // If we're on the home page, just scroll to the section
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If we're on another page, navigate to home and then scroll
+      navigate('/', { state: { scrollTo: sectionId } });
     }
   };
 
@@ -33,13 +42,13 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
         </div>
         <nav className="hidden md:flex space-x-8">
           <button 
-            onClick={() => scrollToSection('features')} 
+            onClick={() => handleNavigation('features')} 
             className="hover-lift text-neutral-600 hover:text-primary"
           >
             Features
           </button>
           <button 
-            onClick={() => scrollToSection('solutions')} 
+            onClick={() => handleNavigation('solutions')} 
             className="hover-lift text-neutral-600 hover:text-primary"
           >
             Solutions

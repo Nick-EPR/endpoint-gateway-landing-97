@@ -1,5 +1,5 @@
-
 import { useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
@@ -11,6 +11,19 @@ const Index = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Handle scroll to section after navigation
+    if (location.state?.scrollTo) {
+      const element = document.getElementById(location.state.scrollTo);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   useEffect(() => {
     const controlNavbar = () => {
