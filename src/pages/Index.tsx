@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from "react";
 import { Globe, Shield, Users, Server } from "lucide-react";
 
@@ -154,7 +155,7 @@ const Index = () => {
             <div className="grid md:grid-cols-2 gap-8 items-center">
               <div className="animate-on-scroll">
                 <h3 className="text-2xl font-semibold mb-4 text-primary">
-                  Powered by Lifetime Service
+                  Partnership with Lifetime Service
                 </h3>
                 <p className="text-neutral mb-6">
                   Through our exclusive partnership with Lifetime Service, we deliver comprehensive repair and maintenance solutions that set us apart in the industry.
