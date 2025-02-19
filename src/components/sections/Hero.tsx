@@ -10,24 +10,24 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
-        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
         <img 
-          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
-          alt="IT Asset Management Background"
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80"
+          alt="Modern Technology Background"
           className="w-full h-full object-cover"
         />
       </div>
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
             {title}
           </h1>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
           </p>
           <button 
-            className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover-lift animate-fade-up" 
+            className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:scale-105 transform transition-all duration-300 animate-fade-up" 
             style={{ animationDelay: "0.4s" }}
             onClick={onButtonClick}
           >
