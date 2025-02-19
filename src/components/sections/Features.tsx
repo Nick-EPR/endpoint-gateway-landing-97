@@ -13,9 +13,9 @@ const Features = () => {
     {
       icon: (
         <img 
-          src="/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png" 
+          src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" 
           alt="Toolbox Logo" 
-          className="w-8 h-8 invert"
+          className="w-8 h-8"
         />
       ),
       title: "Repair Management",
