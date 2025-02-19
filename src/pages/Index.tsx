@@ -1,6 +1,7 @@
 
 import { useEffect, useRef } from "react";
 import { Globe, Shield, Users, Server } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -40,7 +41,7 @@ const Index = () => {
           <nav className="hidden md:flex space-x-8">
             <a href="#features" className="hover-lift text-neutral-600 hover:text-primary">Features</a>
             <a href="#solutions" className="hover-lift text-neutral-600 hover:text-primary">Solutions</a>
-            <a href="#contact" className="hover-lift text-neutral-600 hover:text-primary">Contact</a>
+            <Link to="/contact" className="hover-lift text-neutral-600 hover:text-primary">Contact</Link>
           </nav>
         </div>
       </header>
