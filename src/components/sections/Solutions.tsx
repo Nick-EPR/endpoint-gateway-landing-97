@@ -34,7 +34,9 @@ const Solutions = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animate-fade-up', 'opacity-100');
+          const element = entry.target as HTMLElement;
+          element.style.transform = 'translateY(0)';
+          element.style.opacity = '1';
           observer.unobserve(entry.target);
         }
       });
@@ -45,11 +47,11 @@ const Solutions = () => {
 
     const cards = document.querySelectorAll('.solution-card');
     cards.forEach((card, index) => {
-      // Cast the Element to HTMLElement to access style property
       const cardElement = card as HTMLElement;
       cardElement.style.opacity = '0';
+      cardElement.style.transform = 'translateY(20px)';
       cardElement.style.transitionDelay = `${index * 200}ms`;
-      cardElement.style.transition = 'all 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+      cardElement.style.transition = 'transform 0.6s ease-out, opacity 0.6s ease-out';
       observer.observe(card);
     });
 
@@ -85,7 +87,7 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div 
               key={index} 
-              className="solution-card p-8 glass-card rounded-xl hover:shadow-lg transition-all duration-500 transform"
+              className="solution-card p-8 glass-card rounded-xl hover:shadow-lg"
             >
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
