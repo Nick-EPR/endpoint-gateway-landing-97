@@ -42,8 +42,7 @@ const Solutions = () => {
           backgroundSize: '300px',
           backgroundRepeat: 'repeat',
           backgroundPosition: 'center center',
-          marginTop: '2rem',
-          marginBottom: '2rem'
+          clipPath: 'polygon(0 2rem, 100% 0, 100% calc(100% - 2rem), 0 100%)'
         }}
       ></div>
 
