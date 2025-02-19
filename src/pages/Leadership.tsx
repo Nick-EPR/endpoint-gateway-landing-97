@@ -33,16 +33,16 @@ const Leadership = () => {
       phone: "716.867.4322"
     },
     {
-      name: "Nick Burdick",
-      title: "VP of Technology",
-      image: "/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png",
-      bio: "As VP of Technology, Nick leads Lifetime EPR's technological innovations and IT infrastructure. His expertise in technology leadership and IT management ensures the company delivers cutting-edge solutions in IT asset management. Nick's forward-thinking approach helps maintain Lifetime EPR's position as an industry leader in endpoint management technology."
-    },
-    {
       name: "Ron Bellus",
       title: "VP of Marketing",
       image: "/lovable-uploads/1875be8a-5f88-40e8-b85c-15ad388204a7.png",
       bio: "Ron leads Lifetime EPR's marketing strategies, brand development, and customer engagement initiatives. With a strong background in digital strategy and communications, he drives the company's market presence and customer acquisition efforts. His innovative approach to marketing helps position Lifetime EPR as a trusted partner in IT asset management."
+    },
+    {
+      name: "Nick Burdick",
+      title: "VP of Technology",
+      image: "/lovable-uploads/de0ae0ac-14bc-4ead-8802-50fea88c5890.png",
+      bio: "As VP of Technology, Nick leads Lifetime EPR's technological innovations and IT infrastructure. His expertise in technology leadership and IT management ensures the company delivers cutting-edge solutions in IT asset management. Nick's forward-thinking approach helps maintain Lifetime EPR's position as an industry leader in endpoint management technology."
     },
     {
       name: "Heather Novak",
