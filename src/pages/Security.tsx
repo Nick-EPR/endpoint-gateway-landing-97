@@ -1,4 +1,4 @@
-import { Shield, Lock, CheckCircle2, FileCheck, Database, KeyRound, Building2, FileWarning } from "lucide-react";
+import { Shield, Lock, CheckCircle2, FileCheck, Database, KeyRound, Building2, FileWarning, ArrowRight } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
@@ -95,6 +95,13 @@ const Security = () => {
             <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
               At Lifetime EPR, we understand that data security is paramount. We implement rigorous measures to protect your sensitive information throughout the entire IT asset lifecycle.
             </p>
+            <Link
+              to="/security"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary/90 transition-colors text-lg font-semibold animate-fade-up"
+              style={{ animationDelay: "0.3s" }}
+            >
+              Learn More <ArrowRight className="w-5 h-5" />
+            </Link>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
