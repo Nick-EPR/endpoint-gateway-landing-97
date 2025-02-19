@@ -1,5 +1,6 @@
+
 import { useEffect, useRef, useState } from "react";
-import { Globe, Shield, Users, Server } from "lucide-react";
+import { Globe, Shield, Users, Server, Wrench, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
@@ -95,8 +96,18 @@ const Index = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
             Comprehensive Features
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
+              {
+                icon: <Wrench className="w-8 h-8 text-primary" />,
+                title: "Repair Management",
+                description: "Streamlined repair process management through Toolbox integration with Lifetime Service"
+              },
+              {
+                icon: <Replace className="w-8 h-8 text-primary" />,
+                title: "Replace Processing",
+                description: "Efficient device replacement workflow integrated with repair depot services"
+              },
               {
                 icon: <Globe className="w-8 h-8 text-primary" />,
                 title: "Global Coverage",
@@ -142,20 +153,20 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {[
               {
-                title: "Asset Discovery",
-                description: "Automatically identify and catalog all IT assets in your network"
+                title: "Toolbox Integration",
+                description: "Seamless interface between Lifetime EPR and repair depot services through our Toolbox product"
               },
               {
-                title: "Lifecycle Management",
-                description: "Track and manage assets from procurement to retirement"
+                title: "Repair Tracking",
+                description: "Real-time visibility into repair status and process management via Lifetime Service integration"
               },
               {
-                title: "Compliance Management",
-                description: "Stay compliant with regulatory requirements and internal policies"
+                title: "Asset Lifecycle Management",
+                description: "Track and manage assets from procurement through repair or replacement to retirement"
               },
               {
                 title: "Cost Optimization",
-                description: "Identify cost-saving opportunities and optimize asset utilization"
+                description: "Identify cost-saving opportunities through efficient repair vs. replace decision making"
               }
             ].map((solution, index) => (
               <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll">
