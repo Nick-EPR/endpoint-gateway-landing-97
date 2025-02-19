@@ -42,9 +42,6 @@ const Solutions = () => {
           <div className="flex items-center justify-center mb-4">
             <Umbrella className="text-primary w-12 h-12 mb-2" />
           </div>
-          <div className="text-xl font-semibold text-primary mb-6">
-            Lifetime EndPoint Resources Ecosystem
-          </div>
           <p className="text-lg text-neutral animate-on-scroll">
             Streamline your IT asset management with our comprehensive suite of integrated tools
           </p>
