@@ -45,8 +45,10 @@ const Solutions = () => {
 
     const cards = document.querySelectorAll('.solution-card');
     cards.forEach((card, index) => {
-      card.style.opacity = '0';
-      card.style.transitionDelay = `${index * 200}ms`;
+      // Cast the Element to HTMLElement to access style property
+      const cardElement = card as HTMLElement;
+      cardElement.style.opacity = '0';
+      cardElement.style.transitionDelay = `${index * 200}ms`;
       observer.observe(card);
     });
 
