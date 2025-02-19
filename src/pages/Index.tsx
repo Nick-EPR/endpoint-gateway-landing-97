@@ -30,8 +30,12 @@ const Index = () => {
       {/* Header */}
       <header className="fixed top-0 w-full z-50 glass-card">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="text-xl font-semibold text-primary">
-            LifetimeEPR
+          <div className="flex items-center">
+            <img 
+              src="/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png"
+              alt="Lifetime EndPoint Resources"
+              className="h-8 md:h-10"
+            />
           </div>
           <nav className="hidden md:flex space-x-8">
             <a href="#features" className="hover-lift text-neutral-600 hover:text-primary">Features</a>
