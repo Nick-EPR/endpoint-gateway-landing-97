@@ -1,4 +1,5 @@
 
+import { Umbrella } from "lucide-react";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
@@ -38,13 +39,26 @@ const Solutions = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
             End-to-End ITAM Solutions
           </h2>
+          <div className="flex items-center justify-center mb-4">
+            <Umbrella className="text-primary w-12 h-12 mb-2" />
+          </div>
+          <div className="text-xl font-semibold text-primary mb-6">
+            Lifetime EndPoint Resources Ecosystem
+          </div>
           <p className="text-lg text-neutral animate-on-scroll">
             Streamline your IT asset management with our comprehensive suite of integrated tools
           </p>
         </div>
+
+        {/* Visual connector elements */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
+          <div className="absolute top-8 left-1/4 right-1/4 h-0.5 bg-primary/20"></div>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
-            <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll">
+            <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll hover:shadow-lg transition-shadow duration-300">
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
                   <img 
