@@ -1,7 +1,8 @@
-
 const Partnership = () => {
   return (
-    <section className="section-padding bg-white">
+    <section className="relative section-padding bg-white">
+      <div className="absolute top-0 left-0 w-full h-16 bg-primary-light transform skew-y-2 -translate-y-1/2"></div>
+
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">

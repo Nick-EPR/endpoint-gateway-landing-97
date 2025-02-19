@@ -1,4 +1,3 @@
-
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 
 interface Feature {
@@ -54,8 +53,10 @@ const Features = () => {
   ];
 
   return (
-    <section id="features" className="section-padding bg-gradient-to-b from-white to-neutral-50">
-      <div className="container mx-auto px-4">
+    <section id="features" className="relative section-padding bg-gradient-to-b from-white to-neutral-50">
+      <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-1/2"></div>
+      
+      <div className="container mx-auto px-4 relative">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Comprehensive Features
         </h2>
@@ -74,6 +75,8 @@ const Features = () => {
           ))}
         </div>
       </div>
+
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 translate-y-1/2"></div>
     </section>
   );
 };

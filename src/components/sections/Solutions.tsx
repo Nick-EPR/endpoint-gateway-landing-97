@@ -25,8 +25,11 @@ const Solutions = () => {
   ];
 
   return (
-    <section id="solutions" className="section-padding bg-neutral-light">
-      <div className="container mx-auto px-4">
+    <section id="solutions" className="relative section-padding bg-neutral-light">
+      {/* Top slanted divider */}
+      <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2"></div>
+
+      <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
             End-to-End ITAM Solutions
@@ -44,6 +47,9 @@ const Solutions = () => {
           ))}
         </div>
       </div>
+
+      {/* Bottom slanted divider */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2"></div>
     </section>
   );
 };
