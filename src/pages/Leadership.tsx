@@ -80,12 +80,12 @@ const Leadership = () => {
           <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {leaders.map((leader, index) => (
               <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/3">
+                <div className="flex flex-col md:flex-row h-full">
+                  <div className="md:w-1/3 relative h-[300px] md:h-auto">
                     <img 
                       src={leader.image}
                       alt={leader.name}
-                      className="w-full h-full object-cover aspect-square"
+                      className="absolute w-full h-full object-cover object-[center_center]"
                     />
                   </div>
                   <div className="md:w-2/3 p-6">
