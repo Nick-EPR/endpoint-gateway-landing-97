@@ -18,8 +18,8 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
         <div className="flex items-center">
           <Link to="/">
             <img 
-              src="/lovable-uploads/e33dc722-802e-4ce4-85fc-349f8140e4f0.png"
-              alt="Toolbox by Lifetime EndPoint Resources"
+              src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
+              alt="Lifetime EndPoint Resources"
               className="h-8 md:h-10"
             />
           </Link>
