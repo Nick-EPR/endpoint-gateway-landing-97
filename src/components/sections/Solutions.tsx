@@ -1,6 +1,6 @@
 
 import toolboxLogo from "/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png";
-import heliamLogo from "/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png";
+import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 
 interface Solution {
   title: string;
