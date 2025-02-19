@@ -1,5 +1,5 @@
 
-import toolboxLogo from "/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png";
+import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 
 interface Solution {
