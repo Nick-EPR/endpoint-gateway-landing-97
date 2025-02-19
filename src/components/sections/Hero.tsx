@@ -10,17 +10,12 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
-        <div className="absolute inset-0 bg-black/30 z-10"></div>
-        <video 
-          autoPlay 
-          loop 
-          muted 
-          playsInline
+        <div className="absolute inset-0 bg-black/50 z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+          alt="IT Asset Management Background"
           className="w-full h-full object-cover"
-        >
-          <source src="/lovable-uploads/server-room.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
       </div>
 
       <div className="container mx-auto px-4 relative z-20">
