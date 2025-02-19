@@ -17,9 +17,9 @@ const TMobileBusiness = () => {
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="flex justify-center mb-8">
             <img 
-              src="/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png"
+              src="/lovable-uploads/db5c2503-a1b3-49cc-a4d8-2e1cca8144e9.png"
               alt="T-Mobile"
-              className="h-12 w-auto"
+              className="h-16 w-auto"
             />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
