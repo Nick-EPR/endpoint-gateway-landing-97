@@ -1,11 +1,16 @@
 
 import { Mail, Phone } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 
 const Leadership = () => {
   const [scrolled, setScrolled] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
