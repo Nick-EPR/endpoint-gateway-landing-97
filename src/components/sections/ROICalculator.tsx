@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { Calculator } from 'lucide-react';
+import { Slider } from "@/components/ui/slider";
 
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
@@ -46,16 +47,26 @@ const ROICalculator = () => {
             </div>
 
             <div className="mb-8">
-              <label className="block text-sm font-medium text-neutral mb-2">
-                Number of Employees
-              </label>
-              <input
-                type="number"
-                min="1"
-                value={employees}
-                onChange={(e) => setEmployees(Math.max(1, parseInt(e.target.value) || 0))}
-                className="w-full p-3 border border-neutral/20 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary"
+              <div className="flex justify-between items-center mb-2">
+                <label className="text-sm font-medium text-neutral">
+                  Number of Employees
+                </label>
+                <span className="text-sm text-neutral font-medium">
+                  {employees.toLocaleString()}
+                </span>
+              </div>
+              <Slider
+                min={100}
+                max={10000}
+                step={100}
+                value={[employees]}
+                onValueChange={(values) => setEmployees(values[0])}
+                className="my-4"
               />
+              <div className="flex justify-between text-xs text-neutral">
+                <span>100</span>
+                <span>10,000</span>
+              </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
