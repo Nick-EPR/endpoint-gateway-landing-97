@@ -1,5 +1,5 @@
 
-import { Globe, Shield, Users, Server, Wrench, Replace } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
 interface Feature {
@@ -11,7 +11,13 @@ interface Feature {
 const Features = () => {
   const features: Feature[] = [
     {
-      icon: <Wrench className="w-8 h-8 text-primary" />,
+      icon: (
+        <img 
+          src="/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png" 
+          alt="Toolbox Logo" 
+          className="w-8 h-8"
+        />
+      ),
       title: "Repair Management",
       description: "Streamlined repair process management through Toolbox integration with Lifetime Service"
     },
