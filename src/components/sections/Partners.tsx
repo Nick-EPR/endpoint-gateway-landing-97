@@ -75,15 +75,14 @@ const Partners = () => {
                     rel="noopener noreferrer"
                     className="p-8 glass-card rounded-xl hover:shadow-lg transition-shadow group block"
                   >
-                    <div className="mb-6 h-20 flex items-center justify-center">
+                    <div className="h-32 flex items-center justify-center">
                       <img
                         src={partner.logo}
                         alt={`${partner.name} logo`}
-                        className="max-h-12 w-auto object-contain group-hover:scale-105 transition-transform"
+                        className="max-h-24 w-auto object-contain group-hover:scale-105 transition-transform"
                       />
                     </div>
-                    <h3 className="text-xl font-semibold mb-4 text-center">{partner.name}</h3>
-                    <p className="text-neutral text-center">{partner.description}</p>
+                    <p className="text-neutral text-center mt-4">{partner.description}</p>
                   </a>
                 </CarouselItem>
               ))}
