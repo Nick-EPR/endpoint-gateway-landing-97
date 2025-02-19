@@ -34,7 +34,7 @@ const Partners = () => {
       name: "Lifetime Service",
       logo: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
       url: "https://www.lifetimeservice.com",
-      description: "Comprehensive IT lifecycle management solutions"
+      description: "Expert device repair and maintenance facility"
     }
   ];
 
