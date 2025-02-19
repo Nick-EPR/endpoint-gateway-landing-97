@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { Globe, Shield, Users, Server } from "lucide-react";
 
@@ -32,7 +31,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png"
+              src="/lovable-uploads/8305882e-bcf7-4c28-9c4c-d2cd01d598c4.png"
               alt="Lifetime EndPoint Resources"
               className="h-8 md:h-10"
             />
