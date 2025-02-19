@@ -7,6 +7,13 @@ interface NavbarProps {
 }
 
 const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header 
       className={`fixed top-0 w-full z-50 glass-card transition-all duration-300 ${
@@ -25,10 +32,30 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
           </Link>
         </div>
         <nav className="hidden md:flex space-x-8">
-          <Link to="/#features" className="hover-lift text-neutral-600 hover:text-primary">Features</Link>
-          <Link to="/#solutions" className="hover-lift text-neutral-600 hover:text-primary">Solutions</Link>
-          <Link to="/security" className="hover-lift text-neutral-600 hover:text-primary">Security</Link>
-          <Link to="/contact" className="hover-lift text-neutral-600 hover:text-primary">Contact</Link>
+          <button 
+            onClick={() => scrollToSection('features')} 
+            className="hover-lift text-neutral-600 hover:text-primary"
+          >
+            Features
+          </button>
+          <button 
+            onClick={() => scrollToSection('solutions')} 
+            className="hover-lift text-neutral-600 hover:text-primary"
+          >
+            Solutions
+          </button>
+          <Link 
+            to="/security" 
+            className="hover-lift text-neutral-600 hover:text-primary"
+          >
+            Security
+          </Link>
+          <Link 
+            to="/contact" 
+            className="hover-lift text-neutral-600 hover:text-primary"
+          >
+            Contact
+          </Link>
         </nav>
       </div>
     </header>
