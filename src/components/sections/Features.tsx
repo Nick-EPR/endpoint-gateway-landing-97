@@ -46,7 +46,7 @@ const Features = () => {
         <img 
           src="/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png" 
           alt="HeliAM Logo" 
-          className="w-8 h-8"
+          className="w-8 h-8 object-contain"
         />
       ),
       title: "Asset Tracking",
