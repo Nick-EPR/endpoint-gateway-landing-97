@@ -31,7 +31,7 @@ const Solutions = () => {
   return (
     <section id="solutions" className="relative section-padding bg-neutral-light">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-white transform -skew-y-3 -translate-y-1/2 z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-32 bg-white transform skew-y-3 -translate-y-1/2 z-10"></div>
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -72,7 +72,7 @@ const Solutions = () => {
       </div>
 
       {/* Bottom slanted divider */}
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-white transform skew-y-3 translate-y-1/2 z-10"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-white transform -skew-y-3 translate-y-1/2 z-10"></div>
     </section>
   );
 };
