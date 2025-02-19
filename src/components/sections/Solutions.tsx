@@ -1,6 +1,7 @@
 
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
+import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
 
 interface Solution {
   title: string;
@@ -22,7 +23,8 @@ const Solutions = () => {
     },
     {
       title: "Luemin",
-      description: "Unified Endpoint Management (UEM) solution integrated directly into the Lifetime EPR platform for comprehensive device management"
+      description: "Unified Endpoint Management (UEM) solution integrated directly into the Lifetime EPR platform for comprehensive device management",
+      logo: lueminLogo
     }
   ];
 
