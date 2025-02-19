@@ -11,13 +11,10 @@ const Index = () => {
     const controlNavbar = () => {
       if (typeof window !== 'undefined') {
         if (window.scrollY === 0) {
-          // Always show at top
           setShowNavbar(true);
         } else if (window.scrollY > lastScrollY) {
-          // Scrolling down
           setShowNavbar(false);
         } else {
-          // Scrolling up
           setShowNavbar(true);
         }
         setLastScrollY(window.scrollY);
@@ -26,8 +23,6 @@ const Index = () => {
 
     if (typeof window !== 'undefined') {
       window.addEventListener('scroll', controlNavbar);
-
-      // Cleanup
       return () => {
         window.removeEventListener('scroll', controlNavbar);
       };
@@ -84,13 +79,27 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-b from-primary-light to-white">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+        <div className="absolute inset-0 w-full h-full z-0">
+          <div className="absolute inset-0 bg-black/30 z-10"></div>
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/lovable-uploads/server-room.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
               Comprehensive ITAM Solutions for Your Enterprise
             </h1>
-            <p className="text-xl md:text-2xl text-neutral mb-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+            <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
               Transform your IT asset management with our end-to-end solution
             </p>
             <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover-lift animate-fade-up" style={{ animationDelay: "0.4s" }}>
