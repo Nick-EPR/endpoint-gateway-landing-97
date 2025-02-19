@@ -2,11 +2,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 interface NavbarProps {
-  showNavbar: boolean;
+  scrolled: boolean;
   onMouseEnter: () => void;
 }
 
-const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
+const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -23,12 +23,12 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
 
   return (
     <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        showNavbar ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-      }`}
+      className="fixed top-0 w-full z-50"
       onMouseEnter={onMouseEnter}
     >
-      <div className="backdrop-blur-md bg-white/80 border-b border-neutral-200/10">
+      <div className={`transition-all duration-300 ${
+        scrolled ? 'backdrop-blur-md bg-white/80' : 'bg-white/50'
+      } border-b border-neutral-200/10`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">

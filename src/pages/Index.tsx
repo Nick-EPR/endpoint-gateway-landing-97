@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Shield, Award, Users } from "lucide-react";
@@ -12,8 +11,7 @@ import Partnership from "../components/sections/Partnership";
 import ROICalculator from "../components/sections/ROICalculator";
 
 const Index = () => {
-  const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const location = useLocation();
 
@@ -30,26 +28,16 @@ const Index = () => {
   }, [location]);
 
   useEffect(() => {
-    const controlNavbar = () => {
-      if (typeof window !== 'undefined') {
-        if (window.scrollY === 0) {
-          setShowNavbar(true);
-        } else if (window.scrollY > lastScrollY) {
-          setShowNavbar(false);
-        } else {
-          setShowNavbar(true);
-        }
-        setLastScrollY(window.scrollY);
-      }
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener('scroll', controlNavbar);
-      return () => {
-        window.removeEventListener('scroll', controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(
@@ -72,12 +60,12 @@ const Index = () => {
   }, []);
 
   const handleMouseEnter = () => {
-    setShowNavbar(true);
+    // Keep this for potential future use
   };
 
   return (
     <div className="min-h-screen">
-      <Navbar showNavbar={showNavbar} onMouseEnter={handleMouseEnter} />
+      <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       <Hero 
         title="Comprehensive ITAM Solutions for Your Enterprise"
         subtitle="Transform your IT asset management with our end-to-end solution"
