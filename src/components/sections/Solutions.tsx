@@ -3,6 +3,7 @@ import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.p
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
+import { useEffect } from "react";
 
 interface Solution {
   title: string;
@@ -28,6 +29,29 @@ const Solutions = () => {
       logo: lueminLogo
     }
   ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-fade-up', 'opacity-100');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px'
+    });
+
+    const cards = document.querySelectorAll('.solution-card');
+    cards.forEach((card, index) => {
+      card.style.opacity = '0';
+      card.style.transitionDelay = `${index * 200}ms`;
+      observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <section id="solutions" className="relative py-24 bg-neutral-light">
@@ -56,7 +80,10 @@ const Solutions = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
-            <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll hover:shadow-lg transition-shadow duration-300">
+            <div 
+              key={index} 
+              className="solution-card p-8 glass-card rounded-xl hover:shadow-lg transition-all duration-500"
+            >
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
                   <img 
