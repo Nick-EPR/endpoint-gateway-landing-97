@@ -1,3 +1,4 @@
+
 import { Mail, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -52,7 +53,7 @@ const Leadership = () => {
     {
       name: "Marc Caponegro",
       title: "VP of Business Development and Channels",
-      image: "/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png",
+      image: "/lovable-uploads/1792242b-3531-4f82-b1c4-99ed1d9216b3.png",
       bio: "Marc leads Lifetime EPR's business development and channel partnership initiatives, playing a crucial role in expanding the company's market reach through strategic alliances. His expertise in sales leadership and channel development has been instrumental in securing key partnerships, including the strategic collaboration with T-Mobile. Marc's efforts continue to drive Lifetime EPR's growth and market expansion."
     }
   ];
