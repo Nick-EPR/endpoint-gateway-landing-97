@@ -75,11 +75,11 @@ const Partners = () => {
                     rel="noopener noreferrer"
                     className="p-8 glass-card rounded-xl hover:shadow-lg transition-shadow group block"
                   >
-                    <div className="h-32 flex items-center justify-center">
+                    <div className="h-48 flex items-center justify-center">
                       <img
                         src={partner.logo}
                         alt={`${partner.name} logo`}
-                        className="max-h-24 w-auto object-contain group-hover:scale-105 transition-transform"
+                        className="max-h-40 w-auto object-contain group-hover:scale-105 transition-transform"
                       />
                     </div>
                     <p className="text-neutral text-center mt-4">{partner.description}</p>
