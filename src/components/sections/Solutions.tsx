@@ -1,8 +1,8 @@
 
-import { Umbrella } from "lucide-react";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
+import eprEmblem from "/lovable-uploads/2a173961-954b-4a73-99e0-539b5f04b83d.png";
 
 interface Solution {
   title: string;
@@ -30,18 +30,25 @@ const Solutions = () => {
   ];
 
   return (
-    <section id="solutions" className="relative section-padding bg-neutral-light">
+    <section id="solutions" className="relative section-padding bg-neutral-light overflow-hidden">
       {/* Top slanted divider */}
       <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2"></div>
+
+      {/* Background pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url(${eprEmblem})`,
+          backgroundSize: '200px',
+          backgroundRepeat: 'repeat',
+        }}
+      ></div>
 
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
             End-to-End ITAM Solutions
           </h2>
-          <div className="flex items-center justify-center mb-4">
-            <Umbrella className="text-primary w-12 h-12 mb-2" />
-          </div>
           <p className="text-lg text-neutral animate-on-scroll">
             Streamline your IT asset management with our comprehensive suite of integrated tools
           </p>
