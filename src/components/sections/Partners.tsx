@@ -32,7 +32,7 @@ const Partners = () => {
     },
     {
       name: "Lifetime Service",
-      logo: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
+      logo: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png",
       url: "https://www.lifetimeservice.com",
       description: "Expert device repair and maintenance facility"
     }
