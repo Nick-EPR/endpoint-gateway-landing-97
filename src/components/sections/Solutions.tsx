@@ -50,7 +50,9 @@ const Solutions = () => {
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className="max-h-10 w-auto object-contain"
+                    className={`max-h-8 w-auto object-contain ${
+                      solution.title === 'HeliAM' ? 'max-h-10' : ''
+                    }`}
                   />
                 </div>
               ) : (
