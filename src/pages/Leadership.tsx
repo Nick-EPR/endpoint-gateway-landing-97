@@ -41,7 +41,7 @@ const Leadership = () => {
     {
       name: "Ron Bellus",
       title: "VP of Marketing",
-      image: "/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png",
+      image: "/lovable-uploads/1875be8a-5f88-40e8-b85c-15ad388204a7.png",
       bio: "Ron leads Lifetime EPR's marketing strategies, brand development, and customer engagement initiatives. With a strong background in digital strategy and communications, he drives the company's market presence and customer acquisition efforts. His innovative approach to marketing helps position Lifetime EPR as a trusted partner in IT asset management."
     },
     {
