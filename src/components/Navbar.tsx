@@ -66,7 +66,7 @@ const Navbar = ({ showNavbar, onMouseEnter }: NavbarProps) => {
             </Link>
             <a 
               href="https://app.lifetimeepr.io"
-              className="bg-[#9b87f5] text-white px-6 py-2 rounded-lg hover:bg-[#8873e0] transition-colors duration-200"
+              className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >
