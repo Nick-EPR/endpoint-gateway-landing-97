@@ -114,12 +114,17 @@ const Security = () => {
       {/* Additional Security Features */}
       <section className="relative py-32 md:py-48 bg-neutral-light">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            Comprehensive Security Solutions
-          </h2>
-          <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
-            From secure facilities to certified processes, we maintain the highest standards of security throughout our operations.
-          </p>
+          <div className="flex flex-col items-center">
+            <div className="mb-6 animate-bounce">
+              <KeyRound className="w-12 h-12 text-primary" />
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+              Comprehensive Security Solutions
+            </h2>
+            <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
+              From secure facilities to certified processes, we maintain the highest standards of security throughout our operations.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {additionalFeatures.map((feature, index) => <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
                 <div className="mb-4">{feature.icon}</div>
