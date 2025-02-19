@@ -15,10 +15,16 @@ const TMobileBusiness = () => {
     <section className="py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="flex justify-center mb-8">
+          <div className="flex items-center justify-center gap-4 mb-8">
             <img 
               src="/lovable-uploads/db5c2503-a1b3-49cc-a4d8-2e1cca8144e9.png"
               alt="T-Mobile"
+              className="h-16 w-auto"
+            />
+            <span className="text-2xl font-semibold text-neutral">×</span>
+            <img 
+              src="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png"
+              alt="Lifetime EndPoint Resources"
               className="h-16 w-auto"
             />
           </div>
