@@ -1,25 +1,49 @@
 
-import { Users } from "lucide-react";
+import { Users, Mail, Phone, MapPin } from "lucide-react";
 
-const ExecutiveTeam = () => {
+const Contact = () => {
   return (
     <div className="min-h-screen pt-24">
-      {/* Header Section */}
+      {/* Contact Info Section */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <Users className="w-12 h-12 text-primary mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Leadership Team</h1>
-            <p className="text-lg text-neutral">
-              Meet the experienced professionals leading our mission to transform IT asset management.
+            <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
+            <p className="text-lg text-neutral mb-8">
+              Get in touch with our team to learn more about our IT asset management solutions.
             </p>
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              <div className="p-6 bg-neutral-light rounded-xl">
+                <Phone className="w-6 h-6 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">Call Us</h3>
+                <p className="text-neutral">+1 (555) 123-4567</p>
+              </div>
+              <div className="p-6 bg-neutral-light rounded-xl">
+                <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">Email Us</h3>
+                <p className="text-neutral">contact@lifetimeepr.com</p>
+              </div>
+              <div className="p-6 bg-neutral-light rounded-xl">
+                <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
+                <p className="text-neutral">123 Business Ave, Suite 100<br />City, State 12345</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Team Grid */}
+      {/* Executive Team Section */}
       <section className="section-padding bg-neutral-light">
         <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <Users className="w-12 h-12 text-primary mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Our Leadership Team</h2>
+            <p className="text-lg text-neutral">
+              Meet the experienced professionals leading our mission to transform IT asset management.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Leadership Cards */}
             <div className="glass-card rounded-xl overflow-hidden hover-lift">
@@ -108,4 +132,4 @@ const ExecutiveTeam = () => {
   );
 };
 
-export default ExecutiveTeam;
+export default Contact;
