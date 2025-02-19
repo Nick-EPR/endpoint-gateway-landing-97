@@ -2,6 +2,7 @@
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
+import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 
 interface Solution {
   title: string;
@@ -32,6 +33,13 @@ const Solutions = () => {
     <section id="solutions" className="relative py-24 bg-neutral-light">
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center mb-16">
+          <div className="flex justify-center mb-8">
+            <img 
+              src={triangleImage} 
+              alt="Decorative triangle" 
+              className="w-24 h-auto"
+            />
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
             End-to-End ITAM Solutions
           </h2>
