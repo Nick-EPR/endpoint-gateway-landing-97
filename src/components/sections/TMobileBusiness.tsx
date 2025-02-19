@@ -1,4 +1,3 @@
-
 import { Shield, Network, Smartphone, Check, Laptop, Cpu } from "lucide-react";
 
 const TMobileBusiness = () => {
@@ -28,9 +27,6 @@ const TMobileBusiness = () => {
               className="h-16 w-auto"
             />
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-            T-Mobile for Business Partnership
-          </h2>
           <p className="text-lg text-neutral mb-8 animate-on-scroll">
             Empowering businesses with connected device solutions through our strategic partnership with T-Mobile, delivering reliable, secure, and scalable IT device management
           </p>
