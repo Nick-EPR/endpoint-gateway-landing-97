@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { Globe, Shield, Users, Server } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -74,6 +73,7 @@ const Index = () => {
           <nav className="hidden md:flex space-x-8">
             <a href="#features" className="hover-lift text-neutral-600 hover:text-primary">Features</a>
             <a href="#solutions" className="hover-lift text-neutral-600 hover:text-primary">Solutions</a>
+            <Link to="/security" className="hover-lift text-neutral-600 hover:text-primary">Security</Link>
             <Link to="/contact" className="hover-lift text-neutral-600 hover:text-primary">Contact</Link>
           </nav>
         </div>
@@ -100,20 +100,9 @@ const Index = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
               Comprehensive ITAM Solutions for Your Enterprise
             </h1>
-            <p className="text-xl md:text-2xl mb-6 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
-              Complete lifecycle management under one roof: procurement, stocking, repair, and disposition
+            <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
+              Transform your IT asset management with our end-to-end solution
             </p>
-            <div className="flex flex-col md:flex-row items-center justify-center gap-4 mb-8 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-primary" />
-                <span className="text-white font-medium">ISO 27001:2022 Certified</span>
-              </div>
-              <div className="hidden md:block w-1.5 h-1.5 bg-primary rounded-full"></div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-5 h-5 text-primary" />
-                <span className="text-white font-medium">HIPAA Compliant</span>
-              </div>
-            </div>
             <button className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover-lift animate-fade-up" style={{ animationDelay: "0.4s" }}>
               Get Started
             </button>
