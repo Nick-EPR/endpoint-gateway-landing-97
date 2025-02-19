@@ -31,7 +31,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <img 
-              src="/lovable-uploads/8305882e-bcf7-4c28-9c4c-d2cd01d598c4.png"
+              src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
               alt="Lifetime EndPoint Resources"
               className="h-8 md:h-10"
             />
