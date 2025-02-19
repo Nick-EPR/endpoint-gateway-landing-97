@@ -47,7 +47,7 @@ const Leadership = () => {
     {
       name: "Heather Novak",
       title: "VP of Product Development",
-      image: "/lovable-uploads/b2341ac3-771a-4393-be7c-4147f249071d.png",
+      image: "/lovable-uploads/d085cb0d-47c3-4598-ad6d-d64c8e9b99fc.png",
       bio: "Heather drives the creation and enhancement of Lifetime EPR's service offerings, with a particular focus on PCaaS solutions and strategic partnerships. Her expertise in product strategy and IT solutions ensures that Lifetime EPR's services consistently meet and exceed client expectations. Under her leadership, the product development team continues to innovate and expand the company's service portfolio."
     },
     {
