@@ -20,7 +20,7 @@ const Solutions = () => {
     },
     {
       title: "HeliAM",
-      description: "Complete asset lifecycle management platform for tracking and managing IT assets from procurement through retirement",
+      description: "Complete CMDB management platform that complements the Lifetime EPR asset lifecycle management solution",
       logo: heliamLogo
     },
     {
