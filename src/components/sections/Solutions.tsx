@@ -46,11 +46,11 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll">
               {solution.logo ? (
-                <div className="mb-6 h-12">
+                <div className="mb-6 h-16 flex items-center justify-center">
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className="h-full object-contain mx-auto"
+                    className="max-h-10 w-auto object-contain"
                   />
                 </div>
               ) : (
