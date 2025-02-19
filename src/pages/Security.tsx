@@ -8,7 +8,6 @@ const Security = () => {
   const {
     pathname
   } = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
@@ -22,11 +21,9 @@ const Security = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
   const handleMouseEnter = () => {
     // Keep this for potential future use
   };
-
   const securityFeatures = [{
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "DoD-Standard Data Wiping",
@@ -44,7 +41,6 @@ const Security = () => {
     title: "Lifetime Data Detect",
     description: "Advanced data lifecycle management service ensuring robust oversight, compliance, and protection of your valuable assets."
   }];
-
   const additionalFeatures = [{
     icon: <KeyRound className="w-8 h-8 text-primary" />,
     title: "Complete Chain of Custody",
@@ -62,7 +58,6 @@ const Security = () => {
     title: "Partner Compliance",
     description: "Strict security requirements for all partners and subcontractors through comprehensive Master Service Agreements."
   }];
-
   return <div className="min-h-screen">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
@@ -119,25 +114,12 @@ const Security = () => {
       {/* Additional Security Features */}
       <section className="relative py-32 md:py-48 bg-neutral-light">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center">
-            <div className="mb-6 relative">
-              <Lock className="w-12 h-12 text-primary absolute top-0 left-0 animate-fade-in opacity-0" style={{ animationDelay: '0.5s', animationFillMode: 'forwards' }} />
-              <KeyRound 
-                className="w-12 h-12 text-primary animate-[spin_1s_ease-in-out_forwards]" 
-                style={{ 
-                  transformOrigin: 'center',
-                  animationDelay: '0.2s',
-                  animationFillMode: 'forwards'
-                }} 
-              />
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-              Comprehensive Security Solutions
-            </h2>
-            <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
-              From secure facilities to certified processes, we maintain the highest standards of security throughout our operations.
-            </p>
-          </div>
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+            Comprehensive Security Solutions
+          </h2>
+          <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
+            From secure facilities to certified processes, we maintain the highest standards of security throughout our operations.
+          </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {additionalFeatures.map((feature, index) => <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
                 <div className="mb-4">{feature.icon}</div>
