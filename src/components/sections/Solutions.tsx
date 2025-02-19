@@ -1,18 +1,24 @@
 
+import toolboxLogo from "/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png";
+import heliamLogo from "/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png";
+
 interface Solution {
   title: string;
   description: string;
+  logo?: string;
 }
 
 const Solutions = () => {
   const solutions: Solution[] = [
     {
       title: "Toolbox",
-      description: "Seamless interface between Lifetime EPR and repair depot services through our proven Toolbox product integration"
+      description: "Seamless interface between Lifetime EPR and repair depot services through our proven Toolbox product integration",
+      logo: toolboxLogo
     },
     {
       title: "HeliAM",
-      description: "Complete asset lifecycle management platform for tracking and managing IT assets from procurement through retirement"
+      description: "Complete asset lifecycle management platform for tracking and managing IT assets from procurement through retirement",
+      logo: heliamLogo
     },
     {
       title: "Luemin",
@@ -37,7 +43,17 @@ const Solutions = () => {
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
             <div key={index} className="p-8 glass-card rounded-xl animate-on-scroll">
-              <h3 className="text-xl font-semibold mb-4">{solution.title}</h3>
+              {solution.logo ? (
+                <div className="mb-6 h-12">
+                  <img 
+                    src={solution.logo} 
+                    alt={`${solution.title} logo`} 
+                    className="h-full object-contain mx-auto"
+                  />
+                </div>
+              ) : (
+                <h3 className="text-xl font-semibold mb-6">{solution.title}</h3>
+              )}
               <p className="text-neutral">{solution.description}</p>
             </div>
           ))}
