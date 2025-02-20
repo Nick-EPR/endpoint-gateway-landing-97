@@ -18,20 +18,20 @@ interface Solution {
 const Solutions = () => {
   const solutions: Solution[] = [
     {
-      title: "Toolbox",
-      description: "Seamless interface between Lifetime EPR and repair depot services through our proven Toolbox product integration",
-      logo: toolboxLogo,
-      path: "/toolbox"
-    },
-    {
       title: "HeliAM",
-      description: "Complete CMDB management platform that complements the Lifetime EPR asset lifecycle management solution",
+      description: "Our core IT asset management platform that provides comprehensive lifecycle management within the Lifetime EPR ecosystem",
       logo: heliamLogo,
       path: "/heliam"
     },
     {
+      title: "Toolbox",
+      description: "Integrated suite of tools within HeliAM that optimizes asset tracking, security, and management throughout the lifecycle",
+      logo: toolboxLogo,
+      path: "/toolbox"
+    },
+    {
       title: "Luemin",
-      description: "Unified Endpoint Management (UEM) solution integrated directly into the Lifetime EPR platform for comprehensive device management",
+      description: "Unified Endpoint Management (UEM) solution integrated into the Lifetime EPR platform for comprehensive device management",
       logo: lueminLogo,
       comingSoon: true
     }
@@ -77,10 +77,10 @@ const Solutions = () => {
             />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-            The EPR Product Suite
+            The Lifetime EPR Platform
           </h2>
           <p className="text-lg text-neutral animate-on-scroll">
-            Streamline your IT asset management with our comprehensive suite of integrated products
+            Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
           </p>
         </div>
 
@@ -103,9 +103,7 @@ const Solutions = () => {
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className={`max-h-8 w-auto object-contain ${
-                      solution.title === 'HeliAM' ? 'max-h-12' : ''
-                    }`}
+                    className="max-h-8 w-auto object-contain"
                   />
                 </div>
               ) : (
