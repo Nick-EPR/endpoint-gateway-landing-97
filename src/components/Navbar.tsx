@@ -34,7 +34,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
         scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center relative h-8 md:h-10">
+          <div className="relative h-8 md:h-10 w-[120px] md:w-[150px]">
             <Link to="/">
               <img 
                 src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
