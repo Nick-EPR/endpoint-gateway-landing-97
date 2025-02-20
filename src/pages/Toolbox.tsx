@@ -34,10 +34,10 @@ const Toolbox = () => {
           <div className="flex flex-col items-center text-center mb-12">
             <img src={toolboxLogo} alt="Toolbox Logo" className="h-16 mb-8" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Introduce Circularity to Endpoint Management
+              Endpoint Management, Simplified
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl">
-              Toolbox is designed to close the loop for ITAM administrators, providing a comprehensive solution within the HeliAM platform for sustainable IT asset management and value recovery.
+              Enhance HeliAM with Toolbox's comprehensive suite of tools for streamlined IT asset management, bringing circularity to your endpoint management process.
             </p>
           </div>
         </div>
@@ -50,37 +50,37 @@ const Toolbox = () => {
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Fast Exchange</h3>
               <p className="text-neutral-600">
-                Minimize productivity loss with rapid device replacement services. Our streamlined process ensures employees stay operational with minimal downtime.
+                Minimize downtime through rapid device replacement services, keeping employees productive with minimal interruption.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Asset Recovery</h3>
               <p className="text-neutral-600">
-                Efficiently recover and process IT assets through our proven workflows, maximizing the value of your technology investments.
+                Maximize the value of your technology investments through efficient asset recovery and processing workflows.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Repair & Refurbish</h3>
               <p className="text-neutral-600">
-                Extend asset life with our Grade A refurbishment process, ensuring devices meet OEM standards with 80%+ battery health and minimal cosmetic wear.
+                Extend asset lifecycles with our Grade A refurbishment process, ensuring devices meet OEM standards.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Logistics Provisioning</h3>
               <p className="text-neutral-600">
-                Streamline the entire logistics process from collection to delivery, with integrated tracking and chain of custody management.
+                End-to-end logistics management with integrated tracking and chain of custody controls.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Secure Disposition</h3>
               <p className="text-neutral-600">
-                Ensure complete data protection with our secure decommissioning services, meeting industry compliance standards.
+                Industry-compliant data protection through secure decommissioning services.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Remarket & Return</h3>
               <p className="text-neutral-600">
-                Maximize asset value through our remarketing services or efficiently reintegrate assets back into your inventory.
+                Optimize asset value through remarketing services or efficient inventory reintegration.
               </p>
             </div>
           </div>
@@ -91,7 +91,7 @@ const Toolbox = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Maximize Value, Minimize Costs</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">Optimize Your IT Investment</h2>
             <div className="bg-primary/5 p-8 rounded-lg">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="flex flex-col items-center text-center">
@@ -113,11 +113,11 @@ const Toolbox = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Seamless HeliAM Integration</h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
-            As part of the HeliAM platform, Toolbox provides comprehensive asset tracking, security, and management capabilities within a single, unified solution.
+            As an integrated component of HeliAM, Toolbox enhances your asset management capabilities within the Lifetime EPR ecosystem.
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/heliam">
-              <Button variant="outline">Explore HeliAM</Button>
+              <Button variant="outline">Learn About HeliAM</Button>
             </Link>
             <Link to="/contact">
               <Button>Contact Sales</Button>
