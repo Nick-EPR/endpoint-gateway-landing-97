@@ -73,7 +73,7 @@ const Contact = () => {
         {/* Map Background */}
         <div className="absolute inset-0 w-full h-full">
           <LocationMap />
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" /> {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/50" /> {/* Removed backdrop blur, adjusted opacity */}
         </div>
         
         {/* Content */}
@@ -87,7 +87,7 @@ const Contact = () => {
             
             {/* Contact Grid */}
             <div className="grid md:grid-cols-2 gap-6 mt-12">
-              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-xl">
+              <div className="p-6 bg-white/95 rounded-xl"> {/* Increased opacity for better contrast */}
                 <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">East Coast Office</h3>
                 <p className="text-neutral">
@@ -95,7 +95,7 @@ const Contact = () => {
                   Buffalo NY, 14221
                 </p>
               </div>
-              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-xl">
+              <div className="p-6 bg-white/95 rounded-xl">
                 <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">West Coast Office</h3>
                 <p className="text-neutral">
@@ -103,7 +103,7 @@ const Contact = () => {
                   Riverside, CA 92507
                 </p>
               </div>
-              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-xl md:col-span-2">
+              <div className="p-6 bg-white/95 rounded-xl md:col-span-2">
                 <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Email Us</h3>
                 <a 
