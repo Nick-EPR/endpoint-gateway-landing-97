@@ -9,6 +9,7 @@ interface Solution {
   title: string;
   description: string;
   logo?: string;
+  comingSoon?: boolean;
 }
 
 const Solutions = () => {
@@ -26,7 +27,8 @@ const Solutions = () => {
     {
       title: "Luemin",
       description: "Unified Endpoint Management (UEM) solution integrated directly into the Lifetime EPR platform for comprehensive device management",
-      logo: lueminLogo
+      logo: lueminLogo,
+      comingSoon: true
     }
   ];
 
@@ -87,7 +89,9 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div 
               key={index} 
-              className="solution-card p-8 glass-card rounded-xl hover:shadow-lg"
+              className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg ${
+                solution.comingSoon ? 'opacity-75' : ''
+              }`}
             >
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
@@ -103,6 +107,11 @@ const Solutions = () => {
                 <h3 className="text-xl font-semibold mb-6">{solution.title}</h3>
               )}
               <p className="text-neutral">{solution.description}</p>
+              {solution.comingSoon && (
+                <div className="mt-4">
+                  <span className="text-primary font-medium">Coming Soon</span>
+                </div>
+              )}
             </div>
           ))}
         </div>
