@@ -53,7 +53,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               Solutions
             </button>
             <Link 
-              to="/leadership" 
+              to="/contact" 
               className="text-neutral-600 hover:text-primary transition-colors duration-200"
             >
               Leadership
