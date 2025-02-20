@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
@@ -73,7 +72,7 @@ const HeliAM = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Integrated Solutions</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="max-w-2xl mx-auto">
             <div className="p-8 bg-primary/5 rounded-lg">
               <h3 className="text-2xl font-semibold mb-4">Toolbox</h3>
               <p className="text-neutral-600 mb-4">
@@ -82,13 +81,6 @@ const HeliAM = () => {
               <Link to="/toolbox">
                 <Button variant="outline">Learn More</Button>
               </Link>
-            </div>
-            <div className="p-8 bg-neutral-50 rounded-lg">
-              <h3 className="text-2xl font-semibold mb-4">Ravive</h3>
-              <p className="text-neutral-600 mb-4">
-                Professional repair services facilitating seamless asset retrieval and disposition, maximizing your IT investment.
-              </p>
-              <Button variant="outline" disabled>Coming Soon</Button>
             </div>
           </div>
         </div>
