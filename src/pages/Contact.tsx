@@ -1,9 +1,8 @@
-
-import { Users, Mail, Phone, MapPin } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import LocationMap from "../components/LocationMap";
+import ContactHero from "../components/contact/ContactHero";
+import LeadershipCard from "../components/contact/LeadershipCard";
 
 const Contact = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -67,65 +66,8 @@ const Contact = () => {
   return (
     <div className="min-h-screen">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
+      <ContactHero />
       
-      {/* Contact Info Section */}
-      <section className="relative min-h-screen bg-white">
-        {/* Map Background */}
-        <div className="absolute inset-0 w-full h-full">
-          <LocationMap />
-          <div className="absolute inset-0 bg-black/50" /> {/* Removed backdrop blur, adjusted opacity */}
-        </div>
-        
-        {/* Content */}
-        <div className="relative pt-32 pb-24 container mx-auto px-4">
-          <div className="text-center max-w-3xl mx-auto">
-            <Mail className="w-12 h-12 text-white mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Contact Us</h1>
-            <p className="text-lg text-white/90 mb-8">
-              Get in touch with our team to learn more about our IT asset management solutions.
-            </p>
-            
-            {/* Contact Grid */}
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              <div className="p-6 bg-white/95 rounded-xl">
-                <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">East Coast Office</h3>
-                <p className="text-neutral">
-                  1955 Wehrle Drive Suite C<br />
-                  Buffalo NY, 14221
-                </p>
-              </div>
-              <div className="p-6 bg-white/95 rounded-xl">
-                <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">West Coast Office</h3>
-                <p className="text-neutral">
-                  3190 Chicago Avenue<br />
-                  Riverside, CA 92507
-                </p>
-              </div>
-              <div className="p-6 bg-white/95 rounded-xl">
-                <MapPin className="w-6 h-6 text-neutral-400 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Jacksonville Office</h3>
-                <p className="text-primary font-medium">
-                  Coming Soon
-                </p>
-              </div>
-              <div className="p-6 bg-white/95 rounded-xl md:col-span-3">
-                <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-                <a 
-                  href="mailto:contact@lifetimeepr.com" 
-                  className="text-neutral hover:text-primary transition-colors"
-                >
-                  contact@lifetimeepr.com
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 translate-y-8 z-10" />
-      </section>
-
       {/* Leadership Profiles */}
       <section className="relative py-24 bg-neutral-light mt-8">
         <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 -translate-y-8" />
@@ -138,38 +80,7 @@ const Contact = () => {
           </div>
           <div className="grid md:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {leaders.map((leader, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="flex flex-col md:flex-row h-full">
-                  <div className="md:w-1/3 relative h-[300px] md:h-auto">
-                    <img 
-                      src={leader.image}
-                      alt={leader.name}
-                      className="absolute w-full h-full object-cover object-[center_center]"
-                    />
-                  </div>
-                  <div className="md:w-2/3 p-6">
-                    <h3 className="text-2xl font-bold mb-2">{leader.name}</h3>
-                    <p className="text-primary font-medium mb-4">{leader.title}</p>
-                    <p className="text-neutral mb-4">{leader.bio}</p>
-                    {leader.email && leader.phone && (
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-2 text-neutral">
-                          <Mail className="w-4 h-4" />
-                          <a href={`mailto:${leader.email}`} className="hover:text-primary transition-colors">
-                            {leader.email}
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-2 text-neutral">
-                          <Phone className="w-4 h-4" />
-                          <a href={`tel:${leader.phone}`} className="hover:text-primary transition-colors">
-                            {leader.phone}
-                          </a>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
+              <LeadershipCard key={index} {...leader} />
             ))}
           </div>
         </div>
