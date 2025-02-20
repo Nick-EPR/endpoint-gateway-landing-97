@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { Database, GitMerge, Globe, Shield, Users, Server } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
@@ -22,7 +23,6 @@ const HeliAM = () => {
   }, []);
 
   useEffect(() => {
-    // Trigger the animation after a short delay
     const timer = setTimeout(() => {
       setShowLight(true);
     }, 2000);
@@ -75,19 +75,34 @@ const HeliAM = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Complete Asset Management</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Database className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Complete Asset Management</h3>
+              </div>
               <p className="text-neutral-600">
                 Unified asset tracking and management within the Lifetime EPR ecosystem for maximum visibility and control.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Seamless Integration</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <GitMerge className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Seamless Integration</h3>
+              </div>
               <p className="text-neutral-600">
                 Native integration with all Lifetime EPR solutions for comprehensive lifecycle management.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Asset Intelligence</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Server className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Asset Intelligence</h3>
+              </div>
               <p className="text-neutral-600">
                 Advanced tracking capabilities powered by Lifetime EPR's innovative agent technology.
               </p>

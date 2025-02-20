@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
+import { Warehouse, Wrench, Truck, Cog, ShieldCheck, Recycle } from "lucide-react";
+import toolboxLogo from "/lovable-uploads/236d044b-e3a0-4822-b70b-260862d2a5fd.png";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 
@@ -56,37 +57,67 @@ const Toolbox = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Warehouse Operations</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Warehouse className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Warehouse Operations</h3>
+              </div>
               <p className="text-neutral-600">
                 Streamline receiving, storage, and dispatch operations with integrated warehouse management tools and inventory tracking.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Repair Management</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Wrench className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Repair Management</h3>
+              </div>
               <p className="text-neutral-600">
                 Track devices through the repair process, from intake and diagnosis to repair completion and quality assurance.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Logistics Control</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Truck className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Logistics Control</h3>
+              </div>
               <p className="text-neutral-600">
                 Manage shipping, receiving, and chain of custody with real-time tracking and automated notifications.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Parts Management</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Cog className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Parts Management</h3>
+              </div>
               <p className="text-neutral-600">
                 Track repair parts inventory, automate reordering, and maintain optimal stock levels for efficient repairs.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Quality Control</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <ShieldCheck className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Quality Control</h3>
+              </div>
               <p className="text-neutral-600">
                 Ensure repaired devices meet OEM specifications with comprehensive testing and quality assurance workflows.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Asset Recovery</h3>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-primary/10 rounded-lg">
+                  <Recycle className="w-6 h-6 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold">Asset Recovery</h3>
+              </div>
               <p className="text-neutral-600">
                 Maximize device value through efficient triage, repair, and redistribution or remarketing channels.
               </p>
