@@ -75,49 +75,49 @@ const Index = () => {
 
       {/* Features Section */}
       <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
         <Features />
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* Solutions Section */}
       <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 -translate-y-1/2 z-10"></div>
         <Solutions />
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* T-Mobile Business Section */}
       <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
         <TMobileBusiness />
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* Partners Section */}
       <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 -translate-y-1/2 z-10"></div>
         <Partners />
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* ROI Calculator Section */}
       <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
         <ROICalculator />
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-primary-light transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-primary-light transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* Partnership Section */}
       <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-16 bg-primary-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-primary-light transform skew-y-2 -translate-y-1/2 z-10"></div>
         <Partnership />
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* About Us Section */}
       <section className="relative section-padding bg-white" ref={aboutRef}>
-        <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 animate-on-scroll">
@@ -154,12 +154,12 @@ const Index = () => {
             </div>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       {/* Contact Section */}
       <section className="relative section-padding bg-neutral-light">
-        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform skew-y-2 -translate-y-1/2 z-10"></div>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
@@ -176,7 +176,7 @@ const Index = () => {
             </a>
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-2 translate-y-1/2 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-1/2 z-10"></div>
       </section>
 
       <Footer />
