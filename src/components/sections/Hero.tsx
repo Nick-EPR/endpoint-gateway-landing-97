@@ -12,8 +12,8 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
         <img 
-          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80"
-          alt="Modern Technology Background"
+          src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+          alt="IT Asset Management Background"
           className="w-full h-full object-cover"
         />
       </div>
