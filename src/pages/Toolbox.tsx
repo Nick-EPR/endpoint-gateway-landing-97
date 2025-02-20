@@ -29,14 +29,22 @@ const Toolbox = () => {
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="container mx-auto">
+      <section className="relative pt-32 pb-24 px-4">
+        <div className="absolute inset-0 w-full h-full">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
+            alt="IT Infrastructure Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
             <img src={toolboxLogo} alt="Toolbox Logo" className="h-16 mb-8" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               Endpoint Management, Simplified
             </h1>
-            <p className="text-lg text-neutral-600 max-w-2xl">
+            <p className="text-lg text-white/90 max-w-2xl">
               Enhance HeliAM with Toolbox's comprehensive suite of tools for streamlined IT asset management, bringing circularity to your endpoint management process.
             </p>
           </div>

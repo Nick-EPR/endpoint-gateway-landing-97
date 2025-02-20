@@ -29,14 +29,22 @@ const HeliAM = () => {
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4">
-        <div className="container mx-auto">
+      <section className="relative pt-32 pb-24 px-4">
+        <div className="absolute inset-0 w-full h-full">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80"
+            alt="Digital Network Background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
             <img src={heliamLogo} alt="HeliAM Logo" className="h-20 mb-8" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               ITAM done light.
             </h1>
-            <p className="text-lg text-neutral-600 max-w-2xl">
+            <p className="text-lg text-white/90 max-w-2xl">
               HeliAM streamlines IT asset lifecycle management with comprehensive tracking, security, and management capabilities within the Lifetime EPR ecosystem.
             </p>
           </div>
