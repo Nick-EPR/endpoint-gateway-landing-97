@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
+import heliamLogo from "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 
@@ -40,7 +40,7 @@ const HeliAM = () => {
         </div>
         <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
-            <img src={heliamLogo} alt="HeliAM Logo" className="h-20 mb-8" />
+            <img src={heliamLogo} alt="HeliAM Logo" className="h-24 mb-8" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               ITAM done light.
             </h1>
