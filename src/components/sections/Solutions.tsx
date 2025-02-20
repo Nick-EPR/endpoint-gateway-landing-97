@@ -1,4 +1,6 @@
 
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
@@ -10,6 +12,7 @@ interface Solution {
   description: string;
   logo?: string;
   comingSoon?: boolean;
+  path?: string;
 }
 
 const Solutions = () => {
@@ -17,12 +20,14 @@ const Solutions = () => {
     {
       title: "Toolbox",
       description: "Seamless interface between Lifetime EPR and repair depot services through our proven Toolbox product integration",
-      logo: toolboxLogo
+      logo: toolboxLogo,
+      path: "/toolbox"
     },
     {
       title: "HeliAM",
       description: "Complete CMDB management platform that complements the Lifetime EPR asset lifecycle management solution",
-      logo: heliamLogo
+      logo: heliamLogo,
+      path: "/heliam"
     },
     {
       title: "Luemin",
@@ -106,11 +111,15 @@ const Solutions = () => {
               ) : (
                 <h3 className="text-xl font-semibold mb-6">{solution.title}</h3>
               )}
-              <p className="text-neutral">{solution.description}</p>
-              {solution.comingSoon && (
+              <p className="text-neutral mb-6">{solution.description}</p>
+              {solution.comingSoon ? (
                 <div className="mt-4">
                   <span className="text-primary font-medium">Coming Soon</span>
                 </div>
+              ) : solution.path && (
+                <Link to={solution.path}>
+                  <Button variant="outline" className="w-full">Learn More</Button>
+                </Link>
               )}
             </div>
           ))}
