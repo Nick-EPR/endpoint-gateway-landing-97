@@ -26,11 +26,11 @@ const ContactHero = () => {
           <div className="grid md:grid-cols-3 gap-6 mt-12">
             <LocationCard 
               name="East Coast Office"
-              address="1955 Wehrle Drive Suite C\nBuffalo NY, 14221"
+              address="1955 Wehrle Drive Suite C, Buffalo NY, 14221"
             />
             <LocationCard 
               name="West Coast Office"
-              address="3190 Chicago Avenue\nRiverside, CA 92507"
+              address="3190 Chicago Avenue, Riverside, CA 92507"
             />
             <LocationCard 
               name="Jacksonville Office"
