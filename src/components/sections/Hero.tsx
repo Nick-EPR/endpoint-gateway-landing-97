@@ -11,11 +11,24 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
-          alt="IT Asset Management Background"
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
           className="w-full h-full object-cover"
-        />
+        >
+          <source 
+            src="https://static.videezy.com/system/resources/previews/000/038/601/original/data_01.mp4" 
+            type="video/mp4" 
+          />
+          {/* Fallback image in case video fails to load */}
+          <img 
+            src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7"
+            alt="IT Asset Management Background"
+            className="w-full h-full object-cover"
+          />
+        </video>
       </div>
 
       <div className="container mx-auto px-4 relative z-20">
