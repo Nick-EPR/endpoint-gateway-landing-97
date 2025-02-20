@@ -1,4 +1,4 @@
-import { Shield, Lock, CheckCircle2, FileCheck, Database, KeyRound, Building2, FileWarning, ArrowRight } from "lucide-react";
+import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
@@ -36,10 +36,6 @@ const Security = () => {
     icon: <Lock className="w-8 h-8 text-primary" />,
     title: "ISO27001:2023 Compliance",
     description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data."
-  }, {
-    icon: <Database className="w-8 h-8 text-primary" />,
-    title: "Lifetime Data Detect",
-    description: "Advanced data lifecycle management service ensuring robust oversight, compliance, and protection of your valuable assets."
   }];
   const additionalFeatures = [{
     icon: <KeyRound className="w-8 h-8 text-primary" />,
@@ -65,7 +61,7 @@ const Security = () => {
       <section className="relative pt-32 pb-32 md:pt-40 md:pb-48 overflow-hidden">
         <div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10"></div>
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80" alt="Security Background" className="w-full h-full object-cover" />
+          <img src="https://images.unsplash.com/photo-1557862921-37829c790f19" alt="Security Background" className="w-full h-full object-cover" />
         </div>
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
@@ -77,7 +73,6 @@ const Security = () => {
           }}>
               At Lifetime EPR, we understand that data security is paramount. We implement rigorous measures to protect your sensitive information throughout the entire IT asset lifecycle.
             </p>
-            
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
@@ -96,7 +91,7 @@ const Security = () => {
           <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
             Our comprehensive security measures and certifications ensure your data remains protected at every stage of the IT asset lifecycle.
           </p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {securityFeatures.map((feature, index) => <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
                 <div className="mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
