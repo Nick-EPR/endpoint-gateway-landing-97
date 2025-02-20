@@ -52,7 +52,7 @@ const HeliAM = () => {
           <div className="flex flex-col items-center text-center mb-12">
             <img src={heliamLogo} alt="HeliAM Logo" className="h-24 mb-8" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              ITAM done 
+              ITAM done{' '}
               <span className="relative inline-block min-w-[2ch]">
                 <span className={`absolute transition-opacity duration-500 ${showLight ? 'opacity-0' : 'opacity-100'}`}>
                   right
