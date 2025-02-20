@@ -34,12 +34,10 @@ const LocationMap = () => {
 
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/dark-v11', // Changed to dark style for better contrast
+        style: 'mapbox://styles/mapbox/dark-v11',
         bounds: bounds,
         fitBoundsOptions: { padding: 100 }
       });
-
-      map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
       locations.forEach(location => {
         const popup = new mapboxgl.Popup({ offset: 25 })
