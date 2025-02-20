@@ -21,7 +21,7 @@ const TMobileBusiness = () => {
               alt="T-Mobile"
               className="h-16 w-auto"
             />
-            <span className="text-2xl font-semibold text-neutral">×</span>
+            <span className="text-2xl font-semibold text-neutral">+</span>
             <img 
               src="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png"
               alt="Lifetime EndPoint Resources"
