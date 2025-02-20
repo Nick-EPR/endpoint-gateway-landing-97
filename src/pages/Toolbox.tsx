@@ -33,7 +33,7 @@ const Toolbox = () => {
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&q=80"
+            src="https://images.unsplash.com/photo-1600880292089-90a649e273f0?auto=format&fit=crop&q=80"
             alt="Warehouse Operations"
             className="w-full h-full object-cover"
           />
