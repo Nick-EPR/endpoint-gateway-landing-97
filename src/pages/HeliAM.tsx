@@ -41,7 +41,7 @@ const HeliAM = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4">
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10"></div>
           <img 
             src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
             alt="Modern Warehouse Asset Management"
