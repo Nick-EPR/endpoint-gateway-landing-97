@@ -86,8 +86,8 @@ const Contact = () => {
             </p>
             
             {/* Contact Grid */}
-            <div className="grid md:grid-cols-2 gap-6 mt-12">
-              <div className="p-6 bg-white/95 rounded-xl"> {/* Increased opacity for better contrast */}
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              <div className="p-6 bg-white/95 rounded-xl">
                 <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">East Coast Office</h3>
                 <p className="text-neutral">
@@ -103,7 +103,14 @@ const Contact = () => {
                   Riverside, CA 92507
                 </p>
               </div>
-              <div className="p-6 bg-white/95 rounded-xl md:col-span-2">
+              <div className="p-6 bg-white/95 rounded-xl">
+                <MapPin className="w-6 h-6 text-neutral-400 mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">Jacksonville Office</h3>
+                <p className="text-primary font-medium">
+                  Coming Soon
+                </p>
+              </div>
+              <div className="p-6 bg-white/95 rounded-xl md:col-span-3">
                 <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Email Us</h3>
                 <a 
