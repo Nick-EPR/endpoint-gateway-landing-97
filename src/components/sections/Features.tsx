@@ -27,7 +27,7 @@ const Features = () => {
     },
     {
       icon: <Replace className="w-8 h-8 text-primary" />,
-      title: "Replace Processing",
+      title: "Advance Exchange",
       description: "Efficient device replacement workflow integrated with repair depot services"
     },
     {
