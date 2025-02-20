@@ -1,12 +1,13 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import heliamLogo from "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png";
+import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 
 const HeliAM = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showLight, setShowLight] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +19,15 @@ const HeliAM = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    // Trigger the animation after a short delay
+    const timer = setTimeout(() => {
+      setShowLight(true);
+    }, 2000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const handleMouseEnter = () => {
@@ -42,7 +52,16 @@ const HeliAM = () => {
           <div className="flex flex-col items-center text-center mb-12">
             <img src={heliamLogo} alt="HeliAM Logo" className="h-24 mb-8" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              ITAM done light.
+              ITAM done 
+              <span className="relative inline-block min-w-[2ch]">
+                <span className={`absolute transition-opacity duration-500 ${showLight ? 'opacity-0' : 'opacity-100'}`}>
+                  right
+                </span>
+                <span className={`transition-opacity duration-500 ${showLight ? 'opacity-100' : 'opacity-0'}`}>
+                  light
+                </span>
+              </span>
+              .
             </h1>
             <p className="text-lg text-white/90 max-w-2xl">
               HeliAM streamlines IT asset lifecycle management with comprehensive tracking, security, and management capabilities within the Lifetime EPR ecosystem.
