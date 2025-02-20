@@ -31,10 +31,10 @@ const Toolbox = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4">
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80"
-            alt="IT Infrastructure Background"
+            src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?auto=format&fit=crop&q=80"
+            alt="Warehouse Operations"
             className="w-full h-full object-cover"
           />
         </div>
@@ -42,10 +42,10 @@ const Toolbox = () => {
           <div className="flex flex-col items-center text-center mb-12">
             <img src={toolboxLogo} alt="Toolbox Logo" className="h-16 mb-8" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Endpoint Management, Simplified
+              Physical Asset Management & Repair
             </h1>
             <p className="text-lg text-white/90 max-w-2xl">
-              Enhance HeliAM with Toolbox's comprehensive suite of tools for streamlined IT asset management, bringing circularity to your endpoint management process.
+              Bridge the gap between IT asset management and repair operations with Toolbox's comprehensive suite of warehouse, logistics, and repair depot integration tools.
             </p>
           </div>
         </div>
@@ -56,39 +56,39 @@ const Toolbox = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Fast Exchange</h3>
+              <h3 className="text-xl font-semibold mb-4">Warehouse Operations</h3>
               <p className="text-neutral-600">
-                Minimize downtime through rapid device replacement services, keeping employees productive with minimal interruption.
+                Streamline receiving, storage, and dispatch operations with integrated warehouse management tools and inventory tracking.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">Repair Management</h3>
+              <p className="text-neutral-600">
+                Track devices through the repair process, from intake and diagnosis to repair completion and quality assurance.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">Logistics Control</h3>
+              <p className="text-neutral-600">
+                Manage shipping, receiving, and chain of custody with real-time tracking and automated notifications.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">Parts Management</h3>
+              <p className="text-neutral-600">
+                Track repair parts inventory, automate reordering, and maintain optimal stock levels for efficient repairs.
+              </p>
+            </div>
+            <div className="p-6 bg-white rounded-lg shadow-sm">
+              <h3 className="text-xl font-semibold mb-4">Quality Control</h3>
+              <p className="text-neutral-600">
+                Ensure repaired devices meet OEM specifications with comprehensive testing and quality assurance workflows.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm">
               <h3 className="text-xl font-semibold mb-4">Asset Recovery</h3>
               <p className="text-neutral-600">
-                Maximize the value of your technology investments through efficient asset recovery and processing workflows.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Repair & Refurbish</h3>
-              <p className="text-neutral-600">
-                Extend asset lifecycles with our Grade A refurbishment process, ensuring devices meet OEM standards.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Logistics Provisioning</h3>
-              <p className="text-neutral-600">
-                End-to-end logistics management with integrated tracking and chain of custody controls.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Secure Disposition</h3>
-              <p className="text-neutral-600">
-                Industry-compliant data protection through secure decommissioning services.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <h3 className="text-xl font-semibold mb-4">Remarket & Return</h3>
-              <p className="text-neutral-600">
-                Optimize asset value through remarketing services or efficient inventory reintegration.
+                Maximize device value through efficient triage, repair, and redistribution or remarketing channels.
               </p>
             </div>
           </div>
@@ -99,16 +99,16 @@ const Toolbox = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Optimize Your IT Investment</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">Optimize Your Repair Operations</h2>
             <div className="bg-primary/5 p-8 rounded-lg">
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="flex flex-col items-center text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">50%+</div>
-                  <p className="text-neutral-600">Reduction in annual IT CapEx compared to new device procurement</p>
+                  <div className="text-4xl font-bold text-primary mb-2">24-48h</div>
+                  <p className="text-neutral-600">Average repair turnaround time for standard repairs</p>
                 </div>
                 <div className="flex flex-col items-center text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">Grade A</div>
-                  <p className="text-neutral-600">Refurbishment quality with 80%+ battery health and minimal cosmetic wear</p>
+                  <div className="text-4xl font-bold text-primary mb-2">95%+</div>
+                  <p className="text-neutral-600">First-time repair success rate with OEM-certified technicians</p>
                 </div>
               </div>
             </div>
@@ -121,7 +121,7 @@ const Toolbox = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Seamless HeliAM Integration</h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
-            As an integrated component of HeliAM, Toolbox enhances your asset management capabilities within the Lifetime EPR ecosystem.
+            Connect your physical asset operations directly with HeliAM for complete visibility and control over your device lifecycle.
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/heliam">
