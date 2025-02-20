@@ -34,9 +34,9 @@ const LocationMap = () => {
 
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
-        style: 'mapbox://styles/mapbox/light-v11',
+        style: 'mapbox://styles/mapbox/dark-v11', // Changed to dark style for better contrast
         bounds: bounds,
-        fitBoundsOptions: { padding: 50 }
+        fitBoundsOptions: { padding: 100 }
       });
 
       map.current.addControl(new mapboxgl.NavigationControl(), 'top-right');
@@ -65,8 +65,8 @@ const LocationMap = () => {
   }, [mapboxToken]);
 
   return (
-    <div className="w-full">
-      <div ref={mapContainer} className="w-full h-[400px] rounded-xl overflow-hidden" />
+    <div className="w-full h-full">
+      <div ref={mapContainer} className="w-full h-full" />
     </div>
   );
 };

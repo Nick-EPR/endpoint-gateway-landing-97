@@ -1,3 +1,4 @@
+
 import { Users, Mail, Phone, MapPin } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -68,18 +69,25 @@ const Contact = () => {
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Contact Info Section */}
-      <section className="relative section-padding bg-white pt-32">
-        <div className="container mx-auto px-4">
+      <section className="relative min-h-screen bg-white">
+        {/* Map Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <LocationMap />
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" /> {/* Overlay for better text readability */}
+        </div>
+        
+        {/* Content */}
+        <div className="relative pt-32 pb-24 container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Contact Us</h1>
-            <p className="text-lg text-neutral mb-8">
+            <Mail className="w-12 h-12 text-white mx-auto mb-6" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Contact Us</h1>
+            <p className="text-lg text-white/90 mb-8">
               Get in touch with our team to learn more about our IT asset management solutions.
             </p>
             
             {/* Contact Grid */}
             <div className="grid md:grid-cols-2 gap-6 mt-12">
-              <div className="p-6 bg-neutral-light rounded-xl">
+              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-xl">
                 <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">East Coast Office</h3>
                 <p className="text-neutral">
@@ -87,7 +95,7 @@ const Contact = () => {
                   Buffalo NY, 14221
                 </p>
               </div>
-              <div className="p-6 bg-neutral-light rounded-xl">
+              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-xl">
                 <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">West Coast Office</h3>
                 <p className="text-neutral">
@@ -95,7 +103,7 @@ const Contact = () => {
                   Riverside, CA 92507
                 </p>
               </div>
-              <div className="p-6 bg-neutral-light rounded-xl md:col-span-2">
+              <div className="p-6 bg-white/90 backdrop-blur-sm rounded-xl md:col-span-2">
                 <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2">Email Us</h3>
                 <a 
@@ -105,12 +113,6 @@ const Contact = () => {
                   contact@lifetimeepr.com
                 </a>
               </div>
-            </div>
-
-            {/* Map */}
-            <div className="mt-12">
-              <h2 className="text-2xl font-bold mb-6">Our Locations</h2>
-              <LocationMap />
             </div>
           </div>
         </div>
