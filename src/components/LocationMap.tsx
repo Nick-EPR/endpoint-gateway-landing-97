@@ -13,6 +13,12 @@ const locations = [
     name: "West Coast Office",
     coordinates: [-117.3755, 33.9806], // Riverside coordinates
     address: "3190 Chicago Avenue, Riverside, CA 92507"
+  },
+  {
+    name: "Jacksonville Office",
+    coordinates: [-81.6557, 30.3322], // Jacksonville coordinates
+    address: "Coming Soon",
+    comingSoon: true
   }
 ];
 
@@ -43,10 +49,12 @@ const LocationMap = () => {
         const popup = new mapboxgl.Popup({ offset: 25 })
           .setHTML(`
             <h3 class="font-bold">${location.name}</h3>
-            <p>${location.address}</p>
+            <p>${location.comingSoon ? '<span class="text-primary">Coming Soon</span>' : location.address}</p>
           `);
 
-        new mapboxgl.Marker({ color: '#93C851' })
+        new mapboxgl.Marker({ 
+          color: location.comingSoon ? '#666666' : '#93C851' // Grey for coming soon, green for active locations
+        })
           .setLngLat(location.coordinates as [number, number])
           .setPopup(popup)
           .addTo(map.current!);
