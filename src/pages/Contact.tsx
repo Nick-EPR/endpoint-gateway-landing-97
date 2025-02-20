@@ -69,7 +69,7 @@ const Contact = () => {
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Contact Info Section */}
-      <section className="section-padding bg-white">
+      <section className="relative section-padding bg-white pt-32">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
@@ -115,10 +115,11 @@ const Contact = () => {
             </div>
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 translate-y-8" />
       </section>
 
       {/* Leadership Profiles */}
-      <section className="py-16 bg-neutral-light">
+      <section className="relative py-24 bg-neutral-light mt-8">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Leadership Team</h1>
@@ -163,10 +164,11 @@ const Contact = () => {
             ))}
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-8" />
       </section>
 
       {/* Values Section */}
-      <section className="section-padding bg-white">
+      <section className="relative section-padding bg-white mt-8">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Our Leadership Values</h2>
