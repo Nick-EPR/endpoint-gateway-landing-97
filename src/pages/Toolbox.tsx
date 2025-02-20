@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Warehouse, Wrench, Truck, Cog, ShieldCheck, Recycle } from "lucide-react";
 import toolboxLogo from "/lovable-uploads/236d044b-e3a0-4822-b70b-260862d2a5fd.png";
+import warehouseImage from "/lovable-uploads/1677d91d-eaaf-4e2c-b98f-d73469344a71.png";
 import Navbar from "@/components/Navbar";
 import { useState, useEffect } from "react";
 
@@ -32,9 +33,9 @@ const Toolbox = () => {
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4">
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/75 to-black/60 backdrop-blur-[3px] z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1600880292089-90a649e273f0?auto=format&fit=crop&q=80"
+            src={warehouseImage}
             alt="Warehouse Operations"
             className="w-full h-full object-cover"
           />
