@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Shield, Award, Users } from "lucide-react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
 import Solutions from "../components/sections/Solutions";
@@ -189,11 +190,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-white py-8">
-        <div className="container mx-auto px-4 text-center text-neutral">
-          <p>© 2024 LifetimeEPR. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

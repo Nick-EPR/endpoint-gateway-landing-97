@@ -2,6 +2,7 @@ import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Security = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,7 +55,8 @@ const Security = () => {
     title: "Partner Compliance",
     description: "Strict security requirements for all partners and subcontractors through comprehensive Master Service Agreements."
   }];
-  return <div className="min-h-screen">
+  return (
+    <div className="min-h-screen">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
@@ -151,7 +153,10 @@ const Security = () => {
           </div>
         </div>
       </section>
-    </div>;
+
+      <Footer />
+    </div>
+  );
 };
 
 export default Security;

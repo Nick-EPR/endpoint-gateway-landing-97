@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import ContactHero from "../components/contact/ContactHero";
 import LeadershipCard from "../components/contact/LeadershipCard";
+import Footer from "../components/Footer";
 
 const Contact = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -122,6 +123,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
