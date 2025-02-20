@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
@@ -31,12 +32,13 @@ const HeliAM = () => {
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto">
           <div className="flex flex-col items-center text-center mb-12">
+            <div className="text-sm text-primary mb-4 font-medium">Part of the Lifetime EPR Platform</div>
             <img src={heliamLogo} alt="HeliAM Logo" className="h-20 mb-8" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               ITAM done light.
             </h1>
             <p className="text-lg text-neutral-600 max-w-2xl">
-              HeliAM is an all-in-one platform designed to simplify and streamline your IT asset lifecycle. Our comprehensive solution ensures accountable management from procurement to disposition.
+              HeliAM, a core solution within the Lifetime EPR platform, streamlines your IT asset lifecycle management. As an integral part of our comprehensive platform, it ensures accountable management from procurement to disposition.
             </p>
           </div>
         </div>
@@ -47,21 +49,21 @@ const HeliAM = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Comprehensive Lifecycle Solutions</h3>
+              <h3 className="text-xl font-semibold mb-4">Unified Platform Integration</h3>
               <p className="text-neutral-600">
-                Scalable and predictable IT lifecycle management solutions that maximize asset ROI and optimize IT spending.
+                Seamlessly integrated with Lifetime EPR's ecosystem, providing scalable and predictable IT lifecycle management that maximizes ROI.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
               <h3 className="text-xl font-semibold mb-4">Data Lifecycle Management</h3>
               <p className="text-neutral-600">
-                Ensure data integrity and compliance with comprehensive data handling at every stage of the asset lifecycle.
+                Part of Lifetime EPR's comprehensive approach to ensuring data integrity and compliance throughout the asset lifecycle.
               </p>
             </div>
             <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-4">Asset Agent Software</h3>
+              <h3 className="text-xl font-semibold mb-4">Asset Intelligence</h3>
               <p className="text-neutral-600">
-                Customizable solution for secure hardware and software information collection, with self-destruct capabilities after transmission.
+                Advanced asset tracking and management capabilities powered by Lifetime EPR's innovative agent technology.
               </p>
             </div>
           </div>
@@ -76,10 +78,10 @@ const HeliAM = () => {
             <div className="p-8 bg-primary/5 rounded-lg">
               <h3 className="text-2xl font-semibold mb-4">Toolbox</h3>
               <p className="text-neutral-600 mb-4">
-                A comprehensive suite of tools designed to optimize IT asset tracking, security, and management throughout the asset lifecycle.
+                A powerful suite of tools within HeliAM that optimizes IT asset tracking, security, and management. Toolbox introduces circularity to endpoint management as part of our comprehensive solution.
               </p>
               <Link to="/toolbox">
-                <Button variant="outline">Learn More</Button>
+                <Button variant="outline">Explore Toolbox Features</Button>
               </Link>
             </div>
           </div>
@@ -90,18 +92,18 @@ const HeliAM = () => {
       <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Why Choose HeliAM?</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">The Lifetime EPR Advantage</h2>
             <div className="grid md:grid-cols-2 gap-8">
               <div className="p-6 bg-white rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Clear Insights</h3>
+                <h3 className="text-xl font-semibold mb-4">Centralized Management</h3>
                 <p className="text-neutral-600">
-                  Make smart, cost-effective technology decisions with actionable insights that evolve with your business.
+                  Access all your IT asset management needs through a single, unified platform that evolves with your business.
                 </p>
               </div>
               <div className="p-6 bg-white rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Efficient Management</h3>
+                <h3 className="text-xl font-semibold mb-4">Seamless Integration</h3>
                 <p className="text-neutral-600">
-                  Reduce overhead in data-entry, dev-ops, and analytics through automated, standardized information collection.
+                  Experience the power of HeliAM working in harmony with other Lifetime EPR solutions for complete asset lifecycle management.
                 </p>
               </div>
             </div>
@@ -112,16 +114,16 @@ const HeliAM = () => {
       {/* CTA Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to simplify your IT asset management?</h2>
+          <h2 className="text-3xl font-bold mb-6">Experience the Power of Unified IT Asset Management</h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
-            Whether you're a school, business, or organization with remote workforce needs, we have solutions tailored for you.
+            Join organizations worldwide who trust Lifetime EPR's comprehensive platform for their IT asset management needs.
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/contact">
-              <Button size="lg">Schedule Consultation</Button>
+              <Button size="lg">Schedule Platform Demo</Button>
             </Link>
             <Link to="/contact">
-              <Button variant="outline" size="lg">Request Pricing</Button>
+              <Button variant="outline" size="lg">Request Platform Pricing</Button>
             </Link>
           </div>
         </div>
