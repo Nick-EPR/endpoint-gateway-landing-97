@@ -71,10 +71,17 @@ const Security = () => {
               <span className="text-primary">Security</span> First, Always
             </h1>
             <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{
-            animationDelay: "0.2s"
-          }}>
+              animationDelay: "0.2s"
+            }}>
               At Lifetime EPR, we understand that data security is paramount. We implement rigorous measures to protect your sensitive information throughout the entire IT asset lifecycle.
             </p>
+            <Link 
+              to="/security/whitepaper"
+              className="inline-block bg-white text-neutral-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors duration-300 animate-fade-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              Download Security Whitepaper
+            </Link>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
