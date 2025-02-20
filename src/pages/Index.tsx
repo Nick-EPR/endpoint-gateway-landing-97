@@ -20,32 +20,33 @@ const Index = () => {
   const location = useLocation();
 
   useEffect(() => {
-    // Handle scroll to section after navigation
+    // Handle all navigation changes
+    setIsNavigating(true);
+    setProgress(0);
+
+    const animateProgress = () => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          setIsNavigating(false);
+          return 100;
+        }
+        return prev + 2;
+      });
+    };
+
+    const progressInterval = setInterval(animateProgress, 10);
+
+    // If there's a specific section to scroll to
     if (location.state?.scrollTo) {
-      setIsNavigating(true);
-      setProgress(0);
-      
       const element = document.getElementById(location.state.scrollTo);
       if (element) {
-        const animateProgress = () => {
-          setProgress(prev => {
-            if (prev >= 100) {
-              setIsNavigating(false);
-              return 100;
-            }
-            return prev + 2;
-          });
-        };
-
-        const progressInterval = setInterval(animateProgress, 10);
-
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
-
-        return () => clearInterval(progressInterval);
       }
     }
+
+    return () => clearInterval(progressInterval);
   }, [location]);
 
   useEffect(() => {
