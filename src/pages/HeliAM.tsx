@@ -33,8 +33,8 @@ const HeliAM = () => {
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80"
-            alt="Digital Network Background"
+            src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
+            alt="Modern Warehouse Asset Management"
             className="w-full h-full object-cover"
           />
         </div>
