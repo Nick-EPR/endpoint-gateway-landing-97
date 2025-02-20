@@ -3,6 +3,7 @@ import { Users, Mail, Phone, MapPin } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
+import LocationMap from "../components/LocationMap";
 
 const Contact = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -76,22 +77,41 @@ const Contact = () => {
             <p className="text-lg text-neutral mb-8">
               Get in touch with our team to learn more about our IT asset management solutions.
             </p>
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
+            
+            {/* Contact Grid */}
+            <div className="grid md:grid-cols-2 gap-6 mt-12">
               <div className="p-6 bg-neutral-light rounded-xl">
-                <Phone className="w-6 h-6 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Call Us</h3>
-                <p className="text-neutral">+1 (555) 123-4567</p>
-              </div>
-              <div className="p-6 bg-neutral-light rounded-xl">
-                <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Email Us</h3>
-                <p className="text-neutral">contact@lifetimeepr.com</p>
+                <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">East Coast Office</h3>
+                <p className="text-neutral">
+                  1955 Wehrle Drive Suite C<br />
+                  Buffalo NY, 14221
+                </p>
               </div>
               <div className="p-6 bg-neutral-light rounded-xl">
                 <MapPin className="w-6 h-6 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Visit Us</h3>
-                <p className="text-neutral">123 Business Ave, Suite 100<br />City, State 12345</p>
+                <h3 className="text-xl font-semibold mb-2">West Coast Office</h3>
+                <p className="text-neutral">
+                  3190 Chicago Avenue<br />
+                  Riverside, CA 92507
+                </p>
               </div>
+              <div className="p-6 bg-neutral-light rounded-xl md:col-span-2">
+                <Mail className="w-6 h-6 text-primary mx-auto mb-4" />
+                <h3 className="text-xl font-semibold mb-2">Email Us</h3>
+                <a 
+                  href="mailto:contact@lifetimeepr.com" 
+                  className="text-neutral hover:text-primary transition-colors"
+                >
+                  contact@lifetimeepr.com
+                </a>
+              </div>
+            </div>
+
+            {/* Map */}
+            <div className="mt-12">
+              <h2 className="text-2xl font-bold mb-6">Our Locations</h2>
+              <LocationMap />
             </div>
           </div>
         </div>
