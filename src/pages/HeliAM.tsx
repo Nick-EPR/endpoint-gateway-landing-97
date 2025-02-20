@@ -2,10 +2,20 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
+import Navbar from "@/components/Navbar";
+import { useState } from "react";
 
 const HeliAM = () => {
+  const [isScrolled, setIsScrolled] = useState(true);
+
+  const handleMouseEnter = () => {
+    setIsScrolled(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
+      
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto">

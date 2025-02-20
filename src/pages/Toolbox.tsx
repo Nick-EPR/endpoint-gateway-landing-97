@@ -2,10 +2,20 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
+import Navbar from "@/components/Navbar";
+import { useState } from "react";
 
 const Toolbox = () => {
+  const [isScrolled, setIsScrolled] = useState(true);
+
+  const handleMouseEnter = () => {
+    setIsScrolled(true);
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
+
       {/* Hero Section */}
       <section className="pt-32 pb-16 px-4">
         <div className="container mx-auto">
