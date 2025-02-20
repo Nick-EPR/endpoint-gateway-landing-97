@@ -10,20 +10,40 @@ import TMobileBusiness from "../components/sections/TMobileBusiness";
 import Partners from "../components/sections/Partners";
 import Partnership from "../components/sections/Partnership";
 import ROICalculator from "../components/sections/ROICalculator";
+import { Progress } from "@/components/ui/progress";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [isNavigating, setIsNavigating] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   const location = useLocation();
 
   useEffect(() => {
     // Handle scroll to section after navigation
     if (location.state?.scrollTo) {
+      setIsNavigating(true);
+      setProgress(0);
+      
       const element = document.getElementById(location.state.scrollTo);
       if (element) {
+        const animateProgress = () => {
+          setProgress(prev => {
+            if (prev >= 100) {
+              setIsNavigating(false);
+              return 100;
+            }
+            return prev + 2;
+          });
+        };
+
+        const progressInterval = setInterval(animateProgress, 10);
+
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
         }, 100);
+
+        return () => clearInterval(progressInterval);
       }
     }
   }, [location]);
@@ -66,6 +86,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      {isNavigating && (
+        <div className="fixed top-0 left-0 w-full z-50">
+          <Progress value={progress} className="h-1" />
+        </div>
+      )}
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       <Hero 
         title="Comprehensive ITAM Solutions for Your Enterprise"
