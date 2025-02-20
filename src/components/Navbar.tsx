@@ -31,13 +31,16 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
       onMouseEnter={onMouseEnter}
     >
       <div className={`transition-all duration-300 ${
-        scrolled ? 'backdrop-blur-md bg-white/80' : 'bg-white/50'
-      } border-b border-neutral-200/10`}>
+        scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
+      }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/">
               <img 
-                src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
+                src={scrolled 
+                  ? "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
+                  : "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png"
+                }
                 alt="Lifetime EndPoint Resources"
                 className="h-8 md:h-10"
               />
@@ -48,25 +51,25 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           <nav className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => handleNavigation('features')} 
-              className="text-neutral-600 hover:text-primary transition-colors duration-200"
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
             <button 
               onClick={() => handleNavigation('solutions')} 
-              className="text-neutral-600 hover:text-primary transition-colors duration-200"
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Solutions
             </button>
             <Link 
               to="/security" 
-              className="text-neutral-600 hover:text-primary transition-colors duration-200"
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Security
             </Link>
             <Link 
               to="/contact" 
-              className="text-neutral-600 hover:text-primary transition-colors duration-200"
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Contact
             </Link>
@@ -83,7 +86,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-neutral-600 hover:text-primary"
+            className={`md:hidden p-2 ${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -91,7 +94,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-neutral-200/10">
+          <div className="md:hidden bg-white shadow-lg">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
               <button 
                 onClick={() => handleNavigation('features')} 
