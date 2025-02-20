@@ -72,44 +72,44 @@ const Index = () => {
       />
 
       {/* Features Section */}
-      <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-24 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-white" style={{ transform: 'skewY(2deg)' }}></div>
         <Features />
       </section>
 
       {/* Solutions Section */}
-      <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-neutral-light" style={{ transform: 'skewY(-2deg)' }}></div>
         <Solutions />
       </section>
 
       {/* T-Mobile Business Section */}
-      <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-24 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-white" style={{ transform: 'skewY(2deg)' }}></div>
         <TMobileBusiness />
       </section>
 
       {/* Partners Section */}
-      <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-neutral-light" style={{ transform: 'skewY(-2deg)' }}></div>
         <Partners />
       </section>
 
       {/* ROI Calculator Section */}
-      <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-24 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-white" style={{ transform: 'skewY(2deg)' }}></div>
         <ROICalculator />
       </section>
 
       {/* Partnership Section */}
-      <section className="relative">
-        <div className="absolute top-0 left-0 w-full h-24 bg-primary-light transform -skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-primary-light" style={{ transform: 'skewY(-2deg)' }}></div>
         <Partnership />
       </section>
 
       {/* About Us Section */}
-      <section className="relative section-padding bg-white" ref={aboutRef}>
-        <div className="absolute top-0 left-0 w-full h-24 bg-white transform skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16 section-padding bg-white" ref={aboutRef}>
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-white" style={{ transform: 'skewY(2deg)' }}></div>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-12 animate-on-scroll">
@@ -150,8 +150,8 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="relative section-padding bg-neutral-light">
-        <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform skew-y-2 -translate-y-1/2 z-10"></div>
+      <section className="relative pt-16 section-padding bg-neutral-light">
+        <div className="absolute inset-x-0 top-0 h-[100px] bg-neutral-light" style={{ transform: 'skewY(-2deg)' }}></div>
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
