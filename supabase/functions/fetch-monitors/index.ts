@@ -17,36 +17,45 @@ serve(async (req) => {
       throw new Error('CRONITOR_API_KEY not configured')
     }
 
-    console.log("Making request to Cronitor API...")
-    const response = await fetch('https://cronitor.io/api/v3/monitors', {
+    console.log("Making request to Cronitor API with key length:", apiKey.length)
+    const encodedAuth = btoa(apiKey + ':')
+    console.log("Using Basic auth header with encoded length:", encodedAuth.length)
+
+    const url = 'https://cronitor.io/api/monitors'
+    console.log("Making request to:", url)
+
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Authorization': `Basic ${btoa(apiKey + ':')}`,
+        'Authorization': `Basic ${encodedAuth}`,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
     })
+
+    console.log("Response status:", response.status)
+    console.log("Response headers:", Object.fromEntries(response.headers.entries()))
 
     const responseText = await response.text()
     console.log("Cronitor API raw response:", responseText)
 
     if (!response.ok) {
       console.error("Cronitor API error:", response.status, responseText)
-      throw new Error(`Cronitor API error: ${response.status}`)
+      throw new Error(`Cronitor API error: ${response.status} - ${responseText}`)
     }
 
     let cronitorData
     try {
       cronitorData = JSON.parse(responseText)
+      console.log("Successfully parsed response:", JSON.stringify(cronitorData, null, 2))
     } catch (e) {
       console.error("Failed to parse Cronitor response:", e)
       throw new Error('Invalid JSON response from Cronitor')
     }
 
-    console.log("Successfully parsed Cronitor data:", cronitorData)
-
     // Transform the data to match our expected format
     const monitors = Array.isArray(cronitorData.monitors) ? cronitorData.monitors : [];
+    console.log("Transformed monitors count:", monitors.length)
     
     return new Response(
       JSON.stringify({ monitors }),
@@ -58,7 +67,10 @@ serve(async (req) => {
   } catch (error) {
     console.error("Edge function error:", error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error.stack
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 500,
