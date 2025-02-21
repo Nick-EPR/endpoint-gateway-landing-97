@@ -18,7 +18,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Your SMB",
     "Your MSP",
     "Healthcare",
-    "Education"
+    "Education",
+    "Startups",
+    "Hybrid Workers",
+    "Remote Workers"
   ];
 
   // Second word typewriter effect
