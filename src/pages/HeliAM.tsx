@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Database, GitMerge, Globe, Shield, Users, Server } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 
 const HeliAM = () => {
@@ -174,6 +175,8 @@ const HeliAM = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
