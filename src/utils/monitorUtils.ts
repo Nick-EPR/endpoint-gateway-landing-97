@@ -76,9 +76,9 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
       },
     ];
 
-    // Attempt to fetch real data
-    console.log('Attempting to fetch from Cronitor API...');
-    const response = await fetch('https://cronitor.io/api/v3/monitors', {
+    // Attempt to fetch real data using v2 API
+    console.log('Attempting to fetch from Cronitor API v2...');
+    const response = await fetch('https://cronitor.io/api/v2/monitors', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${secretData}`,
