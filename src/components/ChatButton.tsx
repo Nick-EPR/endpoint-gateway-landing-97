@@ -34,7 +34,7 @@ const ChatButton = () => {
           Chat with our support team
         </DialogDescription>
         <iframe
-          src="https://tawk.to/chat/65d614508d261e1b5f5d6cac/1hnmn8hsa"
+          src="https://embed.tawk.to/65d614508d261e1b5f5d6cac/default"
           className="w-full h-[500px] border-0"
           title="Chat"
         />
