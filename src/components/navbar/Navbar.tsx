@@ -38,13 +38,13 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <ProductsDropdown scrolled={scrolled} />
             <button 
               onClick={() => handleNavigation('features')} 
               className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
-            <ProductsDropdown scrolled={scrolled} />
             <NavLinks scrolled={scrolled} />
             <a 
               href="https://app.lifetimeepr.io"
