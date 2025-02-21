@@ -68,7 +68,7 @@ const Solutions = () => {
   return (
     <section id="solutions" className="relative py-24 bg-neutral-light">
       {/* Top slanted divider that overlaps the hero section */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-3 -translate-y-8 z-10"></div>
+      <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform -skew-y-3 -translate-y-12 z-10"></div>
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center mb-16">
