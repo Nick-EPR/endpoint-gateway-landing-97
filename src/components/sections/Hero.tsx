@@ -40,7 +40,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
-            <span className="relative inline-block min-w-[280px]">
+            <span className="relative inline-block min-w-[280px] mr-3">
               <span 
                 className="absolute left-0 right-0 transition-all duration-500"
                 style={{
@@ -53,8 +53,11 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               </span>
               <span className="invisible">{rotatingWords[0]}</span>
             </span>
-            {" ITAM Solutions"}<br />{"for Your Enterprise"}
+            ITAM Solutions
           </h1>
+          <h2 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
+            for Your Enterprise
+          </h2>
           <style>
             {`
               @keyframes fadeInUp {
