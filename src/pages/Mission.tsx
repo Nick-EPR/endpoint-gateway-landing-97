@@ -57,8 +57,8 @@ const Mission = () => {
         <div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
           <img 
-            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-            alt="IT Asset Management Background"
+            src="https://images.unsplash.com/photo-1469474968028-56623f02e42e"
+            alt="Mission Background"
             className="w-full h-full object-cover"
           />
         </div>
