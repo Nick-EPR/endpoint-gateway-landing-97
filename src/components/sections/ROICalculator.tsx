@@ -1,5 +1,6 @@
+
 import { useState, useEffect, useRef } from 'react';
-import { Calculator, TrendingUp, Clock, Wrench, Building2, Buildings } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, Wrench, Building2, Building } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
@@ -120,7 +121,7 @@ const ROICalculator = () => {
                 <h3 className="text-xl font-semibold">ROI Calculator</h3>
               </div>
               <div className="flex items-center space-x-3 bg-white/50 p-2 rounded-lg">
-                <Buildings className={`w-5 h-5 ${isMSP ? 'text-primary' : 'text-neutral'}`} />
+                <Building className={`w-5 h-5 ${isMSP ? 'text-primary' : 'text-neutral'}`} />
                 <Switch
                   id="company-type"
                   checked={isMSP}
