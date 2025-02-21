@@ -20,7 +20,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Reliable",
     "Intelligent",
     "Automated",
-    "Cost-Effective"
+    "Efficient"
   ];
 
   useEffect(() => {
@@ -66,7 +66,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white whitespace-pre-wrap leading-tight">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
             <span className="inline-block relative" style={{ minWidth }}>
               <span className="absolute left-0 whitespace-nowrap">
                 {displayText}
@@ -74,7 +74,9 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               </span>
               <span className="invisible whitespace-nowrap">{rotatingWords[currentWord]}</span>
             </span>
-            {" ITAM Solutions\nfor Your Enterprise"}
+            <span className="inline"> ITAM Solutions</span>
+            <br />
+            <span className="inline-block mt-2">for Your Enterprise</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
