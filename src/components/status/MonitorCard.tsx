@@ -2,7 +2,7 @@
 import { Monitor } from "@/types/monitor";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { calculateAverageUptime, calculateAverageResponseTime } from "@/utils/monitorUtils";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
@@ -50,30 +50,7 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
       <p className="text-sm text-gray-500 mt-2">
         Last checked: {new Date(monitor.lastCheckTime).toLocaleString()}
       </p>
-      
-      {/* Historical uptime visualization integrated with status bar */}
-      <div className="mt-4 relative h-2">
-        <div className={`absolute inset-0 rounded-full ${getStatusColor(monitor.status)}`} />
-        <div className="absolute inset-0 opacity-50">
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={monitor.metrics} margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id={`uptimeGradient-${monitor.name}`} x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ffffff" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#ffffff" stopOpacity={0}/>
-                </linearGradient>
-              </defs>
-              <Area
-                type="monotone"
-                dataKey="uptime"
-                stroke="rgba(255,255,255,0.5)"
-                fill={`url(#uptimeGradient-${monitor.name})`}
-                strokeWidth={1}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
-        </div>
-      </div>
+      <div className={`h-2 mt-4 rounded-full ${getStatusColor(monitor.status)}`} />
       
       <div className="mt-4">
         <Button
@@ -81,16 +58,58 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
           className="w-full flex items-center justify-between"
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <span>View Details</span>
+          <span>View Metrics</span>
           {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
         </Button>
       </div>
 
       {isExpanded && (
-        <div className="mt-4 space-y-2">
+        <div className="mt-6 space-y-4">
           <div className="flex justify-between text-sm text-gray-600">
             <span>30-day Average Uptime: {calculateAverageUptime(monitor.metrics)}%</span>
             <span>Average Response Time: {calculateAverageResponseTime(monitor.metrics)}ms</span>
+          </div>
+          
+          <div className="h-48">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart
+                data={monitor.metrics}
+                margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
+              >
+                <defs>
+                  <linearGradient id="uptimeGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#22c55e" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <XAxis 
+                  dataKey="date" 
+                  tick={{ fill: '#666' }} 
+                  tickLine={{ stroke: '#666' }}
+                  interval="preserveStartEnd"
+                />
+                <YAxis 
+                  tick={{ fill: '#666' }}
+                  tickLine={{ stroke: '#666' }}
+                  domain={[95, 100]}
+                />
+                <Tooltip
+                  contentStyle={{ 
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    border: 'none',
+                    borderRadius: '4px',
+                    boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                  }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="uptime"
+                  stroke="#22c55e"
+                  fillOpacity={1}
+                  fill="url(#uptimeGradient)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
           </div>
         </div>
       )}
