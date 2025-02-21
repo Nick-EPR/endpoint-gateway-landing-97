@@ -17,7 +17,12 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Secure",
     "Scalable",
     "Innovative",
-    "Reliable"
+    "Reliable",
+    "Intelligent",
+    "Enterprise-Grade",
+    "Automated",
+    "Cloud-Ready",
+    "Cost-Effective"
   ];
 
   useEffect(() => {
