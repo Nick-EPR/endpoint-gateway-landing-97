@@ -1,3 +1,4 @@
+
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
 interface Feature {
@@ -8,12 +9,14 @@ interface Feature {
     to: string;
     text: string;
   };
+  isHighlighted?: boolean;
 }
 const Features = () => {
   const features: Feature[] = [{
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
     title: "Repair Management",
-    description: "Streamlined repair process management through Toolbox integration with Lifetime Service"
+    description: "Streamlined repair process management through Toolbox integration with Lifetime Service",
+    isHighlighted: true
   }, {
     icon: <Replace className="w-8 h-8 text-primary" />,
     title: "Advance Exchange",
@@ -37,7 +40,8 @@ const Features = () => {
   }, {
     icon: <img src="/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png" alt="HeliAM Logo" className="w-8 h-8 object-contain" />,
     title: "Asset Tracking",
-    description: "Real-time monitoring and lifecycle management through HeliAM integration"
+    description: "Real-time monitoring and lifecycle management through HeliAM integration",
+    isHighlighted: true
   }];
   return <section id="features" className="relative py-20 bg-gradient-to-b from-white to-neutral-50">
       {/* Top slanted divider */}
@@ -46,11 +50,31 @@ const Features = () => {
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-12 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Comprehensive Features</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => <div key={index} className="p-6 rounded-xl hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm border border-neutral-100 hover:-translate-y-1 animate-on-scroll">
-              <div className="mb-4 w-12 h-12 rounded-lg flex items-center justify-center bg-gray-50">
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className={`p-6 rounded-xl transition-all duration-300 backdrop-blur-sm border 
+                ${feature.isHighlighted 
+                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2' 
+                  : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
+                } animate-on-scroll`}
+            >
+              <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
+                ${feature.isHighlighted 
+                  ? 'bg-primary/10' 
+                  : 'bg-gray-50'
+                }`}
+              >
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-neutral-800">{feature.title}</h3>
+              <h3 className={`text-xl font-semibold mb-2 
+                ${feature.isHighlighted 
+                  ? 'text-primary' 
+                  : 'text-neutral-800'
+                }`}
+              >
+                {feature.title}
+              </h3>
               <p className="text-neutral-600 mb-4">{feature.description}</p>
               {feature.link && <Link to={feature.link.to} className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-medium transition-colors">
                   {feature.link.text}
@@ -58,7 +82,8 @@ const Features = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>}
-            </div>)}
+            </div>
+          ))}
         </div>
       </div>
 
