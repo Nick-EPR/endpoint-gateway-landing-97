@@ -17,96 +17,46 @@ serve(async (req) => {
       throw new Error('CRONITOR_API_KEY not configured')
     }
 
-    console.log("Making request to Cronitor API with key:", apiKey.substring(0, 5) + '...')
+    console.log("Making request to Cronitor API with key length:", apiKey.length)
+    const encodedAuth = btoa(apiKey + ':')
+    console.log("Using Basic auth header with encoded length:", encodedAuth.length)
 
-    // First, get the list of monitors using the monitors endpoint
-    const monitorsResponse = await fetch('https://cronitor.io/api/monitors', {
+    const url = 'https://cronitor.io/api/monitors'
+    console.log("Making request to:", url)
+
+    const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'Authorization': `Basic ${btoa(apiKey + ':')}`,
+        'Authorization': `Basic ${encodedAuth}`,
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
     })
 
-    const responseText = await monitorsResponse.text()
-    console.log("Raw API Response:", responseText)
+    console.log("Response status:", response.status)
+    console.log("Response headers:", Object.fromEntries(response.headers.entries()))
 
-    if (!monitorsResponse.ok) {
-      console.error("Monitors API error:", monitorsResponse.status, responseText)
-      throw new Error(`Cronitor API error: ${monitorsResponse.status}`)
+    const responseText = await response.text()
+    console.log("Cronitor API raw response:", responseText)
+
+    if (!response.ok) {
+      console.error("Cronitor API error:", response.status, responseText)
+      throw new Error(`Cronitor API error: ${response.status} - ${responseText}`)
     }
 
-    let monitorsData
+    let cronitorData
     try {
-      monitorsData = JSON.parse(responseText)
+      cronitorData = JSON.parse(responseText)
+      console.log("Successfully parsed response:", JSON.stringify(cronitorData, null, 2))
     } catch (e) {
-      console.error("Failed to parse JSON response:", e)
+      console.error("Failed to parse Cronitor response:", e)
       throw new Error('Invalid JSON response from Cronitor')
     }
 
-    console.log("Monitors data:", JSON.stringify(monitorsData, null, 2))
-
-    // Map the response to our expected format
-    const monitors = (Array.isArray(monitorsData) ? monitorsData : []).map(monitor => {
-      const metrics = Array.from({ length: 30 }, (_, i) => {
-        const date = new Date()
-        date.setDate(date.getDate() - (29 - i))
-        return {
-          date: date.toISOString().split('T')[0],
-          uptime: 99.5 + (Math.random() * 0.5),
-          latency: 100 + Math.floor(Math.random() * 150)
-        }
-      })
-
-      return {
-        name: monitor.name || 'Unnamed Monitor',
-        status: monitor.status || monitor.state || 'unknown',
-        latest_ping: {
-          timestamp: monitor.lastPingTime || new Date().toISOString()
-        },
-        metrics: {
-          uptime: {
-            daily: metrics.map(m => ({
-              date: m.date,
-              value: m.uptime
-            }))
-          },
-          latency: {
-            daily: metrics.map(m => ({
-              date: m.date,
-              value: m.latency
-            }))
-          }
-        }
-      }
-    })
-
-    if (monitors.length === 0) {
-      console.log("No monitors found in response, using mock data")
-      // Return a single mock monitor if no monitors found
-      monitors.push({
-        name: "API Monitor",
-        status: "healthy",
-        latest_ping: {
-          timestamp: new Date().toISOString()
-        },
-        metrics: {
-          uptime: {
-            daily: Array.from({ length: 30 }, (_, i) => ({
-              date: new Date(Date.now() - (29 - i) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-              value: 99.9
-            }))
-          },
-          latency: {
-            daily: Array.from({ length: 30 }, (_, i) => ({
-              date: new Date(Date.now() - (29 - i) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-              value: 200
-            }))
-          }
-        }
-      })
-    }
-
+    // Transform the data to match our expected format
+    const monitors = Array.isArray(cronitorData.monitors) ? cronitorData.monitors : [];
+    console.log("Transformed monitors count:", monitors.length)
+    
     return new Response(
       JSON.stringify({ monitors }),
       {
@@ -117,7 +67,10 @@ serve(async (req) => {
   } catch (error) {
     console.error("Edge function error:", error)
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ 
+        error: error.message,
+        details: error.stack
+      }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 500,
