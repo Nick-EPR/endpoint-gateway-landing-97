@@ -104,7 +104,7 @@ const Solutions = () => {
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className={`max-h-12 w-auto object-contain ${solution.title === 'Luemin' ? 'max-w-[140px]' : ''}`}
+                    className={`h-8 w-auto object-contain ${solution.title === 'Luemin' ? 'max-w-[140px]' : ''}`}
                   />
                 </div>
               ) : (
