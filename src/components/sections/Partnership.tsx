@@ -1,10 +1,10 @@
-
 const Partnership = () => {
   return (
-    <section className="relative section-padding bg-white">
-      <div className="absolute top-0 left-0 w-full h-16 bg-primary-light transform skew-y-2 -translate-y-1/2"></div>
+    <section className="relative py-24 bg-white">
+      {/* Top slanted divider */}
+      <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform -skew-y-3 -translate-y-12 z-0"></div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <img 
