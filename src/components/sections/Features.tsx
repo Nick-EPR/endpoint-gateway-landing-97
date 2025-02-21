@@ -47,7 +47,7 @@ const Features = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-12 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Comprehensive Features</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => <div key={index} className="p-6 rounded-xl hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm border border-neutral-100 hover:-translate-y-1 animate-on-scroll">
-              <div className="mb-4 w-12 h-12 rounded-lg flex items-center justify-center bg-slate-300 hover:bg-slate-200">
+              <div className="mb-4 w-12 h-12 rounded-lg flex items-center justify-center bg-gray-50">
                 {feature.icon}
               </div>
               <h3 className="text-xl font-semibold mb-2 text-neutral-800">{feature.title}</h3>
