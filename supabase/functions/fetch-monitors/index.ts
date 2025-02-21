@@ -1,6 +1,5 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.4'
 import { corsHeaders } from '../_shared/cors.ts'
 
 console.log("Starting Fetch Monitors Edge Function")
@@ -19,7 +18,7 @@ serve(async (req) => {
     }
 
     console.log("Making request to Cronitor API...")
-    const response = await fetch('https://cronitor.io/api/v2/monitors', {
+    const response = await fetch('https://cronitor.io/api/v3/monitors', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${apiKey}`,
@@ -28,13 +27,23 @@ serve(async (req) => {
       },
     })
 
+    const responseText = await response.text()
+    console.log("Cronitor API raw response:", responseText)
+
     if (!response.ok) {
-      console.error("Cronitor API error:", response.status, await response.text())
+      console.error("Cronitor API error:", response.status, responseText)
       throw new Error(`Cronitor API error: ${response.status}`)
     }
 
-    const cronitorData = await response.json()
-    console.log("Successfully fetched Cronitor data:", cronitorData)
+    let cronitorData
+    try {
+      cronitorData = JSON.parse(responseText)
+    } catch (e) {
+      console.error("Failed to parse Cronitor response:", e)
+      throw new Error('Invalid JSON response from Cronitor')
+    }
+
+    console.log("Successfully parsed Cronitor data:", cronitorData)
 
     // Transform the data to match our expected format
     const monitors = Array.isArray(cronitorData.monitors) ? cronitorData.monitors : [];
