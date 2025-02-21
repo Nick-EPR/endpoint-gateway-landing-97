@@ -8,6 +8,7 @@ import HeliAM from "./pages/HeliAM";
 import Toolbox from "./pages/Toolbox";
 import Leadership from "./pages/Leadership";
 import SecurityWhitepaper from "./pages/SecurityWhitepaper";
+import About from "./pages/About";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/leadership" element={<Leadership />} />
         <Route path="/heliam" element={<HeliAM />} />
         <Route path="/toolbox" element={<Toolbox />} />
+        <Route path="/about" element={<About />} />
         <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

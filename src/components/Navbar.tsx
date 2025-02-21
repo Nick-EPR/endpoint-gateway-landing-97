@@ -61,6 +61,12 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
+            <Link 
+              to="/about" 
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+            >
+              About
+            </Link>
             <button 
               onClick={() => handleNavigation('features')} 
               className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
@@ -118,6 +124,13 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
         {isMenuOpen && (
           <div className="md:hidden bg-white shadow-lg">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+              <Link 
+                to="/about" 
+                className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                About
+              </Link>
               <button 
                 onClick={() => handleNavigation('features')} 
                 className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
