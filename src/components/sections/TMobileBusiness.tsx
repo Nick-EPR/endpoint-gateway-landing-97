@@ -1,10 +1,25 @@
-import { Shield, Network, Smartphone, Check, Laptop, Cpu } from "lucide-react";
+import { Shield, Network, Smartphone, Check, Laptop, Cpu, Download, Maximize2 } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+
 const TMobileBusiness = () => {
   const benefits = ["Built-in 5G connectivity for seamless network access", "Simplified device management and deployment", "Predictable monthly costs with no upfront investment", "Comprehensive lifecycle management", "Automatic software updates and security patches", "Flexible scaling as your business grows"];
-  return <section className="relative py-20 bg-white">
-      {/* Top slanted divider */}
-      
+  
+  const downloadImage = (imageUrl: string, fileName: string) => {
+    const link = document.createElement('a');
+    link.href = imageUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
+  return (
+    <section className="relative py-20 bg-white">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -15,6 +30,70 @@ const TMobileBusiness = () => {
           <p className="text-base md:text-lg text-neutral mb-8 animate-on-scroll px-4">
             Empowering businesses with connected device solutions through our strategic partnership with T-Mobile, delivering reliable, secure, and scalable IT device management
           </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mb-12">
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="glass-card p-4 cursor-pointer hover:shadow-lg transition-shadow relative group">
+                <img 
+                  src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png" 
+                  alt="Windows 11 Transition Guide Page 1" 
+                  className="w-full h-auto rounded-lg"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg flex items-center justify-center">
+                  <Maximize2 className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </DialogTrigger>
+            <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-6">
+              <div className="relative h-full">
+                <img 
+                  src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png" 
+                  alt="Windows 11 Transition Guide Page 1" 
+                  className="w-full h-full object-contain"
+                />
+                <Button
+                  className="absolute bottom-4 right-4"
+                  onClick={() => downloadImage("/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png", "windows11-transition-guide-1.png")}
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog>
+            <DialogTrigger asChild>
+              <div className="glass-card p-4 cursor-pointer hover:shadow-lg transition-shadow relative group">
+                <img 
+                  src="/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png" 
+                  alt="Windows 11 Transition Guide Page 2" 
+                  className="w-full h-auto rounded-lg"
+                />
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors rounded-lg flex items-center justify-center">
+                  <Maximize2 className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </DialogTrigger>
+            <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-6">
+              <div className="relative h-full">
+                <img 
+                  src="/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png" 
+                  alt="Windows 11 Transition Guide Page 2" 
+                  className="w-full h-full object-contain"
+                />
+                <Button
+                  className="absolute bottom-4 right-4"
+                  onClick={() => downloadImage("/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png", "windows11-transition-guide-2.png")}
+                >
+                  <Download className="w-4 h-4 mr-2" />
+                  Download
+                </Button>
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto mb-12 md:mb-16">
@@ -117,6 +196,8 @@ const TMobileBusiness = () => {
 
       {/* Bottom slanted divider */}
       <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-3 translate-y-8 z-0"></div>
-    </section>;
+    </section>
+  );
 };
+
 export default TMobileBusiness;
