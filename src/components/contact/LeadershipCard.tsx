@@ -1,5 +1,6 @@
 
-import { Mail, Phone } from "lucide-react";
+import { Mail, Phone, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface LeadershipCardProps {
   name: string;
@@ -8,9 +9,10 @@ interface LeadershipCardProps {
   bio: string;
   email?: string;
   phone?: string;
+  linkedin?: string;
 }
 
-const LeadershipCard = ({ name, title, image, bio, email, phone }: LeadershipCardProps) => {
+const LeadershipCard = ({ name, title, image, bio, email, phone, linkedin }: LeadershipCardProps) => {
   return (
     <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 p-6">
       <div className="flex flex-col h-full">
@@ -28,22 +30,34 @@ const LeadershipCard = ({ name, title, image, bio, email, phone }: LeadershipCar
           </div>
         </div>
         <p className="text-neutral mb-4">{bio}</p>
-        {email && phone && name !== "Michael DeJoy" && (
-          <div className="space-y-2">
-            <div className="flex items-center gap-2 text-neutral">
-              <Mail className="w-4 h-4" />
-              <a href={`mailto:${email}`} className="hover:text-primary transition-colors">
-                {email}
-              </a>
-            </div>
-            <div className="flex items-center gap-2 text-neutral">
-              <Phone className="w-4 h-4" />
-              <a href={`tel:${phone}`} className="hover:text-primary transition-colors">
-                {phone}
-              </a>
-            </div>
-          </div>
-        )}
+        <div className="space-y-2">
+          {email && phone && name !== "Michael DeJoy" && (
+            <>
+              <div className="flex items-center gap-2 text-neutral">
+                <Mail className="w-4 h-4" />
+                <a href={`mailto:${email}`} className="hover:text-primary transition-colors">
+                  {email}
+                </a>
+              </div>
+              <div className="flex items-center gap-2 text-neutral">
+                <Phone className="w-4 h-4" />
+                <a href={`tel:${phone}`} className="hover:text-primary transition-colors">
+                  {phone}
+                </a>
+              </div>
+            </>
+          )}
+          {linkedin && (
+            <Button 
+              variant="outline" 
+              className="w-full flex items-center justify-center gap-2 mt-2"
+              onClick={() => window.open(linkedin, '_blank')}
+            >
+              <Linkedin className="w-4 h-4" />
+              Connect on LinkedIn
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

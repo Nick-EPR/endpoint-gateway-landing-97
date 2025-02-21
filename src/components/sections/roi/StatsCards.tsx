@@ -1,23 +1,48 @@
 
-import { Wrench, Clock } from 'lucide-react';
+import { trends } from "@/utils/roiCalculations";
+import { ArrowUpRight, ArrowDownRight, Info } from "lucide-react";
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export const StatsCards = () => {
   return (
-    <div className="grid md:grid-cols-2 gap-8 mb-8">
-      <div className="glass-card p-6 text-center animate-fade-up delay-200 hover:scale-105 transition-transform duration-300">
-        <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-          <Wrench className="w-6 h-6 text-primary" />
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      {trends.map((trend, index) => (
+        <div key={index} className="bg-white/80 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div className="flex items-start justify-between mb-2">
+            <h4 className="text-sm font-medium text-neutral">{trend.label}</h4>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="w-4 h-4 text-neutral/60" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="text-sm">{trend.tooltip}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          <div className="flex items-baseline gap-2">
+            <span className="text-2xl font-bold">{trend.value}</span>
+            <div className={`flex items-center ${
+              trend.trend > 0 ? 'text-green-600' : 'text-red-600'
+            }`}>
+              {trend.trend > 0 ? (
+                <ArrowUpRight className="w-4 h-4" />
+              ) : (
+                <ArrowDownRight className="w-4 h-4" />
+              )}
+              <span className="text-sm font-medium">{Math.abs(trend.trend)}%</span>
+            </div>
+          </div>
         </div>
-        <div className="text-primary text-xl font-bold mb-2">60%</div>
-        <p className="text-neutral">Average savings repair vs. replacement</p>
-      </div>
-      <div className="glass-card p-6 text-center animate-fade-up delay-300 hover:scale-105 transition-transform duration-300">
-        <div className="inline-flex items-center justify-center w-12 h-12 bg-primary/10 rounded-full mb-4">
-          <Clock className="w-6 h-6 text-primary" />
-        </div>
-        <div className="text-primary text-xl font-bold mb-2">2 Years</div>
-        <p className="text-neutral">Average life extension of devices</p>
-      </div>
+      ))}
     </div>
   );
 };
+
+export default StatsCards;

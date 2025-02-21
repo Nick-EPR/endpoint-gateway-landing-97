@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
@@ -51,7 +50,7 @@ const SecurityWhitepaper = () => {
     {
       icon: <Shield className="w-6 h-6 text-primary" />,
       title: "Compliance Standards",
-      description: "ISO27001:2023 compliant processes and R2v3-certified partnerships, maintaining the highest standards in data security and environmental responsibility."
+      description: "ISO27001:2022 compliant processes and R2v3-certified partnerships, maintaining the highest standards in data security and environmental responsibility."
     },
     {
       icon: <Building2 className="w-6 h-6 text-primary" />,
