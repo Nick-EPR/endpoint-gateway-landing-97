@@ -19,11 +19,11 @@ serve(async (req) => {
 
     console.log("Making request to Cronitor API with key:", apiKey.substring(0, 5) + '...')
 
-    // First, get the list of monitors using v3 API
-    const monitorsResponse = await fetch('https://cronitor.link/api/monitors', {
+    // First, get the list of monitors using the monitors endpoint
+    const monitorsResponse = await fetch('https://cronitor.io/api/monitors', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Basic ${btoa(apiKey + ':')}`,
         'Content-Type': 'application/json',
       },
     })
@@ -46,8 +46,8 @@ serve(async (req) => {
 
     console.log("Monitors data:", JSON.stringify(monitorsData, null, 2))
 
-    // Generate mock metrics for demonstration
-    const monitors = (monitorsData.monitors || []).map(monitor => {
+    // Map the response to our expected format
+    const monitors = (Array.isArray(monitorsData) ? monitorsData : []).map(monitor => {
       const metrics = Array.from({ length: 30 }, (_, i) => {
         const date = new Date()
         date.setDate(date.getDate() - (29 - i))
@@ -60,9 +60,9 @@ serve(async (req) => {
 
       return {
         name: monitor.name || 'Unnamed Monitor',
-        status: monitor.status || 'unknown',
+        status: monitor.status || monitor.state || 'unknown',
         latest_ping: {
-          timestamp: new Date().toISOString()
+          timestamp: monitor.lastPingTime || new Date().toISOString()
         },
         metrics: {
           uptime: {
@@ -85,7 +85,7 @@ serve(async (req) => {
       console.log("No monitors found in response, using mock data")
       // Return a single mock monitor if no monitors found
       monitors.push({
-        name: "Demo Monitor",
+        name: "API Monitor",
         status: "healthy",
         latest_ping: {
           timestamp: new Date().toISOString()
