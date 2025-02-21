@@ -85,10 +85,10 @@ const ROICalculator = () => {
           return new Promise(resolve => setTimeout(resolve, duration));
         };
 
-        await new Promise(resolve => setTimeout(resolve, 800));
-        await animate(1000, 100, 1500);
-        await animate(100, 5000, 2000);
-        await animate(5000, 1000, 1500);
+        await new Promise(resolve => setTimeout(resolve, 560)); // Reduced from 800ms
+        await animate(1000, 100, 1050); // Reduced from 1500ms
+        await animate(100, 5000, 1400); // Reduced from 2000ms
+        await animate(5000, 1000, 1050); // Reduced from 1500ms
         setIsAnimating(false);
       };
 
