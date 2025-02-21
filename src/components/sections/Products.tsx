@@ -69,25 +69,19 @@ const Solutions = () => {
     <section id="solutions" className="relative py-24 bg-neutral-light">
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="relative">
-            {/* Background triangle image */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0">
-              <img 
-                src={triangleImage} 
-                alt="Decorative triangle" 
-                className="w-48 h-auto opacity-20"
-              />
-            </div>
-            {/* Content */}
-            <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-                The Lifetime EPR Platform
-              </h2>
-              <p className="text-lg text-neutral animate-on-scroll">
-                Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
-              </p>
-            </div>
+          <div className="flex justify-center mb-8">
+            <img 
+              src={triangleImage} 
+              alt="Decorative triangle" 
+              className="w-24 h-auto"
+            />
           </div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
+            The Lifetime EPR Platform
+          </h2>
+          <p className="text-lg text-neutral animate-on-scroll">
+            Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
+          </p>
         </div>
 
         {/* Visual connector elements with extended width */}
