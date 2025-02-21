@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Calculator, Building2, LineChart } from 'lucide-react';
 import { Switch } from "@/components/ui/switch";
@@ -7,13 +8,13 @@ import { StatsCards } from './roi/StatsCards';
 import { EmployeeInput } from './roi/EmployeeInput';
 import { SavingsDisplay } from './roi/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
-import { calculateTrends } from '@/utils/roiCalculations';
+import { calculateTrends, defaultTrends } from '@/utils/roiCalculations';
 
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
   const [isEnterprise, setIsEnterprise] = useState(true);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [currentTrends, setCurrentTrends] = useState(calculateTrends(1000));
+  const [currentTrends, setCurrentTrends] = useState(defaultTrends);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 

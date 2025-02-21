@@ -1,4 +1,11 @@
 
+export interface Trend {
+  label: string;
+  value: string;
+  trend: number;
+  tooltip: string;
+}
+
 export const calculateAnnualSavings = (employeeCount: number) => {
   return employeeCount * 90000 / 1000;
 };
@@ -18,13 +25,6 @@ export const calculateCompoundedSavings = (employees: number) => {
   
   return data;
 };
-
-interface Trend {
-  label: string;
-  value: string;
-  trend: number;
-  tooltip: string;
-}
 
 // Calculate dynamic trends based on employee count
 export const calculateTrends = (employeeCount: number): Trend[] => {
@@ -78,4 +78,4 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
 };
 
 // Default trends for initial render
-export const trends = calculateTrends(1000);
+export const defaultTrends = calculateTrends(1000);
