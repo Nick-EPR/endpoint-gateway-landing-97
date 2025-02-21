@@ -1,6 +1,6 @@
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, Wrench, Box } from "lucide-react";
+import { Menu, X, ChevronDown, Box } from "lucide-react";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -74,7 +74,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               <DropdownMenuContent className="bg-white min-w-[200px]">
                 <DropdownMenuItem>
                   <Link to="/heliam" className="w-full flex items-center gap-2">
-                    <Wrench className="w-4 h-4" />
+                    <img 
+                      src="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
+                      alt="HeliAM Logo"
+                      className="w-4 h-4 object-contain"
+                    />
                     <span>HeliAM</span>
                   </Link>
                 </DropdownMenuItem>
@@ -85,7 +89,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="opacity-75 cursor-not-allowed flex items-center gap-2">
-                  <Wrench className="w-4 h-4" />
+                  <Box className="w-4 h-4" />
                   <span>Luemin (Coming Soon)</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -143,7 +147,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Wrench className="w-4 h-4" />
+                  <img 
+                    src="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
+                    alt="HeliAM Logo"
+                    className="w-4 h-4 object-contain"
+                  />
                   <span>HeliAM</span>
                 </Link>
                 <Link 
@@ -155,7 +163,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   <span>Toolbox</span>
                 </Link>
                 <span className="text-neutral-400 py-2 flex items-center gap-2">
-                  <Wrench className="w-4 h-4" />
+                  <Box className="w-4 h-4" />
                   <span>Luemin (Coming Soon)</span>
                 </span>
               </div>
