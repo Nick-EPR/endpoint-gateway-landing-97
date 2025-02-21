@@ -2,9 +2,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { Calculator } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
+  const [isMSP, setIsMSP] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -38,10 +41,10 @@ const ROICalculator = () => {
 
   useEffect(() => {
     if (isVisible) {
-      // Create a smoother animation sequence
+      // Create a smoother animation sequence with more steps and longer duration
       const animateSlider = async () => {
         const animate = (start: number, end: number, duration: number) => {
-          const steps = 30; // More steps for smoother animation
+          const steps = 60; // Increased steps for smoother animation
           const stepDuration = duration / steps;
           const stepValue = (end - start) / steps;
           
@@ -53,7 +56,13 @@ const ROICalculator = () => {
               return;
             }
             
-            const newValue = start + (stepValue * currentStep);
+            // Using easeInOutCubic easing function for smoother movement
+            const progress = currentStep / steps;
+            const easeProgress = progress < 0.5
+              ? 4 * progress * progress * progress
+              : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            
+            const newValue = start + ((end - start) * easeProgress);
             setEmployees(Math.round(newValue));
             currentStep++;
           }, stepDuration);
@@ -61,12 +70,12 @@ const ROICalculator = () => {
           return new Promise(resolve => setTimeout(resolve, duration));
         };
 
-        await new Promise(resolve => setTimeout(resolve, 500)); // Initial delay
+        await new Promise(resolve => setTimeout(resolve, 800)); // Longer initial delay
         
-        // Sequence of smooth animations
-        await animate(1000, 100, 1000);  // Slide to minimum
-        await animate(100, 5000, 1000);  // Slide to maximum
-        await animate(5000, 1000, 1000); // Return to initial value
+        // Smoother animation sequence with longer durations
+        await animate(1000, 100, 1500);   // Slower slide to minimum
+        await animate(100, 5000, 2000);   // Slower slide to maximum
+        await animate(5000, 1000, 1500);  // Slower return to initial value
       };
 
       animateSlider();
@@ -98,9 +107,22 @@ const ROICalculator = () => {
           </div>
 
           <div className="glass-card p-8 animate-on-scroll">
-            <div className="flex items-center mb-6">
-              <Calculator className="w-6 h-6 text-primary mr-2" />
-              <h3 className="text-xl font-semibold">ROI Calculator</h3>
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center">
+                <Calculator className="w-6 h-6 text-primary mr-2" />
+                <h3 className="text-xl font-semibold">ROI Calculator</h3>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Switch
+                  id="company-type"
+                  checked={isMSP}
+                  onCheckedChange={setIsMSP}
+                  className="data-[state=checked]:bg-primary"
+                />
+                <Label htmlFor="company-type">
+                  {isMSP ? "MSP" : "SMB"}
+                </Label>
+              </div>
             </div>
 
             <div className="mb-8" ref={sliderRef}>
