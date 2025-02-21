@@ -49,14 +49,10 @@ const Index = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const handleMouseEnter = () => {
-    // Keep this for potential future use
-  };
-
   return (
     <div className="min-h-screen">
       <NavigationProgress />
-      <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
+      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
       <Hero 
         title="Comprehensive ITAM Solutions for Your Enterprise"
         subtitle="Transform your IT asset management with our end-to-end solution"

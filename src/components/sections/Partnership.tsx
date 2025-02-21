@@ -3,7 +3,7 @@ const Partnership = () => {
   return (
     <section className="relative py-20 bg-white">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-3 -translate-y-8 z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-3 -translate-y-8 z-0"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -77,6 +77,9 @@ const Partnership = () => {
           </div>
         </div>
       </div>
+
+      {/* Bottom slanted divider */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-3 translate-y-8 z-0"></div>
     </section>
   );
 };
