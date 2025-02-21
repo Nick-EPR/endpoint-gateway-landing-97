@@ -112,7 +112,7 @@ const Solutions = () => {
               )}
               <p className="text-neutral mb-6">{solution.description}</p>
               {solution.comingSoon ? (
-                <div className="mt-4">
+                <div className="flex justify-center mt-4">
                   <span className="text-primary font-medium">Coming Soon</span>
                 </div>
               ) : solution.path && (
