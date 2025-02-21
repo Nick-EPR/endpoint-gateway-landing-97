@@ -1,4 +1,6 @@
 
+import { useState, useEffect } from "react";
+
 interface HeroProps {
   title: string;
   subtitle: string;
@@ -7,6 +9,23 @@ interface HeroProps {
 }
 
 const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
+  const [currentWord, setCurrentWord] = useState(0);
+  const rotatingWords = [
+    "Comprehensive",
+    "Secure",
+    "Scalable",
+    "Innovative",
+    "Reliable"
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
@@ -21,8 +40,36 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
-            {title}
+            <span className="relative inline-block min-w-[280px] mr-3">
+              <span 
+                key={currentWord}
+                className="absolute left-0 transition-all duration-500"
+                style={{
+                  opacity: 0,
+                  transform: 'translateY(20px)',
+                  animation: 'fadeInUp 0.5s forwards'
+                }}
+              >
+                {rotatingWords[currentWord]}
+              </span>
+              <span className="invisible">{rotatingWords[0]}</span>
+            </span>
+            ITAM Solutions for Your Enterprise
           </h1>
+          <style>
+            {`
+              @keyframes fadeInUp {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}
+          </style>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
           </p>
