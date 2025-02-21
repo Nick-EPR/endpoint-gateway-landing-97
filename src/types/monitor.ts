@@ -16,6 +16,9 @@ export interface CronitorMonitor {
   passing?: boolean;
   latest_event?: {
     stamp: number;
+    metrics?: {
+      duration: number;
+    };
   };
   latest_ping?: {
     timestamp: string;
