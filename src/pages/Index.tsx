@@ -11,6 +11,7 @@ import Partnership from "../components/sections/Partnership";
 import ROICalculator from "../components/sections/ROICalculator";
 import Contact from "../components/sections/Contact";
 import NavigationProgress from "../components/NavigationProgress";
+import ChatButton from "../components/ChatButton";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -65,6 +66,7 @@ const Index = () => {
       <Partnership />
       <Contact />
       <Footer />
+      <ChatButton />
     </div>
   );
 };
