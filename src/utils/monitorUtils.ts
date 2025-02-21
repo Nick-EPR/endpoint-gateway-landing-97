@@ -24,6 +24,24 @@ export const mapCronitorStatus = (status: string | undefined): "healthy" | "degr
   }
 };
 
+// Helper function to determine if a monitor should be displayed
+const shouldDisplayMonitor = (monitor: CronitorMonitor): boolean => {
+  // Filter out system monitors and buildkit related monitors
+  if (!monitor.name) return false;
+  
+  const excludePatterns = [
+    /^\[buildkit/i,
+    /root test/i,
+    /systemd/i,
+    /^system-/i,
+    /docker/i,
+    /daemon/i,
+    /tmp/i
+  ];
+  
+  return !excludePatterns.some(pattern => pattern.test(monitor.name));
+};
+
 export const fetchMonitors = async (): Promise<Monitor[]> => {
   console.log('Starting monitor fetch...');
   
@@ -45,37 +63,39 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
       throw new Error('Invalid response format from Cronitor');
     }
     
-    // Map Cronitor data to our Monitor interface
-    return data.monitors.map((monitor: CronitorMonitor) => {
-      // Calculate daily metrics from the latest events and metrics
-      const dailyMetrics = Array.from({ length: 30 }, (_, i) => {
-        const date = new Date();
-        date.setDate(date.getDate() - (29 - i));
-        const dateStr = format(date, 'yyyy-MM-dd');
-        
-        // Try to find matching metrics for this date
-        const uptimeMetric = monitor.metrics?.uptime?.daily?.find(d => d.date === dateStr);
-        const latencyMetric = monitor.metrics?.latency?.daily?.find(d => d.date === dateStr);
-        
+    // Filter and map Cronitor data to our Monitor interface
+    return data.monitors
+      .filter(shouldDisplayMonitor)
+      .map((monitor: CronitorMonitor) => {
+        // Calculate daily metrics from the latest events and metrics
+        const dailyMetrics = Array.from({ length: 30 }, (_, i) => {
+          const date = new Date();
+          date.setDate(date.getDate() - (29 - i));
+          const dateStr = format(date, 'yyyy-MM-dd');
+          
+          // Try to find matching metrics for this date
+          const uptimeMetric = monitor.metrics?.uptime?.daily?.find(d => d.date === dateStr);
+          const latencyMetric = monitor.metrics?.latency?.daily?.find(d => d.date === dateStr);
+          
+          return {
+            date: format(date, 'MMM dd'),
+            uptime: uptimeMetric?.value || 100, // Default to 100 if no data
+            responseTime: latencyMetric?.value || 0, // Default to 0 if no data
+          };
+        });
+
+        // Default to latest_ping timestamp if latest_event is not available
+        const lastCheckTime = monitor.latest_event?.stamp 
+          ? new Date(monitor.latest_event.stamp * 1000).toISOString()
+          : monitor.latest_ping?.timestamp || new Date().toISOString();
+
         return {
-          date: format(date, 'MMM dd'),
-          uptime: uptimeMetric?.value || 100, // Default to 100 if no data
-          responseTime: latencyMetric?.value || 0, // Default to 0 if no data
+          name: monitor.name || 'Unnamed Monitor',
+          status: mapCronitorStatus(monitor.status || (monitor.passing === true ? 'healthy' : 'down')),
+          lastCheckTime,
+          metrics: dailyMetrics,
         };
       });
-
-      // Default to latest_ping timestamp if latest_event is not available
-      const lastCheckTime = monitor.latest_event?.stamp 
-        ? new Date(monitor.latest_event.stamp * 1000).toISOString()
-        : monitor.latest_ping?.timestamp || new Date().toISOString();
-
-      return {
-        name: monitor.name || 'Unnamed Monitor',
-        status: mapCronitorStatus(monitor.status || (monitor.passing === true ? 'healthy' : 'down')),
-        lastCheckTime,
-        metrics: dailyMetrics,
-      };
-    });
   } catch (error) {
     console.error('Error fetching monitors:', error);
     console.log('Falling back to mock data due to error');
