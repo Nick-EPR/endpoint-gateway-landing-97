@@ -9,6 +9,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { subDays, format } from "date-fns";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Monitor {
   name: string;
@@ -20,6 +21,44 @@ interface Monitor {
     responseTime: number;
   }[];
 }
+
+interface CronitorMonitor {
+  name: string;
+  status: string;
+  latest_ping: {
+    timestamp: string;
+  };
+  metrics: {
+    uptime: {
+      daily: Array<{
+        date: string;
+        value: number;
+      }>;
+    };
+    latency: {
+      daily: Array<{
+        date: string;
+        value: number;
+      }>;
+    };
+  };
+}
+
+const mapCronitorStatus = (status: string): "healthy" | "degraded" | "down" => {
+  switch (status.toLowerCase()) {
+    case "healthy":
+    case "up":
+      return "healthy";
+    case "degraded":
+    case "notice":
+      return "degraded";
+    case "down":
+    case "error":
+      return "down";
+    default:
+      return "down";
+  }
+};
 
 const Status = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -37,39 +76,52 @@ const Status = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const generateMockMetrics = () => {
-    return Array.from({ length: 30 }).map((_, i) => ({
-      date: format(subDays(new Date(), 29 - i), 'MMM dd'),
-      uptime: 98 + Math.random() * 2, // Random uptime between 98-100%
-      responseTime: 100 + Math.random() * 150, // Random response time between 100-250ms
-    }));
-  };
-
   const { data: monitors, isLoading } = useQuery({
     queryKey: ["status"],
     queryFn: async () => {
-      // This is a mock implementation. Replace with actual Cronitor API call
-      const mockMonitors: Monitor[] = [
-        {
-          name: "API Service",
-          status: "healthy",
-          lastCheckTime: new Date().toISOString(),
-          metrics: generateMockMetrics(),
-        },
-        {
-          name: "Database",
-          status: "healthy",
-          lastCheckTime: new Date().toISOString(),
-          metrics: generateMockMetrics(),
-        },
-        {
-          name: "Authentication Service",
-          status: "healthy",
-          lastCheckTime: new Date().toISOString(),
-          metrics: generateMockMetrics(),
-        },
-      ];
-      return mockMonitors;
+      try {
+        // First, get the API key from Supabase
+        const { data: secrets } = await supabase
+          .from('secrets')
+          .select('value')
+          .eq('name', 'CRONITOR_API_KEY')
+          .single();
+
+        if (!secrets?.value) {
+          throw new Error('Cronitor API key not found');
+        }
+
+        // Fetch monitors from Cronitor API
+        const response = await fetch('https://cronitor.io/api/v3/monitors', {
+          headers: {
+            'Authorization': `Bearer ${secrets.value}`,
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch monitors');
+        }
+
+        const data = await response.json();
+        
+        // Map Cronitor data to our Monitor interface
+        const mappedMonitors: Monitor[] = data.monitors.map((monitor: CronitorMonitor) => ({
+          name: monitor.name,
+          status: mapCronitorStatus(monitor.status),
+          lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
+          metrics: monitor.metrics.uptime.daily.map((day, index) => ({
+            date: format(new Date(day.date), 'MMM dd'),
+            uptime: day.value,
+            responseTime: monitor.metrics.latency.daily[index]?.value || 0,
+          })),
+        }));
+
+        return mappedMonitors;
+      } catch (error) {
+        console.error('Error fetching monitor data:', error);
+        throw error;
+      }
     },
     refetchInterval: 60000, // Refetch every minute
   });
