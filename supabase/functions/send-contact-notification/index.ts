@@ -28,7 +28,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "Lifetime EPR <onboarding@resend.dev>",
-      to: "slack@lifetimeepr.com",
+      to: "nick@lifetimeepr.com",
       subject: `New Contact Form Submission from ${formData.name}`,
       html: `
         <h1>New Contact Form Submission</h1>
