@@ -1,6 +1,6 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react"
-import { ThemeProvider as NextThemesProvider } from "next-themes"
+import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
 
 type Attribute = "class" | "data-theme"
 
@@ -26,7 +26,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
 }
 
 export const ThemeToggle = () => {
-  const { theme, setTheme } = useContext(ThemeContext)
+  const { theme, setTheme } = useTheme()
 
   return (
     <button
@@ -37,10 +37,3 @@ export const ThemeToggle = () => {
     </button>
   )
 }
-
-export const ThemeContext = createContext<{
-  theme?: string
-  setTheme: (theme: string) => void
-}>({
-  setTheme: () => null,
-})
