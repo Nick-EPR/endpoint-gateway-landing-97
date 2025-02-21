@@ -18,7 +18,9 @@ serve(async (req) => {
     }
 
     console.log("Making request to Cronitor API...")
-    const response = await fetch('https://cronitor.io/api/v3/monitors', {
+
+    // First, get the list of monitors
+    const monitorsResponse = await fetch('https://cronitor.io/api/v3/monitors', {
       method: 'GET',
       headers: {
         'Authorization': `Basic ${btoa(apiKey + ':')}`,
@@ -27,55 +29,88 @@ serve(async (req) => {
       },
     })
 
-    if (!response.ok) {
-      throw new Error(`Cronitor API error: ${response.status}`)
+    if (!monitorsResponse.ok) {
+      const errorText = await monitorsResponse.text()
+      console.error("Monitors API error:", monitorsResponse.status, errorText)
+      throw new Error(`Cronitor API error: ${monitorsResponse.status}`)
     }
 
-    const data = await response.json()
-    console.log("Raw Cronitor response:", JSON.stringify(data, null, 2))
+    const monitorsData = await monitorsResponse.json()
+    console.log("Monitors response:", JSON.stringify(monitorsData, null, 2))
 
-    if (!data.monitors) {
+    if (!monitorsData.monitors) {
       throw new Error('No monitors found in Cronitor response')
     }
 
-    // Transform the response to match our expected format
-    const monitors = data.monitors.map(monitor => {
-      // Get metrics for the last 30 days
-      const today = new Date()
-      const metrics = Array.from({ length: 30 }, (_, i) => {
-        const date = new Date(today)
-        date.setDate(date.getDate() - (29 - i)) // Start from oldest to newest
-        return {
-          date: date.toISOString().split('T')[0],
-          uptime: 99.9 + (Math.random() * 0.1), // Placeholder: 99.9-100%
-          latency: 150 + Math.floor(Math.random() * 100) // Placeholder: 150-250ms
-        }
-      })
-
-      return {
-        name: monitor.name,
-        status: monitor.state || monitor.status || 'unknown',
-        latest_ping: {
-          timestamp: new Date().toISOString()
-        },
-        metrics: {
-          uptime: {
-            daily: metrics.map(m => ({
-              date: m.date,
-              value: m.uptime
-            }))
+    // For each monitor, fetch its detailed telemetry
+    const monitorPromises = monitorsData.monitors.map(async (monitor: any) => {
+      try {
+        const telemetryResponse = await fetch(`https://cronitor.io/api/v3/monitors/${monitor.code}/telemetry`, {
+          headers: {
+            'Authorization': `Basic ${btoa(apiKey + ':')}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
           },
-          latency: {
-            daily: metrics.map(m => ({
-              date: m.date,
-              value: m.latency
-            }))
+        })
+
+        if (!telemetryResponse.ok) {
+          console.error(`Error fetching telemetry for monitor ${monitor.code}:`, telemetryResponse.status)
+          return null
+        }
+
+        const telemetryData = await telemetryResponse.json()
+        console.log(`Telemetry for ${monitor.code}:`, JSON.stringify(telemetryData, null, 2))
+
+        // Get the last 30 days of metrics
+        const today = new Date()
+        const metrics = Array.from({ length: 30 }, (_, i) => {
+          const date = new Date(today)
+          date.setDate(date.getDate() - (29 - i))
+          
+          // Try to find matching telemetry data, otherwise use defaults
+          const dateStr = date.toISOString().split('T')[0]
+          const telemetry = telemetryData.daily?.find((t: any) => t.date === dateStr)
+
+          return {
+            date: dateStr,
+            uptime: telemetry?.uptime ?? 99.9,
+            latency: telemetry?.latency ?? 200
+          }
+        })
+
+        return {
+          name: monitor.name,
+          status: monitor.state || 'unknown',
+          latest_ping: {
+            timestamp: monitor.latest_ping || new Date().toISOString()
+          },
+          metrics: {
+            uptime: {
+              daily: metrics.map(m => ({
+                date: m.date,
+                value: m.uptime
+              }))
+            },
+            latency: {
+              daily: metrics.map(m => ({
+                date: m.date,
+                value: m.latency
+              }))
+            }
           }
         }
+      } catch (error) {
+        console.error(`Error processing monitor ${monitor.code}:`, error)
+        return null
       }
     })
 
-    console.log("Transformed monitors:", JSON.stringify({ monitors }, null, 2))
+    const monitors = (await Promise.all(monitorPromises)).filter(Boolean)
+    console.log("Final processed monitors:", JSON.stringify(monitors, null, 2))
+
+    if (monitors.length === 0) {
+      throw new Error('No valid monitors found')
+    }
 
     return new Response(
       JSON.stringify({ monitors }),
