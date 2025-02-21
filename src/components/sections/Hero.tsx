@@ -102,9 +102,6 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           </button>
         </div>
       </div>
-
-      {/* Bottom slanted divider */}
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-10"></div>
     </section>
   );
 };
