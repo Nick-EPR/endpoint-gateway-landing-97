@@ -107,8 +107,8 @@ const ROICalculator = () => {
 
           <StatsCards />
 
-          <div className="glass-card p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300">
-            <div className="flex items-center justify-between mb-6">
+          <div className="glass-card p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
                 <div className="bg-primary/10 p-2 rounded-lg mr-3">
                   <Calculator className="w-6 h-6 text-primary" />

@@ -38,8 +38,8 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
   };
 
   return (
-    <div className="mb-8" ref={sliderRef}>
-      <div className="flex justify-between items-center mb-2">
+    <div className="mb-8 px-2 sm:px-0" ref={sliderRef}>
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-2">
         <label className="text-sm font-medium text-neutral">
           Number of Employees
         </label>
@@ -48,7 +48,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
           value={inputValue}
           onChange={handleInputChange}
           onBlur={handleInputBlur}
-          className="w-32 text-right"
+          className="w-full sm:w-32 text-right"
           min={100}
           max={isEnterprise ? 10000 : 1000}
         />
