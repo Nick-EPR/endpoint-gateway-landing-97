@@ -33,7 +33,7 @@ const Contact = () => {
     {
       name: "Michael DeJoy",
       title: "CEO/President",
-      image: "/lovable-uploads/d0aae117-ff1c-425d-aa88-d8b6d0bca5fe.png",
+      image: "/lovable-uploads/1b2ced2f-556a-402c-b8c0-d80e2045c062.png",
       bio: "As CEO/President, Michael provides strategic direction and oversees the overall operations of Lifetime EPR. His leadership emphasizes security and sustainability in IT asset management, driving the company's mission to revolutionize endpoint management solutions. With extensive experience in executive leadership and business development, Michael ensures Lifetime EPR remains at the forefront of innovative IT services.",
       email: "Mike@LifetimeEPR.com",
       phone: "716.867.4322"
