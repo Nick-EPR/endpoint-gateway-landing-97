@@ -48,7 +48,11 @@ const Footer = () => {
           </div>
         </div>
         
+        {/* Mission Statement */}
         <div className="mt-8 pt-8 border-t border-neutral-100">
+          <p className="text-neutral text-center mb-8 max-w-3xl mx-auto">
+            Our mission is to deliver a world-class end-user experience through customized IT lifecycle management solutions that boost efficiency, optimize resources, and evolve with our clients' needs.
+          </p>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-neutral">
               © {new Date().getFullYear()} LifetimeEPR. All rights reserved.
