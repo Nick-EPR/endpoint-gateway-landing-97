@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/sections/Hero";
@@ -12,10 +13,20 @@ import ROICalculator from "../components/sections/ROICalculator";
 import Contact from "../components/sections/Contact";
 import NavigationProgress from "../components/NavigationProgress";
 import ChatButton from "../components/ChatButton";
+import StatusBanner from "../components/StatusBanner";
+import { fetchMonitors } from "@/utils/monitorUtils";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const { data: monitors } = useQuery({
+    queryKey: ['monitors'],
+    queryFn: fetchMonitors,
+    refetchInterval: 60000, // Refetch every minute
+  });
+
+  const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +64,11 @@ const Index = () => {
     <div className="min-h-screen">
       <NavigationProgress />
       <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      {hasOutage && (
+        <div className="fixed top-[72px] w-full z-40">
+          <StatusBanner message="We're currently experiencing some technical issues and are working to resolve them." />
+        </div>
+      )}
       <Hero 
         title="Comprehensive ITAM Solutions for Your Enterprise"
         subtitle="Transform your IT asset management with our end-to-end solution"
