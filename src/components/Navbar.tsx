@@ -1,7 +1,13 @@
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavbarProps {
   scrolled: boolean;
@@ -61,12 +67,22 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             >
               Features
             </button>
-            <button 
-              onClick={() => handleNavigation('solutions')} 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
-            >
-              Solutions
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
+                Products <ChevronDown size={16} />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white">
+                <DropdownMenuItem>
+                  <Link to="/heliam" className="w-full">HeliAM</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Link to="/toolbox" className="w-full">Toolbox</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem className="opacity-75 cursor-not-allowed">
+                  Luemin (Coming Soon)
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Link 
               to="/security" 
               className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
@@ -108,12 +124,25 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               >
                 Features
               </button>
-              <button 
-                onClick={() => handleNavigation('solutions')} 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
-              >
-                Solutions
-              </button>
+              <div className="flex flex-col space-y-2 pl-4">
+                <Link 
+                  to="/heliam" 
+                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  HeliAM
+                </Link>
+                <Link 
+                  to="/toolbox" 
+                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Toolbox
+                </Link>
+                <span className="text-neutral-400 py-2">
+                  Luemin (Coming Soon)
+                </span>
+              </div>
               <Link 
                 to="/security" 
                 className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"

@@ -1,9 +1,10 @@
+
 import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
-import Solutions from "../components/sections/Solutions";
+import Products from "../components/sections/Products";
 import TMobileBusiness from "../components/sections/TMobileBusiness";
 import Partners from "../components/sections/Partners";
 import Partnership from "../components/sections/Partnership";
@@ -62,7 +63,7 @@ const Index = () => {
         buttonText="Get Started"
       />
       <Features />
-      <Solutions />
+      <Products />
       <TMobileBusiness />
       <Partners />
       <ROICalculator />
