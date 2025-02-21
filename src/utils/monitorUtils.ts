@@ -21,6 +21,8 @@ export const mapCronitorStatus = (status: string): "healthy" | "degraded" | "dow
 };
 
 export const fetchMonitors = async (): Promise<Monitor[]> => {
+  console.log('Starting monitor fetch...');
+  
   // First, get the API key from Supabase
   const { data: secretData, error: secretError } = await supabase
     .rpc('get_secret', { secret_name: 'CRONITOR_API_KEY' });
@@ -37,23 +39,41 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
     throw new Error('Cronitor API key not found');
   }
 
+  console.log('Successfully retrieved API key from Supabase');
+
   // Fetch monitors from Cronitor API
   try {
+    console.log('Attempting to fetch from Cronitor API...');
     const response = await fetch('https://cronitor.io/api/v3/monitors', {
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${secretData}`,
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
+      mode: 'cors',
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('Cronitor API error:', errorText);
-      toast.error('Failed to fetch monitors from Cronitor');
+      console.error('Cronitor API error response:', {
+        status: response.status,
+        statusText: response.statusText,
+        body: errorText,
+        headers: Object.fromEntries(response.headers.entries())
+      });
+      toast.error(`Failed to fetch monitors: ${response.status} ${response.statusText}`);
       throw new Error('Failed to fetch monitors');
     }
 
     const data = await response.json();
+    console.log('Successfully fetched Cronitor data:', data);
+    
+    if (!data.monitors || !Array.isArray(data.monitors)) {
+      console.error('Unexpected Cronitor API response format:', data);
+      toast.error('Unexpected response format from Cronitor');
+      throw new Error('Invalid response format');
+    }
     
     // Map Cronitor data to our Monitor interface
     return data.monitors.map((monitor: CronitorMonitor) => ({
