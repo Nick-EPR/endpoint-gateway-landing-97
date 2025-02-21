@@ -33,7 +33,7 @@ const Contact = () => {
     {
       name: "Michael DeJoy",
       title: "CEO/President",
-      image: "/lovable-uploads/5bf7e2a1-0726-4b1b-81c8-22ec0a70f17b.png",
+      image: "/lovable-uploads/a023c0c2-9092-4bae-93d8-969602a8ecdd.png",
       bio: "As CEO/President, Michael provides strategic direction and oversees the overall operations of Lifetime EPR. His leadership emphasizes security and sustainability in IT asset management, driving the company's mission to revolutionize endpoint management solutions. With extensive experience in executive leadership and business development, Michael ensures Lifetime EPR remains at the forefront of innovative IT services.",
       email: "Mike@LifetimeEPR.com",
       phone: "716.867.4322"
@@ -41,25 +41,25 @@ const Contact = () => {
     {
       name: "Ron Bellus",
       title: "VP of Marketing",
-      image: "/lovable-uploads/1875be8a-5f88-40e8-b85c-15ad388204a7.png",
+      image: "/lovable-uploads/d2a160eb-691b-4c6f-9c63-0941ad48ebaa.png",
       bio: "Ron leads Lifetime EPR's marketing strategies, brand development, and customer engagement initiatives. With a strong background in digital strategy and communications, he drives the company's market presence and customer acquisition efforts. His innovative approach to marketing helps position Lifetime EPR as a trusted partner in IT asset management."
     },
     {
       name: "Nick Burdick",
       title: "VP of Technology",
-      image: "/lovable-uploads/de0ae0ac-14bc-4ead-8802-50fea88c5890.png",
+      image: "/lovable-uploads/b9dc328e-294a-4088-9908-11bdb845afe4.png",
       bio: "As VP of Technology, Nick leads Lifetime EPR's technological innovations and IT infrastructure. His expertise in technology leadership and IT management ensures the company delivers cutting-edge solutions in IT asset management. Nick's forward-thinking approach helps maintain Lifetime EPR's position as an industry leader in endpoint management technology."
     },
     {
       name: "Heather Novak",
       title: "VP of Product Development",
-      image: "/lovable-uploads/d085cb0d-47c3-4598-ad6d-d64c8e9b99fc.png",
+      image: "/lovable-uploads/eed25866-8121-4b26-96d9-5d2640324e9d.png",
       bio: "Heather drives the creation and enhancement of Lifetime EPR's service offerings, with a particular focus on PCaaS solutions and strategic partnerships. Her expertise in product strategy and IT solutions ensures that Lifetime EPR's services consistently meet and exceed client expectations. Under her leadership, the product development team continues to innovate and expand the company's service portfolio."
     },
     {
       name: "Marc Caponegro",
       title: "VP of Business Development and Channels",
-      image: "/lovable-uploads/1792242b-3531-4f82-b1c4-99ed1d9216b3.png",
+      image: "/lovable-uploads/282fcbea-840f-4430-82f2-fc2276cecbb1.png",
       bio: "Marc leads Lifetime EPR's business development and channel partnership initiatives, playing a crucial role in expanding the company's market reach through strategic alliances. His expertise in sales leadership and channel development has been instrumental in securing key partnerships, including the strategic collaboration with T-Mobile. Marc's efforts continue to drive Lifetime EPR's growth and market expansion."
     }
   ];
