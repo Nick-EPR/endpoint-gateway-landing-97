@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 interface HeroProps {
@@ -19,9 +18,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Innovative",
     "Reliable",
     "Intelligent",
-    "Enterprise-Grade",
     "Automated",
-    "Cloud-Ready",
     "Cost-Effective"
   ];
 
@@ -31,20 +28,17 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting) {
-        // Backspacing
         setDisplayText(prev => prev.slice(0, -1));
         if (displayText === '') {
           setIsDeleting(false);
           setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
         }
-        timeout = setTimeout(updateText, 50); // Faster deletion
+        timeout = setTimeout(updateText, 50);
       } else {
-        // Typing
         if (displayText.length < currentFullWord.length) {
           setDisplayText(currentFullWord.slice(0, displayText.length + 1));
-          timeout = setTimeout(updateText, 100); // Slower typing
+          timeout = setTimeout(updateText, 100);
         } else {
-          // Word is complete, wait before starting deletion
           timeout = setTimeout(() => setIsDeleting(true), 2000);
         }
       }
