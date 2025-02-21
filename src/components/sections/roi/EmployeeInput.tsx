@@ -13,7 +13,7 @@ interface EmployeeInputProps {
 export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange }: EmployeeInputProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
-    const maxValue = isEnterprise ? 10000 : 999;
+    const maxValue = isEnterprise ? 10000 : 1000;
     if (value >= 100 && value <= maxValue) {
       onEmployeeChange(value);
     }
@@ -31,12 +31,12 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
           onChange={handleInputChange}
           className="w-32 text-right"
           min={100}
-          max={isEnterprise ? 10000 : 999}
+          max={isEnterprise ? 10000 : 1000}
         />
       </div>
       <Slider 
         min={100} 
-        max={isEnterprise ? 10000 : 999} 
+        max={isEnterprise ? 10000 : 1000} 
         step={isEnterprise ? 1000 : 100} 
         value={[employees]} 
         onValueChange={values => onEmployeeChange(values[0])} 
@@ -44,7 +44,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
       />
       <div className="flex justify-between text-xs text-neutral">
         <span>100</span>
-        <span>{isEnterprise ? '10,000' : '999'}</span>
+        <span>{isEnterprise ? '10,000' : '1,000'}</span>
       </div>
     </div>
   );
