@@ -9,7 +9,6 @@ import TMobileBusiness from "../components/sections/TMobileBusiness";
 import Partners from "../components/sections/Partners";
 import Partnership from "../components/sections/Partnership";
 import ROICalculator from "../components/sections/ROICalculator";
-import About from "../components/sections/About";
 import Contact from "../components/sections/Contact";
 import NavigationProgress from "../components/NavigationProgress";
 
@@ -64,7 +63,6 @@ const Index = () => {
       <Partners />
       <ROICalculator />
       <Partnership />
-      <About />
       <Contact />
       <Footer />
     </div>
