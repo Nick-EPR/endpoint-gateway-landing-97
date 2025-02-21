@@ -11,9 +11,7 @@ interface HeroProps {
 const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [currentWord1, setCurrentWord1] = useState(0);
   const [currentWord2, setCurrentWord2] = useState(0);
-  const [displayText1, setDisplayText1] = useState("");
   const [displayText2, setDisplayText2] = useState("");
-  const [isDeleting1, setIsDeleting1] = useState(false);
   const [isDeleting2, setIsDeleting2] = useState(false);
   
   const rotatingWords1 = [
@@ -32,32 +30,16 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Education"
   ];
 
+  // First word rotation effect
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    const currentFullWord = rotatingWords1[currentWord1];
-    
-    const updateText = () => {
-      if (isDeleting1) {
-        setDisplayText1(prev => prev.slice(0, -1));
-        if (displayText1 === '') {
-          setIsDeleting1(false);
-          setCurrentWord1((prev) => (prev + 1) % rotatingWords1.length);
-        }
-        timeout = setTimeout(updateText, 50);
-      } else {
-        if (displayText1.length < currentFullWord.length) {
-          setDisplayText1(currentFullWord.slice(0, displayText1.length + 1));
-          timeout = setTimeout(updateText, 100);
-        } else {
-          timeout = setTimeout(() => setIsDeleting1(true), 2000);
-        }
-      }
-    };
+    const timer = setTimeout(() => {
+      setCurrentWord1((prev) => (prev + 1) % rotatingWords1.length);
+    }, 3000); // Change word every 3 seconds
 
-    timeout = setTimeout(updateText, 100);
-    return () => clearTimeout(timeout);
-  }, [displayText1, isDeleting1, currentWord1, rotatingWords1]);
+    return () => clearTimeout(timer);
+  }, [currentWord1]);
 
+  // Second word typewriter effect
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     const currentFullWord = rotatingWords2[currentWord2];
@@ -98,12 +80,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
-            <span className="relative inline-block">
-              <span className="absolute left-0 whitespace-nowrap text-primary">
-                {displayText1}
-                <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
+            <span className="relative inline-block min-w-[200px]">
+              <span className="text-primary transition-all duration-500 opacity-0 animate-fade-in">
+                {rotatingWords1[currentWord1]}
               </span>
-              <span className="invisible">{rotatingWords1[currentWord1]}</span>
             </span>
             &nbsp;ITAM Solutions for&nbsp;
             <span className="relative inline-block">
