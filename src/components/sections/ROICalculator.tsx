@@ -1,22 +1,51 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { Calculator, TrendingUp, Clock, Wrench, Building2, Building } from 'lucide-react';
+import { Calculator, TrendingUp, Clock, Wrench, Building2, LineChart } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { LineChart as RechartsLineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
-  const [isMSP, setIsMSP] = useState(true);
+  const [isEnterprise, setIsEnterprise] = useState(true);
+  const [showMoreDetails, setShowMoreDetails] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  const calculateAnnualSavings = () => {
-    return employees * 90000 / 1000;
+  const calculateAnnualSavings = (employeeCount: number) => {
+    return employeeCount * 90000 / 1000;
   };
 
-  const calculateTwoYearSavings = () => {
-    return calculateAnnualSavings() * 2;
+  const calculateCompoundedSavings = () => {
+    const years = 5;
+    const data = [];
+    let totalSavings = 0;
+    
+    for (let i = 1; i <= years; i++) {
+      totalSavings += calculateAnnualSavings(employees);
+      data.push({
+        year: `Year ${i}`,
+        savings: totalSavings
+      });
+    }
+    
+    return data;
+  };
+
+  const handleEmployeeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = parseInt(e.target.value) || 0;
+    if (value >= 100 && value <= 10000) {
+      setEmployees(value);
+    }
   };
 
   useEffect(() => {
@@ -121,16 +150,15 @@ const ROICalculator = () => {
                 <h3 className="text-xl font-semibold">ROI Calculator</h3>
               </div>
               <div className="flex items-center space-x-3 bg-white/50 p-2 rounded-lg">
-                <Building className={`w-5 h-5 ${isMSP ? 'text-primary' : 'text-neutral'}`} />
+                <Building2 className={`w-5 h-5 ${!isEnterprise ? 'text-primary' : 'text-neutral'}`} />
                 <Switch
-                  id="company-type"
-                  checked={isMSP}
-                  onCheckedChange={setIsMSP}
+                  id="enterprise-toggle"
+                  checked={isEnterprise}
+                  onCheckedChange={setIsEnterprise}
                   className="data-[state=checked]:bg-primary"
                 />
-                <Building2 className={`w-5 h-5 ${!isMSP ? 'text-primary' : 'text-neutral'}`} />
-                <Label htmlFor="company-type" className="text-sm font-medium ml-2">
-                  {isMSP ? "MSP" : "SMB"}
+                <Label htmlFor="enterprise-toggle" className="text-sm font-medium ml-2">
+                  Enterprise
                 </Label>
               </div>
             </div>
@@ -140,14 +168,19 @@ const ROICalculator = () => {
                 <label className="text-sm font-medium text-neutral">
                   Number of Employees
                 </label>
-                <span className="text-sm font-medium px-3 py-1 bg-primary/10 rounded-full text-primary">
-                  {employees.toLocaleString()}
-                </span>
+                <Input
+                  type="number"
+                  min={100}
+                  max={10000}
+                  value={employees}
+                  onChange={handleEmployeeInputChange}
+                  className="w-32 text-right"
+                />
               </div>
               <Slider 
                 min={100} 
                 max={10000} 
-                step={100} 
+                step={isEnterprise ? 1000 : 100} 
                 value={[employees]} 
                 onValueChange={values => setEmployees(values[0])} 
                 className="my-4"
@@ -158,14 +191,14 @@ const ROICalculator = () => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div className="p-6 bg-white rounded-lg border border-neutral/20 hover:border-primary/30 transition-colors duration-300">
                 <div className="flex items-center mb-3">
                   <TrendingUp className="w-5 h-5 text-primary mr-2" />
                   <div className="text-sm text-neutral">Annual Savings</div>
                 </div>
                 <div className="text-2xl font-bold text-primary">
-                  ${calculateAnnualSavings().toLocaleString()}
+                  ${calculateAnnualSavings(employees).toLocaleString()}
                 </div>
               </div>
               <div className="p-6 bg-white rounded-lg border border-neutral/20 hover:border-primary/30 transition-colors duration-300">
@@ -174,13 +207,53 @@ const ROICalculator = () => {
                   <div className="text-sm text-neutral">2-Year Savings</div>
                 </div>
                 <div className="text-2xl font-bold text-primary">
-                  ${calculateTwoYearSavings().toLocaleString()}
+                  ${(calculateAnnualSavings(employees) * 2).toLocaleString()}
                 </div>
               </div>
+            </div>
+
+            <div className="text-center">
+              <Button
+                variant="outline"
+                onClick={() => setShowMoreDetails(true)}
+                className="gap-2"
+              >
+                <LineChart className="w-4 h-4" />
+                View 5-Year Projection
+              </Button>
             </div>
           </div>
         </div>
       </div>
+
+      <Dialog open={showMoreDetails} onOpenChange={setShowMoreDetails}>
+        <DialogContent className="max-w-3xl">
+          <DialogHeader>
+            <DialogTitle>5-Year Savings Projection</DialogTitle>
+          </DialogHeader>
+          <div className="h-[400px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <RechartsLineChart data={calculateCompoundedSavings()} margin={{ top: 20, right: 30, left: 20, bottom: 20 }}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="year" />
+                <YAxis 
+                  tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                />
+                <Tooltip 
+                  formatter={(value: number) => [`$${value.toLocaleString()}`, "Cumulative Savings"]}
+                />
+                <Line 
+                  type="monotone" 
+                  dataKey="savings" 
+                  stroke="#93C851" 
+                  strokeWidth={2}
+                  dot={{ fill: '#93C851' }}
+                />
+              </RechartsLineChart>
+            </ResponsiveContainer>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-0"></div>
     </section>
