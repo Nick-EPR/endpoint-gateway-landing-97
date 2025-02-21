@@ -8,9 +8,10 @@ interface EmployeeInputProps {
   isEnterprise: boolean;
   sliderRef: RefObject<HTMLDivElement>;
   onEmployeeChange: (value: number) => void;
+  disabled?: boolean;
 }
 
-export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange }: EmployeeInputProps) => {
+export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange, disabled }: EmployeeInputProps) => {
   const [inputValue, setInputValue] = useState<string>(employees.toString());
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +52,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
           className="w-full sm:w-32 text-right"
           min={100}
           max={isEnterprise ? 10000 : 1000}
+          disabled={disabled}
         />
       </div>
       <Slider 
@@ -64,6 +66,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
           onEmployeeChange(value);
         }} 
         className="my-4"
+        disabled={disabled}
       />
       <div className="flex justify-between text-xs text-neutral">
         <span>100</span>

@@ -17,19 +17,24 @@ const ROICalculator = () => {
   const [currentTrends, setCurrentTrends] = useState(defaultTrends);
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const handleEmployeeChange = (value: number) => {
-    setEmployees(value);
-    setIsEnterprise(value >= 1000);
-    setCurrentTrends(calculateTrends(value));
+    if (!isAnimating) {
+      setEmployees(value);
+      setIsEnterprise(value >= 1000);
+      setCurrentTrends(calculateTrends(value));
+    }
   };
 
   const handleEnterpriseChange = (checked: boolean) => {
-    setIsEnterprise(checked);
-    if (checked && employees < 1000) {
-      setEmployees(1000);
-    } else if (!checked && employees >= 1000) {
-      setEmployees(999);
+    if (!isAnimating) {
+      setIsEnterprise(checked);
+      if (checked && employees < 1000) {
+        setEmployees(1000);
+      } else if (!checked && employees >= 1000) {
+        setEmployees(999);
+      }
     }
   };
 
@@ -54,6 +59,7 @@ const ROICalculator = () => {
   useEffect(() => {
     if (isVisible) {
       const animateSlider = async () => {
+        setIsAnimating(true);
         const animate = (start: number, end: number, duration: number) => {
           const steps = 60;
           const stepDuration = duration / steps;
@@ -80,10 +86,10 @@ const ROICalculator = () => {
         };
 
         await new Promise(resolve => setTimeout(resolve, 800));
-
         await animate(1000, 100, 1500);
         await animate(100, 5000, 2000);
         await animate(5000, 1000, 1500);
+        setIsAnimating(false);
       };
 
       animateSlider();
@@ -110,7 +116,7 @@ const ROICalculator = () => {
 
           <StatsCards trends={currentTrends} />
 
-          <div className="glass-card p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300">
+          <div className={`glass-card p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300 ${isAnimating ? 'opacity-50 pointer-events-none' : ''}`}>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
                 <div className="bg-primary/10 p-2 rounded-lg mr-3">
@@ -124,6 +130,7 @@ const ROICalculator = () => {
                   id="enterprise-toggle"
                   checked={isEnterprise}
                   onCheckedChange={handleEnterpriseChange}
+                  disabled={isAnimating}
                   className="data-[state=checked]:bg-primary"
                 />
                 <Label htmlFor="enterprise-toggle" className="text-sm font-medium ml-2">
@@ -137,6 +144,7 @@ const ROICalculator = () => {
               isEnterprise={isEnterprise}
               sliderRef={sliderRef}
               onEmployeeChange={handleEmployeeChange}
+              disabled={isAnimating}
             />
 
             <SavingsDisplay employees={employees} />
@@ -146,6 +154,7 @@ const ROICalculator = () => {
                 variant="outline"
                 onClick={() => setShowMoreDetails(true)}
                 className="gap-2"
+                disabled={isAnimating}
               >
                 <LineChart className="w-4 h-4" />
                 View 5-Year Projection
