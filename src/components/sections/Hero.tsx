@@ -21,7 +21,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   ];
 
   useEffect(() => {
-    let timeout: number;
+    let timeout: NodeJS.Timeout;
     const currentFullWord = rotatingWords[currentWord];
     
     const updateText = () => {
