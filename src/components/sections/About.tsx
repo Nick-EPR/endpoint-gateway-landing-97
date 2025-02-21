@@ -1,48 +1,61 @@
 
-import { Shield, Award, Users } from "lucide-react";
+import { Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
-    <section id="about" className="section-padding bg-white">
+    <section className="section-padding bg-neutral-light">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-            About Lifetime EPR
-          </h2>
-          <p className="text-lg text-neutral mb-12 animate-on-scroll">
-            Transforming IT asset management with a focus on security, sustainability, and efficiency
-          </p>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
+              Your Partner in IT Asset Management
+            </h2>
+            <p className="text-neutral text-lg mb-8 animate-on-scroll">
+              Since 2008, we've been pioneering innovative solutions in IT asset management, 
+              serving enterprises across diverse industries. Our commitment to excellence 
+              and customer satisfaction has made us a trusted partner in digital transformation.
+            </p>
+            <div className="flex flex-wrap gap-4 animate-on-scroll">
+              <Link to="/leadership">
+                <Button variant="default">Meet Our Team</Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="outline">Contact Us</Button>
+              </Link>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="aspect-square rounded-2xl overflow-hidden shadow-xl animate-on-scroll">
+              <img
+                src="/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png"
+                alt="IT Asset Management Solutions"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-6 -right-6 -z-10 w-full h-full rounded-2xl bg-primary/10"></div>
+          </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
-          <div className="glass-card p-8 rounded-xl hover:shadow-lg transition-shadow">
-            <div className="mb-6 flex justify-center">
-              <Shield className="w-12 h-12 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-4 text-center">Security First</h3>
-            <p className="text-neutral text-center">
-              ISO 27001 certified with comprehensive security measures to protect your IT assets
-            </p>
+        <div className="mt-24 grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">15+</div>
+            <div className="text-neutral">Years of Experience</div>
           </div>
-
-          <div className="glass-card p-8 rounded-xl hover:shadow-lg transition-shadow">
-            <div className="mb-6 flex justify-center">
-              <Award className="w-12 h-12 text-primary" />
-            </div>
-            <h3 className="text-xl font-semibold mb-4 text-center">Certifications</h3>
-            <p className="text-neutral text-center">
-              SOC 2 Type II compliant and ITAD certified for secure asset disposition
-            </p>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">500k+</div>
+            <div className="text-neutral">Devices Managed</div>
           </div>
-
-          <div className="glass-card p-8 rounded-xl hover:shadow-lg transition-shadow">
-            <div className="mb-6 flex justify-center">
-              <Users className="w-12 h-12 text-primary" />
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">50+</div>
+            <div className="text-neutral">Enterprise Clients</div>
+          </div>
+          <div className="text-center">
+            <div className="text-3xl md:text-4xl font-bold text-primary mb-2">
+              <Globe className="w-8 h-8 mx-auto" />
             </div>
-            <h3 className="text-xl font-semibold mb-4 text-center">Leadership</h3>
-            <p className="text-neutral text-center">
-              Experienced team with decades of expertise in IT asset management
-            </p>
+            <div className="text-neutral">Global Coverage</div>
           </div>
         </div>
       </div>
