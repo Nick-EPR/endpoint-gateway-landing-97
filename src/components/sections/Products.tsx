@@ -106,7 +106,7 @@ const Solutions = () => {
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className="max-h-8 w-auto object-contain"
+                    className="max-h-12 w-auto object-contain"
                   />
                 </div>
               ) : (
