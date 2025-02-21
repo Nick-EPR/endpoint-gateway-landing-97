@@ -1,6 +1,6 @@
 
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Database, GitMerge, Globe, Shield, Users, Server } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
 import Navbar from "@/components/Navbar";
@@ -9,6 +9,11 @@ import { useState, useEffect } from "react";
 const HeliAM = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showLight, setShowLight] = useState(false);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     const handleScroll = () => {
