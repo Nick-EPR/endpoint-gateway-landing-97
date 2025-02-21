@@ -25,9 +25,9 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   ];
 
   const rotatingWords2 = [
-    "VAR",
-    "SMB",
-    "MSP",
+    "Your VAR",
+    "Your SMB",
+    "Your MSP",
     "Healthcare",
     "Education"
   ];
