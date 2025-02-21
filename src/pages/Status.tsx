@@ -61,8 +61,8 @@ const Status = () => {
       className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
       style={{ 
         backgroundImage: 'url("/photo-1488229297570-58520851e868.jpg")',
-        backgroundColor: 'rgba(0, 0, 0, 0.75)',
-        backgroundBlendMode: 'overlay'
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Reduced opacity of overlay
+        backgroundBlendMode: 'multiply' // Changed blend mode to multiply for better visibility
       }}
     >
       <NavigationProgress />
