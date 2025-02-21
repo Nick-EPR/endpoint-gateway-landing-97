@@ -6,6 +6,8 @@ import {
   Dialog,
   DialogContent,
   DialogTrigger,
+  DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 
 const ChatButton = () => {
@@ -27,8 +29,12 @@ const ChatButton = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
+        <DialogTitle className="sr-only">Chat Support</DialogTitle>
+        <DialogDescription className="sr-only">
+          Chat with our support team
+        </DialogDescription>
         <iframe
-          src="https://web.powerva.microsoft.com/environments/Default-96276c86-6dba-4f0b-8db4-de3067177f5c/bots/new_bot_1c17af7c77394c9c8a5f6e5025f32929/canvas"
+          src="https://tawk.to/chat/65d614508d261e1b5f5d6cac/1hnmn8hsa"
           className="w-full h-[500px] border-0"
           title="Chat"
         />
