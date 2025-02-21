@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Calculator, TrendingUp, Clock, Wrench, Building2, LineChart } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
@@ -43,7 +42,8 @@ const ROICalculator = () => {
 
   const handleEmployeeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value) || 0;
-    if (value >= 100 && value <= 10000) {
+    const maxValue = isEnterprise ? 10000 : 999;
+    if (value >= 100 && value <= maxValue) {
       setEmployees(value);
       setIsEnterprise(value >= 1000);
     }
@@ -191,12 +191,12 @@ const ROICalculator = () => {
                   onChange={handleEmployeeInputChange}
                   className="w-32 text-right"
                   min={100}
-                  max={10000}
+                  max={isEnterprise ? 10000 : 999}
                 />
               </div>
               <Slider 
                 min={100} 
-                max={10000} 
+                max={isEnterprise ? 10000 : 999} 
                 step={isEnterprise ? 1000 : 100} 
                 value={[employees]} 
                 onValueChange={handleSliderChange} 
@@ -204,7 +204,7 @@ const ROICalculator = () => {
               />
               <div className="flex justify-between text-xs text-neutral">
                 <span>100</span>
-                <span>10,000</span>
+                <span>{isEnterprise ? '10,000' : '999'}</span>
               </div>
             </div>
 
