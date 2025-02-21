@@ -1,5 +1,5 @@
-
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface HeroProps {
   title: string;
@@ -9,6 +9,7 @@ interface HeroProps {
 }
 
 const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
+  const navigate = useNavigate();
   const [currentWord2, setCurrentWord2] = useState(0);
   const [displayText2, setDisplayText2] = useState("");
   const [isDeleting2, setIsDeleting2] = useState(false);
@@ -24,7 +25,6 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Remote Workers"
   ];
 
-  // Second word typewriter effect
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     const currentFullWord = rotatingWords2[currentWord2];
@@ -63,6 +63,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     }
   };
 
+  const handleGetStarted = () => {
+    navigate('/contact');
+  };
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
@@ -93,7 +97,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             <button 
               className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:scale-105 transform transition-all duration-300" 
-              onClick={onButtonClick}
+              onClick={handleGetStarted}
             >
               {buttonText}
             </button>
