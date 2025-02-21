@@ -89,7 +89,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem className="opacity-75 cursor-not-allowed flex items-center gap-2">
-                  <Box className="w-4 h-4" />
+                  <img 
+                    src="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
+                    alt="Luemin Logo"
+                    className="w-4 h-4 object-contain"
+                  />
                   <span>Luemin (Coming Soon)</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -163,7 +167,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   <span>Toolbox</span>
                 </Link>
                 <span className="text-neutral-400 py-2 flex items-center gap-2">
-                  <Box className="w-4 h-4" />
+                  <img 
+                    src="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
+                    alt="Luemin Logo"
+                    className="w-4 h-4 object-contain"
+                  />
                   <span>Luemin (Coming Soon)</span>
                 </span>
               </div>
