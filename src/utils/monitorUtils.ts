@@ -53,8 +53,8 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
     }
     
     // Map Cronitor data to our Monitor interface
-    return data.monitors.map((monitor: CronitorMonitor) => {
-      console.log('Processing monitor:', monitor);
+    const monitors = data.monitors.map((monitor: CronitorMonitor) => {
+      console.log('Processing monitor:', monitor.name, monitor.status);
       
       // Ensure we have valid metrics arrays
       const dailyMetrics = monitor.metrics?.uptime?.daily || [];
@@ -82,9 +82,17 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
         name: monitor.name || 'Unnamed Monitor',
         status: mapCronitorStatus(monitor.status),
         lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
-        metrics: metrics.slice(0, 30), // Ensure we only return 30 days
+        metrics: metrics.slice(0, 30).reverse(), // Ensure we only return 30 days, in chronological order
       };
     });
+
+    if (monitors.length === 0) {
+      throw new Error('No monitors found');
+    }
+
+    console.log('Processed monitors:', monitors);
+    return monitors;
+
   } catch (error) {
     console.error('Error fetching monitors:', error);
     console.log('Falling back to mock data due to error');
@@ -100,7 +108,7 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
           date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
           uptime: 99.9,
           responseTime: 250,
-        })),
+        })).reverse(),
       },
       {
         name: "Database",
@@ -110,7 +118,7 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
           date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
           uptime: 99.8,
           responseTime: 150,
-        })),
+        })).reverse(),
       },
       {
         name: "Web Application",
@@ -120,7 +128,7 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
           date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
           uptime: 98.5,
           responseTime: 500,
-        })),
+        })).reverse(),
       },
     ];
   }
