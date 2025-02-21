@@ -56,6 +56,13 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     return () => clearTimeout(timeout);
   }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
 
+  const scrollToROI = () => {
+    const roiSection = document.getElementById('roi-calculator');
+    if (roiSection) {
+      roiSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
@@ -83,13 +90,28 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
           </p>
-          <button 
-            className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:scale-105 transform transition-all duration-300 animate-fade-up" 
-            style={{ animationDelay: "0.4s" }}
-            onClick={onButtonClick}
-          >
-            {buttonText}
-          </button>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+            <button 
+              className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:scale-105 transform transition-all duration-300" 
+              onClick={onButtonClick}
+            >
+              {buttonText}
+            </button>
+            <button 
+              onClick={scrollToROI}
+              className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
+            >
+              Calculate Your Savings
+              <svg 
+                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </section>
