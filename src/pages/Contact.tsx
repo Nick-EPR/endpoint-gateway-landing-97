@@ -60,7 +60,7 @@ const Contact = () => {
     {
       name: "Marc Caponegro",
       title: "VP of Business Development and Channels",
-      image: "/lovable-uploads/282fcbea-840f-4430-82f2-fc2276cecbb1.png",
+      image: "/lovable-uploads/f36a9bb6-3709-451b-aa42-5459aa7480ec.png",
       bio: "Marc leads Lifetime EPR's business development and channel partnership initiatives, playing a crucial role in expanding the company's market reach through strategic alliances. His expertise in sales leadership and channel development has been instrumental in securing key partnerships, including the strategic collaboration with T-Mobile. Marc's efforts continue to drive Lifetime EPR's growth and market expansion."
     }
   ];
