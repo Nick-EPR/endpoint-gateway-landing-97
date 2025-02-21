@@ -46,7 +46,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-bold">{trend.value}</span>
             <div className={`flex items-center ${getTrendColor(trend)}`}>
-              {(trend.label === "Carbon Footprint" ? trend.trend < 0 : trend.trend > 0) ? (
+              {trend.trend > 0 ? (
                 <ArrowUpRight className="w-4 h-4" />
               ) : (
                 <ArrowDownRight className="w-4 h-4" />
