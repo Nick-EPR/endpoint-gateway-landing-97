@@ -39,7 +39,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text flex items-center justify-center space-x-3">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
             <span className="relative inline-block min-w-[280px]">
               <span 
                 key={currentWord}
@@ -54,7 +54,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               </span>
               <span className="invisible">{rotatingWords[0]}</span>
             </span>
-            <span>ITAM Solutions for Your Enterprise</span>
+            &nbsp;ITAM Solutions for Your Enterprise
           </h1>
           <style>
             {`
