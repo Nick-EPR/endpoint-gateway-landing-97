@@ -1,6 +1,6 @@
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown, Box } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -84,7 +84,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <Link to="/toolbox" className="w-full flex items-center gap-2">
-                    <Box className="w-4 h-4" />
+                    <img 
+                      src="/lovable-uploads/a353927e-954d-4f2b-8485-dc70088f7f43.png"
+                      alt="Toolbox Logo"
+                      className="w-4 h-4 object-contain"
+                    />
                     <span>Toolbox</span>
                   </Link>
                 </DropdownMenuItem>
@@ -163,7 +167,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Box className="w-4 h-4" />
+                  <img 
+                    src="/lovable-uploads/a353927e-954d-4f2b-8485-dc70088f7f43.png"
+                    alt="Toolbox Logo"
+                    className="w-4 h-4 object-contain"
+                  />
                   <span>Toolbox</span>
                 </Link>
                 <span className="text-neutral-400 py-2 flex items-center gap-2">
