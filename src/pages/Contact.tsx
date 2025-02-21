@@ -1,6 +1,7 @@
 
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Lightbulb, Award, Shield, Heart } from "lucide-react";
 import Navbar from "../components/Navbar";
 import ContactHero from "../components/contact/ContactHero";
 import LeadershipCard from "../components/contact/LeadershipCard";
@@ -102,28 +103,40 @@ const Contact = () => {
             <h2 className="text-3xl font-bold mb-8">Our Leadership Values</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="p-6 bg-neutral-light rounded-xl">
-                <h3 className="text-xl font-semibold mb-3">Innovation</h3>
-                <p className="text-neutral">
-                  Driving technological advancement in IT asset management
-                </p>
+                <div className="flex flex-col items-center">
+                  <Lightbulb className="w-8 h-8 text-primary mb-3" />
+                  <h3 className="text-xl font-semibold mb-3">Innovation</h3>
+                  <p className="text-neutral">
+                    Driving technological advancement in IT asset management
+                  </p>
+                </div>
               </div>
               <div className="p-6 bg-neutral-light rounded-xl">
-                <h3 className="text-xl font-semibold mb-3">Excellence</h3>
-                <p className="text-neutral">
-                  Delivering exceptional service and solutions
-                </p>
+                <div className="flex flex-col items-center">
+                  <Award className="w-8 h-8 text-primary mb-3" />
+                  <h3 className="text-xl font-semibold mb-3">Excellence</h3>
+                  <p className="text-neutral">
+                    Delivering exceptional service and solutions
+                  </p>
+                </div>
               </div>
               <div className="p-6 bg-neutral-light rounded-xl">
-                <h3 className="text-xl font-semibold mb-3">Integrity</h3>
-                <p className="text-neutral">
-                  Building trust through transparent leadership
-                </p>
+                <div className="flex flex-col items-center">
+                  <Shield className="w-8 h-8 text-primary mb-3" />
+                  <h3 className="text-xl font-semibold mb-3">Integrity</h3>
+                  <p className="text-neutral">
+                    Building trust through transparent leadership
+                  </p>
+                </div>
               </div>
               <div className="p-6 bg-neutral-light rounded-xl">
-                <h3 className="text-xl font-semibold mb-3">Client Focus</h3>
-                <p className="text-neutral">
-                  Prioritizing client success in everything we do
-                </p>
+                <div className="flex flex-col items-center">
+                  <Heart className="w-8 h-8 text-primary mb-3" />
+                  <h3 className="text-xl font-semibold mb-3">Client Focus</h3>
+                  <p className="text-neutral">
+                    Prioritizing client success in everything we do
+                  </p>
+                </div>
               </div>
             </div>
           </div>
