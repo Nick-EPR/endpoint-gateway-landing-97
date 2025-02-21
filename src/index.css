@@ -58,7 +58,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-poppins antialiased;
+    @apply bg-background text-foreground font-poppins antialiased transition-colors duration-300;
     font-feature-settings: "salt" 1, "ss01" 1;
   }
 }
@@ -74,7 +74,7 @@
 }
 
 .glass-card {
-  @apply bg-white/90 dark:bg-black/20 backdrop-blur-md border border-white/20 shadow-lg;
+  @apply bg-white/90 dark:bg-black/20 backdrop-blur-md border border-white/20 shadow-lg transition-colors duration-300;
 }
 
 .hover-lift {
@@ -83,4 +83,33 @@
 
 .section-padding {
   @apply py-16 md:py-24;
+}
+
+/* Dark mode specific styles */
+.dark .text-neutral {
+  @apply text-neutral-300;
+}
+
+.dark .bg-neutral-light {
+  @apply bg-neutral-900;
+}
+
+.dark .bg-white {
+  @apply bg-neutral-900;
+}
+
+.dark .border-neutral-100 {
+  @apply border-neutral-800;
+}
+
+.dark .bg-primary-light {
+  @apply bg-neutral-900;
+}
+
+.dark .bg-gradient-to-b {
+  @apply from-neutral-900 to-neutral-800;
+}
+
+.dark .glass-card {
+  @apply bg-neutral-900/90 border-neutral-800;
 }

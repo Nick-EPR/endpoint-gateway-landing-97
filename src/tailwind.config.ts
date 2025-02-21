@@ -35,6 +35,9 @@ export default {
         neutral: {
           DEFAULT: "#8E9196",
           light: "#F1F0FB",
+          300: "#D4D4D8",
+          800: "#27272A",
+          900: "#18181B",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
