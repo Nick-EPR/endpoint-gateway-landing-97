@@ -1,8 +1,12 @@
-import { useState } from 'react';
+
+import { useState, useEffect, useRef } from 'react';
 import { Calculator } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
+
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Calculate annual savings based on $90K per 1000 employees
   const calculateAnnualSavings = () => {
@@ -13,10 +17,43 @@ const ROICalculator = () => {
   const calculateTwoYearSavings = () => {
     return calculateAnnualSavings() * 2;
   };
-  return <section className="relative py-20 bg-primary-light">
-      {/* Top slanted divider */}
-      
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (sliderRef.current) {
+      observer.observe(sliderRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      // Animate the slider value between min and middle, then middle and initial value
+      const animateSlider = async () => {
+        await new Promise(resolve => setTimeout(resolve, 500)); // Initial delay
+        setEmployees(100); // Start at minimum
+        await new Promise(resolve => setTimeout(resolve, 800));
+        setEmployees(5000); // Move to middle
+        await new Promise(resolve => setTimeout(resolve, 800));
+        setEmployees(1000); // Return to initial value
+      };
+
+      animateSlider();
+    }
+  }, [isVisible]);
+
+  return (
+    <section className="relative py-20 bg-primary-light">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
@@ -45,7 +82,7 @@ const ROICalculator = () => {
               <h3 className="text-xl font-semibold">ROI Calculator</h3>
             </div>
 
-            <div className="mb-8">
+            <div className="mb-8" ref={sliderRef}>
               <div className="flex justify-between items-center mb-2">
                 <label className="text-sm font-medium text-neutral">
                   Number of Employees
@@ -54,7 +91,14 @@ const ROICalculator = () => {
                   {employees.toLocaleString()}
                 </span>
               </div>
-              <Slider min={100} max={10000} step={100} value={[employees]} onValueChange={values => setEmployees(values[0])} className="my-4" />
+              <Slider 
+                min={100} 
+                max={10000} 
+                step={100} 
+                value={[employees]} 
+                onValueChange={values => setEmployees(values[0])} 
+                className="my-4"
+              />
               <div className="flex justify-between text-xs text-neutral">
                 <span>100</span>
                 <span>10,000</span>
@@ -81,6 +125,8 @@ const ROICalculator = () => {
 
       {/* Bottom slanted divider */}
       <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-0"></div>
-    </section>;
+    </section>
+  );
 };
+
 export default ROICalculator;
