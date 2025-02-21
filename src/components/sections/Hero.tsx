@@ -30,22 +30,24 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting2) {
-        // If transitioning between "Your" words, only delete after "Your "
+        const newText = displayText2.slice(0, -1);
+        setDisplayText2(newText);
+        
+        // Check if we should stop deleting
         if (currentFullWord.startsWith("Your") && nextWord.startsWith("Your")) {
-          if (displayText2.length > 5) {
-            setDisplayText2(prev => prev.slice(0, -1));
-          } else {
+          // For "Your" transitions, stop at "Your "
+          if (newText === "Your ") {
             setIsDeleting2(false);
             setCurrentWord2(nextWordIndex);
           }
         } else {
-          // Normal deletion for other transitions
-          setDisplayText2(prev => prev.slice(0, -1));
-          if (displayText2.length <= 1) {
+          // For other transitions, delete everything
+          if (newText === "") {
             setIsDeleting2(false);
             setCurrentWord2(nextWordIndex);
           }
         }
+        
         timeout = setTimeout(updateText, 50);
       } else {
         if (displayText2.length < currentFullWord.length) {
