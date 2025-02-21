@@ -2,6 +2,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { ThemeToggle } from "./theme-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -37,7 +38,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
       onMouseEnter={onMouseEnter}
     >
       <div className={`transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
+        scrolled ? 'bg-background dark:bg-background' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <div className="relative h-8 md:h-10 w-[120px] md:w-[150px]">
@@ -63,15 +64,15 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           <nav className="hidden md:flex items-center space-x-8">
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${scrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
             <DropdownMenu>
-              <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
+              <DropdownMenuTrigger className={`${scrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
                 Products <ChevronDown size={16} />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white">
+              <DropdownMenuContent className="bg-background">
                 <DropdownMenuItem>
                   <Link to="/heliam" className="w-full">HeliAM</Link>
                 </DropdownMenuItem>
@@ -85,19 +86,20 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             </DropdownMenu>
             <Link 
               to="/security" 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${scrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Security
             </Link>
             <Link 
               to="/contact" 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${scrolled ? 'text-foreground' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Contact
             </Link>
+            <ThemeToggle />
             <a 
               href="https://app.lifetimeepr.io"
-              className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200"
+              className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors duration-200"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -106,60 +108,63 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           </nav>
 
           {/* Mobile Menu Button */}
-          <button 
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary`}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <ThemeToggle />
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className={`p-2 ${scrolled ? 'text-foreground' : 'text-white'} hover:text-primary`}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white shadow-lg">
+          <div className="md:hidden bg-background shadow-lg">
             <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
               <button 
                 onClick={() => handleNavigation('features')} 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
+                className="text-foreground hover:text-primary transition-colors duration-200 text-left py-2"
               >
                 Features
               </button>
               <div className="flex flex-col space-y-2 pl-4">
                 <Link 
                   to="/heliam" 
-                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                  className="text-foreground hover:text-primary transition-colors duration-200 py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   HeliAM
                 </Link>
                 <Link 
                   to="/toolbox" 
-                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                  className="text-foreground hover:text-primary transition-colors duration-200 py-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Toolbox
                 </Link>
-                <span className="text-neutral-400 py-2">
+                <span className="text-muted-foreground py-2">
                   Luemin (Coming Soon)
                 </span>
               </div>
               <Link 
                 to="/security" 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                className="text-foreground hover:text-primary transition-colors duration-200 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Security
               </Link>
               <Link 
                 to="/contact" 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                className="text-foreground hover:text-primary transition-colors duration-200 py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <a 
                 href="https://app.lifetimeepr.io"
-                className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200 inline-block text-center"
+                className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors duration-200 inline-block text-center"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMenuOpen(false)}
