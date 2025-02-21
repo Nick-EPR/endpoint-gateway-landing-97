@@ -82,7 +82,7 @@ const Status = () => {
     <div 
       className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
       style={{ 
-        backgroundImage: 'url("/photo-1531297484001-80022131f5a1")',
+        backgroundImage: 'url("/photo-1531297484001-80022131f5a1.jpg")',
         backgroundColor: 'rgba(0, 0, 0, 0.7)',
         backgroundBlendMode: 'overlay'
       }}
