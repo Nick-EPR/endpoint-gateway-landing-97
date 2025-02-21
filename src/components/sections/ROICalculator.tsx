@@ -16,9 +16,9 @@ const ROICalculator = () => {
   };
 
   return (
-    <section className="relative py-24 bg-primary-light">
+    <section className="relative py-20 bg-primary-light">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-white transform -skew-y-3 -translate-y-12 z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-3 -translate-y-8 z-0"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -90,7 +90,7 @@ const ROICalculator = () => {
       </div>
 
       {/* Bottom slanted divider */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-white transform skew-y-3 translate-y-12 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-0"></div>
     </section>
   );
 };
