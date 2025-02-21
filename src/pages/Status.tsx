@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import NavigationProgress from "../components/NavigationProgress";
 import Navbar from "../components/Navbar";
@@ -60,9 +59,7 @@ const Status = () => {
     <div 
       className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
       style={{ 
-        backgroundImage: 'url("/photo-1488229297570-58520851e868.jpg")',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Reduced opacity of overlay
-        backgroundBlendMode: 'multiply' // Changed blend mode to multiply for better visibility
+        backgroundImage: 'url("/photo-1488229297570-58520851e868.jpg")'
       }}
     >
       <NavigationProgress />
