@@ -62,8 +62,8 @@ const Index = () => {
         subtitle="Transform your IT asset management with our end-to-end solution"
         buttonText="Get Started"
       />
-      <Features />
       <Products />
+      <Features />
       <TMobileBusiness />
       <Partners />
       <ROICalculator />
