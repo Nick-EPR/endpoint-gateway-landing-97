@@ -4,7 +4,9 @@ import { Monitor, CronitorMonitor } from "@/types/monitor";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 
-export const mapCronitorStatus = (status: string): "healthy" | "degraded" | "down" => {
+export const mapCronitorStatus = (status: string | undefined): "healthy" | "degraded" | "down" => {
+  if (!status) return "down";
+  
   switch (status.toLowerCase()) {
     case "healthy":
     case "up":
@@ -34,16 +36,16 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
       throw new Error('Failed to fetch monitors from edge function');
     }
 
-    console.log('Successfully fetched Cronitor data:', data);
+    console.log('Received data from edge function:', data);
     
-    if (!data.monitors || !Array.isArray(data.monitors)) {
-      console.error('Unexpected Cronitor API response format:', data);
+    if (!data || !data.monitors || !Array.isArray(data.monitors)) {
+      console.error('Unexpected response format:', data);
       throw new Error('Invalid response format from Cronitor');
     }
     
     // Map Cronitor data to our Monitor interface
     return data.monitors.map((monitor: CronitorMonitor) => ({
-      name: monitor.name,
+      name: monitor.name || 'Unnamed Monitor',
       status: mapCronitorStatus(monitor.status),
       lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
       metrics: monitor.metrics?.uptime?.daily?.map((day, index) => ({
