@@ -1,7 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4bf1-81fa-ad040f234e85.png";
+import heliamLogo from "@/assets/heliam-logo.png"; // We'll temporarily use a placeholder logo
 
 const HeroSection = () => {
   return (
@@ -16,7 +16,7 @@ const HeroSection = () => {
       </div>
       <div className="container mx-auto relative z-20">
         <div className="flex flex-col items-center text-center mb-12">
-          <img src={heliamLogo} alt="HeliAM Logo" className="h-24 mb-8" />
+          {/* Temporarily remove the logo until we have the correct path */}
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             HeliAM IT Asset Management—an all-in-one platform designed to simplify and streamline your IT asset lifecycle.
           </h1>
