@@ -38,14 +38,35 @@ const ROICalculator = () => {
 
   useEffect(() => {
     if (isVisible) {
-      // Animate the slider value between min and middle, then middle and initial value
+      // Create a smoother animation sequence
       const animateSlider = async () => {
+        const animate = (start: number, end: number, duration: number) => {
+          const steps = 30; // More steps for smoother animation
+          const stepDuration = duration / steps;
+          const stepValue = (end - start) / steps;
+          
+          let currentStep = 0;
+          
+          const interval = setInterval(() => {
+            if (currentStep >= steps) {
+              clearInterval(interval);
+              return;
+            }
+            
+            const newValue = start + (stepValue * currentStep);
+            setEmployees(Math.round(newValue));
+            currentStep++;
+          }, stepDuration);
+
+          return new Promise(resolve => setTimeout(resolve, duration));
+        };
+
         await new Promise(resolve => setTimeout(resolve, 500)); // Initial delay
-        setEmployees(100); // Start at minimum
-        await new Promise(resolve => setTimeout(resolve, 800));
-        setEmployees(5000); // Move to middle
-        await new Promise(resolve => setTimeout(resolve, 800));
-        setEmployees(1000); // Return to initial value
+        
+        // Sequence of smooth animations
+        await animate(1000, 100, 1000);  // Slide to minimum
+        await animate(100, 5000, 1000);  // Slide to maximum
+        await animate(5000, 1000, 1000); // Return to initial value
       };
 
       animateSlider();
