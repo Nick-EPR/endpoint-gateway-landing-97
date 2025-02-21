@@ -1,18 +1,12 @@
-
 const Partnership = () => {
-  return (
-    <section className="relative py-20 bg-white">
+  return <section className="relative py-20 bg-white">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-3 -translate-y-8 z-0"></div>
+      
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <img 
-              src="/lovable-uploads/afd5064d-80e1-4dc3-9a47-00f189d67bdd.png"
-              alt="Lifetime Service"
-              className="h-16 w-auto mx-auto mb-8"
-            />
+            <img src="/lovable-uploads/afd5064d-80e1-4dc3-9a47-00f189d67bdd.png" alt="Lifetime Service" className="h-16 w-auto mx-auto mb-8" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
               Strategic Partnership
             </h2>
@@ -48,12 +42,7 @@ const Partnership = () => {
                   <span className="ml-3">Nationwide coverage for consistent service quality</span>
                 </li>
               </ul>
-              <a 
-                href="https://lifetimeservice.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block mt-8 text-primary hover:text-secondary transition-colors"
-              >
+              <a href="https://lifetimeservice.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-8 text-primary hover:text-secondary transition-colors">
                 Learn more about Lifetime Service →
               </a>
             </div>
@@ -80,8 +69,6 @@ const Partnership = () => {
 
       {/* Bottom slanted divider */}
       <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-3 translate-y-8 z-0"></div>
-    </section>
-  );
+    </section>;
 };
-
 export default Partnership;

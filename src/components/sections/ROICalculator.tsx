@@ -1,24 +1,21 @@
 import { useState } from 'react';
 import { Calculator } from 'lucide-react';
 import { Slider } from "@/components/ui/slider";
-
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
-  
+
   // Calculate annual savings based on $90K per 1000 employees
   const calculateAnnualSavings = () => {
-    return (employees * 90000) / 1000;
+    return employees * 90000 / 1000;
   };
 
   // Calculate 2-year savings
   const calculateTwoYearSavings = () => {
     return calculateAnnualSavings() * 2;
   };
-
-  return (
-    <section className="relative py-20 bg-primary-light">
+  return <section className="relative py-20 bg-primary-light">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-3 -translate-y-8 z-0"></div>
+      
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
@@ -57,14 +54,7 @@ const ROICalculator = () => {
                   {employees.toLocaleString()}
                 </span>
               </div>
-              <Slider
-                min={100}
-                max={10000}
-                step={100}
-                value={[employees]}
-                onValueChange={(values) => setEmployees(values[0])}
-                className="my-4"
-              />
+              <Slider min={100} max={10000} step={100} value={[employees]} onValueChange={values => setEmployees(values[0])} className="my-4" />
               <div className="flex justify-between text-xs text-neutral">
                 <span>100</span>
                 <span>10,000</span>
@@ -91,8 +81,6 @@ const ROICalculator = () => {
 
       {/* Bottom slanted divider */}
       <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-0"></div>
-    </section>
-  );
+    </section>;
 };
-
 export default ROICalculator;

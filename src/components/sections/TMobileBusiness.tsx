@@ -1,35 +1,16 @@
-
 import { Shield, Network, Smartphone, Check, Laptop, Cpu } from "lucide-react";
-
 const TMobileBusiness = () => {
-  const benefits = [
-    "Built-in 5G connectivity for seamless network access",
-    "Simplified device management and deployment",
-    "Predictable monthly costs with no upfront investment",
-    "Comprehensive lifecycle management",
-    "Automatic software updates and security patches",
-    "Flexible scaling as your business grows"
-  ];
-
-  return (
-    <section className="relative py-20 bg-white">
+  const benefits = ["Built-in 5G connectivity for seamless network access", "Simplified device management and deployment", "Predictable monthly costs with no upfront investment", "Comprehensive lifecycle management", "Automatic software updates and security patches", "Flexible scaling as your business grows"];
+  return <section className="relative py-20 bg-white">
       {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-neutral-50 transform -skew-y-3 -translate-y-8 z-0"></div>
+      
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <img 
-              src="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png"
-              alt="Lifetime EndPoint Resources"
-              className="h-12 md:h-16 w-auto"
-            />
+            <img src="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png" alt="Lifetime EndPoint Resources" className="h-12 md:h-16 w-auto" />
             <span className="text-xl md:text-2xl font-semibold text-neutral">+</span>
-            <img 
-              src="/lovable-uploads/db5c2503-a1b3-49cc-a4d8-2e1cca8144e9.png"
-              alt="T-Mobile"
-              className="h-12 md:h-16 w-auto"
-            />
+            <img src="/lovable-uploads/db5c2503-a1b3-49cc-a4d8-2e1cca8144e9.png" alt="T-Mobile" className="h-12 md:h-16 w-auto" />
           </div>
           <p className="text-base md:text-lg text-neutral mb-8 animate-on-scroll px-4">
             Empowering businesses with connected device solutions through our strategic partnership with T-Mobile, delivering reliable, secure, and scalable IT device management
@@ -136,8 +117,6 @@ const TMobileBusiness = () => {
 
       {/* Bottom slanted divider */}
       <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-3 translate-y-8 z-0"></div>
-    </section>
-  );
+    </section>;
 };
-
 export default TMobileBusiness;
