@@ -85,7 +85,7 @@ const Partners = () => {
                       <img
                         src={partner.logo}
                         alt={`${partner.name} logo`}
-                        className={`max-h-24 w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[160px]' : ''}`}
+                        className={`max-h-28 w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[200px]' : ''}`}
                       />
                     </div>
                     <p className="text-neutral text-center mt-4 text-sm">{partner.description}</p>
