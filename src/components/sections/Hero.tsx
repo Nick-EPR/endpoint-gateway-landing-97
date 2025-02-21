@@ -9,10 +9,14 @@ interface HeroProps {
 }
 
 const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
-  const [currentWord, setCurrentWord] = useState(0);
-  const [displayText, setDisplayText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-  const rotatingWords = [
+  const [currentWord1, setCurrentWord1] = useState(0);
+  const [currentWord2, setCurrentWord2] = useState(0);
+  const [displayText1, setDisplayText1] = useState("");
+  const [displayText2, setDisplayText2] = useState("");
+  const [isDeleting1, setIsDeleting1] = useState(false);
+  const [isDeleting2, setIsDeleting2] = useState(false);
+  
+  const rotatingWords1 = [
     "Comprehensive",
     "Secure",
     "Scalable",
@@ -20,34 +24,65 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Reliable"
   ];
 
+  const rotatingWords2 = [
+    "VAR",
+    "SMB",
+    "MSP",
+    "Healthcare",
+    "Education"
+  ];
+
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    const currentFullWord = rotatingWords[currentWord];
+    const currentFullWord = rotatingWords1[currentWord1];
     
     const updateText = () => {
-      if (isDeleting) {
-        // Backspacing
-        setDisplayText(prev => prev.slice(0, -1));
-        if (displayText === '') {
-          setIsDeleting(false);
-          setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
+      if (isDeleting1) {
+        setDisplayText1(prev => prev.slice(0, -1));
+        if (displayText1 === '') {
+          setIsDeleting1(false);
+          setCurrentWord1((prev) => (prev + 1) % rotatingWords1.length);
         }
-        timeout = setTimeout(updateText, 50); // Faster deletion
+        timeout = setTimeout(updateText, 50);
       } else {
-        // Typing
-        if (displayText.length < currentFullWord.length) {
-          setDisplayText(currentFullWord.slice(0, displayText.length + 1));
-          timeout = setTimeout(updateText, 100); // Slower typing
+        if (displayText1.length < currentFullWord.length) {
+          setDisplayText1(currentFullWord.slice(0, displayText1.length + 1));
+          timeout = setTimeout(updateText, 100);
         } else {
-          // Word is complete, wait before starting deletion
-          timeout = setTimeout(() => setIsDeleting(true), 2000);
+          timeout = setTimeout(() => setIsDeleting1(true), 2000);
         }
       }
     };
 
     timeout = setTimeout(updateText, 100);
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentWord, rotatingWords]);
+  }, [displayText1, isDeleting1, currentWord1, rotatingWords1]);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const currentFullWord = rotatingWords2[currentWord2];
+    
+    const updateText = () => {
+      if (isDeleting2) {
+        setDisplayText2(prev => prev.slice(0, -1));
+        if (displayText2 === '') {
+          setIsDeleting2(false);
+          setCurrentWord2((prev) => (prev + 1) % rotatingWords2.length);
+        }
+        timeout = setTimeout(updateText, 50);
+      } else {
+        if (displayText2.length < currentFullWord.length) {
+          setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
+          timeout = setTimeout(updateText, 100);
+        } else {
+          timeout = setTimeout(() => setIsDeleting2(true), 2000);
+        }
+      }
+    };
+
+    timeout = setTimeout(updateText, 100);
+    return () => clearTimeout(timeout);
+  }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
@@ -65,12 +100,19 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
             <span className="relative inline-block">
               <span className="absolute left-0 whitespace-nowrap text-primary">
-                {displayText}
+                {displayText1}
                 <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
               </span>
-              <span className="invisible">{rotatingWords[currentWord]}</span>
+              <span className="invisible">{rotatingWords1[currentWord1]}</span>
             </span>
-            &nbsp;ITAM Solutions for Your Enterprise
+            &nbsp;ITAM Solutions for&nbsp;
+            <span className="relative inline-block">
+              <span className="absolute left-0 whitespace-nowrap text-primary">
+                {displayText2}
+                <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
+              </span>
+              <span className="invisible">{rotatingWords2[currentWord2]}</span>
+            </span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
