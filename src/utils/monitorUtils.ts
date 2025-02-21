@@ -21,20 +21,20 @@ export const mapCronitorStatus = (status: string): "healthy" | "degraded" | "dow
 
 export const fetchMonitors = async (): Promise<Monitor[]> => {
   // First, get the API key from Supabase
-  const { data: secrets, error } = await supabase
-    .from('secrets')
-    .select('value')
-    .eq('name', 'CRONITOR_API_KEY')
-    .maybeSingle();
+  const { data: secretData, error: secretError } = await supabase
+    .rpc('get_secret', { secret_name: 'CRONITOR_API_KEY' });
 
-  if (error || !secrets?.value) {
+  if (secretError || !secretData) {
+    console.error('Error fetching API key:', secretError);
     throw new Error('Cronitor API key not found');
   }
+
+  const apiKey = secretData as string;
 
   // Fetch monitors from Cronitor API
   const response = await fetch('https://cronitor.io/api/v3/monitors', {
     headers: {
-      'Authorization': `Bearer ${secrets.value}`,
+      'Authorization': `Bearer ${apiKey}`,
       'Content-Type': 'application/json',
     },
   });
