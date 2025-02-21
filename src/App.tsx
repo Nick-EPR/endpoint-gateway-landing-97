@@ -9,6 +9,7 @@ import Toolbox from "./pages/Toolbox";
 import Leadership from "./pages/Leadership";
 import SecurityWhitepaper from "./pages/SecurityWhitepaper";
 import Mission from "./pages/Mission";
+import Status from "./pages/Status";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/heliam" element={<HeliAM />} />
         <Route path="/toolbox" element={<Toolbox />} />
         <Route path="/mission" element={<Mission />} />
+        <Route path="/status" element={<Status />} />
         <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

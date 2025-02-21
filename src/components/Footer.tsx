@@ -33,6 +33,11 @@ const Footer = () => {
                   Contact Us
                 </Link>
               </li>
+              <li>
+                <Link to="/status" className="text-neutral hover:text-primary transition-colors">
+                  System Status
+                </Link>
+              </li>
             </ul>
           </div>
           
