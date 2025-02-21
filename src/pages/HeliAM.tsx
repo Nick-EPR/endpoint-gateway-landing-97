@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { 
   Database, GitMerge, Globe, Shield, Users, Server,
-  Box, RefreshCcw, Wrench, Api, LifeBuoy, Laptop,
+  Box, RefreshCcw, Wrench, LifeBuoy, Laptop,
   MonitorSmartphone, PackageOpen, Workflow
 } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4bf1-81fa-ad040f234e85.png";
@@ -55,7 +55,7 @@ const HeliAM = () => {
       description: "Track and manage assets through their entire lifecycle, from procurement to retirement."
     },
     {
-      icon: Api,
+      icon: Server,
       title: "API Integration",
       description: "Seamlessly connect with your existing CRM, ERP, and HR systems through our robust API."
     }
