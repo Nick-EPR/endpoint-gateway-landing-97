@@ -10,12 +10,14 @@ export const mapCronitorStatus = (status: string | undefined): "healthy" | "degr
   switch (status.toLowerCase()) {
     case "healthy":
     case "up":
+    case "passing":
       return "healthy";
     case "degraded":
     case "notice":
       return "degraded";
     case "down":
     case "error":
+    case "failed":
       return "down";
     default:
       return "down";
@@ -44,20 +46,33 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
     }
     
     // Map Cronitor data to our Monitor interface
-    return data.monitors.map((monitor: CronitorMonitor) => ({
-      name: monitor.name || 'Unnamed Monitor',
-      status: mapCronitorStatus(monitor.status),
-      lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
-      metrics: monitor.metrics?.uptime?.daily?.map((day, index) => ({
-        date: format(new Date(day.date), 'MMM dd'),
-        uptime: day.value || 100,
-        responseTime: monitor.metrics?.latency?.daily?.[index]?.value || 0,
-      })) || Array.from({ length: 30 }, (_, i) => ({
-        date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
-        uptime: 100,
-        responseTime: 0,
-      })),
-    }));
+    return data.monitors.map((monitor: CronitorMonitor) => {
+      // Calculate daily metrics from the latest events and metrics
+      const dailyMetrics = Array.from({ length: 30 }, (_, i) => {
+        const date = new Date();
+        date.setDate(date.getDate() - (29 - i));
+        const dateStr = format(date, 'yyyy-MM-dd');
+        
+        // Try to find matching metrics for this date
+        const uptimeMetric = monitor.metrics?.uptime?.daily?.find(d => d.date === dateStr);
+        const latencyMetric = monitor.metrics?.latency?.daily?.find(d => d.date === dateStr);
+        
+        return {
+          date: format(date, 'MMM dd'),
+          uptime: uptimeMetric?.value || 100, // Default to 100 if no data
+          responseTime: latencyMetric?.value || 0, // Default to 0 if no data
+        };
+      });
+
+      return {
+        name: monitor.name || 'Unnamed Monitor',
+        status: mapCronitorStatus(monitor.status || (monitor.passing ? 'healthy' : 'down')),
+        lastCheckTime: monitor.latest_event?.stamp 
+          ? new Date(monitor.latest_event.stamp * 1000).toISOString() 
+          : new Date().toISOString(),
+        metrics: dailyMetrics,
+      };
+    });
   } catch (error) {
     console.error('Error fetching monitors:', error);
     console.log('Falling back to mock data due to error');
@@ -106,3 +121,4 @@ export const calculateAverageUptime = (metrics: Monitor['metrics']) => {
 export const calculateAverageResponseTime = (metrics: Monitor['metrics']) => {
   return Math.round(metrics.reduce((acc, curr) => acc + curr.responseTime, 0) / metrics.length);
 };
+
