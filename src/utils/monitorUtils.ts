@@ -46,10 +46,14 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
       name: monitor.name,
       status: mapCronitorStatus(monitor.status),
       lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
-      metrics: monitor.metrics.uptime.daily.map((day, index) => ({
+      metrics: monitor.metrics?.uptime?.daily?.map((day, index) => ({
         date: format(new Date(day.date), 'MMM dd'),
-        uptime: day.value,
-        responseTime: monitor.metrics.latency.daily[index]?.value || 0,
+        uptime: day.value || 100,
+        responseTime: monitor.metrics?.latency?.daily?.[index]?.value || 0,
+      })) || Array.from({ length: 30 }, (_, i) => ({
+        date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
+        uptime: 100,
+        responseTime: 0,
       })),
     }));
   } catch (error) {

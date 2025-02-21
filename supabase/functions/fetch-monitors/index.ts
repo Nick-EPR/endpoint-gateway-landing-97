@@ -47,11 +47,14 @@ serve(async (req) => {
       throw new Error(`Cronitor API error: ${response.status}`)
     }
 
-    const data = await response.json()
-    console.log("Successfully fetched Cronitor data")
+    const cronitorData = await response.json()
+    console.log("Successfully fetched Cronitor data:", cronitorData)
 
+    // Transform the data to match our expected format
+    const monitors = Array.isArray(cronitorData.monitors) ? cronitorData.monitors : [];
+    
     return new Response(
-      JSON.stringify(data),
+      JSON.stringify({ monitors }),
       {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         status: 200,
