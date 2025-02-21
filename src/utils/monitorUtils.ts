@@ -15,6 +15,7 @@ export const mapCronitorStatus = (status: string | undefined): "healthy" | "degr
     case "up":
     case "ok":
     case "active":
+    case "true": // For "passing: true"
       return "healthy";
     case "degraded":
     case "notice":
@@ -23,10 +24,11 @@ export const mapCronitorStatus = (status: string | undefined): "healthy" | "degr
     case "down":
     case "error":
     case "failed":
+    case "false": // For "passing: false"
       return "down";
     default:
       console.log('Unknown status:', status);
-      return "healthy"; // Default to healthy if status is unknown
+      return "degraded"; // Default to degraded if status is unknown
   }
 };
 
@@ -34,7 +36,6 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
   console.log('Starting monitor fetch...');
   
   try {
-    // Call our Edge Function to fetch the monitors
     const { data, error } = await supabase.functions.invoke('fetch-monitors', {
       method: 'GET',
     });
@@ -54,19 +55,34 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
     // Map Cronitor data to our Monitor interface
     return data.monitors.map((monitor: CronitorMonitor) => {
       console.log('Processing monitor:', monitor);
+      
+      // Ensure we have valid metrics arrays
+      const dailyMetrics = monitor.metrics?.uptime?.daily || [];
+      const latencyMetrics = monitor.metrics?.latency?.daily || [];
+      
+      // Create the metrics array with proper date formatting
+      const metrics = dailyMetrics.map((day, index) => ({
+        date: format(new Date(day.date), 'MMM dd'),
+        uptime: day.value,
+        responseTime: latencyMetrics[index]?.value || 0,
+      }));
+
+      // If we don't have enough metrics, pad with defaults
+      while (metrics.length < 30) {
+        const date = new Date();
+        date.setDate(date.getDate() - metrics.length);
+        metrics.push({
+          date: format(date, 'MMM dd'),
+          uptime: 100,
+          responseTime: 200,
+        });
+      }
+
       return {
         name: monitor.name || 'Unnamed Monitor',
         status: mapCronitorStatus(monitor.status),
         lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
-        metrics: monitor.metrics?.uptime?.daily?.map((day, index) => ({
-          date: format(new Date(day.date), 'MMM dd'),
-          uptime: day.value || 100,
-          responseTime: monitor.metrics?.latency?.daily?.[index]?.value || 0,
-        })) || Array.from({ length: 30 }, (_, i) => ({
-          date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
-          uptime: 100,
-          responseTime: 0,
-        })),
+        metrics: metrics.slice(0, 30), // Ensure we only return 30 days
       };
     });
   } catch (error) {
@@ -111,9 +127,13 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
 };
 
 export const calculateAverageUptime = (metrics: Monitor['metrics']) => {
-  return (metrics.reduce((acc, curr) => acc + curr.uptime, 0) / metrics.length).toFixed(2);
+  const validMetrics = metrics.filter(m => typeof m.uptime === 'number' && !isNaN(m.uptime));
+  if (validMetrics.length === 0) return "100.00";
+  return (validMetrics.reduce((acc, curr) => acc + curr.uptime, 0) / validMetrics.length).toFixed(2);
 };
 
 export const calculateAverageResponseTime = (metrics: Monitor['metrics']) => {
-  return Math.round(metrics.reduce((acc, curr) => acc + curr.responseTime, 0) / metrics.length);
+  const validMetrics = metrics.filter(m => typeof m.responseTime === 'number' && !isNaN(m.responseTime));
+  if (validMetrics.length === 0) return 0;
+  return Math.round(validMetrics.reduce((acc, curr) => acc + curr.responseTime, 0) / validMetrics.length);
 };
