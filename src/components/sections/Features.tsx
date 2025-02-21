@@ -68,7 +68,7 @@ const Features = () => {
       <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-3 -translate-y-8 z-0"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-12 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
           Comprehensive Features
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
