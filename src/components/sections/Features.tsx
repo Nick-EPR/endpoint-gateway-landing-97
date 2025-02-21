@@ -1,7 +1,6 @@
 
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 interface Feature {
   icon: React.ReactNode;
@@ -14,23 +13,6 @@ interface Feature {
 }
 
 const Features = () => {
-  const [currentWord, setCurrentWord] = useState(0);
-  const rotatingWords = [
-    "Comprehensive",
-    "Secure",
-    "Innovative",
-    "Reliable",
-    "Scalable"
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const features: Feature[] = [
     {
       icon: (
@@ -85,36 +67,9 @@ const Features = () => {
       <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-1/2"></div>
       
       <div className="container mx-auto px-4 relative">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
-          <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent relative">
-            <span 
-              className="absolute left-0 right-0 transition-all duration-500"
-              style={{
-                opacity: 0,
-                transform: 'translateY(20px)',
-                animation: 'fadeInUp 0.5s forwards'
-              }}
-            >
-              {rotatingWords[currentWord]}
-            </span>
-            <span className="invisible">{rotatingWords[0]}</span>
-          </span>
-          {" Features"}
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          Comprehensive Features
         </h2>
-        <style>
-          {`
-            @keyframes fadeInUp {
-              from {
-                opacity: 0;
-                transform: translateY(20px);
-              }
-              to {
-                opacity: 1;
-                transform: translateY(0);
-              }
-            }
-          `}
-        </style>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div 
