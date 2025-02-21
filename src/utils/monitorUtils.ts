@@ -2,6 +2,7 @@
 import { format } from "date-fns";
 import { Monitor, CronitorMonitor } from "@/types/monitor";
 import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export const mapCronitorStatus = (status: string): "healthy" | "degraded" | "down" => {
   switch (status.toLowerCase()) {
@@ -24,38 +25,52 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
   const { data: secretData, error: secretError } = await supabase
     .rpc('get_secret', { secret_name: 'CRONITOR_API_KEY' });
 
-  if (secretError || !secretData) {
+  if (secretError) {
     console.error('Error fetching API key:', secretError);
+    toast.error('Failed to fetch API key from database');
+    throw new Error('Failed to fetch Cronitor API key');
+  }
+
+  if (!secretData) {
+    console.error('No API key found in database');
+    toast.error('Cronitor API key not found in database');
     throw new Error('Cronitor API key not found');
   }
 
-  const apiKey = secretData as string;
-
   // Fetch monitors from Cronitor API
-  const response = await fetch('https://cronitor.io/api/v3/monitors', {
-    headers: {
-      'Authorization': `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-  });
+  try {
+    const response = await fetch('https://cronitor.io/api/v3/monitors', {
+      headers: {
+        'Authorization': `Bearer ${secretData}`,
+        'Content-Type': 'application/json',
+      },
+    });
 
-  if (!response.ok) {
-    throw new Error('Failed to fetch monitors');
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Cronitor API error:', errorText);
+      toast.error('Failed to fetch monitors from Cronitor');
+      throw new Error('Failed to fetch monitors');
+    }
+
+    const data = await response.json();
+    
+    // Map Cronitor data to our Monitor interface
+    return data.monitors.map((monitor: CronitorMonitor) => ({
+      name: monitor.name,
+      status: mapCronitorStatus(monitor.status),
+      lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
+      metrics: monitor.metrics.uptime.daily.map((day, index) => ({
+        date: format(new Date(day.date), 'MMM dd'),
+        uptime: day.value,
+        responseTime: monitor.metrics.latency.daily[index]?.value || 0,
+      })),
+    }));
+  } catch (error) {
+    console.error('Error fetching monitors:', error);
+    toast.error('Failed to fetch system status');
+    throw error;
   }
-
-  const data = await response.json();
-  
-  // Map Cronitor data to our Monitor interface
-  return data.monitors.map((monitor: CronitorMonitor) => ({
-    name: monitor.name,
-    status: mapCronitorStatus(monitor.status),
-    lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
-    metrics: monitor.metrics.uptime.daily.map((day, index) => ({
-      date: format(new Date(day.date), 'MMM dd'),
-      uptime: day.value,
-      responseTime: monitor.metrics.latency.daily[index]?.value || 0,
-    })),
-  }));
 };
 
 export const calculateAverageUptime = (metrics: Monitor['metrics']) => {
