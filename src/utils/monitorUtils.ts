@@ -7,18 +7,26 @@ import { toast } from "sonner";
 export const mapCronitorStatus = (status: string | undefined): "healthy" | "degraded" | "down" => {
   if (!status) return "down";
   
-  switch (status.toLowerCase()) {
+  const normalizedStatus = status.toLowerCase();
+  console.log('Mapping status:', status, 'normalized:', normalizedStatus);
+  
+  switch (normalizedStatus) {
     case "healthy":
     case "up":
+    case "ok":
+    case "active":
       return "healthy";
     case "degraded":
     case "notice":
+    case "warning":
       return "degraded";
     case "down":
     case "error":
+    case "failed":
       return "down";
     default:
-      return "down";
+      console.log('Unknown status:', status);
+      return "healthy"; // Default to healthy if status is unknown
   }
 };
 
@@ -44,20 +52,23 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
     }
     
     // Map Cronitor data to our Monitor interface
-    return data.monitors.map((monitor: CronitorMonitor) => ({
-      name: monitor.name || 'Unnamed Monitor',
-      status: mapCronitorStatus(monitor.status),
-      lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
-      metrics: monitor.metrics?.uptime?.daily?.map((day, index) => ({
-        date: format(new Date(day.date), 'MMM dd'),
-        uptime: day.value || 100,
-        responseTime: monitor.metrics?.latency?.daily?.[index]?.value || 0,
-      })) || Array.from({ length: 30 }, (_, i) => ({
-        date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
-        uptime: 100,
-        responseTime: 0,
-      })),
-    }));
+    return data.monitors.map((monitor: CronitorMonitor) => {
+      console.log('Processing monitor:', monitor);
+      return {
+        name: monitor.name || 'Unnamed Monitor',
+        status: mapCronitorStatus(monitor.status),
+        lastCheckTime: monitor.latest_ping?.timestamp || new Date().toISOString(),
+        metrics: monitor.metrics?.uptime?.daily?.map((day, index) => ({
+          date: format(new Date(day.date), 'MMM dd'),
+          uptime: day.value || 100,
+          responseTime: monitor.metrics?.latency?.daily?.[index]?.value || 0,
+        })) || Array.from({ length: 30 }, (_, i) => ({
+          date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
+          uptime: 100,
+          responseTime: 0,
+        })),
+      };
+    });
   } catch (error) {
     console.error('Error fetching monitors:', error);
     console.log('Falling back to mock data due to error');
