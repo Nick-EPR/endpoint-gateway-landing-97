@@ -9,19 +9,10 @@ interface HeroProps {
 }
 
 const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
-  const [currentWord1, setCurrentWord1] = useState(0);
   const [currentWord2, setCurrentWord2] = useState(0);
   const [displayText2, setDisplayText2] = useState("");
   const [isDeleting2, setIsDeleting2] = useState(false);
   
-  const rotatingWords1 = [
-    "Comprehensive",
-    "Secure",
-    "Scalable",
-    "Innovative",
-    "Reliable"
-  ];
-
   const rotatingWords2 = [
     "Your VAR",
     "Your SMB",
@@ -29,15 +20,6 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Healthcare",
     "Education"
   ];
-
-  // First word rotation effect
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCurrentWord1((prev) => (prev + 1) % rotatingWords1.length);
-    }, 3000); // Change word every 3 seconds
-
-    return () => clearTimeout(timer);
-  }, [currentWord1]);
 
   // Second word typewriter effect
   useEffect(() => {
@@ -80,11 +62,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
-            <span className="relative inline-block min-w-[200px]">
-              <span className="text-primary transition-all duration-500">
-                {rotatingWords1[currentWord1]}
-              </span>
-            </span>
+            <span className="text-white">Complete</span>
             &nbsp;ITAM Solutions for&nbsp;
             <span className="relative inline-block">
               <span className="absolute left-0 whitespace-nowrap text-primary">
