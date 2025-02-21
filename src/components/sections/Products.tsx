@@ -66,7 +66,13 @@ const Solutions = () => {
   }, []);
 
   return (
-    <section id="solutions" className="relative py-24 bg-neutral-light">
+    <section id="solutions" className="relative pt-32 pb-20 bg-neutral-light">
+      {/* Visual connector elements with extended width */}
+      <div className="relative max-w-6xl mx-auto">
+        <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
+        <div className="absolute top-8 -left-4 -right-4 h-0.5 bg-primary/20"></div>
+      </div>
+
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="flex justify-center mb-8">
@@ -82,12 +88,6 @@ const Solutions = () => {
           <p className="text-lg text-neutral animate-on-scroll">
             Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
           </p>
-        </div>
-
-        {/* Visual connector elements with extended width */}
-        <div className="relative max-w-6xl mx-auto">
-          <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
-          <div className="absolute top-8 -left-4 -right-4 h-0.5 bg-primary/20"></div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -123,6 +123,9 @@ const Solutions = () => {
           ))}
         </div>
       </div>
+
+      {/* Bottom slanted divider */}
+      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-10"></div>
     </section>
   );
 };
