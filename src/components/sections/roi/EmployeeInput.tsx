@@ -1,7 +1,7 @@
 
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
-import { RefObject } from "react";
+import { RefObject, useState } from "react";
 
 interface EmployeeInputProps {
   employees: number;
@@ -11,12 +11,30 @@ interface EmployeeInputProps {
 }
 
 export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange }: EmployeeInputProps) => {
+  const [inputValue, setInputValue] = useState<string>(employees.toString());
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || 0;
+    const newValue = e.target.value;
+    setInputValue(newValue);
+    
+    const parsedValue = parseInt(newValue) || 0;
     const maxValue = isEnterprise ? 10000 : 1000;
-    if (value >= 100 && value <= maxValue) {
-      onEmployeeChange(value);
+    
+    if (parsedValue >= 100 && parsedValue <= maxValue) {
+      onEmployeeChange(parsedValue);
     }
+  };
+
+  const handleInputBlur = () => {
+    const parsedValue = parseInt(inputValue) || 0;
+    const maxValue = isEnterprise ? 10000 : 1000;
+    
+    let validValue = parsedValue;
+    if (parsedValue < 100) validValue = 100;
+    if (parsedValue > maxValue) validValue = maxValue;
+    
+    setInputValue(validValue.toString());
+    onEmployeeChange(validValue);
   };
 
   return (
@@ -27,8 +45,9 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
         </label>
         <Input
           type="number"
-          value={employees}
+          value={inputValue}
           onChange={handleInputChange}
+          onBlur={handleInputBlur}
           className="w-32 text-right"
           min={100}
           max={isEnterprise ? 10000 : 1000}
@@ -39,7 +58,11 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
         max={isEnterprise ? 10000 : 1000} 
         step={isEnterprise ? 1000 : 100} 
         value={[employees]} 
-        onValueChange={values => onEmployeeChange(values[0])} 
+        onValueChange={values => {
+          const value = values[0];
+          setInputValue(value.toString());
+          onEmployeeChange(value);
+        }} 
         className="my-4"
       />
       <div className="flex justify-between text-xs text-neutral">
