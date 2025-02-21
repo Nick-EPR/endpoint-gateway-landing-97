@@ -21,7 +21,7 @@ serve(async (req) => {
     const response = await fetch('https://cronitor.io/api/v3/monitors', {
       method: 'GET',
       headers: {
-        'Authorization': `Bearer ${apiKey}`,
+        'Authorization': `Basic ${btoa(apiKey + ':')}`,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
