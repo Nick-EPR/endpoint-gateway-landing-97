@@ -1,4 +1,3 @@
-
 export interface Trend {
   label: string;
   value: string;
@@ -6,76 +5,68 @@ export interface Trend {
   tooltip: string;
 }
 
-export const calculateAnnualSavings = (employeeCount: number) => {
-  return employeeCount * 90000 / 1000;
-};
-
-export const calculateCompoundedSavings = (employees: number) => {
-  const years = 5;
-  const data = [];
-  let totalSavings = 0;
-  
-  for (let i = 1; i <= years; i++) {
-    totalSavings += calculateAnnualSavings(employees);
-    data.push({
-      year: `Year ${i}`,
-      savings: totalSavings
-    });
+// Function to calculate the percentage change between two numbers
+export const calculatePercentageChange = (oldValue: number, newValue: number): number => {
+  if (oldValue === 0) {
+    return newValue === 0 ? 0 : Infinity; // Avoid division by zero
   }
-  
-  return data;
+  return ((newValue - oldValue) / oldValue) * 100;
 };
 
-// Calculate dynamic trends based on employee count
-export const calculateTrends = (employeeCount: number): Trend[] => {
-  // Base device lifespan is 3 years without our solution
-  const baseLifespan = 3;
-  const improvedLifespan = 5.5;
-  const lifespanIncrease = ((improvedLifespan - baseLifespan) / baseLifespan) * 100;
-  
-  // Base cost is $1200 per device per year
-  const baseCost = 1200;
-  const ourCost = 650; // Our solution cost per device per year
-  const costReduction = ((baseCost - ourCost) / baseCost) * 100;
-  
-  // Carbon footprint calculation
-  // Average laptop produces 300kg CO2 in production
-  // Extended lifespan reduces new device needs
-  const carbonReduction = -((improvedLifespan - baseLifespan) / baseLifespan) * 100;
-  
-  // Employee satisfaction based on device performance and support
-  // Industry average is 76% satisfaction
-  const baseEmployeeSatisfaction = 76;
-  const ourEmployeeSatisfaction = 94;
-  const satisfactionImprovement = ourEmployeeSatisfaction - baseEmployeeSatisfaction;
-
-  return [
-    {
-      label: "Average Device Lifespan",
-      value: `${improvedLifespan} years`,
-      trend: Math.round(lifespanIncrease),
-      tooltip: "Extended device lifespan through proactive maintenance and repairs"
-    },
-    {
-      label: "Cost Reduction",
-      value: `${Math.round(costReduction)}%`,
-      trend: Math.round(costReduction),
-      tooltip: "Reduction in total cost of ownership through optimized lifecycle management"
-    },
-    {
-      label: "Carbon Footprint",
-      value: `${Math.abs(Math.round(carbonReduction))}% Less`,
-      trend: Math.round(carbonReduction),
-      tooltip: "Reduced environmental impact through extended device lifecycles"
-    },
-    {
-      label: "Employee Satisfaction",
-      value: `${ourEmployeeSatisfaction}%`,
-      trend: satisfactionImprovement,
-      tooltip: "Improved satisfaction through better device performance and support"
-    }
-  ];
+// Function to format a number as currency
+export const formatCurrency = (amount: number, currencyCode: string = 'USD', locale: string = 'en-US'): string => {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currencyCode,
+  }).format(amount);
 };
 
-// Default trends for initial render
-export const defaultTrends = calculateTrends(1000);
+// Function to format a number as a percentage
+export const formatPercentage = (value: number, locale: string = 'en-US'): string => {
+  return new Intl.NumberFormat(locale, {
+    style: 'percent',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(value / 100);
+};
+
+// Function to format a number with commas
+export const formatNumberWithCommas = (value: number, locale: string = 'en-US'): string => {
+  return new Intl.NumberFormat(locale).format(value);
+};
+
+export const defaultTrends: Trend[] = [
+  {
+    label: "Device Lifespan",
+    value: "2.8 years",
+    trend: 40,
+    tooltip: "Average increase in device lifespan compared to industry standard"
+  },
+  {
+    label: "Cost Reduction",
+    value: "$840k",
+    trend: -32,
+    tooltip: "Projected annual cost savings through repair and refurbishment"
+  },
+  {
+    label: "Carbon Footprint",
+    value: "486 tons",
+    trend: -28,
+    tooltip: "Reduction in CO2 emissions from device manufacturing"
+  },
+  {
+    label: "Repair Success",
+    value: "94%",
+    trend: 12,
+    tooltip: "Successful repair rate across all device categories"
+  }
+];
+
+// Example function to simulate calculating new trends based on some input data
+export const calculateNewTrends = (/* some input data */): Trend[] => {
+  // In a real application, this function would perform calculations
+  // based on the input data and return an array of Trend objects.
+
+  // For now, let's just return the default trends as an example.
+  return defaultTrends;
+};
