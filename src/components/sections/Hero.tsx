@@ -17,29 +17,29 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     "Secure",
     "Scalable",
     "Innovative",
-    "Reliable",
-    "Intelligent",
-    "Automated",
-    "Efficient"
+    "Reliable"
   ];
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: number;
     const currentFullWord = rotatingWords[currentWord];
     
     const updateText = () => {
       if (isDeleting) {
+        // Backspacing
         setDisplayText(prev => prev.slice(0, -1));
         if (displayText === '') {
           setIsDeleting(false);
           setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
         }
-        timeout = setTimeout(updateText, 50);
+        timeout = setTimeout(updateText, 50); // Faster deletion
       } else {
+        // Typing
         if (displayText.length < currentFullWord.length) {
           setDisplayText(currentFullWord.slice(0, displayText.length + 1));
-          timeout = setTimeout(updateText, 100);
+          timeout = setTimeout(updateText, 100); // Slower typing
         } else {
+          // Word is complete, wait before starting deletion
           timeout = setTimeout(() => setIsDeleting(true), 2000);
         }
       }
@@ -48,10 +48,6 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     timeout = setTimeout(updateText, 100);
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentWord, rotatingWords]);
-
-  // Find the longest word to set minimum width
-  const maxLength = Math.max(...rotatingWords.map(word => word.length));
-  const minWidth = `${maxLength}ch`;
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
@@ -66,17 +62,15 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
-            <span className="inline-flex items-center">
-              <span className="relative" style={{ width: minWidth }}>
-                <span className="absolute left-0 whitespace-nowrap">
-                  {displayText}
-                  <span className="animate-pulse text-primary">|</span>
-                </span>
-                <span className="invisible whitespace-nowrap">{rotatingWords[currentWord]}</span>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
+            <span className="relative inline-block">
+              <span className="absolute left-0">
+                {displayText}
+                <span className="animate-pulse">|</span>
               </span>
-              <span className="whitespace-nowrap">ITAM Solutions for Your Enterprise</span>
+              <span className="invisible">{rotatingWords[currentWord]}</span>
             </span>
+            &nbsp;ITAM Solutions for Your Enterprise
           </h1>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
