@@ -67,20 +67,20 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
     return data.monitors
       .filter(shouldDisplayMonitor)
       .map((monitor: CronitorMonitor) => {
+        // Get the latest response time in milliseconds (convert from seconds if needed)
+        const latestResponseTime = monitor.latest_event?.metrics?.duration
+          ? Math.round(monitor.latest_event.metrics.duration * 1000)
+          : 0;
+
         // Calculate daily metrics from the latest events and metrics
         const dailyMetrics = Array.from({ length: 30 }, (_, i) => {
           const date = new Date();
           date.setDate(date.getDate() - (29 - i));
-          const dateStr = format(date, 'yyyy-MM-dd');
-          
-          // Try to find matching metrics for this date
-          const uptimeMetric = monitor.metrics?.uptime?.daily?.find(d => d.date === dateStr);
-          const latencyMetric = monitor.metrics?.latency?.daily?.find(d => d.date === dateStr);
           
           return {
             date: format(date, 'MMM dd'),
-            uptime: uptimeMetric?.value || 100, // Default to 100 if no data
-            responseTime: latencyMetric?.value || 0, // Default to 0 if no data
+            uptime: 100, // We'll use 100 as default since we don't have historical uptime data
+            responseTime: latestResponseTime, // Use the latest response time for historical data
           };
         });
 
