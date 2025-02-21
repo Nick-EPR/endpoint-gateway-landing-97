@@ -10,6 +10,8 @@ interface HeroProps {
 
 const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [currentWord, setCurrentWord] = useState(0);
+  const [displayText, setDisplayText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
   const rotatingWords = [
     "Comprehensive",
     "Secure",
@@ -19,12 +21,33 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
-    }, 3000);
+    let timeout: number;
+    const currentFullWord = rotatingWords[currentWord];
+    
+    const updateText = () => {
+      if (isDeleting) {
+        // Backspacing
+        setDisplayText(prev => prev.slice(0, -1));
+        if (displayText === '') {
+          setIsDeleting(false);
+          setCurrentWord((prev) => (prev + 1) % rotatingWords.length);
+        }
+        timeout = setTimeout(updateText, 50); // Faster deletion
+      } else {
+        // Typing
+        if (displayText.length < currentFullWord.length) {
+          setDisplayText(currentFullWord.slice(0, displayText.length + 1));
+          timeout = setTimeout(updateText, 100); // Slower typing
+        } else {
+          // Word is complete, wait before starting deletion
+          timeout = setTimeout(() => setIsDeleting(true), 2000);
+        }
+      }
+    };
 
-    return () => clearInterval(interval);
-  }, []);
+    timeout = setTimeout(updateText, 100);
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentWord, rotatingWords]);
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
@@ -41,35 +64,14 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
             <span className="relative inline-block">
-              <span 
-                key={currentWord}
-                className="absolute left-0 transition-all duration-500"
-                style={{
-                  opacity: 0,
-                  transform: 'translateY(20px)',
-                  animation: 'fadeInUp 0.5s forwards'
-                }}
-              >
-                {rotatingWords[currentWord]}
+              <span className="absolute left-0">
+                {displayText}
+                <span className="animate-pulse">|</span>
               </span>
               <span className="invisible">{rotatingWords[currentWord]}</span>
             </span>
             &nbsp;ITAM Solutions for Your Enterprise
           </h1>
-          <style>
-            {`
-              @keyframes fadeInUp {
-                from {
-                  opacity: 0;
-                  transform: translateY(20px);
-                }
-                to {
-                  opacity: 1;
-                  transform: translateY(0);
-                }
-              }
-            `}
-          </style>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
           </p>
