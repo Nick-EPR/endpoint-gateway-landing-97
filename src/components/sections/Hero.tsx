@@ -81,7 +81,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
             <span className="relative inline-block min-w-[200px]">
-              <span className="text-primary transition-all duration-500 opacity-0 animate-fade-in">
+              <span className="text-primary transition-all duration-500">
                 {rotatingWords1[currentWord1]}
               </span>
             </span>
