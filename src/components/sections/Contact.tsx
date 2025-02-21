@@ -31,7 +31,8 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase
+      // Save to Supabase
+      const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([
           {
@@ -42,7 +43,14 @@ const Contact = () => {
           }
         ]);
 
-      if (error) throw error;
+      if (dbError) throw dbError;
+
+      // Send email notification
+      const { error: emailError } = await supabase.functions.invoke('send-contact-notification', {
+        body: data
+      });
+
+      if (emailError) throw emailError;
 
       toast({
         title: "Thanks for reaching out!",
