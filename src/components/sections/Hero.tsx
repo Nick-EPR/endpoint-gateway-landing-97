@@ -25,13 +25,22 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   useEffect(() => {
     let timeout: NodeJS.Timeout;
     const currentFullWord = rotatingWords2[currentWord2];
+    const nextWordIndex = (currentWord2 + 1) % rotatingWords2.length;
+    const nextWord = rotatingWords2[nextWordIndex];
     
     const updateText = () => {
       if (isDeleting2) {
-        setDisplayText2(prev => prev.slice(0, -1));
-        if (displayText2 === '') {
+        // If current word and next word both start with "Your", only delete after "Your"
+        if (currentFullWord.startsWith("Your") && nextWord.startsWith("Your") && displayText2.length > 4) {
+          setDisplayText2(prev => prev.slice(0, -1));
+        } else if (!currentFullWord.startsWith("Your") || displayText2.length <= 4) {
+          setDisplayText2(prev => prev.slice(0, -1));
+        }
+        
+        if (displayText2 === '' || 
+           (currentFullWord.startsWith("Your") && nextWord.startsWith("Your") && displayText2 === "Your ")) {
           setIsDeleting2(false);
-          setCurrentWord2((prev) => (prev + 1) % rotatingWords2.length);
+          setCurrentWord2(nextWordIndex);
         }
         timeout = setTimeout(updateText, 50);
       } else {
