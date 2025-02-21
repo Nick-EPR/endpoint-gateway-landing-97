@@ -17,6 +17,15 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     return null;
   }
 
+  const getTrendColor = (trend: Trend) => {
+    // Carbon footprint reduction (negative number) is actually a positive trend
+    if (trend.label === "Carbon Footprint") {
+      return trend.trend < 0 ? 'text-green-600' : 'text-red-600';
+    }
+    // For all other metrics, positive numbers are good
+    return trend.trend > 0 ? 'text-green-600' : 'text-red-600';
+  };
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       {trends.map((trend, index) => (
@@ -36,10 +45,8 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
           </div>
           <div className="flex items-baseline gap-2">
             <span className="text-2xl font-bold">{trend.value}</span>
-            <div className={`flex items-center ${
-              trend.trend > 0 ? 'text-green-600' : 'text-red-600'
-            }`}>
-              {trend.trend > 0 ? (
+            <div className={`flex items-center ${getTrendColor(trend)}`}>
+              {(trend.label === "Carbon Footprint" ? trend.trend < 0 : trend.trend > 0) ? (
                 <ArrowUpRight className="w-4 h-4" />
               ) : (
                 <ArrowDownRight className="w-4 h-4" />
