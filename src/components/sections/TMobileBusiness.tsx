@@ -5,6 +5,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const TMobileBusiness = () => {
   const benefits = ["Built-in 5G connectivity for seamless network access", "Simplified device management and deployment", "Predictable monthly costs with no upfront investment", "Comprehensive lifecycle management", "Automatic software updates and security patches", "Flexible scaling as your business grows"];
@@ -188,9 +189,11 @@ const TMobileBusiness = () => {
         </div>
 
         <div className="max-w-xl mx-auto mt-12 md:mt-16 text-center px-4">
-          <button className="w-full sm:w-auto bg-[#E30074] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-[#cc0068] transition-colors duration-200">
-            Schedule a Consultation
-          </button>
+          <Link to="/contact">
+            <button className="w-full sm:w-auto bg-[#E30074] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-[#cc0068] transition-colors duration-200">
+              Schedule a Consultation
+            </button>
+          </Link>
         </div>
       </div>
 

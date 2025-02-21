@@ -11,6 +11,8 @@ import Leadership from "./pages/Leadership";
 import SecurityWhitepaper from "./pages/SecurityWhitepaper";
 import Mission from "./pages/Mission";
 import Status from "./pages/Status";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ function App() {
           <Route path="/toolbox" element={<Toolbox />} />
           <Route path="/mission" element={<Mission />} />
           <Route path="/status" element={<Status />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
