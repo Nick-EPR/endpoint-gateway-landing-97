@@ -19,7 +19,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     setInputValue(newValue);
     
     const parsedValue = parseInt(newValue) || 0;
-    const maxValue = isEnterprise ? 10000 : 1000;
+    const maxValue = isEnterprise ? 10000 : 300;
     
     if (parsedValue >= 100 && parsedValue <= maxValue) {
       onEmployeeChange(parsedValue);
@@ -28,7 +28,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
 
   const handleInputBlur = () => {
     const parsedValue = parseInt(inputValue) || 0;
-    const maxValue = isEnterprise ? 10000 : 1000;
+    const maxValue = isEnterprise ? 10000 : 300;
     
     let validValue = parsedValue;
     if (parsedValue < 100) validValue = 100;
@@ -51,14 +51,14 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
           onBlur={handleInputBlur}
           className="w-full sm:w-32 text-right"
           min={100}
-          max={isEnterprise ? 10000 : 1000}
+          max={isEnterprise ? 10000 : 300}
           disabled={disabled}
         />
       </div>
       <Slider 
         min={100} 
-        max={isEnterprise ? 10000 : 1000} 
-        step={isEnterprise ? 1000 : 100} 
+        max={isEnterprise ? 10000 : 300} 
+        step={isEnterprise ? 1000 : 50} 
         value={[employees]} 
         onValueChange={values => {
           const value = values[0];
@@ -70,7 +70,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
       />
       <div className="flex justify-between text-xs text-neutral">
         <span>100</span>
-        <span>{isEnterprise ? '10,000' : '1,000'}</span>
+        <span>{isEnterprise ? '10,000' : '300'}</span>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Calculator, Building2, LineChart } from 'lucide-react';
 import { Switch } from "@/components/ui/switch";
@@ -21,7 +22,6 @@ const ROICalculator = () => {
   const handleEmployeeChange = (value: number) => {
     if (!isAnimating) {
       setEmployees(value);
-      setIsEnterprise(value >= 1000);
       setCurrentTrends(calculateTrends(value));
     }
   };
@@ -31,8 +31,8 @@ const ROICalculator = () => {
       setIsEnterprise(checked);
       if (checked && employees < 1000) {
         setEmployees(1000);
-      } else if (!checked && employees >= 1000) {
-        setEmployees(999);
+      } else if (!checked && employees > 300) {
+        setEmployees(300);
       }
     }
   };
