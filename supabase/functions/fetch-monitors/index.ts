@@ -12,24 +12,10 @@ serve(async (req) => {
   }
 
   try {
-    // Initialize Supabase client
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
-    )
-
-    console.log("Fetching CRONITOR_API_KEY from secrets...")
-    const { data: apiKey, error: secretError } = await supabaseClient
-      .rpc('get_secret', { secret_name: 'CRONITOR_API_KEY' })
-
-    if (secretError) {
-      console.error("Error fetching API key:", secretError)
-      throw new Error('Failed to fetch API key')
-    }
-
+    const apiKey = Deno.env.get('CRONITOR_API_KEY')
     if (!apiKey) {
-      console.error("No API key found")
-      throw new Error('No API key found')
+      console.error("No CRONITOR_API_KEY found in environment variables")
+      throw new Error('CRONITOR_API_KEY not configured')
     }
 
     console.log("Making request to Cronitor API...")
