@@ -1,6 +1,6 @@
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, Toolbox, Wrench } from "lucide-react";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -71,15 +71,22 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
                 Products <ChevronDown size={16} />
               </DropdownMenuTrigger>
-              <DropdownMenuContent className="bg-white">
+              <DropdownMenuContent className="bg-white min-w-[200px]">
                 <DropdownMenuItem>
-                  <Link to="/heliam" className="w-full">HeliAM</Link>
+                  <Link to="/heliam" className="w-full flex items-center gap-2">
+                    <Wrench className="w-4 h-4" />
+                    <span>HeliAM</span>
+                  </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/toolbox" className="w-full">Toolbox</Link>
+                  <Link to="/toolbox" className="w-full flex items-center gap-2">
+                    <Toolbox className="w-4 h-4" />
+                    <span>Toolbox</span>
+                  </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="opacity-75 cursor-not-allowed">
-                  Luemin (Coming Soon)
+                <DropdownMenuItem className="opacity-75 cursor-not-allowed flex items-center gap-2">
+                  <Wrench className="w-4 h-4" />
+                  <span>Luemin (Coming Soon)</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -133,20 +140,23 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               <div className="flex flex-col space-y-2 pl-4">
                 <Link 
                   to="/heliam" 
-                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  HeliAM
+                  <Wrench className="w-4 h-4" />
+                  <span>HeliAM</span>
                 </Link>
                 <Link 
                   to="/toolbox" 
-                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Toolbox
+                  <Toolbox className="w-4 h-4" />
+                  <span>Toolbox</span>
                 </Link>
-                <span className="text-neutral-400 py-2">
-                  Luemin (Coming Soon)
+                <span className="text-neutral-400 py-2 flex items-center gap-2">
+                  <Wrench className="w-4 h-4" />
+                  <span>Luemin (Coming Soon)</span>
                 </span>
               </div>
               <Link 
