@@ -79,18 +79,25 @@ const Status = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div 
+      className="min-h-screen bg-cover bg-center bg-no-repeat bg-fixed"
+      style={{ 
+        backgroundImage: 'url("/photo-1531297484001-80022131f5a1")',
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backgroundBlendMode: 'overlay'
+      }}
+    >
       <NavigationProgress />
       <Navbar scrolled={scrolled} onMouseEnter={() => setScrolled(true)} />
       
       <main className="container mx-auto px-4 pt-32 pb-16">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">System Status</h1>
+          <h1 className="text-4xl font-bold mb-8 text-white">System Status</h1>
           
           <div className="space-y-6">
             {isLoading ? (
               Array.from({ length: 3 }).map((_, index) => (
-                <Card key={index} className="p-6">
+                <Card key={index} className="p-6 bg-white/90 backdrop-blur-sm">
                   <div className="flex items-center justify-between">
                     <Skeleton className="h-6 w-32" />
                     <Skeleton className="h-6 w-24" />
@@ -100,7 +107,7 @@ const Status = () => {
               ))
             ) : (
               monitors?.map((monitor, index) => (
-                <Card key={index} className="p-6">
+                <Card key={index} className="p-6 bg-white/90 backdrop-blur-sm">
                   <div className="flex items-center justify-between">
                     <h3 className="text-xl font-semibold">{monitor.name}</h3>
                     {getStatusBadge(monitor.status)}
@@ -115,8 +122,8 @@ const Status = () => {
           </div>
 
           <div className="mt-12">
-            <h2 className="text-2xl font-bold mb-4">Incident History</h2>
-            <Card className="p-6">
+            <h2 className="text-2xl font-bold mb-4 text-white">Incident History</h2>
+            <Card className="p-6 bg-white/90 backdrop-blur-sm">
               <p className="text-gray-500">No incidents reported in the last 90 days.</p>
             </Card>
           </div>
