@@ -1,3 +1,4 @@
+
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
@@ -33,7 +34,7 @@ const Contact = () => {
     {
       name: "Michael DeJoy",
       title: "CEO/President",
-      image: "/lovable-uploads/1b2ced2f-556a-402c-b8c0-d80e2045c062.png",
+      image: "/lovable-uploads/00b12edf-c214-47a9-b67f-77ab40bda19b.png",
       bio: "As CEO/President, Michael provides strategic direction and oversees the overall operations of Lifetime EPR. His leadership emphasizes security and sustainability in IT asset management, driving the company's mission to revolutionize endpoint management solutions. With extensive experience in executive leadership and business development, Michael ensures Lifetime EPR remains at the forefront of innovative IT services.",
       email: "Mike@LifetimeEPR.com",
       phone: "716.867.4322"
