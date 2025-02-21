@@ -4,9 +4,7 @@ import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { calculateAverageUptime, calculateAverageResponseTime } from "@/utils/monitorUtils";
-import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface MonitorCardProps {
   monitor: Monitor;
@@ -42,7 +40,10 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
   };
 
   return (
-    <Card className="overflow-hidden bg-white/90 backdrop-blur-sm">
+    <Card 
+      className="overflow-hidden bg-white/90 backdrop-blur-sm"
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
       {/* Status bar at the very top */}
       <div className="h-1 w-full">
         <div className={`h-full ${getStatusColor(monitor.status)}`} />
@@ -56,17 +57,6 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
         <p className="text-sm text-gray-500 mt-2">
           Last checked: {new Date(monitor.lastCheckTime).toLocaleString()}
         </p>
-        
-        <div className="mt-4">
-          <Button
-            variant="ghost"
-            className="w-full flex items-center justify-between"
-            onClick={() => setIsExpanded(!isExpanded)}
-          >
-            <span>View Metrics</span>
-            {isExpanded ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
-          </Button>
-        </div>
 
         {isExpanded && (
           <div className="mt-6 space-y-4">
