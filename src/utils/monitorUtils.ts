@@ -64,12 +64,15 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
         };
       });
 
+      // Default to latest_ping timestamp if latest_event is not available
+      const lastCheckTime = monitor.latest_event?.stamp 
+        ? new Date(monitor.latest_event.stamp * 1000).toISOString()
+        : monitor.latest_ping?.timestamp || new Date().toISOString();
+
       return {
         name: monitor.name || 'Unnamed Monitor',
-        status: mapCronitorStatus(monitor.status || (monitor.passing ? 'healthy' : 'down')),
-        lastCheckTime: monitor.latest_event?.stamp 
-          ? new Date(monitor.latest_event.stamp * 1000).toISOString() 
-          : new Date().toISOString(),
+        status: mapCronitorStatus(monitor.status || (monitor.passing === true ? 'healthy' : 'down')),
+        lastCheckTime,
         metrics: dailyMetrics,
       };
     });
@@ -121,4 +124,3 @@ export const calculateAverageUptime = (metrics: Monitor['metrics']) => {
 export const calculateAverageResponseTime = (metrics: Monitor['metrics']) => {
   return Math.round(metrics.reduce((acc, curr) => acc + curr.responseTime, 0) / metrics.length);
 };
-

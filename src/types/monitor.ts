@@ -13,18 +13,22 @@ export interface Monitor {
 export interface CronitorMonitor {
   name: string;
   status: string;
-  latest_ping: {
+  passing?: boolean;
+  latest_event?: {
+    stamp: number;
+  };
+  latest_ping?: {
     timestamp: string;
   };
-  metrics: {
-    uptime: {
-      daily: Array<{
+  metrics?: {
+    uptime?: {
+      daily?: Array<{
         date: string;
         value: number;
       }>;
     };
-    latency: {
-      daily: Array<{
+    latency?: {
+      daily?: Array<{
         date: string;
         value: number;
       }>;
