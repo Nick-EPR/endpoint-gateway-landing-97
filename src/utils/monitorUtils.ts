@@ -24,90 +24,21 @@ export const fetchMonitors = async (): Promise<Monitor[]> => {
   console.log('Starting monitor fetch...');
   
   try {
-    // First, get the API key from Supabase
-    const { data: secretData, error: secretError } = await supabase
-      .rpc('get_secret', { secret_name: 'CRONITOR_API_KEY' });
-
-    if (secretError) {
-      console.error('Error fetching API key:', secretError);
-      toast.error('Failed to fetch API key from database');
-      throw new Error('Failed to fetch Cronitor API key');
-    }
-
-    if (!secretData) {
-      console.error('No API key found in database');
-      toast.error('Cronitor API key not found in database');
-      throw new Error('Cronitor API key not found');
-    }
-
-    console.log('Successfully retrieved API key from Supabase');
-
-    // If we can't fetch real data, return mock data for testing
-    const mockMonitors: Monitor[] = [
-      {
-        name: "API Service",
-        status: "healthy",
-        lastCheckTime: new Date().toISOString(),
-        metrics: Array.from({ length: 30 }, (_, i) => ({
-          date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
-          uptime: 99.9,
-          responseTime: 250,
-        })),
-      },
-      {
-        name: "Database",
-        status: "healthy",
-        lastCheckTime: new Date().toISOString(),
-        metrics: Array.from({ length: 30 }, (_, i) => ({
-          date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
-          uptime: 99.8,
-          responseTime: 150,
-        })),
-      },
-      {
-        name: "Web Application",
-        status: "degraded",
-        lastCheckTime: new Date().toISOString(),
-        metrics: Array.from({ length: 30 }, (_, i) => ({
-          date: format(new Date(Date.now() - i * 24 * 60 * 60 * 1000), 'MMM dd'),
-          uptime: 98.5,
-          responseTime: 500,
-        })),
-      },
-    ];
-
-    // Attempt to fetch real data using v2 API
-    console.log('Attempting to fetch from Cronitor API v2...');
-    const response = await fetch('https://cronitor.io/api/v2/monitors', {
+    // Call our Edge Function to fetch the monitors
+    const { data, error } = await supabase.functions.invoke('fetch-monitors', {
       method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${secretData}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Cronitor API error response:', {
-        status: response.status,
-        statusText: response.statusText,
-        body: errorText,
-        headers: Object.fromEntries(response.headers.entries())
-      });
-      console.log('Falling back to mock data due to API error');
-      toast.error('Using mock data - Could not fetch live monitors');
-      return mockMonitors;
+    if (error) {
+      console.error('Edge function error:', error);
+      throw new Error('Failed to fetch monitors from edge function');
     }
 
-    const data = await response.json();
     console.log('Successfully fetched Cronitor data:', data);
     
     if (!data.monitors || !Array.isArray(data.monitors)) {
       console.error('Unexpected Cronitor API response format:', data);
-      console.log('Falling back to mock data due to invalid response format');
-      toast.error('Using mock data - Invalid response format from Cronitor');
-      return mockMonitors;
+      throw new Error('Invalid response format from Cronitor');
     }
     
     // Map Cronitor data to our Monitor interface
