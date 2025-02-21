@@ -1,5 +1,6 @@
 
 import { serve } from 'https://deno.land/std@0.168.0/http/server.ts'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.38.4'
 import { corsHeaders } from '../_shared/cors.ts'
 
 console.log("Starting Fetch Monitors Edge Function")
@@ -11,8 +12,14 @@ serve(async (req) => {
   }
 
   try {
+    // Initialize Supabase client
+    const supabaseClient = createClient(
+      Deno.env.get('SUPABASE_URL') ?? '',
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
+    )
+
     console.log("Fetching CRONITOR_API_KEY from secrets...")
-    const { data: apiKey, error: secretError } = await req.supabaseClient
+    const { data: apiKey, error: secretError } = await supabaseClient
       .rpc('get_secret', { secret_name: 'CRONITOR_API_KEY' })
 
     if (secretError) {
