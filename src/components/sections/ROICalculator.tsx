@@ -45,6 +45,22 @@ const ROICalculator = () => {
     const value = parseInt(e.target.value) || 0;
     if (value >= 100 && value <= 10000) {
       setEmployees(value);
+      setIsEnterprise(value >= 1000);
+    }
+  };
+
+  const handleSliderChange = (values: number[]) => {
+    const value = values[0];
+    setEmployees(value);
+    setIsEnterprise(value >= 1000);
+  };
+
+  const handleEnterpriseChange = (checked: boolean) => {
+    setIsEnterprise(checked);
+    if (checked && employees < 1000) {
+      setEmployees(1000);
+    } else if (!checked && employees >= 1000) {
+      setEmployees(999);
     }
   };
 
@@ -89,6 +105,7 @@ const ROICalculator = () => {
             
             const newValue = start + ((end - start) * easeProgress);
             setEmployees(Math.round(newValue));
+            setIsEnterprise(Math.round(newValue) >= 1000);
             currentStep++;
           }, stepDuration);
 
@@ -154,7 +171,7 @@ const ROICalculator = () => {
                 <Switch
                   id="enterprise-toggle"
                   checked={isEnterprise}
-                  onCheckedChange={setIsEnterprise}
+                  onCheckedChange={handleEnterpriseChange}
                   className="data-[state=checked]:bg-primary"
                 />
                 <Label htmlFor="enterprise-toggle" className="text-sm font-medium ml-2">
@@ -170,11 +187,11 @@ const ROICalculator = () => {
                 </label>
                 <Input
                   type="number"
-                  min={100}
-                  max={10000}
                   value={employees}
                   onChange={handleEmployeeInputChange}
                   className="w-32 text-right"
+                  min={100}
+                  max={10000}
                 />
               </div>
               <Slider 
@@ -182,7 +199,7 @@ const ROICalculator = () => {
                 max={10000} 
                 step={isEnterprise ? 1000 : 100} 
                 value={[employees]} 
-                onValueChange={values => setEmployees(values[0])} 
+                onValueChange={handleSliderChange} 
                 className="my-4"
               />
               <div className="flex justify-between text-xs text-neutral">
