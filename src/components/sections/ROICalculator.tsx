@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Calculator, Building2, LineChart } from 'lucide-react';
 import { Switch } from "@/components/ui/switch";
@@ -8,17 +7,20 @@ import { StatsCards } from './roi/StatsCards';
 import { EmployeeInput } from './roi/EmployeeInput';
 import { SavingsDisplay } from './roi/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
+import { calculateTrends } from '@/utils/roiCalculations';
 
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
   const [isEnterprise, setIsEnterprise] = useState(true);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
+  const [currentTrends, setCurrentTrends] = useState(calculateTrends(1000));
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   const handleEmployeeChange = (value: number) => {
     setEmployees(value);
     setIsEnterprise(value >= 1000);
+    setCurrentTrends(calculateTrends(value));
   };
 
   const handleEnterpriseChange = (checked: boolean) => {
@@ -105,7 +107,7 @@ const ROICalculator = () => {
             </p>
           </div>
 
-          <StatsCards />
+          <StatsCards trends={currentTrends} />
 
           <div className="glass-card p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">

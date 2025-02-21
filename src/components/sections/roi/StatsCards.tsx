@@ -1,5 +1,5 @@
 
-import { trends } from "@/utils/roiCalculations";
+import { Trend } from "@/utils/roiCalculations";
 import { ArrowUpRight, ArrowDownRight, Info } from "lucide-react";
 import { 
   Tooltip,
@@ -8,7 +8,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-export const StatsCards = () => {
+interface StatsCardsProps {
+  trends: Trend[];
+}
+
+export const StatsCards = ({ trends }: StatsCardsProps) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
       {trends.map((trend, index) => (
