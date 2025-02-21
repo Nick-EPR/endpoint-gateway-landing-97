@@ -66,7 +66,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
             <span className="relative inline-block">
               <span className="absolute left-0 whitespace-nowrap text-primary">
                 {displayText}
-                <span className="animate-pulse text-primary inline-block align-bottom w-[2px] -ml-[1px]">|</span>
+                <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
               </span>
               <span className="invisible">{rotatingWords[currentWord]}</span>
             </span>
