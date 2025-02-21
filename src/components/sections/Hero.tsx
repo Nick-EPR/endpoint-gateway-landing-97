@@ -14,9 +14,9 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [isDeleting2, setIsDeleting2] = useState(false);
   
   const rotatingWords2 = [
-    "Your VAR",
-    "Your SMB",
-    "Your MSP",
+    "SMBs",
+    "VARs",
+    "MSPs",
     "Healthcare",
     "Education",
     "Startups",
@@ -36,19 +36,9 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
         const newText = displayText2.slice(0, -1);
         setDisplayText2(newText);
         
-        // Check if we should stop deleting
-        if (currentFullWord.startsWith("Your") && nextWord.startsWith("Your")) {
-          // For "Your" transitions, stop at "Your "
-          if (newText === "Your ") {
-            setIsDeleting2(false);
-            setCurrentWord2(nextWordIndex);
-          }
-        } else {
-          // For other transitions, delete everything
-          if (newText === "") {
-            setIsDeleting2(false);
-            setCurrentWord2(nextWordIndex);
-          }
+        if (newText === "") {
+          setIsDeleting2(false);
+          setCurrentWord2(nextWordIndex);
         }
         
         timeout = setTimeout(updateText, 50);
