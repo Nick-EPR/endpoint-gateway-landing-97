@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/sections/Hero";
 import Features from "../components/sections/Features";
