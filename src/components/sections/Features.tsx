@@ -17,6 +17,11 @@ interface Feature {
   keywords?: string[];
 }
 
+interface DetailedFeature {
+  category: string;
+  features: string[];
+}
+
 const Features = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -25,61 +30,61 @@ const Features = () => {
     title: "Toolbox Integration",
     description: "Connect your ITAM system with repair depot and warehouse operations for end-to-end device management",
     isHighlighted: true,
-    keywords: ["repair", "warehouse", "depot", "integration", "management"]
+    keywords: ["repair", "warehouse", "depot", "integration", "management", "storage", "inventory", "tracking"]
   }, {
     icon: <Microscope className="w-8 h-8 text-neutral-700" />,
     title: "Automated Diagnostics",
     description: "Hardware diagnostics performed securely within authorized repair facilities",
     isHighlighted: true,
-    keywords: ["repair", "diagnostics", "hardware", "automation"]
+    keywords: ["repair", "diagnostics", "hardware", "automation", "testing", "maintenance", "troubleshooting"]
   }, {
     icon: <HardDrive className="w-8 h-8 text-neutral-700" />,
     title: "Device Provisioning",
     description: "Secure on-site device provisioning and configuration management within controlled environments",
-    keywords: ["device", "configuration", "provisioning", "setup"]
+    keywords: ["device", "configuration", "provisioning", "setup", "deployment", "onboarding", "MDM"]
   }, {
     icon: <ShieldCheck className="w-8 h-8 text-neutral-700" />,
     title: "Secure Data Handling",
     description: "On-site data wiping and secure device destruction with audit trails",
     isHighlighted: true,
-    keywords: ["security", "data", "wiping", "destruction", "audit"]
+    keywords: ["security", "data", "wiping", "destruction", "audit", "compliance", "GDPR", "HIPAA"]
   }, {
     icon: <Cloud className="w-8 h-8 text-neutral-700" />,
     title: "Remote Device Control",
     description: "Remotely manage, lock, or wipe devices directly through the EPR platform",
     isHighlighted: true,
     comingSoon: true,
-    keywords: ["remote", "control", "manage", "lock", "wipe"]
+    keywords: ["remote", "control", "manage", "lock", "wipe", "RDP", "remote desktop", "remote access"]
   }, {
     icon: <Zap className="w-8 h-8 text-neutral-700" />,
     title: "Hardware Spec Sync",
     description: "Automatically detect and update device specifications in your CMDB and asset inventory",
     isHighlighted: true,
     comingSoon: true,
-    keywords: ["hardware", "specs", "sync", "inventory", "CMDB"]
+    keywords: ["hardware", "specs", "sync", "inventory", "CMDB", "asset management", "specifications"]
   }, {
     icon: <Replace className="w-8 h-8 text-neutral-700" />,
     title: "Asset Exchange",
     description: "Streamlined device deployment and replacement workflow management",
-    keywords: ["exchange", "deployment", "replacement", "workflow"]
+    keywords: ["exchange", "deployment", "replacement", "workflow", "swap", "hardware refresh"]
   }, {
     icon: <Globe className="w-8 h-8 text-neutral-700" />,
     title: "Nationwide Coverage",
     description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support",
     isHighlighted: true,
-    keywords: ["nationwide", "coverage", "locations", "management"]
+    keywords: ["nationwide", "coverage", "locations", "management", "global", "multi-site"]
   }, {
     icon: <Timer className="w-8 h-8 text-neutral-700" />,
     title: "Next-Day Resolution",
     description: "Overnight device replacement anywhere in the US, ensuring minimal downtime for your team",
     isHighlighted: true,
-    keywords: ["next-day", "resolution", "replacement", "overnight"]
+    keywords: ["next-day", "resolution", "replacement", "overnight", "shipping", "speed", "fast", "quick", "delivery"]
   }, {
     icon: <Users className="w-8 h-8 text-neutral-700" />,
     title: "Remote Support",
     description: "Direct device access for remote troubleshooting and maintenance",
     comingSoon: true,
-    keywords: ["remote", "support", "troubleshooting", "maintenance"]
+    keywords: ["remote", "support", "troubleshooting", "maintenance", "help desk", "IT support"]
   }, {
     icon: <Shield className="w-8 h-8 text-neutral-700" />,
     title: "Security First",
@@ -88,14 +93,60 @@ const Features = () => {
       to: "/security",
       text: "Learn More"
     },
-    keywords: ["security", "compliance", "enterprise"]
+    keywords: ["security", "compliance", "enterprise", "encryption", "protection"]
   }, {
     icon: <Recycle className="w-8 h-8 text-neutral-700" />,
     title: "Lifecycle Management",
     description: "Maximize device ROI through intelligent asset lifecycle optimization",
     isHighlighted: true,
-    keywords: ["lifecycle", "management", "ROI", "optimization"]
+    keywords: ["lifecycle", "management", "ROI", "optimization", "asset management", "depreciation"]
   }];
+
+  const detailedFeatures: DetailedFeature[] = [
+    {
+      category: "User Management",
+      features: [
+        "Role-based access control with granular permissions",
+        "Custom user groups and organizational hierarchies",
+        "Employee onboarding and offboarding workflows",
+        "Department-level asset allocation rules",
+        "User activity logging and audit trails"
+      ]
+    },
+    {
+      category: "Asset Management",
+      features: [
+        "Comprehensive asset lifecycle tracking from procurement to retirement",
+        "Asset depreciation and ROI calculations",
+        "Custom asset categories and attributes",
+        "Bulk asset import and export capabilities",
+        "Asset history and chain of custody tracking",
+        "Software license management and compliance"
+      ]
+    },
+    {
+      category: "Reporting & Analytics",
+      features: [
+        "Customizable dashboards and reports",
+        "Asset utilization and performance metrics",
+        "Cost center allocation and chargeback reporting",
+        "Compliance and audit reporting",
+        "Predictive maintenance analytics",
+        "Budget forecasting and planning tools"
+      ]
+    },
+    {
+      category: "Integration & APIs",
+      features: [
+        "REST API for custom integrations",
+        "LDAP/Active Directory integration",
+        "SSO support (SAML, OAuth)",
+        "Integration with major MDM platforms",
+        "ServiceNow and ITSM tool integration",
+        "Custom webhook support"
+      ]
+    }
+  ];
 
   const filteredFeatures = features.filter(feature => {
     const searchTerm = searchQuery.toLowerCase();
@@ -122,14 +173,14 @@ const Features = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
             <Input
               type="text"
-              placeholder="Search features (e.g., repair, warehouse)"
+              placeholder="Search features (e.g., repair, RDP, shipping)"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 bg-white/80 border-neutral-200"
             />
           </div>
         </div>
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-16">
           {filteredFeatures.map((feature, index) => (
             <div 
               key={index} 
@@ -169,6 +220,27 @@ const Features = () => {
                 </Link>}
             </div>
           ))}
+        </div>
+
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-xl font-semibold text-center mb-8">Additional Platform Capabilities</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            {detailedFeatures.map((category, index) => (
+              <div key={index} className="space-y-4">
+                <h4 className="font-semibold text-lg text-neutral-800">{category.category}</h4>
+                <ul className="space-y-2">
+                  {category.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-start gap-2 text-neutral-600">
+                      <div className="mt-1.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-neutral-400"></div>
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>;
