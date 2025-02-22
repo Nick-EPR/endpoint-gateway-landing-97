@@ -27,62 +27,62 @@ const Features = () => {
   const features: Feature[] = [{
     icon: <UserCog className="w-8 h-8 text-neutral-700" />,
     title: "Intelligent Onboarding Automation",
-    description: "Automatically assign and deploy standardized equipment packages based on employee roles, departments, and locations",
+    description: "Automatically generate and assign standardized equipment packages based on employee roles and departments",
     isHighlighted: true,
     keywords: ["onboarding", "roles", "equipment", "packages", "groups", "standardization", "automation"]
   }, {
     icon: <UserPlus className="w-8 h-8 text-neutral-700" />,
-    title: "HR-Driven Deployment",
-    description: "Initiate equipment deployments directly from HR onboarding workflows, with automated Toolbox fulfillment for next-day delivery",
+    title: "HR-Integrated Deployment",
+    description: "Trigger equipment deployments automatically from your HR system, with Toolbox handling fulfillment and delivery",
     isHighlighted: true,
     keywords: ["HR", "integration", "onboarding", "workflow", "automation", "shipping"]
   }, {
     icon: <Warehouse className="w-8 h-8 text-neutral-700" />,
     title: "Secure Asset Storage",
-    description: "Store and manage your IT assets in Toolbox's secure warehouse facilities with controlled access and real-time inventory tracking",
+    description: "Store and manage your IT assets in Toolbox's access-controlled warehouse facilities with real-time inventory monitoring",
     isHighlighted: true,
     keywords: ["warehouse", "storage", "security", "inventory", "management", "tracking"]
   }, {
     icon: <Microscope className="w-8 h-8 text-neutral-700" />,
-    title: "Automated Diagnostics",
-    description: "Hardware diagnostics performed securely within authorized repair facilities",
+    title: "Professional Device Diagnostics",
+    description: "Expert hardware assessment and repair services performed in authorized repair facilities",
     isHighlighted: true,
     keywords: ["repair", "diagnostics", "hardware", "automation", "testing", "maintenance", "troubleshooting"]
   }, {
     icon: <ShieldCheck className="w-8 h-8 text-neutral-700" />,
-    title: "Secure Data Handling",
-    description: "On-site data wiping and secure device destruction with audit trails",
+    title: "Secure Asset Retirement",
+    description: "Professional data sanitization and certified device destruction with complete audit documentation",
     isHighlighted: true,
     keywords: ["security", "data", "wiping", "destruction", "audit", "compliance", "GDPR", "HIPAA"]
   }, {
     icon: <Cloud className="w-8 h-8 text-neutral-700" />,
-    title: "Remote Device Control",
-    description: "Remotely manage, lock, or wipe devices directly through the EPR platform",
+    title: "Remote Device Management",
+    description: "Centralized platform for remote device control, including lock and wipe capabilities",
     isHighlighted: true,
     comingSoon: true,
     keywords: ["remote", "control", "manage", "lock", "wipe", "RDP", "remote desktop", "remote access"]
   }, {
     icon: <Globe className="w-8 h-8 text-neutral-700" />,
-    title: "Nationwide Coverage",
-    description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support",
+    title: "Multi-Location Support",
+    description: "Unified asset management across all your locations with location-specific policies and workflows",
     isHighlighted: true,
     keywords: ["nationwide", "coverage", "locations", "management", "global", "multi-site"]
   }, {
     icon: <Timer className="w-8 h-8 text-neutral-700" />,
-    title: "Next-Day Resolution",
-    description: "Overnight device replacement anywhere in the US, ensuring minimal downtime for your team",
+    title: "24-Hour Device Resolution",
+    description: "Next-day replacement device delivery nationwide to minimize employee downtime",
     isHighlighted: true,
     keywords: ["next-day", "resolution", "replacement", "overnight", "shipping", "speed", "fast", "quick", "delivery"]
   }, {
     icon: <Users className="w-8 h-8 text-neutral-700" />,
-    title: "Remote Support",
-    description: "Direct device access for remote troubleshooting and maintenance",
+    title: "Remote IT Support",
+    description: "On-demand technical support with secure remote access capabilities",
     comingSoon: true,
     keywords: ["remote", "support", "troubleshooting", "maintenance", "help desk", "IT support"]
   }, {
     icon: <Shield className="w-8 h-8 text-neutral-700" />,
-    title: "Security First",
-    description: "Enterprise-grade security and compliance measures for all device operations",
+    title: "Enterprise Security",
+    description: "Comprehensive security controls and compliance features for all asset operations",
     link: {
       to: "/security",
       text: "Learn More"
@@ -90,8 +90,8 @@ const Features = () => {
     keywords: ["security", "compliance", "enterprise", "encryption", "protection"]
   }, {
     icon: <Recycle className="w-8 h-8 text-neutral-700" />,
-    title: "Lifecycle Management",
-    description: "Maximize device ROI through intelligent asset lifecycle optimization",
+    title: "Asset Lifecycle Optimization",
+    description: "AI-powered insights to maximize asset ROI throughout their operational lifespan",
     isHighlighted: true,
     keywords: ["lifecycle", "management", "ROI", "optimization", "asset management", "depreciation"]
   }];
