@@ -64,9 +64,9 @@ const Solutions = () => {
   return (
     <section id="solutions" className="py-32 md:py-48">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-16 relative">
           <div className="flex justify-center mb-8 relative">
-            <div className="relative">
+            <div className="relative z-20">
               <img src={triangleImage} alt="Decorative triangle" className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float" />
               <div className="absolute -bottom-8 left-1/2 w-0.5 h-8 bg-primary/20 -translate-x-1/2 animate-pulse"></div>
             </div>
@@ -78,10 +78,25 @@ const Solutions = () => {
             Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
+          {/* Vertical connectors to EPR emblem */}
+          {[0, 1, 2].map((index) => (
+            <div key={`connector-${index}`} className="hidden md:block absolute top-0 h-[120px] w-[2px] bg-primary/10"
+              style={{
+                left: `calc(16.666% + ${index * 33.333}%)`,
+                transform: 'translateY(-100%)',
+              }}>
+              <div className="vertical-flow">
+                <div className="v-dot"></div>
+                <div className="v-dot"></div>
+                <div className="v-dot"></div>
+              </div>
+            </div>
+          ))}
+          
           {solutions.map((solution, index) => (
             <div key={index} className="relative">
-              <div className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float ${solution.comingSoon ? 'opacity-75' : ''}`} 
+              <div className={`solution-card relative z-20 p-8 glass-card rounded-xl hover:shadow-lg animate-float ${solution.comingSoon ? 'opacity-75' : ''}`} 
                 style={{
                   animationDelay: `${index * 200}ms`
                 }}>
@@ -112,20 +127,17 @@ const Solutions = () => {
                 )}
               </div>
               
-              {/* Data transmission animations between cards */}
+              {/* Horizontal data transmission animations between cards */}
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-8 w-16 h-[2px] bg-primary/10" 
+                <div className="hidden md:block absolute top-1/2 -right-8 w-16 h-[2px] bg-primary/10 z-10" 
                   style={{ 
                     transform: 'translateY(-50%) translateX(4px)',
-                    zIndex: 10
                   }}>
-                  {/* Animated dots for data transmission */}
                   <div className="data-flow">
                     <div className="dot"></div>
                     <div className="dot"></div>
                     <div className="dot"></div>
                   </div>
-                  {/* Reverse data flow */}
                   <div className="data-flow-reverse">
                     <div className="dot"></div>
                     <div className="dot"></div>
@@ -147,6 +159,12 @@ const Solutions = () => {
                   100% { transform: translateX(0); opacity: 0; }
                 }
 
+                @keyframes flowUp {
+                  0% { transform: translateY(0); opacity: 0; }
+                  50% { opacity: 1; }
+                  100% { transform: translateY(-120px); opacity: 0; }
+                }
+
                 .data-flow {
                   position: absolute;
                   width: 100%;
@@ -161,6 +179,13 @@ const Solutions = () => {
                   top: 2px;
                 }
 
+                .vertical-flow {
+                  position: absolute;
+                  width: 100%;
+                  height: 100%;
+                  left: -2px;
+                }
+
                 .dot {
                   position: absolute;
                   width: 3px;
@@ -170,6 +195,17 @@ const Solutions = () => {
                   opacity: 0;
                 }
 
+                .v-dot {
+                  position: absolute;
+                  width: 3px;
+                  height: 3px;
+                  background-color: #93C851;
+                  border-radius: 50%;
+                  opacity: 0;
+                  left: 0;
+                  animation: flowUp 3s infinite;
+                }
+
                 .data-flow .dot {
                   animation: flowRight 3s infinite;
                 }
@@ -177,6 +213,10 @@ const Solutions = () => {
                 .data-flow-reverse .dot {
                   animation: flowLeft 3s infinite;
                 }
+
+                .vertical-flow .v-dot:nth-child(1) { animation-delay: 0s; }
+                .vertical-flow .v-dot:nth-child(2) { animation-delay: 1s; }
+                .vertical-flow .v-dot:nth-child(3) { animation-delay: 2s; }
 
                 .data-flow .dot:nth-child(1) { animation-delay: 0s; }
                 .data-flow .dot:nth-child(2) { animation-delay: 1s; }
