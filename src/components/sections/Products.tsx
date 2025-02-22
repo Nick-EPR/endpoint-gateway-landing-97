@@ -102,7 +102,7 @@ const Solutions = () => {
                     alt={`${solution.title} logo`} 
                     className={`object-contain ${
                       solution.title === 'HeliAM' ? 'h-12' :
-                      solution.title === 'Luemin' ? 'max-w-[140px]' :
+                      solution.title === 'Luemin' ? 'max-w-[160px]' :
                       'max-h-8'
                     }`}
                   />
