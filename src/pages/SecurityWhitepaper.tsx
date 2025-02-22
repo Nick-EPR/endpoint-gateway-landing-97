@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { Shield, Lock, FileCheck, Building2, Users, AlertTriangle, FileKey, ScrollText } from "lucide-react";
 import { Button } from "@/components/ui/button";

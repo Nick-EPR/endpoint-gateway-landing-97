@@ -1,8 +1,7 @@
-
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Lightbulb, Award, Shield, Heart } from "lucide-react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import ContactHero from "../components/contact/ContactHero";
 import LeadershipCard from "../components/contact/LeadershipCard";
 import ContactForm from "../components/sections/Contact";

@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import NavigationProgress from "../components/NavigationProgress";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 import { Card } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";

@@ -1,10 +1,9 @@
-
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { Warehouse, Wrench, Truck, Cog, ShieldCheck, Recycle } from "lucide-react";
 import toolboxLogo from "/lovable-uploads/236d044b-e3a0-4822-b70b-260862d2a5fd.png";
 import warehouseImage from "/lovable-uploads/1677d91d-eaaf-4e2c-b98f-d73469344a71.png";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 

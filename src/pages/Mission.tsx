@@ -1,8 +1,7 @@
-
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Bookmark, Target, Users, Zap, Shield } from "lucide-react";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 
 const Mission = () => {

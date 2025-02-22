@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { Shield, Lock, Users, Database, Server, Copyright, AlertCircle, XCircle, FileText, Mail } from "lucide-react";
@@ -9,7 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { PolicyCard } from "@/components/ui/policy-card";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 
 const Terms = () => {
