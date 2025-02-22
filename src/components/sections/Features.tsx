@@ -1,5 +1,5 @@
 
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, RemoteControl } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Feature {
