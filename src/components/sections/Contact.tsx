@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Building, Mail, Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -31,7 +32,7 @@ const locations = [
 
 const Contact = () => {
   return (
-    <section className="section-padding bg-primary-light">
+    <section className="section-padding bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
