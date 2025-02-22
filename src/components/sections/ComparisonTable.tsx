@@ -109,7 +109,7 @@ const ComparisonTable = () => {
                   <TableHead className="w-1/4">Aspect</TableHead>
                   <TableHead className="w-[37.5%]">
                     <div className="flex items-center gap-2">
-                      🤢 Do-It-Yourself ITAM
+                      <span className="text-2xl">🤯</span> Do-It-Yourself ITAM
                     </div>
                   </TableHead>
                   <TableHead className="w-[37.5%] text-primary">
