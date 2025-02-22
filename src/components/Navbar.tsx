@@ -31,6 +31,18 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     setIsMenuOpen(false);
   };
 
+  const isActivePath = (path: string) => {
+    return location.pathname === path;
+  };
+
+  const getLinkClass = (path: string) => {
+    const baseClass = `transition-colors duration-200`;
+    const textColor = scrolled ? 'text-neutral-600' : 'text-white';
+    const activeClass = 'text-primary font-medium';
+    
+    return `${baseClass} ${isActivePath(path) ? activeClass : textColor} hover:text-primary`;
+  };
+
   return (
     <header 
       className="fixed top-0 w-full z-50"
@@ -61,19 +73,13 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => handleNavigation('features')} 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
-            >
-              Features
-            </button>
             <DropdownMenu>
               <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
                 Products <ChevronDown size={16} />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-white min-w-[200px]">
                 <DropdownMenuItem>
-                  <Link to="/heliam" className="w-full flex items-center gap-2">
+                  <Link to="/heliam" className={`w-full flex items-center gap-2 ${isActivePath('/heliam') ? 'text-primary font-medium' : ''}`}>
                     <img 
                       src="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
                       alt="HeliAM Logo"
@@ -83,7 +89,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                   </Link>
                 </DropdownMenuItem>
                 <DropdownMenuItem>
-                  <Link to="/toolbox" className="w-full flex items-center gap-2">
+                  <Link to="/toolbox" className={`w-full flex items-center gap-2 ${isActivePath('/toolbox') ? 'text-primary font-medium' : ''}`}>
                     <img 
                       src="/lovable-uploads/a353927e-954d-4f2b-8485-dc70088f7f43.png"
                       alt="Toolbox Logo"
@@ -102,21 +108,27 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            <button 
+              onClick={() => handleNavigation('features')} 
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+            >
+              Features
+            </button>
             <Link 
               to="/security" 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={getLinkClass('/security')}
             >
               Security
             </Link>
             <Link 
               to="/mission" 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={getLinkClass('/mission')}
             >
               Mission
             </Link>
             <Link 
               to="/contact" 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={getLinkClass('/contact')}
             >
               Contact
             </Link>
@@ -152,7 +164,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               <div className="flex flex-col space-y-2 pl-4">
                 <Link 
                   to="/heliam" 
-                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2"
+                  className={`text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2 ${isActivePath('/heliam') ? 'text-primary font-medium' : ''}`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <img 
@@ -164,7 +176,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                 </Link>
                 <Link 
                   to="/toolbox" 
-                  className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2"
+                  className={`text-neutral-600 hover:text-primary transition-colors duration-200 py-2 flex items-center gap-2 ${isActivePath('/toolbox') ? 'text-primary font-medium' : ''}`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <img 
@@ -185,21 +197,21 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               </div>
               <Link 
                 to="/security" 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                className={`py-2 ${getLinkClass('/security')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Security
               </Link>
               <Link 
                 to="/mission" 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                className={`py-2 ${getLinkClass('/mission')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Mission
               </Link>
               <Link 
                 to="/contact" 
-                className="text-neutral-600 hover:text-primary transition-colors duration-200 py-2"
+                className={`py-2 ${getLinkClass('/contact')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
