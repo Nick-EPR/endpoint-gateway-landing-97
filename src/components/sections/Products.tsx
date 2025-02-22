@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -113,7 +114,11 @@ const Solutions = () => {
               
               {/* Data transmission animations between cards */}
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-primary/10" style={{ transform: 'translateY(-50%)' }}>
+                <div className="hidden md:block absolute top-1/2 -right-8 w-16 h-[2px] bg-primary/10" 
+                  style={{ 
+                    transform: 'translateY(-50%) translateX(4px)',
+                    zIndex: 10
+                  }}>
                   {/* Animated dots for data transmission */}
                   <div className="data-flow">
                     <div className="dot"></div>
@@ -133,11 +138,11 @@ const Solutions = () => {
                 @keyframes flowRight {
                   0% { transform: translateX(0); opacity: 0; }
                   50% { opacity: 1; }
-                  100% { transform: translateX(32px); opacity: 0; }
+                  100% { transform: translateX(64px); opacity: 0; }
                 }
 
                 @keyframes flowLeft {
-                  0% { transform: translateX(32px); opacity: 0; }
+                  0% { transform: translateX(64px); opacity: 0; }
                   50% { opacity: 1; }
                   100% { transform: translateX(0); opacity: 0; }
                 }
