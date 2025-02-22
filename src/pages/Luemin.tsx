@@ -143,7 +143,7 @@ const Luemin = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <img src="/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png" alt="EPR Triangle" className="w-8 h-8" />
+              <img src={triangleImage} alt="EPR Triangle" className="w-8 h-8" />
               <h2 className="text-3xl font-bold">Part of the Lifetime EPR Ecosystem</h2>
             </div>
             <p className="text-lg text-neutral-600 mb-12">
