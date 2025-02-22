@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -78,10 +77,6 @@ const Solutions = () => {
             Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
           </p>
         </div>
-        <div className="relative max-w-6xl mx-auto">
-          <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
-          <div className="absolute top-8 -left-4 -right-4 h-0.5 bg-primary/20"></div>
-        </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
             <div key={index} className="relative">
@@ -118,7 +113,7 @@ const Solutions = () => {
               
               {/* Data transmission animations between cards */}
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-0.5 bg-primary/20">
+                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-primary/10" style={{ transform: 'translateY(-50%)' }}>
                   {/* Animated dots for data transmission */}
                   <div className="data-flow">
                     <div className="dot"></div>
@@ -151,20 +146,20 @@ const Solutions = () => {
                   position: absolute;
                   width: 100%;
                   height: 100%;
-                  top: -4px;
+                  top: -2px;
                 }
 
                 .data-flow-reverse {
                   position: absolute;
                   width: 100%;
                   height: 100%;
-                  top: 4px;
+                  top: 2px;
                 }
 
                 .dot {
                   position: absolute;
-                  width: 4px;
-                  height: 4px;
+                  width: 3px;
+                  height: 3px;
                   background-color: #93C851;
                   border-radius: 50%;
                   opacity: 0;
