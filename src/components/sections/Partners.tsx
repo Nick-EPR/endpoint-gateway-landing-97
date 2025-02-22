@@ -31,6 +31,12 @@ const Partners = () => {
       description: "IT distribution and supply chain solutions"
     },
     {
+      name: "TD Synnex",
+      logo: "/lovable-uploads/bf141abc-e0ae-478b-a99e-7157df8ceece.png",
+      url: "https://www.tdsynnex.com",
+      description: "Global IT distribution and solutions aggregator"
+    },
+    {
       name: "Lifetime Service",
       logo: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png",
       url: "https://www.lifetimeservice.com",
