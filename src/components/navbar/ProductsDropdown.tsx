@@ -95,7 +95,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
+      <DropdownMenuTrigger className={`${scrolled ? 'text-black' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
         Products <ChevronDown size={16} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white min-w-[200px]">

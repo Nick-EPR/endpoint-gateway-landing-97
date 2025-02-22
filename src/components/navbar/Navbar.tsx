@@ -40,14 +40,14 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Logo scrolled={scrolled} />
+          <Logo scrolled={scrolled || (isITAMPage && scrolled)} />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <ProductsDropdown scrolled={scrolled || (isITAMPage && scrolled)} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${scrolled || (isITAMPage && scrolled) ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${scrolled || (isITAMPage && scrolled) ? 'text-black' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
@@ -65,7 +65,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${scrolled || (isITAMPage && scrolled) ? 'text-neutral-600' : 'text-white'} hover:text-primary`}
+            className={`md:hidden p-2 ${scrolled || (isITAMPage && scrolled) ? 'text-black' : 'text-white'} hover:text-primary`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
