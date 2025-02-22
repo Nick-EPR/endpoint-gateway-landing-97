@@ -13,6 +13,10 @@ const WhatIsITAM = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
+  const handleMouseEnter = () => {
+    // Empty handler to satisfy NavbarProps interface
+  };
+
   const dailyExamples = [
     {
       icon: <Laptop className="w-6 h-6 text-primary" />,
@@ -47,7 +51,7 @@ const WhatIsITAM = () => {
 
   return (
     <div className="min-h-screen">
-      <Navbar scrolled={false} />
+      <Navbar scrolled={false} onMouseEnter={handleMouseEnter} />
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 bg-gradient-to-b from-primary/10 to-white">
