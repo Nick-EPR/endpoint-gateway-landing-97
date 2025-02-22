@@ -1,5 +1,4 @@
-
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Feature {
@@ -82,7 +81,8 @@ const Features = () => {
 
   return <section id="features" className="py-20 md:py-32 bg-neutral-light">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll flex items-center justify-center gap-2">
+          <Layers className="w-8 h-8 text-neutral-700" />
           Platform Features
         </h2>
         <p className="text-center text-base md:text-lg mb-10 animate-on-scroll max-w-2xl mx-auto">
