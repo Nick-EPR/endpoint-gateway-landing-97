@@ -1,7 +1,7 @@
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X, Trophy } from "lucide-react";
-import Image from "@/components/ui/image";
 
 interface ComparisonItem {
   aspect: string;
