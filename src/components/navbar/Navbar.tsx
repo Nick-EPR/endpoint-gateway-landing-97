@@ -28,6 +28,9 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   const isITAMPage = location.pathname === '/what-is-itam';
   const shouldShowDark = scrolled && !isITAMPage;
 
+  // For ITAM page, show light content initially (when not scrolled) because background is dark
+  const showLightContent = isITAMPage ? !scrolled : !shouldShowDark;
+
   return (
     <header 
       className="fixed top-0 w-full z-50"
@@ -37,18 +40,18 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
         shouldShowDark ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Logo scrolled={isITAMPage ? !scrolled : shouldShowDark} />
+          <Logo scrolled={!showLightContent} />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <ProductsDropdown scrolled={isITAMPage ? !scrolled : shouldShowDark} />
+            <ProductsDropdown scrolled={!showLightContent} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${isITAMPage ? (scrolled ? 'text-white' : 'text-black') : (shouldShowDark ? 'text-black' : 'text-white')} hover:text-primary transition-colors duration-200`}
+              className={`${showLightContent ? 'text-white' : 'text-black'} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
-            <NavLinks scrolled={isITAMPage ? !scrolled : shouldShowDark} />
+            <NavLinks scrolled={!showLightContent} />
             <a 
               href="https://app.lifetimeepr.io"
               className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200"
@@ -62,7 +65,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${isITAMPage ? (scrolled ? 'text-white' : 'text-black') : (shouldShowDark ? 'text-black' : 'text-white')} hover:text-primary`}
+            className={`md:hidden p-2 ${showLightContent ? 'text-white' : 'text-black'} hover:text-primary`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
