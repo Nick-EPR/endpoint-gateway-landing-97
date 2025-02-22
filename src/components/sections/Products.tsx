@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -79,20 +78,29 @@ const Solutions = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
-          {/* Vertical connectors to EPR emblem */}
-          {[0, 1, 2].map((index) => (
-            <div key={`connector-${index}`} className="hidden md:block absolute top-0 h-[120px] w-[2px] bg-primary/10"
-              style={{
-                left: `calc(16.666% + ${index * 33.333}%)`,
-                transform: 'translateY(-100%)',
-              }}>
-              <div className="vertical-flow">
-                <div className="v-dot"></div>
-                <div className="v-dot"></div>
-                <div className="v-dot"></div>
-              </div>
-            </div>
-          ))}
+          <svg className="hidden md:block absolute top-0 left-0 w-full h-[120px] -translate-y-full" style={{ zIndex: 10 }}>
+            <path 
+              d="M150,120 Q150,60 300,20" 
+              stroke="rgba(147, 200, 81, 0.1)" 
+              strokeWidth="2" 
+              fill="none"
+              className="connector-path"
+            />
+            <path 
+              d="M450,120 L450,20" 
+              stroke="rgba(147, 200, 81, 0.1)" 
+              strokeWidth="2" 
+              fill="none"
+              className="connector-path"
+            />
+            <path 
+              d="M750,120 Q750,60 600,20" 
+              stroke="rgba(147, 200, 81, 0.1)" 
+              strokeWidth="2" 
+              fill="none"
+              className="connector-path"
+            />
+          </svg>
           
           {solutions.map((solution, index) => (
             <div key={index} className="relative">
@@ -127,9 +135,8 @@ const Solutions = () => {
                 )}
               </div>
               
-              {/* Horizontal data transmission animations between cards */}
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-8 w-16 h-[2px] bg-primary/10 z-10" 
+                <div className="hidden md:block absolute top-1/2 -right-8 w-16 h-[2px] bg-primary/10" 
                   style={{ 
                     transform: 'translateY(-50%) translateX(4px)',
                   }}>
@@ -159,10 +166,13 @@ const Solutions = () => {
                   100% { transform: translateX(0); opacity: 0; }
                 }
 
-                @keyframes flowUp {
-                  0% { transform: translateY(0); opacity: 0; }
-                  50% { opacity: 1; }
-                  100% { transform: translateY(-120px); opacity: 0; }
+                @keyframes dashOffset {
+                  0% {
+                    stroke-dashoffset: 100;
+                  }
+                  100% {
+                    stroke-dashoffset: -100;
+                  }
                 }
 
                 .data-flow {
@@ -179,13 +189,6 @@ const Solutions = () => {
                   top: 2px;
                 }
 
-                .vertical-flow {
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  left: -2px;
-                }
-
                 .dot {
                   position: absolute;
                   width: 3px;
@@ -195,15 +198,9 @@ const Solutions = () => {
                   opacity: 0;
                 }
 
-                .v-dot {
-                  position: absolute;
-                  width: 3px;
-                  height: 3px;
-                  background-color: #93C851;
-                  border-radius: 50%;
-                  opacity: 0;
-                  left: 0;
-                  animation: flowUp 3s infinite;
+                .connector-path {
+                  stroke-dasharray: 4, 4;
+                  animation: dashOffset 30s linear infinite;
                 }
 
                 .data-flow .dot {
@@ -213,10 +210,6 @@ const Solutions = () => {
                 .data-flow-reverse .dot {
                   animation: flowLeft 3s infinite;
                 }
-
-                .vertical-flow .v-dot:nth-child(1) { animation-delay: 0s; }
-                .vertical-flow .v-dot:nth-child(2) { animation-delay: 1s; }
-                .vertical-flow .v-dot:nth-child(3) { animation-delay: 2s; }
 
                 .data-flow .dot:nth-child(1) { animation-delay: 0s; }
                 .data-flow .dot:nth-child(2) { animation-delay: 1s; }
