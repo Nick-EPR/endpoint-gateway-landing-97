@@ -35,14 +35,8 @@ const ROICalculator = () => {
   const handleEnterpriseChange = (checked: boolean) => {
     if (!isAnimating) {
       setIsEnterprise(checked);
-      // Adjust employee count when switching modes
-      if (checked && employees < 1000) {
-        setEmployees(1000);
-        setCurrentTrends(calculateTrends(1000));
-      } else if (!checked && employees > 300) {
-        setEmployees(300);
-        setCurrentTrends(calculateTrends(300));
-      }
+      // The actual employee count adjustment will be handled by the EmployeeInput component
+      // for smoother transitions
     }
   };
 
