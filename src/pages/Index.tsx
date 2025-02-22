@@ -14,6 +14,7 @@ import Contact from "../components/sections/Contact";
 import NavigationProgress from "../components/NavigationProgress";
 import ChatButton from "../components/ChatButton";
 import StatusBanner from "../components/StatusBanner";
+import ComparisonTable from "../components/sections/ComparisonTable";
 import { fetchMonitors } from "@/utils/monitorUtils";
 
 const Index = () => {
@@ -70,44 +71,40 @@ const Index = () => {
         </div>
       )}
       
-      {/* Hero Section with dark overlay and gradient */}
       <Hero 
         title="Comprehensive ITAM Solutions for Your Enterprise"
         subtitle="Transform your IT asset management with our end-to-end solution"
         buttonText="Get Started"
       />
 
-      {/* Products Section - White background */}
       <section className="bg-white">
         <Products />
       </section>
 
-      {/* Features Section - Light neutral background */}
       <section className="bg-neutral-light border-t border-neutral-100">
         <Features />
       </section>
 
-      {/* T-Mobile Business Section - White background */}
+      <section className="bg-white border-t border-neutral-100">
+        <ComparisonTable />
+      </section>
+
       <section className="bg-white border-t border-neutral-100">
         <TMobileBusiness />
       </section>
 
-      {/* Partners Section - Light neutral background */}
       <section className="bg-neutral-light border-t border-neutral-100">
         <Partners />
       </section>
 
-      {/* ROI Calculator Section - White background */}
       <section className="bg-white border-t border-neutral-100">
         <ROICalculator />
       </section>
 
-      {/* Partnership Section - Light neutral background */}
       <section className="bg-neutral-light border-t border-neutral-100">
         <Partnership />
       </section>
 
-      {/* Contact Section - White background */}
       <section className="bg-white border-t border-neutral-100">
         <Contact />
       </section>
