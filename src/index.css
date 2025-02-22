@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -80,72 +81,4 @@
 
 .section-padding {
   @apply py-16 md:py-24;
-}
-
-.angled-section {
-  position: relative;
-  padding: clamp(4rem, 8vw, 8rem) 0;
-  clip-path: polygon(
-    0 5vw,
-    100% 0,
-    100% 100%,
-    0 calc(100% - 5vw)
-  );
-  margin: calc(-5vw - 1px) 0;
-  z-index: 1;
-}
-
-.angled-section > * {
-  padding: 5vw 0;
-}
-
-.angled-section-reverse {
-  position: relative;
-  padding: clamp(4rem, 8vw, 8rem) 0;
-  clip-path: polygon(
-    0 5vw,
-    100% 0,
-    100% 100%,
-    0 calc(100% - 5vw)
-  );
-  margin: calc(-5vw - 1px) 0;
-  z-index: 0;
-}
-
-.angled-section-reverse > * {
-  padding: 5vw 0;
-}
-
-.angled-section,
-.angled-section-reverse {
-  isolation: isolate;
-}
-
-section:first-of-type.angled-section,
-section:first-of-type.angled-section-reverse {
-  margin-top: 0;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 100%,
-    0 calc(100% - 5vw)
-  );
-}
-
-section:last-of-type.angled-section,
-section:last-of-type.angled-section-reverse {
-  margin-bottom: 0;
-  clip-path: polygon(
-    0 5vw,
-    100% 0,
-    100% 100%,
-    0 100%
-  );
-}
-
-/* Fix for nested sections */
-.angled-section section,
-.angled-section-reverse section {
-  padding: 0;
-  margin: 0;
 }

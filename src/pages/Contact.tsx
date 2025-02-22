@@ -1,14 +1,13 @@
-
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Lightbulb, Award, Shield, Heart } from "lucide-react";
 import Navbar from "../components/navbar/Navbar";
 import ContactHero from "../components/contact/ContactHero";
 import LeadershipCard from "../components/contact/LeadershipCard";
-import Contact from "../components/sections/Contact";
+import ContactForm from "../components/sections/Contact";
 import Footer from "../components/Footer";
 
-const ContactPage = () => {
+const Contact = () => {
   const [scrolled, setScrolled] = useState(false);
   const { pathname } = useLocation();
 
@@ -77,7 +76,8 @@ const ContactPage = () => {
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       <ContactHero />
       
-      <Contact />
+      {/* Contact Form Section */}
+      <ContactForm />
       
       {/* Leadership Profiles */}
       <section className="relative py-24 bg-neutral-light">
@@ -148,4 +148,4 @@ const ContactPage = () => {
   );
 };
 
-export default ContactPage;
+export default Contact;

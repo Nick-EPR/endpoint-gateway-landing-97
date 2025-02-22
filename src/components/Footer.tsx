@@ -4,7 +4,7 @@ import { Shield, Bookmark } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-white py-12 border-t border-neutral-100 relative z-10">
+    <footer className="bg-white py-12 border-t border-neutral-100">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8">
           {/* Company Info */}

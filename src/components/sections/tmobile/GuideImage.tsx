@@ -43,26 +43,15 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
 
   const handleNextPage = () => {
     if (nextPage) {
-      setCurrentPage({
-        src: nextPage.src,
-        alt: nextPage.alt,
-        fileName: nextPage.fileName
-      });
+      setCurrentPage(nextPage);
     }
   };
 
   const handlePrevPage = () => {
-    setCurrentPage({
-      src,
-      alt,
-      fileName
-    });
+    if (prevPage) {
+      setCurrentPage(prevPage);
+    }
   };
-
-  const isFirstPage = currentPage.src === src;
-  const isSecondPage = currentPage.src === nextPage?.src;
-
-  const navigationButtonClasses = "absolute top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:scale-110";
 
   return (
     <Dialog>
@@ -80,13 +69,13 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
       </DialogTrigger>
       <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-6">
         <div className="relative h-full flex items-center justify-center">
-          {isPartOfDocument && !isFirstPage && (
+          {isPartOfDocument && prevPage && (
             <Button
-              variant="outline"
-              className={`${navigationButtonClasses} left-4`}
+              variant="ghost"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2"
               onClick={handlePrevPage}
             >
-              <ChevronLeft className="w-8 h-8 text-[#8B5CF6]" />
+              <ChevronLeft className="w-8 h-8" />
             </Button>
           )}
           <img 
@@ -94,13 +83,13 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
             alt={currentPage.alt}
             className="w-full h-full object-contain"
           />
-          {isPartOfDocument && nextPage && isFirstPage && (
+          {isPartOfDocument && nextPage && (
             <Button
-              variant="outline"
-              className={`${navigationButtonClasses} right-4`}
+              variant="ghost"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2"
               onClick={handleNextPage}
             >
-              <ChevronRight className="w-8 h-8 text-[#8B5CF6]" />
+              <ChevronRight className="w-8 h-8" />
             </Button>
           )}
           <Button
@@ -108,7 +97,7 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
             onClick={() => downloadImage(currentPage.src, currentPage.fileName)}
           >
             <Download className="w-4 h-4 mr-2" />
-            Download Page {isSecondPage ? '2' : '1'}
+            Download Page {isPartOfDocument ? (prevPage ? '2' : '1') : ''}
           </Button>
         </div>
       </DialogContent>
