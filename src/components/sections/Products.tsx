@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -63,9 +64,9 @@ const Solutions = () => {
   return (
     <section id="solutions" className="py-32 md:py-48">
       <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-16 relative">
+        <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="flex justify-center mb-8 relative">
-            <div className="relative z-20">
+            <div className="relative">
               <img src={triangleImage} alt="Decorative triangle" className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float" />
               <div className="absolute -bottom-8 left-1/2 w-0.5 h-8 bg-primary/20 -translate-x-1/2 animate-pulse"></div>
             </div>
@@ -77,79 +78,7 @@ const Solutions = () => {
             Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
-          <svg className="hidden md:block absolute top-0 left-0 w-full h-[120px] -translate-y-full" style={{ zIndex: 10 }}>
-            <path 
-              d="M150,120 C150,80 250,40 450,20" 
-              stroke="rgba(147, 200, 81, 0.1)" 
-              strokeWidth="2" 
-              fill="none"
-              className="connector-path"
-            />
-            <path 
-              d="M450,120 L450,20" 
-              stroke="rgba(147, 200, 81, 0.1)" 
-              strokeWidth="2" 
-              fill="none"
-              className="connector-path"
-            />
-            <path 
-              d="M750,120 C750,80 650,40 450,20" 
-              stroke="rgba(147, 200, 81, 0.1)" 
-              strokeWidth="2" 
-              fill="none"
-              className="connector-path"
-            />
-
-            <circle r="3" fill="#93C851" className="flow-dot left-flow">
-              <animateMotion 
-                dur="3s"
-                repeatCount="indefinite"
-                path="M150,120 C150,80 250,40 450,20"
-              />
-            </circle>
-            <circle r="3" fill="#93C851" className="flow-dot left-flow" opacity="0">
-              <animateMotion 
-                dur="3s"
-                repeatCount="indefinite"
-                path="M150,120 C150,80 250,40 450,20"
-                begin="1s"
-              />
-            </circle>
-
-            <circle r="3" fill="#93C851" className="flow-dot center-flow">
-              <animateMotion 
-                dur="2s"
-                repeatCount="indefinite"
-                path="M450,120 L450,20"
-              />
-            </circle>
-            <circle r="3" fill="#93C851" className="flow-dot center-flow" opacity="0">
-              <animateMotion 
-                dur="2s"
-                repeatCount="indefinite"
-                path="M450,120 L450,20"
-                begin="1s"
-              />
-            </circle>
-
-            <circle r="3" fill="#93C851" className="flow-dot right-flow">
-              <animateMotion 
-                dur="3s"
-                repeatCount="indefinite"
-                path="M750,120 C750,80 650,40 450,20"
-              />
-            </circle>
-            <circle r="3" fill="#93C851" className="flow-dot right-flow" opacity="0">
-              <animateMotion 
-                dur="3s"
-                repeatCount="indefinite"
-                path="M750,120 C750,80 650,40 450,20"
-                begin="1s"
-              />
-            </circle>
-          </svg>
-          
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
             <div key={index} className="relative">
               <div className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float ${solution.comingSoon ? 'opacity-75' : ''}`} 
@@ -183,17 +112,20 @@ const Solutions = () => {
                 )}
               </div>
               
+              {/* Data transmission animations between cards */}
               {index < solutions.length - 1 && (
                 <div className="hidden md:block absolute top-1/2 -right-8 w-16 h-[2px] bg-primary/10" 
                   style={{ 
                     transform: 'translateY(-50%) translateX(4px)',
                     zIndex: 10
                   }}>
+                  {/* Animated dots for data transmission */}
                   <div className="data-flow">
                     <div className="dot"></div>
                     <div className="dot"></div>
                     <div className="dot"></div>
                   </div>
+                  {/* Reverse data flow */}
                   <div className="data-flow-reverse">
                     <div className="dot"></div>
                     <div className="dot"></div>
