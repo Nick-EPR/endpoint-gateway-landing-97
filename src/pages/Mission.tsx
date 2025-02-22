@@ -1,8 +1,10 @@
+
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Bookmark, Target, Users, Zap, Shield } from "lucide-react";
+import { useLocation, Link } from "react-router-dom";
+import { Bookmark, Target, Users, Zap, Shield, HelpCircle } from "lucide-react";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
+import { Button } from "@/components/ui/button";
 
 const Mission = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -90,6 +92,26 @@ const Mission = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ITAM Information Section */}
+      <section className="py-16 bg-primary/5">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <HelpCircle className="w-6 h-6 text-primary" />
+              <h3 className="text-xl font-semibold">New to IT Asset Management?</h3>
+            </div>
+            <p className="text-neutral-600 mb-6">
+              Learn how IT Asset Management affects your daily work and discover how we're making it better.
+            </p>
+            <Link to="/what-is-itam">
+              <Button variant="outline" className="gap-2">
+                What is ITAM? <HelpCircle className="w-4 h-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
