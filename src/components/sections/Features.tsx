@@ -98,7 +98,7 @@ const Features = () => {
                 ${feature.isHighlighted 
                   ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-md hover:shadow-lg hover:-translate-y-1' 
                   : 'bg-white/80 border-neutral-100 hover:shadow-lg hover:-translate-y-0.5'
-                } animate-on-scroll relative`}
+                } animate-on-scroll relative ${feature.comingSoon ? 'opacity-60' : ''}`}
             >
               <div className={`mb-3 w-10 h-10 rounded-lg flex items-center justify-center 
                 ${feature.isHighlighted 
