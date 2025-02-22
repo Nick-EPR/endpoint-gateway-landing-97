@@ -32,18 +32,15 @@ const Security = () => {
   const securityFeatures = [{
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "DoD-Standard Data Wiping",
-    description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security.",
-    certImage: "/lovable-uploads/de0ae0ac-14bc-4ead-8802-50fea88c5890.png", // DoD logo
+    description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security."
   }, {
     icon: <CheckCircle2 className="w-8 h-8 text-primary" />,
     title: "R2V3-Certified Partnership",
-    description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility.",
-    certImage: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png", // R2V3 logo
+    description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility."
   }, {
     icon: <Lock className="w-8 h-8 text-primary" />,
     title: "ISO27001:2023 Compliance",
-    description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data.",
-    certImage: "/lovable-uploads/d085cb0d-47c3-4598-ad6d-d64c8e9b99fc.png", // ISO logo
+    description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data."
   }];
 
   const additionalFeatures = [{
@@ -112,16 +109,7 @@ const Security = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {securityFeatures.map((feature, index) => (
               <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="mb-4">{feature.icon}</div>
-                  {feature.certImage && (
-                    <img 
-                      src={feature.certImage}
-                      alt={`${feature.title} certification`}
-                      className="h-12 w-auto object-contain"
-                    />
-                  )}
-                </div>
+                <div className="mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
                 <p className="text-neutral">{feature.description}</p>
               </div>
