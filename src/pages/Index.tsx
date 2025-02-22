@@ -77,35 +77,35 @@ const Index = () => {
         buttonText="Get Started"
       />
 
-      <section className="bg-white">
+      <section className="angled-section bg-white">
         <Products />
       </section>
 
-      <section className="bg-neutral-light border-t border-neutral-100">
+      <section className="angled-section-reverse bg-neutral-light">
         <Features />
       </section>
 
-      <section className="bg-white border-t border-neutral-100">
+      <section className="angled-section bg-white">
         <ComparisonTable />
       </section>
 
-      <section className="bg-white border-t border-neutral-100">
+      <section className="angled-section-reverse bg-white">
         <TMobileBusiness />
       </section>
 
-      <section className="bg-neutral-light border-t border-neutral-100">
+      <section className="angled-section bg-neutral-light">
         <Partners />
       </section>
 
-      <section className="bg-white border-t border-neutral-100">
+      <section className="angled-section-reverse bg-white">
         <ROICalculator />
       </section>
 
-      <section className="bg-neutral-light border-t border-neutral-100">
+      <section className="angled-section bg-neutral-light">
         <Partnership />
       </section>
 
-      <section className="bg-white border-t border-neutral-100">
+      <section className="angled-section-reverse bg-white">
         <Contact />
       </section>
 
