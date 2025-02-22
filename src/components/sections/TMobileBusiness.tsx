@@ -1,4 +1,3 @@
-
 import { Shield, Network, Smartphone, Laptop, Cpu, FileText, Zap, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import GuideImage from "./tmobile/GuideImage";
@@ -7,7 +6,7 @@ import BenefitCard from "./tmobile/BenefitCard";
 
 const TMobileBusiness = () => {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 md:py-16">
       <div className="bg-white py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
