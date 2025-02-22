@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X } from "lucide-react";
+
 interface ComparisonItem {
   aspect: string;
   icon: React.ReactNode;
@@ -8,6 +9,7 @@ interface ComparisonItem {
   epr: string;
   isDIYPain: boolean;
 }
+
 const ComparisonTable = () => {
   const comparisons: ComparisonItem[] = [{
     aspect: "Software",
@@ -88,6 +90,7 @@ const ComparisonTable = () => {
     epr: "Single point of contact for all IT lifecycle services",
     isDIYPain: true
   }];
+
   return <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 flex items-center justify-center gap-2">
@@ -104,7 +107,11 @@ const ComparisonTable = () => {
               <TableHeader>
                 <TableRow className="bg-neutral-50">
                   <TableHead className="w-1/4">Aspect</TableHead>
-                  <TableHead className="w-[37.5%]">Do-It-Yourself ITAM</TableHead>
+                  <TableHead className="w-[37.5%]">
+                    <div className="flex items-center gap-2">
+                      Do-It-Yourself ITAM 🤢
+                    </div>
+                  </TableHead>
                   <TableHead className="w-[37.5%] text-primary">
                     <div className="flex items-center gap-2">
                       <img alt="EPR Triangle" className="w-5 h-5" src="/lovable-uploads/11a5e41f-5de6-420a-8818-f40957857208.png" />
@@ -147,4 +154,5 @@ const ComparisonTable = () => {
       </div>
     </section>;
 };
+
 export default ComparisonTable;
