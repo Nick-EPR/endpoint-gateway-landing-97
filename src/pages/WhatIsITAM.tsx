@@ -76,19 +76,19 @@ const WhatIsITAM = () => {
       </section>
 
       {/* Daily Impact Section */}
-      <section className="py-20 bg-[#1A1F2C] text-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">
             How ITAM Affects Your Daily Work
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {dailyExamples.map((example, index) => (
-              <div key={index} className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all">
+              <div key={index} className="p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-all border border-neutral-100">
                 <div className="mb-4 p-3 bg-primary/10 rounded-lg w-fit">
                   {example.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-3">{example.title}</h3>
-                <p className="text-white/80">{example.description}</p>
+                <p className="text-neutral-600">{example.description}</p>
               </div>
             ))}
           </div>
@@ -96,7 +96,7 @@ const WhatIsITAM = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-[#151821] text-white">
+      <section className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">
@@ -104,17 +104,17 @@ const WhatIsITAM = () => {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               {benefits.map((benefit, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-white/5 rounded-lg">
+                <div key={index} className="flex items-start gap-3 p-4">
                   <div className="p-1 bg-primary/10 rounded-full">
                     <Check className="w-5 h-5 text-primary" />
                   </div>
-                  <p className="text-lg text-white/90">{benefit}</p>
+                  <p className="text-lg text-neutral-700">{benefit}</p>
                 </div>
               ))}
             </div>
             <div className="mt-12 text-center">
               <Link to="/contact">
-                <Button className="gap-2 bg-white hover:bg-white/90 text-[#1A1F2C]">
+                <Button className="gap-2">
                   Learn How We Can Help <ArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
