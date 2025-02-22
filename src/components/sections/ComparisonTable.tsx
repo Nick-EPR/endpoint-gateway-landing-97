@@ -1,6 +1,6 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
-import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X } from "lucide-react";
+import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X, Trophy } from "lucide-react";
 
 interface ComparisonItem {
   aspect: string;
@@ -104,7 +104,7 @@ const ComparisonTable = () => {
         </p>
         
         <div className="hidden md:block">
-          <Card className="overflow-hidden border-primary/10">
+          <Card className="overflow-hidden border-primary/10 relative">
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
@@ -115,17 +115,21 @@ const ComparisonTable = () => {
                         <span className="text-2xl">🤯</span> Do-It-Yourself ITAM
                       </div>
                     </TableHead>
-                    <TableHead className="w-[37.5%] text-primary">
-                      <div className="flex items-center gap-2">
-                        <img alt="EPR Triangle" className="w-5 h-5" src="/lovable-uploads/11a5e41f-5de6-420a-8818-f40957857208.png" />
-                        Lifetime EPR
+                    <TableHead className="w-[37.5%] text-primary relative">
+                      <div className="absolute inset-0 bg-primary/5 shadow-[0_0_30px_rgba(147,200,81,0.2)]"></div>
+                      <div className="relative flex items-center gap-2">
+                        <Trophy className="h-5 w-5 text-primary" />
+                        <span className="font-bold">Lifetime EPR</span>
+                        <div className="absolute -top-1 -right-3 rotate-12 bg-primary/10 px-2 py-0.5 rounded text-xs font-semibold text-primary">
+                          Recommended
+                        </div>
                       </div>
                     </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {comparisons.map((item, index) => (
-                    <TableRow key={index} className="hover:bg-neutral-50">
+                    <TableRow key={index} className="hover:bg-neutral-50 group">
                       <TableCell className="font-medium">
                         <div className="flex items-center gap-2">
                           {item.icon}
@@ -138,8 +142,9 @@ const ComparisonTable = () => {
                           {item.diy}
                         </div>
                       </TableCell>
-                      <TableCell className="text-primary-900">
-                        <div className="flex items-center gap-2">
+                      <TableCell className="text-primary-900 relative">
+                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div className="relative flex items-center gap-2">
                           <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
                           {item.epr}
                         </div>
@@ -169,10 +174,13 @@ const ComparisonTable = () => {
                     <p className="text-neutral-600">{item.diy}</p>
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                    <img alt="EPR Triangle" className="w-4 h-4" src="/lovable-uploads/11a5e41f-5de6-420a-8818-f40957857208.png" />
-                    Lifetime EPR
+                <div className="space-y-2 bg-primary/5 p-4 rounded-lg shadow-lg">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                      <Trophy className="h-4 w-4" />
+                      <span className="font-bold">Lifetime EPR</span>
+                    </div>
+                    <span className="bg-primary/10 px-2 py-0.5 rounded text-xs font-semibold text-primary">Recommended</span>
                   </div>
                   <div className="flex items-start gap-2 pl-2">
                     <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
