@@ -1,3 +1,4 @@
+
 export interface Trend {
   label: string;
   value: string;
@@ -35,6 +36,17 @@ export const calculatePercentageChange = (oldValue: number, newValue: number): n
   return ((newValue - oldValue) / oldValue) * 100;
 };
 
+// Function to format large numbers with commas and k/M suffix
+const formatLargeNumber = (num: number): string => {
+  if (num >= 1000000) {
+    return `${(num / 1000000).toFixed(1)}M`;
+  }
+  if (num >= 1000) {
+    return `${(num / 1000).toFixed(0)}k`;
+  }
+  return num.toString();
+};
+
 // Function to calculate trends based on employee count
 export const calculateTrends = (employeeCount: number): Trend[] => {
   // Base device lifespan is 2 years without our solution
@@ -54,7 +66,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     },
     {
       label: "Cost Reduction",
-      value: `$${Math.round(annualSavings)}k`,
+      value: formatCurrency(annualSavings * 1000, 'USD'),
       trend: -32,
       tooltip: "Average cost savings through repair and refurbishment programs"
     },
@@ -78,6 +90,8 @@ export const formatCurrency = (amount: number, currencyCode: string = 'USD', loc
   return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currencyCode,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(amount);
 };
 

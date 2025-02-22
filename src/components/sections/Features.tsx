@@ -1,3 +1,4 @@
+
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -56,11 +57,9 @@ const Features = () => {
               key={index} 
               className={`p-6 rounded-xl transition-all duration-500 backdrop-blur-sm border 
                 ${feature.isHighlighted 
-                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2 animate-pulse' 
+                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2' 
                   : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
                 } animate-on-scroll`}
-              data-aos={feature.isHighlighted ? "fade-up" : "fade-in"}
-              data-aos-duration="1000"
             >
               <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
                 ${feature.isHighlighted 
