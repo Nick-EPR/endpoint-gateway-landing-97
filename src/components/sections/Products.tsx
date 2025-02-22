@@ -66,9 +66,8 @@ const Solutions = () => {
   }, []);
 
   return (
-    <section id="solutions" className="relative py-24 bg-neutral-light overflow-hidden">
-      {/* Increased height and skew angle for smoother transition */}
-      <div className="absolute top-0 left-0 w-full h-56 bg-neutral-light transform -skew-y-6 -translate-y-28 z-10"></div>
+    <section id="solutions" className="relative py-24 bg-neutral-light">
+      <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform -skew-y-3 -translate-y-12 z-10"></div>
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-3xl mx-auto text-center mb-16">

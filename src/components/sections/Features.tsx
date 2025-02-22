@@ -45,8 +45,8 @@ const Features = () => {
     isHighlighted: true
   }];
 
-  return <section id="features" className="relative py-20 bg-gradient-to-b from-white to-neutral-50 overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-56 bg-neutral-light transform -skew-y-6 -translate-y-28 z-0"></div>
+  return <section id="features" className="relative py-20 bg-gradient-to-b from-white to-neutral-50">
+      <div className="absolute top-0 left-0 w-full h-48 bg-neutral-light transform -skew-y-3 -translate-y-24 z-0"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-12 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Comprehensive Features</h2>
@@ -90,7 +90,7 @@ const Features = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-0 left-0 w-full h-56 bg-white transform skew-y-6 translate-y-28 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-white transform skew-y-3 translate-y-24 z-0"></div>
     </section>;
 };
 

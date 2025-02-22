@@ -21,7 +21,7 @@ const TMobileBusiness = () => {
   };
 
   return (
-    <section className="relative py-20 bg-white overflow-hidden">
+    <section className="relative py-20 bg-white">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -198,8 +198,8 @@ const TMobileBusiness = () => {
         </div>
       </div>
 
-      {/* Increased height and skew angle for smoother transition */}
-      <div className="absolute bottom-0 left-0 w-full h-56 bg-neutral-light transform skew-y-6 translate-y-28 z-0"></div>
+      {/* Increased height and adjusted translation for better coverage */}
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-neutral-light transform skew-y-3 translate-y-24 z-0"></div>
     </section>
   );
 };
