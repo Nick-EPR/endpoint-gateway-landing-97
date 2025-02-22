@@ -73,7 +73,7 @@ const Solutions = () => {
             <img 
               src={triangleImage} 
               alt="Decorative triangle" 
-              className="w-24 h-auto"
+              className="w-24 h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2"
             />
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
