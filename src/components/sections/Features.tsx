@@ -1,5 +1,4 @@
-
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search, UserCog, Package2, UserPlus, Webhook } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -26,6 +25,31 @@ const Features = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const features: Feature[] = [{
+    icon: <UserCog className="w-8 h-8 text-neutral-700" />,
+    title: "Role-Based Equipment Groups",
+    description: "Define and manage standardized equipment packages for different roles, departments, and locations within your organization",
+    isHighlighted: true,
+    keywords: ["onboarding", "roles", "equipment", "packages", "groups", "standardization"]
+  }, {
+    icon: <Package2 className="w-8 h-8 text-neutral-700" />,
+    title: "Automated Onboarding Kits",
+    description: "Automatically determine and assign the right equipment package for new hires based on their role and department",
+    isHighlighted: true,
+    keywords: ["onboarding", "automation", "equipment", "new hire", "deployment"]
+  }, {
+    icon: <UserPlus className="w-8 h-8 text-neutral-700" />,
+    title: "HR Integration",
+    description: "Seamlessly initiate equipment deployments directly from HR onboarding workflows with no technical expertise required",
+    isHighlighted: true,
+    keywords: ["HR", "integration", "onboarding", "workflow", "automation"]
+  }, {
+    icon: <Webhook className="w-8 h-8 text-neutral-700" />,
+    title: "Toolbox Fulfillment",
+    description: "Direct integration with Toolbox for automated pick, pack, and next-day shipping of onboarding kits to new employees",
+    isHighlighted: true,
+    keywords: ["toolbox", "integration", "shipping", "fulfillment", "logistics"]
+  },
+  {
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
     title: "Toolbox Integration",
     description: "Connect your ITAM system with repair depot and warehouse operations for end-to-end device management",
@@ -110,7 +134,9 @@ const Features = () => {
         "Custom user groups and organizational hierarchies",
         "Employee onboarding and offboarding workflows",
         "Department-level asset allocation rules",
-        "User activity logging and audit trails"
+        "User activity logging and audit trails",
+        "Automated equipment package assignment",
+        "HR system integration for seamless onboarding"
       ]
     },
     {
@@ -121,7 +147,9 @@ const Features = () => {
         "Custom asset categories and attributes",
         "Bulk asset import and export capabilities",
         "Asset history and chain of custody tracking",
-        "Software license management and compliance"
+        "Software license management and compliance",
+        "Role-based equipment package templates",
+        "Automated onboarding kit assembly"
       ]
     },
     {
@@ -132,7 +160,9 @@ const Features = () => {
         "Cost center allocation and chargeback reporting",
         "Compliance and audit reporting",
         "Predictive maintenance analytics",
-        "Budget forecasting and planning tools"
+        "Budget forecasting and planning tools",
+        "Onboarding kit fulfillment metrics",
+        "Equipment package optimization insights"
       ]
     },
     {
@@ -143,7 +173,9 @@ const Features = () => {
         "SSO support (SAML, OAuth)",
         "Integration with major MDM platforms",
         "ServiceNow and ITSM tool integration",
-        "Custom webhook support"
+        "Custom webhook support",
+        "Native Toolbox integration for logistics",
+        "HR system connectors"
       ]
     }
   ];
