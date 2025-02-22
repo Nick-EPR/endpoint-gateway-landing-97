@@ -95,7 +95,7 @@ const Partners = () => {
                           partner.name === 'Lifetime Service' 
                             ? 'max-w-[80px] max-h-14' 
                             : partner.name === 'T-Mobile'
-                            ? 'max-h-[5rem]'
+                            ? 'max-h-[6rem]'
                             : partner.name === 'D&H Distributing'
                             ? 'max-h-[4.5rem]'
                             : partner.name === 'CellHub'
