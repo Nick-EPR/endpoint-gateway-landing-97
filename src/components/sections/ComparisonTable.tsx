@@ -1,3 +1,4 @@
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { 
@@ -176,7 +177,7 @@ const ComparisonTable = () => {
 
         <div className="mt-8 text-center">
           <p className="text-lg md:text-xl font-semibold text-primary">
-            Why piece together your IT asset management when you can have it all with Lifetime EPR?
+            Why pay more for fragmented solutions when you can save with Lifetime EPR's all-in-one platform?
           </p>
         </div>
       </div>
