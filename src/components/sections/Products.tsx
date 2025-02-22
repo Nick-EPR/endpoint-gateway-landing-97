@@ -91,17 +91,31 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div 
               key={index} 
-              className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float ${
-                solution.comingSoon ? 'opacity-75' : ''
-              }`}
-              style={{ animationDelay: `${index * 200}ms` }}
+              className={`relative solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float group 
+                ${solution.comingSoon ? 'opacity-75' : ''}
+                ${index === 1 ? 'md:translate-y-6' : ''}
+                transition-all duration-300 hover:scale-105 hover:z-10
+                before:absolute before:inset-0 before:rounded-xl before:border-2 before:border-primary/0 
+                before:transition-all before:duration-300 hover:before:border-primary/20
+                after:absolute after:inset-0 after:rounded-xl after:border-2 after:border-primary/0 
+                after:transition-all after:duration-300 hover:after:border-primary/10 after:scale-105
+              `}
+              style={{ 
+                animationDelay: `${index * 200}ms`,
+                backgroundColor: `rgba(255, 255, 255, ${0.95 - index * 0.05})`
+              }}
             >
+              {/* Connecting lines between cards */}
+              {index < solutions.length - 1 && (
+                <div className="hidden md:block absolute -right-4 top-1/2 w-8 h-0.5 bg-primary/20 transform -translate-y-1/2 scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              )}
+              
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className={`object-contain ${
+                    className={`object-contain transition-transform duration-300 group-hover:scale-110 ${
                       solution.title === 'HeliAM' ? 'h-12' :
                       solution.title === 'Luemin' ? 'max-w-[160px]' :
                       'max-h-8'
@@ -117,8 +131,10 @@ const Solutions = () => {
                   <span className="text-primary font-medium">Coming Soon</span>
                 </div>
               ) : solution.path && (
-                <Link to={solution.path}>
-                  <Button variant="outline" className="w-full">Learn More</Button>
+                <Link to={solution.path} className="block">
+                  <Button variant="outline" className="w-full transition-colors hover:bg-primary hover:text-white">
+                    Learn More
+                  </Button>
                 </Link>
               )}
             </div>
