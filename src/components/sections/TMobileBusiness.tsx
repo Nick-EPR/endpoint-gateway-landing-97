@@ -1,5 +1,5 @@
 
-import { Shield, Network, Smartphone, Laptop, Cpu } from "lucide-react";
+import { Shield, Network, Smartphone, Laptop, Cpu, FileText, Zap, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import GuideImage from "./tmobile/GuideImage";
 import FeatureCard from "./tmobile/FeatureCard";
@@ -17,17 +17,21 @@ const TMobileBusiness = () => {
               <img src="/lovable-uploads/db5c2503-a1b3-49cc-a4d8-2e1cca8144e9.png" alt="T-Mobile" className="h-12 md:h-16 w-auto" />
             </div>
             <p className="text-base md:text-lg text-neutral mb-8 animate-on-scroll px-4">
-              Empowering businesses with connected device solutions through our strategic partnership with T-Mobile, delivering reliable, secure, and scalable IT device management
+              Empowering businesses with advanced device management and intelligent infrastructure solutions through our strategic partnership with T-Mobile
             </p>
           </div>
 
-          {/* Newsletter Section */}
           <div className="max-w-6xl mx-auto mb-12">
-            <h3 className="text-2xl font-semibold text-center mb-6">Latest Updates & Guides</h3>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <FileText className="w-6 h-6 text-[#E30074]" />
+              <h3 className="text-2xl font-semibold text-center">Latest Updates & Guides</h3>
+            </div>
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Windows 11 Transition Guide */}
               <div className="bg-neutral-light rounded-xl p-6">
-                <h4 className="text-xl font-semibold mb-4">Windows 11 Transition Guide</h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <Zap className="w-5 h-5 text-[#E30074]" />
+                  <h4 className="text-xl font-semibold">Windows 11 Transition Guide</h4>
+                </div>
                 <p className="text-neutral mb-6">
                   Essential information about the Windows 10 end-of-life timeline and recommended steps for a smooth transition to Windows 11.
                 </p>
@@ -36,18 +40,32 @@ const TMobileBusiness = () => {
                     src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png"
                     alt="Windows 11 Transition Guide Page 1"
                     fileName="windows11-transition-guide-1.png"
+                    isPartOfDocument={true}
+                    nextPage={{
+                      src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
+                      alt: "Windows 11 Transition Guide Page 2",
+                      fileName: "windows11-transition-guide-2.png"
+                    }}
                   />
                   <GuideImage 
                     src="/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png"
                     alt="Windows 11 Transition Guide Page 2"
                     fileName="windows11-transition-guide-2.png"
+                    isPartOfDocument={true}
+                    prevPage={{
+                      src: "/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png",
+                      alt: "Windows 11 Transition Guide Page 1",
+                      fileName: "windows11-transition-guide-1.png"
+                    }}
                   />
                 </div>
               </div>
 
-              {/* T-Mobile 5G Integration */}
               <div className="bg-white border border-neutral-100 rounded-xl p-6">
-                <h4 className="text-xl font-semibold mb-4">T-Mobile 5G Enterprise Solutions</h4>
+                <div className="flex items-center gap-3 mb-4">
+                  <Users className="w-5 h-5 text-[#E30074]" />
+                  <h4 className="text-xl font-semibold">T-Mobile 5G Enterprise Solutions</h4>
+                </div>
                 <p className="text-neutral mb-6">
                   Discover how T-Mobile's 5G network integration can transform your business operations and device management capabilities.
                 </p>
