@@ -48,7 +48,7 @@ const Footer = () => {
               <h3 className="font-semibold">Security Policy</h3>
             </div>
             <p className="text-neutral text-sm">
-              We are committed to maintaining the security and privacy of your data. Our comprehensive security measures include ISO27001:2023 compliance, SOC 2 Type II certification, and DoD-standard data wiping protocols.
+              We are committed to maintaining the security and privacy of your data. Our comprehensive security measures include ISO27001:2022 compliance, SOC 2 Type II certification, and DoD-standard data wiping protocols.
             </p>
           </div>
         </div>
@@ -90,3 +90,4 @@ const Footer = () => {
   );
 };
 
+export default Footer;
