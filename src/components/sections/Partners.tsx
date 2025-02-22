@@ -14,7 +14,7 @@ const Partners = () => {
   const partners = [
     {
       name: "T-Mobile",
-      logo: "/lovable-uploads/4b84285a-ebf1-49a3-937a-ea9058b7726f.png",
+      logo: "/lovable-uploads/408c82e0-5b71-4ca4-abfa-13814f6f2258.png",
       url: "https://www.t-mobile.com/business",
       description: "Strategic partnership for connected device solutions"
     },
