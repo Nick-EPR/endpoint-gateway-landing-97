@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -80,7 +81,7 @@ const Index = () => {
         <Products />
       </section>
 
-      <section className="angled-section-reverse bg-neutral-light">
+      <section className="angled-section bg-neutral-light">
         <Features />
       </section>
 
@@ -88,7 +89,7 @@ const Index = () => {
         <ComparisonTable />
       </section>
 
-      <section className="angled-section-reverse bg-white">
+      <section className="angled-section bg-white">
         <TMobileBusiness />
       </section>
 
@@ -96,11 +97,11 @@ const Index = () => {
         <Partners />
       </section>
 
-      <section className="angled-section-reverse bg-primary-light">
+      <section className="angled-section bg-primary-light">
         <ROICalculator />
       </section>
 
-      <section className="angled-section bg-neutral-light pb-32">
+      <section className="angled-section bg-neutral-light">
         <Partnership />
       </section>
 
