@@ -62,6 +62,8 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
   const isFirstPage = currentPage.src === src;
   const isSecondPage = currentPage.src === nextPage?.src;
 
+  const navigationButtonClasses = "absolute top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white shadow-lg rounded-full p-2 transition-all duration-200 hover:scale-110";
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -80,11 +82,11 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
         <div className="relative h-full flex items-center justify-center">
           {isPartOfDocument && !isFirstPage && (
             <Button
-              variant="ghost"
-              className="absolute left-4 top-1/2 transform -translate-y-1/2"
+              variant="outline"
+              className={`${navigationButtonClasses} left-4`}
               onClick={handlePrevPage}
             >
-              <ChevronLeft className="w-8 h-8" />
+              <ChevronLeft className="w-8 h-8 text-[#8B5CF6]" />
             </Button>
           )}
           <img 
@@ -94,11 +96,11 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
           />
           {isPartOfDocument && nextPage && isFirstPage && (
             <Button
-              variant="ghost"
-              className="absolute right-4 top-1/2 transform -translate-y-1/2"
+              variant="outline"
+              className={`${navigationButtonClasses} right-4`}
               onClick={handleNextPage}
             >
-              <ChevronRight className="w-8 h-8" />
+              <ChevronRight className="w-8 h-8 text-[#8B5CF6]" />
             </Button>
           )}
           <Button
