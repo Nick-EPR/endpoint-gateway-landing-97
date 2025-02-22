@@ -45,52 +45,48 @@ const Features = () => {
     isHighlighted: true
   }];
 
-  return <section id="features" className="relative">
-      <div className="bg-neutral-light py-20" style={{
-        clipPath: 'polygon(0 0, 100% 5%, 100% 95%, 0 100%)'
-      }}>
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-12 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Comprehensive Features
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div 
-                key={index} 
-                className={`p-6 rounded-xl transition-all duration-500 backdrop-blur-sm border 
-                  ${feature.isHighlighted 
-                    ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2 animate-pulse' 
-                    : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
-                  } animate-on-scroll`}
-                data-aos={feature.isHighlighted ? "fade-up" : "fade-in"}
-                data-aos-duration="1000"
+  return <section id="features" className="py-32 md:py-48">
+      <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
+          Comprehensive Features
+        </h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {features.map((feature, index) => (
+            <div 
+              key={index} 
+              className={`p-6 rounded-xl transition-all duration-500 backdrop-blur-sm border 
+                ${feature.isHighlighted 
+                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2 animate-pulse' 
+                  : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
+                } animate-on-scroll`}
+              data-aos={feature.isHighlighted ? "fade-up" : "fade-in"}
+              data-aos-duration="1000"
+            >
+              <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
+                ${feature.isHighlighted 
+                  ? 'bg-primary/10' 
+                  : 'bg-gray-50'
+                }`}
               >
-                <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
-                  ${feature.isHighlighted 
-                    ? 'bg-primary/10' 
-                    : 'bg-gray-50'
-                  }`}
-                >
-                  {feature.icon}
-                </div>
-                <h3 className={`text-xl font-semibold mb-2 
-                  ${feature.isHighlighted 
-                    ? 'text-primary' 
-                    : 'text-neutral-800'
-                  }`}
-                >
-                  {feature.title}
-                </h3>
-                <p className="text-neutral-600 mb-4">{feature.description}</p>
-                {feature.link && <Link to={feature.link.to} className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-medium transition-colors">
-                    {feature.link.text}
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>}
+                {feature.icon}
               </div>
-            ))}
-          </div>
+              <h3 className={`text-xl font-semibold mb-2 
+                ${feature.isHighlighted 
+                  ? 'text-primary' 
+                  : 'text-neutral-800'
+                }`}
+              >
+                {feature.title}
+              </h3>
+              <p className="text-neutral-600 mb-4">{feature.description}</p>
+              {feature.link && <Link to={feature.link.to} className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-medium transition-colors">
+                  {feature.link.text}
+                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>}
+            </div>
+          ))}
         </div>
       </div>
     </section>;

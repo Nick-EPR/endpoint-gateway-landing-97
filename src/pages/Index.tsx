@@ -23,7 +23,7 @@ const Index = () => {
   const { data: monitors } = useQuery({
     queryKey: ['monitors'],
     queryFn: fetchMonitors,
-    refetchInterval: 60000, // Refetch every minute
+    refetchInterval: 60000,
   });
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
@@ -69,18 +69,49 @@ const Index = () => {
           <StatusBanner message="We're currently experiencing some technical issues and are working to resolve them." />
         </div>
       )}
+      
+      {/* Hero Section with dark overlay and gradient */}
       <Hero 
         title="Comprehensive ITAM Solutions for Your Enterprise"
         subtitle="Transform your IT asset management with our end-to-end solution"
         buttonText="Get Started"
       />
-      <Products />
-      <Features />
-      <TMobileBusiness />
-      <Partners />
-      <ROICalculator />
-      <Partnership />
-      <Contact />
+
+      {/* Products Section - White background */}
+      <section className="bg-white">
+        <Products />
+      </section>
+
+      {/* Features Section - Light neutral background */}
+      <section className="bg-neutral-light">
+        <Features />
+      </section>
+
+      {/* T-Mobile Business Section - White background */}
+      <section className="bg-white">
+        <TMobileBusiness />
+      </section>
+
+      {/* Partners Section - Light neutral background */}
+      <section className="bg-neutral-light">
+        <Partners />
+      </section>
+
+      {/* ROI Calculator Section - White background */}
+      <section className="bg-white">
+        <ROICalculator />
+      </section>
+
+      {/* Partnership Section - Light neutral background */}
+      <section className="bg-neutral-light">
+        <Partnership />
+      </section>
+
+      {/* Contact Section - White background */}
+      <section className="bg-white">
+        <Contact />
+      </section>
+
       <Footer />
       <ChatButton />
     </div>

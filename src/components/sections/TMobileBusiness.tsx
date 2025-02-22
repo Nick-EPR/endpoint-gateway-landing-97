@@ -20,7 +20,7 @@ const TMobileBusiness = () => {
   };
 
   return (
-    <section className="relative">
+    <section className="py-32 md:py-48">
       <div className="bg-white py-20" style={{
         clipPath: 'polygon(0 0, 100% 0, 100% 95%, 0 100%)'
       }}>
@@ -200,7 +200,6 @@ const TMobileBusiness = () => {
           </div>
         </div>
 
-        {/* Increased height and adjusted translation for better coverage */}
         <div className="absolute bottom-0 left-0 w-full h-48 bg-neutral-light transform skew-y-3 translate-y-24 z-0"></div>
       </div>
     </section>
