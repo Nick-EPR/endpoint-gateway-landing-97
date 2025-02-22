@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -66,62 +65,64 @@ const Solutions = () => {
   }, []);
 
   return (
-    <section id="solutions" className="relative py-24 bg-neutral-light">
-      <div className="absolute top-0 left-0 w-full h-24 bg-neutral-light transform -skew-y-3 -translate-y-12 z-10"></div>
-
-      <div className="container mx-auto px-4 relative z-20">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <div className="flex justify-center mb-8">
-            <img 
-              src={triangleImage} 
-              alt="Decorative triangle" 
-              className="w-24 h-auto"
-            />
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
-            The Lifetime EPR Platform
-          </h2>
-          <p className="text-lg text-neutral animate-on-scroll">
-            Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
-          </p>
-        </div>
-
-        <div className="relative max-w-6xl mx-auto">
-          <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
-          <div className="absolute top-8 -left-4 -right-4 h-0.5 bg-primary/20"></div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {solutions.map((solution, index) => (
-            <div 
-              key={index} 
-              className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg ${
-                solution.comingSoon ? 'opacity-75' : ''
-              }`}
-            >
-              {solution.logo ? (
-                <div className="mb-6 h-16 flex items-center justify-center">
-                  <img 
-                    src={solution.logo} 
-                    alt={`${solution.title} logo`} 
-                    className={`max-h-8 w-auto object-contain ${solution.title === 'Luemin' ? 'max-w-[140px]' : ''}`}
-                  />
-                </div>
-              ) : (
-                <h3 className="text-xl font-semibold mb-6">{solution.title}</h3>
-              )}
-              <p className="text-neutral mb-6">{solution.description}</p>
-              {solution.comingSoon ? (
-                <div className="flex justify-center mt-4">
-                  <span className="text-primary font-medium">Coming Soon</span>
-                </div>
-              ) : solution.path && (
-                <Link to={solution.path}>
-                  <Button variant="outline" className="w-full">Learn More</Button>
-                </Link>
-              )}
+    <section id="solutions" className="relative">
+      <div className="bg-neutral-light py-24" style={{
+        clipPath: 'polygon(0 5%, 100% 0, 100% 100%, 0 100%)'
+      }}>
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-16">
+            <div className="flex justify-center mb-8">
+              <img 
+                src={triangleImage} 
+                alt="Decorative triangle" 
+                className="w-24 h-auto"
+              />
             </div>
-          ))}
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
+              The Lifetime EPR Platform
+            </h2>
+            <p className="text-lg text-neutral animate-on-scroll">
+              Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
+            </p>
+          </div>
+
+          <div className="relative max-w-6xl mx-auto">
+            <div className="absolute top-0 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2 -translate-y-8"></div>
+            <div className="absolute top-8 -left-4 -right-4 h-0.5 bg-primary/20"></div>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {solutions.map((solution, index) => (
+              <div 
+                key={index} 
+                className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg ${
+                  solution.comingSoon ? 'opacity-75' : ''
+                }`}
+              >
+                {solution.logo ? (
+                  <div className="mb-6 h-16 flex items-center justify-center">
+                    <img 
+                      src={solution.logo} 
+                      alt={`${solution.title} logo`} 
+                      className={`max-h-8 w-auto object-contain ${solution.title === 'Luemin' ? 'max-w-[140px]' : ''}`}
+                    />
+                  </div>
+                ) : (
+                  <h3 className="text-xl font-semibold mb-6">{solution.title}</h3>
+                )}
+                <p className="text-neutral mb-6">{solution.description}</p>
+                {solution.comingSoon ? (
+                  <div className="flex justify-center mt-4">
+                    <span className="text-primary font-medium">Coming Soon</span>
+                  </div>
+                ) : solution.path && (
+                  <Link to={solution.path}>
+                    <Button variant="outline" className="w-full">Learn More</Button>
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
