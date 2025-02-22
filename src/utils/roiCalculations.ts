@@ -1,3 +1,4 @@
+
 export interface Trend {
   label: string;
   value: string;
@@ -11,15 +12,30 @@ const SERVICE_COST_PER_DEVICE = 180; // Average service cost per device
 const RESALE_VALUE_PERCENTAGE = 0.25; // 25% of original device cost
 const AVG_DEVICE_COST = 1200; // Average device cost
 const DEVICES_PER_EMPLOYEE = 1.2; // Average number of devices per employee
+const CO2_PER_DEVICE = 156; // kg CO2 per device lifecycle
+const WATER_SAVINGS_PER_DEVICE = 1200; // liters of water saved per device lifecycle extended
+const EWASTE_REDUCTION_PER_DEVICE = 1.8; // kg of e-waste reduced per device lifecycle extended
 
 // Function to calculate annual savings based on employee count
 export const calculateAnnualSavings = (employeeCount: number): number => {
   const totalDevices = Math.ceil(employeeCount * DEVICES_PER_EMPLOYEE);
   const serviceCosts = totalDevices * SERVICE_COST_PER_DEVICE;
   const deviceSavings = employeeCount * ANNUAL_SAVINGS_PER_EMPLOYEE;
-  const resaleValue = (totalDevices / 2.8) * (AVG_DEVICE_COST * RESALE_VALUE_PERCENTAGE); // Devices eligible for resale per year
+  const resaleValue = (totalDevices / 2.8) * (AVG_DEVICE_COST * RESALE_VALUE_PERCENTAGE);
 
   return Math.round(deviceSavings + resaleValue - serviceCosts);
+};
+
+// Function to calculate environmental impact
+export const calculateEnvironmentalImpact = (employeeCount: number) => {
+  const totalDevices = Math.ceil(employeeCount * DEVICES_PER_EMPLOYEE);
+  const extendedDevices = Math.round(totalDevices * 0.4); // 40% of devices get extended lifecycle
+  
+  return {
+    co2Reduction: Math.round((extendedDevices * CO2_PER_DEVICE) / 1000), // Convert to tons
+    waterSaved: Math.round((extendedDevices * WATER_SAVINGS_PER_DEVICE) / 1000), // Convert to cubic meters
+    ewasteReduced: Math.round(extendedDevices * EWASTE_REDUCTION_PER_DEVICE), // kg
+  };
 };
 
 // Function to calculate compounded savings over 5 years
@@ -27,12 +43,15 @@ export const calculateCompoundedSavings = (employees: number) => {
   const years = 5;
   const data = [];
   let totalSavings = 0;
+  let totalCO2Saved = 0;
   
   for (let i = 1; i <= years; i++) {
     totalSavings += calculateAnnualSavings(employees);
+    totalCO2Saved += calculateEnvironmentalImpact(employees).co2Reduction;
     data.push({
       year: `Year ${i}`,
-      savings: totalSavings
+      savings: totalSavings,
+      co2Saved: totalCO2Saved
     });
   }
   
@@ -49,43 +68,37 @@ export const calculatePercentageChange = (oldValue: number, newValue: number): n
 
 // Function to calculate trends based on employee count
 export const calculateTrends = (employeeCount: number): Trend[] => {
-  // Base device lifespan is 2 years without our solution
   const baseLifespan = 2;
   const improvedLifespan = 2.8;
   const lifespanIncrease = ((improvedLifespan - baseLifespan) / baseLifespan) * 100;
   
-  // Calculate cost reduction based on employee count
   const annualSavings = calculateAnnualSavings(employeeCount);
-
-  // Calculate CO2 based on average laptop carbon footprint (156kg) and extended lifecycle
-  const avgDeviceCO2 = 156; // kg per device
-  const estimatedDevices = Math.ceil(employeeCount * DEVICES_PER_EMPLOYEE);
-  const annualCO2Savings = (estimatedDevices * avgDeviceCO2 * 0.4) / 1000; // tons, 40% reduction from lifecycle extension
+  const environmentalImpact = calculateEnvironmentalImpact(employeeCount);
   
   return [
     {
-      label: "Device Lifespan",
-      value: "2.8 years",
-      trend: 40,
-      tooltip: "Average increase in device lifespan based on our 2023 customer data"
+      label: "Carbon Reduction",
+      value: `${environmentalImpact.co2Reduction} tons`,
+      trend: -40,
+      tooltip: "Annual CO2 emissions reduction through extended device lifecycles"
+    },
+    {
+      label: "E-Waste Prevention",
+      value: `${environmentalImpact.ewasteReduced} kg`,
+      trend: -35,
+      tooltip: "Annual reduction in e-waste through device lifecycle extension and repair"
+    },
+    {
+      label: "Water Conservation",
+      value: `${environmentalImpact.waterSaved} m³`,
+      trend: -30,
+      tooltip: "Annual water savings from reduced manufacturing needs"
     },
     {
       label: "Cost Reduction",
       value: formatCurrency(annualSavings, 'USD'),
       trend: -25,
       tooltip: "Annual cost savings through repair, refurbishment, and resale programs"
-    },
-    {
-      label: "Carbon Footprint",
-      value: `${Math.round(annualCO2Savings)} tons`,
-      trend: -28,
-      tooltip: "CO2 emissions reduction through extended device lifecycles, based on 156kg average device carbon footprint"
-    },
-    {
-      label: "Repair Success",
-      value: "84%",
-      trend: 8,
-      tooltip: "Industry average repair success rate for enterprise device repairs (Gartner, 2023)"
     }
   ];
 };
