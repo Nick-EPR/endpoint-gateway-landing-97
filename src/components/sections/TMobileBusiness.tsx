@@ -35,30 +35,17 @@ const TMobileBusiness = () => {
                 <p className="text-neutral mb-6">
                   Essential information about the Windows 10 end-of-life timeline and recommended steps for a smooth transition to Windows 11.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <GuideImage 
-                    src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png"
-                    alt="Windows 11 Transition Guide Page 1"
-                    fileName="windows11-transition-guide-1.png"
-                    isPartOfDocument={true}
-                    nextPage={{
-                      src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
-                      alt: "Windows 11 Transition Guide Page 2",
-                      fileName: "windows11-transition-guide-2.png"
-                    }}
-                  />
-                  <GuideImage 
-                    src="/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png"
-                    alt="Windows 11 Transition Guide Page 2"
-                    fileName="windows11-transition-guide-2.png"
-                    isPartOfDocument={true}
-                    prevPage={{
-                      src: "/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png",
-                      alt: "Windows 11 Transition Guide Page 1",
-                      fileName: "windows11-transition-guide-1.png"
-                    }}
-                  />
-                </div>
+                <GuideImage 
+                  src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png"
+                  alt="Windows 11 Transition Guide Page 1"
+                  fileName="windows11-transition-guide-1.png"
+                  isPartOfDocument={true}
+                  nextPage={{
+                    src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
+                    alt: "Windows 11 Transition Guide Page 2",
+                    fileName: "windows11-transition-guide-2.png"
+                  }}
+                />
               </div>
 
               <div className="bg-white border border-neutral-100 rounded-xl p-6">
@@ -100,9 +87,12 @@ const TMobileBusiness = () => {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <h3 className="text-xl md:text-2xl font-semibold text-center mb-6 md:mb-8 animate-on-scroll">
-              Key Benefits
-            </h3>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Shield className="w-6 h-6 text-[#E30074]" />
+              <h3 className="text-xl md:text-2xl font-semibold text-center mb-6 md:mb-8 animate-on-scroll">
+                Key Benefits
+              </h3>
+            </div>
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
               <BenefitCard
                 title="Enterprise Security"

@@ -1,4 +1,3 @@
-
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -26,7 +25,7 @@ const Features = () => {
   }, {
     icon: <Globe className="w-8 h-8 text-primary" />,
     title: "Global Coverage",
-    description: "Manage assets across multiple locations and jurisdictions, with AI-powered decision support",
+    description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support systems",
     isHighlighted: true
   }, {
     icon: <Shield className="w-8 h-8 text-primary" />,
