@@ -1,9 +1,9 @@
 
 import { Shield, Network, Smartphone, Laptop, Cpu } from "lucide-react";
 import { Link } from "react-router-dom";
-import GuideImage from "../../components/sections/tmobile/GuideImage";
-import FeatureCard from "../../components/sections/tmobile/FeatureCard";
-import BenefitCard from "../../components/sections/tmobile/BenefitCard";
+import GuideImage from "./tmobile/GuideImage";
+import FeatureCard from "./tmobile/FeatureCard";
+import BenefitCard from "./tmobile/BenefitCard";
 
 const TMobileBusiness = () => {
   return (
