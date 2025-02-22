@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { 
-  DeviceTablet,
+  Tablet,  // Changed from DeviceTablet to Tablet
   Shield,
   Zap,
   Settings,
@@ -41,7 +41,7 @@ const Luemin = () => {
 
   const features = [
     {
-      icon: DeviceTablet,
+      icon: Tablet, // Updated icon reference
       title: "Unified Device Management",
       description: "Centralized control over all your mobile devices, laptops, and tablets from a single interface."
     },
