@@ -85,16 +85,16 @@ const Partners = () => {
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-6 glass-card rounded-xl hover:shadow-lg transition-shadow group block aspect-square"
+                    className="p-4 glass-card rounded-xl hover:shadow-lg transition-shadow group block h-[200px]"
                   >
-                    <div className="h-32 flex items-center justify-center">
+                    <div className="h-24 flex items-center justify-center">
                       <img
                         src={partner.logo}
                         alt={`${partner.name} logo`}
-                        className={`max-h-28 w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[140px]' : ''}`}
+                        className={`max-h-20 w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[120px]' : ''}`}
                       />
                     </div>
-                    <p className="text-neutral text-center mt-4 text-sm">{partner.description}</p>
+                    <p className="text-neutral text-center mt-2 text-sm">{partner.description}</p>
                   </a>
                 </CarouselItem>
               ))}
