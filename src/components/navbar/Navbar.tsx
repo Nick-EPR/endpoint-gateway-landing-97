@@ -26,7 +26,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   const isITAMPage = location.pathname === '/what-is-itam';
-  const shouldShowDark = scrolled && (isITAMPage || !isITAMPage);
+  const shouldShowDark = scrolled && !isITAMPage;
 
   return (
     <header 
@@ -37,18 +37,18 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
         shouldShowDark ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Logo scrolled={shouldShowDark} />
+          <Logo scrolled={isITAMPage ? !scrolled : shouldShowDark} />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <ProductsDropdown scrolled={shouldShowDark} />
+            <ProductsDropdown scrolled={isITAMPage ? !scrolled : shouldShowDark} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${shouldShowDark ? 'text-black' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${isITAMPage ? (scrolled ? 'text-white' : 'text-black') : (shouldShowDark ? 'text-black' : 'text-white')} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
-            <NavLinks scrolled={shouldShowDark} />
+            <NavLinks scrolled={isITAMPage ? !scrolled : shouldShowDark} />
             <a 
               href="https://app.lifetimeepr.io"
               className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200"
@@ -62,7 +62,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${shouldShowDark ? 'text-black' : 'text-white'} hover:text-primary`}
+            className={`md:hidden p-2 ${isITAMPage ? (scrolled ? 'text-white' : 'text-black') : (shouldShowDark ? 'text-black' : 'text-white')} hover:text-primary`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
