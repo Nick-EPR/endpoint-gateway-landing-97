@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -83,65 +82,63 @@
   @apply py-16 md:py-24;
 }
 
-/* Angled section styles */
 .angled-section {
   position: relative;
-  padding: 6rem 0;
-  margin-top: -4rem;
-  margin-bottom: -4rem;
+  padding: clamp(4rem, 8vw, 8rem) 0;
+  clip-path: polygon(
+    0 0,
+    100% calc(0% + 5vw),
+    100% calc(100% - 5vw),
+    0 100%
+  );
+  margin: calc(-5vw - 1px) 0;
   z-index: 1;
 }
 
-.angled-section::before,
-.angled-section::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4rem;
-  background: inherit;
-  z-index: -1;
-}
-
-.angled-section::before {
-  top: 0;
-  transform: skewY(-3deg);
-  transform-origin: 0 0;
-}
-
-.angled-section::after {
-  bottom: 0;
-  transform: skewY(3deg);
-  transform-origin: 100%;
+.angled-section > * {
+  padding: 5vw 0;
 }
 
 .angled-section-reverse {
   position: relative;
-  padding: 6rem 0;
-  margin-top: -4rem;
-  margin-bottom: -4rem;
+  padding: clamp(4rem, 8vw, 8rem) 0;
+  clip-path: polygon(
+    0 calc(0% + 5vw),
+    100% 0,
+    100% 100%,
+    0 calc(100% - 5vw)
+  );
+  margin: calc(-5vw - 1px) 0;
   z-index: 1;
 }
 
-.angled-section-reverse::before,
-.angled-section-reverse::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: 4rem;
-  background: inherit;
-  z-index: -1;
+.angled-section-reverse > * {
+  padding: 5vw 0;
 }
 
-.angled-section-reverse::before {
-  top: 0;
-  transform: skewY(3deg);
-  transform-origin: 100% 0;
+.angled-section,
+.angled-section-reverse {
+  isolation: isolate;
 }
 
-.angled-section-reverse::after {
-  bottom: 0;
-  transform: skewY(-3deg);
-  transform-origin: 0;
+section:first-of-type.angled-section,
+section:first-of-type.angled-section-reverse {
+  margin-top: 0;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 5vw),
+    0 100%
+  );
+}
+
+section:last-of-type.angled-section,
+section:last-of-type.angled-section-reverse {
+  margin-bottom: 0;
+  clip-path: polygon(
+    0 calc(0% + 5vw),
+    100% 0,
+    100% 100%,
+    0 100%
+  );
 }
