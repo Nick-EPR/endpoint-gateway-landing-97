@@ -66,7 +66,7 @@ const Footer = () => {
           </p>
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-neutral">
-              © {new Date().getFullYear()} LifetimeEPR. All rights reserved.
+              © {new Date().getFullYear()} Lifetime EndPoint Resources, LLC. All rights reserved.
             </p>
             <div className="flex gap-4 text-sm">
               <Link to="/privacy" className="text-neutral hover:text-primary transition-colors">
