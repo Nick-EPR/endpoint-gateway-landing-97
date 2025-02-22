@@ -43,7 +43,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             <ProductsDropdown scrolled={scrolled} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${isITAMPage ? (scrolled ? 'text-black' : 'text-white') : (scrolled ? 'text-neutral-600' : 'text-white')} hover:text-primary transition-colors duration-300`}
+              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-300`}
             >
               Features
             </button>
@@ -61,7 +61,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${isITAMPage ? (scrolled ? 'text-black' : 'text-white') : (scrolled ? 'text-neutral-600' : 'text-white')} hover:text-primary transition-colors duration-300`}
+            className={`md:hidden p-2 ${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-300`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

@@ -1,7 +1,6 @@
 
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import { useLocation } from "react-router-dom";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -63,9 +62,6 @@ const ProductItem = ({
 };
 
 const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownProps) => {
-  const location = useLocation();
-  const isITAMPage = location.pathname === '/what-is-itam';
-
   if (isMobile) {
     return (
       <div className="flex flex-col space-y-2 pl-4">
@@ -99,7 +95,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={`${isITAMPage ? (scrolled ? 'text-black' : 'text-white') : (scrolled ? 'text-neutral-600' : 'text-white')} hover:text-primary transition-colors duration-300 flex items-center gap-1`}>
+      <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-300 flex items-center gap-1`}>
         Products <ChevronDown size={16} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white min-w-[200px]">
