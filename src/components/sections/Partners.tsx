@@ -94,7 +94,9 @@ const Partners = () => {
                         className={`w-auto object-contain group-hover:scale-105 transition-transform ${
                           partner.name === 'Lifetime Service' 
                             ? 'max-w-[80px] max-h-14' 
-                            : partner.name === 'T-Mobile' || partner.name === 'CellHub'
+                            : partner.name === 'T-Mobile'
+                            ? 'max-h-[4.5rem]'
+                            : partner.name === 'CellHub'
                             ? 'max-h-16'
                             : 'max-h-14'
                         }`}
