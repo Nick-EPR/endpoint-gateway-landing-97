@@ -5,10 +5,21 @@ export interface Trend {
   tooltip: string;
 }
 
+// Constants for calculations
+const ANNUAL_SAVINGS_PER_EMPLOYEE = 900; // Base savings per employee
+const SERVICE_COST_PER_DEVICE = 180; // Average service cost per device
+const RESALE_VALUE_PERCENTAGE = 0.25; // 25% of original device cost
+const AVG_DEVICE_COST = 1200; // Average device cost
+const DEVICES_PER_EMPLOYEE = 1.2; // Average number of devices per employee
+
 // Function to calculate annual savings based on employee count
-// Assuming average savings of $900 per employee annually
 export const calculateAnnualSavings = (employeeCount: number): number => {
-  return employeeCount * 900; // $900 per employee
+  const totalDevices = Math.ceil(employeeCount * DEVICES_PER_EMPLOYEE);
+  const serviceCosts = totalDevices * SERVICE_COST_PER_DEVICE;
+  const deviceSavings = employeeCount * ANNUAL_SAVINGS_PER_EMPLOYEE;
+  const resaleValue = (totalDevices / 2.8) * (AVG_DEVICE_COST * RESALE_VALUE_PERCENTAGE); // Devices eligible for resale per year
+
+  return Math.round(deviceSavings + resaleValue - serviceCosts);
 };
 
 // Function to calculate compounded savings over 5 years
@@ -48,7 +59,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
 
   // Calculate CO2 based on average laptop carbon footprint (156kg) and extended lifecycle
   const avgDeviceCO2 = 156; // kg per device
-  const estimatedDevices = Math.ceil(employeeCount * 1.2); // assuming 1.2 devices per employee
+  const estimatedDevices = Math.ceil(employeeCount * DEVICES_PER_EMPLOYEE);
   const annualCO2Savings = (estimatedDevices * avgDeviceCO2 * 0.4) / 1000; // tons, 40% reduction from lifecycle extension
   
   return [
@@ -62,7 +73,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
       label: "Cost Reduction",
       value: formatCurrency(annualSavings, 'USD'),
       trend: -25,
-      tooltip: "Average annual cost savings through repair and refurbishment programs"
+      tooltip: "Annual cost savings through repair, refurbishment, and resale programs"
     },
     {
       label: "Carbon Footprint",

@@ -126,19 +126,32 @@ const ROICalculator = () => {
 
             <SavingsDisplay employees={employees} />
 
-            <div className="text-center">
+            <div className="text-center mb-4">
               <Button variant="outline" onClick={() => setShowMoreDetails(true)} className="gap-2" disabled={isAnimating}>
                 <LineChart className="w-4 h-4" />
                 View 5-Year Projection
               </Button>
+            </div>
+
+            <div className="text-xs text-neutral mt-4 p-4 bg-white/50 rounded-lg">
+              <p className="font-semibold mb-2">Calculation Methodology:</p>
+              <ul className="list-disc pl-4 space-y-1">
+                <li>Device lifecycle extension from 2 to 2.8 years (based on 2023 customer data)</li>
+                <li>Average device cost: $1200 with 25% resale value</li>
+                <li>Service cost: $180 per device annually</li>
+                <li>Average of 1.2 devices per employee</li>
+                <li>Carbon footprint: 156kg CO2 per device (industry standard)</li>
+              </ul>
+              <p className="mt-2 italic">
+                Note: Actual savings may vary based on device types, usage patterns, and market conditions.
+                Calculations based on industry averages and customer data from 2023.
+              </p>
             </div>
           </div>
         </div>
       </div>
 
       <SavingsChart employees={employees} showMoreDetails={showMoreDetails} setShowMoreDetails={setShowMoreDetails} />
-
-      
     </section>;
 };
 
