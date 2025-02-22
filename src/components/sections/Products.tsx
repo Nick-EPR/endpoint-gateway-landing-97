@@ -1,8 +1,9 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import toolboxLogo from "/lovable-uploads/a353927e-954d-4f2b-8485-dc70088f7f43.png";
+import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
-import lueminLogo from "/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png";
+import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 import { useEffect } from "react";
 
