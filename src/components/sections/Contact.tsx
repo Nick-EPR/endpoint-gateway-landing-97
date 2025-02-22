@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Building, Mail, Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -8,7 +7,6 @@ import EmailContact from './contact/EmailContact';
 import LocationCard from './contact/LocationCard';
 import LeadershipCard from './contact/LeadershipCard';
 import ContactHero from './contact/ContactHero';
-
 const locations = [{
   name: 'Headquarters',
   address: '123 Main Street, Anytown, USA',
@@ -20,18 +18,7 @@ const locations = [{
   phone: '+1 (555) 234-5678',
   email: 'sales@example.com'
 }];
-
 const Contact = () => {
-  return (
-    <div className="container mx-auto px-4 py-16">
-      <ContactHero />
-      <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        {locations.map((location, index) => (
-          <LocationCard key={index} {...location} />
-        ))}
-      </div>
-    </div>
-  );
+  return;
 };
-
 export default Contact;

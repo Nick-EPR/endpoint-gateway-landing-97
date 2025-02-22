@@ -100,7 +100,7 @@ const Index = () => {
         <ROICalculator />
       </section>
 
-      <section className="angled-section bg-neutral-light">
+      <section className="angled-section bg-neutral-light pb-32">
         <Partnership />
       </section>
 
