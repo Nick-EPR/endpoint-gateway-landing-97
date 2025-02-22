@@ -8,6 +8,7 @@ import { EmployeeInput } from './roi/EmployeeInput';
 import { SavingsDisplay } from './roi/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
 import { calculateTrends, defaultTrends } from '@/utils/roiCalculations';
+
 const ROICalculator = () => {
   const [employees, setEmployees] = useState(1000);
   const [isEnterprise, setIsEnterprise] = useState(true);
@@ -16,22 +17,35 @@ const ROICalculator = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+
   const handleEmployeeChange = (value: number) => {
     if (!isAnimating) {
       setEmployees(value);
       setCurrentTrends(calculateTrends(value));
-    }
-  };
-  const handleEnterpriseChange = (checked: boolean) => {
-    if (!isAnimating) {
-      setIsEnterprise(checked);
-      if (checked && employees < 1000) {
-        setEmployees(1000);
-      } else if (!checked && employees > 300) {
-        setEmployees(300);
+      
+      // Auto-switch mode based on employee count
+      if (value >= 280 && !isEnterprise) {
+        setIsEnterprise(true);
+      } else if (value <= 320 && isEnterprise) {
+        setIsEnterprise(false);
       }
     }
   };
+
+  const handleEnterpriseChange = (checked: boolean) => {
+    if (!isAnimating) {
+      setIsEnterprise(checked);
+      // Adjust employee count when switching modes
+      if (checked && employees < 1000) {
+        setEmployees(1000);
+        setCurrentTrends(calculateTrends(1000));
+      } else if (!checked && employees > 300) {
+        setEmployees(300);
+        setCurrentTrends(calculateTrends(300));
+      }
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
@@ -46,6 +60,7 @@ const ROICalculator = () => {
     }
     return () => observer.disconnect();
   }, []);
+
   useEffect(() => {
     if (isVisible) {
       const animateSlider = async () => {
@@ -76,6 +91,7 @@ const ROICalculator = () => {
       animateSlider();
     }
   }, [isVisible]);
+
   return <section id="roi-calculator" className="relative py-20 bg-primary-light overflow-hidden">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary rounded-full -translate-x-1/2 -translate -y-1/2 blur-3xl"></div>
@@ -131,4 +147,5 @@ const ROICalculator = () => {
       
     </section>;
 };
+
 export default ROICalculator;

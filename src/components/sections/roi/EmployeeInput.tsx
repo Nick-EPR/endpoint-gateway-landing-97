@@ -1,7 +1,7 @@
 
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
-import { RefObject, useState } from "react";
+import { RefObject, useState, useEffect } from "react";
 
 interface EmployeeInputProps {
   employees: number;
@@ -13,6 +13,15 @@ interface EmployeeInputProps {
 
 export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange, disabled }: EmployeeInputProps) => {
   const [inputValue, setInputValue] = useState<string>(employees.toString());
+  
+  // Threshold for auto-switching modes (slightly before the actual limit)
+  const ENTERPRISE_THRESHOLD = 280;
+  const SMB_THRESHOLD = 320;
+
+  useEffect(() => {
+    // Update input value when employees prop changes
+    setInputValue(employees.toString());
+  }, [employees]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -38,6 +47,12 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     onEmployeeChange(validValue);
   };
 
+  const handleSliderChange = (values: number[]) => {
+    const value = values[0];
+    setInputValue(value.toString());
+    onEmployeeChange(value);
+  };
+
   return (
     <div className="mb-8 px-2 sm:px-0" ref={sliderRef}>
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-2">
@@ -60,11 +75,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
         max={isEnterprise ? 10000 : 300} 
         step={isEnterprise ? 1000 : 50} 
         value={[employees]} 
-        onValueChange={values => {
-          const value = values[0];
-          setInputValue(value.toString());
-          onEmployeeChange(value);
-        }} 
+        onValueChange={handleSliderChange}
         className="my-4"
         disabled={disabled}
       />
