@@ -16,13 +16,13 @@ interface Feature {
 const Features = () => {
   const features: Feature[] = [{
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
-    title: "Repair Management",
-    description: "Comprehensive device lifecycle management through Toolbox integration with Lifetime Service",
+    title: "Toolbox Integration",
+    description: "Comprehensive device lifecycle management through our integrated enterprise platform",
     isHighlighted: true
   }, {
     icon: <Replace className="w-8 h-8 text-primary" />,
-    title: "Advance Exchange",
-    description: "Efficient device replacement workflow integrated with repair depot services"
+    title: "Asset Exchange",
+    description: "Streamlined device deployment and replacement workflow management"
   }, {
     icon: <Globe className="w-8 h-8 text-primary" />,
     title: "Nationwide Coverage",
@@ -36,7 +36,7 @@ const Features = () => {
   }, {
     icon: <Zap className="w-8 h-8 text-primary" />,
     title: "Rapid Response",
-    description: "Quick turnaround times with same-day processing for replacement requests",
+    description: "Same-day processing for device management requests through automated workflows",
   }, {
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Security First",
@@ -47,8 +47,8 @@ const Features = () => {
     }
   }, {
     icon: <Recycle className="w-8 h-8 text-primary" />,
-    title: "Device Refurbishment",
-    description: "Expert repair and refurbishment services to maximize device lifespan and reduce waste",
+    title: "Lifecycle Management",
+    description: "Maximize device ROI through intelligent asset lifecycle optimization",
     isHighlighted: true
   }, {
     icon: <Users className="w-8 h-8 text-primary" />,
