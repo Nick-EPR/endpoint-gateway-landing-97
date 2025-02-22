@@ -1,5 +1,5 @@
 
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Feature {
@@ -20,6 +20,20 @@ const Features = () => {
     description: "Connect your ITAM system with repair depot and warehouse operations for end-to-end device management",
     isHighlighted: true
   }, {
+    icon: <Microscope className="w-8 h-8 text-primary" />,
+    title: "Automated Diagnostics",
+    description: "Comprehensive hardware diagnostics performed securely within authorized repair facilities",
+    isHighlighted: true
+  }, {
+    icon: <HardDrive className="w-8 h-8 text-primary" />,
+    title: "Device Provisioning",
+    description: "Secure on-site device provisioning and configuration management within controlled environments"
+  }, {
+    icon: <ShieldCheck className="w-8 h-8 text-primary" />,
+    title: "Secure Data Handling",
+    description: "On-site data wiping and secure device destruction with comprehensive audit trails",
+    isHighlighted: true
+  }, {
     icon: <Replace className="w-8 h-8 text-primary" />,
     title: "Asset Exchange",
     description: "Streamlined device deployment and replacement workflow management"
@@ -36,11 +50,11 @@ const Features = () => {
   }, {
     icon: <Zap className="w-8 h-8 text-primary" />,
     title: "Rapid Response",
-    description: "Same-day processing for device management requests through automated workflows",
+    description: "Same-day processing for device management requests through automated workflows"
   }, {
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Security First",
-    description: "Enterprise-grade security and compliance measures",
+    description: "Enterprise-grade security and compliance measures for all device operations",
     link: {
       to: "/security",
       text: "Learn More"

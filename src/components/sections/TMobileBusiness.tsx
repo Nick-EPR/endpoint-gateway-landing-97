@@ -87,9 +87,9 @@ const TMobileBusiness = () => {
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="flex items-center justify-center gap-3 mb-6">
+            <div className="flex items-center justify-center gap-3 mb-8">
               <Shield className="w-6 h-6 text-[#E30074]" />
-              <h3 className="text-xl md:text-2xl font-semibold text-center mb-6 md:mb-8 animate-on-scroll">
+              <h3 className="text-xl md:text-2xl font-semibold text-center">
                 Key Benefits
               </h3>
             </div>
@@ -115,7 +115,7 @@ const TMobileBusiness = () => {
           </div>
 
           <div className="max-w-xl mx-auto mt-12 md:mt-16 text-center px-4">
-            <Link to="/contact">
+            <Link to="/contact#contact">
               <button className="w-full sm:w-auto bg-[#E30074] text-white px-6 md:px-8 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold hover:bg-[#cc0068] transition-colors duration-200">
                 Schedule a Consultation
               </button>
