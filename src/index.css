@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -141,4 +142,11 @@ section:last-of-type.angled-section-reverse {
     100% 100%,
     0 100%
   );
+}
+
+/* Fix for nested sections */
+.angled-section section,
+.angled-section-reverse section {
+  padding: 0;
+  margin: 0;
 }

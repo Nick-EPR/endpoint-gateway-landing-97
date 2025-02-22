@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Calculator, Building2, LineChart, Info } from 'lucide-react';
 import { Switch } from "@/components/ui/switch";
@@ -110,7 +109,7 @@ const ROICalculator = () => {
   };
 
   return (
-    <section id="roi-calculator" className="relative py-20 bg-primary-light overflow-hidden border-t border-neutral-100">
+    <section id="roi-calculator" className="relative bg-primary-light overflow-hidden border-t border-neutral-100">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary rounded-full -translate-x-1/2 -translate -y-1/2 blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
