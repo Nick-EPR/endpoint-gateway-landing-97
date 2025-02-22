@@ -1,3 +1,4 @@
+
 import { Shield, Network, Smartphone, Check, Laptop, Cpu, Download, Maximize2 } from "lucide-react";
 import {
   Dialog,
@@ -197,8 +198,8 @@ const TMobileBusiness = () => {
         </div>
       </div>
 
-      {/* Bottom slanted divider */}
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform skew-y-3 translate-y-8 z-0"></div>
+      {/* Increased height and adjusted translation for better coverage */}
+      <div className="absolute bottom-0 left-0 w-full h-48 bg-neutral-light transform skew-y-3 translate-y-24 z-0"></div>
     </section>
   );
 };
