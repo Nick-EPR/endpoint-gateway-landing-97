@@ -80,27 +80,27 @@ const Features = () => {
     isHighlighted: true
   }];
 
-  return <section id="features" className="py-32 md:py-48 bg-neutral-light">
+  return <section id="features" className="py-20 md:py-32 bg-neutral-light">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll">
           Platform Features
         </h2>
-        <p className="text-center text-lg mb-16 animate-on-scroll">
+        <p className="text-center text-base md:text-lg mb-10 animate-on-scroll max-w-2xl mx-auto">
           Complete device lifecycle management with{' '}
           <span className="text-primary font-semibold">intelligent predictive maintenance</span>{' '}
           capabilities
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className={`p-6 rounded-xl transition-all duration-500 backdrop-blur-sm border 
+              className={`p-4 rounded-lg transition-all duration-500 backdrop-blur-sm border 
                 ${feature.isHighlighted 
-                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2' 
-                  : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
+                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-md hover:shadow-lg hover:-translate-y-1' 
+                  : 'bg-white/80 border-neutral-100 hover:shadow-lg hover:-translate-y-0.5'
                 } animate-on-scroll relative`}
             >
-              <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
+              <div className={`mb-3 w-10 h-10 rounded-lg flex items-center justify-center 
                 ${feature.isHighlighted 
                   ? 'bg-primary/10' 
                   : 'bg-gray-50'
@@ -108,7 +108,7 @@ const Features = () => {
               >
                 {feature.icon}
               </div>
-              <h3 className={`text-xl font-semibold mb-2 
+              <h3 className={`text-lg font-semibold mb-1.5 flex items-center gap-2 
                 ${feature.isHighlighted 
                   ? 'text-primary' 
                   : 'text-neutral-800'
@@ -116,15 +116,15 @@ const Features = () => {
               >
                 {feature.title}
                 {feature.comingSoon && (
-                  <span className="ml-2 text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
-                    Coming Soon
+                  <span className="text-xs px-1.5 py-0.5 bg-primary/10 text-primary rounded-full leading-none">
+                    Soon
                   </span>
                 )}
               </h3>
-              <p className="text-neutral-600 mb-4">{feature.description}</p>
-              {feature.link && <Link to={feature.link.to} className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-medium transition-colors">
+              <p className="text-neutral-600 text-sm">{feature.description}</p>
+              {feature.link && <Link to={feature.link.to} className="inline-flex items-center text-xs text-primary hover:text-primary/80 font-medium transition-colors mt-2">
                   {feature.link.text}
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>}
