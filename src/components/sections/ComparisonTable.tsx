@@ -141,7 +141,16 @@ const ComparisonTable = () => {
                 <TableRow className="bg-neutral-50">
                   <TableHead className="w-1/4">Aspect</TableHead>
                   <TableHead className="w-[37.5%]">Do-It-Yourself ITAM</TableHead>
-                  <TableHead className="w-[37.5%] text-primary">Lifetime EPR</TableHead>
+                  <TableHead className="w-[37.5%] text-primary">
+                    <div className="flex items-center gap-2">
+                      <img 
+                        src="/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png" 
+                        alt="EPR Triangle" 
+                        className="w-5 h-5"
+                      />
+                      Lifetime EPR
+                    </div>
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
