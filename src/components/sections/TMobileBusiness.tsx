@@ -21,17 +21,41 @@ const TMobileBusiness = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto mb-12">
-            <GuideImage 
-              src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png"
-              alt="Windows 11 Transition Guide Page 1"
-              fileName="windows11-transition-guide-1.png"
-            />
-            <GuideImage 
-              src="/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png"
-              alt="Windows 11 Transition Guide Page 2"
-              fileName="windows11-transition-guide-2.png"
-            />
+          {/* Newsletter Section */}
+          <div className="max-w-6xl mx-auto mb-12">
+            <h3 className="text-2xl font-semibold text-center mb-6">Latest Updates & Guides</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Windows 11 Transition Guide */}
+              <div className="bg-neutral-light rounded-xl p-6">
+                <h4 className="text-xl font-semibold mb-4">Windows 11 Transition Guide</h4>
+                <p className="text-neutral mb-6">
+                  Essential information about the Windows 10 end-of-life timeline and recommended steps for a smooth transition to Windows 11.
+                </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <GuideImage 
+                    src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png"
+                    alt="Windows 11 Transition Guide Page 1"
+                    fileName="windows11-transition-guide-1.png"
+                  />
+                  <GuideImage 
+                    src="/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png"
+                    alt="Windows 11 Transition Guide Page 2"
+                    fileName="windows11-transition-guide-2.png"
+                  />
+                </div>
+              </div>
+
+              {/* T-Mobile 5G Integration */}
+              <div className="bg-white border border-neutral-100 rounded-xl p-6">
+                <h4 className="text-xl font-semibold mb-4">T-Mobile 5G Enterprise Solutions</h4>
+                <p className="text-neutral mb-6">
+                  Discover how T-Mobile's 5G network integration can transform your business operations and device management capabilities.
+                </p>
+                <div className="aspect-[4/3] bg-neutral-light/50 rounded-lg flex items-center justify-center">
+                  <p className="text-neutral text-sm">Coming Soon</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto mb-12 md:mb-16">
