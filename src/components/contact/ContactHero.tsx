@@ -41,7 +41,7 @@ const ContactHero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 translate-y-8 z-10" />
+      <div className="absolute inset-x-0 -bottom-8 h-16 bg-neutral-light transform -skew-y-3" />
     </section>
   );
 };

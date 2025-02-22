@@ -1,3 +1,4 @@
+
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Lightbulb, Award, Shield, Heart } from "lucide-react";
@@ -80,8 +81,8 @@ const Contact = () => {
       <ContactForm />
       
       {/* Leadership Profiles */}
-      <section className="relative py-24 bg-neutral-light mt-8">
-        <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-2 -translate-y-8" />
+      <section className="relative py-24 bg-neutral-light">
+        <div className="absolute inset-x-0 -top-8 h-16 bg-white transform -skew-y-3" />
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Leadership Team</h1>
@@ -95,12 +96,11 @@ const Contact = () => {
             ))}
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform -skew-y-2 translate-y-8 z-10" />
+        <div className="absolute inset-x-0 -bottom-8 h-16 bg-white transform -skew-y-3" />
       </section>
 
       {/* Values Section */}
-      <section className="relative section-padding bg-white mt-8">
-        <div className="absolute top-0 left-0 w-full h-16 bg-white transform -skew-y-2 -translate-y-8" />
+      <section className="relative section-padding bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-8">Our Leadership Values</h2>
