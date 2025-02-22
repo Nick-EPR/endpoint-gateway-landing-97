@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -101,13 +100,11 @@ const Index = () => {
         <ROICalculator />
       </section>
 
-      <section className="angled-section bg-neutral-light">
+      <section className="angled-section bg-neutral-light pb-32">
         <Partnership />
       </section>
 
-      <section className="angled-section-reverse bg-[#E5DEFF]">
-        <Contact />
-      </section>
+      <Contact />
 
       <Footer />
       <ChatButton />
