@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Calculator, Building2, LineChart, Info } from 'lucide-react';
 import { Switch } from "@/components/ui/switch";
@@ -160,20 +159,23 @@ const ROICalculator = () => {
             <div className="text-xs text-neutral mt-4 p-4 bg-white/50 rounded-lg">
               <div className="flex items-center gap-2 font-semibold mb-2">
                 <span>Calculation Methodology:</span>
-                <TooltipProvider>
+                <div className="flex items-center gap-2">
                   {Object.entries(metricTooltips).map(([key, content]) => (
-                    <Tooltip key={key}>
-                      <TooltipTrigger asChild>
-                        <Info className="h-4 w-4 text-primary cursor-help" />
-                      </TooltipTrigger>
-                      <TooltipContent className="max-w-xs">
-                        <p className="font-semibold mb-1">{content.title}</p>
-                        <p className="text-xs">{content.description}</p>
-                      </TooltipContent>
-                    </Tooltip>
+                    <TooltipProvider key={key}>
+                      <Tooltip delayDuration={0}>
+                        <TooltipTrigger asChild>
+                          <Info className="h-4 w-4 text-primary cursor-help" />
+                        </TooltipTrigger>
+                        <TooltipContent side="top" align="center" className="max-w-xs">
+                          <p className="font-semibold mb-1">{content.title}</p>
+                          <p className="text-xs">{content.description}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    </TooltipProvider>
                   ))}
-                </TooltipProvider>
+                </div>
               </div>
+              
               <ul className="list-disc pl-4 space-y-1">
                 <li>Device lifecycle extension from 2 to 2.8 years (40% of devices)</li>
                 <li>CO2 reduction: 156kg per device lifecycle extended</li>
