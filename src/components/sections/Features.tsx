@@ -17,7 +17,7 @@ const Features = () => {
   const features: Feature[] = [{
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
     title: "Toolbox Integration",
-    description: "Comprehensive device lifecycle management through our integrated enterprise platform",
+    description: "Connect your ITAM system directly with repair depot operations for seamless device management",
     isHighlighted: true
   }, {
     icon: <Replace className="w-8 h-8 text-primary" />,
