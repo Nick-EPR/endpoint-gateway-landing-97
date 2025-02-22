@@ -85,13 +85,13 @@ const Partners = () => {
                     href={partner.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-4 glass-card rounded-xl hover:shadow-lg transition-shadow group block h-[200px]"
+                    className="p-4 glass-card rounded-xl hover:shadow-lg transition-shadow group block h-[140px]"
                   >
-                    <div className="h-24 flex items-center justify-center">
+                    <div className="h-16 flex items-center justify-center">
                       <img
                         src={partner.logo}
                         alt={`${partner.name} logo`}
-                        className={`max-h-20 w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[120px]' : ''}`}
+                        className={`max-h-14 w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[80px]' : ''}`}
                       />
                     </div>
                     <p className="text-neutral text-center mt-2 text-sm">{partner.description}</p>
