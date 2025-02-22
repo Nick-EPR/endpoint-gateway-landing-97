@@ -84,17 +84,11 @@ export default {
             transform: "translateY(-10px)",
           },
         },
-        "spin-slow": {
-          "100%": {
-            transform: "rotate(360deg)",
-          },
-        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 3s ease-in-out infinite",
-        "spin-slow": "spin-slow 6s linear infinite",
       },
     },
   },
