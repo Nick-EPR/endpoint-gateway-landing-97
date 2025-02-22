@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -99,7 +100,11 @@ const Solutions = () => {
                   <img 
                     src={solution.logo} 
                     alt={`${solution.title} logo`} 
-                    className={`max-h-8 w-auto object-contain ${solution.title === 'Luemin' ? 'max-w-[140px]' : ''}`}
+                    className={`object-contain ${
+                      solution.title === 'HeliAM' ? 'h-12' :
+                      solution.title === 'Luemin' ? 'max-w-[140px]' :
+                      'max-h-8'
+                    }`}
                   />
                 </div>
               ) : (

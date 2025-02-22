@@ -13,6 +13,7 @@ import Mission from "./pages/Mission";
 import Status from "./pages/Status";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import WhatIsITAM from "./pages/WhatIsITAM";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ function App() {
           <Route path="/status" element={<Status />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/what-is-itam" element={<WhatIsITAM />} />
           <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -9,9 +9,11 @@ const Security = () => {
   const {
     pathname
   } = useLocation();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
@@ -22,22 +24,28 @@ const Security = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   const handleMouseEnter = () => {
     // Keep this for potential future use
   };
+
   const securityFeatures = [{
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "DoD-Standard Data Wiping",
-    description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security."
+    description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security.",
+    certImage: "/lovable-uploads/de0ae0ac-14bc-4ead-8802-50fea88c5890.png", // DoD logo
   }, {
     icon: <CheckCircle2 className="w-8 h-8 text-primary" />,
     title: "R2V3-Certified Partnership",
-    description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility."
+    description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility.",
+    certImage: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png", // R2V3 logo
   }, {
     icon: <Lock className="w-8 h-8 text-primary" />,
     title: "ISO27001:2023 Compliance",
-    description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data."
+    description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data.",
+    certImage: "/lovable-uploads/d085cb0d-47c3-4598-ad6d-d64c8e9b99fc.png", // ISO logo
   }];
+
   const additionalFeatures = [{
     icon: <KeyRound className="w-8 h-8 text-primary" />,
     title: "Complete Chain of Custody",
@@ -55,6 +63,7 @@ const Security = () => {
     title: "Partner Compliance",
     description: "Strict security requirements for all partners and subcontractors through comprehensive Master Service Agreements."
   }];
+
   return (
     <div className="min-h-screen">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
@@ -101,11 +110,22 @@ const Security = () => {
             Our comprehensive security measures and certifications ensure your data remains protected at every stage of the IT asset lifecycle.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {securityFeatures.map((feature, index) => <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
-                <div className="mb-4">{feature.icon}</div>
+            {securityFeatures.map((feature, index) => (
+              <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="mb-4">{feature.icon}</div>
+                  {feature.certImage && (
+                    <img 
+                      src={feature.certImage}
+                      alt={`${feature.title} certification`}
+                      className="h-12 w-auto object-contain"
+                    />
+                  )}
+                </div>
                 <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
                 <p className="text-neutral">{feature.description}</p>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
