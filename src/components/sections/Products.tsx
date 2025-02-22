@@ -115,9 +115,9 @@ const Solutions = () => {
               </div>
               
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-primary/10" 
+                <div className="hidden md:block absolute top-1/2 -right-4 w-16 h-[2px] bg-primary/10" 
                   style={{ 
-                    transform: 'translateY(-50%)',
+                    transform: 'translateY(-50%) translateX(4px)',
                     zIndex: 1
                   }}>
                   <div className="data-flow">
@@ -137,11 +137,11 @@ const Solutions = () => {
                 @keyframes flowRight {
                   0% { transform: translateX(0); opacity: 0; }
                   50% { opacity: 1; }
-                  100% { transform: translateX(32px); opacity: 0; }
+                  100% { transform: translateX(64px); opacity: 0; }
                 }
 
                 @keyframes flowLeft {
-                  0% { transform: translateX(32px); opacity: 0; }
+                  0% { transform: translateX(64px); opacity: 0; }
                   50% { opacity: 1; }
                   100% { transform: translateX(0); opacity: 0; }
                 }
