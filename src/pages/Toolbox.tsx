@@ -14,7 +14,7 @@ import {
   CheckCircle2,
   CircleDollarSign
 } from "lucide-react";
-import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
+import toolboxLogo from "/lovable-uploads/5f646840-4a0c-484c-bd5d-6707af1f66ca.png";
 import warehouseImage from "/lovable-uploads/1677d91d-eaaf-4e2c-b98f-d73469344a71.png";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
