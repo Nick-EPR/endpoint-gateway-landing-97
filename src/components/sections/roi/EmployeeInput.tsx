@@ -112,6 +112,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
         onValueChange={handleSliderChange}
         className={`my-4 transition-opacity duration-300 ${isTransitioning ? 'opacity-50' : ''}`}
         disabled={disabled || isTransitioning}
+        isEnterprise={isEnterprise}
       />
       <div className="flex justify-between text-xs text-neutral">
         <span>100</span>
