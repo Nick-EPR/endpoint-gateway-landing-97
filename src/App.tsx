@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import HeliAM from "./pages/HeliAM";
 import Toolbox from "./pages/Toolbox";
+import Luemin from "./pages/Luemin";
 import Leadership from "./pages/Leadership";
 import SecurityWhitepaper from "./pages/SecurityWhitepaper";
 import Mission from "./pages/Mission";
@@ -29,6 +30,7 @@ function App() {
           <Route path="/leadership" element={<Leadership />} />
           <Route path="/heliam" element={<HeliAM />} />
           <Route path="/toolbox" element={<Toolbox />} />
+          <Route path="/luemin" element={<Luemin />} />
           <Route path="/mission" element={<Mission />} />
           <Route path="/status" element={<Status />} />
           <Route path="/terms" element={<Terms />} />

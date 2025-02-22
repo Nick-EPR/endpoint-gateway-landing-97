@@ -20,14 +20,14 @@ const ProductItem = ({
   alt, 
   children, 
   onClick,
-  disabled 
+  comingSoon 
 }: { 
   to?: string;
   imgSrc: string;
   alt: string;
   children: React.ReactNode;
   onClick?: () => void;
-  disabled?: boolean;
+  comingSoon?: boolean;
 }) => {
   const content = (
     <>
@@ -36,17 +36,12 @@ const ProductItem = ({
         alt={alt}
         className="w-4 h-4 object-contain"
       />
-      <span>{children}</span>
+      <span>
+        {children}
+        {comingSoon && <span className="ml-2 text-xs text-primary">(Coming Soon)</span>}
+      </span>
     </>
   );
-
-  if (disabled) {
-    return (
-      <span className="opacity-75 cursor-not-allowed flex items-center gap-2">
-        {content}
-      </span>
-    );
-  }
 
   if (!to) return null;
 
@@ -82,12 +77,13 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
           Toolbox
         </ProductItem>
         <ProductItem
+          to="/luemin"
           imgSrc="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
           alt="Luemin Logo"
-          disabled
-          to=""
+          comingSoon={true}
+          onClick={onItemClick}
         >
-          Luemin (Coming Soon)
+          Luemin
         </ProductItem>
       </div>
     );
@@ -117,14 +113,14 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
             Toolbox
           </ProductItem>
         </DropdownMenuItem>
-        <DropdownMenuItem className="opacity-75 cursor-not-allowed">
+        <DropdownMenuItem>
           <ProductItem
+            to="/luemin"
             imgSrc="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
             alt="Luemin Logo"
-            disabled
-            to=""
+            comingSoon={true}
           >
-            Luemin (Coming Soon)
+            Luemin
           </ProductItem>
         </DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,6 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { Database, GitMerge, Globe, Shield, Users, Server } from "lucide-react";
+import { Database, GitMerge, Globe, Shield, Users, Server, ArrowRight, BarChart3, CheckCircle2 } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
@@ -39,6 +40,57 @@ const HeliAM = () => {
     setIsScrolled(true);
   };
 
+  const features = [
+    {
+      icon: Database,
+      title: "Comprehensive Asset Tracking",
+      description: "Track every asset through its entire lifecycle with detailed histories and real-time status updates."
+    },
+    {
+      icon: GitMerge,
+      title: "Seamless Integration",
+      description: "Native integration with all Lifetime EPR solutions for complete lifecycle visibility."
+    },
+    {
+      icon: Server,
+      title: "Asset Intelligence",
+      description: "Advanced tracking capabilities powered by our innovative agent technology."
+    },
+    {
+      icon: Shield,
+      title: "Security First",
+      description: "Enterprise-grade security with role-based access control and detailed audit logs."
+    },
+    {
+      icon: Globe,
+      title: "Global Visibility",
+      description: "Monitor and manage assets across multiple locations and organizations."
+    },
+    {
+      icon: Users,
+      title: "User Management",
+      description: "Streamlined asset assignment and user lifecycle management."
+    }
+  ];
+
+  const stats = [
+    {
+      icon: <BarChart3 className="w-8 h-8 text-primary" />,
+      value: "30%",
+      label: "Average cost reduction"
+    },
+    {
+      icon: <CheckCircle2 className="w-8 h-8 text-primary" />,
+      value: "99.9%",
+      label: "Asset visibility"
+    },
+    {
+      icon: <Database className="w-8 h-8 text-primary" />,
+      value: "1M+",
+      label: "Assets managed"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
@@ -55,8 +107,8 @@ const HeliAM = () => {
         </div>
         <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
-            <img src={heliamLogo} alt="HeliAM Logo" className="h-24 mb-8" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            <img src={heliamLogo} alt="HeliAM Logo" className="h-24 mb-8 animate-fade-in" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fade-in [animation-delay:200ms]">
               ITAM done{' '}
               <span className="relative inline-block min-w-[2ch]">
                 <span className={`absolute transition-opacity duration-500 ${showLight ? 'opacity-0' : 'opacity-100'}`}>
@@ -68,50 +120,63 @@ const HeliAM = () => {
               </span>
               .
             </h1>
-            <p className="text-lg text-white/90 max-w-2xl">
+            <p className="text-lg text-white/90 max-w-2xl animate-fade-in [animation-delay:400ms]">
               HeliAM streamlines IT asset lifecycle management with comprehensive tracking, security, and management capabilities within the Lifetime EPR ecosystem.
             </p>
+            <div className="flex gap-4 mt-8 animate-fade-in [animation-delay:600ms]">
+              <Button size="lg" className="bg-primary/90 hover:bg-primary">
+                Get Started
+              </Button>
+              <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/20">
+                Watch Demo
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Core Features Section */}
+      {/* Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center p-6 rounded-xl bg-neutral-50">
+                  <div className="inline-flex p-3 rounded-lg bg-primary/5 mb-4">
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl font-bold text-neutral-900 mb-2">
+                    {stat.value}
+                  </div>
+                  <p className="text-neutral-600">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Grid */}
       <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">Comprehensive Asset Management</h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Everything you need to manage your IT assets throughout their entire lifecycle
+            </p>
+          </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Database className="w-6 h-6 text-primary" />
+            {features.map((Feature, index) => (
+              <div key={index} className="p-6 bg-white rounded-xl hover:shadow-lg transition-all group">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
+                    <Feature.icon className="w-6 h-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{Feature.title}</h3>
                 </div>
-                <h3 className="text-xl font-semibold">Complete Asset Management</h3>
+                <p className="text-neutral-600">{Feature.description}</p>
               </div>
-              <p className="text-neutral-600">
-                Unified asset tracking and management within the Lifetime EPR ecosystem for maximum visibility and control.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <GitMerge className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Seamless Integration</h3>
-              </div>
-              <p className="text-neutral-600">
-                Native integration with all Lifetime EPR solutions for comprehensive lifecycle management.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Server className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Asset Intelligence</h3>
-              </div>
-              <p className="text-neutral-600">
-                Advanced tracking capabilities powered by Lifetime EPR's innovative agent technology.
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -119,50 +184,29 @@ const HeliAM = () => {
       {/* Toolbox Integration */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Enhanced with Toolbox</h2>
           <div className="max-w-2xl mx-auto">
-            <div className="p-8 bg-primary/5 rounded-lg">
-              <h3 className="text-2xl font-semibold mb-4">Toolbox</h3>
-              <p className="text-neutral-600 mb-4">
+            <div className="p-8 bg-primary/5 rounded-xl">
+              <h3 className="text-2xl font-semibold mb-4">Enhanced with Toolbox</h3>
+              <p className="text-neutral-600 mb-6">
                 Leverage Toolbox's powerful features within HeliAM to optimize asset tracking, security, and management throughout the lifecycle.
               </p>
               <Link to="/toolbox">
-                <Button variant="outline">Explore Toolbox Features</Button>
+                <Button variant="outline" className="group">
+                  Explore Toolbox Features
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Button>
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Value Proposition */}
-      <section className="py-16 bg-neutral-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">The Lifetime EPR Advantage</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="p-6 bg-white rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Centralized Control</h3>
-                <p className="text-neutral-600">
-                  Manage your entire IT asset lifecycle through one unified platform.
-                </p>
-              </div>
-              <div className="p-6 bg-white rounded-lg">
-                <h3 className="text-xl font-semibold mb-4">Ecosystem Integration</h3>
-                <p className="text-neutral-600">
-                  Seamlessly connect with all Lifetime EPR solutions for complete asset management.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Transform Your IT Asset Management</h2>
+          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your IT Asset Management?</h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
-            Experience the power of unified IT asset management with Lifetime EPR's comprehensive platform.
+            Join leading organizations that trust HeliAM for their IT asset lifecycle management.
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/contact">
