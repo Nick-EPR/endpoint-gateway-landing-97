@@ -82,49 +82,59 @@ const Terms = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <Navbar scrolled={true} onMouseEnter={() => {}} />
-      
-      <main className="container mx-auto px-4 py-20 md:py-32">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
-          <p className="text-neutral mb-8">
-            Please read these terms carefully before using our services. These terms outline your rights and responsibilities when using Lifetime EPR's services.
-          </p>
-          
-          <div className="grid md:grid-cols-2 gap-4 mb-12">
-            {terms.slice(0, 4).map((term, index) => (
-              <PolicyCard
-                key={index}
-                icon={term.icon}
-                title={term.title}
-                description={term.summary}
-              />
-            ))}
-          </div>
-
-          <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Detailed Terms</h2>
-            <Accordion type="single" collapsible className="w-full">
-              {terms.map((term, index) => (
-                <AccordionItem key={index} value={`item-${index}`}>
-                  <AccordionTrigger className="hover:no-underline">
-                    <div className="flex items-center gap-2">
-                      <term.icon className="h-5 w-5 text-primary" />
-                      <span>{term.title}</span>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <p className="text-neutral pt-2">{term.content}</p>
-                  </AccordionContent>
-                </AccordionItem>
+    <div className="min-h-screen relative">
+      <div className="fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 backdrop-blur-sm z-10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d"
+          alt="Terms Background"
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="relative z-10">
+        <Navbar scrolled={true} onMouseEnter={() => {}} />
+        
+        <main className="container mx-auto px-4 py-20 md:py-32">
+          <div className="max-w-4xl mx-auto bg-white/95 rounded-xl p-8 backdrop-blur-sm">
+            <h1 className="text-4xl font-bold mb-4">Terms of Service</h1>
+            <p className="text-neutral mb-8">
+              Please read these terms carefully before using our services. These terms outline your rights and responsibilities when using Lifetime EPR's services.
+            </p>
+            
+            <div className="grid md:grid-cols-2 gap-4 mb-12">
+              {terms.slice(0, 4).map((term, index) => (
+                <PolicyCard
+                  key={index}
+                  icon={term.icon}
+                  title={term.title}
+                  description={term.summary}
+                />
               ))}
-            </Accordion>
-          </div>
-        </div>
-      </main>
+            </div>
 
-      <Footer />
+            <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Detailed Terms</h2>
+              <Accordion type="single" collapsible className="w-full">
+                {terms.map((term, index) => (
+                  <AccordionItem key={index} value={`item-${index}`}>
+                    <AccordionTrigger className="hover:no-underline">
+                      <div className="flex items-center gap-2">
+                        <term.icon className="h-5 w-5 text-primary" />
+                        <span>{term.title}</span>
+                      </div>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      <p className="text-neutral pt-2">{term.content}</p>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+          </div>
+        </main>
+
+        <Footer />
+      </div>
     </div>
   );
 };

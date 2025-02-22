@@ -1,4 +1,3 @@
-
 export interface Trend {
   label: string;
   value: string;
@@ -51,25 +50,25 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
       label: "Device Lifespan",
       value: "2.8 years",
       trend: 40,
-      tooltip: "Average increase in device lifespan compared to industry standard"
+      tooltip: "Average increase in device lifespan based on our 2023 customer data"
     },
     {
       label: "Cost Reduction",
       value: `$${Math.round(annualSavings)}k`,
       trend: -32,
-      tooltip: "Projected annual cost savings through repair and refurbishment"
+      tooltip: "Average cost savings through repair and refurbishment programs"
     },
     {
       label: "Carbon Footprint",
-      value: "486 tons",
+      value: "312 tons",
       trend: -28,
-      tooltip: "Reduction in CO2 emissions from device manufacturing"
+      tooltip: "Average reduction in CO2 emissions based on 2023 environmental impact studies"
     },
     {
       label: "Repair Success",
-      value: "94%",
+      value: "92%",
       trend: 12,
-      tooltip: "Successful repair rate across all device categories"
+      tooltip: "Current repair success rate across all supported device categories"
     }
   ];
 };

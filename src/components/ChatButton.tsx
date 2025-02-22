@@ -9,37 +9,24 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 const ChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleClick = () => {
+    toast.info("Chat support is currently unavailable. Please email support@lifetimeepr.com for assistance.");
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild>
-        <Button
-          className="fixed bottom-6 right-6 rounded-full shadow-lg z-50"
-          size="lg"
-        >
-          {isOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <MessageCircle className="h-5 w-5" />
-          )}
-          {!isOpen && <span className="ml-2">Chat</span>}
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogTitle className="sr-only">Chat Support</DialogTitle>
-        <DialogDescription className="sr-only">
-          Chat with our support team
-        </DialogDescription>
-        <iframe
-          src="https://embed.tawk.to/65d614508d261e1b5f5d6cac/default"
-          className="w-full h-[500px] border-0"
-          title="Chat"
-        />
-      </DialogContent>
-    </Dialog>
+    <Button
+      onClick={handleClick}
+      className="fixed bottom-6 right-6 rounded-full shadow-lg z-50"
+      size="lg"
+    >
+      <MessageCircle className="h-5 w-5" />
+      <span className="ml-2">Chat</span>
+    </Button>
   );
 };
 

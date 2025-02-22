@@ -1,6 +1,6 @@
-
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
+
 interface Feature {
   icon: React.ReactNode;
   title: string;
@@ -11,6 +11,7 @@ interface Feature {
   };
   isHighlighted?: boolean;
 }
+
 const Features = () => {
   const features: Feature[] = [{
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
@@ -43,9 +44,9 @@ const Features = () => {
     description: "Real-time monitoring and lifecycle management through HeliAM integration",
     isHighlighted: true
   }];
+
   return <section id="features" className="relative py-20 bg-gradient-to-b from-white to-neutral-50">
-      {/* Top slanted divider */}
-      <div className="absolute top-0 left-0 w-full h-16 bg-neutral-light transform -skew-y-3 -translate-y-8 z-0"></div>
+      <div className="absolute top-0 left-0 w-full h-32 bg-neutral-light transform -skew-y-3 -translate-y-16 z-0"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 mt-12 animate-on-scroll bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Comprehensive Features</h2>
@@ -53,11 +54,13 @@ const Features = () => {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className={`p-6 rounded-xl transition-all duration-300 backdrop-blur-sm border 
+              className={`p-6 rounded-xl transition-all duration-500 backdrop-blur-sm border 
                 ${feature.isHighlighted 
-                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2' 
+                  ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2 animate-pulse' 
                   : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
                 } animate-on-scroll`}
+              data-aos={feature.isHighlighted ? "fade-up" : "fade-in"}
+              data-aos-duration="1000"
             >
               <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
                 ${feature.isHighlighted 
@@ -87,8 +90,8 @@ const Features = () => {
         </div>
       </div>
 
-      {/* Bottom slanted divider */}
-      <div className="absolute bottom-0 left-0 w-full h-16 bg-white transform skew-y-3 translate-y-8 z-0"></div>
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-white transform skew-y-3 translate-y-16 z-0"></div>
     </section>;
 };
+
 export default Features;

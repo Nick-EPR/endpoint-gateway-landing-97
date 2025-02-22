@@ -55,10 +55,12 @@ const Footer = () => {
         
         {/* Mission Statement */}
         <div className="mt-8 pt-8 border-t border-neutral-100">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <Bookmark className="w-6 h-6 text-primary" />
-            <h3 className="font-semibold text-xl">Our Mission</h3>
-          </div>
+          <Link to="/mission" className="inline-block hover:text-primary transition-colors">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Bookmark className="w-6 h-6 text-primary" />
+              <h3 className="font-semibold text-xl">Our Mission</h3>
+            </div>
+          </Link>
           <p className="text-neutral text-center mb-8 max-w-3xl mx-auto">
             Our mission is to deliver a world-class end-user experience through customized IT lifecycle management solutions that boost efficiency, optimize resources, and evolve with our clients' needs.
           </p>
@@ -76,9 +78,15 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Security Info */}
+        <div className="mt-8">
+          <p className="text-sm text-neutral text-center">
+            ISO27001:2022 Compliant | SOC 2 Type II Certified
+          </p>
+        </div>
       </div>
     </footer>
   );
 };
 
-export default Footer;
