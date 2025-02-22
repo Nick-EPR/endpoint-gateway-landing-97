@@ -1,5 +1,5 @@
 
-import { Globe, Shield, Users, Server, Replace } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Feature {
@@ -29,6 +29,15 @@ const Features = () => {
     description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support systems",
     isHighlighted: true
   }, {
+    icon: <Timer className="w-8 h-8 text-primary" />,
+    title: "Next-Day Resolution",
+    description: "Overnight device replacement anywhere in the US, ensuring minimal downtime for your team",
+    isHighlighted: true
+  }, {
+    icon: <Zap className="w-8 h-8 text-primary" />,
+    title: "Rapid Response",
+    description: "Quick turnaround times with same-day processing for replacement requests",
+  }, {
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Security First",
     description: "Enterprise-grade security and compliance measures",
@@ -36,6 +45,11 @@ const Features = () => {
       to: "/security",
       text: "Learn More"
     }
+  }, {
+    icon: <Recycle className="w-8 h-8 text-primary" />,
+    title: "Device Refurbishment",
+    description: "Expert repair and refurbishment services to maximize device lifespan and reduce waste",
+    isHighlighted: true
   }, {
     icon: <Users className="w-8 h-8 text-primary" />,
     title: "Team Collaboration",
