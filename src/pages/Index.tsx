@@ -77,36 +77,37 @@ const Index = () => {
         buttonText="Get Started"
       />
 
-      <section className="angled-section bg-white">
-        <Products />
-      </section>
+      <div className="relative">
+        <section className="angled-section bg-white">
+          <Products />
+        </section>
 
-      <section className="angled-section bg-neutral-light">
-        <Features />
-      </section>
+        <section className="angled-section bg-neutral-light">
+          <Features />
+        </section>
 
-      <section className="angled-section bg-white">
-        <ComparisonTable />
-      </section>
+        <section className="angled-section bg-white">
+          <ComparisonTable />
+        </section>
 
-      <section className="angled-section bg-white">
-        <TMobileBusiness />
-      </section>
+        <section className="angled-section bg-white">
+          <TMobileBusiness />
+        </section>
 
-      <section className="angled-section bg-neutral-light">
-        <Partners />
-      </section>
+        <section className="angled-section bg-neutral-light">
+          <Partners />
+        </section>
 
-      <section className="angled-section bg-primary-light">
-        <ROICalculator />
-      </section>
+        <section className="angled-section bg-primary-light">
+          <ROICalculator />
+        </section>
 
-      <section className="angled-section bg-neutral-light">
-        <Partnership />
-      </section>
+        <section className="angled-section bg-neutral-light">
+          <Partnership />
+        </section>
+      </div>
 
       <Contact />
-
       <Footer />
       <ChatButton />
     </div>
