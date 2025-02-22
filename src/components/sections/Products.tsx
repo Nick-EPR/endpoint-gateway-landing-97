@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -79,6 +80,7 @@ const Solutions = () => {
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto relative">
           <svg className="hidden md:block absolute top-0 left-0 w-full h-[120px] -translate-y-full" style={{ zIndex: 10 }}>
+            {/* Base connector paths */}
             <path 
               d="M150,120 Q150,60 300,20" 
               stroke="rgba(147, 200, 81, 0.1)" 
@@ -100,6 +102,55 @@ const Solutions = () => {
               fill="none"
               className="connector-path"
             />
+
+            {/* Animated circles along the paths */}
+            <circle r="3" fill="#93C851" className="flow-dot left-flow">
+              <animateMotion 
+                dur="3s"
+                repeatCount="indefinite"
+                path="M150,120 Q150,60 300,20"
+              />
+            </circle>
+            <circle r="3" fill="#93C851" className="flow-dot left-flow" opacity="0">
+              <animateMotion 
+                dur="3s"
+                repeatCount="indefinite"
+                path="M150,120 Q150,60 300,20"
+                begin="1s"
+              />
+            </circle>
+
+            <circle r="3" fill="#93C851" className="flow-dot center-flow">
+              <animateMotion 
+                dur="2s"
+                repeatCount="indefinite"
+                path="M450,120 L450,20"
+              />
+            </circle>
+            <circle r="3" fill="#93C851" className="flow-dot center-flow" opacity="0">
+              <animateMotion 
+                dur="2s"
+                repeatCount="indefinite"
+                path="M450,120 L450,20"
+                begin="1s"
+              />
+            </circle>
+
+            <circle r="3" fill="#93C851" className="flow-dot right-flow">
+              <animateMotion 
+                dur="3s"
+                repeatCount="indefinite"
+                path="M750,120 Q750,60 600,20"
+              />
+            </circle>
+            <circle r="3" fill="#93C851" className="flow-dot right-flow" opacity="0">
+              <animateMotion 
+                dur="3s"
+                repeatCount="indefinite"
+                path="M750,120 Q750,60 600,20"
+                begin="1s"
+              />
+            </circle>
           </svg>
           
           {solutions.map((solution, index) => (
@@ -175,6 +226,11 @@ const Solutions = () => {
                   }
                 }
 
+                @keyframes dotFade {
+                  0%, 100% { opacity: 0; }
+                  50% { opacity: 1; }
+                }
+
                 .data-flow {
                   position: absolute;
                   width: 100%;
@@ -201,6 +257,10 @@ const Solutions = () => {
                 .connector-path {
                   stroke-dasharray: 4, 4;
                   animation: dashOffset 30s linear infinite;
+                }
+
+                .flow-dot {
+                  animation: dotFade 3s infinite;
                 }
 
                 .data-flow .dot {
