@@ -1,5 +1,5 @@
 
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, RemoteControl } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Feature {
@@ -11,6 +11,7 @@ interface Feature {
     text: string;
   };
   isHighlighted?: boolean;
+  comingSoon?: boolean;
 }
 
 const Features = () => {
@@ -22,7 +23,7 @@ const Features = () => {
   }, {
     icon: <Microscope className="w-8 h-8 text-primary" />,
     title: "Automated Diagnostics",
-    description: "Comprehensive hardware diagnostics performed securely within authorized repair facilities",
+    description: "Hardware diagnostics performed securely within authorized repair facilities",
     isHighlighted: true
   }, {
     icon: <HardDrive className="w-8 h-8 text-primary" />,
@@ -31,8 +32,20 @@ const Features = () => {
   }, {
     icon: <ShieldCheck className="w-8 h-8 text-primary" />,
     title: "Secure Data Handling",
-    description: "On-site data wiping and secure device destruction with comprehensive audit trails",
+    description: "On-site data wiping and secure device destruction with audit trails",
     isHighlighted: true
+  }, {
+    icon: <Cloud className="w-8 h-8 text-primary" />,
+    title: "Remote Device Control",
+    description: "Remotely manage, lock, or wipe devices directly through the EPR platform",
+    isHighlighted: true,
+    comingSoon: true
+  }, {
+    icon: <Zap className="w-8 h-8 text-primary" />,
+    title: "Auto-Sync Hardware",
+    description: "Automatic hardware attribute updates synchronized with HeliAM's CMDB",
+    isHighlighted: true,
+    comingSoon: true
   }, {
     icon: <Replace className="w-8 h-8 text-primary" />,
     title: "Asset Exchange",
@@ -40,7 +53,7 @@ const Features = () => {
   }, {
     icon: <Globe className="w-8 h-8 text-primary" />,
     title: "Nationwide Coverage",
-    description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support systems",
+    description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support",
     isHighlighted: true
   }, {
     icon: <Timer className="w-8 h-8 text-primary" />,
@@ -48,9 +61,10 @@ const Features = () => {
     description: "Overnight device replacement anywhere in the US, ensuring minimal downtime for your team",
     isHighlighted: true
   }, {
-    icon: <Zap className="w-8 h-8 text-primary" />,
-    title: "Rapid Response",
-    description: "Same-day processing for device management requests through automated workflows"
+    icon: <Users className="w-8 h-8 text-primary" />,
+    title: "Remote Support",
+    description: "Direct device access for remote troubleshooting and maintenance",
+    comingSoon: true
   }, {
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Security First",
@@ -64,26 +78,17 @@ const Features = () => {
     title: "Lifecycle Management",
     description: "Maximize device ROI through intelligent asset lifecycle optimization",
     isHighlighted: true
-  }, {
-    icon: <Users className="w-8 h-8 text-primary" />,
-    title: "Team Collaboration",
-    description: "Streamlined workflows for enhanced team productivity"
-  }, {
-    icon: <img src="/lovable-uploads/790d1cf5-882e-4b6c-b4e7-8b8b47888d95.png" alt="HeliAM Logo" className="w-8 h-8 object-contain" />,
-    title: "Asset Tracking",
-    description: "Real-time monitoring and lifecycle management through HeliAM integration",
-    isHighlighted: true
   }];
 
   return <section id="features" className="py-32 md:py-48 bg-neutral-light">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
-          Comprehensive Features
+          Platform Features
         </h2>
         <p className="text-center text-lg mb-16 animate-on-scroll">
-          Complete device lifecycle management, paired with{' '}
+          Complete device lifecycle management with{' '}
           <span className="text-primary font-semibold">intelligent predictive maintenance</span>{' '}
-          features
+          capabilities
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
@@ -93,7 +98,7 @@ const Features = () => {
                 ${feature.isHighlighted 
                   ? 'bg-gradient-to-br from-white via-primary-light to-white border-primary/20 shadow-lg hover:shadow-xl hover:-translate-y-2' 
                   : 'bg-white/80 border-neutral-100 hover:shadow-xl hover:-translate-y-1'
-                } animate-on-scroll`}
+                } animate-on-scroll relative`}
             >
               <div className={`mb-4 w-12 h-12 rounded-lg flex items-center justify-center 
                 ${feature.isHighlighted 
@@ -110,6 +115,11 @@ const Features = () => {
                 }`}
               >
                 {feature.title}
+                {feature.comingSoon && (
+                  <span className="ml-2 text-xs px-2 py-1 bg-primary/10 text-primary rounded-full">
+                    Coming Soon
+                  </span>
+                )}
               </h3>
               <p className="text-neutral-600 mb-4">{feature.description}</p>
               {feature.link && <Link to={feature.link.to} className="inline-flex items-center text-sm text-primary hover:text-primary/80 font-medium transition-colors">
