@@ -1,3 +1,4 @@
+
 import { Globe, Shield, Users, Server, Replace } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -24,7 +25,7 @@ const Features = () => {
     description: "Efficient device replacement workflow integrated with repair depot services"
   }, {
     icon: <Globe className="w-8 h-8 text-primary" />,
-    title: "Global Coverage",
+    title: "Nationwide Coverage",
     description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support systems",
     isHighlighted: true
   }, {
@@ -53,7 +54,7 @@ const Features = () => {
         </h2>
         <p className="text-center text-lg mb-16 animate-on-scroll">
           Complete device lifecycle management, paired with{' '}
-          <span className="text-primary font-semibold">AI-powered predictive maintenance</span>{' '}
+          <span className="text-primary font-semibold">intelligent predictive maintenance</span>{' '}
           features
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
