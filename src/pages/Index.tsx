@@ -83,32 +83,32 @@ const Index = () => {
       </section>
 
       {/* Features Section - Light neutral background */}
-      <section className="bg-neutral-light">
+      <section className="bg-neutral-light border-t border-neutral-100">
         <Features />
       </section>
 
       {/* T-Mobile Business Section - White background */}
-      <section className="bg-white">
+      <section className="bg-white border-t border-neutral-100">
         <TMobileBusiness />
       </section>
 
       {/* Partners Section - Light neutral background */}
-      <section className="bg-neutral-light">
+      <section className="bg-neutral-light border-t border-neutral-100">
         <Partners />
       </section>
 
       {/* ROI Calculator Section - White background */}
-      <section className="bg-white">
+      <section className="bg-white border-t border-neutral-100">
         <ROICalculator />
       </section>
 
       {/* Partnership Section - Light neutral background */}
-      <section className="bg-neutral-light">
+      <section className="bg-neutral-light border-t border-neutral-100">
         <Partnership />
       </section>
 
       {/* Contact Section - White background */}
-      <section className="bg-white">
+      <section className="bg-white border-t border-neutral-100">
         <Contact />
       </section>
 

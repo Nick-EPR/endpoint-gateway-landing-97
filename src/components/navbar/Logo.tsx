@@ -1,14 +1,23 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 interface LogoProps {
   scrolled: boolean;
 }
 
 const Logo = ({ scrolled }: LogoProps) => {
+  const location = useLocation();
+  
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative h-8 md:h-10 w-[120px] md:w-[150px]">
-      <Link to="/">
+      <Link to="/" onClick={handleLogoClick}>
         <img 
           src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png"
           alt="Lifetime EndPoint Resources"

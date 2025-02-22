@@ -17,7 +17,7 @@ const Features = () => {
   const features: Feature[] = [{
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
     title: "Repair Management",
-    description: "Streamlined repair process management through Toolbox integration with Lifetime Service",
+    description: "Comprehensive device lifecycle management through Toolbox integration with Lifetime Service",
     isHighlighted: true
   }, {
     icon: <Replace className="w-8 h-8 text-primary" />,
@@ -26,7 +26,8 @@ const Features = () => {
   }, {
     icon: <Globe className="w-8 h-8 text-primary" />,
     title: "Global Coverage",
-    description: "Manage assets across multiple locations and jurisdictions"
+    description: "Manage assets across multiple locations and jurisdictions, with AI-powered decision support",
+    isHighlighted: true
   }, {
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "Security First",
@@ -46,11 +47,16 @@ const Features = () => {
     isHighlighted: true
   }];
 
-  return <section id="features" className="py-32 md:py-48">
+  return <section id="features" className="py-32 md:py-48 bg-neutral-light">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">
           Comprehensive Features
         </h2>
+        <p className="text-center text-lg mb-16 animate-on-scroll">
+          Complete device lifecycle management, paired with{' '}
+          <span className="text-primary font-semibold">AI-powered predictive maintenance</span>{' '}
+          features
+        </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <div 
