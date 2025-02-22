@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -105,9 +104,7 @@ const Index = () => {
         <Partnership />
       </section>
 
-      <section className="angled-section-reverse bg-white">
-        <Contact />
-      </section>
+      <Contact />
 
       <Footer />
       <ChatButton />
