@@ -27,14 +27,15 @@ const ChatButton = () => {
     e.preventDefault();
     if (!input.trim()) return;
 
-    // Add user message
-    const userMessage = { role: 'user', content: input };
+    // Add user message with explicit type
+    const userMessage: Message = { role: 'user', content: input };
     setMessages(prev => [...prev, userMessage]);
     setInput('');
 
     // Generate bot response
     const response = await generateResponse(input);
-    setMessages(prev => [...prev, { role: 'assistant', content: response }]);
+    const assistantMessage: Message = { role: 'assistant', content: response };
+    setMessages(prev => [...prev, assistantMessage]);
   };
 
   const generateResponse = async (message: string): Promise<string> => {
