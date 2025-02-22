@@ -54,13 +54,21 @@ const WhatIsITAM = () => {
       <Navbar scrolled={false} onMouseEnter={handleMouseEnter} />
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-primary/10 to-white">
-        <div className="container mx-auto px-4">
+      <section className="relative pt-32 pb-20 min-h-[60vh] flex items-center">
+        <div className="absolute inset-0 w-full h-full z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-white z-10"></div>
+          <img 
+            src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d"
+            alt="Remote worker background"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
               What is IT Asset Management?
             </h1>
-            <p className="text-xl text-neutral-600 mb-8">
+            <p className="text-xl text-white/90 mb-8">
               IT Asset Management (ITAM) is how organizations keep track of and manage all their technology equipment - from the laptop on your desk to the phone in your pocket.
             </p>
           </div>
