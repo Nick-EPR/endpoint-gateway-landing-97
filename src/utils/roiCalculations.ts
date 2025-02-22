@@ -7,8 +7,9 @@ export interface Trend {
 }
 
 // Function to calculate annual savings based on employee count
+// Assuming average savings of $900 per employee annually
 export const calculateAnnualSavings = (employeeCount: number): number => {
-  return employeeCount * 90000 / 1000;
+  return employeeCount * 900; // $900 per employee
 };
 
 // Function to calculate compounded savings over 5 years
@@ -36,17 +37,6 @@ export const calculatePercentageChange = (oldValue: number, newValue: number): n
   return ((newValue - oldValue) / oldValue) * 100;
 };
 
-// Function to format large numbers with commas and k/M suffix
-const formatLargeNumber = (num: number): string => {
-  if (num >= 1000000) {
-    return `${(num / 1000000).toFixed(1)}M`;
-  }
-  if (num >= 1000) {
-    return `${(num / 1000).toFixed(0)}k`;
-  }
-  return num.toString();
-};
-
 // Function to calculate trends based on employee count
 export const calculateTrends = (employeeCount: number): Trend[] => {
   // Base device lifespan is 2 years without our solution
@@ -66,9 +56,9 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     },
     {
       label: "Cost Reduction",
-      value: formatCurrency(annualSavings * 1000, 'USD'),
-      trend: -32,
-      tooltip: "Average cost savings through repair and refurbishment programs"
+      value: formatCurrency(annualSavings, 'USD'),
+      trend: -25,
+      tooltip: "Average annual cost savings through repair and refurbishment programs"
     },
     {
       label: "Carbon Footprint",
