@@ -25,6 +25,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     setIsMenuOpen(false);
   };
 
+  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam';
+
   return (
     <header 
       className="fixed top-0 w-full z-50"
@@ -34,18 +36,18 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
         scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Logo scrolled={scrolled} />
+          <Logo scrolled={isWhiteBackground} />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <ProductsDropdown scrolled={scrolled} />
+            <ProductsDropdown scrolled={isWhiteBackground} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${isWhiteBackground ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
             >
               Features
             </button>
-            <NavLinks scrolled={scrolled} />
+            <NavLinks scrolled={isWhiteBackground} />
             <a 
               href="https://app.lifetimeepr.io"
               className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200"
@@ -59,7 +61,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`md:hidden p-2 ${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary`}
+            className={`md:hidden p-2 ${isWhiteBackground ? 'text-neutral-600' : 'text-white'} hover:text-primary`}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
