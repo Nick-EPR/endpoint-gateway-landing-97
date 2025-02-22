@@ -1,7 +1,7 @@
 
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { FileText, Share2, Lock, UserCheck, Cookie, Child, RefreshCw, Mail, Database, Shield } from "lucide-react";
+import { FileText, Share2, Lock, UserCheck, Cookie, Baby, RefreshCw, Mail, Database, Shield } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -70,7 +70,7 @@ const Privacy = () => {
       content: "We use cookies and similar tracking technologies to track activity on our service and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent."
     },
     {
-      icon: Child,
+      icon: Baby,
       title: "Children's Privacy",
       summary: "Protection of minors' privacy",
       content: "Our services are not intended for use by children under the age of 13. We do not knowingly collect personal information from children under 13."
