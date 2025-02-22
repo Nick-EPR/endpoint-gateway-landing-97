@@ -19,7 +19,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
 
   const getTrendColor = (trend: Trend) => {
     // Carbon footprint reduction (negative number) is actually a positive trend
-    if (trend.label === "Carbon Footprint") {
+    if (trend.label === "Carbon Reduction") {
       return trend.trend < 0 ? 'text-green-600' : 'text-red-600';
     }
     // Cost reduction (negative number) is a positive trend
@@ -31,7 +31,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
   };
 
   const shouldShowUpArrow = (trend: Trend) => {
-    if (trend.label === "Carbon Footprint" || trend.label === "Cost Reduction") {
+    if (trend.label === "Carbon Reduction" || trend.label === "Cost Reduction") {
       return trend.trend > 0;
     }
     return trend.trend > 0;
@@ -45,10 +45,12 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
             <h4 className="text-sm font-medium text-neutral">{trend.label}</h4>
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger>
-                  <Info className="w-4 h-4 text-neutral/60" />
+                <TooltipTrigger asChild>
+                  <button className="cursor-help">
+                    <Info className="w-4 h-4 text-neutral/60 hover:text-primary transition-colors" />
+                  </button>
                 </TooltipTrigger>
-                <TooltipContent>
+                <TooltipContent side="top" className="max-w-xs bg-white p-3 rounded-lg shadow-lg">
                   <p className="text-sm">{trend.tooltip}</p>
                 </TooltipContent>
               </Tooltip>
