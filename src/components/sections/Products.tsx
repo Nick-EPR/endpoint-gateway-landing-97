@@ -133,8 +133,8 @@ const Solutions = () => {
                   </div>
                 </div>
               )}
-
-              <style jsx>{`
+              
+              <style>{`
                 @keyframes flowRight {
                   0% { transform: translateX(0); opacity: 0; }
                   50% { opacity: 1; }
