@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c2b68dd4-11bc-4aec-847b-9a07bd311771.png";
@@ -82,7 +83,9 @@ const Solutions = () => {
             <div key={index} className="relative">
               <div className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float ${solution.comingSoon ? 'opacity-75' : ''}`} 
                 style={{
-                  animationDelay: `${index * 200}ms`
+                  animationDelay: `${index * 200}ms`,
+                  position: 'relative',
+                  zIndex: 2
                 }}>
                 {solution.logo ? (
                   <div className="mb-6 h-16 flex items-center justify-center">
@@ -111,16 +114,17 @@ const Solutions = () => {
                 )}
               </div>
               
-              {/* Data transmission animations between cards */}
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-primary/10" style={{ transform: 'translateY(-50%)' }}>
-                  {/* Animated dots for data transmission */}
+                <div className="hidden md:block absolute top-1/2 -right-4 w-8 h-[2px] bg-primary/10" 
+                  style={{ 
+                    transform: 'translateY(-50%)',
+                    zIndex: 1
+                  }}>
                   <div className="data-flow">
                     <div className="dot"></div>
                     <div className="dot"></div>
                     <div className="dot"></div>
                   </div>
-                  {/* Reverse data flow */}
                   <div className="data-flow-reverse">
                     <div className="dot"></div>
                     <div className="dot"></div>
