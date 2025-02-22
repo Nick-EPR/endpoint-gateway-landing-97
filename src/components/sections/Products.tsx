@@ -91,9 +91,10 @@ const Solutions = () => {
           {solutions.map((solution, index) => (
             <div 
               key={index} 
-              className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg ${
+              className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float ${
                 solution.comingSoon ? 'opacity-75' : ''
               }`}
+              style={{ animationDelay: `${index * 200}ms` }}
             >
               {solution.logo ? (
                 <div className="mb-6 h-16 flex items-center justify-center">
