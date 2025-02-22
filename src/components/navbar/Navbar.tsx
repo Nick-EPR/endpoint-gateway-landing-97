@@ -33,7 +33,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
       onMouseEnter={onMouseEnter}
     >
       <div className={`transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-sm' : 'bg-transparent'
+        isWhiteBackground ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Logo scrolled={isWhiteBackground} />
