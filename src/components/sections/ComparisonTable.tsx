@@ -111,18 +111,15 @@ const ComparisonTable = () => {
                   <TableRow className="bg-neutral-50">
                     <TableHead className="w-1/4">Aspect</TableHead>
                     <TableHead className="w-[37.5%]">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 opacity-75">
                         <span className="text-2xl">🤯</span> Do-It-Yourself ITAM
                       </div>
                     </TableHead>
                     <TableHead className="w-[37.5%] text-primary relative">
-                      <div className="absolute inset-0 bg-primary/5 shadow-[0_0_30px_rgba(147,200,81,0.2)]"></div>
+                      <div className="absolute inset-0 bg-primary/10 shadow-[0_4px_24px_rgba(147,200,81,0.25)]"></div>
                       <div className="relative flex items-center gap-2">
-                        <Trophy className="h-5 w-5 text-primary" />
-                        <span className="font-bold">Lifetime EPR</span>
-                        <div className="absolute -top-1 -right-3 rotate-12 bg-primary/10 px-2 py-0.5 rounded text-xs font-semibold text-primary">
-                          Recommended
-                        </div>
+                        <Trophy className="h-6 w-6 text-primary" />
+                        <span className="font-bold text-lg">Lifetime EPR</span>
                       </div>
                     </TableHead>
                   </TableRow>
@@ -139,14 +136,14 @@ const ComparisonTable = () => {
                       <TableCell className="text-neutral-600">
                         <div className="flex items-center gap-2">
                           {item.isDIYPain ? <X className="h-5 w-5 text-red-500 flex-shrink-0" /> : <Check className="h-5 w-5 text-green-500 flex-shrink-0" />}
-                          {item.diy}
+                          <span className="opacity-75">{item.diy}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-primary-900 relative">
+                      <TableCell className="text-primary-900 relative bg-primary/5">
                         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div className="relative flex items-center gap-2">
-                          <Check className="h-5 w-5 text-green-500 flex-shrink-0" />
-                          {item.epr}
+                        <div className="relative flex items-start gap-2">
+                          <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />
+                          <span className="font-medium">{item.epr}</span>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -165,7 +162,7 @@ const ComparisonTable = () => {
                 {item.aspect}
               </div>
               <div className="space-y-4">
-                <div className="space-y-2">
+                <div className="space-y-2 opacity-75">
                   <div className="flex items-center gap-2 text-sm font-medium text-neutral-500">
                     <span className="text-xl">🤯</span> Do-It-Yourself ITAM
                   </div>
@@ -174,17 +171,16 @@ const ComparisonTable = () => {
                     <p className="text-neutral-600">{item.diy}</p>
                   </div>
                 </div>
-                <div className="space-y-2 bg-primary/5 p-4 rounded-lg shadow-lg">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                      <Trophy className="h-4 w-4" />
-                      <span className="font-bold">Lifetime EPR</span>
+                <div className="space-y-2 bg-primary/10 p-6 rounded-lg shadow-xl">
+                  <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-primary">
+                      <Trophy className="h-5 w-5" />
+                      <span className="font-bold text-lg">Lifetime EPR</span>
                     </div>
-                    <span className="bg-primary/10 px-2 py-0.5 rounded text-xs font-semibold text-primary">Recommended</span>
                   </div>
                   <div className="flex items-start gap-2 pl-2">
                     <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                    <p className="text-primary-900">{item.epr}</p>
+                    <p className="text-primary-900 font-medium">{item.epr}</p>
                   </div>
                 </div>
               </div>
