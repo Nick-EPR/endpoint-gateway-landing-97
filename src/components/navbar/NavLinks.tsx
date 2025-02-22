@@ -11,21 +11,21 @@ const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
     <>
       <Link 
         to="/security" 
-        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-300`}
+        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
         onClick={onClose}
       >
         Security
       </Link>
       <Link 
         to="/mission" 
-        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-300`}
+        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
         onClick={onClose}
       >
         Mission
       </Link>
       <Link 
         to="/contact" 
-        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-300`}
+        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
         onClick={onClose}
       >
         Contact
