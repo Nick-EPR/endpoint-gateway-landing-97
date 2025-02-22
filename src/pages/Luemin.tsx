@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
 import { 
-  Tablet,  // Changed from DeviceTablet to Tablet
+  Tablet,
   Shield,
   Zap,
   Settings,
@@ -11,6 +11,7 @@ import {
   CloudCog,
 } from "lucide-react";
 import lueminLogo from "/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png";
+import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
@@ -141,7 +142,10 @@ const Luemin = () => {
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8">Part of the Lifetime EPR Ecosystem</h2>
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <img src={triangleImage} alt="EPR Triangle" className="w-8 h-8" />
+              <h2 className="text-3xl font-bold">Part of the Lifetime EPR Ecosystem</h2>
+            </div>
             <p className="text-lg text-neutral-600 mb-12">
               Luemin will integrate seamlessly with HeliAM and Toolbox, providing complete device lifecycle management from deployment to retirement.
             </p>
