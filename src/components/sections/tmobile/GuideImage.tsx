@@ -44,20 +44,19 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
   const handleNextPage = () => {
     if (nextPage) {
       setCurrentPage({
-        ...nextPage,
-        prevPage: { src, alt, fileName }
+        src: nextPage.src,
+        alt: nextPage.alt,
+        fileName: nextPage.fileName
       });
     }
   };
 
   const handlePrevPage = () => {
-    if (prevPage) {
-      setCurrentPage({
-        src,
-        alt,
-        fileName
-      });
-    }
+    setCurrentPage({
+      src,
+      alt,
+      fileName
+    });
   };
 
   const isFirstPage = currentPage.src === src;
