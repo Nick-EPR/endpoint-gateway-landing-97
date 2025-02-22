@@ -29,7 +29,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   const shouldShowDark = scrolled && !isITAMPage;
 
   // For ITAM page, show light content initially (when not scrolled) because background is dark
-  const showLightContent = isITAMPage ? !scrolled : !shouldShowDark;
+  // AND continue showing light content when scrolled because background becomes white
+  const showLightContent = isITAMPage || !shouldShowDark;
 
   return (
     <header 
