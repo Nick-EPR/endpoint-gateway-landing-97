@@ -43,15 +43,25 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
 
   const handleNextPage = () => {
     if (nextPage) {
-      setCurrentPage(nextPage);
+      setCurrentPage({
+        ...nextPage,
+        prevPage: { src, alt, fileName }
+      });
     }
   };
 
   const handlePrevPage = () => {
     if (prevPage) {
-      setCurrentPage(prevPage);
+      setCurrentPage({
+        src,
+        alt,
+        fileName
+      });
     }
   };
+
+  const isFirstPage = currentPage.src === src;
+  const isSecondPage = currentPage.src === nextPage?.src;
 
   return (
     <Dialog>
@@ -69,7 +79,7 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
       </DialogTrigger>
       <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-6">
         <div className="relative h-full flex items-center justify-center">
-          {isPartOfDocument && prevPage && (
+          {isPartOfDocument && !isFirstPage && (
             <Button
               variant="ghost"
               className="absolute left-4 top-1/2 transform -translate-y-1/2"
@@ -83,7 +93,7 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
             alt={currentPage.alt}
             className="w-full h-full object-contain"
           />
-          {isPartOfDocument && nextPage && (
+          {isPartOfDocument && nextPage && isFirstPage && (
             <Button
               variant="ghost"
               className="absolute right-4 top-1/2 transform -translate-y-1/2"
@@ -97,7 +107,7 @@ const GuideImage = ({ src, alt, fileName, isPartOfDocument, nextPage, prevPage }
             onClick={() => downloadImage(currentPage.src, currentPage.fileName)}
           >
             <Download className="w-4 h-4 mr-2" />
-            Download Page {isPartOfDocument ? (prevPage ? '2' : '1') : ''}
+            Download Page {isSecondPage ? '2' : '1'}
           </Button>
         </div>
       </DialogContent>
