@@ -1,4 +1,3 @@
-
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { 
@@ -34,7 +33,7 @@ const ComparisonTable = () => {
       aspect: "Software",
       icon: <Server className="h-5 w-5" />,
       diy: "Multiple software purchases required: ITAM software plus separate asset agent software",
-      epr: "All-in-one HeliAM platform with integrated Toolbox and management tools",
+      epr: "All-in-one platform with integrated HeliAM, Toolbox, and management tools within the Lifetime EPR portal",
       isDIYPain: true
     },
     {
@@ -55,7 +54,7 @@ const ComparisonTable = () => {
       aspect: "IT Asset Management",
       icon: <Database className="h-5 w-5" />,
       diy: "Separate ITAM and agent software licenses",
-      epr: "Enterprise ITAM solution (HeliAM) with complete lifecycle management",
+      epr: "Complete lifecycle management through HeliAM within the Lifetime EPR platform",
       isDIYPain: true
     },
     {
