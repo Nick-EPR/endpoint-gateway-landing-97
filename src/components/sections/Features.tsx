@@ -1,4 +1,4 @@
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search, UserCog, Package2, UserPlus, Webhook } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search, UserCog, Package2, UserPlus, Warehouse } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -26,46 +26,28 @@ const Features = () => {
 
   const features: Feature[] = [{
     icon: <UserCog className="w-8 h-8 text-neutral-700" />,
-    title: "Role-Based Equipment Groups",
-    description: "Define and manage standardized equipment packages for different roles, departments, and locations within your organization",
+    title: "Intelligent Onboarding Automation",
+    description: "Automatically assign and deploy standardized equipment packages based on employee roles, departments, and locations",
     isHighlighted: true,
-    keywords: ["onboarding", "roles", "equipment", "packages", "groups", "standardization"]
-  }, {
-    icon: <Package2 className="w-8 h-8 text-neutral-700" />,
-    title: "Automated Onboarding Kits",
-    description: "Automatically determine and assign the right equipment package for new hires based on their role and department",
-    isHighlighted: true,
-    keywords: ["onboarding", "automation", "equipment", "new hire", "deployment"]
+    keywords: ["onboarding", "roles", "equipment", "packages", "groups", "standardization", "automation"]
   }, {
     icon: <UserPlus className="w-8 h-8 text-neutral-700" />,
-    title: "HR Integration",
-    description: "Seamlessly initiate equipment deployments directly from HR onboarding workflows with no technical expertise required",
+    title: "HR-Driven Deployment",
+    description: "Initiate equipment deployments directly from HR onboarding workflows, with automated Toolbox fulfillment for next-day delivery",
     isHighlighted: true,
-    keywords: ["HR", "integration", "onboarding", "workflow", "automation"]
+    keywords: ["HR", "integration", "onboarding", "workflow", "automation", "shipping"]
   }, {
-    icon: <Webhook className="w-8 h-8 text-neutral-700" />,
-    title: "Toolbox Fulfillment",
-    description: "Direct integration with Toolbox for automated pick, pack, and next-day shipping of onboarding kits to new employees",
+    icon: <Warehouse className="w-8 h-8 text-neutral-700" />,
+    title: "Secure Asset Storage",
+    description: "Store and manage your IT assets in Toolbox's secure warehouse facilities with controlled access and real-time inventory tracking",
     isHighlighted: true,
-    keywords: ["toolbox", "integration", "shipping", "fulfillment", "logistics"]
-  },
-  {
-    icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
-    title: "Toolbox Integration",
-    description: "Connect your ITAM system with repair depot and warehouse operations for end-to-end device management",
-    isHighlighted: true,
-    keywords: ["repair", "warehouse", "depot", "integration", "management", "storage", "inventory", "tracking"]
+    keywords: ["warehouse", "storage", "security", "inventory", "management", "tracking"]
   }, {
     icon: <Microscope className="w-8 h-8 text-neutral-700" />,
     title: "Automated Diagnostics",
     description: "Hardware diagnostics performed securely within authorized repair facilities",
     isHighlighted: true,
     keywords: ["repair", "diagnostics", "hardware", "automation", "testing", "maintenance", "troubleshooting"]
-  }, {
-    icon: <HardDrive className="w-8 h-8 text-neutral-700" />,
-    title: "Device Provisioning",
-    description: "Secure on-site device provisioning and configuration management within controlled environments",
-    keywords: ["device", "configuration", "provisioning", "setup", "deployment", "onboarding", "MDM"]
   }, {
     icon: <ShieldCheck className="w-8 h-8 text-neutral-700" />,
     title: "Secure Data Handling",
@@ -79,18 +61,6 @@ const Features = () => {
     isHighlighted: true,
     comingSoon: true,
     keywords: ["remote", "control", "manage", "lock", "wipe", "RDP", "remote desktop", "remote access"]
-  }, {
-    icon: <Zap className="w-8 h-8 text-neutral-700" />,
-    title: "Hardware Spec Sync",
-    description: "Automatically detect and update device specifications in your CMDB and asset inventory",
-    isHighlighted: true,
-    comingSoon: true,
-    keywords: ["hardware", "specs", "sync", "inventory", "CMDB", "asset management", "specifications"]
-  }, {
-    icon: <Replace className="w-8 h-8 text-neutral-700" />,
-    title: "Asset Exchange",
-    description: "Streamlined device deployment and replacement workflow management",
-    keywords: ["exchange", "deployment", "replacement", "workflow", "swap", "hardware refresh"]
   }, {
     icon: <Globe className="w-8 h-8 text-neutral-700" />,
     title: "Nationwide Coverage",
@@ -145,7 +115,7 @@ const Features = () => {
         "Comprehensive asset lifecycle tracking from procurement to retirement",
         "Asset depreciation and ROI calculations",
         "Custom asset categories and attributes",
-        "Bulk asset import and export capabilities",
+        "Secure warehouse storage and inventory management",
         "Asset history and chain of custody tracking",
         "Software license management and compliance",
         "Role-based equipment package templates",
