@@ -86,10 +86,10 @@
   position: relative;
   padding: clamp(4rem, 8vw, 8rem) 0;
   clip-path: polygon(
-    0 0,
-    100% calc(0% + 5vw),
-    100% calc(100% - 5vw),
-    0 100%
+    0 5vw,
+    100% 0,
+    100% 100%,
+    0 calc(100% - 5vw)
   );
   margin: calc(-5vw - 1px) 0;
   z-index: 1;
@@ -103,10 +103,10 @@
   position: relative;
   padding: clamp(4rem, 8vw, 8rem) 0;
   clip-path: polygon(
-    0 0,
-    100% calc(0% + 5vw),
-    100% calc(100% - 5vw),
-    0 100%
+    0 5vw,
+    100% 0,
+    100% 100%,
+    0 calc(100% - 5vw)
   );
   margin: calc(-5vw - 1px) 0;
   z-index: 0;
@@ -127,8 +127,8 @@ section:first-of-type.angled-section-reverse {
   clip-path: polygon(
     0 0,
     100% 0,
-    100% calc(100% - 5vw),
-    0 100%
+    100% 100%,
+    0 calc(100% - 5vw)
   );
 }
 
@@ -136,7 +136,7 @@ section:last-of-type.angled-section,
 section:last-of-type.angled-section-reverse {
   margin-bottom: 0;
   clip-path: polygon(
-    0 calc(0% + 5vw),
+    0 5vw,
     100% 0,
     100% 100%,
     0 100%
