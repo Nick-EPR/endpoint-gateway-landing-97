@@ -70,8 +70,8 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
         </ProductItem>
         <ProductItem
           to="/toolbox"
-          imgSrc="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png"
-          alt="Toolbox Emblem"
+          imgSrc="/lovable-uploads/578da381-52de-48c5-a714-3b9c9015b8a2.png"
+          alt="Toolbox Icon"
           onClick={onItemClick}
         >
           Toolbox
@@ -107,8 +107,8 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
         <DropdownMenuItem>
           <ProductItem
             to="/toolbox"
-            imgSrc="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png"
-            alt="Toolbox Emblem"
+            imgSrc="/lovable-uploads/578da381-52de-48c5-a714-3b9c9015b8a2.png"
+            alt="Toolbox Icon"
           >
             Toolbox
           </ProductItem>
