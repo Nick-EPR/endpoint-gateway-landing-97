@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X, Trophy } from "lucide-react";
+import Image from "@/components/ui/image";
 
 interface ComparisonItem {
   aspect: string;
@@ -142,7 +143,11 @@ const ComparisonTable = () => {
                       <TableCell className="text-primary-900 relative bg-primary/5">
                         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative flex items-start gap-2">
-                          <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-1" />
+                          <img 
+                            src="/lovable-uploads/5b533a40-f625-444d-8a90-0c95ba14a528.png" 
+                            alt="EPR Emblem" 
+                            className="h-5 w-5 flex-shrink-0 mt-1"
+                          />
                           <span className="font-medium">{item.epr}</span>
                         </div>
                       </TableCell>
@@ -179,7 +184,11 @@ const ComparisonTable = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-2 pl-2">
-                    <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <img 
+                      src="/lovable-uploads/5b533a40-f625-444d-8a90-0c95ba14a528.png" 
+                      alt="EPR Emblem" 
+                      className="h-5 w-5 flex-shrink-0 mt-0.5"
+                    />
                     <p className="text-primary-900 font-medium">{item.epr}</p>
                   </div>
                 </div>
