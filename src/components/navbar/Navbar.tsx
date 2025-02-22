@@ -26,10 +26,12 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   const isITAMPage = location.pathname === '/what-is-itam';
-  const shouldShowDark = (scrolled && !isITAMPage) || (scrolled && isITAMPage);
-
-  // For ITAM page, show light content initially (when not scrolled) because background is dark
-  const showLightContent = (isITAMPage && !scrolled) || (!isITAMPage && !shouldShowDark);
+  
+  // Show dark navbar on ITAM page when scrolled
+  const shouldShowDarkNav = scrolled;
+  
+  // Show light content (white text/logo) only when on ITAM page and not scrolled
+  const showLightContent = isITAMPage ? !scrolled : false;
 
   return (
     <header 
@@ -37,7 +39,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
       onMouseEnter={onMouseEnter}
     >
       <div className={`transition-all duration-300 ${
-        shouldShowDark ? 'bg-white shadow-sm' : 'bg-transparent'
+        shouldShowDarkNav ? 'bg-white shadow-sm' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Logo scrolled={!showLightContent} />
