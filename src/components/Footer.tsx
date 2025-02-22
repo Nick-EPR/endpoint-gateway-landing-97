@@ -67,12 +67,12 @@ const Footer = () => {
               © {new Date().getFullYear()} LifetimeEPR. All rights reserved.
             </p>
             <div className="flex gap-4 text-sm">
-              <a href="#" className="text-neutral hover:text-primary transition-colors">
+              <Link to="/privacy" className="text-neutral hover:text-primary transition-colors">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-neutral hover:text-primary transition-colors">
+              </Link>
+              <Link to="/terms" className="text-neutral hover:text-primary transition-colors">
                 Terms of Service
-              </a>
+              </Link>
             </div>
           </div>
         </div>
