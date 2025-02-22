@@ -96,6 +96,8 @@ const Partners = () => {
                             ? 'max-w-[80px] max-h-14' 
                             : partner.name === 'T-Mobile'
                             ? 'max-h-[4.5rem]'
+                            : partner.name === 'D&H Distributing'
+                            ? 'max-h-[4.5rem]'
                             : partner.name === 'CellHub'
                             ? 'max-h-16'
                             : 'max-h-14'
