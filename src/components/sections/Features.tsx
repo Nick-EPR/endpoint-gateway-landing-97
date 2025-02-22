@@ -1,5 +1,8 @@
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers } from "lucide-react";
+
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 
 interface Feature {
   icon: React.ReactNode;
@@ -11,59 +14,72 @@ interface Feature {
   };
   isHighlighted?: boolean;
   comingSoon?: boolean;
+  keywords?: string[];
 }
 
 const Features = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
   const features: Feature[] = [{
     icon: <img src="/lovable-uploads/9924917e-87ae-46a8-94de-825e91b581ba.png" alt="Toolbox Logo" className="w-8 h-8" />,
     title: "Toolbox Integration",
     description: "Connect your ITAM system with repair depot and warehouse operations for end-to-end device management",
-    isHighlighted: true
+    isHighlighted: true,
+    keywords: ["repair", "warehouse", "depot", "integration", "management"]
   }, {
     icon: <Microscope className="w-8 h-8 text-neutral-700" />,
     title: "Automated Diagnostics",
     description: "Hardware diagnostics performed securely within authorized repair facilities",
-    isHighlighted: true
+    isHighlighted: true,
+    keywords: ["repair", "diagnostics", "hardware", "automation"]
   }, {
     icon: <HardDrive className="w-8 h-8 text-neutral-700" />,
     title: "Device Provisioning",
-    description: "Secure on-site device provisioning and configuration management within controlled environments"
+    description: "Secure on-site device provisioning and configuration management within controlled environments",
+    keywords: ["device", "configuration", "provisioning", "setup"]
   }, {
     icon: <ShieldCheck className="w-8 h-8 text-neutral-700" />,
     title: "Secure Data Handling",
     description: "On-site data wiping and secure device destruction with audit trails",
-    isHighlighted: true
+    isHighlighted: true,
+    keywords: ["security", "data", "wiping", "destruction", "audit"]
   }, {
     icon: <Cloud className="w-8 h-8 text-neutral-700" />,
     title: "Remote Device Control",
     description: "Remotely manage, lock, or wipe devices directly through the EPR platform",
     isHighlighted: true,
-    comingSoon: true
+    comingSoon: true,
+    keywords: ["remote", "control", "manage", "lock", "wipe"]
   }, {
     icon: <Zap className="w-8 h-8 text-neutral-700" />,
     title: "Hardware Spec Sync",
     description: "Automatically detect and update device specifications in your CMDB and asset inventory",
     isHighlighted: true,
-    comingSoon: true
+    comingSoon: true,
+    keywords: ["hardware", "specs", "sync", "inventory", "CMDB"]
   }, {
     icon: <Replace className="w-8 h-8 text-neutral-700" />,
     title: "Asset Exchange",
-    description: "Streamlined device deployment and replacement workflow management"
+    description: "Streamlined device deployment and replacement workflow management",
+    keywords: ["exchange", "deployment", "replacement", "workflow"]
   }, {
     icon: <Globe className="w-8 h-8 text-neutral-700" />,
     title: "Nationwide Coverage",
     description: "Manage assets across multiple locations and jurisdictions, with intelligent decision support",
-    isHighlighted: true
+    isHighlighted: true,
+    keywords: ["nationwide", "coverage", "locations", "management"]
   }, {
     icon: <Timer className="w-8 h-8 text-neutral-700" />,
     title: "Next-Day Resolution",
     description: "Overnight device replacement anywhere in the US, ensuring minimal downtime for your team",
-    isHighlighted: true
+    isHighlighted: true,
+    keywords: ["next-day", "resolution", "replacement", "overnight"]
   }, {
     icon: <Users className="w-8 h-8 text-neutral-700" />,
     title: "Remote Support",
     description: "Direct device access for remote troubleshooting and maintenance",
-    comingSoon: true
+    comingSoon: true,
+    keywords: ["remote", "support", "troubleshooting", "maintenance"]
   }, {
     icon: <Shield className="w-8 h-8 text-neutral-700" />,
     title: "Security First",
@@ -71,13 +87,24 @@ const Features = () => {
     link: {
       to: "/security",
       text: "Learn More"
-    }
+    },
+    keywords: ["security", "compliance", "enterprise"]
   }, {
     icon: <Recycle className="w-8 h-8 text-neutral-700" />,
     title: "Lifecycle Management",
     description: "Maximize device ROI through intelligent asset lifecycle optimization",
-    isHighlighted: true
+    isHighlighted: true,
+    keywords: ["lifecycle", "management", "ROI", "optimization"]
   }];
+
+  const filteredFeatures = features.filter(feature => {
+    const searchTerm = searchQuery.toLowerCase();
+    return (
+      feature.title.toLowerCase().includes(searchTerm) ||
+      feature.description.toLowerCase().includes(searchTerm) ||
+      feature.keywords?.some(keyword => keyword.toLowerCase().includes(searchTerm))
+    );
+  });
 
   return <section id="features" className="py-20 md:py-32 bg-neutral-light">
       <div className="container mx-auto px-4">
@@ -85,13 +112,25 @@ const Features = () => {
           <Layers className="w-8 h-8 text-neutral-700" />
           Platform Features
         </h2>
-        <p className="text-center text-base md:text-lg mb-10 animate-on-scroll max-w-2xl mx-auto">
+        <p className="text-center text-base md:text-lg mb-6 animate-on-scroll max-w-2xl mx-auto">
           Complete device lifecycle management with{' '}
           <span className="text-neutral-800 font-semibold">intelligent predictive maintenance</span>{' '}
           capabilities
         </p>
+        <div className="max-w-md mx-auto mb-10">
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+            <Input
+              type="text"
+              placeholder="Search features (e.g., repair, warehouse)"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-white/80 border-neutral-200"
+            />
+          </div>
+        </div>
         <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {features.map((feature, index) => (
+          {filteredFeatures.map((feature, index) => (
             <div 
               key={index} 
               className={`p-4 rounded-lg transition-all duration-500 backdrop-blur-sm border 
