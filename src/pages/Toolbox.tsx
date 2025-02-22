@@ -1,11 +1,25 @@
+
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
-import { Warehouse, Wrench, Truck, Cog, ShieldCheck, Recycle } from "lucide-react";
+import { 
+  Warehouse, 
+  Wrench, 
+  Truck, 
+  Cog, 
+  ShieldCheck, 
+  Recycle,
+  ArrowRight,
+  BarChart3,
+  Timer,
+  CheckCircle2,
+  CircleDollarSign
+} from "lucide-react";
 import toolboxLogo from "/lovable-uploads/236d044b-e3a0-4822-b70b-260862d2a5fd.png";
 import warehouseImage from "/lovable-uploads/1677d91d-eaaf-4e2c-b98f-d73469344a71.png";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
 const Toolbox = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,6 +45,62 @@ const Toolbox = () => {
     setIsScrolled(true);
   };
 
+  const features = [
+    {
+      icon: <Warehouse className="w-6 h-6 text-primary" />,
+      title: "Warehouse Operations",
+      description: "Streamline receiving, storage, and dispatch operations with integrated warehouse management tools and inventory tracking."
+    },
+    {
+      icon: <Wrench className="w-6 h-6 text-primary" />,
+      title: "Repair Management",
+      description: "Track devices through the repair process, from intake and diagnosis to repair completion and quality assurance."
+    },
+    {
+      icon: <Truck className="w-6 h-6 text-primary" />,
+      title: "Logistics Control",
+      description: "Manage shipping, receiving, and chain of custody with real-time tracking and automated notifications."
+    },
+    {
+      icon: <Cog className="w-6 h-6 text-primary" />,
+      title: "Parts Management",
+      description: "Track repair parts inventory, automate reordering, and maintain optimal stock levels for efficient repairs."
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6 text-primary" />,
+      title: "Quality Control",
+      description: "Ensure repaired devices meet OEM specifications with comprehensive testing and quality assurance workflows."
+    },
+    {
+      icon: <Recycle className="w-6 h-6 text-primary" />,
+      title: "Asset Recovery",
+      description: "Maximize device value through efficient triage, repair, and redistribution or remarketing channels."
+    }
+  ];
+
+  const stats = [
+    {
+      icon: <Timer className="w-8 h-8 text-primary" />,
+      value: "24-48h",
+      label: "Average repair turnaround time"
+    },
+    {
+      icon: <CheckCircle2 className="w-8 h-8 text-primary" />,
+      value: "95%+",
+      label: "First-time repair success rate"
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8 text-primary" />,
+      value: "40%",
+      label: "Reduction in repair costs"
+    },
+    {
+      icon: <CircleDollarSign className="w-8 h-8 text-primary" />,
+      value: "2.5x",
+      label: "ROI in first year"
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
@@ -47,114 +117,82 @@ const Toolbox = () => {
         </div>
         <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
-            <img src={toolboxLogo} alt="Toolbox Logo" className="h-16 mb-8" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            <img src={toolboxLogo} alt="Toolbox Logo" className="h-16 mb-8 animate-fade-in" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fade-in [animation-delay:200ms]">
               Physical Asset Management & Repair
             </h1>
-            <p className="text-lg text-white/90 max-w-2xl">
+            <p className="text-lg text-white/90 max-w-2xl animate-fade-in [animation-delay:400ms]">
               Bridge the gap between IT asset management and repair operations with Toolbox's comprehensive suite of warehouse, logistics, and repair depot integration tools.
             </p>
+            <div className="flex gap-4 mt-8 animate-fade-in [animation-delay:600ms]">
+              <Button size="lg" className="bg-primary/90 hover:bg-primary">
+                Schedule Demo
+              </Button>
+              <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20 text-white border-white/20">
+                Documentation
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Key Features Section */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-24 bg-neutral-50">
         <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold mb-4">Comprehensive Repair Management</h2>
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+              Streamline your repair operations with our integrated suite of tools designed for modern IT asset management.
+            </p>
+          </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Warehouse className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Warehouse Operations</h3>
-              </div>
-              <p className="text-neutral-600">
-                Streamline receiving, storage, and dispatch operations with integrated warehouse management tools and inventory tracking.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Wrench className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Repair Management</h3>
-              </div>
-              <p className="text-neutral-600">
-                Track devices through the repair process, from intake and diagnosis to repair completion and quality assurance.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Truck className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Logistics Control</h3>
-              </div>
-              <p className="text-neutral-600">
-                Manage shipping, receiving, and chain of custody with real-time tracking and automated notifications.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Cog className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Parts Management</h3>
-              </div>
-              <p className="text-neutral-600">
-                Track repair parts inventory, automate reordering, and maintain optimal stock levels for efficient repairs.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <ShieldCheck className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Quality Control</h3>
-              </div>
-              <p className="text-neutral-600">
-                Ensure repaired devices meet OEM specifications with comprehensive testing and quality assurance workflows.
-              </p>
-            </div>
-            <div className="p-6 bg-white rounded-lg shadow-sm">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-lg">
-                  <Recycle className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold">Asset Recovery</h3>
-              </div>
-              <p className="text-neutral-600">
-                Maximize device value through efficient triage, repair, and redistribution or remarketing channels.
-              </p>
-            </div>
+            {features.map((feature, index) => (
+              <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-shadow">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent"></div>
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 bg-primary/10 rounded-lg">
+                      {feature.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold">{feature.title}</h3>
+                  </div>
+                  <p className="text-neutral-600">{feature.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Value Proposition Section */}
-      <section className="py-16 bg-white">
+      {/* Stats Section */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-8 text-center">Optimize Your Repair Operations</h2>
-            <div className="bg-primary/5 p-8 rounded-lg">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="flex flex-col items-center text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">24-48h</div>
-                  <p className="text-neutral-600">Average repair turnaround time for standard repairs</p>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold mb-4">Proven Results</h2>
+              <p className="text-lg text-neutral-600">
+                Our customers achieve significant improvements in their repair operations
+              </p>
+            </div>
+            <div className="grid md:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center">
+                  <div className="inline-flex p-3 rounded-lg bg-primary/5 mb-4">
+                    {stat.icon}
+                  </div>
+                  <div className="text-3xl font-bold text-neutral-900 mb-2">
+                    {stat.value}
+                  </div>
+                  <p className="text-neutral-600">{stat.label}</p>
                 </div>
-                <div className="flex flex-col items-center text-center">
-                  <div className="text-4xl font-bold text-primary mb-2">95%+</div>
-                  <p className="text-neutral-600">First-time repair success rate with OEM-certified technicians</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Integration Section */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-24 bg-neutral-50">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6">Seamless HeliAM Integration</h2>
           <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
@@ -162,7 +200,10 @@ const Toolbox = () => {
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/heliam">
-              <Button variant="outline">Learn About HeliAM</Button>
+              <Button variant="outline" className="group">
+                Learn About HeliAM
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </Link>
             <Link to="/contact">
               <Button>Contact Sales</Button>
