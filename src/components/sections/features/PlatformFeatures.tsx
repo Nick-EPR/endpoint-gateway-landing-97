@@ -2,6 +2,7 @@
 import React from "react";
 import { Feature } from "./types";
 import { FeatureCard } from "./FeatureCard";
+import { Settings } from "lucide-react";
 
 interface PlatformFeaturesProps {
   features: Feature[];
@@ -43,7 +44,10 @@ export const PlatformFeatures = ({
         </div>
 
         <div className="text-center mt-32 mb-16">
-          <h3 className="text-xl font-semibold mb-2">Build Your Perfect ITAM Solution</h3>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Settings className="w-6 h-6 text-primary" />
+            <h3 className="text-xl font-semibold">Build Your Perfect ITAM Solution</h3>
+          </div>
           <p className="text-neutral-600 max-w-2xl mx-auto">
             Choose from our specialized products to create an ITAM solution that perfectly matches 
             your use case and business requirements.
