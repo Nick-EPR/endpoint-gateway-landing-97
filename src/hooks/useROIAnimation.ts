@@ -24,7 +24,6 @@ export const useROIAnimation = (
         // Ensure animation stops and controls become interactive
         if (elapsed >= totalDuration) {
           setIsAnimating(false);
-          cancelAnimationFrame(animationFrame);
           return;
         }
 
