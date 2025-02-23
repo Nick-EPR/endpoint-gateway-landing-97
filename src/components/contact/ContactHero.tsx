@@ -3,18 +3,38 @@ import { Mail } from "lucide-react";
 import LocationMap from "../LocationMap";
 import LocationCard from "./LocationCard";
 import EmailContact from "./EmailContact";
+import { useEffect, useState } from "react";
 
 const ContactHero = () => {
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  useEffect(() => {
+    // Start zoom animation after a short delay
+    const timer = setTimeout(() => {
+      setIsZoomed(true);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-screen bg-white">
+    <section className="relative min-h-screen bg-white overflow-hidden">
       {/* Map Background */}
       <div className="absolute inset-0 w-full h-full">
         <LocationMap />
-        <div className="absolute inset-0 bg-black/50" />
+        <div 
+          className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+            isZoomed 
+              ? 'bg-black/50' 
+              : 'bg-black/0 scale-[2.5] transform-origin-center'
+          }`} 
+        />
       </div>
       
       {/* Content */}
-      <div className="relative pt-32 pb-24 container mx-auto px-4">
+      <div className={`relative pt-32 pb-24 container mx-auto px-4 transition-opacity duration-1000 ${
+        isZoomed ? 'opacity-100' : 'opacity-0'
+      }`}>
         <div className="text-center max-w-3xl mx-auto">
           <Mail className="w-12 h-12 text-white mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Contact Us</h1>
