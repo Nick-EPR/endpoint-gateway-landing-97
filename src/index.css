@@ -96,7 +96,7 @@
   right: 0;
   height: 100%;
   background: inherit;
-  transform: skewY(-3deg);
+  transform: skewY(-6deg);
   transform-origin: 0;
   z-index: 0;
 }
@@ -107,7 +107,7 @@
 }
 
 .parallelogram-section.reverse::before {
-  transform: skewY(3deg);
+  transform: skewY(6deg);
   transform-origin: 100%;
 }
 
