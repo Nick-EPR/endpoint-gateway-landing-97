@@ -21,8 +21,10 @@ export const useROIAnimation = (
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         
+        // Ensure animation stops and controls become interactive
         if (elapsed >= totalDuration) {
           setIsAnimating(false);
+          cancelAnimationFrame(animationFrame);
           return;
         }
 
@@ -51,6 +53,14 @@ export const useROIAnimation = (
       };
 
       animationFrame = requestAnimationFrame(animate);
+
+      // Force animation to end after duration
+      setTimeout(() => {
+        setIsAnimating(false);
+        if (animationFrame) {
+          cancelAnimationFrame(animationFrame);
+        }
+      }, totalDuration);
     }
 
     return () => {
