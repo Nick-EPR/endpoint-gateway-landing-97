@@ -26,6 +26,7 @@ const LocationMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapboxToken, setMapboxToken] = useState('pk.eyJ1IjoibmljazIyNTEyIiwiYSI6ImNtN2RoMDg3dDAzMmYybHB1eWpydDBpbDEifQ.Htsl1CZzmwbAdHooJgUKQA');
+  const [isZooming, setIsZooming] = useState(false);
 
   useEffect(() => {
     const initializeMap = () => {
@@ -75,8 +76,9 @@ const LocationMap = () => {
             .addTo(map.current!);
         });
 
-        // Animate to bounds after 2 seconds
+        // Start zoom animation after 2 seconds
         setTimeout(() => {
+          setIsZooming(true);
           map.current?.fitBounds(bounds, {
             padding: 100,
             duration: 3000,
@@ -98,6 +100,11 @@ const LocationMap = () => {
   return (
     <div className="w-full h-full">
       <div ref={mapContainer} className="w-full h-full" />
+      <div className={`absolute inset-0 pointer-events-none transition-all duration-3000 ${
+        isZooming 
+          ? 'bg-black/50 backdrop-blur-none' 
+          : 'bg-black/60 backdrop-blur-sm'
+      }`} />
     </div>
   );
 };
