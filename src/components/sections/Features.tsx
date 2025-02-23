@@ -176,12 +176,12 @@ const Features = () => {
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll flex items-center justify-center gap-2">
           <Layers className="w-8 h-8 text-neutral-700" />
-          Complete ITAM Solutions for Government
+          Complete ITAM Solutions
         </h2>
         <p className="text-center text-base md:text-lg mb-6 animate-on-scroll max-w-2xl mx-auto">
-          Comprehensive device lifecycle management with{' '}
-          <span className="text-neutral-800 font-semibold">AI/ML-powered predictive maintenance</span>{' '}
-          capabilities
+          Comprehensive device lifecycle management for{' '}
+          <span className="text-neutral-800 font-semibold">Government</span>{' '}
+          with AI/ML-powered predictive maintenance
         </p>
         <div className="max-w-md mx-auto mb-10">
           <div className="relative">
@@ -203,7 +203,7 @@ const Features = () => {
             <img 
               src={triangleImage} 
               alt="EPR Platform" 
-              className="w-16 h-16 mx-auto mb-8"
+              className="w-16 h-16 mx-auto mb-16"
             />
             <div className="text-center mb-8">
               <h3 className="text-xl font-bold">EPR Platform Foundation</h3>
@@ -215,7 +215,8 @@ const Features = () => {
                   key={index}
                   className="p-4 rounded-lg bg-gradient-to-br from-white via-neutral-50 to-white border border-neutral-200 shadow-md hover:shadow-lg transition-all duration-500 backdrop-blur-sm animate-float"
                   style={{
-                    animationDelay: `${index * 200}ms`
+                    animationDuration: '3s',
+                    animationDelay: `${index * 0.5}s`
                   }}
                 >
                   <div className="flex items-start gap-4">
@@ -230,7 +231,18 @@ const Features = () => {
                 </div>
               ))}
             </div>
-            <div className="absolute -bottom-16 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2"></div>
+            <div className="absolute -bottom-16 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2">
+              <div className="absolute w-8 h-8 rounded-full -bottom-4 -left-[14px] border-2 border-primary/20"></div>
+            </div>
+            <div className="absolute -bottom-32 left-0 w-full">
+              <div className="relative h-16">
+                <div className="absolute left-1/6 right-1/6 top-1/2 h-px bg-primary/20"></div>
+                <div className="absolute left-1/6 top-0 h-full w-px bg-primary/20"></div>
+                <div className="absolute right-1/6 top-0 h-full w-px bg-primary/20"></div>
+                <div className="absolute left-1/6 bottom-0 w-2 h-2 rounded-full bg-primary/20 -ml-1"></div>
+                <div className="absolute right-1/6 bottom-0 w-2 h-2 rounded-full bg-primary/20 -ml-1"></div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -240,7 +252,6 @@ const Features = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <img src={heliamLogo} alt="HeliAM" className="h-12 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">HeliAM</h3>
               <p className="text-sm text-neutral-600">Asset Management Platform</p>
             </div>
             {filteredFeatures(heliamFeatures).map((feature, index) => (
@@ -261,7 +272,6 @@ const Features = () => {
           <div className="space-y-4">
             <div className="text-center mb-6">
               <img src={toolboxLogo} alt="Toolbox" className="h-8 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Toolbox</h3>
               <p className="text-sm text-neutral-600">Logistics & Maintenance</p>
             </div>
             {filteredFeatures(toolboxFeatures).map((feature, index) => (
@@ -281,8 +291,7 @@ const Features = () => {
           {/* Luemin Column */}
           <div className="space-y-4">
             <div className="text-center mb-6">
-              <img src={lueminLogo} alt="Luemin" className="h-12 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-2">Luemin</h3>
+              <img src={lueminLogo} alt="Luemin" className="h-16 mx-auto mb-4" />
               <p className="text-sm text-neutral-600">Remote Device Management (MDM)</p>
             </div>
             {filteredFeatures(lueminFeatures).map((feature, index) => (
