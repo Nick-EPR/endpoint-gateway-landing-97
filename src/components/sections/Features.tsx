@@ -1,4 +1,3 @@
-
 import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search, UserCog, Package2, UserPlus, Warehouse, Network, Database, BoxSelect } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -107,6 +106,57 @@ const Features = () => {
     comingSoon: true,
     keywords: ["security", "compliance", "control"]
   }];
+
+  const detailedFeatures: DetailedFeature[] = [
+    {
+      category: "Platform Integration",
+      features: [
+        "Unified asset database across all products",
+        "Seamless workflow automation between products",
+        "Cross-product data synchronization",
+        "Centralized security and compliance controls",
+        "Single sign-on across all EPR products",
+        "API-driven integration capabilities",
+        "Real-time data updates across platform"
+      ]
+    },
+    {
+      category: "Asset Management",
+      features: [
+        "Complete lifecycle tracking and management",
+        "Automated equipment package assignment",
+        "Asset utilization analytics and reporting",
+        "Role-based access control and permissions",
+        "Secure warehouse storage and inventory",
+        "Professional device maintenance services",
+        "Next-day replacement nationwide"
+      ]
+    },
+    {
+      category: "Security & Compliance",
+      features: [
+        "Enterprise-grade security controls",
+        "Compliance reporting and documentation",
+        "Secure data handling and destruction",
+        "Access-controlled facilities",
+        "Audit trails for all asset operations",
+        "Device security policy enforcement",
+        "Remote device control capabilities"
+      ]
+    },
+    {
+      category: "Support & Services",
+      features: [
+        "24/7 technical support access",
+        "Professional repair services",
+        "Nationwide logistics network",
+        "Remote troubleshooting assistance",
+        "On-site service options",
+        "Device diagnostics and testing",
+        "End-of-life asset disposition"
+      ]
+    }
+  ];
 
   const filteredFeatures = (features: Feature[]) => {
     const searchTerm = searchQuery.toLowerCase();
