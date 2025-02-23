@@ -80,10 +80,11 @@ const ROICalculator = () => {
           }, stepDuration);
           return new Promise(resolve => setTimeout(resolve, duration));
         };
-        await new Promise(resolve => setTimeout(resolve, 560));
-        await animate(1000, 100, 1050);
-        await animate(100, 5000, 1400);
-        await animate(5000, 1000, 1050);
+        
+        await new Promise(resolve => setTimeout(resolve, 400)); // Shorter initial delay
+        await animate(1000, 100, 800); // Quicker first animation
+        await animate(100, 3000, 1000); // Shorter range, faster animation
+        await animate(3000, 1000, 800); // Quick return to default
         setIsAnimating(false);
       };
       animateSlider();
