@@ -14,19 +14,22 @@ export const useIntersectionObserver = (
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const currentRef = ref.current;
+    
+    if (!currentRef) return;
+
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        setIsVisible(true);
-        observer.disconnect();
-      }
+      setIsVisible(entry.isIntersecting);
     }, options);
 
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
+    observer.observe(currentRef);
 
-    return () => observer.disconnect();
-  }, [ref, options]);
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [ref, options.threshold, options.root, options.rootMargin]);
 
-  return { isVisible, setIsVisible };
+  return { isVisible };
 };

@@ -6,46 +6,41 @@ export const useROIAnimation = (
   handleEmployeeChange: (value: number) => void
 ) => {
   const [isAnimating, setIsAnimating] = useState(false);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const [hasAnimationStarted, setHasAnimationStarted] = useState(false);
 
   useEffect(() => {
     let animationFrame: number;
 
-    if (isVisible && !hasAnimated) {
-      const startTime = performance.now();
-      const totalDuration = 2600; // Total animation duration in ms
-      
+    if (isVisible && !hasAnimationStarted) {
+      setHasAnimationStarted(true);
       setIsAnimating(true);
-      setHasAnimated(true);
+      
+      const startTime = performance.now();
+      const totalDuration = 2600;
 
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
         
         if (elapsed >= totalDuration) {
           setIsAnimating(false);
-          cancelAnimationFrame(animationFrame);
           return;
         }
 
-        // Calculate which phase of the animation we're in
-        const phase1Duration = 800;  // 1000 -> 100
-        const phase2Duration = 1000; // 100 -> 3000
-        const phase3Duration = 800;  // 3000 -> 1000
+        const phase1Duration = 800;
+        const phase2Duration = 1000;
+        const phase3Duration = 800;
 
         let newValue: number;
 
         if (elapsed < phase1Duration) {
-          // Phase 1: 1000 -> 100
           const progress = elapsed / phase1Duration;
           const easeProgress = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
           newValue = 1000 - (900 * easeProgress);
         } else if (elapsed < phase1Duration + phase2Duration) {
-          // Phase 2: 100 -> 3000
           const progress = (elapsed - phase1Duration) / phase2Duration;
           const easeProgress = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
           newValue = 100 + (2900 * easeProgress);
         } else {
-          // Phase 3: 3000 -> 1000
           const progress = (elapsed - (phase1Duration + phase2Duration)) / phase3Duration;
           const easeProgress = progress < 0.5 ? 4 * progress * progress * progress : 1 - Math.pow(-2 * progress + 2, 3) / 2;
           newValue = 3000 - (2000 * easeProgress);
@@ -63,7 +58,7 @@ export const useROIAnimation = (
         cancelAnimationFrame(animationFrame);
       }
     };
-  }, [isVisible, handleEmployeeChange, hasAnimated]);
+  }, [isVisible, handleEmployeeChange, hasAnimationStarted]);
 
   return { isAnimating };
 };
