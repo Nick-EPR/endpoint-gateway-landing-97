@@ -54,6 +54,7 @@ const Features = () => {
           <PlatformFeatures 
             features={filteredFeatures(featureData.platformFeatures)}
             triangleImage={triangleImage}
+            isSearching={isSearching}
           />
 
           <div className="grid md:grid-cols-3 gap-8">

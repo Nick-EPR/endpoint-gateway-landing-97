@@ -7,14 +7,14 @@ import { Settings, Package } from "lucide-react";
 interface PlatformFeaturesProps {
   features: Feature[];
   triangleImage: string;
+  isSearching?: boolean; // Add isSearching prop
 }
 
 export const PlatformFeatures = ({
   features,
-  triangleImage
+  triangleImage,
+  isSearching = false // Default to false
 }: PlatformFeaturesProps) => {
-  const isSearching = features.length !== 6; // Platform features has 6 items by default
-
   return <div className="relative mb-32">
       <div className="relative">
         {!isSearching && (
@@ -73,3 +73,4 @@ export const PlatformFeatures = ({
       </div>
     </div>;
 };
+
