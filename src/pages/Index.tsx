@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -15,6 +16,7 @@ import ChatButton from "../components/ChatButton";
 import StatusBanner from "../components/StatusBanner";
 import ComparisonTable from "../components/sections/ComparisonTable";
 import { fetchMonitors } from "@/utils/monitorUtils";
+
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
@@ -25,7 +27,9 @@ const Index = () => {
     queryFn: fetchMonitors,
     refetchInterval: 60000
   });
+
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
+
   useEffect(() => {
     const handleScroll = () => {
       const isScrolled = window.scrollY > 0;
@@ -36,6 +40,7 @@ const Index = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
   useEffect(() => {
     observerRef.current = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -47,45 +52,51 @@ const Index = () => {
     }, {
       threshold: 0.1
     });
+
     document.querySelectorAll(".animate-on-scroll").forEach(element => {
       observerRef.current?.observe(element);
     });
+
     return () => observerRef.current?.disconnect();
   }, []);
-  return <div className="min-h-screen">
+
+  return (
+    <div className="min-h-screen">
       <NavigationProgress />
       <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
-      {hasOutage && <div className="fixed top-[72px] w-full z-40">
+      {hasOutage && (
+        <div className="fixed top-[72px] w-full z-40">
           <StatusBanner message="We're currently experiencing some technical issues and are working to resolve them." />
-        </div>}
+        </div>
+      )}
       
       <Hero title="Comprehensive ITAM Solutions for Your Enterprise" subtitle="Transform your IT asset management with our end-to-end solution" buttonText="Get Started" />
 
-      <section className="bg-white parallelogram-section">
+      <section className="bg-white">
         <Products />
       </section>
 
-      <section className="bg-neutral-light parallelogram-section">
+      <section className="bg-[#F1F0FB]">
         <Features />
       </section>
 
-      <section className="bg-white parallelogram-section">
+      <section className="bg-white">
         <ComparisonTable />
       </section>
 
-      <section className="parallelogram-section bg-red-50">
+      <section className="bg-[#F2FCE2]">
         <TMobileBusiness />
       </section>
 
-      <section className="parallelogram-section bg-white">
+      <section className="bg-white">
         <Partners />
       </section>
 
-      <section className="parallelogram-section bg-primary-light">
+      <section className="bg-[#F1F0FB]">
         <ROICalculator />
       </section>
 
-      <section className="bg-neutral-light parallelogram-section">
+      <section className="bg-[#F2FCE2]">
         <Partnership />
       </section>
 
@@ -95,6 +106,8 @@ const Index = () => {
 
       <Footer />
       <ChatButton />
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
