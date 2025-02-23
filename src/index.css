@@ -82,3 +82,32 @@
 .section-padding {
   @apply py-16 md:py-24;
 }
+
+.parallelogram-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.parallelogram-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: inherit;
+  transform: skewY(-3deg);
+  transform-origin: 0;
+  z-index: 0;
+}
+
+.parallelogram-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.parallelogram-section.reverse::before {
+  transform: skewY(3deg);
+  transform-origin: 100%;
+}
+
