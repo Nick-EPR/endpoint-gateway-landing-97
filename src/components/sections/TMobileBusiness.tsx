@@ -24,7 +24,7 @@ const TMobileBusiness = () => {
               <h3 className="text-2xl font-semibold text-center">Latest Updates & Guides</h3>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-neutral-light rounded-xl p-6">
+              <div className="rounded-xl p-6 bg-white">
                 <div className="flex items-center gap-3 mb-4">
                   <Zap className="w-5 h-5 text-[#E30074]" />
                   <h4 className="text-xl font-semibold">Windows 11 Transition Guide</h4>
@@ -47,7 +47,7 @@ const TMobileBusiness = () => {
                 <p className="text-neutral mb-6">
                   Discover how T-Mobile's 5G network integration can transform your business operations and device management capabilities.
                 </p>
-                <div className="aspect-[4/3] bg-neutral-light/50 rounded-lg flex items-center justify-center">
+                <div className="aspect-[4/3] rounded-lg flex items-center justify-center bg-gray-100">
                   <p className="text-neutral text-sm">Coming Soon</p>
                 </div>
               </div>
