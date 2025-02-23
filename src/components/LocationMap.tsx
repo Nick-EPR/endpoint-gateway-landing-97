@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { Skeleton } from "./ui/skeleton";
 
 const locations = [
   {
@@ -27,6 +28,7 @@ const LocationMap = () => {
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapboxToken, setMapboxToken] = useState('pk.eyJ1IjoibmljazIyNTEyIiwiYSI6ImNtN2RoMDg3dDAzMmYybHB1eWpydDBpbDEifQ.Htsl1CZzmwbAdHooJgUKQA');
   const [isZooming, setIsZooming] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const rotationAnimationRef = useRef<number>();
 
   useEffect(() => {
@@ -52,6 +54,9 @@ const LocationMap = () => {
 
       // Add markers after map loads
       map.current.on('load', () => {
+        // Remove loading state
+        setIsLoading(false);
+
         // Add atmosphere and globe effects
         map.current?.setFog({
           color: 'rgb(186, 210, 235)', // sky color
@@ -137,6 +142,14 @@ const LocationMap = () => {
           ? 'bg-black/20 backdrop-blur-none' 
           : 'bg-black/20 backdrop-blur-sm'
       }`} />
+      {/* Loading overlay */}
+      <div 
+        className={`absolute inset-0 bg-background transition-opacity duration-1000 flex items-center justify-center ${
+          isLoading ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        <Skeleton className="w-16 h-16 rounded-full" />
+      </div>
     </div>
   );
 };
