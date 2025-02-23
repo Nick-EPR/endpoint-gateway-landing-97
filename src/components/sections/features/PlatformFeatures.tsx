@@ -14,7 +14,7 @@ export const PlatformFeatures = ({
   triangleImage
 }: PlatformFeaturesProps) => {
   return <div className="relative mb-32">
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-xl"></div>
+      {/* Remove the gradient background that was causing the difference */}
       <div className="relative">
         <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-2">
