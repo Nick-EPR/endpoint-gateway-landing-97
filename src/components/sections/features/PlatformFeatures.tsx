@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Feature } from "./types";
 import { FeatureCard } from "./FeatureCard";
@@ -7,18 +6,18 @@ import { Settings, Package } from "lucide-react";
 interface PlatformFeaturesProps {
   features: Feature[];
   triangleImage: string;
-  isSearching?: boolean; // Add isSearching prop
+  isSearching?: boolean;
 }
 
 export const PlatformFeatures = ({
   features,
   triangleImage,
-  isSearching = false // Default to false
+  isSearching = false
 }: PlatformFeaturesProps) => {
   return <div className="relative mb-32">
       <div className="relative">
         {!isSearching && (
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 mt-20">
             <div className="flex items-center justify-center gap-2 mb-2">
               <Package className="w-8 h-8 text-primary" />
               <h3 className="text-xl font-semibold">What You Get Out of The Box</h3>
@@ -73,4 +72,3 @@ export const PlatformFeatures = ({
       </div>
     </div>;
 };
-
