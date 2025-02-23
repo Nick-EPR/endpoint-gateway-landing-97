@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { memo } from "react";
 import { Feature } from "./types";
 
 interface FeatureCardProps extends Feature {
@@ -7,7 +7,7 @@ interface FeatureCardProps extends Feature {
   style?: React.CSSProperties;
 }
 
-export const FeatureCard = ({
+export const FeatureCard = memo(({
   icon,
   title,
   description,
@@ -21,15 +21,21 @@ export const FeatureCard = ({
       style={style}
     >
       {comingSoon && (
-        <span className="absolute top-2 right-2 text-xs px-1.5 py-0.5 bg-neutral-100 text-neutral-600 rounded-full leading-none">
+        <span className="absolute top-2 right-2 text-xs px-1.5 py-0.5 bg-neutral-100 text-neutral-600 rounded-full leading-none animate-fade-in">
           Soon
         </span>
       )}
-      <div className="w-10 h-10 rounded-lg bg-neutral-50 flex items-center justify-center mb-3">
+      <div className="w-10 h-10 rounded-lg bg-neutral-50 flex items-center justify-center mb-3 animate-fade-up">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-1.5 text-neutral-800">{title}</h3>
-      <p className="text-neutral-600 text-sm">{description}</p>
+      <h3 className="text-lg font-semibold mb-1.5 text-neutral-800 animate-fade-up" style={{ animationDelay: '50ms' }}>
+        {title}
+      </h3>
+      <p className="text-neutral-600 text-sm animate-fade-up" style={{ animationDelay: '100ms' }}>
+        {description}
+      </p>
     </div>
   );
-};
+});
+
+FeatureCard.displayName = "FeatureCard";
