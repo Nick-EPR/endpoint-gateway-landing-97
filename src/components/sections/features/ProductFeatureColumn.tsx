@@ -13,7 +13,11 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
   return (
     <div>
       <div className="text-center mb-8">
-        <img src={logo} alt={logoAlt} className="h-8 mx-auto" />
+        <img 
+          src={logo} 
+          alt={logoAlt} 
+          className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"}`} 
+        />
       </div>
       <div className="space-y-4">
         {features.map((feature, index) => (
