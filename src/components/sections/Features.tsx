@@ -6,7 +6,6 @@ import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.pn
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
 import lueminLogo from "/lovable-uploads/82f53487-163f-495f-a2d0-f1535273a1df.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
-
 interface Feature {
   icon: React.ReactNode;
   title: string;
@@ -19,15 +18,12 @@ interface Feature {
   comingSoon?: boolean;
   keywords?: string[];
 }
-
 interface DetailedFeature {
   category: string;
   features: string[];
 }
-
 const Features = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
   const platformFeatures: Feature[] = [{
     icon: <Database className="w-8 h-8 text-neutral-700" />,
     title: "Unified Asset Database",
@@ -47,7 +43,6 @@ const Features = () => {
     isHighlighted: true,
     keywords: ["security", "compliance", "enterprise", "controls", "platform"]
   }];
-
   const heliamFeatures: Feature[] = [{
     icon: <UserCog className="w-8 h-8 text-neutral-700" />,
     title: "Equipment Onboarding",
@@ -67,7 +62,6 @@ const Features = () => {
     isHighlighted: true,
     keywords: ["AI", "ML", "analytics", "prediction", "insights"]
   }];
-
   const toolboxFeatures: Feature[] = [{
     icon: <Warehouse className="w-8 h-8 text-neutral-700" />,
     title: "Secure Storage",
@@ -87,7 +81,6 @@ const Features = () => {
     isHighlighted: true,
     keywords: ["repair", "diagnostics", "maintenance", "OEM"]
   }];
-
   const lueminFeatures: Feature[] = [{
     icon: <Cloud className="w-8 h-8 text-neutral-700" />,
     title: "Remote Device Control",
@@ -110,7 +103,6 @@ const Features = () => {
     comingSoon: true,
     keywords: ["tracking", "location", "monitoring", "audit"]
   }];
-
   const detailedFeatures: DetailedFeature[] = [{
     category: "Platform Integration",
     features: ["Unified asset database across all products", "Seamless workflow automation between products", "Cross-product data synchronization", "Centralized security and compliance controls", "Single sign-on across all EPR products", "API-driven integration capabilities", "Real-time data updates across platform"]
@@ -124,14 +116,11 @@ const Features = () => {
     category: "Support & Services",
     features: ["24/7 technical support access", "Professional repair services", "Nationwide logistics network", "Remote troubleshooting assistance", "On-site service options", "Device diagnostics and testing", "End-of-life asset disposition"]
   }];
-
   const filteredFeatures = (features: Feature[]) => {
     const searchTerm = searchQuery.toLowerCase();
     return features.filter(feature => feature.title.toLowerCase().includes(searchTerm) || feature.description.toLowerCase().includes(searchTerm) || feature.keywords?.some(keyword => keyword.toLowerCase().includes(searchTerm)));
   };
-
-  return (
-    <section id="features" className="py-20 md:py-32 bg-neutral-light">
+  return <section id="features" className="py-20 md:py-32 bg-neutral-light">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll flex items-center justify-center gap-2">
           <Layers className="w-8 h-8 text-neutral-700" />
@@ -144,34 +133,19 @@ const Features = () => {
         <div className="max-w-md mx-auto mb-10">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
-            <Input
-              type="text"
-              placeholder="Search features (e.g., repair, RDP, shipping)"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10 bg-white/80 border-neutral-200"
-            />
+            <Input type="text" placeholder="Search features (e.g., repair, RDP, shipping)" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 bg-white/80 border-neutral-200" />
           </div>
         </div>
 
         <div className="relative mb-32">
           <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-xl"></div>
           <div className="relative">
-            <img 
-              src={triangleImage} 
-              alt="EPR Platform" 
-              className="w-16 h-16 mx-auto mb-12"
-            />
+            <img src={triangleImage} alt="EPR Platform" className="w-16 h-16 mx-auto mb-12" />
             <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-              {filteredFeatures(platformFeatures).map((feature, index) => (
-                <div 
-                  key={index}
-                  className="p-4 rounded-lg bg-gradient-to-br from-white via-neutral-50 to-white border border-neutral-200 shadow-md hover:shadow-lg transition-all duration-500 backdrop-blur-sm animate-float"
-                  style={{
-                    animationDuration: '3s',
-                    animationDelay: `${index * 0.5}s`
-                  }}
-                >
+              {filteredFeatures(platformFeatures).map((feature, index) => <div key={index} className="p-4 rounded-lg bg-gradient-to-br from-white via-neutral-50 to-white border border-neutral-200 shadow-md hover:shadow-lg transition-all duration-500 backdrop-blur-sm animate-float" style={{
+              animationDuration: '3s',
+              animationDelay: `${index * 0.5}s`
+            }}>
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                       {feature.icon}
@@ -181,20 +155,13 @@ const Features = () => {
                       <p className="text-neutral-600 text-sm">{feature.description}</p>
                     </div>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
             <div className="absolute -bottom-16 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2">
               <div className="absolute w-8 h-8 rounded-full -bottom-4 -left-[14px] border-2 border-primary/20"></div>
             </div>
             <div className="absolute -bottom-32 left-0 w-full">
-              <div className="relative h-16">
-                <div className="absolute left-1/6 right-1/6 top-1/2 h-px bg-primary/20"></div>
-                <div className="absolute left-1/6 top-0 h-full w-px bg-primary/20"></div>
-                <div className="absolute right-1/6 top-0 h-full w-px bg-primary/20"></div>
-                <div className="absolute left-1/6 bottom-0 w-2 h-2 rounded-full bg-primary/20 -ml-1"></div>
-                <div className="absolute right-1/6 bottom-0 w-2 h-2 rounded-full bg-primary/20 -ml-1"></div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -205,18 +172,13 @@ const Features = () => {
               <img src={heliamLogo} alt="HeliAM" className="h-8 mx-auto" />
             </div>
             <div className="space-y-4">
-              {filteredFeatures(heliamFeatures).map((feature, index) => (
-                <div 
-                  key={index}
-                  className="p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full"
-                >
+              {filteredFeatures(heliamFeatures).map((feature, index) => <div key={index} className="p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full">
                   <div className="w-10 h-10 rounded-lg bg-neutral-50 flex items-center justify-center mb-3">
                     {feature.icon}
                   </div>
                   <h3 className="text-lg font-semibold mb-1.5 text-neutral-800">{feature.title}</h3>
                   <p className="text-neutral-600 text-sm">{feature.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -225,18 +187,13 @@ const Features = () => {
               <img src={toolboxLogo} alt="Toolbox" className="h-8 mx-auto" />
             </div>
             <div className="space-y-4">
-              {filteredFeatures(toolboxFeatures).map((feature, index) => (
-                <div 
-                  key={index}
-                  className="p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full"
-                >
+              {filteredFeatures(toolboxFeatures).map((feature, index) => <div key={index} className="p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full">
                   <div className="w-10 h-10 rounded-lg bg-neutral-50 flex items-center justify-center mb-3">
                     {feature.icon}
                   </div>
                   <h3 className="text-lg font-semibold mb-1.5 text-neutral-800">{feature.title}</h3>
                   <p className="text-neutral-600 text-sm">{feature.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
 
@@ -245,23 +202,16 @@ const Features = () => {
               <img src={lueminLogo} alt="Luemin" className="h-8 mx-auto" />
             </div>
             <div className="space-y-4">
-              {filteredFeatures(lueminFeatures).map((feature, index) => (
-                <div 
-                  key={index}
-                  className="p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full relative"
-                >
-                  {feature.comingSoon && (
-                    <span className="absolute top-2 right-2 text-xs px-1.5 py-0.5 bg-neutral-100 text-neutral-600 rounded-full leading-none">
+              {filteredFeatures(lueminFeatures).map((feature, index) => <div key={index} className="p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full relative">
+                  {feature.comingSoon && <span className="absolute top-2 right-2 text-xs px-1.5 py-0.5 bg-neutral-100 text-neutral-600 rounded-full leading-none">
                       Soon
-                    </span>
-                  )}
+                    </span>}
                   <div className="w-10 h-10 rounded-lg bg-neutral-50 flex items-center justify-center mb-3">
                     {feature.icon}
                   </div>
                   <h3 className="text-lg font-semibold mb-1.5 text-neutral-800">{feature.title}</h3>
                   <p className="text-neutral-600 text-sm">{feature.description}</p>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
@@ -269,26 +219,20 @@ const Features = () => {
         <div className="max-w-4xl mx-auto mt-20">
           <h3 className="text-xl font-semibold text-center mb-8">Additional Platform Capabilities</h3>
           <div className="grid md:grid-cols-2 gap-8">
-            {detailedFeatures.map((category, index) => (
-              <div key={index} className="space-y-4">
+            {detailedFeatures.map((category, index) => <div key={index} className="space-y-4">
                 <h4 className="font-semibold text-lg text-neutral-800">{category.category}</h4>
                 <ul className="space-y-2">
-                  {category.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-2 text-neutral-600">
+                  {category.features.map((feature, featureIndex) => <li key={featureIndex} className="flex items-start gap-2 text-neutral-600">
                       <div className="mt-1.5">
                         <div className="w-1.5 h-1.5 rounded-full bg-neutral-400"></div>
                       </div>
                       <span>{feature}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default Features;
