@@ -17,7 +17,7 @@ export const FeatureCard = memo(({
 }: FeatureCardProps) => {
   return (
     <div 
-      className={`p-4 rounded-lg bg-white/80 border border-neutral-100 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-500 backdrop-blur-sm h-full relative ${className}`}
+      className={`p-4 rounded-lg bg-white shadow-sm border border-neutral-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300 h-full relative ${className}`}
       style={style}
     >
       {comingSoon && (
