@@ -77,7 +77,7 @@ const Index = () => {
         <TMobileBusiness />
       </section>
 
-      <section className="parallelogram-section bg-white">
+      <section className="parallelogram-section bg-primary-light">
         <Partners />
       </section>
 
