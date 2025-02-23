@@ -8,8 +8,9 @@ export const useROIAnimation = (
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
-    if (isVisible) {
-      let animationFrame: number;
+    let animationFrame: number;
+
+    if (isVisible && !isAnimating) {
       const startTime = performance.now();
       const totalDuration = 2600; // Total animation duration in ms
       
@@ -52,19 +53,15 @@ export const useROIAnimation = (
         animationFrame = requestAnimationFrame(animate);
       };
 
-      // Start the animation
       animationFrame = requestAnimationFrame(animate);
-
-      return () => {
-        if (animationFrame) {
-          cancelAnimationFrame(animationFrame);
-          setIsAnimating(false);
-        }
-      };
-    } else {
-      setIsAnimating(false);
     }
-  }, [isVisible, handleEmployeeChange]);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+    };
+  }, [isVisible, handleEmployeeChange, isAnimating]);
 
   return { isAnimating };
 };
