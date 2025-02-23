@@ -81,7 +81,7 @@ const Index = () => {
         <Products />
       </section>
 
-      <section className="bg-neutral-light parallelogram-section reverse">
+      <section className="bg-neutral-light parallelogram-section">
         <Features />
       </section>
 
@@ -89,7 +89,7 @@ const Index = () => {
         <ComparisonTable />
       </section>
 
-      <section className="bg-white parallelogram-section reverse">
+      <section className="bg-neutral-light parallelogram-section">
         <TMobileBusiness />
       </section>
 
@@ -97,7 +97,7 @@ const Index = () => {
         <Partners />
       </section>
 
-      <section className="bg-white parallelogram-section reverse">
+      <section className="bg-white parallelogram-section">
         <ROICalculator />
       </section>
 
