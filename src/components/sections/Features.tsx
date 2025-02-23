@@ -23,64 +23,79 @@ const Features = () => {
     );
   };
 
+  const handleClearSearch = () => {
+    setSearchQuery("");
+  };
+
+  const isSearching = searchQuery.length > 0;
+
   return (
     <section id="features" className="py-20 md:py-32 bg-neutral-light">
       <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2">
-          <Layers className="w-8 h-8 text-neutral-700" />
-          Complete ITAM Solutions
-        </h2>
-        <p className="text-center text-base md:text-lg mb-12 animate-fade-up max-w-2xl mx-auto">
-          Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
-        </p>
+        {!isSearching && (
+          <>
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2">
+              <Layers className="w-8 h-8 text-neutral-700" />
+              Complete ITAM Solutions
+            </h2>
+            <p className="text-center text-base md:text-lg mb-12 animate-fade-up max-w-2xl mx-auto">
+              Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
+            </p>
+          </>
+        )}
 
         <SearchFeatures 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          onClear={handleClearSearch}
         />
 
-        <PlatformFeatures 
-          features={filteredFeatures(featureData.platformFeatures)}
-          triangleImage={triangleImage}
-        />
+        <div className={isSearching ? "space-y-12" : ""}>
+          <PlatformFeatures 
+            features={filteredFeatures(featureData.platformFeatures)}
+            triangleImage={triangleImage}
+          />
 
-        <div className="grid md:grid-cols-3 gap-8">
-          <ProductFeatureColumn
-            logo={heliamLogo}
-            logoAlt="HeliAM"
-            features={filteredFeatures(featureData.heliamFeatures)}
-          />
-          <ProductFeatureColumn
-            logo={toolboxLogo}
-            logoAlt="Toolbox"
-            features={filteredFeatures(featureData.toolboxFeatures)}
-          />
-          <ProductFeatureColumn
-            logo={lueminLogo}
-            logoAlt="Luemin"
-            features={filteredFeatures(featureData.lueminFeatures)}
-          />
-        </div>
-
-        <div className="max-w-4xl mx-auto mt-20">
-          <h3 className="text-xl font-semibold text-center mb-8">Additional Platform Capabilities</h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            {featureData.detailedFeatures.map((category, index) => (
-              <div key={index} className="space-y-4">
-                <h4 className="font-semibold text-lg text-neutral-800">{category.category}</h4>
-                <ul className="space-y-2">
-                  {category.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-2 text-neutral-600">
-                      <div className="mt-1.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-neutral-400"></div>
-                      </div>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            <ProductFeatureColumn
+              logo={heliamLogo}
+              logoAlt="HeliAM"
+              features={filteredFeatures(featureData.heliamFeatures)}
+            />
+            <ProductFeatureColumn
+              logo={toolboxLogo}
+              logoAlt="Toolbox"
+              features={filteredFeatures(featureData.toolboxFeatures)}
+            />
+            <ProductFeatureColumn
+              logo={lueminLogo}
+              logoAlt="Luemin"
+              features={filteredFeatures(featureData.lueminFeatures)}
+            />
           </div>
+
+          {!isSearching && (
+            <div className="max-w-4xl mx-auto mt-20">
+              <h3 className="text-xl font-semibold text-center mb-8">Additional Platform Capabilities</h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {featureData.detailedFeatures.map((category, index) => (
+                  <div key={index} className="space-y-4">
+                    <h4 className="font-semibold text-lg text-neutral-800">{category.category}</h4>
+                    <ul className="space-y-2">
+                      {category.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-start gap-2 text-neutral-600">
+                          <div className="mt-1.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-neutral-400"></div>
+                          </div>
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
