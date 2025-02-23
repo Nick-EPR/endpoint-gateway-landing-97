@@ -10,24 +10,21 @@ interface PlatformFeaturesProps {
   isSearching?: boolean;
 }
 
-const FeatureTitle = memo(({ children }: { children: React.ReactNode }) => (
-  <div className="text-center mb-16 mt-20 animate-fade-up">
-    <div className="flex items-center justify-center gap-2 mb-2">
+const FeatureTitle = memo(({ children, description }: { children: React.ReactNode; description?: string }) => (
+  <div className="text-center mb-16 mt-20">
+    <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up">
       <Package className="w-8 h-8 text-primary" />
       <h3 className="text-xl font-semibold">{children}</h3>
     </div>
+    {description && (
+      <p className="text-neutral-600 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '100ms' }}>
+        {description}
+      </p>
+    )}
   </div>
 ));
 
 FeatureTitle.displayName = "FeatureTitle";
-
-const FeatureDescription = memo(({ children }: { children: React.ReactNode }) => (
-  <p className="text-neutral-600 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '100ms' }}>
-    {children}
-  </p>
-));
-
-FeatureDescription.displayName = "FeatureDescription";
 
 const NoFeaturesFound = memo(() => (
   <div className="text-center py-8 text-neutral-500 animate-fade-up">
@@ -46,15 +43,11 @@ export const PlatformFeatures = memo(({
     <div className="relative mb-32">
       <div className="relative">
         {!isSearching && (
-          <>
-            <FeatureTitle>
-              What You Get Out of The Box
-            </FeatureTitle>
-            <FeatureDescription>
-              Start with our core platform features and add any combination of our specialized products 
-              to build your complete ITAM solution.
-            </FeatureDescription>
-          </>
+          <FeatureTitle
+            description="Start with our core platform features and add any combination of our specialized products to build your complete ITAM solution."
+          >
+            What You Get Out of The Box
+          </FeatureTitle>
         )}
         
         <div className="container mx-auto px-4">
