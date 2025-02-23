@@ -19,7 +19,7 @@ const ROICalculator = () => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTrends, setCurrentTrends] = useState(defaultTrends);
   const sliderRef = useRef<HTMLDivElement>(null);
-  const { isVisible, setIsVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
+  const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
 
   const handleEmployeeChange = (value: number) => {
     setEmployees(value);
@@ -33,9 +33,7 @@ const ROICalculator = () => {
   };
 
   const handleEnterpriseChange = (checked: boolean) => {
-    if (!isAnimating) {
-      setIsEnterprise(checked);
-    }
+    setIsEnterprise(checked);
   };
 
   const { isAnimating } = useROIAnimation(isVisible, handleEmployeeChange);
@@ -52,7 +50,7 @@ const ROICalculator = () => {
           <ROIHeader />
           <StatsCards trends={currentTrends} />
 
-          <div className={`glass-card rounded-2xl p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300 ${isAnimating ? 'opacity-50 pointer-events-none' : ''}`}>
+          <div className={`glass-card rounded-2xl p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300`}>
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
                 <div className="bg-primary/10 p-2 rounded-lg mr-3">
@@ -81,8 +79,7 @@ const ROICalculator = () => {
               <Button 
                 variant="outline" 
                 onClick={() => setShowMoreDetails(true)} 
-                className="gap-2" 
-                disabled={isAnimating}
+                className="gap-2"
               >
                 <LineChart className="w-4 h-4" />
                 View 5-Year Projection
