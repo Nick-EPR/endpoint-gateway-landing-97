@@ -58,7 +58,7 @@ const Partners = () => {
         })]} className="w-full">
             <CarouselContent>
               {partners.map((partner, index) => <CarouselItem key={index} className="basis-full md:basis-1/3">
-                  <a href={partner.url} target="_blank" rel="noopener noreferrer" className="p-4 glass-card rounded-xl hover:shadow-lg transition-shadow group block h-[140px]">
+                  <a href={partner.url} target="_blank" rel="noopener noreferrer" className="p-4 rounded-xl hover:shadow-lg transition-shadow group block h-[140px] bg-gradient-to-br from-neutral-light to-primary-light border border-primary/10">
                     <div className="h-16 flex items-center justify-center">
                       <img src={partner.logo} alt={`${partner.name} logo`} className={`w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'Lifetime Service' ? 'max-w-[80px] max-h-14' : partner.name === 'T-Mobile' ? 'max-h-[6rem]' : partner.name === 'D&H Distributing' ? 'max-h-[4.5rem]' : partner.name === 'CellHub' ? 'max-h-16' : 'max-h-14'}`} />
                     </div>
