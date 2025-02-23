@@ -45,7 +45,7 @@ const LocationMap = () => {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/dark-v11',
-        center: [30, 20], // Start more east to create smoother rotation to US
+        center: [0, 20], // Start at center
         zoom: 1,
         projection: 'globe'
       });
@@ -79,8 +79,8 @@ const LocationMap = () => {
 
         // Gentle initial rotation
         let startTime: number | null = null;
-        const rotationDuration = 3000; // 3 seconds
-        const totalRotation = -40; // degrees to rotate
+        const rotationDuration = 2500; // 2.5 seconds
+        const totalRotation = -20; // reduced rotation amount
 
         const animate = (currentTime: number) => {
           if (!startTime) startTime = currentTime;
@@ -94,7 +94,7 @@ const LocationMap = () => {
 
           if (map.current) {
             const center = map.current.getCenter();
-            center.lng = 30 + (totalRotation * easeProgress);
+            center.lng = 0 + (totalRotation * easeProgress);
             map.current.setCenter(center);
           }
 
