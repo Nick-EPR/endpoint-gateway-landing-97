@@ -9,6 +9,7 @@ import {
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { Star } from "lucide-react";
 
 const Partners = () => {
   const partners = [
@@ -51,7 +52,8 @@ const Partners = () => {
     <section className="py-24 bg-neutral-light">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3">
+            <Star className="w-8 h-8 text-primary" />
             Our Partners
           </h2>
           <p className="text-lg text-neutral mb-8 animate-on-scroll">
