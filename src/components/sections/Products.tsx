@@ -62,31 +62,39 @@ const Solutions = () => {
   }, []);
 
   return (
-    <section id="solutions" className="py-16 md:py-24">
+    <section id="solutions" className="py-16 md:py-24 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="flex justify-center mb-8 relative">
             <div className="relative">
-              <img src={triangleImage} alt="Decorative triangle" className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float" />
+              <img 
+                src={triangleImage} 
+                alt="Decorative triangle" 
+                className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float" 
+              />
               <div className="absolute -bottom-8 left-1/2 w-0.5 h-8 bg-primary/20 -translate-x-1/2 animate-pulse"></div>
             </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-neutral-800">
             The Lifetime EPR Platform
           </h2>
-          <p className="text-lg text-neutral">
+          <p className="text-lg text-neutral-600">
             Our integrated suite of solutions delivers comprehensive IT asset lifecycle management
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {solutions.map((solution, index) => (
             <div key={index} className="relative">
-              <div className={`solution-card p-8 glass-card rounded-xl hover:shadow-lg animate-float ${solution.comingSoon ? 'opacity-75' : ''}`} 
+              <div 
+                className={`solution-card p-8 rounded-xl transition-all duration-300 hover:shadow-lg ${
+                  solution.comingSoon ? 'opacity-75' : ''
+                } bg-white border border-neutral-100 hover:border-primary/30`} 
                 style={{
                   animationDelay: `${index * 200}ms`,
                   position: 'relative',
                   zIndex: 2
-                }}>
+                }}
+              >
                 {solution.logo ? (
                   <div className="mb-6 h-16 flex items-center justify-center">
                     <img 
@@ -100,26 +108,33 @@ const Solutions = () => {
                     />
                   </div>
                 ) : (
-                  <h3 className="text-xl font-semibold mb-6">{solution.title}</h3>
+                  <h3 className="text-xl font-semibold mb-6 text-neutral-800">{solution.title}</h3>
                 )}
-                <p className="text-neutral mb-6">{solution.description}</p>
+                <p className="text-neutral-600 mb-6 leading-relaxed">{solution.description}</p>
                 {solution.comingSoon ? (
                   <div className="flex justify-center mt-4">
                     <span className="text-primary font-medium">Coming Soon</span>
                   </div>
                 ) : solution.path && (
-                  <Link to={solution.path}>
-                    <Button variant="outline" className="w-full">Learn More</Button>
+                  <Link to={solution.path} className="block w-full">
+                    <Button 
+                      variant="outline" 
+                      className="w-full hover:bg-primary hover:text-white transition-colors duration-300"
+                    >
+                      Learn More
+                    </Button>
                   </Link>
                 )}
               </div>
               
               {index < solutions.length - 1 && (
-                <div className="hidden md:block absolute top-1/2 -right-4 w-16 h-[2px] bg-primary/10" 
+                <div 
+                  className="hidden md:block absolute top-1/2 -right-4 w-16 h-[2px] bg-primary/10" 
                   style={{ 
                     transform: 'translateY(-50%) translateX(4px)',
                     zIndex: 1
-                  }}>
+                  }}
+                >
                   <div className="data-flow">
                     <div className="dot"></div>
                     <div className="dot"></div>
@@ -132,63 +147,62 @@ const Solutions = () => {
                   </div>
                 </div>
               )}
-              
-              <style>{`
-                @keyframes flowRight {
-                  0% { transform: translateX(0); opacity: 0; }
-                  50% { opacity: 1; }
-                  100% { transform: translateX(64px); opacity: 0; }
-                }
-
-                @keyframes flowLeft {
-                  0% { transform: translateX(64px); opacity: 0; }
-                  50% { opacity: 1; }
-                  100% { transform: translateX(0); opacity: 0; }
-                }
-
-                .data-flow {
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: -2px;
-                }
-
-                .data-flow-reverse {
-                  position: absolute;
-                  width: 100%;
-                  height: 100%;
-                  top: 2px;
-                }
-
-                .dot {
-                  position: absolute;
-                  width: 3px;
-                  height: 3px;
-                  background-color: #93C851;
-                  border-radius: 50%;
-                  opacity: 0;
-                }
-
-                .data-flow .dot {
-                  animation: flowRight 3s infinite;
-                }
-
-                .data-flow-reverse .dot {
-                  animation: flowLeft 3s infinite;
-                }
-
-                .data-flow .dot:nth-child(1) { animation-delay: 0s; }
-                .data-flow .dot:nth-child(2) { animation-delay: 1s; }
-                .data-flow .dot:nth-child(3) { animation-delay: 2s; }
-
-                .data-flow-reverse .dot:nth-child(1) { animation-delay: 1.5s; }
-                .data-flow-reverse .dot:nth-child(2) { animation-delay: 2.5s; }
-                .data-flow-reverse .dot:nth-child(3) { animation-delay: 0.5s; }
-              `}</style>
             </div>
           ))}
         </div>
       </div>
+      <style>{`
+        @keyframes flowRight {
+          0% { transform: translateX(0); opacity: 0; }
+          50% { opacity: 1; }
+          100% { transform: translateX(64px); opacity: 0; }
+        }
+
+        @keyframes flowLeft {
+          0% { transform: translateX(64px); opacity: 0; }
+          50% { opacity: 1; }
+          100% { transform: translateX(0); opacity: 0; }
+        }
+
+        .data-flow {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: -2px;
+        }
+
+        .data-flow-reverse {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 2px;
+        }
+
+        .dot {
+          position: absolute;
+          width: 3px;
+          height: 3px;
+          background-color: #93C851;
+          border-radius: 50%;
+          opacity: 0;
+        }
+
+        .data-flow .dot {
+          animation: flowRight 3s infinite;
+        }
+
+        .data-flow-reverse .dot {
+          animation: flowLeft 3s infinite;
+        }
+
+        .data-flow .dot:nth-child(1) { animation-delay: 0s; }
+        .data-flow .dot:nth-child(2) { animation-delay: 1s; }
+        .data-flow .dot:nth-child(3) { animation-delay: 2s; }
+
+        .data-flow-reverse .dot:nth-child(1) { animation-delay: 1.5s; }
+        .data-flow-reverse .dot:nth-child(2) { animation-delay: 2.5s; }
+        .data-flow-reverse .dot:nth-child(3) { animation-delay: 0.5s; }
+      `}</style>
     </section>
   );
 };
