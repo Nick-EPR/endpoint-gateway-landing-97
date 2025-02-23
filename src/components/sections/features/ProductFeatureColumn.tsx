@@ -20,17 +20,23 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
         />
       </div>
       <div className="space-y-4">
-        {features.map((feature, index) => (
-          <FeatureCard 
-            key={index} 
-            {...feature} 
-            className="animate-fade-up"
-            style={{
-              animationDelay: `${index * 0.2}s`,
-              animation: 'float 3s ease-in-out infinite'
-            }}
-          />
-        ))}
+        {features.length > 0 ? (
+          features.map((feature, index) => (
+            <FeatureCard 
+              key={index} 
+              {...feature} 
+              className="animate-fade-up"
+              style={{
+                animationDelay: `${index * 0.2}s`,
+                animation: 'float 3s ease-in-out infinite'
+              }}
+            />
+          ))
+        ) : (
+          <div className="text-center py-8 text-neutral-500">
+            No features match your search
+          </div>
+        )}
       </div>
     </div>
   );

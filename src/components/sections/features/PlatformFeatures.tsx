@@ -2,7 +2,7 @@
 import React from "react";
 import { Feature } from "./types";
 import { FeatureCard } from "./FeatureCard";
-import { Settings } from "lucide-react";
+import { Settings, Package } from "lucide-react";
 
 interface PlatformFeaturesProps {
   features: Feature[];
@@ -16,11 +16,11 @@ export const PlatformFeatures = ({
   return <div className="relative mb-32">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-xl"></div>
       <div className="relative">
-        <img src={triangleImage} alt="EPR Platform" className="w-16 h-16 mx-auto mb-6 animate-float" style={{
-          animation: 'float 3s ease-in-out infinite'
-        }} />
         <div className="text-center mb-12">
-          <h3 className="text-xl font-semibold mb-2">What You Get Out of The Box</h3>
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Package className="w-8 h-8 text-primary" />
+            <h3 className="text-xl font-semibold">What You Get Out of The Box</h3>
+          </div>
           <p className="text-neutral-600 max-w-2xl mx-auto">
             Start with our core platform features and add any combination of our specialized products 
             to build your complete ITAM solution.
@@ -28,18 +28,22 @@ export const PlatformFeatures = ({
         </div>
         
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-            {features.map((feature, index) => (
+          <div className="space-y-4">
+            {features.length > 0 ? features.map((feature, index) => (
               <FeatureCard 
                 key={index} 
                 {...feature} 
-                className="bg-gradient-to-br from-white via-neutral-50 to-white shadow-md animate-fade-up"
+                className="bg-gradient-to-br from-white via-neutral-50 to-white shadow-md animate-fade-up w-full"
                 style={{
                   animationDelay: `${index * 0.2}s`,
                   animation: 'float 3s ease-in-out infinite'
                 }} 
               />
-            ))}
+            )) : (
+              <div className="text-center py-8 text-neutral-500">
+                No features match your search criteria
+              </div>
+            )}
           </div>
         </div>
 
