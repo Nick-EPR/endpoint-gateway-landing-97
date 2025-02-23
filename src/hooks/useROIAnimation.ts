@@ -6,15 +6,17 @@ export const useROIAnimation = (
   handleEmployeeChange: (value: number) => void
 ) => {
   const [isAnimating, setIsAnimating] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     let animationFrame: number;
 
-    if (isVisible && !isAnimating) {
+    if (isVisible && !hasAnimated) {
       const startTime = performance.now();
       const totalDuration = 2600; // Total animation duration in ms
       
       setIsAnimating(true);
+      setHasAnimated(true);
 
       const animate = (currentTime: number) => {
         const elapsed = currentTime - startTime;
@@ -61,7 +63,7 @@ export const useROIAnimation = (
         cancelAnimationFrame(animationFrame);
       }
     };
-  }, [isVisible, handleEmployeeChange, isAnimating]);
+  }, [isVisible, handleEmployeeChange, hasAnimated]);
 
   return { isAnimating };
 };
