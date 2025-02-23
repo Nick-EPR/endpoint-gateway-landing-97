@@ -102,8 +102,8 @@ const LocationMap = () => {
       <div ref={mapContainer} className="w-full h-full" />
       <div className={`absolute inset-0 pointer-events-none transition-all duration-3000 ${
         isZooming 
-          ? 'bg-black/50 backdrop-blur-none' 
-          : 'bg-black/60 backdrop-blur-sm'
+          ? 'bg-black/30 backdrop-blur-none' 
+          : 'bg-black/40 backdrop-blur-sm'
       }`} />
     </div>
   );
