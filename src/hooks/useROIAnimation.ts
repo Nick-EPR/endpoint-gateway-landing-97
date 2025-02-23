@@ -20,6 +20,7 @@ export const useROIAnimation = (
         
         if (elapsed >= totalDuration) {
           setIsAnimating(false);
+          cancelAnimationFrame(animationFrame);
           return;
         }
 
@@ -51,13 +52,17 @@ export const useROIAnimation = (
         animationFrame = requestAnimationFrame(animate);
       };
 
+      // Start the animation
       animationFrame = requestAnimationFrame(animate);
 
       return () => {
         if (animationFrame) {
           cancelAnimationFrame(animationFrame);
+          setIsAnimating(false);
         }
       };
+    } else {
+      setIsAnimating(false);
     }
   }, [isVisible, handleEmployeeChange]);
 
