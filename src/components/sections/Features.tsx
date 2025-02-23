@@ -16,7 +16,7 @@ const Features = () => {
 
   const filteredFeatures = (features: Feature[]) => {
     const searchTerm = searchQuery.toLowerCase();
-    return features.filter(feature => 
+    return searchQuery === "" ? features : features.filter(feature => 
       feature.title.toLowerCase().includes(searchTerm) || 
       feature.description.toLowerCase().includes(searchTerm) || 
       feature.keywords?.some(keyword => keyword.toLowerCase().includes(searchTerm))
@@ -25,12 +25,12 @@ const Features = () => {
 
   return (
     <section id="features" className="py-20 md:py-32 bg-neutral-light">
-      <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll flex items-center justify-center gap-2">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2">
           <Layers className="w-8 h-8 text-neutral-700" />
           Complete ITAM Solutions
         </h2>
-        <p className="text-center text-base md:text-lg mb-6 animate-on-scroll max-w-2xl mx-auto">
+        <p className="text-center text-base md:text-lg mb-12 animate-fade-up max-w-2xl mx-auto">
           Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
         </p>
 
