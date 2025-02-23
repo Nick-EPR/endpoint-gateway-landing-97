@@ -21,7 +21,15 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
       </div>
       <div className="space-y-4">
         {features.map((feature, index) => (
-          <FeatureCard key={index} {...feature} />
+          <FeatureCard 
+            key={index} 
+            {...feature} 
+            className="animate-fade-up"
+            style={{
+              animationDelay: `${index * 0.2}s`,
+              animation: 'float 3s ease-in-out infinite'
+            }}
+          />
         ))}
       </div>
     </div>
