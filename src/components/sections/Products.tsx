@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
@@ -62,7 +61,7 @@ const Solutions = () => {
   }, []);
 
   return (
-    <section id="solutions" className="py-16 md:py-24">
+    <section id="solutions" className="py-32 md:py-48">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="flex justify-center mb-8 relative">
