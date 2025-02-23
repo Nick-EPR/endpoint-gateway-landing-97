@@ -33,31 +33,56 @@ const LocationMap = () => {
 
       mapboxgl.accessToken = mapboxToken;
       
+      // Calculate bounds for all locations
       const bounds = new mapboxgl.LngLatBounds();
       locations.forEach(location => {
         bounds.extend(location.coordinates as [number, number]);
       });
 
+      // Initialize map with global view
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/dark-v11',
-        bounds: bounds,
-        fitBoundsOptions: { padding: 100 }
+        center: [0, 20], // Start with global view
+        zoom: 1,
+        projection: 'globe'
       });
 
-      locations.forEach(location => {
-        const popup = new mapboxgl.Popup({ offset: 25 })
-          .setHTML(`
-            <h3 class="font-bold">${location.name}</h3>
-            <p>${location.comingSoon ? '<span class="text-primary">Coming Soon</span>' : location.address}</p>
-          `);
+      // Add markers after map loads
+      map.current.on('load', () => {
+        // Add atmosphere and globe effects
+        map.current?.setFog({
+          color: 'rgb(186, 210, 235)', // sky color
+          'high-color': 'rgb(36, 92, 223)', // atmosphere color
+          'horizon-blend': 0.02,
+          'space-color': 'rgb(11, 11, 25)', // dark space color
+          'star-intensity': 0.6 // background star brightness
+        });
 
-        new mapboxgl.Marker({ 
-          color: location.comingSoon ? '#666666' : '#93C851' // Grey for coming soon, green for active locations
-        })
-          .setLngLat(location.coordinates as [number, number])
-          .setPopup(popup)
-          .addTo(map.current!);
+        // Add markers
+        locations.forEach(location => {
+          const popup = new mapboxgl.Popup({ offset: 25 })
+            .setHTML(`
+              <h3 class="font-bold">${location.name}</h3>
+              <p>${location.comingSoon ? '<span class="text-primary">Coming Soon</span>' : location.address}</p>
+            `);
+
+          new mapboxgl.Marker({ 
+            color: location.comingSoon ? '#666666' : '#93C851' // Grey for coming soon, green for active locations
+          })
+            .setLngLat(location.coordinates as [number, number])
+            .setPopup(popup)
+            .addTo(map.current!);
+        });
+
+        // Animate to bounds after 2 seconds
+        setTimeout(() => {
+          map.current?.fitBounds(bounds, {
+            padding: 100,
+            duration: 3000,
+            essential: true
+          });
+        }, 2000);
       });
     };
 
