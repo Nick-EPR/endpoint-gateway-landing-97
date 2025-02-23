@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
-import lueminLogo from "/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png";
+import lueminLogo from "/lovable-uploads/82f53487-163f-495f-a2d0-f1535273a1df.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 
 interface Feature {
@@ -179,9 +179,7 @@ const Features = () => {
           Complete ITAM Solutions
         </h2>
         <p className="text-center text-base md:text-lg mb-6 animate-on-scroll max-w-2xl mx-auto">
-          Comprehensive device lifecycle management for{' '}
-          <span className="text-neutral-800 font-semibold">Government</span>{' '}
-          with AI/ML-powered predictive maintenance
+          Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
         </p>
         <div className="max-w-md mx-auto mb-10">
           <div className="relative">
@@ -203,7 +201,7 @@ const Features = () => {
             <img 
               src={triangleImage} 
               alt="EPR Platform" 
-              className="w-16 h-16 mx-auto mb-16"
+              className="w-16 h-16 mx-auto mb-8"
             />
             <div className="text-center mb-8">
               <h3 className="text-xl font-bold">EPR Platform Foundation</h3>
