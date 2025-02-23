@@ -27,6 +27,7 @@ const LocationMap = () => {
   const map = useRef<mapboxgl.Map | null>(null);
   const [mapboxToken, setMapboxToken] = useState('pk.eyJ1IjoibmljazIyNTEyIiwiYSI6ImNtN2RoMDg3dDAzMmYybHB1eWpydDBpbDEifQ.Htsl1CZzmwbAdHooJgUKQA');
   const [isZooming, setIsZooming] = useState(false);
+  const rotationAnimationRef = useRef<number>();
 
   useEffect(() => {
     const initializeMap = () => {
@@ -40,11 +41,11 @@ const LocationMap = () => {
         bounds.extend(location.coordinates as [number, number]);
       });
 
-      // Initialize map with global view
+      // Initialize map with global view - starting slightly east of center
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/dark-v11',
-        center: [0, 20], // Start with global view
+        center: [30, 20], // Start more east to create smoother rotation to US
         zoom: 1,
         projection: 'globe'
       });
@@ -76,21 +77,52 @@ const LocationMap = () => {
             .addTo(map.current!);
         });
 
-        // Start zoom animation after 2 seconds
-        setTimeout(() => {
-          setIsZooming(true);
-          map.current?.fitBounds(bounds, {
-            padding: 100,
-            duration: 3000,
-            essential: true
-          });
-        }, 2000);
+        // Gentle initial rotation
+        let startTime: number | null = null;
+        const rotationDuration = 3000; // 3 seconds
+        const totalRotation = -40; // degrees to rotate
+
+        const animate = (currentTime: number) => {
+          if (!startTime) startTime = currentTime;
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / rotationDuration, 1);
+          
+          // Ease-in-out function for smooth acceleration and deceleration
+          const easeProgress = progress < 0.5
+            ? 2 * progress * progress
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+          if (map.current) {
+            const center = map.current.getCenter();
+            center.lng = 30 + (totalRotation * easeProgress);
+            map.current.setCenter(center);
+          }
+
+          if (progress < 1) {
+            rotationAnimationRef.current = requestAnimationFrame(animate);
+          } else {
+            // Start zoom animation after rotation completes
+            setTimeout(() => {
+              setIsZooming(true);
+              map.current?.fitBounds(bounds, {
+                padding: 100,
+                duration: 3000,
+                essential: true
+              });
+            }, 500); // Small pause after rotation
+          }
+        };
+
+        rotationAnimationRef.current = requestAnimationFrame(animate);
       });
     };
 
     initializeMap();
 
     return () => {
+      if (rotationAnimationRef.current) {
+        cancelAnimationFrame(rotationAnimationRef.current);
+      }
       if (map.current) {
         map.current.remove();
       }
