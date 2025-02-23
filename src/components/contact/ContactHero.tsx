@@ -9,10 +9,10 @@ const ContactHero = () => {
   const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
-    // Start zoom animation after a short delay
+    // Start zoom animation after a longer delay to match map animation
     const timer = setTimeout(() => {
       setIsZoomed(true);
-    }, 500);
+    }, 3500); // Delayed to start fade-in after map starts zooming (2000ms + some zoom time)
 
     return () => clearTimeout(timer);
   }, []);
