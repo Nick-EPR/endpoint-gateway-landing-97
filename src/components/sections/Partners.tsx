@@ -1,19 +1,21 @@
+
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { Star } from "lucide-react";
+
 const Partners = () => {
   const partners = [{
+    name: "CellHub",
+    logo: "/lovable-uploads/2d1dd360-ac5b-41c4-8f0d-8f53db87032f.png",
+    url: "https://www.cellhub.com",
+    description: "Device procurement and logistics partner"
+  }, {
     name: "T-Mobile",
     logo: "/lovable-uploads/4b84285a-ebf1-49a3-937a-ea9058b7726f.png",
     url: "https://www.t-mobile.com/business",
     description: "Strategic partnership for connected device solutions"
-  }, {
-    name: "CellHub",
-    logo: "/lovable-uploads/5aca21a7-89ab-4f46-a62d-9489eec4c6ab.png",
-    url: "https://www.cellhub.com",
-    description: "Device procurement and logistics partner"
   }, {
     name: "D&H Distributing",
     logo: "/lovable-uploads/c59ae9e5-4a85-4b97-bd93-82bceb58dc08.png",
@@ -25,6 +27,7 @@ const Partners = () => {
     url: "https://www.lifetimeservice.com",
     description: "Expert device repair and maintenance facility"
   }];
+
   const [api] = useEmblaCarousel({
     loop: true,
     align: "center",
@@ -33,6 +36,7 @@ const Partners = () => {
     delay: 3000,
     stopOnInteraction: false
   })]);
+
   return <section className="py-24 bg-transparent">
       <div className="container mx-auto px-4 bg-primary-light">
         <div className="max-w-3xl mx-auto text-center mb-16">
@@ -69,4 +73,5 @@ const Partners = () => {
       </div>
     </section>;
 };
+
 export default Partners;
