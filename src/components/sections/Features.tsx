@@ -1,7 +1,11 @@
-import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search, UserCog, Package2, UserPlus, Warehouse, Network, Database, BoxSelect } from "lucide-react";
+import { Globe, Shield, Users, Server, Replace, Zap, Recycle, Timer, Microscope, Lock, ShieldCheck, HardDrive, Cloud, Layers, Search, UserCog, Package2, UserPlus, Warehouse, Network, Database, BoxSelect, Footprints, Brain, UserMinus, HardDriveDownload } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
+import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
+import lueminLogo from "/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png";
+import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 
 interface Feature {
   icon: React.ReactNode;
@@ -27,13 +31,13 @@ const Features = () => {
   const platformFeatures: Feature[] = [{
     icon: <Database className="w-8 h-8 text-neutral-700" />,
     title: "Unified Asset Database",
-    description: "Centralized asset management across all EPR products with real-time synchronization",
+    description: "Centralized asset management across all EPR products with real-time synchronization and automated workflows",
     isHighlighted: true,
     keywords: ["platform", "database", "centralized", "unified", "sync"]
   }, {
     icon: <Network className="w-8 h-8 text-neutral-700" />,
     title: "Cross-Product Integration",
-    description: "Seamless workflows between HeliAM, Toolbox, and Luemin for comprehensive device lifecycle management",
+    description: "Seamless data flow between HeliAM, Toolbox, and Luemin for comprehensive device lifecycle management",
     isHighlighted: true,
     keywords: ["integration", "workflow", "platform", "unified"]
   }, {
@@ -46,22 +50,22 @@ const Features = () => {
 
   const heliamFeatures: Feature[] = [{
     icon: <UserCog className="w-8 h-8 text-neutral-700" />,
-    title: "Intelligent Onboarding",
-    description: "Automatically generate and assign standardized equipment packages based on employee roles",
+    title: "Equipment Onboarding",
+    description: "Streamlined equipment assignment workflow with standardized packages based on roles",
     isHighlighted: true,
     keywords: ["onboarding", "roles", "equipment", "packages"]
   }, {
-    icon: <UserPlus className="w-8 h-8 text-neutral-700" />,
-    title: "HR Integration",
-    description: "Trigger equipment deployments automatically from your HR system",
+    icon: <UserMinus className="w-8 h-8 text-neutral-700" />,
+    title: "Offboarding Management",
+    description: "Automated device recovery and reassignment during employee transitions",
     isHighlighted: true,
-    keywords: ["HR", "integration", "onboarding", "automation"]
+    keywords: ["offboarding", "recovery", "transition"]
   }, {
-    icon: <Recycle className="w-8 h-8 text-neutral-700" />,
-    title: "Lifecycle Management",
-    description: "AI-powered insights to maximize asset ROI throughout their lifespan",
+    icon: <Brain className="w-8 h-8 text-neutral-700" />,
+    title: "AI/ML Insights",
+    description: "Predictive analytics for device lifespan, maintenance needs, and optimal resale timing",
     isHighlighted: true,
-    keywords: ["lifecycle", "ROI", "optimization", "management"]
+    keywords: ["AI", "ML", "analytics", "prediction", "insights"]
   }];
 
   const toolboxFeatures: Feature[] = [{
@@ -86,25 +90,25 @@ const Features = () => {
 
   const lueminFeatures: Feature[] = [{
     icon: <Cloud className="w-8 h-8 text-neutral-700" />,
-    title: "Remote Management",
-    description: "Centralized platform for remote device control and monitoring",
+    title: "Remote Device Control",
+    description: "Remote lock, wipe, and management capabilities for all endpoint devices",
     isHighlighted: true,
     comingSoon: true,
-    keywords: ["remote", "control", "manage", "monitor"]
+    keywords: ["remote", "control", "manage", "lock", "wipe"]
   }, {
-    icon: <Users className="w-8 h-8 text-neutral-700" />,
-    title: "IT Support",
-    description: "On-demand technical support with secure remote access",
+    icon: <HardDriveDownload className="w-8 h-8 text-neutral-700" />,
+    title: "Hardware Monitoring",
+    description: "Automatic hardware information collection and HeliAM asset record updates",
     isHighlighted: true,
     comingSoon: true,
-    keywords: ["support", "remote", "help desk"]
+    keywords: ["hardware", "monitoring", "sync", "inventory"]
   }, {
-    icon: <ShieldCheck className="w-8 h-8 text-neutral-700" />,
-    title: "Security Controls",
-    description: "Advanced device security and compliance enforcement",
+    icon: <Footprints className="w-8 h-8 text-neutral-700" />,
+    title: "Device Tracking",
+    description: "Real-time device location and usage tracking with detailed audit logs",
     isHighlighted: true,
     comingSoon: true,
-    keywords: ["security", "compliance", "control"]
+    keywords: ["tracking", "location", "monitoring", "audit"]
   }];
 
   const detailedFeatures: DetailedFeature[] = [
@@ -172,11 +176,11 @@ const Features = () => {
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-on-scroll flex items-center justify-center gap-2">
           <Layers className="w-8 h-8 text-neutral-700" />
-          Platform Features
+          Complete ITAM Solutions for Government
         </h2>
         <p className="text-center text-base md:text-lg mb-6 animate-on-scroll max-w-2xl mx-auto">
-          Complete device lifecycle management with{' '}
-          <span className="text-neutral-800 font-semibold">intelligent predictive maintenance</span>{' '}
+          Comprehensive device lifecycle management with{' '}
+          <span className="text-neutral-800 font-semibold">AI/ML-powered predictive maintenance</span>{' '}
           capabilities
         </p>
         <div className="max-w-md mx-auto mb-10">
@@ -193,23 +197,41 @@ const Features = () => {
         </div>
 
         {/* Platform Features */}
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-16">
-          {filteredFeatures(platformFeatures).map((feature, index) => (
-            <div 
-              key={index}
-              className="col-span-3 p-4 rounded-lg bg-gradient-to-br from-white via-neutral-50 to-white border border-neutral-200 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-500 backdrop-blur-sm"
-            >
-              <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-neutral-100 flex items-center justify-center flex-shrink-0">
-                  {feature.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1.5 text-neutral-800">{feature.title}</h3>
-                  <p className="text-neutral-600 text-sm">{feature.description}</p>
-                </div>
-              </div>
+        <div className="relative mb-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-xl"></div>
+          <div className="relative">
+            <img 
+              src={triangleImage} 
+              alt="EPR Platform" 
+              className="w-16 h-16 mx-auto mb-8"
+            />
+            <div className="text-center mb-8">
+              <h3 className="text-xl font-bold">EPR Platform Foundation</h3>
+              <p className="text-neutral-600">Shared capabilities across all products</p>
             </div>
-          ))}
+            <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+              {filteredFeatures(platformFeatures).map((feature, index) => (
+                <div 
+                  key={index}
+                  className="p-4 rounded-lg bg-gradient-to-br from-white via-neutral-50 to-white border border-neutral-200 shadow-md hover:shadow-lg transition-all duration-500 backdrop-blur-sm animate-float"
+                  style={{
+                    animationDelay: `${index * 200}ms`
+                  }}
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      {feature.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold mb-1.5 text-neutral-800">{feature.title}</h3>
+                      <p className="text-neutral-600 text-sm">{feature.description}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="absolute -bottom-16 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2"></div>
+          </div>
         </div>
 
         {/* Product-Specific Features */}
@@ -217,6 +239,7 @@ const Features = () => {
           {/* HeliAM Column */}
           <div className="space-y-4">
             <div className="text-center mb-6">
+              <img src={heliamLogo} alt="HeliAM" className="h-12 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">HeliAM</h3>
               <p className="text-sm text-neutral-600">Asset Management Platform</p>
             </div>
@@ -237,6 +260,7 @@ const Features = () => {
           {/* Toolbox Column */}
           <div className="space-y-4">
             <div className="text-center mb-6">
+              <img src={toolboxLogo} alt="Toolbox" className="h-8 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Toolbox</h3>
               <p className="text-sm text-neutral-600">Logistics & Maintenance</p>
             </div>
@@ -257,8 +281,9 @@ const Features = () => {
           {/* Luemin Column */}
           <div className="space-y-4">
             <div className="text-center mb-6">
+              <img src={lueminLogo} alt="Luemin" className="h-12 mx-auto mb-4" />
               <h3 className="text-xl font-bold mb-2">Luemin</h3>
-              <p className="text-sm text-neutral-600">Device Management</p>
+              <p className="text-sm text-neutral-600">Remote Device Management (MDM)</p>
             </div>
             {filteredFeatures(lueminFeatures).map((feature, index) => (
               <div 
