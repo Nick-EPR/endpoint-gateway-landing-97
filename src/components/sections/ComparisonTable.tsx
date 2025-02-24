@@ -1,4 +1,3 @@
-
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X, Trophy } from "lucide-react";
@@ -94,61 +93,61 @@ const ComparisonTable = () => {
     }
   ];
 
-  return <section className="py-20 bg-white">
+  return <section className="py-20 bg-white dark:bg-neutral-900">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 flex items-center justify-center gap-2">
-          <Table2 className="h-8 w-8" />
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 flex items-center justify-center gap-2 dark:text-white">
+          <Table2 className="h-8 w-8 dark:text-neutral-300" />
           ITAM Solution Comparison
         </h2>
-        <p className="text-center text-base md:text-lg mb-10 max-w-2xl mx-auto text-neutral-600">
+        <p className="text-center text-base md:text-lg mb-10 max-w-2xl mx-auto text-neutral-600 dark:text-neutral-400">
           Compare traditional IT Asset Management approaches with Lifetime EPR's integrated solution
         </p>
         
         <div className="hidden md:block">
-          <Card className="overflow-hidden border-primary/10 relative">
+          <Card className="overflow-hidden border-primary/10 relative dark:bg-neutral-800/50 dark:border-neutral-700">
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-neutral-50">
-                    <TableHead className="w-1/4">Aspect</TableHead>
+                  <TableRow className="bg-neutral-50 dark:bg-neutral-800">
+                    <TableHead className="w-1/4 dark:text-neutral-300">Aspect</TableHead>
                     <TableHead className="w-[37.5%]">
-                      <div className="flex items-center gap-2 opacity-75">
+                      <div className="flex items-center gap-2 opacity-75 dark:text-neutral-300">
                         <span className="text-2xl">🤯</span> Do-It-Yourself ITAM
                       </div>
                     </TableHead>
                     <TableHead className="w-[37.5%] text-primary relative">
-                      <div className="absolute inset-0 bg-primary/10 shadow-[0_4px_24px_rgba(147,200,81,0.25)]"></div>
+                      <div className="absolute inset-0 bg-primary/10 shadow-[0_4px_24px_rgba(147,200,81,0.25)] dark:bg-primary/5"></div>
                       <div className="relative flex items-center gap-2">
                         <Trophy className="h-6 w-6 text-primary" />
-                        <span className="font-bold text-lg">Lifetime EPR</span>
+                        <span className="font-bold text-lg dark:text-white">Lifetime EPR</span>
                       </div>
                     </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {comparisons.map((item, index) => (
-                    <TableRow key={index} className="hover:bg-neutral-50 group">
-                      <TableCell className="font-medium">
+                    <TableRow key={index} className="hover:bg-neutral-50 dark:hover:bg-neutral-800/50 group">
+                      <TableCell className="font-medium dark:text-neutral-300">
                         <div className="flex items-center gap-2">
                           {item.icon}
                           {item.aspect}
                         </div>
                       </TableCell>
-                      <TableCell className="text-neutral-600">
+                      <TableCell className="text-neutral-600 dark:text-neutral-400">
                         <div className="flex items-center gap-2">
                           {item.isDIYPain ? <X className="h-5 w-5 text-red-500 flex-shrink-0" /> : <Check className="h-5 w-5 text-green-500 flex-shrink-0" />}
                           <span className="opacity-75">{item.diy}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="text-primary-900 relative bg-primary/5">
-                        <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                      <TableCell className="text-primary-900 relative bg-primary/5 dark:bg-primary/5">
+                        <div className="absolute inset-0 bg-primary/5 dark:bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                         <div className="relative flex items-start gap-2">
                           <img 
                             src="/lovable-uploads/5b533a40-f625-444d-8a90-0c95ba14a528.png" 
                             alt="EPR Emblem" 
                             className="h-5 w-5 flex-shrink-0 mt-1"
                           />
-                          <span className="font-medium">{item.epr}</span>
+                          <span className="font-medium dark:text-neutral-200">{item.epr}</span>
                         </div>
                       </TableCell>
                     </TableRow>
@@ -161,26 +160,26 @@ const ComparisonTable = () => {
 
         <div className="space-y-6 md:hidden">
           {comparisons.map((item, index) => (
-            <Card key={index} className="p-4">
-              <div className="flex items-center gap-2 mb-3 font-medium border-b pb-2">
+            <Card key={index} className="p-4 dark:bg-neutral-800/50 dark:border-neutral-700">
+              <div className="flex items-center gap-2 mb-3 font-medium border-b pb-2 dark:border-neutral-700 dark:text-neutral-300">
                 {item.icon}
                 {item.aspect}
               </div>
               <div className="space-y-4">
                 <div className="space-y-2 opacity-75">
-                  <div className="flex items-center gap-2 text-sm font-medium text-neutral-500">
-                    <span className="text-xl">🤯</span> Do-It-Yourself ITAM
+                  <div className="flex items-center gap-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
+                    <span className="text-xl">��</span> Do-It-Yourself ITAM
                   </div>
                   <div className="flex items-start gap-2 pl-2">
                     {item.isDIYPain ? <X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" /> : <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />}
-                    <p className="text-neutral-600">{item.diy}</p>
+                    <p className="text-neutral-600 dark:text-neutral-400">{item.diy}</p>
                   </div>
                 </div>
-                <div className="space-y-2 bg-primary/10 p-6 rounded-lg shadow-xl">
+                <div className="space-y-2 bg-primary/10 dark:bg-primary/5 p-6 rounded-lg shadow-xl">
                   <div className="flex items-center gap-2">
                     <div className="flex items-center gap-2 text-primary">
                       <Trophy className="h-5 w-5" />
-                      <span className="font-bold text-lg">Lifetime EPR</span>
+                      <span className="font-bold text-lg dark:text-white">Lifetime EPR</span>
                     </div>
                   </div>
                   <div className="flex items-start gap-2 pl-2">
@@ -189,7 +188,7 @@ const ComparisonTable = () => {
                       alt="EPR Emblem" 
                       className="h-5 w-5 flex-shrink-0 mt-0.5"
                     />
-                    <p className="text-primary-900 font-medium">{item.epr}</p>
+                    <p className="text-primary-900 font-medium dark:text-neutral-200">{item.epr}</p>
                   </div>
                 </div>
               </div>
@@ -198,7 +197,7 @@ const ComparisonTable = () => {
         </div>
 
         <div className="mt-8 text-center">
-          <p className="text-lg md:text-xl font-semibold text-primary">
+          <p className="text-lg md:text-xl font-semibold text-primary dark:text-primary/90">
             Why pay more for fragmented solutions when you can save with Lifetime EPR's all-in-one platform?
           </p>
         </div>
