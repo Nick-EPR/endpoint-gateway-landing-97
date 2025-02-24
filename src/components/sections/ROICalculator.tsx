@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -38,12 +39,7 @@ const ROICalculator = () => {
   const { isAnimating } = useROIAnimation(isVisible, handleEmployeeChange);
 
   return (
-    <section id="roi-calculator" className="relative py-20 bg-gradient-to-b from-white via-white to-white dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-900 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute -top-96 -left-32 w-[40rem] h-[40rem] bg-primary rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
-      </div>
-
+    <section id="roi-calculator" className="relative py-20 bg-white dark:bg-neutral-900 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
@@ -91,9 +87,9 @@ const ROICalculator = () => {
       </div>
 
       <SavingsChart 
-        employees={employees}
         showMoreDetails={showMoreDetails}
         setShowMoreDetails={setShowMoreDetails}
+        employees={employees}
       />
     </section>
   );
