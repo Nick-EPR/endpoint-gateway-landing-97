@@ -32,10 +32,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     let timeout: NodeJS.Timeout;
     const currentFullWord = rotatingWords2[currentWord2];
     const nextWordIndex = (currentWord2 + 1) % rotatingWords2.length;
-    const nextWord = rotatingWords2[nextWordIndex];
     
     const updateText = () => {
       if (isDeleting2) {
+        // Slow down deletion speed
         const newText = displayText2.slice(0, -1);
         setDisplayText2(newText);
         
@@ -44,18 +44,19 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           setCurrentWord2(nextWordIndex);
         }
         
-        timeout = setTimeout(updateText, 50);
+        timeout = setTimeout(updateText, 75); // Increased from 50ms to 75ms
       } else {
         if (displayText2.length < currentFullWord.length) {
           setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
-          timeout = setTimeout(updateText, 100);
+          timeout = setTimeout(updateText, 150); // Increased from 100ms to 150ms
         } else {
-          timeout = setTimeout(() => setIsDeleting2(true), 2000);
+          // Increase word display duration
+          timeout = setTimeout(() => setIsDeleting2(true), 3000); // Increased from 2000ms to 3000ms
         }
       }
     };
 
-    timeout = setTimeout(updateText, 100);
+    timeout = setTimeout(updateText, 150); // Initial delay increased to match typing speed
     return () => clearTimeout(timeout);
   }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
 
@@ -83,11 +84,11 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white bg-gradient-to-r from-white to-white/80 bg-clip-text">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
             <span className="text-white">Complete</span>
             &nbsp;ITAM Solutions for&nbsp;
-            <span className="relative inline-block">
-              <span className="absolute left-0 whitespace-nowrap text-primary">
+            <span className="relative inline-block min-w-[200px]">
+              <span className="absolute left-0 whitespace-nowrap text-primary opacity-100 transition-opacity duration-300">
                 {displayText2}
                 <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
               </span>
