@@ -37,9 +37,9 @@ const metricTooltips: MetricTooltips = {
 
 export const CalculationMethodology = () => {
   return (
-    <div className="text-xs text-neutral mt-4 p-4 bg-white/50 rounded-lg">
+    <div className="text-xs text-neutral dark:text-neutral-400 mt-4 p-4 bg-white/50 dark:bg-neutral-800/50 rounded-lg">
       <div className="flex items-center gap-2 font-semibold mb-2">
-        <span>Calculation Methodology:</span>
+        <span className="dark:text-neutral-300">Calculation Methodology:</span>
         <div className="flex items-center gap-2">
           {Object.entries(metricTooltips).map(([key, content]) => (
             <TooltipProvider key={key}>
@@ -47,9 +47,9 @@ export const CalculationMethodology = () => {
                 <TooltipTrigger asChild>
                   <Info className="h-4 w-4 text-primary cursor-help" />
                 </TooltipTrigger>
-                <TooltipContent side="top" align="center" className="max-w-xs">
-                  <p className="font-semibold mb-1">{content.title}</p>
-                  <p className="text-xs">{content.description}</p>
+                <TooltipContent side="top" align="center" className="max-w-xs dark:bg-neutral-800 dark:border-neutral-700">
+                  <p className="font-semibold mb-1 dark:text-white">{content.title}</p>
+                  <p className="text-xs dark:text-neutral-300">{content.description}</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -57,7 +57,7 @@ export const CalculationMethodology = () => {
         </div>
       </div>
       
-      <ul className="list-disc pl-4 space-y-1">
+      <ul className="list-disc pl-4 space-y-1 dark:text-neutral-400">
         <li>Device lifecycle extension from 2 to 2.8 years (40% of devices)</li>
         <li>CO2 reduction: 156kg per device lifecycle extended</li>
         <li>Water conservation: 1,200L saved per device lifecycle</li>
@@ -66,7 +66,7 @@ export const CalculationMethodology = () => {
         <li>Service cost: $180 per device annually</li>
         <li>Average of 1.2 devices per employee</li>
       </ul>
-      <p className="mt-2 italic">
+      <p className="mt-2 italic dark:text-neutral-500">
         Note: Actual impact may vary based on device types, usage patterns, and market conditions.
         Calculations based on industry standards and 2023 sustainability reports.
       </p>

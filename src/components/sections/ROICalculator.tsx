@@ -39,7 +39,7 @@ const ROICalculator = () => {
   const { isAnimating } = useROIAnimation(isVisible, handleEmployeeChange);
 
   return (
-    <section id="roi-calculator" className="relative py-20 bg-primary-light overflow-hidden border-t border-neutral-100">
+    <section id="roi-calculator" className="relative py-20 bg-primary-light dark:bg-neutral-900 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 left-0 w-64 h-64 bg-primary rounded-full -translate-x-1/2 -translate -y-1/2 blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full translate-x-1/2 translate-y-1/2 blur-3xl"></div>
@@ -50,13 +50,13 @@ const ROICalculator = () => {
           <ROIHeader />
           <StatsCards trends={currentTrends} />
 
-          <div className={`glass-card rounded-2xl p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300`}>
+          <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
-                <div className="bg-primary/10 p-2 rounded-lg mr-3">
+                <div className="bg-primary/10 dark:bg-primary/5 p-2 rounded-lg mr-3">
                   <Calculator className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold">ROI Calculator</h3>
+                <h3 className="text-xl font-semibold dark:text-white">ROI Calculator</h3>
               </div>
               <EnterpriseToggle 
                 isEnterprise={isEnterprise}
@@ -79,7 +79,7 @@ const ROICalculator = () => {
               <Button 
                 variant="outline" 
                 onClick={() => setShowMoreDetails(true)} 
-                className="gap-2"
+                className="gap-2 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
               >
                 <LineChart className="w-4 h-4" />
                 View 5-Year Projection
