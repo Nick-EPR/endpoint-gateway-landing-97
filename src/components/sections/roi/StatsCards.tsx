@@ -52,6 +52,10 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
   };
 
   const getUnit = (value: string): string => {
+    // Don't return a unit for cost reduction
+    if (value.startsWith('$')) {
+      return '';
+    }
     const matches = value.match(/[0-9.,]+\s*(.+)/);
     return matches ? matches[1].trim() : '';
   };
