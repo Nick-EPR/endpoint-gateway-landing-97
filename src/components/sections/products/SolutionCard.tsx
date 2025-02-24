@@ -17,7 +17,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
       <div 
         className={`solution-card p-8 rounded-xl transition-all duration-300 hover:shadow-lg ${
           solution.comingSoon ? 'opacity-75' : ''
-        } bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 hover:border-primary/30 animate-fade-up`}
+        } bg-white/95 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 hover:border-primary/30 animate-fade-up`}
         style={{
           animationDelay: `${index * 200}ms`,
           position: 'relative',
@@ -42,7 +42,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
             {solution.title}
           </h3>
         )}
-        <p className="text-neutral dark:text-neutral-300 mb-6 leading-relaxed">
+        <p className="text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed">
           {solution.description}
         </p>
         {solution.comingSoon ? (
