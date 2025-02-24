@@ -73,15 +73,15 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-neutral-light">
+    <section id="contact" className="py-32 md:py-40 bg-neutral-light dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3">
-              <MessageSquare className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 text-neutral-900 dark:text-white">
+              <MessageSquare className="w-8 h-8 text-primary dark:text-primary-foreground" />
               Get in Touch
             </h2>
-            <p className="text-lg text-neutral mb-8 animate-on-scroll">
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-8 animate-on-scroll">
               Let's discuss how we can help transform your IT asset management
             </p>
           </div>
@@ -90,14 +90,14 @@ const Contact = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">Full Name</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 dark:text-neutral-200">Full Name</label>
                   <input
                     {...register('name')}
                     type="text"
                     id="name"
                     className={`w-full px-4 py-2 rounded-lg border ${
-                      errors.name ? 'border-red-500' : 'border-neutral/20'
-                    } focus:outline-none focus:border-primary`}
+                      errors.name ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
+                    } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
                     placeholder="Your name"
                   />
                   {errors.name && (
@@ -105,14 +105,14 @@ const Contact = () => {
                   )}
                 </div>
                 <div>
-                  <label htmlFor="company" className="block text-sm font-medium mb-2">Company</label>
+                  <label htmlFor="company" className="block text-sm font-medium mb-2 dark:text-neutral-200">Company</label>
                   <input
                     {...register('company')}
                     type="text"
                     id="company"
                     className={`w-full px-4 py-2 rounded-lg border ${
-                      errors.company ? 'border-red-500' : 'border-neutral/20'
-                    } focus:outline-none focus:border-primary`}
+                      errors.company ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
+                    } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
                     placeholder="Your company"
                   />
                   {errors.company && (
@@ -121,14 +121,14 @@ const Contact = () => {
                 </div>
               </div>
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
+                <label htmlFor="email" className="block text-sm font-medium mb-2 dark:text-neutral-200">Email</label>
                 <input
                   {...register('email')}
                   type="email"
                   id="email"
                   className={`w-full px-4 py-2 rounded-lg border ${
-                    errors.email ? 'border-red-500' : 'border-neutral/20'
-                  } focus:outline-none focus:border-primary`}
+                    errors.email ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
+                  } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
                   placeholder="your@email.com"
                 />
                 {errors.email && (
@@ -136,14 +136,14 @@ const Contact = () => {
                 )}
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">Message</label>
+                <label htmlFor="message" className="block text-sm font-medium mb-2 dark:text-neutral-200">Message</label>
                 <textarea
                   {...register('message')}
                   id="message"
                   rows={4}
                   className={`w-full px-4 py-2 rounded-lg border ${
-                    errors.message ? 'border-red-500' : 'border-neutral/20'
-                  } focus:outline-none focus:border-primary`}
+                    errors.message ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
+                  } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
                   placeholder="Tell us about your needs"
                 ></textarea>
                 {errors.message && (
@@ -154,7 +154,7 @@ const Contact = () => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed dark:bg-primary-foreground dark:text-primary"
                 >
                   {isSubmitting ? "Sending..." : "Schedule a Consultation"}
                 </button>
