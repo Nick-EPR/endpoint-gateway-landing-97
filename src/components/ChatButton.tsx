@@ -1,7 +1,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Send } from "lucide-react";
+import { MessageCircle, Send, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -24,6 +24,24 @@ const ChatButton = () => {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const chatRef = useRef<HTMLDivElement>(null);
+
+  // Handle click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (chatRef.current && !chatRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   // Auto-focus input when chat opens
   useEffect(() => {
@@ -93,9 +111,17 @@ const ChatButton = () => {
         </Button>
 
         {isOpen && (
-          <div className="absolute bottom-16 right-0 w-[380px] bg-background border rounded-lg shadow-lg animate-in slide-in-from-bottom-2">
-            <div className="p-4 border-b">
+          <div ref={chatRef} className="absolute bottom-16 right-0 w-[380px] bg-background border rounded-lg shadow-lg animate-in slide-in-from-bottom-2">
+            <div className="p-4 border-b flex justify-between items-center">
               <h2 className="font-semibold text-lg">Chat with Support</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsOpen(false)}
+                className="h-8 w-8 rounded-full"
+              >
+                <X className="h-4 w-4" />
+              </Button>
             </div>
             
             <div className="h-[400px] flex flex-col">
