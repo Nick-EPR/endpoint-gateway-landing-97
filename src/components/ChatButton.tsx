@@ -87,7 +87,7 @@ const ChatButton = () => {
             <DialogTitle>Chat with Chad</DialogTitle>
           </DialogHeader>
           
-          <div className="flex-1 overflow-y-auto mb-4 space-y-4 relative z-10">
+          <div className="flex-1 overflow-y-auto mb-4 space-y-4">
             {messages.map((message, index) => (
               <div
                 key={index}
@@ -97,7 +97,7 @@ const ChatButton = () => {
                   className={`max-w-[80%] rounded-lg px-4 py-2 ${
                     message.role === 'user'
                       ? 'bg-primary text-white'
-                      : 'bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm'
+                      : 'bg-neutral-100 dark:bg-neutral-800'
                   }`}
                 >
                   {message.content}
@@ -106,20 +106,20 @@ const ChatButton = () => {
             ))}
             {isLoading && (
               <div className="flex justify-start">
-                <div className="bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm rounded-lg px-4 py-2">
+                <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg px-4 py-2">
                   <span className="animate-pulse">Typing...</span>
                 </div>
               </div>
             )}
           </div>
 
-          <form onSubmit={handleSubmit} className="flex gap-2 relative z-10">
+          <form onSubmit={handleSubmit} className="flex gap-2">
             <Input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               placeholder="Type your message..."
               disabled={isLoading}
-              className="flex-1 bg-white/90 dark:bg-neutral-800/90 backdrop-blur-sm"
+              className="flex-1"
             />
             <Button type="submit" disabled={isLoading || !input.trim()}>
               <Send className="h-4 w-4" />
@@ -127,12 +127,11 @@ const ChatButton = () => {
           </form>
 
           <div 
-            className="absolute inset-0 opacity-10" 
+            className="opacity-5 pointer-events-none absolute inset-0 z-0" 
             style={{
-              backgroundImage: `url('/lovable-uploads/2512e737-3577-4b0d-a4e9-d6fa1fe3462b.png')`,
+              backgroundImage: `url('/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png')`,
               backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              filter: 'grayscale(100%)'
+              backgroundPosition: 'center'
             }}
           />
         </DialogContent>
