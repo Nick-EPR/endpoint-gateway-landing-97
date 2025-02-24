@@ -24,16 +24,18 @@ const ROICalculator = () => {
   const handleEmployeeChange = (value: number) => {
     setEmployees(value);
     setCurrentTrends(calculateTrends(value));
-    
-    if (value >= 280 && !isEnterprise) {
-      setIsEnterprise(true);
-    } else if (value <= 320 && isEnterprise) {
-      setIsEnterprise(false);
-    }
   };
 
   const handleEnterpriseChange = (checked: boolean) => {
     setIsEnterprise(checked);
+    // Adjust employee count when switching modes to ensure it's within valid range
+    if (checked && employees < 1000) {
+      setEmployees(1000);
+      setCurrentTrends(calculateTrends(1000));
+    } else if (!checked && employees > 300) {
+      setEmployees(300);
+      setCurrentTrends(calculateTrends(300));
+    }
   };
 
   // Remove animation delay by passing false for animation
