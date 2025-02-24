@@ -102,19 +102,19 @@ const Index = () => {
           <ComparisonTable />
         </section>
 
-        <section className="parallelogram-section bg-red-50 dark:bg-neutral-800/50">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           <TMobileBusiness />
         </section>
 
-        <section className="parallelogram-section bg-primary-light dark:bg-neutral-900">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
           <Partners />
         </section>
 
-        <section className="parallelogram-section bg-primary-light dark:bg-neutral-800">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
           <ROICalculator />
         </section>
 
-        <section className="bg-neutral-light dark:bg-neutral-900 parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           <Partnership />
         </section>
 
