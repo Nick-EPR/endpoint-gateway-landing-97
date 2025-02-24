@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, Suspense, lazy } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
@@ -56,11 +56,10 @@ const Index = () => {
     observerRef.current = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const target = entry.target;
+          const target = entry.target as HTMLElement;
           target.classList.add("animate-fade-up");
           observerRef.current?.unobserve(target);
 
-          // Add stagger effect based on data-index
           const index = target.getAttribute('data-index');
           if (index) {
             target.style.animationDelay = `${parseInt(index) * 100}ms`;
