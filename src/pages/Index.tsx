@@ -108,7 +108,7 @@ const Index = () => {
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.about)}
+          {renderSection(sections.partnership)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800">
