@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { memo } from "react";
 import { Solution } from "@/types/solution";
 import DataFlow from "./DataFlow";
+import { cn } from "@/lib/utils";
 
 interface SolutionCardProps {
   solution: Solution;
@@ -15,9 +16,14 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
   return (
     <div className="relative">
       <div 
-        className={`solution-card p-8 rounded-xl transition-all duration-300 hover:shadow-lg ${
-          solution.comingSoon ? 'opacity-75' : ''
-        } bg-white/95 dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-800 hover:border-primary/30 animate-fade-up`}
+        className={cn(
+          "solution-card p-8 rounded-xl transition-all duration-300",
+          "bg-white/95 dark:bg-neutral-800/50 backdrop-blur-sm",
+          "border border-neutral-100 dark:border-neutral-700/50",
+          "hover:shadow-lg hover:border-primary/30",
+          "animate-fade-up",
+          solution.comingSoon && "opacity-75"
+        )}
         style={{
           animationDelay: `${index * 200}ms`,
           position: 'relative',
@@ -38,11 +44,11 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
             />
           </div>
         ) : (
-          <h3 className="text-xl font-semibold mb-6 text-neutral-800 dark:text-white">
+          <h3 className="text-xl font-semibold mb-6 text-neutral-900 dark:text-white">
             {solution.title}
           </h3>
         )}
-        <p className="text-neutral-700 dark:text-neutral-300 mb-6 leading-relaxed">
+        <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
           {solution.description}
         </p>
         {solution.comingSoon ? (
