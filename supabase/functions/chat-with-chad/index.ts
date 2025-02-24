@@ -26,16 +26,36 @@ About Lifetime EPR:
 - Partners with T-Mobile for enterprise connectivity solutions
 - SOC 2 Type II Certified and ISO27001:2022 Compliant`;
 
+console.log('Edge function initialized');
+
 serve(async (req) => {
+  console.log('Received request:', req.method);
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
-    return new Response(null, { headers: corsHeaders });
+    console.log('Handling OPTIONS request');
+    return new Response(null, { 
+      headers: corsHeaders
+    });
+  }
+
+  if (!openAIApiKey) {
+    console.error('OpenAI API key not found');
+    return new Response(
+      JSON.stringify({ error: 'OpenAI API key not configured' }), 
+      { 
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      }
+    );
   }
 
   try {
+    console.log('Parsing request body');
     const { messages } = await req.json();
     console.log('Received messages:', messages);
 
+    console.log('Making request to OpenAI');
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -52,6 +72,12 @@ serve(async (req) => {
       }),
     });
 
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('OpenAI API error:', errorData);
+      throw new Error(`OpenAI API error: ${response.status} ${errorData}`);
+    }
+
     const data = await response.json();
     console.log('OpenAI response:', data);
     
@@ -59,10 +85,13 @@ serve(async (req) => {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Error:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
-      status: 500,
-      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
-    });
+    console.error('Error in chat function:', error);
+    return new Response(
+      JSON.stringify({ error: error.message }), 
+      {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      }
+    );
   }
 });
