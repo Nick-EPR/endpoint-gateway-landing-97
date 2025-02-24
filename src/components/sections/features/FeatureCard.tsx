@@ -17,7 +17,7 @@ export const FeatureCard = memo(({
 }: FeatureCardProps) => {
   return (
     <div 
-      className={`p-4 rounded-lg bg-white dark:bg-neutral-900/50 shadow-sm border border-neutral-100 dark:border-neutral-800 hover:shadow-lg hover:border-primary/20 transition-all duration-300 h-full relative ${className}`}
+      className={`p-4 rounded-lg bg-white/95 dark:bg-neutral-900/50 shadow-sm border border-neutral-100 dark:border-neutral-800 hover:shadow-lg hover:border-primary/20 transition-all duration-300 h-full relative ${className}`}
       style={style}
     >
       {comingSoon && (
@@ -25,10 +25,10 @@ export const FeatureCard = memo(({
           Soon
         </span>
       )}
-      <div className="w-10 h-10 rounded-lg bg-neutral-50 dark:bg-neutral-800 flex items-center justify-center mb-3 animate-fade-up">
+      <div className="w-10 h-10 rounded-lg bg-neutral-50 dark:bg-neutral-800/80 flex items-center justify-center mb-3 animate-fade-up">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-1.5 text-neutral-800 dark:text-neutral-100 animate-fade-up" style={{ animationDelay: '50ms' }}>
+      <h3 className="text-lg font-semibold mb-1.5 text-neutral-900 dark:text-white animate-fade-up" style={{ animationDelay: '50ms' }}>
         {title}
       </h3>
       <p className="text-neutral dark:text-neutral-300 text-sm animate-fade-up" style={{ animationDelay: '100ms' }}>
