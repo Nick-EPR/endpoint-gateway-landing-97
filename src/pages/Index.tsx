@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
@@ -80,11 +80,14 @@ const Index = () => {
   }, []);
 
   const renderSection = (Component: React.ComponentType, index: number) => (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-[200px]">
-        <LoadingSpinner />
-      </div>
-    }>
+    <Suspense 
+      fallback={
+        <div className="flex items-center justify-center min-h-[200px]">
+          <LoadingSpinner />
+        </div>
+      }
+      key={index}
+    >
       <div 
         className="animate-on-scroll opacity-0" 
         data-index={index}
