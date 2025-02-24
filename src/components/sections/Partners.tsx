@@ -11,7 +11,7 @@ const Partners = () => {
     logo: "/lovable-uploads/2d1dd360-ac5b-41c4-8f0d-8f53db87032f.png",
     url: "https://www.cellhub.com",
     description: "Device procurement and logistics partner",
-    logoHeight: "h-16" // Increased size for CellHub
+    logoHeight: "h-32" // Doubled from h-16 to h-32
   }, {
     name: "T-Mobile",
     logo: "/lovable-uploads/4b84285a-ebf1-49a3-937a-ea9058b7726f.png",
