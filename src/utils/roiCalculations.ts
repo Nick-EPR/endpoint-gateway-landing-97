@@ -96,7 +96,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     },
     {
       label: "Cost Reduction",
-      value: formatCurrency(annualSavings, 'USD'),
+      value: `$${annualSavings}`,
       trend: -25,
       tooltip: "Annual cost savings through repair, refurbishment, and resale programs"
     }
