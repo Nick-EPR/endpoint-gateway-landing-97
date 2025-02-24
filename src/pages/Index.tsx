@@ -110,15 +110,15 @@ const Index = () => {
           <Partners />
         </section>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           <ROICalculator />
         </section>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
           <Partnership />
         </section>
 
-        <section className="bg-white dark:bg-neutral-900">
+        <section className="bg-neutral-light dark:bg-neutral-800">
           <Contact />
         </section>
       </Suspense>

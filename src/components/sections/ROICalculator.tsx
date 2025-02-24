@@ -1,4 +1,3 @@
-
 import { useState, useRef } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -39,7 +38,7 @@ const ROICalculator = () => {
   const { isAnimating } = useROIAnimation(isVisible, handleEmployeeChange);
 
   return (
-    <section id="roi-calculator" className="relative py-20 bg-white dark:bg-neutral-900 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
+    <section id="roi-calculator" className="relative py-20 bg-neutral-light dark:bg-neutral-800 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
