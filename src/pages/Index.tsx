@@ -10,7 +10,7 @@ import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 
-// Move lazily loaded sections to a separate file
+// Import lazily loaded sections
 import { 
   Features,
   Products,
@@ -66,6 +66,16 @@ const Index = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
+  const renderSection = (Component: React.ComponentType) => (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[200px]">
+        <LoadingSpinner />
+      </div>
+    }>
+      <Component />
+    </Suspense>
+  );
+
   return (
     <div className="min-h-screen dark:bg-neutral-900">
       <NavigationProgress />
@@ -83,52 +93,44 @@ const Index = () => {
         buttonText="Get Started" 
       />
 
-      <Suspense fallback={<LoadingSpinner />}>
-        <main>
-          <HomeSections />
-        </main>
-      </Suspense>
+      <main>
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+          {renderSection(Products)}
+        </section>
+
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+          {renderSection(Features)}
+        </section>
+
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+          {renderSection(ComparisonTable)}
+        </section>
+
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+          {renderSection(TMobileBusiness)}
+        </section>
+
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+          {renderSection(Partners)}
+        </section>
+
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+          {renderSection(ROICalculator)}
+        </section>
+
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+          {renderSection(Partnership)}
+        </section>
+
+        <section className="bg-neutral-light dark:bg-neutral-800">
+          {renderSection(Contact)}
+        </section>
+      </main>
 
       <Footer />
       <ChatButton />
     </div>
   );
 };
-
-const HomeSections = () => (
-  <>
-    <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-      <Products />
-    </section>
-
-    <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-      <Features />
-    </section>
-
-    <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-      <ComparisonTable />
-    </section>
-
-    <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-      <TMobileBusiness />
-    </section>
-
-    <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-      <Partners />
-    </section>
-
-    <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-      <ROICalculator />
-    </section>
-
-    <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-      <Partnership />
-    </section>
-
-    <section className="bg-neutral-light dark:bg-neutral-800">
-      <Contact />
-    </section>
-  </>
-);
 
 export default Index;
