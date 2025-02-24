@@ -35,52 +35,58 @@ export const SavingsChart = ({
   const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
   const [animatedCarbonOffset, setAnimatedCarbonOffset] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const animationTimeoutRef = useRef<NodeJS.Timeout[]>([]);
 
   useEffect(() => {
-    if (showMoreDetails) {
-      const data = calculateCompoundedSavings(employees);
-      setChartData([]);
-      // Animate data points one by one
-      data.forEach((item, index) => {
-        setTimeout(() => {
-          setChartData(prev => [...prev, item]);
-        }, index * 300);
-      });
+    // Clear any existing animation timeouts
+    animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
+    animationTimeoutRef.current = [];
 
-      // Animate tree count
-      const targetTreeCount = Math.round(employees * 0.7);
-      const treeDuration = 1000;
-      const treeStartTime = performance.now();
-      
-      const animateTreeCount = (currentTime: number) => {
-        const elapsed = currentTime - treeStartTime;
-        const progress = Math.min(elapsed / treeDuration, 1);
-        setAnimatedTreeCount(Math.round(targetTreeCount * progress));
-        
-        if (progress < 1) {
-          requestAnimationFrame(animateTreeCount);
-        }
-      };
-      
-      requestAnimationFrame(animateTreeCount);
+    // Reset chart data immediately
+    setChartData([]);
 
-      // Animate carbon offset
-      const targetCarbonOffset = Math.round(employees * 1.2);
-      const carbonDuration = 1000;
-      const carbonStartTime = performance.now();
+    const data = calculateCompoundedSavings(employees);
+    
+    // Create new animations
+    data.forEach((item, index) => {
+      const timeout = setTimeout(() => {
+        setChartData(prev => {
+          // Ensure we don't add duplicate entries
+          const exists = prev.some(p => p.year === item.year);
+          if (exists) return prev;
+          return [...prev, item];
+        });
+      }, index * 300);
       
-      const animateCarbonOffset = (currentTime: number) => {
-        const elapsed = currentTime - carbonStartTime;
-        const progress = Math.min(elapsed / carbonDuration, 1);
-        setAnimatedCarbonOffset(Math.round(targetCarbonOffset * progress));
-        
-        if (progress < 1) {
-          requestAnimationFrame(animateCarbonOffset);
-        }
-      };
-      
-      requestAnimationFrame(animateCarbonOffset);
-    }
+      animationTimeoutRef.current.push(timeout);
+    });
+
+    // Animate tree count and carbon offset
+    const targetTreeCount = Math.round(employees * 0.7);
+    const targetCarbonOffset = Math.round(employees * 1.2);
+    
+    const startTime = performance.now();
+    const duration = 1000;
+
+    const animate = () => {
+      const elapsed = performance.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      setAnimatedTreeCount(Math.round(targetTreeCount * progress));
+      setAnimatedCarbonOffset(Math.round(targetCarbonOffset * progress));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+
+    // Cleanup function
+    return () => {
+      animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
+      animationTimeoutRef.current = [];
+    };
   }, [showMoreDetails, employees]);
 
   return (
