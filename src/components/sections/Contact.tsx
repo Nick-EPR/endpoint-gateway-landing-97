@@ -6,6 +6,7 @@ import * as z from "zod";
 import { MessageSquare } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -32,7 +33,6 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
     try {
-      // Save to Supabase
       const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([
@@ -46,7 +46,6 @@ const Contact = () => {
 
       if (dbError) throw dbError;
 
-      // Send email notification
       const { error: emailError } = await supabase.functions.invoke('send-contact-notification', {
         body: data
       });
@@ -59,7 +58,7 @@ const Contact = () => {
         variant: "default"
       });
 
-      reset(); // Clear the form
+      reset();
     } catch (error) {
       console.error('Error submitting form:', error);
       toast({
@@ -86,7 +85,13 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="glass-card p-8 rounded-xl">
+          <div className={cn(
+            "glass-card p-8 rounded-xl",
+            "bg-white/95 dark:bg-neutral-800/50",
+            "backdrop-blur-sm",
+            "border border-neutral-100 dark:border-neutral-700/50",
+            "shadow-md hover:shadow-lg"
+          )}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -95,9 +100,15 @@ const Contact = () => {
                     {...register('name')}
                     type="text"
                     id="name"
-                    className={`w-full px-4 py-2 rounded-lg border ${
-                      errors.name ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
-                    } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
+                    className={cn(
+                      "w-full px-4 py-2 rounded-lg",
+                      "bg-white dark:bg-neutral-900",
+                      "border",
+                      errors.name ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                      "focus:outline-none focus:border-primary dark:focus:border-primary",
+                      "text-neutral-900 dark:text-white",
+                      "placeholder-neutral-400 dark:placeholder-neutral-500"
+                    )}
                     placeholder="Your name"
                   />
                   {errors.name && (
@@ -110,9 +121,15 @@ const Contact = () => {
                     {...register('company')}
                     type="text"
                     id="company"
-                    className={`w-full px-4 py-2 rounded-lg border ${
-                      errors.company ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
-                    } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
+                    className={cn(
+                      "w-full px-4 py-2 rounded-lg",
+                      "bg-white dark:bg-neutral-900",
+                      "border",
+                      errors.company ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                      "focus:outline-none focus:border-primary dark:focus:border-primary",
+                      "text-neutral-900 dark:text-white",
+                      "placeholder-neutral-400 dark:placeholder-neutral-500"
+                    )}
                     placeholder="Your company"
                   />
                   {errors.company && (
@@ -126,9 +143,15 @@ const Contact = () => {
                   {...register('email')}
                   type="email"
                   id="email"
-                  className={`w-full px-4 py-2 rounded-lg border ${
-                    errors.email ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
-                  } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
+                  className={cn(
+                    "w-full px-4 py-2 rounded-lg",
+                    "bg-white dark:bg-neutral-900",
+                    "border",
+                    errors.email ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                    "focus:outline-none focus:border-primary dark:focus:border-primary",
+                    "text-neutral-900 dark:text-white",
+                    "placeholder-neutral-400 dark:placeholder-neutral-500"
+                  )}
                   placeholder="your@email.com"
                 />
                 {errors.email && (
@@ -141,9 +164,15 @@ const Contact = () => {
                   {...register('message')}
                   id="message"
                   rows={4}
-                  className={`w-full px-4 py-2 rounded-lg border ${
-                    errors.message ? 'border-red-500' : 'border-neutral/20 dark:border-neutral-700'
-                  } focus:outline-none focus:border-primary dark:bg-neutral-800 dark:text-white`}
+                  className={cn(
+                    "w-full px-4 py-2 rounded-lg",
+                    "bg-white dark:bg-neutral-900",
+                    "border",
+                    errors.message ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                    "focus:outline-none focus:border-primary dark:focus:border-primary",
+                    "text-neutral-900 dark:text-white",
+                    "placeholder-neutral-400 dark:placeholder-neutral-500"
+                  )}
                   placeholder="Tell us about your needs"
                 ></textarea>
                 {errors.message && (
@@ -154,7 +183,13 @@ const Contact = () => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed dark:bg-primary-foreground dark:text-primary"
+                  className={cn(
+                    "px-8 py-4 rounded-lg text-lg font-semibold",
+                    "bg-primary text-white",
+                    "hover:opacity-90 transition-opacity",
+                    "disabled:opacity-50 disabled:cursor-not-allowed",
+                    "dark:bg-primary-foreground dark:text-primary"
+                  )}
                 >
                   {isSubmitting ? "Sending..." : "Schedule a Consultation"}
                 </button>
