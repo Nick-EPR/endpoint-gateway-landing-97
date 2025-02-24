@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { calculateCompoundedSavings } from '@/utils/roiCalculations';
@@ -38,20 +37,16 @@ export const SavingsChart = ({
   const animationTimeoutRef = useRef<NodeJS.Timeout[]>([]);
 
   useEffect(() => {
-    // Clear any existing animation timeouts
     animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
     animationTimeoutRef.current = [];
 
-    // Reset chart data immediately
     setChartData([]);
 
     const data = calculateCompoundedSavings(employees);
     
-    // Create new animations
     data.forEach((item, index) => {
       const timeout = setTimeout(() => {
         setChartData(prev => {
-          // Ensure we don't add duplicate entries
           const exists = prev.some(p => p.year === item.year);
           if (exists) return prev;
           return [...prev, item];
@@ -61,7 +56,6 @@ export const SavingsChart = ({
       animationTimeoutRef.current.push(timeout);
     });
 
-    // Animate tree count and carbon offset
     const targetTreeCount = Math.round(employees * 0.7);
     const targetCarbonOffset = Math.round(employees * 1.2);
     
@@ -82,7 +76,6 @@ export const SavingsChart = ({
 
     requestAnimationFrame(animate);
 
-    // Cleanup function
     return () => {
       animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
       animationTimeoutRef.current = [];
@@ -109,11 +102,15 @@ export const SavingsChart = ({
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div className="p-4 bg-green-50/50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800">
+          <div className="p-4 bg-green-50/50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800 relative group">
             <h4 className="text-sm font-medium text-green-800 dark:text-green-300">Trees Saved</h4>
             <p className="text-2xl font-bold text-green-600 dark:text-green-400">
               {animatedTreeCount.toLocaleString()} trees
             </p>
+            <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-20 left-0 right-0 bg-white dark:bg-neutral-800 p-2 rounded-lg shadow-lg text-xs z-10 mx-2">
+              Based on average CO2 absorption of 25kg per tree annually. 
+              Calculated using total CO2 reduction (156kg per device) divided by annual tree absorption capacity.
+            </div>
           </div>
           <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
             <h4 className="text-sm font-medium text-blue-800 dark:text-blue-300">Device Lifecycle Extension</h4>
