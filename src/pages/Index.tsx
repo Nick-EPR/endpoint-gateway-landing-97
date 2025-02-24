@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, Suspense, lazy } from "react";
+import { useEffect, useRef, useState, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
@@ -79,7 +79,7 @@ const Index = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const renderSection = (Component: React.ComponentType, index: number) => (
+  const renderSection = (SectionComponent: React.LazyExoticComponent<React.ComponentType>, index: number) => (
     <Suspense 
       fallback={
         <div className="flex items-center justify-center min-h-[200px]">
@@ -93,7 +93,7 @@ const Index = () => {
         data-index={index}
         style={{ transform: 'translateY(20px)' }}
       >
-        <Component />
+        <SectionComponent />
       </div>
     </Suspense>
   );
@@ -117,11 +117,13 @@ const Index = () => {
         </div>
       )}
       
-      <Hero 
-        title="Comprehensive ITAM Solutions for Your Enterprise" 
-        subtitle="Transform your IT asset management with our end-to-end solution" 
-        buttonText="Get Started" 
-      />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Hero 
+          title="Comprehensive ITAM Solutions for Your Enterprise" 
+          subtitle="Transform your IT asset management with our end-to-end solution" 
+          buttonText="Get Started" 
+        />
+      </Suspense>
 
       <main className="relative z-10">
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
