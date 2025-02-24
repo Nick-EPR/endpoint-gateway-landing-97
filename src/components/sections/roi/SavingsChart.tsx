@@ -10,6 +10,17 @@ interface SavingsChartProps {
   setShowMoreDetails: (show: boolean) => void;
 }
 
+const formatLargeNumber = (value: number): string => {
+  if (value >= 1000000000) {
+    return `$${(value / 1000000000).toFixed(1)}B`;
+  } else if (value >= 1000000) {
+    return `$${(value / 1000000).toFixed(1)}M`;
+  } else if (value >= 1000) {
+    return `$${(value / 1000).toFixed(0)}K`;
+  }
+  return `$${value}`;
+};
+
 export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }: SavingsChartProps) => {
   const [chartData, setChartData] = useState<any[]>([]);
 
@@ -40,19 +51,19 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
           <div className="p-4 bg-green-50/50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800">
             <h4 className="text-sm font-medium text-green-800 dark:text-green-300">Trees Saved</h4>
             <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-              {Math.round(employees * 0.7)} trees
+              {Math.round(employees * 0.7).toLocaleString()} trees
             </p>
           </div>
           <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
-            <h4 className="text-sm font-medium text-blue-800 dark:text-blue-300">Total ROI</h4>
+            <h4 className="text-sm font-medium text-blue-800 dark:text-blue-300">Device Lifecycle Extension</h4>
             <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-              {Math.round(employees * 0.15 * 100)}%
+              +40% longer
             </p>
           </div>
           <div className="p-4 bg-purple-50/50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
             <h4 className="text-sm font-medium text-purple-800 dark:text-purple-300">Carbon Offset</h4>
             <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-              {Math.round(employees * 1.2)} tons
+              {Math.round(employees * 1.2).toLocaleString()} tons
             </p>
           </div>
         </div>
@@ -71,13 +82,13 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
               />
               <YAxis 
                 yAxisId="savings"
-                tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+                tickFormatter={(value) => formatLargeNumber(value)}
                 stroke="currentColor"
               />
               <YAxis 
                 yAxisId="co2"
                 orientation="right"
-                tickFormatter={(value) => `${value} tons`}
+                tickFormatter={(value) => `${value.toLocaleString()} tons`}
                 stroke="currentColor"
               />
               <Tooltip 
@@ -85,7 +96,7 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
                   if (name === "Cumulative Savings") {
                     return [`$${value.toLocaleString()}`, name];
                   }
-                  return [`${value} tons`, name];
+                  return [`${value.toLocaleString()} tons`, name];
                 }}
                 contentStyle={{
                   backgroundColor: 'rgba(255, 255, 255, 0.95)',
