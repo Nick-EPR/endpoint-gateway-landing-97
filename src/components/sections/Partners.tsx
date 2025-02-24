@@ -10,22 +10,26 @@ const Partners = () => {
     name: "CellHub",
     logo: "/lovable-uploads/2d1dd360-ac5b-41c4-8f0d-8f53db87032f.png",
     url: "https://www.cellhub.com",
-    description: "Device procurement and logistics partner"
+    description: "Device procurement and logistics partner",
+    logoHeight: "h-16" // Increased size for CellHub
   }, {
     name: "T-Mobile",
     logo: "/lovable-uploads/4b84285a-ebf1-49a3-937a-ea9058b7726f.png",
     url: "https://www.t-mobile.com/business",
-    description: "Strategic partnership for connected device solutions"
+    description: "Strategic partnership for connected device solutions",
+    logoHeight: "h-12" // Standard size for T-Mobile
   }, {
     name: "D&H Distributing",
     logo: "/lovable-uploads/c59ae9e5-4a85-4b97-bd93-82bceb58dc08.png",
     url: "https://www.dandh.com",
-    description: "IT distribution and supply chain solutions"
+    description: "IT distribution and supply chain solutions",
+    logoHeight: "h-16" // Increased size for D&H
   }, {
     name: "Lifetime Service",
     logo: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png",
     url: "https://www.lifetimeservice.com",
-    description: "Expert device repair and maintenance facility"
+    description: "Expert device repair and maintenance facility",
+    logoHeight: "h-12" // Standard size for Lifetime
   }];
 
   const [api] = useEmblaCarousel({
@@ -69,7 +73,7 @@ const Partners = () => {
                       <img 
                         src={partner.logo} 
                         alt={`${partner.name} logo`} 
-                        className="w-auto h-12 object-contain group-hover:scale-105 transition-transform" 
+                        className={`w-auto ${partner.logoHeight} object-contain group-hover:scale-105 transition-transform`}
                       />
                     </div>
                     <p className="text-neutral-600 dark:text-neutral-300 text-center mt-4 text-sm">
