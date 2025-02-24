@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, X, Send } from "lucide-react";
+import { MessageCircle, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import {
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Message {
   role: 'assistant' | 'user';
@@ -36,16 +36,16 @@ const ChatButton = () => {
     setMessages(newMessages);
 
     try {
-      const response = await fetch('/functions/v1/chat-with-chad', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ messages: newMessages }),
+      const { data, error } = await supabase.functions.invoke('chat-with-chad', {
+        body: { messages: newMessages }
       });
 
-      const data = await response.json();
-      if (data.choices?.[0]?.message) {
+      if (error) {
+        console.error('Supabase function error:', error);
+        throw error;
+      }
+
+      if (data?.choices?.[0]?.message) {
         // Ensure the response conforms to our Message type
         const assistantMessage: Message = {
           role: 'assistant',
