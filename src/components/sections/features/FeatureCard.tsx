@@ -1,11 +1,25 @@
 
 import React, { memo } from "react";
 import { Feature } from "./types";
+import { cn } from "@/lib/utils";
 
 interface FeatureCardProps extends Feature {
   className?: string;
   style?: React.CSSProperties;
 }
+
+const baseCardStyles = "p-4 rounded-lg backdrop-blur-md border transition-all duration-300 h-full relative";
+const lightCardStyles = "bg-white/95 border-neutral-100";
+const darkCardStyles = "dark:bg-neutral-900/50 dark:border-neutral-800";
+const hoverStyles = "hover:shadow-lg hover:border-primary/20";
+
+const badgeStyles = "absolute top-2 right-2 text-xs px-1.5 py-0.5 rounded-full leading-none animate-fade-in";
+const badgeLightStyles = "bg-neutral-100/80 text-neutral-600";
+const badgeDarkStyles = "dark:bg-neutral-800/80 dark:text-neutral-400";
+
+const iconContainerStyles = "w-10 h-10 rounded-lg flex items-center justify-center mb-3 animate-fade-up";
+const iconLightStyles = "bg-neutral-50/90";
+const iconDarkStyles = "dark:bg-neutral-800/60";
 
 export const FeatureCard = memo(({
   icon,
@@ -17,21 +31,41 @@ export const FeatureCard = memo(({
 }: FeatureCardProps) => {
   return (
     <div 
-      className={`p-4 rounded-lg glass-card bg-white/95 dark:bg-neutral-900/50 shadow-sm border border-neutral-100 dark:border-neutral-800 hover:shadow-lg hover:border-primary/20 transition-all duration-300 h-full relative ${className}`}
+      className={cn(
+        baseCardStyles,
+        lightCardStyles,
+        darkCardStyles,
+        hoverStyles,
+        className
+      )}
       style={style}
     >
       {comingSoon && (
-        <span className="absolute top-2 right-2 text-xs px-1.5 py-0.5 bg-neutral-100/80 dark:bg-neutral-800/80 text-neutral-600 dark:text-neutral-400 rounded-full leading-none animate-fade-in">
+        <span className={cn(
+          badgeStyles,
+          badgeLightStyles,
+          badgeDarkStyles
+        )}>
           Soon
         </span>
       )}
-      <div className="w-10 h-10 rounded-lg bg-neutral-50/90 dark:bg-neutral-800/60 flex items-center justify-center mb-3 animate-fade-up">
+      <div className={cn(
+        iconContainerStyles,
+        iconLightStyles,
+        iconDarkStyles
+      )}>
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-1.5 text-neutral-900 dark:text-white/90 animate-fade-up" style={{ animationDelay: '50ms' }}>
+      <h3 
+        className="text-lg font-semibold mb-1.5 text-neutral-900 dark:text-white/90 animate-fade-up" 
+        style={{ animationDelay: '50ms' }}
+      >
         {title}
       </h3>
-      <p className="text-neutral-700 dark:text-neutral-300 text-sm animate-fade-up" style={{ animationDelay: '100ms' }}>
+      <p 
+        className="text-neutral-700 dark:text-neutral-300 text-sm animate-fade-up" 
+        style={{ animationDelay: '100ms' }}
+      >
         {description}
       </p>
     </div>
