@@ -1,3 +1,4 @@
+
 import { useState, useRef } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -35,7 +36,8 @@ const ROICalculator = () => {
     setIsEnterprise(checked);
   };
 
-  const { isAnimating } = useROIAnimation(isVisible, handleEmployeeChange);
+  // Remove animation delay by passing false for animation
+  const { isAnimating } = useROIAnimation(false, handleEmployeeChange);
 
   return (
     <section id="roi-calculator" className="relative py-20 bg-neutral-light dark:bg-neutral-800 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
@@ -44,18 +46,18 @@ const ROICalculator = () => {
           <ROIHeader />
           <StatsCards trends={currentTrends} />
 
-          <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 animate-fade-up delay-400 transform hover:shadow-xl transition-all duration-300">
+          <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 animate-fade-up transform hover:shadow-xl transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
                 <div className="bg-primary/10 dark:bg-primary/5 p-2 rounded-lg mr-3">
-                  <Calculator className="w-6 h-6 text-primary" />
+                  <Calculator className="w-6 h-6 text-primary dark:text-primary-foreground" />
                 </div>
                 <h3 className="text-xl font-semibold dark:text-white">ROI Calculator</h3>
               </div>
               <EnterpriseToggle 
                 isEnterprise={isEnterprise}
                 onEnterpriseChange={handleEnterpriseChange}
-                disabled={isAnimating}
+                disabled={false}
               />
             </div>
 
@@ -64,7 +66,7 @@ const ROICalculator = () => {
               isEnterprise={isEnterprise}
               sliderRef={sliderRef}
               onEmployeeChange={handleEmployeeChange}
-              disabled={isAnimating}
+              disabled={false}
             />
 
             <SavingsDisplay employees={employees} />
