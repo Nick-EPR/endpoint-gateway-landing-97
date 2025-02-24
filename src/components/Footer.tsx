@@ -87,7 +87,7 @@ const Footer = () => {
         {/* Security Info */}
         <div className="mt-8">
           <p className="text-sm text-neutral dark:text-neutral-400 text-center">
-            ISO27001:2022 Compliant | SOC 2 Type II Certified
+            SOC 2 Type II Certified | ISO27001:2022 Compliant
           </p>
         </div>
       </div>
