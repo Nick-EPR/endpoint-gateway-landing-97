@@ -125,15 +125,6 @@ const ChatButton = () => {
               <Send className="h-4 w-4" />
             </Button>
           </form>
-
-          <div 
-            className="opacity-5 pointer-events-none absolute inset-0 z-0" 
-            style={{
-              backgroundImage: `url('/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center'
-            }}
-          />
         </DialogContent>
       </Dialog>
     </>
