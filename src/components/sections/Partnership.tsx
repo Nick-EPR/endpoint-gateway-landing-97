@@ -25,10 +25,10 @@ const Partnership = () => {
               <h3 className="text-2xl font-semibold mb-4 text-primary">
                 Partnership with Lifetime Service
               </h3>
-              <p className="text-neutral mb-6">
+              <p className="text-neutral dark:text-neutral-300 mb-6">
                 Through our exclusive partnership with Lifetime Service, we deliver comprehensive repair and maintenance solutions that set us apart in the industry.
               </p>
-              <ul className="space-y-4 text-neutral">
+              <ul className="space-y-4 text-neutral dark:text-neutral-300">
                 <li className="flex items-start">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
                     <div className="w-2 h-2 rounded-full bg-primary"></div>
@@ -52,20 +52,20 @@ const Partnership = () => {
                 Learn more about Lifetime Service →
               </a>
             </div>
-            <div className="bg-neutral-light p-8 rounded-xl animate-on-scroll">
+            <div className="bg-neutral-light dark:bg-neutral-800/50 p-8 rounded-xl animate-on-scroll">
               <div className="text-center mb-6">
-                <h4 className="text-xl font-semibold mb-2">Partnership Benefits</h4>
-                <p className="text-neutral">Our collaboration delivers enhanced value to clients through:</p>
+                <h4 className="text-xl font-semibold mb-2 text-neutral-900 dark:text-white">Partnership Benefits</h4>
+                <p className="text-neutral dark:text-neutral-300">Our collaboration delivers enhanced value to clients through:</p>
               </div>
               <div className="space-y-4">
-                <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <p className="text-neutral">Integrated repair tracking within your ITAM system</p>
+                <div className="p-4 bg-white dark:bg-neutral-900/50 rounded-lg shadow-sm">
+                  <p className="text-neutral dark:text-neutral-300">Integrated repair tracking within your ITAM system</p>
                 </div>
-                <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <p className="text-neutral">Streamlined maintenance scheduling and reporting</p>
+                <div className="p-4 bg-white dark:bg-neutral-900/50 rounded-lg shadow-sm">
+                  <p className="text-neutral dark:text-neutral-300">Streamlined maintenance scheduling and reporting</p>
                 </div>
-                <div className="p-4 bg-white rounded-lg shadow-sm">
-                  <p className="text-neutral">Cost-effective repair solutions that extend asset lifecycle</p>
+                <div className="p-4 bg-white dark:bg-neutral-900/50 rounded-lg shadow-sm">
+                  <p className="text-neutral dark:text-neutral-300">Cost-effective repair solutions that extend asset lifecycle</p>
                 </div>
               </div>
             </div>

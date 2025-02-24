@@ -12,13 +12,13 @@ interface PolicyCardProps {
 
 export function PolicyCard({ icon: Icon, title, description, className }: PolicyCardProps) {
   return (
-    <Card className={cn("transition-all hover:shadow-md", className)}>
+    <Card className={cn("transition-all hover:shadow-md bg-white dark:bg-neutral-900/50", className)}>
       <CardHeader>
         <div className="flex items-center gap-2">
           <Icon className="h-5 w-5 text-primary" />
-          <CardTitle>{title}</CardTitle>
+          <CardTitle className="text-neutral-900 dark:text-white">{title}</CardTitle>
         </div>
-        <CardDescription>{description}</CardDescription>
+        <CardDescription className="text-neutral dark:text-neutral-300">{description}</CardDescription>
       </CardHeader>
       <CardContent>
       </CardContent>
