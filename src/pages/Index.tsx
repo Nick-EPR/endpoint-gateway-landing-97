@@ -37,14 +37,13 @@ const Index = () => {
     queryKey: ['monitors'],
     queryFn: fetchMonitors,
     refetchInterval: 60000,
-    staleTime: 55000, // Add staleTime to prevent unnecessary refetches
+    staleTime: 55000,
   });
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
   useEffect(() => {
     const handleScroll = () => {
-      // Debounce scroll event
       requestAnimationFrame(() => {
         setScrolled(window.scrollY > 0);
       });
@@ -75,7 +74,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen dark:bg-neutral-900">
       <NavigationProgress />
       <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
       {hasOutage && (
@@ -91,35 +90,35 @@ const Index = () => {
       />
 
       <Suspense fallback={<LoadingSection />}>
-        <section className="bg-white parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
           <Products />
         </section>
 
-        <section className="bg-neutral-light parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           <Features />
         </section>
 
-        <section className="bg-white parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
           <ComparisonTable />
         </section>
 
-        <section className="parallelogram-section bg-red-50">
+        <section className="parallelogram-section bg-red-50 dark:bg-neutral-800/50">
           <TMobileBusiness />
         </section>
 
-        <section className="parallelogram-section bg-primary-light">
+        <section className="parallelogram-section bg-primary-light dark:bg-neutral-900">
           <Partners />
         </section>
 
-        <section className="parallelogram-section bg-primary-light">
+        <section className="parallelogram-section bg-primary-light dark:bg-neutral-800">
           <ROICalculator />
         </section>
 
-        <section className="bg-neutral-light parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-900 parallelogram-section">
           <Partnership />
         </section>
 
-        <section className="bg-white">
+        <section className="bg-white dark:bg-neutral-900">
           <Contact />
         </section>
       </Suspense>

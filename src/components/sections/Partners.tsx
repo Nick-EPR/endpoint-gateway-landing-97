@@ -38,13 +38,13 @@ const Partners = () => {
   })]);
 
   return <section className="py-24 bg-transparent">
-      <div className="container mx-auto px-4 bg-primary-light">
+      <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 dark:text-white">
             <Star className="w-8 h-8 text-primary" />
             Our Partners
           </h2>
-          <p className="text-lg text-neutral mb-8 animate-on-scroll">
+          <p className="text-lg text-neutral dark:text-neutral-300 mb-8 animate-on-scroll">
             Working with industry leaders to deliver comprehensive IT asset management solutions
           </p>
         </div>
@@ -57,14 +57,27 @@ const Partners = () => {
           delay: 3000
         })]} className="w-full">
             <CarouselContent>
-              {partners.map((partner, index) => <CarouselItem key={index} className="basis-full md:basis-1/3">
-                  <a href={partner.url} target="_blank" rel="noopener noreferrer" className="p-4 rounded-xl hover:shadow-lg transition-shadow group block h-[140px] bg-gradient-to-br from-neutral/10 to-primary/20 border border-primary/10">
+              {partners.map((partner, index) => (
+                <CarouselItem key={index} className="basis-full md:basis-1/3">
+                  <a 
+                    href={partner.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="p-4 rounded-xl hover:shadow-lg transition-shadow group block h-[140px] bg-gradient-to-br from-neutral-800/90 to-neutral-900 dark:from-neutral-800 dark:to-black border border-neutral-700/50"
+                  >
                     <div className="h-16 flex items-center justify-center">
-                      <img src={partner.logo} alt={`${partner.name} logo`} className={`w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'T-Mobile' ? 'max-h-12' : 'max-h-14'}`} />
+                      <img 
+                        src={partner.logo} 
+                        alt={`${partner.name} logo`} 
+                        className={`w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'T-Mobile' ? 'max-h-12' : 'max-h-14'}`} 
+                      />
                     </div>
-                    <p className="text-neutral text-center mt-2 text-sm">{partner.description}</p>
+                    <p className="text-neutral-200 dark:text-neutral-300 text-center mt-2 text-sm">
+                      {partner.description}
+                    </p>
                   </a>
-                </CarouselItem>)}
+                </CarouselItem>
+              ))}
             </CarouselContent>
             <CarouselPrevious className="hidden md:flex" />
             <CarouselNext className="hidden md:flex" />
