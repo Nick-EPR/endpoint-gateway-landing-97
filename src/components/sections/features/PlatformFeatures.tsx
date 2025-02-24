@@ -3,6 +3,7 @@ import React, { memo } from "react";
 import { Feature } from "./types";
 import { FeatureCard } from "./FeatureCard";
 import { Settings, Package } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface PlatformFeaturesProps {
   features: Feature[];
@@ -14,10 +15,10 @@ const FeatureTitle = memo(({ children, description }: { children: React.ReactNod
   <div className="text-center mb-16 mt-20">
     <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up">
       <Package className="w-8 h-8 text-primary" />
-      <h3 className="text-xl font-semibold">{children}</h3>
+      <h3 className="text-xl font-semibold dark:text-white">{children}</h3>
     </div>
     {description && (
-      <p className="text-neutral-600 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '100ms' }}>
+      <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '100ms' }}>
         {description}
       </p>
     )}
@@ -27,7 +28,7 @@ const FeatureTitle = memo(({ children, description }: { children: React.ReactNod
 FeatureTitle.displayName = "FeatureTitle";
 
 const NoFeaturesFound = memo(() => (
-  <div className="text-center py-8 text-neutral-500 animate-fade-up">
+  <div className="text-center py-8 text-neutral-500 dark:text-neutral-400 animate-fade-up">
     No features match your search criteria
   </div>
 ));
@@ -56,7 +57,14 @@ export const PlatformFeatures = memo(({
               <FeatureCard 
                 key={feature.title} 
                 {...feature} 
-                className="bg-gradient-to-br from-white via-neutral-50 to-white shadow-md animate-fade-up w-full"
+                className={cn(
+                  "w-full",
+                  "bg-white/95 dark:bg-neutral-800/50",
+                  "backdrop-blur-sm",
+                  "border border-neutral-100 dark:border-neutral-700/50",
+                  "shadow-md hover:shadow-lg",
+                  "animate-fade-up"
+                )}
                 style={{
                   animationDelay: `${index * 100}ms`,
                   transform: 'translateY(0)',
@@ -75,9 +83,9 @@ export const PlatformFeatures = memo(({
             <div className="text-center mt-32 mb-16">
               <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up" style={{ animationDelay: '200ms' }}>
                 <Settings className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-semibold">Build Your Perfect ITAM Solution</h3>
+                <h3 className="text-xl font-semibold dark:text-white">Build Your Perfect ITAM Solution</h3>
               </div>
-              <p className="text-neutral-600 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '300ms' }}>
+              <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '300ms' }}>
                 Choose from our specialized products to create an ITAM solution that perfectly matches 
                 your use case and business requirements.
               </p>
