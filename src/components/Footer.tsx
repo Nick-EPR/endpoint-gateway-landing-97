@@ -53,19 +53,19 @@ const Footer = () => {
               <h3 className="font-semibold dark:text-white">Security Policy</h3>
             </div>
             <p className="text-neutral dark:text-neutral-400 text-sm">
-              We are committed to maintaining the security and privacy of your data. Our comprehensive security measures include ISO27001:2022 compliance, SOC 2 Type II certification, and DoD-standard data wiping protocols.
+              We are committed to maintaining the security and privacy of your data. Our comprehensive security measures include ISO27001:2022 certification, SOC 2 compliance, and DoD-standard data wiping protocols.
             </p>
           </div>
         </div>
         
         {/* Mission Statement */}
         <div className="mt-8 pt-8 border-t border-neutral-100 dark:border-neutral-800">
-          <Link to="/mission" className="inline-block hover:text-primary transition-colors">
-            <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="flex flex-col items-center">
+            <Link to="/mission" className="inline-flex items-center gap-2 mb-4 hover:text-primary transition-colors">
               <Bookmark className="w-6 h-6 text-primary" />
               <h3 className="font-semibold text-xl dark:text-white">Our Mission</h3>
-            </div>
-          </Link>
+            </Link>
+          </div>
           <p className="text-neutral dark:text-neutral-400 text-center mb-8 max-w-3xl mx-auto">
             Our mission is to deliver a world-class end-user experience through customized IT lifecycle management solutions that boost efficiency, optimize resources, and evolve with our clients' needs.
           </p>
@@ -87,7 +87,7 @@ const Footer = () => {
         {/* Security Info */}
         <div className="mt-8">
           <p className="text-sm text-neutral dark:text-neutral-400 text-center">
-            SOC 2 Type II Certified | ISO27001:2022 Compliant
+            SOC 2 Compliant | ISO27001:2022 Certified
           </p>
         </div>
       </div>
