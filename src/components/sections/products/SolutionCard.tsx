@@ -20,7 +20,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
           "solution-card p-8 rounded-xl transition-all duration-300",
           "bg-white/95 dark:bg-neutral-800/50 backdrop-blur-sm",
           "border border-neutral-100 dark:border-neutral-700/50",
-          "hover:shadow-lg hover:border-primary/30",
+          "hover:shadow-lg hover:border-primary/20 hover:-translate-y-1",
           "animate-fade-up",
           solution.comingSoon && "opacity-75"
         )}
@@ -53,13 +53,13 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
         </p>
         {solution.comingSoon ? (
           <div className="flex justify-center mt-4">
-            <span className="text-primary font-medium">Coming Soon</span>
+            <span className="text-primary font-medium dark:text-primary-foreground">Coming Soon</span>
           </div>
         ) : solution.path && (
           <Link to={solution.path} className="block w-full">
             <Button 
               variant="outline" 
-              className="w-full hover:bg-primary hover:text-white transition-colors duration-300"
+              className="w-full hover:bg-primary hover:text-white dark:hover:bg-primary-foreground dark:hover:text-primary transition-colors duration-300"
             >
               Learn More
             </Button>
@@ -69,7 +69,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
       
       {index < totalSolutions - 1 && (
         <div 
-          className="hidden md:block absolute top-1/2 -right-4 w-16 h-[2px] bg-primary/10" 
+          className="hidden md:block absolute top-1/2 -right-4 w-16 h-[2px] bg-primary/10 dark:bg-primary-foreground/10" 
           style={{ 
             transform: 'translateY(-50%) translateX(4px)',
             zIndex: 1
