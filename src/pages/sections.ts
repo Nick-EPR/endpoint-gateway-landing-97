@@ -1,16 +1,26 @@
 
-import { lazy } from "react";
+import Hero from "@/components/sections/Hero";
+import Products from "@/components/sections/Products";
+import Features from "@/components/sections/Features";
+import ComparisonSection from "@/components/sections/ComparisonSection";
+import Partners from "@/components/sections/Partners";
+import ROICalculator from "@/components/sections/ROICalculator";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import TMobileBusiness from "@/components/sections/TMobileBusiness";
+import Partnership from "@/components/sections/Partnership";
 
-// Ensure proper typing for each lazy-loaded component
 export const sections = {
-  products: lazy(() => import("../components/sections/Products").then(m => ({ default: m.default }))),
-  features: lazy(() => import("../components/sections/Features").then(m => ({ default: m.default }))),
-  comparison: lazy(() => import("../components/sections/ComparisonSection").then(m => ({ default: m.default }))),
-  partners: lazy(() => import("../components/sections/Partners").then(m => ({ default: m.default }))),
-  roi: lazy(() => import("../components/sections/ROICalculator").then(m => ({ default: m.default }))),
-  contact: lazy(() => import("../components/sections/Contact").then(m => ({ default: m.default }))),
-  tmobile: lazy(() => import("../components/sections/TMobileBusiness").then(m => ({ default: m.default }))),
-  partnership: lazy(() => import("../components/sections/Partnership").then(m => ({ default: m.default })))
+  hero: Hero,
+  products: Products,
+  features: Features,
+  comparison: ComparisonSection,
+  partners: Partners,
+  roi: ROICalculator,
+  about: About,
+  contact: Contact,
+  tmobile: TMobileBusiness,
+  partnership: Partnership
 };
 
 export type SectionKey = keyof typeof sections;
