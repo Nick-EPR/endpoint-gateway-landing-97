@@ -30,15 +30,15 @@ const Features = () => {
   const isSearching = searchQuery.length > 0;
 
   return (
-    <section id="features" className="py-20 md:py-32 bg-neutral-light">
+    <section id="features" className="py-20 md:py-32 bg-neutral-light dark:bg-neutral-800/80">
       <div className="container mx-auto px-4 max-w-7xl">
         {!isSearching && (
           <>
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2">
-              <Layers className="w-8 h-8 text-neutral-700" />
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
+              <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
               Complete ITAM Solutions
             </h2>
-            <p className="text-center text-base md:text-lg mb-12 animate-fade-up max-w-2xl mx-auto">
+            <p className="text-center text-base md:text-lg mb-12 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
               Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
             </p>
           </>
