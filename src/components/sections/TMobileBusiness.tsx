@@ -48,17 +48,25 @@ const TMobileBusiness = () => {
                 />
               </div>
 
-              <div className="bg-white dark:bg-neutral-900/50 border border-neutral-100 dark:border-neutral-700 rounded-xl p-6 shadow-lg">
+              <div className="rounded-xl p-6 bg-white dark:bg-neutral-900/50 shadow-lg">
                 <div className="flex items-center gap-3 mb-4">
                   <Users className="w-5 h-5 text-[#E30074]" />
-                  <h4 className="text-xl font-semibold dark:text-white">T-Mobile 5G Enterprise Solutions</h4>
+                  <h4 className="text-xl font-semibold dark:text-white">Healthcare Digital Transformation Guide</h4>
                 </div>
                 <p className="text-neutral dark:text-neutral-300 mb-6">
-                  Discover how T-Mobile's 5G network integration can transform your business operations and device management capabilities.
+                  Discover how our partnership with T-Mobile revolutionizes healthcare connectivity with 5G solutions designed for modern medical environments.
                 </p>
-                <div className="aspect-[4/3] rounded-lg flex items-center justify-center bg-neutral-100 dark:bg-neutral-800">
-                  <p className="text-neutral dark:text-neutral-400 text-sm">Coming Soon</p>
-                </div>
+                <GuideImage 
+                  src="/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png" 
+                  alt="Healthcare Digital Transformation Guide Page 1" 
+                  fileName="healthcare-transformation-guide-1.png" 
+                  isPartOfDocument={true} 
+                  nextPage={{
+                    src: "/lovable-uploads/14f48861-ae47-4548-8b0d-5345bc615b39.png",
+                    alt: "Healthcare Digital Transformation Guide Page 2",
+                    fileName: "healthcare-transformation-guide-2.png"
+                  }} 
+                />
               </div>
             </div>
           </div>
