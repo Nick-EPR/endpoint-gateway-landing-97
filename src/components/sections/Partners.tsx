@@ -26,7 +26,7 @@ const Partners = () => {
     url: "https://www.dandh.com",
     description: "IT distribution and supply chain solutions",
     logoHeight: "h-12", // Adjusted size for new D&H logo
-    bgColor: "bg-[#E5DEFF]" // Soft purple background
+    bgColor: "bg-[#FDE1D3]" // Soft peach background that complements the D&H brand colors
   }, {
     name: "Lifetime Service",
     logo: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png",
