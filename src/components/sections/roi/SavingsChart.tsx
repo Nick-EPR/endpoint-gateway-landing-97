@@ -1,12 +1,16 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { calculateCompoundedSavings } from '@/utils/roiCalculations';
-import { useEffect, useState } from 'react';
+import { EmployeeInput } from './EmployeeInput';
+import { useEffect, useState, useRef } from 'react';
 
 interface SavingsChartProps {
   employees: number;
   showMoreDetails: boolean;
   setShowMoreDetails: (show: boolean) => void;
+  onEmployeeChange: (value: number) => void;
+  isEnterprise?: boolean;
 }
 
 const formatLargeNumber = (value: number): string => {
@@ -20,8 +24,17 @@ const formatLargeNumber = (value: number): string => {
   return `$${value}`;
 };
 
-export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }: SavingsChartProps) => {
+export const SavingsChart = ({ 
+  employees, 
+  showMoreDetails, 
+  setShowMoreDetails, 
+  onEmployeeChange,
+  isEnterprise = true 
+}: SavingsChartProps) => {
   const [chartData, setChartData] = useState<any[]>([]);
+  const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
+  const [animatedCarbonOffset, setAnimatedCarbonOffset] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (showMoreDetails) {
@@ -33,6 +46,40 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
           setChartData(prev => [...prev, item]);
         }, index * 300);
       });
+
+      // Animate tree count
+      const targetTreeCount = Math.round(employees * 0.7);
+      const treeDuration = 1000;
+      const treeStartTime = performance.now();
+      
+      const animateTreeCount = (currentTime: number) => {
+        const elapsed = currentTime - treeStartTime;
+        const progress = Math.min(elapsed / treeDuration, 1);
+        setAnimatedTreeCount(Math.round(targetTreeCount * progress));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateTreeCount);
+        }
+      };
+      
+      requestAnimationFrame(animateTreeCount);
+
+      // Animate carbon offset
+      const targetCarbonOffset = Math.round(employees * 1.2);
+      const carbonDuration = 1000;
+      const carbonStartTime = performance.now();
+      
+      const animateCarbonOffset = (currentTime: number) => {
+        const elapsed = currentTime - carbonStartTime;
+        const progress = Math.min(elapsed / carbonDuration, 1);
+        setAnimatedCarbonOffset(Math.round(targetCarbonOffset * progress));
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateCarbonOffset);
+        }
+      };
+      
+      requestAnimationFrame(animateCarbonOffset);
     }
   }, [showMoreDetails, employees]);
 
@@ -45,12 +92,21 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
             Driving sustainable cost savings and environmental impact
           </p>
         </DialogHeader>
+
+        <div className="mb-6">
+          <EmployeeInput
+            employees={employees}
+            isEnterprise={isEnterprise}
+            sliderRef={sliderRef}
+            onEmployeeChange={onEmployeeChange}
+          />
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           <div className="p-4 bg-green-50/50 dark:bg-green-900/20 rounded-lg border border-green-100 dark:border-green-800">
             <h4 className="text-sm font-medium text-green-800 dark:text-green-300">Trees Saved</h4>
             <p className="text-2xl font-bold text-green-600 dark:text-green-400">
-              {Math.round(employees * 0.7).toLocaleString()} trees
+              {animatedTreeCount.toLocaleString()} trees
             </p>
           </div>
           <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
@@ -62,7 +118,7 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
           <div className="p-4 bg-purple-50/50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
             <h4 className="text-sm font-medium text-purple-800 dark:text-purple-300">Carbon Offset</h4>
             <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-              {Math.round(employees * 1.2).toLocaleString()} tons
+              {animatedCarbonOffset.toLocaleString()} tons
             </p>
           </div>
         </div>
