@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState, Suspense } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -10,6 +9,7 @@ import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { sections } from "./sections";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -79,11 +79,13 @@ const Index = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const renderSection = (SectionComponent: React.ComponentType, index: number) => (
+  const renderSection = (SectionComponent: any, index: number) => (
     <Suspense 
       fallback={
-        <div className="flex items-center justify-center min-h-[200px]">
-          <LoadingSpinner />
+        <div className="w-full space-y-4 p-8">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-2/3" />
         </div>
       }
       key={index}
@@ -124,37 +126,18 @@ const Index = () => {
       />
 
       <main className="relative z-10">
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
-          {renderSection(sections.products, 0)}
-        </section>
-
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section container mx-auto">
-          {renderSection(sections.features, 1)}
-        </section>
-
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
-          {renderSection(sections.comparison, 2)}
-        </section>
-
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section container mx-auto">
-          {renderSection(sections.tmobile, 3)}
-        </section>
-
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
-          {renderSection(sections.partners, 4)}
-        </section>
-
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section container mx-auto">
-          {renderSection(sections.roi, 5)}
-        </section>
-
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
-          {renderSection(sections.partnership, 6)}
-        </section>
-
-        <section className="bg-neutral-light dark:bg-neutral-800 container mx-auto">
-          {renderSection(sections.contact, 7)}
-        </section>
+        {Object.entries(sections).map(([key, Component], index) => (
+          <section 
+            key={key}
+            className={`${
+              index % 2 === 0 
+                ? 'bg-white dark:bg-neutral-900' 
+                : 'bg-neutral-light dark:bg-neutral-800'
+            } parallelogram-section container mx-auto`}
+          >
+            {renderSection(Component, index)}
+          </section>
+        ))}
       </main>
 
       <Footer />
