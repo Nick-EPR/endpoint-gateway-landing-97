@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import NavigateButton from "../ui/NavigateButton";
+import { Button } from "../ui/button";
 
 interface HeroProps {
   title?: string;
@@ -50,9 +50,14 @@ const Hero = ({
             className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up"
             style={{ animationDelay: "0.4s" }}
           >
-            <NavigateButton to="/contact" className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg text-lg font-semibold transition-colors">
-              {buttonText}
-            </NavigateButton>
+            <Link to="/contact">
+              <Button 
+                size="lg"
+                className="bg-primary hover:bg-primary/90 text-white px-8 py-6 rounded-lg text-lg font-semibold transition-colors"
+              >
+                {buttonText}
+              </Button>
+            </Link>
             <Link
               to="/what-is-itam"
               className="text-white hover:text-primary transition-colors text-lg font-medium"
