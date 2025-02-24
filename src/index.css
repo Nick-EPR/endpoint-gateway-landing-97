@@ -41,7 +41,7 @@
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
+    --muted-foreground: 240 5% 84.9%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
@@ -59,6 +59,36 @@
     @apply bg-background text-foreground font-poppins antialiased;
     font-feature-settings: "salt" 1, "ss01" 1;
   }
+
+  /* Ensure text readability on different backgrounds */
+  .text-on-light {
+    @apply text-neutral-900;
+  }
+
+  .text-on-dark {
+    @apply text-white/90;
+  }
+
+  .text-on-colored {
+    @apply text-white;
+  }
+
+  .text-subtle-light {
+    @apply text-neutral-600;
+  }
+
+  .text-subtle-dark {
+    @apply dark:text-neutral-300;
+  }
+
+  /* Glass background text */
+  .glass-text {
+    @apply text-neutral-900 dark:text-white/90;
+  }
+
+  .glass-text-subtle {
+    @apply text-neutral-700 dark:text-neutral-300;
+  }
 }
 
 @layer utilities {
@@ -72,7 +102,7 @@
 }
 
 .glass-card {
-  @apply bg-white/90 backdrop-blur-md border border-white/20 shadow-lg;
+  @apply bg-white/90 dark:bg-neutral-800/50 backdrop-blur-md border border-white/20 shadow-lg;
 }
 
 .hover-lift {
@@ -101,5 +131,3 @@
 .parallelogram-section.reverse {
   clip-path: polygon(0 8rem, 100% 0, 100% calc(100% - 8rem), 0 100%);
 }
-
-

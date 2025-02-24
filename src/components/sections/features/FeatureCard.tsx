@@ -57,13 +57,13 @@ export const FeatureCard = memo(({
         {icon}
       </div>
       <h3 
-        className="text-lg font-semibold mb-1.5 text-neutral-900 dark:text-white/90 animate-fade-up" 
+        className="text-lg font-semibold mb-1.5 glass-text animate-fade-up" 
         style={{ animationDelay: '50ms' }}
       >
         {title}
       </h3>
       <p 
-        className="text-neutral-700 dark:text-neutral-300 text-sm animate-fade-up" 
+        className="glass-text-subtle text-sm animate-fade-up" 
         style={{ animationDelay: '100ms' }}
       >
         {description}

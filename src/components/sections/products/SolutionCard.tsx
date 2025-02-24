@@ -44,11 +44,11 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
             />
           </div>
         ) : (
-          <h3 className="text-xl font-semibold mb-6 text-neutral-900 dark:text-white">
+          <h3 className="text-xl font-semibold mb-6 glass-text">
             {solution.title}
           </h3>
         )}
-        <p className="text-neutral-600 dark:text-neutral-300 mb-6 leading-relaxed">
+        <p className="glass-text-subtle mb-6 leading-relaxed">
           {solution.description}
         </p>
         {solution.comingSoon ? (
