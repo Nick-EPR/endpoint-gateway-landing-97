@@ -91,7 +91,7 @@ const Index = () => {
       key={index}
     >
       <div 
-        className="animate-on-scroll opacity-0" 
+        className="animate-on-scroll opacity-0 relative w-full"
         data-index={index}
         style={{ transform: 'translateY(20px)' }}
       >
@@ -125,17 +125,21 @@ const Index = () => {
         buttonText="Get Started" 
       />
 
-      <main className="relative z-10">
+      <main className="relative">
         {Object.entries(sections).map(([key, Component], index) => (
           <section 
             key={key}
-            className={`${
-              index % 2 === 0 
+            className={`
+              relative z-10 w-full py-16
+              ${index % 2 === 0 
                 ? 'bg-white dark:bg-neutral-900' 
                 : 'bg-neutral-light dark:bg-neutral-800'
-            } parallelogram-section container mx-auto`}
+              } 
+            `}
           >
-            {renderSection(Component, index)}
+            <div className="container mx-auto px-4">
+              {renderSection(Component, index)}
+            </div>
           </section>
         ))}
       </main>
