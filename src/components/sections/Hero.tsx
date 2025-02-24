@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -15,6 +16,8 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [isDeleting2, setIsDeleting2] = useState(false);
   
   const rotatingWords2 = [
+    "Enterprise",
+    "Legal",
     "SMBs",
     "VARs",
     "MSPs",
