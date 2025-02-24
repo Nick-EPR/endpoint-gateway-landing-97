@@ -10,13 +10,20 @@ interface ProductFeatureColumnProps {
 }
 
 export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeatureColumnProps) => {
+  const darkModeToolboxLogo = "/lovable-uploads/8dd82be9-672a-44e1-ad3e-e474a8ef097a.png";
+  
   return (
     <div>
       <div className="text-center mb-8">
         <img 
-          src={logo} 
+          src={logoAlt === "Toolbox" ? logo : logo} 
           alt={logoAlt} 
-          className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"}`} 
+          className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"} block dark:hidden`} 
+        />
+        <img 
+          src={logoAlt === "Toolbox" ? darkModeToolboxLogo : logo} 
+          alt={logoAlt} 
+          className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"} hidden dark:block`} 
         />
       </div>
       <div className="space-y-4">
