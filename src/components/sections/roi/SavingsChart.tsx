@@ -91,9 +91,9 @@ export const SavingsChart = ({
 
   return (
     <Dialog open={showMoreDetails} onOpenChange={setShowMoreDetails}>
-      <DialogContent className="max-w-4xl w-[95vw] bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-800">
+      <DialogContent className="max-w-4xl w-[95vw]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-2 text-neutral-900 dark:text-white">5-Year Environmental & Financial Impact</DialogTitle>
+          <DialogTitle className="text-2xl font-bold mb-2">5-Year Environmental & Financial Impact</DialogTitle>
           <p className="text-lg text-neutral-600 dark:text-neutral-300 italic mb-4">
             Driving sustainable cost savings and environmental impact
           </p>
@@ -164,10 +164,6 @@ export const SavingsChart = ({
                   border: '1px solid rgba(0, 0, 0, 0.1)',
                   borderRadius: '8px',
                   padding: '12px',
-                }}
-                labelClassName="text-neutral-900 dark:text-white"
-                itemStyle={{
-                  color: 'currentColor',
                 }}
               />
               <Legend />
