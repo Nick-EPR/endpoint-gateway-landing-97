@@ -1,5 +1,5 @@
 
-import { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState, Suspense, lazy } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
@@ -13,7 +13,9 @@ import { sections } from "./sections";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const loadingTimeoutRef = useRef<NodeJS.Timeout>();
   
   const { data: monitors } = useQuery({
     queryKey: ['monitors'],
@@ -26,21 +28,43 @@ const Index = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 0);
-      });
+      const currentScroll = window.scrollY > 0;
+      if (scrolled !== currentScroll) {
+        requestAnimationFrame(() => {
+          setScrolled(currentScroll);
+        });
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, [scrolled]);
+
+  useEffect(() => {
+    loadingTimeoutRef.current = setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+
+    return () => {
+      if (loadingTimeoutRef.current) {
+        clearTimeout(loadingTimeoutRef.current);
+      }
+    };
   }, []);
 
   useEffect(() => {
     observerRef.current = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-up");
-          observerRef.current?.unobserve(entry.target);
+          const target = entry.target;
+          target.classList.add("animate-fade-up");
+          observerRef.current?.unobserve(target);
+
+          // Add stagger effect based on data-index
+          const index = target.getAttribute('data-index');
+          if (index) {
+            target.style.animationDelay = `${parseInt(index) * 100}ms`;
+          }
         }
       });
     }, {
@@ -48,22 +72,37 @@ const Index = () => {
       rootMargin: '50px'
     });
 
-    document.querySelectorAll(".animate-on-scroll").forEach(element => {
+    document.querySelectorAll(".animate-on-scroll").forEach((element, index) => {
+      element.setAttribute('data-index', index.toString());
       observerRef.current?.observe(element);
     });
 
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const renderSection = (Component: React.ComponentType) => (
+  const renderSection = (Component: React.ComponentType, index: number) => (
     <Suspense fallback={
       <div className="flex items-center justify-center min-h-[200px]">
         <LoadingSpinner />
       </div>
     }>
-      <Component />
+      <div 
+        className="animate-on-scroll opacity-0" 
+        data-index={index}
+        style={{ transform: 'translateY(20px)' }}
+      >
+        <Component />
+      </div>
     </Suspense>
   );
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-neutral-50 dark:bg-neutral-900">
+        <LoadingSpinner size="lg" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen dark:bg-neutral-900">
@@ -82,37 +121,37 @@ const Index = () => {
         buttonText="Get Started" 
       />
 
-      <main>
+      <main className="relative z-10">
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.products)}
+          {renderSection(sections.products, 0)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.features)}
+          {renderSection(sections.features, 1)}
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.comparison)}
+          {renderSection(sections.comparison, 2)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.tmobile)}
+          {renderSection(sections.tmobile, 3)}
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.partners)}
+          {renderSection(sections.partners, 4)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.roi)}
+          {renderSection(sections.roi, 5)}
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.partnership)}
+          {renderSection(sections.partnership, 6)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800">
-          {renderSection(sections.contact)}
+          {renderSection(sections.contact, 7)}
         </section>
       </main>
 
