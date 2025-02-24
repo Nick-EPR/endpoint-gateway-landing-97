@@ -51,12 +51,18 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     return parseFloat(value);
   };
 
+  const getUnit = (value: string): string => {
+    const matches = value.match(/[0-9.,]+\s*(.+)/);
+    return matches ? matches[1].trim() : '';
+  };
+
   return (
     <TooltipProvider delayDuration={0}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {trends.map((trend, index) => {
           const numericValue = extractNumericValue(trend.value);
           const animatedValue = useCountUp(numericValue, 1000);
+          const unit = getUnit(trend.value);
           
           return (
             <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50">
@@ -82,6 +88,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
                   {trend.value.startsWith('$') ? '$' : ''}
                   {animatedValue.toLocaleString()}
                   {trend.value.endsWith('%') ? '%' : ''}
+                  {unit && ` ${unit}`}
                 </span>
                 <div className={`flex items-center ${getTrendColor()}`}>
                   {shouldShowUpArrow(trend) ? (
