@@ -16,7 +16,7 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
     <div>
       <div className="text-center mb-8">
         <img 
-          src={logoAlt === "Toolbox" ? logo : logo} 
+          src={logo} 
           alt={logoAlt} 
           className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"} block dark:hidden`} 
         />
