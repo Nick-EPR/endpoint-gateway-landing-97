@@ -63,7 +63,7 @@ const Partners = () => {
                     href={partner.url} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="p-4 rounded-xl hover:shadow-lg transition-shadow group block h-[140px] bg-gradient-to-br from-neutral-800/90 to-neutral-900 dark:from-neutral-800 dark:to-black border border-neutral-700/50"
+                    className="p-4 rounded-xl hover:shadow-lg transition-shadow group block h-[140px] bg-white dark:bg-neutral-800/90 border border-neutral-200 dark:border-neutral-700/50"
                   >
                     <div className="h-16 flex items-center justify-center">
                       <img 
@@ -72,7 +72,7 @@ const Partners = () => {
                         className={`w-auto object-contain group-hover:scale-105 transition-transform ${partner.name === 'T-Mobile' ? 'max-h-12' : 'max-h-14'}`} 
                       />
                     </div>
-                    <p className="text-neutral-200 dark:text-neutral-300 text-center mt-2 text-sm">
+                    <p className="text-neutral-600 dark:text-neutral-300 text-center mt-2 text-sm">
                       {partner.description}
                     </p>
                   </a>
