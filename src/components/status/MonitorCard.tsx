@@ -16,32 +16,32 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
   const getStatusColor = (status: Monitor["status"]) => {
     switch (status) {
       case "healthy":
-        return "bg-green-500";
+        return "bg-emerald-500";
       case "degraded":
         return "bg-yellow-500";
       case "down":
         return "bg-red-500";
       default:
-        return "bg-gray-500";
+        return "bg-neutral-500";
     }
   };
 
   const getStatusBadge = (status: Monitor["status"]) => {
     switch (status) {
       case "healthy":
-        return <Badge className="bg-green-500">Operational</Badge>;
+        return <Badge className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border-0">Operational</Badge>;
       case "degraded":
-        return <Badge className="bg-yellow-500">Degraded</Badge>;
+        return <Badge className="bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 border-0">Degraded</Badge>;
       case "down":
-        return <Badge className="bg-red-500">Down</Badge>;
+        return <Badge className="bg-red-500/20 text-red-400 hover:bg-red-500/30 border-0">Down</Badge>;
       default:
-        return <Badge className="bg-gray-500">Unknown</Badge>;
+        return <Badge className="bg-neutral-500/20 text-neutral-400 hover:bg-neutral-500/30 border-0">Unknown</Badge>;
     }
   };
 
   return (
     <Card 
-      className="overflow-hidden bg-white/90 backdrop-blur-sm"
+      className="overflow-hidden bg-neutral-900/40 backdrop-blur-sm border-neutral-800"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Status bar at the very top */}
@@ -51,16 +51,16 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
       
       <div className="p-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold">{monitor.name}</h3>
+          <h3 className="text-xl font-semibold text-neutral-200">{monitor.name}</h3>
           {getStatusBadge(monitor.status)}
         </div>
-        <p className="text-sm text-gray-500 mt-2">
+        <p className="text-sm text-neutral-400 mt-2">
           Last checked: {new Date(monitor.lastCheckTime).toLocaleString()}
         </p>
 
         {isExpanded && (
           <div className="mt-6 space-y-4">
-            <div className="flex justify-between text-sm text-gray-600">
+            <div className="flex justify-between text-sm text-neutral-400">
               <span>30-day Average Uptime: {calculateAverageUptime(monitor.metrics)}%</span>
               <span>Average Response Time: {calculateAverageResponseTime(monitor.metrics)}ms</span>
             </div>
@@ -73,33 +73,33 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
                 >
                   <defs>
                     <linearGradient id="uptimeGradient" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#22c55e" stopOpacity={0.3}/>
-                      <stop offset="95%" stopColor="#22c55e" stopOpacity={0}/>
+                      <stop offset="5%" stopColor="#34d399" stopOpacity={0.3}/>
+                      <stop offset="95%" stopColor="#34d399" stopOpacity={0}/>
                     </linearGradient>
                   </defs>
                   <XAxis 
                     dataKey="date" 
-                    tick={{ fill: '#666' }} 
-                    tickLine={{ stroke: '#666' }}
+                    tick={{ fill: '#9ca3af' }} 
+                    tickLine={{ stroke: '#9ca3af' }}
                     interval="preserveStartEnd"
                   />
                   <YAxis 
-                    tick={{ fill: '#666' }}
-                    tickLine={{ stroke: '#666' }}
+                    tick={{ fill: '#9ca3af' }}
+                    tickLine={{ stroke: '#9ca3af' }}
                     domain={[95, 100]}
                   />
                   <Tooltip
                     contentStyle={{ 
-                      backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                      border: 'none',
+                      backgroundColor: 'rgba(23, 23, 23, 0.9)',
+                      border: '1px solid rgba(82, 82, 82, 0.2)',
                       borderRadius: '4px',
-                      boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+                      color: '#e5e7eb'
                     }}
                   />
                   <Area
                     type="monotone"
                     dataKey="uptime"
-                    stroke="#22c55e"
+                    stroke="#34d399"
                     fillOpacity={1}
                     fill="url(#uptimeGradient)"
                   />
