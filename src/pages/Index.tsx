@@ -79,7 +79,7 @@ const Index = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
-  const renderSection = (SectionComponent: React.LazyExoticComponent<React.ComponentType>, index: number) => (
+  const renderSection = (SectionComponent: React.ComponentType, index: number) => (
     <Suspense 
       fallback={
         <div className="flex items-center justify-center min-h-[200px]">
@@ -117,44 +117,42 @@ const Index = () => {
         </div>
       )}
       
-      <Suspense fallback={<LoadingSpinner />}>
-        <Hero 
-          title="Comprehensive ITAM Solutions for Your Enterprise" 
-          subtitle="Transform your IT asset management with our end-to-end solution" 
-          buttonText="Get Started" 
-        />
-      </Suspense>
+      <Hero 
+        title="Comprehensive ITAM Solutions for Your Enterprise" 
+        subtitle="Transform your IT asset management with our end-to-end solution" 
+        buttonText="Get Started" 
+      />
 
       <main className="relative z-10">
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
           {renderSection(sections.products, 0)}
         </section>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section container mx-auto">
           {renderSection(sections.features, 1)}
         </section>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
           {renderSection(sections.comparison, 2)}
         </section>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section container mx-auto">
           {renderSection(sections.tmobile, 3)}
         </section>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
           {renderSection(sections.partners, 4)}
         </section>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section container mx-auto">
           {renderSection(sections.roi, 5)}
         </section>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <section className="bg-white dark:bg-neutral-900 parallelogram-section container mx-auto">
           {renderSection(sections.partnership, 6)}
         </section>
 
-        <section className="bg-neutral-light dark:bg-neutral-800">
+        <section className="bg-neutral-light dark:bg-neutral-800 container mx-auto">
           {renderSection(sections.contact, 7)}
         </section>
       </main>
