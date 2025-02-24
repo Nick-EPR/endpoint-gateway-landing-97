@@ -93,6 +93,8 @@ const ROICalculator = () => {
         showMoreDetails={showMoreDetails}
         setShowMoreDetails={setShowMoreDetails}
         employees={employees}
+        onEmployeeChange={handleEmployeeChange}
+        isEnterprise={isEnterprise}
       />
     </section>
   );
