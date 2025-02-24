@@ -17,23 +17,16 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     return null;
   }
 
-  const getTrendColor = (trend: Trend) => {
-    // Carbon footprint reduction (negative number) is actually a positive trend
-    if (trend.label === "Carbon Reduction") {
-      return trend.trend < 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400';
-    }
-    // Cost reduction (negative number) is a positive trend
-    if (trend.label === "Cost Reduction") {
-      return trend.trend < 0 ? 'text-red-600 dark:text-red-400' : 'text-green-600 dark:text-green-400';
-    }
-    // For all other metrics, positive numbers are good
-    return trend.trend > 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400';
+  const getTrendColor = () => {
+    return 'text-green-600 dark:text-green-400';
   };
 
   const shouldShowUpArrow = (trend: Trend) => {
+    // Carbon footprint reduction and Cost reduction show down arrow when negative (good)
     if (trend.label === "Carbon Reduction" || trend.label === "Cost Reduction") {
-      return trend.trend > 0;
+      return trend.trend > 0 ? false : true;
     }
+    // For all other metrics, positive numbers show up arrow
     return trend.trend > 0;
   };
 
@@ -61,7 +54,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
             </div>
             <div className="flex items-baseline gap-2">
               <span className="text-2xl font-bold text-neutral-900 dark:text-white">{trend.value}</span>
-              <div className={`flex items-center ${getTrendColor(trend)}`}>
+              <div className={`flex items-center ${getTrendColor()}`}>
                 {shouldShowUpArrow(trend) ? (
                   <ArrowUpRight className="w-4 h-4" />
                 ) : (
