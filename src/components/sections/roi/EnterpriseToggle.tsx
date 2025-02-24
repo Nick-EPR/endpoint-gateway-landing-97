@@ -1,7 +1,6 @@
 
-import { Building2 } from 'lucide-react';
-import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
 
 interface EnterpriseToggleProps {
   isEnterprise: boolean;
@@ -11,18 +10,18 @@ interface EnterpriseToggleProps {
 
 export const EnterpriseToggle = ({ isEnterprise, onEnterpriseChange, disabled }: EnterpriseToggleProps) => {
   return (
-    <div className="flex items-center space-x-3 bg-white/50 p-2 rounded-lg">
-      <Building2 className={`w-5 h-5 ${!isEnterprise ? 'text-primary' : 'text-neutral'}`} />
-      <Switch 
-        id="enterprise-toggle" 
-        checked={isEnterprise} 
-        onCheckedChange={onEnterpriseChange} 
-        disabled={disabled} 
-        className="data-[state=checked]:bg-primary" 
-      />
-      <Label htmlFor="enterprise-toggle" className="text-sm font-medium ml-2">
-        Enterprise
+    <div className="flex items-center space-x-3 p-2 rounded-lg">
+      <Label htmlFor="enterprise-mode" className="text-sm font-medium cursor-pointer select-none text-neutral-600 dark:text-neutral-300">
+        Enterprise Mode
       </Label>
+      <Switch
+        id="enterprise-mode"
+        checked={isEnterprise}
+        onCheckedChange={onEnterpriseChange}
+        disabled={disabled}
+      />
     </div>
   );
 };
+
+export default EnterpriseToggle;
