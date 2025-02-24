@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { memo } from "react";
@@ -15,7 +14,6 @@ interface Solution {
   path?: string;
 }
 
-// Memoized solution card component
 const SolutionCard = memo(({ 
   solution, 
   index, 
@@ -119,7 +117,7 @@ const Solutions = () => {
   }];
 
   return (
-    <section id="solutions" className="py-16 md:py-24 bg-white">
+    <section id="solutions" className="py-16 md:py-24 bg-white dark:bg-neutral-900">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
           <div className="flex justify-center mb-8 relative">
