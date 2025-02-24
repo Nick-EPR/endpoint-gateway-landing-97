@@ -29,7 +29,10 @@ const ChatButton = () => {
     
     setInput('');
     setIsLoading(true);
-    const newMessages = [...messages, { role: 'user', content }];
+    
+    // Create new message array with type safety
+    const userMessage: Message = { role: 'user', content };
+    const newMessages = [...messages, userMessage];
     setMessages(newMessages);
 
     try {
@@ -43,17 +46,20 @@ const ChatButton = () => {
 
       const data = await response.json();
       if (data.choices?.[0]?.message) {
-        setMessages([...newMessages, {
+        // Ensure the response conforms to our Message type
+        const assistantMessage: Message = {
           role: 'assistant',
           content: data.choices[0].message.content
-        }]);
+        };
+        setMessages([...newMessages, assistantMessage]);
       }
     } catch (error) {
       console.error('Error:', error);
-      setMessages([...newMessages, {
+      const errorMessage: Message = {
         role: 'assistant',
         content: "I apologize, but I'm having trouble connecting right now. Please email support@lifetimeepr.com for immediate assistance."
-      }]);
+      };
+      setMessages([...newMessages, errorMessage]);
     } finally {
       setIsLoading(false);
     }
