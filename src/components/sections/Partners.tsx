@@ -20,10 +20,10 @@ const Partners = () => {
     logoHeight: "h-12" // Standard size for T-Mobile
   }, {
     name: "D&H Distributing",
-    logo: "/lovable-uploads/c59ae9e5-4a85-4b97-bd93-82bceb58dc08.png",
+    logo: "/lovable-uploads/b64c3b49-68be-4ab9-b2f4-13e4fbb05a62.png", // Updated D&H logo
     url: "https://www.dandh.com",
     description: "IT distribution and supply chain solutions",
-    logoHeight: "h-16" // Increased size for D&H
+    logoHeight: "h-12" // Adjusted size for new D&H logo
   }, {
     name: "Lifetime Service",
     logo: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png",
