@@ -1,3 +1,4 @@
+
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import { Table2, Server, Cog, Shield, Database, Box, Truck, Users, UserMinus, Wrench, Trash2, TreePine, DollarSign, Network, Check, X, Trophy } from "lucide-react";
@@ -112,7 +113,7 @@ const ComparisonTable = () => {
                     <TableHead className="w-1/4 dark:text-neutral-300">Aspect</TableHead>
                     <TableHead className="w-[37.5%]">
                       <div className="flex items-center gap-2 opacity-75 dark:text-neutral-300">
-                        <span className="text-2xl">🤯</span> Do-It-Yourself ITAM
+                        <span className="text-2xl">😫</span> Do-It-Yourself ITAM
                       </div>
                     </TableHead>
                     <TableHead className="w-[37.5%] text-primary relative">
@@ -168,7 +169,7 @@ const ComparisonTable = () => {
               <div className="space-y-4">
                 <div className="space-y-2 opacity-75">
                   <div className="flex items-center gap-2 text-sm font-medium text-neutral-500 dark:text-neutral-400">
-                    <span className="text-xl">��</span> Do-It-Yourself ITAM
+                    <span className="text-xl">😫</span> Do-It-Yourself ITAM
                   </div>
                   <div className="flex items-start gap-2 pl-2">
                     {item.isDIYPain ? <X className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" /> : <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />}
