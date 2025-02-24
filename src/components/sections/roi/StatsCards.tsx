@@ -1,6 +1,7 @@
 
 import { Trend } from "@/utils/roiCalculations";
 import { ArrowUpRight, ArrowDownRight, Info } from "lucide-react";
+import { useCountUp } from "@/hooks/useCountUp";
 import { 
   Tooltip,
   TooltipContent,
@@ -30,41 +31,70 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     return trend.trend > 0;
   };
 
+  const formatValue = (value: string) => {
+    if (value.endsWith('%')) {
+      return parseFloat(value) + '%';
+    }
+    if (value.startsWith('$')) {
+      return '$' + parseFloat(value.slice(1)).toLocaleString();
+    }
+    return value;
+  };
+
+  const extractNumericValue = (value: string): number => {
+    if (value.endsWith('%')) {
+      return parseFloat(value);
+    }
+    if (value.startsWith('$')) {
+      return parseFloat(value.slice(1).replace(/,/g, ''));
+    }
+    return parseFloat(value);
+  };
+
   return (
     <TooltipProvider delayDuration={0}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        {trends.map((trend, index) => (
-          <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50">
-            <div className="flex items-start justify-between mb-2">
-              <h4 className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{trend.label}</h4>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button type="button" className="cursor-help p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-full transition-colors">
-                    <Info className="w-4 h-4 text-neutral-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary transition-colors" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent 
-                  side="top" 
-                  align="end"
-                  className="bg-white dark:bg-neutral-800 p-3 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 max-w-[250px] z-50"
-                >
-                  <p className="text-sm text-neutral-700 dark:text-neutral-300">{trend.tooltip}</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-2xl font-bold text-neutral-900 dark:text-white">{trend.value}</span>
-              <div className={`flex items-center ${getTrendColor()}`}>
-                {shouldShowUpArrow(trend) ? (
-                  <ArrowUpRight className="w-4 h-4" />
-                ) : (
-                  <ArrowDownRight className="w-4 h-4" />
-                )}
-                <span className="text-sm font-medium">{Math.abs(trend.trend)}%</span>
+        {trends.map((trend, index) => {
+          const numericValue = extractNumericValue(trend.value);
+          const animatedValue = useCountUp(numericValue, 1000);
+          
+          return (
+            <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50">
+              <div className="flex items-start justify-between mb-2">
+                <h4 className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{trend.label}</h4>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <button type="button" className="cursor-help p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-full transition-colors">
+                      <Info className="w-4 h-4 text-neutral-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary transition-colors" />
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent 
+                    side="top" 
+                    align="end"
+                    className="bg-white dark:bg-neutral-800 p-3 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 max-w-[250px] z-50"
+                  >
+                    <p className="text-sm text-neutral-700 dark:text-neutral-300">{trend.tooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-bold text-neutral-900 dark:text-white">
+                  {trend.value.startsWith('$') ? '$' : ''}
+                  {animatedValue.toLocaleString()}
+                  {trend.value.endsWith('%') ? '%' : ''}
+                </span>
+                <div className={`flex items-center ${getTrendColor()}`}>
+                  {shouldShowUpArrow(trend) ? (
+                    <ArrowUpRight className="w-4 h-4" />
+                  ) : (
+                    <ArrowDownRight className="w-4 h-4" />
+                  )}
+                  <span className="text-sm font-medium">{Math.abs(trend.trend)}%</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </TooltipProvider>
   );
