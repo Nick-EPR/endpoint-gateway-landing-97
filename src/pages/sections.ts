@@ -1,37 +1,24 @@
 
-import { lazy, ComponentType } from 'react';
+import Hero from "@/components/sections/Hero";
+import Products from "@/components/sections/Products";
+import Features from "@/components/sections/Features";
+import ComparisonSection from "@/components/sections/ComparisonSection";
+import Partners from "@/components/sections/Partners";
+import ROICalculator from "@/components/sections/ROICalculator";
+import About from "@/components/sections/About";
+import Contact from "@/components/sections/Contact";
+import TMobileBusiness from "@/components/sections/TMobileBusiness";
 
-const withErrorBoundary = (Component: ComponentType) => Component;
+export const sections = {
+  hero: Hero,
+  products: Products,
+  features: Features,
+  comparison: ComparisonSection,
+  partners: Partners,
+  roi: ROICalculator,
+  about: About,
+  contact: Contact,
+  tmobile: TMobileBusiness,
+};
 
-// Lazy load sections with better error handling
-export const Features = withErrorBoundary(lazy(() => 
-  import("../components/sections/Features").then(module => ({ default: module.default }))
-));
-
-export const Products = withErrorBoundary(lazy(() => 
-  import("../components/sections/Products").then(module => ({ default: module.default }))
-));
-
-export const TMobileBusiness = withErrorBoundary(lazy(() => 
-  import("../components/sections/TMobileBusiness").then(module => ({ default: module.default }))
-));
-
-export const Partners = withErrorBoundary(lazy(() => 
-  import("../components/sections/Partners").then(module => ({ default: module.default }))
-));
-
-export const Partnership = withErrorBoundary(lazy(() => 
-  import("../components/sections/Partnership").then(module => ({ default: module.default }))
-));
-
-export const ROICalculator = withErrorBoundary(lazy(() => 
-  import("../components/sections/ROICalculator").then(module => ({ default: module.default }))
-));
-
-export const Contact = withErrorBoundary(lazy(() => 
-  import("../components/sections/Contact").then(module => ({ default: module.default }))
-));
-
-export const ComparisonTable = withErrorBoundary(lazy(() => 
-  import("../components/sections/ComparisonTable").then(module => ({ default: module.default }))
-));
+export type SectionKey = keyof typeof sections;

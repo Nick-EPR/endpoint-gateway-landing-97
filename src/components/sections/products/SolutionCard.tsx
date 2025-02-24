@@ -17,11 +17,9 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
     <div className="relative">
       <div 
         className={cn(
-          "solution-card p-8 rounded-xl transition-all duration-300",
+          "solution-card p-8 rounded-xl",
           "bg-white/95 dark:bg-neutral-800/50 backdrop-blur-sm",
           "border border-neutral-100 dark:border-neutral-700/50",
-          "hover:shadow-lg hover:border-primary/20 hover:-translate-y-1",
-          "animate-fade-up",
           solution.comingSoon && "opacity-75"
         )}
         style={{
@@ -59,7 +57,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
           <Link to={solution.path} className="block w-full">
             <Button 
               variant="outline" 
-              className="w-full hover:bg-primary hover:text-white dark:hover:bg-primary-foreground dark:hover:text-primary transition-colors duration-300"
+              className="w-full"
             >
               Learn More
             </Button>
