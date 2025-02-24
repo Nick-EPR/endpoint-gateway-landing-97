@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -19,10 +19,20 @@ interface Message {
 const ChatButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'assistant', content: "Hi there! I'm Chad, your AI assistant for Lifetime EPR. How can I help you today?" }
+    { role: 'assistant', content: "Hello! I'm Chad from Lifetime EPR support. How can I help you today?" }
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-focus input when chat opens
+  useEffect(() => {
+    if (isOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isOpen]);
 
   const sendMessage = async (content: string) => {
     if (!content.trim()) return;
@@ -30,7 +40,6 @@ const ChatButton = () => {
     setInput('');
     setIsLoading(true);
     
-    // Create new message array with type safety
     const userMessage: Message = { role: 'user', content };
     const newMessages = [...messages, userMessage];
     setMessages(newMessages);
@@ -46,7 +55,6 @@ const ChatButton = () => {
       }
 
       if (data?.choices?.[0]?.message) {
-        // Ensure the response conforms to our Message type
         const assistantMessage: Message = {
           role: 'assistant',
           content: data.choices[0].message.content
@@ -62,6 +70,8 @@ const ChatButton = () => {
       setMessages([...newMessages, errorMessage]);
     } finally {
       setIsLoading(false);
+      // Refocus input after sending message
+      inputRef.current?.focus();
     }
   };
 
@@ -72,61 +82,68 @@ const ChatButton = () => {
 
   return (
     <>
-      <Button
-        onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 rounded-full shadow-lg z-50"
-        size="lg"
-      >
-        <MessageCircle className="h-5 w-5" />
-        <span className="ml-2">Chat</span>
-      </Button>
+      <div className="fixed bottom-6 right-6 z-50">
+        <Button
+          onClick={() => setIsOpen(true)}
+          className="rounded-full shadow-lg"
+          size="lg"
+        >
+          <MessageCircle className="h-5 w-5" />
+          <span className="ml-2">Chat</span>
+        </Button>
 
-      <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[425px] h-[600px] flex flex-col">
-          <DialogHeader>
-            <DialogTitle>Chat with Chad</DialogTitle>
-          </DialogHeader>
-          
-          <div className="flex-1 overflow-y-auto mb-4 space-y-4">
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-[80%] rounded-lg px-4 py-2 ${
-                    message.role === 'user'
-                      ? 'bg-primary text-white'
-                      : 'bg-neutral-100 dark:bg-neutral-800'
-                  }`}
-                >
-                  {message.content}
-                </div>
+        {isOpen && (
+          <div className="absolute bottom-16 right-0 w-[380px] bg-background border rounded-lg shadow-lg animate-in slide-in-from-bottom-2">
+            <div className="p-4 border-b">
+              <h2 className="font-semibold text-lg">Chat with Support</h2>
+            </div>
+            
+            <div className="h-[400px] flex flex-col">
+              <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                {messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div
+                      className={`max-w-[80%] rounded-lg px-4 py-2 ${
+                        message.role === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted'
+                      }`}
+                    >
+                      {message.content}
+                    </div>
+                  </div>
+                ))}
+                {isLoading && (
+                  <div className="flex justify-start">
+                    <div className="bg-muted rounded-lg px-4 py-2">
+                      <span className="animate-pulse">Typing...</span>
+                    </div>
+                  </div>
+                )}
               </div>
-            ))}
-            {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-neutral-100 dark:bg-neutral-800 rounded-lg px-4 py-2">
-                  <span className="animate-pulse">Typing...</span>
-                </div>
+
+              <div className="border-t p-4">
+                <form onSubmit={handleSubmit} className="flex gap-2">
+                  <Input
+                    ref={inputRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Type your message..."
+                    disabled={isLoading}
+                    className="flex-1"
+                  />
+                  <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+                    <Send className="h-4 w-4" />
+                  </Button>
+                </form>
               </div>
-            )}
+            </div>
           </div>
-
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Type your message..."
-              disabled={isLoading}
-              className="flex-1"
-            />
-            <Button type="submit" disabled={isLoading || !input.trim()}>
-              <Send className="h-4 w-4" />
-            </Button>
-          </form>
-        </DialogContent>
-      </Dialog>
+        )}
+      </div>
     </>
   );
 };
