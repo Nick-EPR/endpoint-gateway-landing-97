@@ -1,4 +1,3 @@
-
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { calculateCompoundedSavings } from '@/utils/roiCalculations';
@@ -43,7 +42,7 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold mb-2">5-Year Environmental & Financial Impact</DialogTitle>
           <p className="text-lg text-neutral-600 dark:text-neutral-300 italic mb-4">
-            Finance loves you, global warming fears you 🌍
+            Driving sustainable cost savings and environmental impact
           </p>
         </DialogHeader>
         
@@ -130,7 +129,7 @@ export const SavingsChart = ({ employees, showMoreDetails, setShowMoreDetails }:
           </ResponsiveContainer>
         </div>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
-          You could be a hero to your boss with these projected savings! This projection shows both the cumulative financial savings and environmental impact over a 5-year period based on your current employee count.
+          This projection illustrates the potential financial savings and environmental benefits over a 5-year period, based on your organization's employee count.
         </p>
       </DialogContent>
     </Dialog>
