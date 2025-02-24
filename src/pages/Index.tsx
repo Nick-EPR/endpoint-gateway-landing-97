@@ -9,18 +9,7 @@ import ChatButton from "../components/ChatButton";
 import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
-
-// Import lazily loaded sections
-import { 
-  Features,
-  Products,
-  TMobileBusiness,
-  Partners,
-  Partnership,
-  ROICalculator,
-  Contact,
-  ComparisonTable 
-} from "./sections";
+import { sections } from "./sections";
 
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -95,35 +84,35 @@ const Index = () => {
 
       <main>
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(Products)}
+          {renderSection(sections.products)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(Features)}
+          {renderSection(sections.features)}
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(ComparisonTable)}
+          {renderSection(sections.comparison)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(TMobileBusiness)}
+          {renderSection(sections.tmobile)}
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(Partners)}
+          {renderSection(sections.partners)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(ROICalculator)}
+          {renderSection(sections.roi)}
         </section>
 
         <section className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(Partnership)}
+          {renderSection(sections.about)}
         </section>
 
         <section className="bg-neutral-light dark:bg-neutral-800">
-          {renderSection(Contact)}
+          {renderSection(sections.contact)}
         </section>
       </main>
 

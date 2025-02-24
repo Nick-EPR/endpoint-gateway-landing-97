@@ -8,6 +8,7 @@ import ROICalculator from "@/components/sections/ROICalculator";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import TMobileBusiness from "@/components/sections/TMobileBusiness";
+import Partnership from "@/components/sections/Partnership";
 
 export const sections = {
   hero: Hero,
@@ -19,6 +20,7 @@ export const sections = {
   about: About,
   contact: Contact,
   tmobile: TMobileBusiness,
+  partnership: Partnership
 };
 
 export type SectionKey = keyof typeof sections;
