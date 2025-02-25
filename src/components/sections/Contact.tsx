@@ -72,19 +72,8 @@ const Contact = () => {
   };
 
   return (
-    <section 
-      id="contact" 
-      className="relative min-h-screen py-32 md:py-40 overflow-hidden"
-      style={{
-        backgroundImage: "url('/lovable-uploads/62791d63-43f6-45a9-b579-a9645cde1036.png')",
-        backgroundAttachment: "fixed",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat"
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-b from-neutral-light/95 to-neutral-light/98 dark:from-neutral-800/95 dark:to-neutral-800/98" />
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="contact" className="py-32 md:py-40 bg-neutral-light dark:bg-neutral-800">
+      <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 text-neutral-900 dark:text-white">

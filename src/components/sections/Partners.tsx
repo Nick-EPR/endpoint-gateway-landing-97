@@ -11,29 +11,33 @@ const Partners = () => {
     logo: "/lovable-uploads/2d1dd360-ac5b-41c4-8f0d-8f53db87032f.png",
     url: "https://www.cellhub.com",
     description: "Device procurement and logistics partner",
-    logoHeight: "h-32", // Doubled from h-16 to h-32
-    bgColor: "bg-[#D3E4FD]" // Soft blue background for better contrast with white logo
+    logoHeight: "h-32",
+    bgColor: "bg-[#D3E4FD]",
+    invertInDark: true
   }, {
     name: "T-Mobile",
     logo: "/lovable-uploads/4b84285a-ebf1-49a3-937a-ea9058b7726f.png",
     url: "https://www.t-mobile.com/business",
     description: "Strategic partnership for connected device solutions",
-    logoHeight: "h-12", // Standard size for T-Mobile
-    bgColor: "bg-[#FEF7CD]" // Soft yellow background for T-Mobile magenta
+    logoHeight: "h-12",
+    bgColor: "bg-[#FEF7CD]",
+    invertInDark: true
   }, {
     name: "D&H Distributing",
     logo: "/lovable-uploads/b64c3b49-68be-4ab9-b2f4-13e4fbb05a62.png",
     url: "https://www.dandh.com",
     description: "IT distribution and supply chain solutions",
-    logoHeight: "h-12", // Adjusted size for new D&H logo
-    bgColor: "bg-[#FDE1D3]" // Soft peach background that complements the D&H brand colors
+    logoHeight: "h-12",
+    bgColor: "bg-[#FDE1D3]",
+    invertInDark: true
   }, {
     name: "Lifetime Service",
     logo: "/lovable-uploads/f979a2eb-3c5d-48e8-a965-839e8d446c09.png",
     url: "https://www.lifetimeservice.com",
     description: "Expert device repair and maintenance facility",
-    logoHeight: "h-12", // Standard size for Lifetime
-    bgColor: "bg-primary-light" // Keep original light green for black logo
+    logoHeight: "h-12",
+    bgColor: "bg-primary-light",
+    invertInDark: true
   }];
 
   const [api] = useEmblaCarousel({
@@ -77,7 +81,7 @@ const Partners = () => {
                       <img 
                         src={partner.logo} 
                         alt={`${partner.name} logo`} 
-                        className={`w-auto ${partner.logoHeight} object-contain group-hover:scale-105 transition-transform`}
+                        className={`w-auto ${partner.logoHeight} object-contain group-hover:scale-105 transition-transform ${partner.invertInDark ? 'dark:invert dark:brightness-200' : ''}`}
                       />
                     </div>
                     <p className="text-neutral-600 dark:text-neutral-300 text-center mt-1 text-sm">
