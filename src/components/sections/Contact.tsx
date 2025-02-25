@@ -72,144 +72,144 @@ const Contact = () => {
   };
 
   return (
-    <div className="relative">
-      <div 
-        className="absolute inset-0 bg-fixed bg-center bg-cover opacity-20 dark:opacity-10"
-        style={{
-          backgroundImage: "url('/lovable-uploads/ef7e6576-f4ab-4329-a4da-a7a968db4f52.png')",
-          transform: "translateZ(-1px) scale(1.5)",
-          height: "100%",
-          width: "100%"
-        }}
-      />
-      <section id="contact" className="py-32 md:py-40 bg-gradient-to-b from-neutral-light/90 to-neutral-light/95 dark:from-neutral-800/90 dark:to-neutral-800/95 relative overflow-hidden">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 text-neutral-900 dark:text-white">
-                <MessageSquare className="w-8 h-8 text-primary dark:text-primary-foreground" />
-                Get in Touch
-              </h2>
-              <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-8 animate-on-scroll">
-                Let's discuss how we can help transform your IT asset management
-              </p>
-            </div>
+    <section 
+      id="contact" 
+      className="relative min-h-screen py-32 md:py-40 overflow-hidden"
+      style={{
+        backgroundImage: "url('/lovable-uploads/ef7e6576-f4ab-4329-a4da-a7a968db4f52.png')",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      }}
+    >
+      <div className="absolute inset-0 bg-gradient-to-b from-neutral-light/95 to-neutral-light/98 dark:from-neutral-800/95 dark:to-neutral-800/98" />
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 text-neutral-900 dark:text-white">
+              <MessageSquare className="w-8 h-8 text-primary dark:text-primary-foreground" />
+              Get in Touch
+            </h2>
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-8 animate-on-scroll">
+              Let's discuss how we can help transform your IT asset management
+            </p>
+          </div>
 
-            <div className={cn(
-              "glass-card p-8 rounded-xl",
-              "bg-white/95 dark:bg-neutral-800/50",
-              "backdrop-blur-sm",
-              "border border-neutral-100 dark:border-neutral-700/50",
-              "shadow-md hover:shadow-lg"
-            )}>
-              <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2 dark:text-neutral-200">Full Name</label>
-                    <input
-                      {...register('name')}
-                      type="text"
-                      id="name"
-                      className={cn(
-                        "w-full px-4 py-2 rounded-lg",
-                        "bg-white dark:bg-neutral-900",
-                        "border",
-                        errors.name ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
-                        "focus:outline-none focus:border-primary dark:focus:border-primary",
-                        "text-neutral-900 dark:text-white",
-                        "placeholder-neutral-400 dark:placeholder-neutral-500"
-                      )}
-                      placeholder="Your name"
-                    />
-                    {errors.name && (
-                      <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
-                    )}
-                  </div>
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium mb-2 dark:text-neutral-200">Company</label>
-                    <input
-                      {...register('company')}
-                      type="text"
-                      id="company"
-                      className={cn(
-                        "w-full px-4 py-2 rounded-lg",
-                        "bg-white dark:bg-neutral-900",
-                        "border",
-                        errors.company ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
-                        "focus:outline-none focus:border-primary dark:focus:border-primary",
-                        "text-neutral-900 dark:text-white",
-                        "placeholder-neutral-400 dark:placeholder-neutral-500"
-                      )}
-                      placeholder="Your company"
-                    />
-                    {errors.company && (
-                      <p className="mt-1 text-sm text-red-500">{errors.company.message}</p>
-                    )}
-                  </div>
-                </div>
+          <div className={cn(
+            "glass-card p-8 rounded-xl",
+            "bg-white/95 dark:bg-neutral-800/50",
+            "backdrop-blur-sm",
+            "border border-neutral-100 dark:border-neutral-700/50",
+            "shadow-md hover:shadow-lg"
+          )}>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2 dark:text-neutral-200">Email</label>
+                  <label htmlFor="name" className="block text-sm font-medium mb-2 dark:text-neutral-200">Full Name</label>
                   <input
-                    {...register('email')}
-                    type="email"
-                    id="email"
+                    {...register('name')}
+                    type="text"
+                    id="name"
                     className={cn(
                       "w-full px-4 py-2 rounded-lg",
                       "bg-white dark:bg-neutral-900",
                       "border",
-                      errors.email ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                      errors.name ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
                       "focus:outline-none focus:border-primary dark:focus:border-primary",
                       "text-neutral-900 dark:text-white",
                       "placeholder-neutral-400 dark:placeholder-neutral-500"
                     )}
-                    placeholder="your@email.com"
+                    placeholder="Your name"
                   />
-                  {errors.email && (
-                    <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+                  {errors.name && (
+                    <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
                   )}
                 </div>
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2 dark:text-neutral-200">Message</label>
-                  <textarea
-                    {...register('message')}
-                    id="message"
-                    rows={4}
+                  <label htmlFor="company" className="block text-sm font-medium mb-2 dark:text-neutral-200">Company</label>
+                  <input
+                    {...register('company')}
+                    type="text"
+                    id="company"
                     className={cn(
                       "w-full px-4 py-2 rounded-lg",
                       "bg-white dark:bg-neutral-900",
                       "border",
-                      errors.message ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                      errors.company ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
                       "focus:outline-none focus:border-primary dark:focus:border-primary",
                       "text-neutral-900 dark:text-white",
                       "placeholder-neutral-400 dark:placeholder-neutral-500"
                     )}
-                    placeholder="Tell us about your needs"
-                  ></textarea>
-                  {errors.message && (
-                    <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
+                    placeholder="Your company"
+                  />
+                  {errors.company && (
+                    <p className="mt-1 text-sm text-red-500">{errors.company.message}</p>
                   )}
                 </div>
-                <div className="flex justify-center">
-                  <button 
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={cn(
-                      "px-8 py-4 rounded-lg text-lg font-semibold",
-                      "bg-primary text-white",
-                      "hover:opacity-90 transition-opacity",
-                      "disabled:opacity-50 disabled:cursor-not-allowed",
-                      "dark:bg-primary-foreground dark:text-primary"
-                    )}
-                  >
-                    {isSubmitting ? "Sending..." : "Schedule a Consultation"}
-                  </button>
-                </div>
-              </form>
-            </div>
+              </div>
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-2 dark:text-neutral-200">Email</label>
+                <input
+                  {...register('email')}
+                  type="email"
+                  id="email"
+                  className={cn(
+                    "w-full px-4 py-2 rounded-lg",
+                    "bg-white dark:bg-neutral-900",
+                    "border",
+                    errors.email ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                    "focus:outline-none focus:border-primary dark:focus:border-primary",
+                    "text-neutral-900 dark:text-white",
+                    "placeholder-neutral-400 dark:placeholder-neutral-500"
+                  )}
+                  placeholder="your@email.com"
+                />
+                {errors.email && (
+                  <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+                )}
+              </div>
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-2 dark:text-neutral-200">Message</label>
+                <textarea
+                  {...register('message')}
+                  id="message"
+                  rows={4}
+                  className={cn(
+                    "w-full px-4 py-2 rounded-lg",
+                    "bg-white dark:bg-neutral-900",
+                    "border",
+                    errors.message ? 'border-red-500' : 'border-neutral-200 dark:border-neutral-700',
+                    "focus:outline-none focus:border-primary dark:focus:border-primary",
+                    "text-neutral-900 dark:text-white",
+                    "placeholder-neutral-400 dark:placeholder-neutral-500"
+                  )}
+                  placeholder="Tell us about your needs"
+                ></textarea>
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-500">{errors.message.message}</p>
+                )}
+              </div>
+              <div className="flex justify-center">
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn(
+                    "px-8 py-4 rounded-lg text-lg font-semibold",
+                    "bg-primary text-white",
+                    "hover:opacity-90 transition-opacity",
+                    "disabled:opacity-50 disabled:cursor-not-allowed",
+                    "dark:bg-primary-foreground dark:text-primary"
+                  )}
+                >
+                  {isSubmitting ? "Sending..." : "Schedule a Consultation"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 
