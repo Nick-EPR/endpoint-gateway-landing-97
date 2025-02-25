@@ -25,29 +25,30 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <Router>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/security" element={<Security />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/leadership" element={<Leadership />} />
-            <Route path="/heliam" element={<HeliAM />} />
-            <Route path="/toolbox" element={<Toolbox />} />
-            <Route path="/luemin" element={<Luemin />} />
-            <Route path="/mission" element={<Mission />} />
-            <Route path="/status" element={<Status />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/what-is-itam" element={<WhatIsITAM />} />
-            <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <ChatButton />
-        </Router>
+        <div className="min-h-screen bg-background text-foreground">
+          <Router>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/security" element={<Security />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/leadership" element={<Leadership />} />
+              <Route path="/heliam" element={<HeliAM />} />
+              <Route path="/toolbox" element={<Toolbox />} />
+              <Route path="/luemin" element={<Luemin />} />
+              <Route path="/mission" element={<Mission />} />
+              <Route path="/status" element={<Status />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/what-is-itam" element={<WhatIsITAM />} />
+              <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <ChatButton />
+          </Router>
+        </div>
       </ThemeProvider>
     </QueryClientProvider>
   );
 }
 
 export default App;
-

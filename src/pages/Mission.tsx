@@ -51,7 +51,7 @@ const Mission = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      <Navbar scrolled={scrolled} onMouseEnter={() => setScrolled(true)} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
@@ -79,15 +79,15 @@ const Mission = () => {
       {/* Core Values */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Core Values</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-foreground">Our Core Values</h2>
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {coreValues.map((value, index) => (
-              <div key={index} className="glass-card p-6 rounded-xl">
+              <div key={index} className="glass-card p-6 rounded-xl bg-card text-card-foreground">
                 <div className="flex items-start gap-4">
                   <value.icon className="w-8 h-8 text-primary shrink-0" />
                   <div>
                     <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                    <p className="text-neutral">{value.description}</p>
+                    <p className="text-muted-foreground">{value.description}</p>
                   </div>
                 </div>
               </div>
@@ -97,14 +97,14 @@ const Mission = () => {
       </section>
 
       {/* ITAM Information Section */}
-      <section className="py-16 bg-primary/5">
+      <section className="py-16 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <HelpCircle className="w-6 h-6 text-primary" />
-              <h3 className="text-xl font-semibold">New to IT Asset Management?</h3>
+              <h3 className="text-xl font-semibold text-foreground">New to IT Asset Management?</h3>
             </div>
-            <p className="text-neutral-600 mb-6">
+            <p className="text-muted-foreground mb-6">
               Learn how IT Asset Management affects your daily work and discover how we're making it better.
             </p>
             <Link to="/what-is-itam">
