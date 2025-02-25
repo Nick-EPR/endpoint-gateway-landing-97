@@ -18,14 +18,14 @@ const ContactHero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-white overflow-hidden">
+    <section className="relative min-h-screen bg-background overflow-hidden">
       {/* Map Background */}
       <div className="absolute inset-0 w-full h-full">
         <LocationMap />
         <div 
           className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
             isZoomed 
-              ? 'bg-black/50' 
+              ? 'bg-black/50 dark:bg-black/70' 
               : 'bg-black/0 scale-[2.5] transform-origin-center'
           }`} 
         />
@@ -36,7 +36,7 @@ const ContactHero = () => {
         isZoomed ? 'opacity-100' : 'opacity-0'
       }`}>
         <div className="text-center max-w-3xl mx-auto">
-          <Mail className="w-12 h-12 text-white mx-auto mb-6" />
+          <Mail className="w-12 h-12 text-primary mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">Contact Us</h1>
           <p className="text-lg text-white/90 mb-8">
             Get in touch with our team to learn more about our IT asset management solutions.

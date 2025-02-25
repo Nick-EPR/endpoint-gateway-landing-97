@@ -1,3 +1,4 @@
+
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Lightbulb, Award, Shield, Heart } from "lucide-react";
@@ -72,7 +73,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       <ContactHero />
       
@@ -80,11 +81,11 @@ const Contact = () => {
       <ContactForm />
       
       {/* Leadership Profiles */}
-      <section className="relative py-24 bg-neutral-light">
+      <section className="relative py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Our Leadership Team</h1>
-            <p className="text-lg text-neutral">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Our Leadership Team</h1>
+            <p className="text-lg text-muted-foreground">
               Meet the experienced professionals driving our mission to revolutionize IT asset management through innovation, security, and sustainability.
             </p>
           </div>
@@ -97,43 +98,43 @@ const Contact = () => {
       </section>
 
       {/* Values Section */}
-      <section className="relative section-padding bg-white border-t border-neutral-100">
+      <section className="relative section-padding bg-background border-t border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-8">Our Leadership Values</h2>
+            <h2 className="text-3xl font-bold mb-8 text-foreground">Our Leadership Values</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="p-6 bg-neutral-light rounded-xl">
+              <div className="p-6 bg-card rounded-xl border border-border">
                 <div className="flex flex-col items-center">
                   <Lightbulb className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="text-xl font-semibold mb-3">Innovation</h3>
-                  <p className="text-neutral">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Innovation</h3>
+                  <p className="text-muted-foreground">
                     Driving technological advancement in IT asset management
                   </p>
                 </div>
               </div>
-              <div className="p-6 bg-neutral-light rounded-xl">
+              <div className="p-6 bg-card rounded-xl border border-border">
                 <div className="flex flex-col items-center">
                   <Award className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="text-xl font-semibold mb-3">Excellence</h3>
-                  <p className="text-neutral">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Excellence</h3>
+                  <p className="text-muted-foreground">
                     Delivering exceptional service and solutions
                   </p>
                 </div>
               </div>
-              <div className="p-6 bg-neutral-light rounded-xl">
+              <div className="p-6 bg-card rounded-xl border border-border">
                 <div className="flex flex-col items-center">
                   <Shield className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="text-xl font-semibold mb-3">Integrity</h3>
-                  <p className="text-neutral">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Integrity</h3>
+                  <p className="text-muted-foreground">
                     Building trust through transparent leadership
                   </p>
                 </div>
               </div>
-              <div className="p-6 bg-neutral-light rounded-xl">
+              <div className="p-6 bg-card rounded-xl border border-border">
                 <div className="flex flex-col items-center">
                   <Heart className="w-8 h-8 text-primary mb-3" />
-                  <h3 className="text-xl font-semibold mb-3">Client Focus</h3>
-                  <p className="text-neutral">
+                  <h3 className="text-xl font-semibold mb-3 text-foreground">Client Focus</h3>
+                  <p className="text-muted-foreground">
                     Prioritizing client success in everything we do
                   </p>
                 </div>

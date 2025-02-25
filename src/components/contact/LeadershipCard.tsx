@@ -14,7 +14,7 @@ interface LeadershipCardProps {
 
 const LeadershipCard = ({ name, title, image, bio, email, phone, linkedin }: LeadershipCardProps) => {
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 p-6">
+    <div className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 p-6 border border-border">
       <div className="flex flex-col h-full">
         <div className="flex items-start gap-4 mb-4">
           <div className="flex-shrink-0">
@@ -25,21 +25,21 @@ const LeadershipCard = ({ name, title, image, bio, email, phone, linkedin }: Lea
             />
           </div>
           <div>
-            <h3 className="text-2xl font-bold mb-2">{name}</h3>
+            <h3 className="text-2xl font-bold mb-2 text-foreground">{name}</h3>
             <p className="text-primary font-medium">{title}</p>
           </div>
         </div>
-        <p className="text-neutral mb-4">{bio}</p>
+        <p className="text-muted-foreground mb-4">{bio}</p>
         <div className="space-y-2">
           {email && phone && name !== "Michael DeJoy" && (
             <>
-              <div className="flex items-center gap-2 text-neutral">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <Mail className="w-4 h-4" />
                 <a href={`mailto:${email}`} className="hover:text-primary transition-colors">
                   {email}
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-neutral">
+              <div className="flex items-center gap-2 text-muted-foreground">
                 <Phone className="w-4 h-4" />
                 <a href={`tel:${phone}`} className="hover:text-primary transition-colors">
                   {phone}
