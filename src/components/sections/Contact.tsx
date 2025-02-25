@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -73,14 +74,15 @@ const Contact = () => {
   return (
     <div className="relative">
       <div 
-        className="absolute inset-0 bg-fixed bg-center bg-cover opacity-10 dark:opacity-5"
+        className="absolute inset-0 bg-fixed bg-center bg-cover opacity-20 dark:opacity-10"
         style={{
           backgroundImage: "url('/lovable-uploads/ef7e6576-f4ab-4329-a4da-a7a968db4f52.png')",
-          transform: "translateZ(-1px) scale(2)",
-          zIndex: -1
+          transform: "translateZ(-1px) scale(1.5)",
+          height: "100%",
+          width: "100%"
         }}
       />
-      <section id="contact" className="py-32 md:py-40 bg-gradient-to-b from-neutral-light/95 to-neutral-light/98 dark:from-neutral-800/95 dark:to-neutral-800/98 relative overflow-hidden">
+      <section id="contact" className="py-32 md:py-40 bg-gradient-to-b from-neutral-light/90 to-neutral-light/95 dark:from-neutral-800/90 dark:to-neutral-800/95 relative overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
