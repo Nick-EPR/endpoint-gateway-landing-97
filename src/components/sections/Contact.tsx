@@ -76,7 +76,7 @@ const Contact = () => {
       id="contact" 
       className="relative min-h-screen py-32 md:py-40 overflow-hidden"
       style={{
-        backgroundImage: "url('/lovable-uploads/ef7e6576-f4ab-4329-a4da-a7a968db4f52.png')",
+        backgroundImage: "url('/lovable-uploads/62791d63-43f6-45a9-b579-a9645cde1036.png')",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
         backgroundSize: "cover",
