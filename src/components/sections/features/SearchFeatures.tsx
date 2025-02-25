@@ -15,13 +15,13 @@ export const SearchFeatures = ({ value, onChange, onClear }: SearchFeaturesProps
     <div className="max-w-md mx-auto mb-10 animate-fade-up">
       <div className="relative flex gap-2">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
           <Input
             type="text"
             placeholder="Search features (e.g., repair, RDP, shipping)"
             value={value}
             onChange={onChange}
-            className="pl-10 bg-white/80 border-neutral-200 shadow-sm hover:border-neutral-300 transition-colors"
+            className="pl-10 bg-background/80 dark:bg-neutral-800/50 border-border hover:border-primary/50 dark:hover:border-primary/50 transition-colors backdrop-blur-sm"
           />
         </div>
         {value && (
@@ -29,14 +29,14 @@ export const SearchFeatures = ({ value, onChange, onClear }: SearchFeaturesProps
             variant="outline" 
             size="icon"
             onClick={onClear}
-            className="shrink-0"
+            className="shrink-0 bg-background/80 dark:bg-neutral-800/50 border-border hover:bg-background dark:hover:bg-neutral-800 backdrop-blur-sm"
           >
             <X className="h-4 w-4" />
           </Button>
         )}
       </div>
       {value && (
-        <p className="text-sm text-neutral-500 mt-2 text-center">
+        <p className="text-sm text-muted-foreground mt-2 text-center">
           Showing results for "{value}"
         </p>
       )}
