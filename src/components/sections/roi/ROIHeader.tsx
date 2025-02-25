@@ -9,7 +9,7 @@ export const ROIHeader = () => {
         Calculate Your Potential Savings
       </h2>
       <p className="text-lg text-neutral mb-8 animate-fade-up delay-100">
-        See how much you can <span className="text-[#93C851]">save annually</span> with our repair-first approach
+        See how much you can save with our repair-first approach
       </p>
     </div>
   );
