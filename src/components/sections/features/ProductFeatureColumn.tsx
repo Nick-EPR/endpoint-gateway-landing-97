@@ -32,11 +32,6 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
             <FeatureCard 
               key={index} 
               {...feature} 
-              className="animate-fade-up"
-              style={{
-                animationDelay: `${index * 0.2}s`,
-                animation: 'float 3s ease-in-out infinite'
-              }}
             />
           ))
         ) : (
