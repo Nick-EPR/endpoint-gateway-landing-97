@@ -116,14 +116,14 @@ const ChatButton = () => {
   return (
     <>
       <div className="fixed bottom-6 right-6 z-50 flex gap-3">
-        {showScrollTop && (
+        <div className={`transition-opacity duration-300 ${showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <Button
             onClick={scrollToTop}
             className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-11 w-11"
           >
             <ArrowUp className="h-5 w-5" />
           </Button>
-        )}
+        </div>
         <Button
           onClick={() => setIsOpen(true)}
           className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
