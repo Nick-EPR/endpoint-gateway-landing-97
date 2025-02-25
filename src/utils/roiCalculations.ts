@@ -74,11 +74,17 @@ export const calculatePercentageChange = (oldValue: number, newValue: number): n
 
 // Format large numbers to shortened version (e.g., 1M, 2.5K)
 const formatLargeNumber = (value: number): string => {
+  if (value >= 1000000000000) {
+    return `${(value / 1000000000000).toFixed(value % 1000000000000 === 0 ? 0 : 1)}T`;
+  }
+  if (value >= 1000000000) {
+    return `${(value / 1000000000).toFixed(value % 1000000000 === 0 ? 0 : 1)}B`;
+  }
   if (value >= 1000000) {
     return `${(value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1)}M`;
   }
   if (value >= 1000) {
-    return `${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}k`;
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   return value.toString();
 };
@@ -102,7 +108,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     },
     {
       label: "E-Waste Prevention",
-      value: `${formatLargeNumber(environmentalImpact.ewasteReduced)} kg`,
+      value: `${environmentalImpact.ewasteReduced.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kg`,
       trend: 35,
       tooltip: "Annual reduction in e-waste through device lifecycle extension and repair"
     },
