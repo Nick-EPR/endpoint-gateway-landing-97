@@ -104,7 +104,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     },
     {
       label: "Hours Saved Annually",
-      value: `${hoursSaved} hours`,
+      value: `${hoursSaved} hrs`,
       trend: 25,
       tooltip: "Annual time savings through reduced device downtime, faster repairs, and proactive maintenance"
     }
