@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +14,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [currentWord2, setCurrentWord2] = useState(0);
   const [displayText2, setDisplayText2] = useState("");
   const [isDeleting2, setIsDeleting2] = useState(false);
+  const [fastDelete, setFastDelete] = useState(false);
   
   const rotatingWords2 = [
     "Enterprise",
@@ -34,30 +36,42 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting2) {
-        // Speed up deletion
-        const newText = displayText2.slice(0, -1);
-        setDisplayText2(newText);
-        
-        if (newText === "") {
+        // For longer words (> 6 chars), simulate select-all deletion
+        if (displayText2.length > 6 && !fastDelete) {
+          setFastDelete(true);
+          setDisplayText2("");
           setIsDeleting2(false);
           setCurrentWord2(nextWordIndex);
+          timeout = setTimeout(updateText, 100);
+          return;
         }
         
-        timeout = setTimeout(updateText, 50); // Decreased from 75ms to 50ms
+        // Normal character-by-character deletion for short words
+        if (!fastDelete) {
+          const newText = displayText2.slice(0, -1);
+          setDisplayText2(newText);
+          
+          if (newText === "") {
+            setIsDeleting2(false);
+            setCurrentWord2(nextWordIndex);
+          }
+          
+          timeout = setTimeout(updateText, 50);
+        }
       } else {
+        setFastDelete(false);
         if (displayText2.length < currentFullWord.length) {
           setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
-          timeout = setTimeout(updateText, 100); // Decreased from 150ms to 100ms
+          timeout = setTimeout(updateText, 100);
         } else {
-          // Decrease word display duration
-          timeout = setTimeout(() => setIsDeleting2(true), 2000); // Decreased from 3000ms to 2000ms
+          timeout = setTimeout(() => setIsDeleting2(true), 2000);
         }
       }
     };
 
-    timeout = setTimeout(updateText, 100); // Initial delay decreased to 100ms
+    timeout = setTimeout(updateText, 100);
     return () => clearTimeout(timeout);
-  }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
+  }, [displayText2, isDeleting2, currentWord2, rotatingWords2, fastDelete]);
 
   const scrollToROI = () => {
     const roiSection = document.getElementById('roi-calculator');
