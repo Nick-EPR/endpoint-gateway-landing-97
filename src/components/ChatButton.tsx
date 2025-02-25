@@ -161,7 +161,12 @@ const ChatButton = () => {
                     disabled={isLoading}
                     className="flex-1"
                   />
-                  <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
+                  <Button 
+                    type="submit" 
+                    size="icon" 
+                    disabled={isLoading || !input.trim()}
+                    className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white"
+                  >
                     <Send className="h-4 w-4" />
                   </Button>
                 </form>
