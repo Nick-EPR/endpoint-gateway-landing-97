@@ -84,6 +84,7 @@ const Contact = () => {
       <section className="relative py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
+            <Users className="w-12 h-12 text-primary mx-auto mb-4" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">Our Leadership Team</h1>
             <p className="text-lg text-muted-foreground">
               Meet the experienced professionals driving our mission to revolutionize IT asset management through innovation, security, and sustainability.
