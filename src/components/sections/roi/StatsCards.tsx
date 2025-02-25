@@ -74,8 +74,8 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
           const unit = getUnit(trend.value);
           
           return (
-            <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50">
-              <div className="flex items-start justify-between mb-2">
+            <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50 flex flex-col h-full">
+              <div className="flex items-start justify-between mb-auto">
                 <div className="flex items-center">
                   {getIcon(trend.label)}
                   <h4 className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{trend.label}</h4>
@@ -95,7 +95,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
                   </TooltipContent>
                 </Tooltip>
               </div>
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-2 mt-2">
                 <span className="text-xl font-bold text-neutral-900 dark:text-white">
                   {trend.value.startsWith('$') ? '$' : ''}
                   {animatedValue.toLocaleString()}
