@@ -42,7 +42,7 @@ const Luemin = () => {
 
   const features = [
     {
-      icon: Tablet, // Updated icon reference
+      icon: Tablet,
       title: "Unified Device Management",
       description: "Centralized control over all your mobile devices, laptops, and tablets from a single interface."
     },
@@ -74,13 +74,13 @@ const Luemin = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4">
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10"></div>
+          <div className="absolute inset-0 bg-black/80 dark:bg-black/90 backdrop-blur-[2px] z-10"></div>
           <img 
             src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?auto=format&fit=crop&q=80"
             alt="Modern Device Management"
@@ -100,7 +100,7 @@ const Luemin = () => {
               Complete device management and security, fully integrated with the Lifetime EPR ecosystem.
             </p>
             <div className="flex gap-4 mt-8 animate-fade-in [animation-delay:800ms]">
-              <Button size="lg" className="bg-primary/90 hover:bg-primary">
+              <Button size="lg" className="bg-primary/90 hover:bg-primary text-white">
                 Join Waitlist
               </Button>
               <Link to="/contact">
@@ -114,24 +114,24 @@ const Luemin = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-24 bg-neutral-50">
+      <section className="py-24 bg-neutral-50 dark:bg-neutral-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Upcoming Features</h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 text-foreground">Upcoming Features</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               A preview of what's coming in our unified endpoint management solution
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {features.map((Feature, index) => (
-              <div key={index} className="p-6 bg-white rounded-xl hover:shadow-lg transition-all group">
+              <div key={index} className="p-6 bg-background dark:bg-neutral-800/50 rounded-xl hover:shadow-lg transition-all group">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
-                    <Feature.icon className="w-6 h-6 text-primary" />
+                  <div className="p-2 bg-primary/10 dark:bg-primary/5 rounded-lg group-hover:bg-primary/20 dark:group-hover:bg-primary/10 transition-colors">
+                    <Feature.icon className="w-6 h-6 text-primary dark:text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-semibold">{Feature.title}</h3>
+                  <h3 className="text-xl font-semibold text-foreground">{Feature.title}</h3>
                 </div>
-                <p className="text-neutral-600">{Feature.description}</p>
+                <p className="text-muted-foreground">{Feature.description}</p>
               </div>
             ))}
           </div>
@@ -139,25 +139,25 @@ const Luemin = () => {
       </section>
 
       {/* Integration Preview */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-8">
               <img src={triangleImage} alt="EPR Triangle" className="w-8 h-8" />
-              <h2 className="text-3xl font-bold">Part of the Lifetime EPR Ecosystem</h2>
+              <h2 className="text-3xl font-bold text-foreground">Part of the Lifetime EPR Ecosystem</h2>
             </div>
-            <p className="text-lg text-neutral-600 mb-12">
+            <p className="text-lg text-muted-foreground mb-12">
               Luemin will integrate seamlessly with HeliAM and Toolbox, providing complete device lifecycle management from deployment to retirement.
             </p>
             <div className="flex justify-center gap-6">
               <Link to="/heliam">
-                <Button variant="outline" className="group">
+                <Button variant="outline" className="group border-border">
                   Explore HeliAM
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
               <Link to="/toolbox">
-                <Button variant="outline" className="group">
+                <Button variant="outline" className="group border-border">
                   Explore Toolbox
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
