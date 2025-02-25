@@ -14,13 +14,6 @@ interface EmployeeInputProps {
 export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange, disabled }: EmployeeInputProps) => {
   const [inputValue, setInputValue] = useState<string>(employees.toString());
   const [isTransitioning, setIsTransitioning] = useState(false);
-  
-  // Threshold for auto-switching modes
-  const ENTERPRISE_THRESHOLD = 280;
-  const SMB_THRESHOLD = 320;
-
-  // Previous mode tracking for smooth transitions
-  const [prevIsEnterprise, setPrevIsEnterprise] = useState(isEnterprise);
 
   useEffect(() => {
     // Update input value when employees prop changes
@@ -28,32 +21,13 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
   }, [employees]);
 
   useEffect(() => {
-    if (prevIsEnterprise !== isEnterprise) {
-      setIsTransitioning(true);
-      
-      // Calculate proportional position for smooth transition
-      const currentValue = parseInt(inputValue);
-      let newValue;
-      
-      if (isEnterprise) {
-        // Transitioning to Enterprise: map 300 to 1000 proportionally
-        const ratio = currentValue / 300;
-        newValue = Math.round(1000 * ratio);
-      } else {
-        // Transitioning to SMB: map current value down to 300 proportionally
-        const ratio = currentValue / 10000;
-        newValue = Math.round(300 * ratio);
-      }
-      
-      // Animate the transition
-      requestAnimationFrame(() => {
-        onEmployeeChange(newValue);
-        setIsTransitioning(false);
-      });
-      
-      setPrevIsEnterprise(isEnterprise);
+    // Automatically switch modes based on employee count
+    if (isEnterprise && employees < 300) {
+      onEmployeeChange(1000);
+    } else if (!isEnterprise && employees > 300) {
+      onEmployeeChange(300);
     }
-  }, [isEnterprise]);
+  }, [isEnterprise, employees, onEmployeeChange]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -107,7 +81,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
       <Slider 
         min={100} 
         max={isEnterprise ? 10000 : 300} 
-        step={isEnterprise ? 1000 : 50} 
+        step={isEnterprise ? 100 : 1} 
         value={[employees]} 
         onValueChange={handleSliderChange}
         className={`my-4 transition-opacity duration-300 ${isTransitioning ? 'opacity-50' : ''}`}
