@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Send, X, ArrowUp } from "lucide-react";
@@ -118,15 +119,14 @@ const ChatButton = () => {
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
-            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449]"
-            size="icon"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-11 w-11"
           >
             <ArrowUp className="h-5 w-5" />
           </Button>
         )}
         <Button
           onClick={() => setIsOpen(true)}
-          className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449]"
+          className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
           size="lg"
         >
           <MessageCircle className="h-5 w-5" />
@@ -188,7 +188,7 @@ const ChatButton = () => {
                     type="submit" 
                     size="icon" 
                     disabled={isLoading || !input.trim()}
-                    className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white dark:bg-[#93C851] dark:hover:bg-[#84b449]"
+                    className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
                   >
                     <Send className="h-4 w-4" />
                   </Button>
