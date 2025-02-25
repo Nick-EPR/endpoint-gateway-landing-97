@@ -1,4 +1,3 @@
-
 export interface Trend {
   label: string;
   value: string;
@@ -73,6 +72,17 @@ export const calculatePercentageChange = (oldValue: number, newValue: number): n
   return ((newValue - oldValue) / oldValue) * 100;
 };
 
+// Format large numbers to shortened version (e.g., 1M, 2.5K)
+const formatLargeNumber = (value: number): string => {
+  if (value >= 1000000) {
+    return `${(value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1)}M`;
+  }
+  if (value >= 1000) {
+    return `${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}k`;
+  }
+  return value.toString();
+};
+
 // Function to calculate trends based on employee count
 export const calculateTrends = (employeeCount: number): Trend[] => {
   const baseLifespan = 2;
@@ -86,25 +96,25 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
   return [
     {
       label: "Carbon Reduction",
-      value: `${environmentalImpact.co2Reduction} tons`,
+      value: `${formatLargeNumber(environmentalImpact.co2Reduction)} tons`,
       trend: -40,
       tooltip: "Annual CO2 emissions reduction through extended device lifecycles"
     },
     {
       label: "E-Waste Prevention",
-      value: `${environmentalImpact.ewasteReduced} kg`,
+      value: `${formatLargeNumber(environmentalImpact.ewasteReduced)} kg`,
       trend: 35,
       tooltip: "Annual reduction in e-waste through device lifecycle extension and repair"
     },
     {
       label: "Estimated ROI",
-      value: `$${annualSavings}`,
+      value: `$${formatLargeNumber(annualSavings)}`,
       trend: 30,
       tooltip: "Expected annual return on investment in dollars"
     },
     {
       label: "Hours Saved",
-      value: `${hoursSaved} hrs`,
+      value: `${formatLargeNumber(hoursSaved)} hrs`,
       trend: 25,
       tooltip: "Annual time savings through reduced device downtime, faster repairs, and proactive maintenance"
     }
