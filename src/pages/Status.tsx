@@ -59,13 +59,16 @@ const Status = () => {
   return (
     <div className="min-h-screen bg-background">
       <div 
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        className="fixed inset-0 -z-10"
         style={{ 
-          backgroundImage: 'url("https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop")',
-          backgroundColor: 'rgba(20, 24, 32, 0.85)',
-          backgroundBlendMode: 'multiply'
+          backgroundImage: 'url("/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
         }}
-      />
+      >
+        <div className="absolute inset-0 bg-background/90 dark:bg-background/80" />
+      </div>
       <NavigationProgress />
       <Navbar scrolled={scrolled} onMouseEnter={() => setScrolled(true)} />
       
