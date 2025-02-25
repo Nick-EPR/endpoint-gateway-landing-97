@@ -46,6 +46,25 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     }
   };
 
+  const extractNumericValue = (value: string): number => {
+    if (value.endsWith('%')) {
+      return parseFloat(value);
+    }
+    if (value.startsWith('$')) {
+      return parseFloat(value.slice(1).replace(/,/g, ''));
+    }
+    return parseFloat(value.replace(/[^\d.-]/g, ''));
+  };
+
+  const getUnit = (value: string): string => {
+    // Don't return a unit for cost reduction
+    if (value.startsWith('$')) {
+      return '';
+    }
+    const matches = value.match(/[0-9.,]+\s*(.+)/);
+    return matches ? matches[1].trim() : '';
+  };
+
   return (
     <TooltipProvider delayDuration={0}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
