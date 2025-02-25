@@ -15,6 +15,7 @@ const DEVICES_PER_EMPLOYEE = 1.2; // Average number of devices per employee
 const CO2_PER_DEVICE = 156; // kg CO2 per device lifecycle
 const WATER_SAVINGS_PER_DEVICE = 1200; // liters of water saved per device lifecycle extended
 const EWASTE_REDUCTION_PER_DEVICE = 1.8; // kg of e-waste reduced per device lifecycle extended
+const HOURS_SAVED_PER_DEVICE = 4.5; // Annual hours saved per device through proactive maintenance and reduced downtime
 
 // Function to calculate annual savings based on employee count
 export const calculateAnnualSavings = (employeeCount: number): number => {
@@ -24,6 +25,12 @@ export const calculateAnnualSavings = (employeeCount: number): number => {
   const resaleValue = (totalDevices / 2.8) * (AVG_DEVICE_COST * RESALE_VALUE_PERCENTAGE);
 
   return Math.round(deviceSavings + resaleValue - serviceCosts);
+};
+
+// Function to calculate hours saved
+export const calculateHoursSaved = (employeeCount: number): number => {
+  const totalDevices = Math.ceil(employeeCount * DEVICES_PER_EMPLOYEE);
+  return Math.round(totalDevices * HOURS_SAVED_PER_DEVICE);
 };
 
 // Function to calculate environmental impact
@@ -74,7 +81,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
   
   const annualSavings = calculateAnnualSavings(employeeCount);
   const environmentalImpact = calculateEnvironmentalImpact(employeeCount);
-  const estimatedAnnualROI = annualSavings;
+  const hoursSaved = calculateHoursSaved(employeeCount);
   
   return [
     {
@@ -91,15 +98,15 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     },
     {
       label: "Estimated Annual ROI",
-      value: `$${estimatedAnnualROI}`,
+      value: `$${annualSavings}`,
       trend: 30,
       tooltip: "Expected annual return on investment in dollars"
     },
     {
-      label: "Cost Reduction",
-      value: `$${annualSavings}`,
-      trend: -25,
-      tooltip: "Annual cost savings through repair, refurbishment, and resale programs"
+      label: "Hours Saved Annually",
+      value: `${hoursSaved} hours`,
+      trend: 25,
+      tooltip: "Annual time savings through reduced device downtime, faster repairs, and proactive maintenance"
     }
   ];
 };
