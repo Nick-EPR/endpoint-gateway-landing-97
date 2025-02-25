@@ -41,7 +41,7 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
 
   return (
     <Card 
-      className="overflow-hidden bg-neutral-900/40 backdrop-blur-sm border-neutral-800"
+      className="overflow-hidden bg-background/40 backdrop-blur-sm border-border"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       {/* Status bar at the very top */}
@@ -51,16 +51,16 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
       
       <div className="p-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-semibold text-neutral-200">{monitor.name}</h3>
+          <h3 className="text-xl font-semibold text-foreground">{monitor.name}</h3>
           {getStatusBadge(monitor.status)}
         </div>
-        <p className="text-sm text-neutral-400 mt-2">
+        <p className="text-sm text-muted-foreground mt-2">
           Last checked: {new Date(monitor.lastCheckTime).toLocaleString()}
         </p>
 
         {isExpanded && (
           <div className="mt-6 space-y-4">
-            <div className="flex justify-between text-sm text-neutral-400">
+            <div className="flex justify-between text-sm text-muted-foreground">
               <span>30-day Average Uptime: {calculateAverageUptime(monitor.metrics)}%</span>
               <span>Average Response Time: {calculateAverageResponseTime(monitor.metrics)}ms</span>
             </div>
@@ -79,21 +79,23 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
                   </defs>
                   <XAxis 
                     dataKey="date" 
-                    tick={{ fill: '#9ca3af' }} 
-                    tickLine={{ stroke: '#9ca3af' }}
+                    tick={{ fill: 'currentColor' }} 
+                    tickLine={{ stroke: 'currentColor' }}
+                    stroke="currentColor"
                     interval="preserveStartEnd"
                   />
                   <YAxis 
-                    tick={{ fill: '#9ca3af' }}
-                    tickLine={{ stroke: '#9ca3af' }}
+                    tick={{ fill: 'currentColor' }}
+                    tickLine={{ stroke: 'currentColor' }}
+                    stroke="currentColor"
                     domain={[95, 100]}
                   />
                   <Tooltip
                     contentStyle={{ 
-                      backgroundColor: 'rgba(23, 23, 23, 0.9)',
-                      border: '1px solid rgba(82, 82, 82, 0.2)',
+                      backgroundColor: 'var(--background)',
+                      border: '1px solid var(--border)',
                       borderRadius: '4px',
-                      color: '#e5e7eb'
+                      color: 'var(--foreground)'
                     }}
                   />
                   <Area

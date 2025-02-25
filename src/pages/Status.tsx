@@ -78,7 +78,7 @@ const Status = () => {
             </div>
             <Button 
               variant="outline" 
-              className="bg-card/40 hover:bg-card/60 border-border"
+              className="bg-background/40 hover:bg-background/60 border-border"
               onClick={() => window.location.href = '/contact'}
             >
               <AlertTriangle className="mr-2 h-4 w-4" />
@@ -86,7 +86,7 @@ const Status = () => {
             </Button>
           </div>
 
-          <Card className="p-6 mb-8 bg-card/40 backdrop-blur-sm border-border">
+          <Card className="p-6 mb-8 bg-background/40 backdrop-blur-sm border-border">
             <p className={`text-xl font-semibold ${status.color}`}>
               {status.text}
             </p>
@@ -95,13 +95,13 @@ const Status = () => {
           <div className="space-y-6">
             {isLoading ? (
               Array.from({ length: 3 }).map((_, index) => (
-                <Card key={index} className="p-6 bg-card/40 backdrop-blur-sm border-border">
+                <Card key={index} className="p-6 bg-background/40 backdrop-blur-sm border-border">
                   <div className="flex items-center justify-between">
-                    <Skeleton className="h-6 w-32 bg-muted" />
-                    <Skeleton className="h-6 w-24 bg-muted" />
+                    <Skeleton className="h-6 w-32" />
+                    <Skeleton className="h-6 w-24" />
                   </div>
-                  <Skeleton className="h-4 w-48 mt-4 bg-muted" />
-                  <Skeleton className="h-32 w-full mt-4 bg-muted" />
+                  <Skeleton className="h-4 w-48 mt-4" />
+                  <Skeleton className="h-32 w-full mt-4" />
                 </Card>
               ))
             ) : (
@@ -118,7 +118,7 @@ const Status = () => {
 
           <div className="mt-12">
             <h2 className="text-2xl font-bold mb-4 text-foreground">Incident History</h2>
-            <Card className="p-6 bg-card/40 backdrop-blur-sm border-border">
+            <Card className="p-6 bg-background/40 backdrop-blur-sm border-border">
               <p className="text-muted-foreground">No incidents reported in the last 90 days.</p>
             </Card>
           </div>
