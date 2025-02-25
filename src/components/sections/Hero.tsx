@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -48,6 +47,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
             setIsHighlighted(false);
             setIsDeleting2(false);
             setCurrentWord2(nextWordIndex);
+            timeout = setTimeout(updateText, 100); // Continue the animation cycle
           }, 200);
           return;
         }
