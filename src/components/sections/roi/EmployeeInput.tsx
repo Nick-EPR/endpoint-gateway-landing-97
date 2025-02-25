@@ -8,10 +8,11 @@ interface EmployeeInputProps {
   isEnterprise: boolean;
   sliderRef: RefObject<HTMLDivElement>;
   onEmployeeChange: (value: number) => void;
+  onEnterpriseChange: (value: boolean) => void;
   disabled?: boolean;
 }
 
-export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange, disabled }: EmployeeInputProps) => {
+export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeChange, onEnterpriseChange, disabled }: EmployeeInputProps) => {
   const [inputValue, setInputValue] = useState<string>(employees.toString());
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -20,14 +21,13 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     setInputValue(employees.toString());
   }, [employees]);
 
-  useEffect(() => {
-    // Automatically switch modes based on employee count
-    if (isEnterprise && employees < 300) {
-      onEmployeeChange(1000);
-    } else if (!isEnterprise && employees > 300) {
-      onEmployeeChange(300);
+  const handleModeSwitch = (value: number) => {
+    if (value > 300 && !isEnterprise) {
+      onEnterpriseChange(true);
+    } else if (value <= 300 && isEnterprise) {
+      onEnterpriseChange(false);
     }
-  }, [isEnterprise, employees, onEmployeeChange]);
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -36,8 +36,9 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     const parsedValue = parseInt(newValue) || 0;
     const maxValue = isEnterprise ? 10000 : 300;
     
-    if (parsedValue >= 100 && parsedValue <= maxValue) {
+    if (parsedValue >= 1 && parsedValue <= maxValue) {
       onEmployeeChange(parsedValue);
+      handleModeSwitch(parsedValue);
     }
   };
 
@@ -46,11 +47,12 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     const maxValue = isEnterprise ? 10000 : 300;
     
     let validValue = parsedValue;
-    if (parsedValue < 100) validValue = 100;
+    if (parsedValue < 1) validValue = 1;
     if (parsedValue > maxValue) validValue = maxValue;
     
     setInputValue(validValue.toString());
     onEmployeeChange(validValue);
+    handleModeSwitch(validValue);
   };
 
   const handleSliderChange = (values: number[]) => {
@@ -58,6 +60,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
       const value = values[0];
       setInputValue(value.toString());
       onEmployeeChange(value);
+      handleModeSwitch(value);
     }
   };
 
@@ -73,13 +76,13 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
           onChange={handleInputChange}
           onBlur={handleInputBlur}
           className="w-full sm:w-32 text-right"
-          min={100}
+          min={1}
           max={isEnterprise ? 10000 : 300}
           disabled={disabled || isTransitioning}
         />
       </div>
       <Slider 
-        min={100} 
+        min={1} 
         max={isEnterprise ? 10000 : 300} 
         step={isEnterprise ? 100 : 1} 
         value={[employees]} 
@@ -89,7 +92,7 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
         isEnterprise={isEnterprise}
       />
       <div className="flex justify-between text-xs text-neutral">
-        <span>100</span>
+        <span>1</span>
         <span>{isEnterprise ? '10,000' : '300'}</span>
       </div>
     </div>

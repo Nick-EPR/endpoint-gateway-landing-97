@@ -68,6 +68,7 @@ const ROICalculator = () => {
               isEnterprise={isEnterprise}
               sliderRef={sliderRef}
               onEmployeeChange={handleEmployeeChange}
+              onEnterpriseChange={handleEnterpriseChange}
               disabled={false}
             />
 

@@ -74,7 +74,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
   
   const annualSavings = calculateAnnualSavings(employeeCount);
   const environmentalImpact = calculateEnvironmentalImpact(employeeCount);
-  const estimatedROI = (annualSavings / (employeeCount * AVG_DEVICE_COST * DEVICES_PER_EMPLOYEE)) * 100;
+  const estimatedAnnualROI = annualSavings;
   
   return [
     {
@@ -90,10 +90,10 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
       tooltip: "Annual reduction in e-waste through device lifecycle extension and repair"
     },
     {
-      label: "Estimated ROI",
-      value: `${Math.round(estimatedROI)}%`,
+      label: "Estimated Annual ROI",
+      value: `$${estimatedAnnualROI}`,
       trend: 30,
-      tooltip: "Return on Investment based on annual savings relative to device costs"
+      tooltip: "Expected annual return on investment in dollars"
     },
     {
       label: "Cost Reduction",
