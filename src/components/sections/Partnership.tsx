@@ -10,7 +10,7 @@ const Partnership = () => {
             <img
               src="/lovable-uploads/afd5064d-80e1-4dc3-9a47-00f189d67bdd.png"
               alt="Lifetime Service"
-              className="h-16 w-auto mx-auto mb-8"
+              className="h-16 w-auto mx-auto mb-8 dark:invert dark:brightness-200"
             />
             <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3">
               <Users className="w-8 h-8 text-primary" />
