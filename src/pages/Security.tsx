@@ -1,3 +1,4 @@
+
 import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -62,7 +63,7 @@ const Security = () => {
   }];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
@@ -83,7 +84,7 @@ const Security = () => {
             </p>
             <Link 
               to="/security/whitepaper"
-              className="inline-block bg-white text-neutral-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white transition-colors duration-300 animate-fade-up"
+              className="inline-block bg-white text-neutral-800 dark:bg-primary dark:text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary/90 transition-colors duration-300 animate-fade-up"
               style={{ animationDelay: "0.4s" }}
             >
               Download Security Whitepaper
@@ -92,78 +93,86 @@ const Security = () => {
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[50px] md:h-[100px]">
-            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-white"></path>
+            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-background"></path>
           </svg>
         </div>
       </section>
 
       {/* Primary Security Features Section */}
-      <section className="relative py-32 md:py-48 bg-white">
+      <section className="relative py-32 md:py-48 bg-background">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-foreground">
             Enterprise-Grade Security Features
           </h2>
-          <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
+          <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
             Our comprehensive security measures and certifications ensure your data remains protected at every stage of the IT asset lifecycle.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {securityFeatures.map((feature, index) => (
-              <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
+              <div key={index} className="p-6 bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
                 <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-neutral">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             ))}
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[50px] md:h-[100px]">
-            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-neutral-light"></path>
+            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-muted"></path>
           </svg>
         </div>
       </section>
 
       {/* Additional Security Features */}
-      <section className="relative py-32 md:py-48 bg-neutral-light">
+      <section className="relative py-32 md:py-48 bg-muted">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-foreground">
             Comprehensive Security Solutions
           </h2>
-          <p className="text-lg text-neutral text-center max-w-3xl mx-auto mb-16">
+          <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-16">
             From secure facilities to certified processes, we maintain the highest standards of security throughout our operations.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {additionalFeatures.map((feature, index) => <div key={index} className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-neutral-100">
+            {additionalFeatures.map((feature, index) => (
+              <div key={index} className="p-6 bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
                 <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-neutral">{feature.description}</p>
-              </div>)}
+                <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
+              </div>
+            ))}
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
           <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-[50px] md:h-[100px]">
-            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-white"></path>
+            <path d="M1200 120L0 16.48V0h1200v120z" className="fill-background"></path>
           </svg>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 md:py-48 bg-white">
+      <section className="py-32 md:py-48 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Ready to Secure Your IT Assets?
             </h2>
-            <p className="text-lg text-neutral mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               Schedule a consultation with our security experts to discuss your specific requirements and learn how we can protect your sensitive data throughout the IT asset lifecycle.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="bg-primary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors">
+              <Link 
+                to="/contact" 
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-colors"
+              >
                 Schedule a Consultation
               </Link>
-              <a href="#" className="bg-white text-primary border-2 border-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/10 transition-colors">
+              <Link 
+                to="/security/whitepaper" 
+                className="bg-card text-foreground border-2 border-primary px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/10 transition-colors"
+              >
                 Download Security Whitepaper
-              </a>
+              </Link>
             </div>
           </div>
         </div>
