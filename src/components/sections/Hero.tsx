@@ -15,6 +15,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [displayText2, setDisplayText2] = useState("");
   const [isDeleting2, setIsDeleting2] = useState(false);
   const [fastDelete, setFastDelete] = useState(false);
+  const [isHighlighted, setIsHighlighted] = useState(false);
   
   const rotatingWords2 = [
     "Enterprise",
@@ -36,13 +37,18 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting2) {
-        // For longer words (> 6 chars), simulate select-all deletion
+        // For longer words (> 6 chars), simulate select-all deletion with highlight
         if (displayText2.length > 6 && !fastDelete) {
+          setIsHighlighted(true);
           setFastDelete(true);
-          setDisplayText2("");
-          setIsDeleting2(false);
-          setCurrentWord2(nextWordIndex);
-          timeout = setTimeout(updateText, 100);
+          
+          // Wait a brief moment to show the highlight before deleting
+          timeout = setTimeout(() => {
+            setDisplayText2("");
+            setIsHighlighted(false);
+            setIsDeleting2(false);
+            setCurrentWord2(nextWordIndex);
+          }, 200);
           return;
         }
         
@@ -60,6 +66,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
         }
       } else {
         setFastDelete(false);
+        setIsHighlighted(false);
         if (displayText2.length < currentFullWord.length) {
           setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
           timeout = setTimeout(updateText, 100);
@@ -101,7 +108,11 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
             <span className="text-white">Complete</span>
             &nbsp;ITAM Solutions for&nbsp;
             <span className="relative inline-block min-w-[200px]">
-              <span className="absolute left-0 whitespace-nowrap text-primary opacity-100 transition-opacity duration-300">
+              <span 
+                className={`absolute left-0 whitespace-nowrap text-primary opacity-100 transition-all duration-200 ${
+                  isHighlighted ? 'bg-primary/20 rounded px-1 -mx-1' : ''
+                }`}
+              >
                 {displayText2}
                 <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
               </span>
