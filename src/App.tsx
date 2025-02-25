@@ -16,6 +16,7 @@ import Status from "./pages/Status";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import WhatIsITAM from "./pages/WhatIsITAM";
+import ChatButton from "./components/ChatButton";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ function App() {
             <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <ChatButton />
         </Router>
       </ThemeProvider>
     </QueryClientProvider>
@@ -48,3 +50,4 @@ function App() {
 }
 
 export default App;
+

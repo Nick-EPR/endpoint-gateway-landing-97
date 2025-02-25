@@ -5,7 +5,6 @@ import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 import Hero from "../components/sections/Hero";
 import NavigationProgress from "../components/NavigationProgress";
-import ChatButton from "../components/ChatButton";
 import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
@@ -117,9 +116,9 @@ const Index = () => {
       </main>
 
       <Footer />
-      <ChatButton />
     </div>
   );
 };
 
 export default Index;
+
