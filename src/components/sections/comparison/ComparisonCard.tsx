@@ -2,10 +2,22 @@
 import { Card } from "@/components/ui/card";
 import { Check, Trophy, X } from "lucide-react";
 import { ComparisonItem } from "./types";
+import { cn } from "@/lib/utils";
 
-export const ComparisonCard = ({ item, index }: { item: ComparisonItem; index: number }) => {
+interface ComparisonCardProps {
+  item: ComparisonItem;
+  index: number;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export const ComparisonCard = ({ item, index, className, style }: ComparisonCardProps) => {
   return (
-    <Card key={index} className="p-4 dark:bg-neutral-800/50 dark:border-neutral-700">
+    <Card 
+      key={index} 
+      className={cn("p-4 dark:bg-neutral-800/50 dark:border-neutral-700", className)}
+      style={style}
+    >
       <div className="flex items-center gap-2 mb-3 font-medium border-b pb-2 dark:border-neutral-700 dark:text-neutral-300">
         {item.icon}
         {item.aspect}
