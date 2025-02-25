@@ -1,3 +1,4 @@
+
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { calculateCompoundedSavings } from '@/utils/roiCalculations';
@@ -9,7 +10,7 @@ interface SavingsChartProps {
   showMoreDetails: boolean;
   setShowMoreDetails: (show: boolean) => void;
   onEmployeeChange: (value: number) => void;
-  isEnterprise?: boolean;
+  isEnterprise: boolean;
 }
 
 const formatLargeNumber = (value: number): string => {
@@ -28,7 +29,7 @@ export const SavingsChart = ({
   showMoreDetails, 
   setShowMoreDetails, 
   onEmployeeChange,
-  isEnterprise = true 
+  isEnterprise
 }: SavingsChartProps) => {
   const [chartData, setChartData] = useState<any[]>([]);
   const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
@@ -98,6 +99,8 @@ export const SavingsChart = ({
             isEnterprise={isEnterprise}
             sliderRef={sliderRef}
             onEmployeeChange={onEmployeeChange}
+            onEnterpriseChange={() => {}} // Add empty function as this is handled by parent
+            disabled={false}
           />
         </div>
         
