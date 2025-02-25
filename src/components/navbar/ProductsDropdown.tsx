@@ -1,6 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
+import { useTheme } from "next-themes";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -57,6 +58,9 @@ const ProductItem = ({
 };
 
 const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownProps) => {
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
   if (isMobile) {
     return (
       <div className="flex flex-col space-y-2 pl-4">
@@ -89,13 +93,26 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
     );
   }
 
+  const getLinkClasses = () => {
+    const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
+    
+    if (scrolled) {
+      if (isDark) {
+        return `${baseClasses} text-neutral-200 hover:text-white`;
+      }
+      return `${baseClasses} text-neutral-600 hover:text-primary`;
+    }
+    
+    return `${baseClasses} text-white hover:text-primary`;
+  };
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200 flex items-center gap-1`}>
+      <DropdownMenuTrigger className={getLinkClasses()}>
         Products <ChevronDown size={16} />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white min-w-[200px]">
-        <DropdownMenuItem>
+      <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px]">
+        <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
           <ProductItem
             to="/heliam"
             imgSrc="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
@@ -104,7 +121,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
             HeliAM
           </ProductItem>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
           <ProductItem
             to="/toolbox"
             imgSrc="/lovable-uploads/578da381-52de-48c5-a714-3b9c9015b8a2.png"
@@ -113,7 +130,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
             Toolbox
           </ProductItem>
         </DropdownMenuItem>
-        <DropdownMenuItem>
+        <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
           <ProductItem
             to="/luemin"
             imgSrc="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
