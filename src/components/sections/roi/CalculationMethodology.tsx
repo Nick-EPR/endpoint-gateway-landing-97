@@ -1,4 +1,3 @@
-
 import { Info } from 'lucide-react';
 import { 
   Tooltip,
@@ -65,6 +64,7 @@ export const CalculationMethodology = () => {
         <li>Average device cost: $1,200 with 25% resale value</li>
         <li>Service cost: $180 per device annually</li>
         <li>Average of 1.2 devices per employee</li>
+        <li>Time savings: 4.5 hours saved per device annually through proactive maintenance and reduced downtime</li>
       </ul>
       <p className="mt-2 italic dark:text-neutral-500">
         Note: Actual impact may vary based on device types, usage patterns, and market conditions.

@@ -1,6 +1,6 @@
 
 import { Trend } from "@/utils/roiCalculations";
-import { ArrowUpRight, ArrowDownRight, Info } from "lucide-react";
+import { ArrowUpRight, ArrowDownRight, Info, Leaf, Recycle, DollarSign, Clock } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
 import { 
   Tooltip,
@@ -31,33 +31,19 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     return trend.trend > 0;
   };
 
-  const formatValue = (value: string) => {
-    if (value.endsWith('%')) {
-      return parseFloat(value) + '%';
+  const getIcon = (label: string) => {
+    switch (label) {
+      case "Carbon Reduction":
+        return <Leaf className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+      case "E-Waste Prevention":
+        return <Recycle className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+      case "Estimated ROI":
+        return <DollarSign className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+      case "Hours Saved":
+        return <Clock className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+      default:
+        return null;
     }
-    if (value.startsWith('$')) {
-      return '$' + parseFloat(value.slice(1)).toLocaleString();
-    }
-    return value;
-  };
-
-  const extractNumericValue = (value: string): number => {
-    if (value.endsWith('%')) {
-      return parseFloat(value);
-    }
-    if (value.startsWith('$')) {
-      return parseFloat(value.slice(1).replace(/,/g, ''));
-    }
-    return parseFloat(value);
-  };
-
-  const getUnit = (value: string): string => {
-    // Don't return a unit for cost reduction
-    if (value.startsWith('$')) {
-      return '';
-    }
-    const matches = value.match(/[0-9.,]+\s*(.+)/);
-    return matches ? matches[1].trim() : '';
   };
 
   return (
@@ -71,7 +57,10 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
           return (
             <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50">
               <div className="flex items-start justify-between mb-2">
-                <h4 className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{trend.label}</h4>
+                <div className="flex items-center">
+                  {getIcon(trend.label)}
+                  <h4 className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{trend.label}</h4>
+                </div>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button type="button" className="cursor-help p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-full transition-colors">
