@@ -78,7 +78,7 @@ const formatLargeNumber = (value: number): string => {
     return `${(value / 1000000000000).toFixed(value % 1000000000000 === 0 ? 0 : 1)}T`;
   }
   if (value >= 1000000000) {
-    return `${(value / 1000000000).toFixed(value % 1000000000 === 0 ? 0 : 1)}B`;
+    return `${(value / 1000000000).toFixed(value % 1000000000000 === 0 ? 0 : 1)}B`;
   }
   if (value >= 1000000) {
     return `${(value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1)}M`;
