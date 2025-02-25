@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +34,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting2) {
-        // Slow down deletion speed
+        // Speed up deletion
         const newText = displayText2.slice(0, -1);
         setDisplayText2(newText);
         
@@ -44,19 +43,19 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           setCurrentWord2(nextWordIndex);
         }
         
-        timeout = setTimeout(updateText, 75); // Increased from 50ms to 75ms
+        timeout = setTimeout(updateText, 50); // Decreased from 75ms to 50ms
       } else {
         if (displayText2.length < currentFullWord.length) {
           setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
-          timeout = setTimeout(updateText, 150); // Increased from 100ms to 150ms
+          timeout = setTimeout(updateText, 100); // Decreased from 150ms to 100ms
         } else {
-          // Increase word display duration
-          timeout = setTimeout(() => setIsDeleting2(true), 3000); // Increased from 2000ms to 3000ms
+          // Decrease word display duration
+          timeout = setTimeout(() => setIsDeleting2(true), 2000); // Decreased from 3000ms to 2000ms
         }
       }
     };
 
-    timeout = setTimeout(updateText, 150); // Initial delay increased to match typing speed
+    timeout = setTimeout(updateText, 100); // Initial delay decreased to 100ms
     return () => clearTimeout(timeout);
   }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
 
