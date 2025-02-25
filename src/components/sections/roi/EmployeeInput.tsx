@@ -21,6 +21,10 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     setInputValue(employees.toString());
   }, [employees]);
 
+  const roundToHundred = (value: number): number => {
+    return Math.round(value / 100) * 100;
+  };
+
   const handleModeSwitch = (value: number) => {
     if (value > 300 && !isEnterprise) {
       onEnterpriseChange(true);
@@ -37,8 +41,9 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     const maxValue = isEnterprise ? 10000 : 301;
     
     if (parsedValue >= 1 && parsedValue <= maxValue) {
-      onEmployeeChange(parsedValue);
-      handleModeSwitch(parsedValue);
+      const finalValue = isEnterprise ? roundToHundred(parsedValue) : parsedValue;
+      onEmployeeChange(finalValue);
+      handleModeSwitch(finalValue);
     }
   };
 
@@ -50,6 +55,10 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
     if (parsedValue < 1) validValue = 1;
     if (parsedValue > maxValue) validValue = maxValue;
     
+    if (isEnterprise) {
+      validValue = roundToHundred(validValue);
+    }
+    
     setInputValue(validValue.toString());
     onEmployeeChange(validValue);
     handleModeSwitch(validValue);
@@ -58,9 +67,10 @@ export const EmployeeInput = ({ employees, isEnterprise, sliderRef, onEmployeeCh
   const handleSliderChange = (values: number[]) => {
     if (!isTransitioning) {
       const value = values[0];
-      setInputValue(value.toString());
-      onEmployeeChange(value);
-      handleModeSwitch(value);
+      const finalValue = isEnterprise ? roundToHundred(value) : value;
+      setInputValue(finalValue.toString());
+      onEmployeeChange(finalValue);
+      handleModeSwitch(finalValue);
     }
   };
 
