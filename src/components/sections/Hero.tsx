@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -14,8 +13,6 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   const [currentWord2, setCurrentWord2] = useState(0);
   const [displayText2, setDisplayText2] = useState("");
   const [isDeleting2, setIsDeleting2] = useState(false);
-  const [fastDelete, setFastDelete] = useState(false);
-  const [isHighlighted, setIsHighlighted] = useState(false);
   
   const rotatingWords2 = [
     "Enterprise",
@@ -37,49 +34,30 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting2) {
-        // For longer words (> 6 chars), simulate select-all deletion with highlight
-        if (displayText2.length > 6 && !fastDelete) {
-          setIsHighlighted(true);
-          setFastDelete(true);
-          
-          // Wait a brief moment to show the highlight before deleting
-          timeout = setTimeout(() => {
-            setDisplayText2("");
-            setIsHighlighted(false);
-            setIsDeleting2(false);
-            setCurrentWord2(nextWordIndex);
-            timeout = setTimeout(updateText, 100); // Continue the animation cycle
-          }, 200);
-          return;
+        // Speed up deletion
+        const newText = displayText2.slice(0, -1);
+        setDisplayText2(newText);
+        
+        if (newText === "") {
+          setIsDeleting2(false);
+          setCurrentWord2(nextWordIndex);
         }
         
-        // Normal character-by-character deletion for short words
-        if (!fastDelete) {
-          const newText = displayText2.slice(0, -1);
-          setDisplayText2(newText);
-          
-          if (newText === "") {
-            setIsDeleting2(false);
-            setCurrentWord2(nextWordIndex);
-          }
-          
-          timeout = setTimeout(updateText, 50);
-        }
+        timeout = setTimeout(updateText, 50); // Decreased from 75ms to 50ms
       } else {
-        setFastDelete(false);
-        setIsHighlighted(false);
         if (displayText2.length < currentFullWord.length) {
           setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
-          timeout = setTimeout(updateText, 100);
+          timeout = setTimeout(updateText, 100); // Decreased from 150ms to 100ms
         } else {
-          timeout = setTimeout(() => setIsDeleting2(true), 2000);
+          // Decrease word display duration
+          timeout = setTimeout(() => setIsDeleting2(true), 2000); // Decreased from 3000ms to 2000ms
         }
       }
     };
 
-    timeout = setTimeout(updateText, 100);
+    timeout = setTimeout(updateText, 100); // Initial delay decreased to 100ms
     return () => clearTimeout(timeout);
-  }, [displayText2, isDeleting2, currentWord2, rotatingWords2, fastDelete]);
+  }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
 
   const scrollToROI = () => {
     const roiSection = document.getElementById('roi-calculator');
@@ -109,11 +87,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
             <span className="text-white">Complete</span>
             &nbsp;ITAM Solutions for&nbsp;
             <span className="relative inline-block min-w-[200px]">
-              <span 
-                className={`absolute left-0 whitespace-nowrap text-primary opacity-100 transition-all duration-200 ${
-                  isHighlighted ? 'bg-primary/20 rounded px-1 -mx-1' : ''
-                }`}
-              >
+              <span className="absolute left-0 whitespace-nowrap text-primary opacity-100 transition-opacity duration-300">
                 {displayText2}
                 <span className="animate-pulse text-primary inline-block align-bottom w-[1px]">|</span>
               </span>
