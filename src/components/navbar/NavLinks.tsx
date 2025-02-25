@@ -1,5 +1,6 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useTheme } from "next-themes";
 
 interface NavLinksProps {
   scrolled: boolean;
@@ -7,25 +8,43 @@ interface NavLinksProps {
 }
 
 const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
+  const location = useLocation();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+
+  const getLinkClasses = (path: string) => {
+    const isActive = location.pathname === path;
+    const baseClasses = 'transition-colors duration-200';
+    
+    if (scrolled) {
+      if (isDark) {
+        return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+      }
+      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+    }
+    
+    return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
+  };
+
   return (
     <>
       <Link 
         to="/security" 
-        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+        className={getLinkClasses('/security')}
         onClick={onClose}
       >
         Security
       </Link>
       <Link 
         to="/mission" 
-        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+        className={getLinkClasses('/mission')}
         onClick={onClose}
       >
         Mission
       </Link>
       <Link 
         to="/contact" 
-        className={`${scrolled ? 'text-neutral-600' : 'text-white'} hover:text-primary transition-colors duration-200`}
+        className={getLinkClasses('/contact')}
         onClick={onClose}
       >
         Contact

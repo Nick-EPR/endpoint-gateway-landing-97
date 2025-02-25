@@ -1,7 +1,7 @@
 
 import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Moon, Sun } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { NavbarProps } from "./types";
 import Logo from "./Logo";
 import ProductsDropdown from "./ProductsDropdown";
@@ -15,12 +15,22 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [isFeatureActive, setIsFeatureActive] = useState(false);
+
+  useEffect(() => {
+    // Check if we're on the homepage and if the URL contains #features
+    const isOnFeatures = location.pathname === '/' && location.hash === '#features';
+    setIsFeatureActive(isOnFeatures);
+  }, [location]);
 
   const handleNavigation = (sectionId: string) => {
     if (location.pathname === '/') {
       const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+        // Update URL with hash
+        window.history.pushState(null, '', `#${sectionId}`);
+        setIsFeatureActive(sectionId === 'features');
       }
     } else {
       navigate('/', { state: { scrollTo: sectionId } });
@@ -30,6 +40,19 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
 
   const isWhiteBackground = scrolled || location.pathname === '/what-is-itam';
   const isDark = theme === 'dark';
+
+  const getFeaturesClasses = () => {
+    const baseClasses = 'transition-colors duration-200';
+    
+    if (isWhiteBackground) {
+      if (isDark) {
+        return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+      }
+      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+    }
+    
+    return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
+  };
 
   return (
     <header 
@@ -51,13 +74,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             <ProductsDropdown scrolled={isWhiteBackground} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${
-                isWhiteBackground 
-                  ? isDark 
-                    ? 'text-neutral-200 hover:text-white' 
-                    : 'text-neutral-600 hover:text-primary'
-                  : 'text-white'
-              } transition-colors duration-200`}
+              className={getFeaturesClasses()}
             >
               Features
             </button>
