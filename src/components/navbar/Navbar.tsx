@@ -29,6 +29,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   const isWhiteBackground = scrolled || location.pathname === '/what-is-itam';
+  const isDark = theme === 'dark';
 
   return (
     <header 
@@ -36,7 +37,11 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
       onMouseEnter={onMouseEnter}
     >
       <div className={`transition-all duration-300 ${
-        isWhiteBackground ? 'bg-white dark:bg-neutral-900 shadow-sm' : 'bg-transparent'
+        isWhiteBackground 
+          ? isDark 
+            ? 'bg-neutral-900 border-b border-neutral-800' 
+            : 'bg-white shadow-sm' 
+          : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Logo scrolled={isWhiteBackground} />
@@ -46,7 +51,13 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             <ProductsDropdown scrolled={isWhiteBackground} />
             <button 
               onClick={() => handleNavigation('features')} 
-              className={`${isWhiteBackground ? 'text-neutral-600 dark:text-neutral-200' : 'text-white'} hover:text-primary transition-colors duration-200`}
+              className={`${
+                isWhiteBackground 
+                  ? isDark 
+                    ? 'text-neutral-200 hover:text-white' 
+                    : 'text-neutral-600 hover:text-primary'
+                  : 'text-white'
+              } transition-colors duration-200`}
             >
               Features
             </button>
@@ -54,7 +65,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(isDark ? "light" : "dark")}
               className={`${isWhiteBackground ? '' : 'text-white'} hover:bg-transparent`}
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -76,7 +87,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(isDark ? "light" : "dark")}
               className={`${isWhiteBackground ? '' : 'text-white'} hover:bg-transparent`}
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -85,7 +96,13 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             </Button>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`p-2 ${isWhiteBackground ? 'text-neutral-600 dark:text-white' : 'text-white'} hover:text-primary`}
+              className={`p-2 ${
+                isWhiteBackground 
+                  ? isDark 
+                    ? 'text-white' 
+                    : 'text-neutral-600'
+                  : 'text-white'
+              } hover:text-primary`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
