@@ -93,7 +93,7 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
     {
       label: "E-Waste Prevention",
       value: `${environmentalImpact.ewasteReduced} kg`,
-      trend: -35,
+      trend: 35,
       tooltip: "Annual reduction in e-waste through device lifecycle extension and repair"
     },
     {
