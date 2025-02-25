@@ -1,7 +1,7 @@
 
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Lightbulb, Award, Shield, Heart } from "lucide-react";
+import { Lightbulb, Award, Shield, Heart, Users } from "lucide-react";
 import Navbar from "../components/navbar/Navbar";
 import ContactHero from "../components/contact/ContactHero";
 import LeadershipCard from "../components/contact/LeadershipCard";
@@ -101,6 +101,7 @@ const Contact = () => {
       <section className="relative section-padding bg-background border-t border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
+            <Users className="w-12 h-12 text-primary mx-auto mb-4" />
             <h2 className="text-3xl font-bold mb-8 text-foreground">Our Leadership Values</h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="p-6 bg-card rounded-xl border border-border">
