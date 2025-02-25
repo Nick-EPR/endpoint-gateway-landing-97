@@ -16,7 +16,7 @@ const badgeStyles = "absolute top-2 right-2 text-xs px-1.5 py-0.5 rounded-full l
 const badgeLightStyles = "bg-neutral-100/80 text-neutral-600";
 const badgeDarkStyles = "dark:bg-neutral-800/80 dark:text-neutral-400";
 
-const iconContainerStyles = "w-10 h-10 rounded-lg flex items-center justify-center mb-3 animate-fade-up";
+const iconContainerStyles = "w-10 h-10 rounded-lg flex items-center justify-center mb-3";
 const iconLightStyles = "bg-neutral-50/90";
 const iconDarkStyles = "dark:bg-neutral-800/60";
 
@@ -55,14 +55,12 @@ export const FeatureCard = memo(({
         {icon}
       </div>
       <h3 
-        className="text-lg font-semibold mb-1.5 glass-text animate-fade-up" 
-        style={{ animationDelay: '50ms' }}
+        className="text-lg font-semibold mb-1.5 glass-text"
       >
         {title}
       </h3>
       <p 
-        className="glass-text-subtle text-sm animate-fade-up" 
-        style={{ animationDelay: '100ms' }}
+        className="glass-text-subtle text-sm"
       >
         {description}
       </p>
