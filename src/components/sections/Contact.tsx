@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -183,13 +182,7 @@ const Contact = () => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className={cn(
-                    "px-8 py-4 rounded-lg text-lg font-semibold",
-                    "bg-primary text-white",
-                    "hover:opacity-90 transition-opacity",
-                    "disabled:opacity-50 disabled:cursor-not-allowed",
-                    "dark:bg-primary-foreground dark:text-primary"
-                  )}
+                  className="bg-[#93C851] text-white px-8 py-4 rounded-lg hover:bg-[#84b449] transition-colors duration-200 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "Sending..." : "Schedule a Consultation"}
                 </button>
