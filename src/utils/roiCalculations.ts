@@ -97,13 +97,13 @@ export const calculateTrends = (employeeCount: number): Trend[] => {
       tooltip: "Annual reduction in e-waste through device lifecycle extension and repair"
     },
     {
-      label: "Estimated Annual ROI",
+      label: "Estimated ROI",
       value: `$${annualSavings}`,
       trend: 30,
       tooltip: "Expected annual return on investment in dollars"
     },
     {
-      label: "Hours Saved Annually",
+      label: "Hours Saved",
       value: `${hoursSaved} hrs`,
       trend: 25,
       tooltip: "Annual time savings through reduced device downtime, faster repairs, and proactive maintenance"
