@@ -88,7 +88,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
                 </Tooltip>
               </div>
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-neutral-900 dark:text-white">
+                <span className="text-xl font-bold text-neutral-900 dark:text-white">
                   {trend.value.startsWith('$') ? '$' : ''}
                   {animatedValue.toLocaleString()}
                   {trend.value.endsWith('%') ? '%' : ''}
