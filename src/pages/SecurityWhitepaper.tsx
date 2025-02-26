@@ -8,6 +8,49 @@ import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
+const sections = [
+  {
+    icon: <Lock className="w-6 h-6 text-primary" />,
+    title: "Data Encryption",
+    description: "Enterprise-grade encryption for data in transit and at rest, ensuring your sensitive information remains protected throughout the asset lifecycle."
+  },
+  {
+    icon: <FileCheck className="w-6 h-6 text-primary" />,
+    title: "Data Sanitization",
+    description: "DoD-standard data wiping and certified hard drive destruction services, providing complete data security and peace of mind."
+  },
+  {
+    icon: <Shield className="w-6 h-6 text-primary" />,
+    title: "Compliance Standards",
+    description: "ISO27001:2022 compliant processes and R2v3-certified partnerships, maintaining the highest standards in data security and environmental responsibility."
+  },
+  {
+    icon: <Building2 className="w-6 h-6 text-primary" />,
+    title: "Physical Security",
+    description: "24/7 surveillance and monitored facilities ensuring the physical security of your IT assets throughout the management process."
+  },
+  {
+    icon: <ScrollText className="w-6 h-6 text-primary" />,
+    title: "Chain of Custody",
+    description: "Complete documentation and tracking of all assets, reducing liability and ensuring accountability at every step."
+  },
+  {
+    icon: <Users className="w-6 h-6 text-primary" />,
+    title: "Employee Training",
+    description: "Comprehensive security training programs ensuring all staff follow strict security protocols and compliance requirements."
+  },
+  {
+    icon: <AlertTriangle className="w-6 h-6 text-primary" />,
+    title: "Incident Response",
+    description: "Robust incident response procedures and regular security audits to quickly address and prevent security concerns."
+  },
+  {
+    icon: <FileKey className="w-6 h-6 text-primary" />,
+    title: "Data Privacy",
+    description: "Full compliance with GDPR, CCPA, and other data privacy regulations, protecting your organization's sensitive information."
+  }
+];
+
 const SecurityWhitepaper = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -41,16 +84,16 @@ const SecurityWhitepaper = () => {
     try {
       const { error: dbError } = await supabase
         .from('whitepaper_downloads')
-        .insert([formData]);
+        .insert({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+        });
 
       if (dbError) throw dbError;
 
       const { error: emailError } = await supabase.functions.invoke('send-whitepaper', {
-        body: {
-          name: formData.name,
-          email: formData.email,
-          company: formData.company
-        }
+        body: formData
       });
 
       if (emailError) throw emailError;
@@ -77,49 +120,6 @@ const SecurityWhitepaper = () => {
       setIsLoading(false);
     }
   };
-
-  const sections = [
-    {
-      icon: <Lock className="w-6 h-6 text-primary" />,
-      title: "Data Encryption",
-      description: "Enterprise-grade encryption for data in transit and at rest, ensuring your sensitive information remains protected throughout the asset lifecycle."
-    },
-    {
-      icon: <FileCheck className="w-6 h-6 text-primary" />,
-      title: "Data Sanitization",
-      description: "DoD-standard data wiping and certified hard drive destruction services, providing complete data security and peace of mind."
-    },
-    {
-      icon: <Shield className="w-6 h-6 text-primary" />,
-      title: "Compliance Standards",
-      description: "ISO27001:2022 compliant processes and R2v3-certified partnerships, maintaining the highest standards in data security and environmental responsibility."
-    },
-    {
-      icon: <Building2 className="w-6 h-6 text-primary" />,
-      title: "Physical Security",
-      description: "24/7 surveillance and monitored facilities ensuring the physical security of your IT assets throughout the management process."
-    },
-    {
-      icon: <ScrollText className="w-6 h-6 text-primary" />,
-      title: "Chain of Custody",
-      description: "Complete documentation and tracking of all assets, reducing liability and ensuring accountability at every step."
-    },
-    {
-      icon: <Users className="w-6 h-6 text-primary" />,
-      title: "Employee Training",
-      description: "Comprehensive security training programs ensuring all staff follow strict security protocols and compliance requirements."
-    },
-    {
-      icon: <AlertTriangle className="w-6 h-6 text-primary" />,
-      title: "Incident Response",
-      description: "Robust incident response procedures and regular security audits to quickly address and prevent security concerns."
-    },
-    {
-      icon: <FileKey className="w-6 h-6 text-primary" />,
-      title: "Data Privacy",
-      description: "Full compliance with GDPR, CCPA, and other data privacy regulations, protecting your organization's sensitive information."
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-white">
