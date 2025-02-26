@@ -32,7 +32,6 @@ const SecurityWhitepaper = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would handle the form submission and whitepaper download
     console.log("Form submitted:", formData);
   };
 
@@ -200,9 +199,11 @@ const SecurityWhitepaper = () => {
                   Schedule a Consultation
                 </Button>
               </Link>
-              <Button variant="outline" className="w-full sm:w-auto">
-                Request Pricing
-              </Button>
+              <Link to="/contact">
+                <Button variant="outline" className="w-full sm:w-auto">
+                  Request Pricing
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
