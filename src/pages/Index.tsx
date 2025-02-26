@@ -1,65 +1,102 @@
 
-import { useEffect, useRef, useState, Suspense } from "react";
+import { useEffect, useRef, useState, Suspense, lazy, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
-import Hero from "../components/sections/Hero";
 import NavigationProgress from "../components/NavigationProgress";
 import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { sections } from "./sections";
 
+// Lazily load the Hero component since it's above the fold
+const Hero = lazy(() => import("@/components/sections/Hero"));
+
+// Create a memoized section wrapper component
+const SectionWrapper = memo(({ className, children }: { className: string; children: React.ReactNode }) => (
+  <section className={className}>
+    {children}
+  </section>
+));
+
+SectionWrapper.displayName = "SectionWrapper";
+
+// Create a memoized loading component
+const SectionLoading = memo(() => (
+  <div className="flex items-center justify-center min-h-[200px]">
+    <LoadingSpinner />
+  </div>
+));
+
+SectionLoading.displayName = "SectionLoading";
+
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
   
+  // Optimize the monitor query with better caching
   const { data: monitors } = useQuery({
     queryKey: ['monitors'],
     queryFn: fetchMonitors,
     refetchInterval: 60000,
     staleTime: 55000,
+    cacheTime: 120000, // Cache results for 2 minutes
   });
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
+  // Optimize scroll handler with debouncing
   useEffect(() => {
+    let timeoutId: number;
+    
     const handleScroll = () => {
-      requestAnimationFrame(() => {
+      if (timeoutId) {
+        cancelAnimationFrame(timeoutId);
+      }
+      
+      timeoutId = requestAnimationFrame(() => {
         setScrolled(window.scrollY > 0);
       });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId) {
+        cancelAnimationFrame(timeoutId);
+      }
+    };
   }, []);
 
+  // Optimize intersection observer
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(entries => {
+    const options = {
+      threshold: 0.1,
+      rootMargin: '50px'
+    };
+
+    const callback: IntersectionObserverCallback = (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add("animate-fade-up");
           observerRef.current?.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '50px'
-    });
+    };
 
-    document.querySelectorAll(".animate-on-scroll").forEach(element => {
+    observerRef.current = new IntersectionObserver(callback, options);
+
+    const elements = document.querySelectorAll(".animate-on-scroll");
+    elements.forEach(element => {
       observerRef.current?.observe(element);
     });
 
     return () => observerRef.current?.disconnect();
   }, []);
 
+  // Memoize the renderSection function
   const renderSection = (Component: React.ComponentType) => (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-[200px]">
-        <LoadingSpinner />
-      </div>
-    }>
+    <Suspense fallback={<SectionLoading />}>
       <Component />
     </Suspense>
   );
@@ -75,44 +112,46 @@ const Index = () => {
         </div>
       )}
       
-      <Hero 
-        title="Comprehensive ITAM Solutions for Your Enterprise" 
-        subtitle="Transform your IT asset management with our end-to-end solution" 
-        buttonText="Get Started" 
-      />
+      <Suspense fallback={<SectionLoading />}>
+        <Hero 
+          title="Comprehensive ITAM Solutions for Your Enterprise" 
+          subtitle="Transform your IT asset management with our end-to-end solution" 
+          buttonText="Get Started" 
+        />
+      </Suspense>
 
       <main>
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
           {renderSection(sections.products)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           {renderSection(sections.features)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
           {renderSection(sections.comparison)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           {renderSection(sections.tmobile)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
           {renderSection(sections.partners)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
           {renderSection(sections.roi)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
           {renderSection(sections.partnership)}
-        </section>
+        </SectionWrapper>
 
-        <section className="bg-neutral-light dark:bg-neutral-800">
+        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800">
           {renderSection(sections.contact)}
-        </section>
+        </SectionWrapper>
       </main>
 
       <Footer />
@@ -121,4 +160,3 @@ const Index = () => {
 };
 
 export default Index;
-
