@@ -5,9 +5,13 @@ import Footer from "@/components/Footer";
 import { Shield, Lock, FileCheck, Building2, Users, AlertTriangle, FileKey, ScrollText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase } from "@/integrations/supabase/client";
+import { useToast } from "@/hooks/use-toast";
 
 const SecurityWhitepaper = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,9 +34,48 @@ const SecurityWhitepaper = () => {
     setIsScrolled(true);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setIsLoading(true);
+
+    try {
+      const { error: dbError } = await supabase
+        .from('whitepaper_downloads')
+        .insert([formData]);
+
+      if (dbError) throw dbError;
+
+      const { error: emailError } = await supabase.functions.invoke('send-whitepaper', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company
+        }
+      });
+
+      if (emailError) throw emailError;
+
+      toast({
+        title: "Success!",
+        description: "The whitepaper has been sent to your email.",
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+      });
+
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      toast({
+        title: "Error",
+        description: "There was a problem sending the whitepaper. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const sections = [
@@ -82,7 +125,6 @@ const SecurityWhitepaper = () => {
     <div className="min-h-screen bg-white">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
 
-      {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-4">
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/70 backdrop-blur-[2px] z-10"></div>
@@ -104,7 +146,6 @@ const SecurityWhitepaper = () => {
         </div>
       </section>
 
-      {/* Introduction Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
@@ -117,7 +158,6 @@ const SecurityWhitepaper = () => {
         </div>
       </section>
 
-      {/* Key Sections Grid */}
       <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -136,7 +176,6 @@ const SecurityWhitepaper = () => {
         </div>
       </section>
 
-      {/* Download Form Section */}
       <section className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-xl mx-auto bg-neutral-50 p-8 rounded-xl">
@@ -154,6 +193,7 @@ const SecurityWhitepaper = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
+                  disabled={isLoading}
                 />
               </div>
               <div>
@@ -163,6 +203,7 @@ const SecurityWhitepaper = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
+                  disabled={isLoading}
                 />
               </div>
               <div>
@@ -172,17 +213,21 @@ const SecurityWhitepaper = () => {
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                   required
+                  disabled={isLoading}
                 />
               </div>
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90">
-                Download Whitepaper
+              <Button 
+                type="submit" 
+                className="w-full bg-primary hover:bg-primary/90"
+                disabled={isLoading}
+              >
+                {isLoading ? "Sending..." : "Download Whitepaper"}
               </Button>
             </form>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-16 bg-neutral-50">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
