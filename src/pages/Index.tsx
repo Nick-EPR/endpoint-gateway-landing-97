@@ -40,7 +40,7 @@ const Index = () => {
     queryFn: fetchMonitors,
     refetchInterval: 60000,
     staleTime: 55000,
-    cacheTime: 120000, // Cache results for 2 minutes
+    gcTime: 120000, // Changed from cacheTime to gcTime for v5 compatibility
   });
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
