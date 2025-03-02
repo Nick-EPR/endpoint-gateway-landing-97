@@ -45,7 +45,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     setIsMenuOpen(false);
   };
 
-  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam';
+  // Always treat the status page as having a white background, regardless of scroll position
+  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status';
   // Only access theme after component has mounted to prevent hydration mismatch
   const isDark = mounted ? theme === 'dark' : false;
 

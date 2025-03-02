@@ -17,6 +17,9 @@ const Logo = ({ scrolled }: LogoProps) => {
     }
   };
 
+  // Always use appropriate logo for scrolled state on status page
+  const isScrolledView = scrolled || location.pathname === '/status';
+  
   // Dark mode logo for transparent navbar
   const darkModeLogo = theme === 'dark' ? "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" : "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
 
@@ -27,14 +30,14 @@ const Logo = ({ scrolled }: LogoProps) => {
           src={darkModeLogo}
           alt="Lifetime EndPoint Resources"
           className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 ${
-            scrolled ? 'opacity-100' : 'opacity-0'
+            isScrolledView ? 'opacity-100' : 'opacity-0'
           }`}
         />
         <img 
           src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png"
           alt="Lifetime EndPoint Resources"
           className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 ${
-            scrolled ? 'opacity-0' : 'opacity-100'
+            isScrolledView ? 'opacity-0' : 'opacity-100'
           }`}
         />
       </Link>
