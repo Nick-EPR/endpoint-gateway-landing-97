@@ -8,6 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 interface ProductsDropdownProps {
   scrolled: boolean;
@@ -62,7 +68,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   const isDark = theme === 'dark';
 
   const navigateToProductsSection = (e: React.MouseEvent) => {
-    // Prevent the dropdown from opening when clicking on the trigger
+    // Prevent default behavior
     e.preventDefault();
     e.stopPropagation();
 
@@ -133,28 +139,33 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   };
 
   return (
-    <div className="relative">
-      <button 
-        className={getLinkClasses()} 
-        onClick={navigateToProductsSection}
-      >
-        Products <ChevronDown size={16} />
-      </button>
-      
+    <div className="relative flex items-center">
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button 
+              className={`${getLinkClasses()} mr-1`}
+              onClick={navigateToProductsSection}
+            >
+              Products
+            </button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>View all products</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button 
-            className={getLinkClasses()} 
-            onClick={(e) => {
-              // This prevents the click from navigating and only opens the dropdown
-              e.preventDefault();
-              e.stopPropagation();
-            }}
+            className={`${getLinkClasses()} p-1`}
+            aria-label="Products dropdown"
           >
-            <span className="sr-only">Products Menu</span>
+            <ChevronDown size={16} />
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px]">
+        <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px] z-50">
           <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
             <ProductItem
               to="/heliam"
