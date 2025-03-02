@@ -14,7 +14,7 @@ import {
   BarChart,
   List,
   Target,
-  Tool
+  Settings
 } from "lucide-react";
 import { ToolboxFeature, FeatureCategory, CategoryTab } from "./types";
 import { cn } from "@/lib/utils";
@@ -51,7 +51,7 @@ const FeaturesSection = () => {
       category: 'repair'
     },
     {
-      icon: <Tool className="w-6 h-6 text-primary" />,
+      icon: <Settings className="w-6 h-6 text-primary" />,
       title: "Diagnostic Tools",
       description: "Access comprehensive diagnostic utilities for accurate problem identification and repair validation.",
       category: 'repair'
