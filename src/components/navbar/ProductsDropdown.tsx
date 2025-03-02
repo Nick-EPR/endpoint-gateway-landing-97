@@ -61,7 +61,13 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
-  const navigateToProductsSection = () => {
+  const navigateToProductsSection = (e?: React.MouseEvent) => {
+    // Prevent the dropdown from opening when clicking on the trigger
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
     // Navigate to home page and scroll to solutions section
     if (window.location.pathname !== '/') {
       window.location.href = '/#solutions';
@@ -72,6 +78,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
         solutionsSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
+    
     // Call original onClick if provided
     if (onItemClick) onItemClick();
   };
@@ -129,8 +136,13 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={getLinkClasses()} onClick={navigateToProductsSection}>
-        Products <ChevronDown size={16} />
+      <DropdownMenuTrigger asChild>
+        <button 
+          className={getLinkClasses()} 
+          onClick={navigateToProductsSection}
+        >
+          Products <ChevronDown size={16} />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px]">
         <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
