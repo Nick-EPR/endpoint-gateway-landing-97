@@ -61,12 +61,10 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
-  const navigateToProductsSection = (e?: React.MouseEvent) => {
+  const navigateToProductsSection = (e: React.MouseEvent) => {
     // Prevent the dropdown from opening when clicking on the trigger
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+    e.preventDefault();
+    e.stopPropagation();
 
     // Navigate to home page and scroll to solutions section
     if (window.location.pathname !== '/') {
@@ -135,46 +133,59 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button 
-          className={getLinkClasses()} 
-          onClick={navigateToProductsSection}
-        >
-          Products <ChevronDown size={16} />
-        </button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px]">
-        <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
-          <ProductItem
-            to="/heliam"
-            imgSrc="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
-            alt="HeliAM Logo"
+    <div className="relative">
+      <button 
+        className={getLinkClasses()} 
+        onClick={navigateToProductsSection}
+      >
+        Products <ChevronDown size={16} />
+      </button>
+      
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button 
+            className={getLinkClasses()} 
+            onClick={(e) => {
+              // This prevents the click from navigating and only opens the dropdown
+              e.preventDefault();
+              e.stopPropagation();
+            }}
           >
-            HeliAM
-          </ProductItem>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
-          <ProductItem
-            to="/toolbox"
-            imgSrc="/lovable-uploads/578da381-52de-48c5-a714-3b9c9015b8a2.png"
-            alt="Toolbox Icon"
-          >
-            Toolbox
-          </ProductItem>
-        </DropdownMenuItem>
-        <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
-          <ProductItem
-            to="/luemin"
-            imgSrc="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
-            alt="Luemin Logo"
-            comingSoon={true}
-          >
-            Luemin
-          </ProductItem>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+            <span className="sr-only">Products Menu</span>
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px]">
+          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
+            <ProductItem
+              to="/heliam"
+              imgSrc="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
+              alt="HeliAM Logo"
+            >
+              HeliAM
+            </ProductItem>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
+            <ProductItem
+              to="/toolbox"
+              imgSrc="/lovable-uploads/578da381-52de-48c5-a714-3b9c9015b8a2.png"
+              alt="Toolbox Icon"
+            >
+              Toolbox
+            </ProductItem>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
+            <ProductItem
+              to="/luemin"
+              imgSrc="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
+              alt="Luemin Logo"
+              comingSoon={true}
+            >
+              Luemin
+            </ProductItem>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </div>
   );
 };
 
