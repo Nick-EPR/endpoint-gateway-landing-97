@@ -61,9 +61,30 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 
+  const navigateToProductsSection = () => {
+    // Navigate to home page and scroll to solutions section
+    if (window.location.pathname !== '/') {
+      window.location.href = '/#solutions';
+    } else {
+      // If already on home page, just scroll to the section
+      const solutionsSection = document.getElementById('solutions');
+      if (solutionsSection) {
+        solutionsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    // Call original onClick if provided
+    if (onItemClick) onItemClick();
+  };
+
   if (isMobile) {
     return (
       <div className="flex flex-col space-y-2 pl-4">
+        <div 
+          className="flex items-center gap-2 cursor-pointer text-primary"
+          onClick={navigateToProductsSection}
+        >
+          All Products
+        </div>
         <ProductItem
           to="/heliam"
           imgSrc="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
@@ -108,7 +129,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={getLinkClasses()}>
+      <DropdownMenuTrigger className={getLinkClasses()} onClick={navigateToProductsSection}>
         Products <ChevronDown size={16} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px]">
