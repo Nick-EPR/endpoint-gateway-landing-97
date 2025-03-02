@@ -102,13 +102,13 @@ const Toolbox = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-neutral-900">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4">
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/75 to-black/60 backdrop-blur-[3px] z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/75 to-black/60 backdrop-blur-[3px] z-10 dark:from-black/95 dark:via-black/85 dark:to-black/70"></div>
           <img 
             src={warehouseImage}
             alt="Warehouse Operations"
@@ -137,26 +137,26 @@ const Toolbox = () => {
       </section>
 
       {/* Key Features Section */}
-      <section className="py-24 bg-neutral-50">
+      <section className="py-24 bg-neutral-50 dark:bg-neutral-800/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Comprehensive Repair Management</h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 dark:text-white">Comprehensive Repair Management</h2>
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
               Streamline your repair operations with our integrated suite of tools designed for modern IT asset management.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {features.map((feature, index) => (
-              <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-shadow">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent"></div>
+              <Card key={index} className="relative overflow-hidden group hover:shadow-lg transition-shadow dark:bg-neutral-800/50 dark:border-neutral-700/50">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent dark:from-primary/10"></div>
                 <CardContent className="p-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-primary/10 rounded-lg">
+                    <div className="p-2 bg-primary/10 dark:bg-primary/20 rounded-lg">
                       {feature.icon}
                     </div>
-                    <h3 className="text-xl font-semibold">{feature.title}</h3>
+                    <h3 className="text-xl font-semibold dark:text-white">{feature.title}</h3>
                   </div>
-                  <p className="text-neutral-600">{feature.description}</p>
+                  <p className="text-neutral-600 dark:text-neutral-300">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -165,25 +165,25 @@ const Toolbox = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-white dark:bg-neutral-900">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold mb-4">Proven Results</h2>
-              <p className="text-lg text-neutral-600">
+              <h2 className="text-3xl font-bold mb-4 dark:text-white">Proven Results</h2>
+              <p className="text-lg text-neutral-600 dark:text-neutral-300">
                 Our customers achieve significant improvements in their repair operations
               </p>
             </div>
             <div className="grid md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">
-                  <div className="inline-flex p-3 rounded-lg bg-primary/5 mb-4">
+                  <div className="inline-flex p-3 rounded-lg bg-primary/5 dark:bg-primary/10 mb-4">
                     {stat.icon}
                   </div>
-                  <div className="text-3xl font-bold text-neutral-900 mb-2">
+                  <div className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                     {stat.value}
                   </div>
-                  <p className="text-neutral-600">{stat.label}</p>
+                  <p className="text-neutral-600 dark:text-neutral-300">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -192,15 +192,15 @@ const Toolbox = () => {
       </section>
 
       {/* Integration Section */}
-      <section className="py-24 bg-neutral-50">
+      <section className="py-24 bg-neutral-50 dark:bg-neutral-800/30">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Seamless HeliAM Integration</h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
+          <h2 className="text-3xl font-bold mb-6 dark:text-white">Seamless HeliAM Integration</h2>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto mb-8">
             Connect your physical asset operations directly with HeliAM for complete visibility and control over your device lifecycle.
           </p>
           <div className="flex justify-center gap-4">
             <Link to="/heliam">
-              <Button variant="outline" className="group">
+              <Button variant="outline" className="group dark:text-white dark:border-neutral-700">
                 Learn About HeliAM
                 <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Button>

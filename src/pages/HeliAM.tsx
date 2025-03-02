@@ -92,13 +92,13 @@ const HeliAM = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-neutral-900">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-24 px-4">
         <div className="absolute inset-0 w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10 dark:from-black/90 dark:via-black/80 dark:to-black/70"></div>
           <img 
             src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
             alt="Modern Warehouse Asset Management"
@@ -136,19 +136,19 @@ const HeliAM = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-neutral-900">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <div className="grid md:grid-cols-3 gap-8">
               {stats.map((stat, index) => (
-                <div key={index} className="text-center p-6 rounded-xl bg-neutral-50">
-                  <div className="inline-flex p-3 rounded-lg bg-primary/5 mb-4">
+                <div key={index} className="text-center p-6 rounded-xl bg-neutral-50 dark:bg-neutral-800/50">
+                  <div className="inline-flex p-3 rounded-lg bg-primary/5 dark:bg-primary/10 mb-4">
                     {stat.icon}
                   </div>
-                  <div className="text-3xl font-bold text-neutral-900 mb-2">
+                  <div className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
                     {stat.value}
                   </div>
-                  <p className="text-neutral-600">{stat.label}</p>
+                  <p className="text-neutral-600 dark:text-neutral-300">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -157,24 +157,24 @@ const HeliAM = () => {
       </section>
 
       {/* Features Grid */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-16 bg-neutral-50 dark:bg-neutral-800/30">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Comprehensive Asset Management</h2>
-            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 dark:text-white">Comprehensive Asset Management</h2>
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
               Everything you need to manage your IT assets throughout their entire lifecycle
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {features.map((Feature, index) => (
-              <div key={index} className="p-6 bg-white rounded-xl hover:shadow-lg transition-all group">
+              <div key={index} className="p-6 bg-white dark:bg-neutral-800/50 rounded-xl hover:shadow-lg transition-all group dark:shadow-black/5">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="p-2 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors">
                     <Feature.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-semibold">{Feature.title}</h3>
+                  <h3 className="text-xl font-semibold dark:text-white">{Feature.title}</h3>
                 </div>
-                <p className="text-neutral-600">{Feature.description}</p>
+                <p className="text-neutral-600 dark:text-neutral-300">{Feature.description}</p>
               </div>
             ))}
           </div>
@@ -182,16 +182,16 @@ const HeliAM = () => {
       </section>
 
       {/* Toolbox Integration */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white dark:bg-neutral-900">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
-            <div className="p-8 bg-primary/5 rounded-xl">
-              <h3 className="text-2xl font-semibold mb-4">Enhanced with Toolbox</h3>
-              <p className="text-neutral-600 mb-6">
+            <div className="p-8 bg-primary/5 dark:bg-primary/10 rounded-xl">
+              <h3 className="text-2xl font-semibold mb-4 dark:text-white">Enhanced with Toolbox</h3>
+              <p className="text-neutral-600 dark:text-neutral-300 mb-6">
                 Leverage Toolbox's powerful features within HeliAM to optimize asset tracking, security, and management throughout the lifecycle.
               </p>
               <Link to="/toolbox">
-                <Button variant="outline" className="group">
+                <Button variant="outline" className="group dark:text-white dark:border-neutral-700">
                   Explore Toolbox Features
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -202,10 +202,10 @@ const HeliAM = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-neutral-50">
+      <section className="py-16 bg-neutral-50 dark:bg-neutral-800/30">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your IT Asset Management?</h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto mb-8">
+          <h2 className="text-3xl font-bold mb-6 dark:text-white">Ready to Transform Your IT Asset Management?</h2>
+          <p className="text-lg text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto mb-8">
             Join leading organizations that trust HeliAM for their IT asset lifecycle management.
           </p>
           <div className="flex justify-center gap-4">
@@ -213,7 +213,7 @@ const HeliAM = () => {
               <Button size="lg">Schedule Platform Demo</Button>
             </Link>
             <Link to="/contact">
-              <Button variant="outline" size="lg">Request Platform Pricing</Button>
+              <Button variant="outline" size="lg" className="dark:text-white dark:border-neutral-700">Request Platform Pricing</Button>
             </Link>
           </div>
         </div>
