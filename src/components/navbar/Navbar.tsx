@@ -16,6 +16,13 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const [isFeatureActive, setIsFeatureActive] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // This useEffect ensures components using theme are only rendered after mount
+  // to prevent hydration mismatch between server and client
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     // Check if we're on the homepage and if the URL contains #features
@@ -39,7 +46,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   const isWhiteBackground = scrolled || location.pathname === '/what-is-itam';
-  const isDark = theme === 'dark';
+  // Only access theme after component has mounted to prevent hydration mismatch
+  const isDark = mounted ? theme === 'dark' : false;
 
   const getFeaturesClasses = () => {
     const baseClasses = 'transition-colors duration-200';
@@ -84,6 +92,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               size="icon"
               onClick={() => setTheme(isDark ? "light" : "dark")}
               className={`${isWhiteBackground ? '' : 'text-white'} hover:bg-transparent`}
+              aria-label="Toggle theme"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -106,6 +115,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               size="icon"
               onClick={() => setTheme(isDark ? "light" : "dark")}
               className={`${isWhiteBackground ? '' : 'text-white'} hover:bg-transparent`}
+              aria-label="Toggle theme"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
               <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
@@ -120,6 +130,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
                     : 'text-neutral-600'
                   : 'text-white'
               } hover:text-primary`}
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

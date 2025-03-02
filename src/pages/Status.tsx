@@ -12,12 +12,13 @@ import { Server, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Status = () => {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(true); // Set to true by default for the Status page
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Additional scroll event handling for visual effects
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 0);
