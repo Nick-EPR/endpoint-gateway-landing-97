@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -58,6 +57,11 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
+  // Toggle stats panel visibility (separate from automatic visibility)
+  const toggleStatsPanel = () => {
+    setStatsVisible(prev => !prev);
+  };
+
   // Remove animation delay by passing false for animation
   const { isAnimating } = useROIAnimation(false, () => {});
 
@@ -71,11 +75,11 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel - animated based on section visibility */}
+          {/* Stats Side Panel - controlled by statsVisible state */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
-            togglePanel={() => setStatsVisible(!statsVisible)}
+            togglePanel={toggleStatsPanel}
             isCalculatorVisible={isSectionVisible}
           />
 

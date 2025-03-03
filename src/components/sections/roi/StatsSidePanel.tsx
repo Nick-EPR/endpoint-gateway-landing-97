@@ -28,10 +28,10 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
-  // Handle animation states based on calculator visibility
+  // Handle animation states based on isOpen (which should reflect calculator visibility)
   useEffect(() => {
-    if (isCalculatorVisible) {
-      // When calculator becomes visible, start the entering animation
+    if (isOpen) {
+      // When panel should be open, start the entering animation
       setAnimationState('entering');
       // After animation completes, set to visible state
       const timer = setTimeout(() => setAnimationState('visible'), 500);
@@ -43,7 +43,7 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
       const timer = setTimeout(() => setAnimationState('hidden'), 500);
       return () => clearTimeout(timer);
     }
-  }, [isCalculatorVisible, animationState]);
+  }, [isOpen, animationState]);
 
   // Don't render anything if panel should be fully hidden
   if (animationState === 'hidden') {
