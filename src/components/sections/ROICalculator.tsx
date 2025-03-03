@@ -18,21 +18,19 @@ const ROICalculator = () => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(true); // Start with stats visible by default
+  const [statsVisible, setStatsVisible] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
-  // Log section visibility for debugging
+  // Auto-toggle stats panel based on section visibility
   useEffect(() => {
-    console.log("ROI section visible:", isSectionVisible);
-  }, [isSectionVisible]);
-
-  // Set stats visibility based on section visibility
-  useEffect(() => {
-    console.log("Setting statsVisible to", isSectionVisible);
-    setStatsVisible(isSectionVisible);
+    if (isSectionVisible) {
+      setStatsVisible(true);
+    } else {
+      setStatsVisible(false);
+    }
   }, [isSectionVisible]);
 
   // Calculate total devices for auto-enterprise mode suggestion
@@ -60,12 +58,6 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
-  // Toggle stats panel visibility (separate from automatic visibility)
-  const toggleStatsPanel = () => {
-    console.log("Toggle stats panel from", statsVisible, "to", !statsVisible);
-    setStatsVisible(prev => !prev);
-  };
-
   // Remove animation delay by passing false for animation
   const { isAnimating } = useROIAnimation(false, () => {});
 
@@ -79,11 +71,11 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel - always render it, let the component handle visibility */}
+          {/* Stats Side Panel - animated based on section visibility */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
-            togglePanel={toggleStatsPanel}
+            togglePanel={() => setStatsVisible(!statsVisible)}
             isCalculatorVisible={isSectionVisible}
           />
 
