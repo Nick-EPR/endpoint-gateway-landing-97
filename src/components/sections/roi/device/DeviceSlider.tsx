@@ -95,7 +95,7 @@ export const DeviceSlider = ({
         onValueChange={handleSliderChange}
         className="my-3 transition-opacity duration-300"
         disabled={disabled}
-        isEnterprise={isEnterprise || config.key === 'macbooks' || config.key === 'tablets'}
+        isEnterprise={isEnterprise}
       />
       <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400 mt-1 px-1">
         <span>{config.min}</span>
