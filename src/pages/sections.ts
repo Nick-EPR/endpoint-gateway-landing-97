@@ -15,8 +15,8 @@ export const sections = {
   products: Products,
   features: Features,
   comparison: ComparisonSection,
+  roi: ROICalculator,    // Moved ROI calculator to be after comparison section
   partners: Partners,
-  roi: ROICalculator,
   about: About,
   contact: Contact,
   tmobile: TMobileBusiness,

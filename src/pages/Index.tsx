@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState, Suspense, lazy, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -134,15 +133,15 @@ const Index = () => {
         </SectionWrapper>
 
         <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.tmobile)}
+          {renderSection(sections.roi)}
         </SectionWrapper>
 
         <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.partners)}
+          {renderSection(sections.tmobile)}
         </SectionWrapper>
 
         <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.roi)}
+          {renderSection(sections.partners)}
         </SectionWrapper>
 
         <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
