@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { StatsCards } from './roi/StatsCards';
-import { SavingsDisplay } from './roi/SavingsDisplay';
+import { SavingsDisplay } from './roi/savings/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
 import { ROIHeader } from './roi/ROIHeader';
 import { CalculationMethodology } from './roi/CalculationMethodology';
