@@ -33,18 +33,29 @@ const ROICalculator = () => {
     }
   }, [isSectionVisible]);
 
-  // Calculate total devices for enterprise mode
+  // Calculate total devices for auto-enterprise mode suggestion
   useEffect(() => {
     const totalDevices = Object.values(deviceCounts).reduce((sum, count) => sum + count, 0);
-    setIsEnterprise(totalDevices >= 1200);
-  }, [deviceCounts]);
+    // Only auto-suggest enterprise mode, but don't force it
+    if (totalDevices >= 1200 && !isEnterprise) {
+      console.log("Enterprise mode suggested based on device count");
+      // We don't auto-set it anymore, just log the suggestion
+    }
+  }, [deviceCounts, isEnterprise]);
 
   const handleDeviceCountChange = (type: keyof DeviceCounts, value: number) => {
     setDeviceCounts(prev => {
       const newCounts = { ...prev, [type]: value };
-      setCurrentTrends(calculateTrends(newCounts));
+      setCurrentTrends(calculateTrends(newCounts, isEnterprise));
       return newCounts;
     });
+  };
+
+  // Toggle enterprise mode manually
+  const handleEnterpriseToggle = (enabled: boolean) => {
+    setIsEnterprise(enabled);
+    // Recalculate trends with the new enterprise setting
+    setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
   // Remove animation delay by passing false for animation
@@ -79,8 +90,8 @@ const ROICalculator = () => {
               
               <EnterpriseToggle 
                 isEnterprise={isEnterprise} 
-                onEnterpriseChange={() => {}} // Controlled automatically based on device count
-                disabled={true} // Disabled as it's auto-determined
+                onEnterpriseChange={handleEnterpriseToggle}
+                disabled={false} // Enable manual toggling
               />
             </div>
 
@@ -92,7 +103,7 @@ const ROICalculator = () => {
               isEnterprise={isEnterprise}
             />
 
-            <SavingsDisplay deviceCounts={deviceCounts} />
+            <SavingsDisplay deviceCounts={deviceCounts} isEnterprise={isEnterprise} />
 
             <div className="text-center mb-4">
               <Button 
@@ -116,6 +127,7 @@ const ROICalculator = () => {
         deviceCounts={deviceCounts}
         onDeviceCountChange={handleDeviceCountChange}
         isEnterprise={isEnterprise}
+        onEnterpriseChange={handleEnterpriseToggle}
       />
     </section>
   );

@@ -5,10 +5,11 @@ import { calculateDisplaySavings } from './SavingsCalculator';
 
 interface SavingsDisplayProps {
   deviceCounts: DeviceCounts;
+  isEnterprise?: boolean;
 }
 
-export const SavingsDisplay = ({ deviceCounts }: SavingsDisplayProps) => {
-  const { annual, fourYear } = calculateDisplaySavings(deviceCounts);
+export const SavingsDisplay = ({ deviceCounts, isEnterprise = false }: SavingsDisplayProps) => {
+  const { annual, fourYear } = calculateDisplaySavings(deviceCounts, isEnterprise);
 
   return (
     <div className="grid md:grid-cols-2 gap-6 mb-6">
