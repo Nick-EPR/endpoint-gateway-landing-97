@@ -11,6 +11,12 @@ export const useROIAnimation = (
   useEffect(() => {
     let animationFrame: number;
 
+    // Reset animation state when component is no longer visible
+    if (!isVisible) {
+      setHasAnimationStarted(false);
+      return;
+    }
+
     if (isVisible && !hasAnimationStarted) {
       setHasAnimationStarted(true);
       setIsAnimating(true);

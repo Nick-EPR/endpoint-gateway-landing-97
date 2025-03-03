@@ -31,17 +31,17 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
   // Handle animation states based on calculator visibility
   useEffect(() => {
     if (isCalculatorVisible) {
-      setAnimationState(prev => prev === 'hidden' ? 'entering' : 'visible');
-      if (animationState === 'entering') {
-        const timer = setTimeout(() => setAnimationState('visible'), 500);
-        return () => clearTimeout(timer);
-      }
-    } else {
-      setAnimationState(prev => prev !== 'hidden' ? 'exiting' : 'hidden');
-      if (animationState === 'exiting') {
-        const timer = setTimeout(() => setAnimationState('hidden'), 500);
-        return () => clearTimeout(timer);
-      }
+      // When calculator becomes visible, start the entering animation
+      setAnimationState('entering');
+      // After animation completes, set to visible state
+      const timer = setTimeout(() => setAnimationState('visible'), 500);
+      return () => clearTimeout(timer);
+    } else if (animationState !== 'hidden') {
+      // Only start exiting animation if not already hidden
+      setAnimationState('exiting');
+      // After exit animation completes, set to hidden
+      const timer = setTimeout(() => setAnimationState('hidden'), 500);
+      return () => clearTimeout(timer);
     }
   }, [isCalculatorVisible, animationState]);
 
@@ -52,23 +52,13 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
 
   return (
     <>
-      {/* Stats Panel with animations */}
+      {/* Stats Panel with slide animations */}
       <div 
         className={cn(
           "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
           isDesktop 
-            ? cn(
-                "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
-                animationState === 'entering' ? "left-0 translate-x-0" : 
-                animationState === 'visible' ? "left-0 translate-x-0" : 
-                animationState === 'exiting' ? "-translate-x-full" : "-translate-x-full"
-              )
-            : cn(
-                "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
-                animationState === 'entering' ? "bottom-0 translate-y-0" : 
-                animationState === 'visible' ? "bottom-0 translate-y-0" : 
-                animationState === 'exiting' ? "translate-y-full" : "translate-y-full"
-              )
+            ? "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700"
+            : "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700"
         )}
         style={{
           width: isDesktop ? '320px' : '100%',
