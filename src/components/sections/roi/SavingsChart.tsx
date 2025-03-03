@@ -87,7 +87,7 @@ export const SavingsChart = ({
     <Dialog open={showMoreDetails} onOpenChange={setShowMoreDetails}>
       <DialogContent className="max-w-4xl w-[95vw]">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-2">5-Year Environmental & Financial Impact</DialogTitle>
+          <DialogTitle className="text-2xl font-bold mb-2">4-Year Environmental & Financial Impact</DialogTitle>
           <p className="text-lg text-neutral-600 dark:text-neutral-300 italic mb-4">
             Driving sustainable cost savings and environmental impact
           </p>
@@ -118,7 +118,7 @@ export const SavingsChart = ({
           <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
             <h4 className="text-sm font-medium text-blue-800 dark:text-blue-300">Device Lifecycle Extension</h4>
             <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-              +40% longer
+              +30% longer
             </p>
           </div>
           <div className="p-4 bg-purple-50/50 dark:bg-purple-900/20 rounded-lg border border-purple-100 dark:border-purple-800">
@@ -191,7 +191,7 @@ export const SavingsChart = ({
           </ResponsiveContainer>
         </div>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
-          This projection illustrates the potential financial savings and environmental benefits over a 5-year period, based on your organization's employee count.
+          This projection illustrates the potential financial savings and environmental benefits over a 4-year period, based on your organization's employee count.
         </p>
       </DialogContent>
     </Dialog>

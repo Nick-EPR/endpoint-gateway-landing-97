@@ -81,7 +81,7 @@ const ROICalculator = () => {
                 className="gap-2 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
               >
                 <LineChart className="w-4 h-4" />
-                View 5-Year Projection
+                View 4-Year Projection
               </Button>
             </div>
 

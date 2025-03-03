@@ -1,3 +1,4 @@
+
 import { Info } from 'lucide-react';
 import { 
   Tooltip,
@@ -18,7 +19,7 @@ interface MetricTooltips {
 const metricTooltips: MetricTooltips = {
   carbon: {
     title: "Carbon Reduction Impact",
-    description: "Based on a 156kg CO2 reduction per device lifecycle extended. This includes manufacturing emissions saved, reduced transportation needs, and energy savings from refurbishment vs new production. Extended device lifecycles from 2 to 2.8 years significantly reduce the carbon footprint of your IT infrastructure."
+    description: "Based on a 156kg CO2 reduction per device lifecycle extended. This includes manufacturing emissions saved, reduced transportation needs, and energy savings from refurbishment vs new production. Extended device lifecycles from 3 to 3.9 years significantly reduce the carbon footprint of your IT infrastructure."
   },
   ewaste: {
     title: "E-Waste Prevention Impact",
@@ -30,7 +31,7 @@ const metricTooltips: MetricTooltips = {
   },
   cost: {
     title: "Financial Impact",
-    description: "Cost savings are calculated based on multiple factors: reduced new device purchases ($1,200 avg. cost), extended lifecycle value (2 to 2.8 years), repair vs replacement savings, and 25% end-of-life value recovery through our certified refurbishment program. Includes $180 annual service cost per device."
+    description: "Cost savings are calculated based on multiple factors: reduced new device purchases ($1,000 avg. cost), extended lifecycle value (3 to 3.9 years), repair vs replacement savings, and 20% end-of-life value recovery through our certified refurbishment program. Includes $225 annual service cost per device."
   }
 };
 
@@ -57,12 +58,12 @@ export const CalculationMethodology = () => {
       </div>
       
       <ul className="list-disc pl-4 space-y-1 dark:text-neutral-400">
-        <li>Device lifecycle extension from 2 to 2.8 years (40% of devices)</li>
+        <li>Device lifecycle extension from 3 to 3.9 years (30% of devices)</li>
         <li>CO2 reduction: 156kg per device lifecycle extended</li>
         <li>Water conservation: 1,200L saved per device lifecycle</li>
         <li>E-waste prevention: 1.8kg reduced per device</li>
-        <li>Average device cost: $1,200 with 25% resale value</li>
-        <li>Service cost: $180 per device annually</li>
+        <li>Average device cost: $1,000 with 20% resale value</li>
+        <li>Service cost: $225 per device annually</li>
         <li>Average of 1.2 devices per employee</li>
         <li>Time savings: 4.5 hours saved per device annually through proactive maintenance and reduced downtime</li>
       </ul>

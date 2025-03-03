@@ -10,7 +10,7 @@ export const ROIHeader = () => {
       </h2>
       <p className="text-lg text-neutral mb-8 animate-fade-up delay-100">
         See how much you can{' '}
-        <span className="text-green-600 dark:text-green-400">save annually</span>{' '}
+        <span className="text-green-600 dark:text-green-400">save over 4 years</span>{' '}
         with our repair-first approach
       </p>
     </div>
