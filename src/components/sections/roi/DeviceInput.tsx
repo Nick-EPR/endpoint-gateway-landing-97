@@ -129,43 +129,51 @@ export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disa
 
   return (
     <div className="mb-8 px-2 sm:px-0" ref={sliderRef}>
-      <h3 className="text-lg font-semibold mb-4 text-neutral-800 dark:text-white">Device Inventory</h3>
+      <h3 className="text-lg font-semibold mb-6 text-neutral-800 dark:text-white">Device Inventory</h3>
       
-      {deviceConfigs.map((config) => (
-        <div key={config.key} className="mb-6">
-          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-4 mb-2">
-            <div className="flex items-center text-sm font-medium text-neutral">
-              {config.icon}
-              <label className="ml-2">
-                {config.label}
-              </label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        {deviceConfigs.map((config) => (
+          <div key={config.key} className="bg-white/50 dark:bg-neutral-800/40 p-5 rounded-xl shadow-sm border border-neutral-100 dark:border-neutral-700">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center">
+                <div className="bg-primary/10 p-2 rounded-lg mr-3">
+                  {config.icon}
+                </div>
+                <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200">
+                  {config.label}
+                </label>
+              </div>
+              <Input
+                type="number"
+                value={inputValues[config.key]}
+                onChange={(e) => handleInputChange(config.key, e)}
+                onBlur={() => handleInputBlur(config.key)}
+                className="w-24 text-right text-sm bg-white dark:bg-neutral-900 border-neutral-200 dark:border-neutral-700"
+                min={config.min}
+                max={config.max}
+                disabled={disabled}
+              />
             </div>
-            <Input
-              type="number"
-              value={inputValues[config.key]}
-              onChange={(e) => handleInputChange(config.key, e)}
-              onBlur={() => handleInputBlur(config.key)}
-              className="w-full sm:w-32 text-right"
-              min={config.min}
-              max={config.max}
+            <Slider 
+              min={config.min} 
+              max={config.max} 
+              step={config.step} 
+              value={[deviceCounts[config.key]]} 
+              onValueChange={(values) => handleSliderChange(config.key, values)}
+              className="my-3 transition-opacity duration-300"
               disabled={disabled}
+              isEnterprise={config.key === 'macbooks' || config.key === 'tablets'}
             />
+            <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400 mt-1 px-1">
+              <span>{config.min}</span>
+              <span className="text-xs text-neutral-400 dark:text-neutral-500">
+                {Math.round(config.max * 0.5)}
+              </span>
+              <span>{config.max}</span>
+            </div>
           </div>
-          <Slider 
-            min={config.min} 
-            max={config.max} 
-            step={config.step} 
-            value={[deviceCounts[config.key]]} 
-            onValueChange={(values) => handleSliderChange(config.key, values)}
-            className="my-4 transition-opacity duration-300"
-            disabled={disabled}
-          />
-          <div className="flex justify-between text-xs text-neutral">
-            <span>{config.min}</span>
-            <span>{config.max}</span>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
