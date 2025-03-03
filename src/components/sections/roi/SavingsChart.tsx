@@ -1,16 +1,15 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { calculateCompoundedSavings } from '@/utils/roiCalculations';
-import { EmployeeInput } from './EmployeeInput';
+import { calculateCompoundedSavings, DeviceCounts } from '@/utils/roiCalculations';
+import { DeviceInput } from './DeviceInput';
 import { useEffect, useState, useRef } from 'react';
 
 interface SavingsChartProps {
-  employees: number;
+  deviceCounts: DeviceCounts;
   showMoreDetails: boolean;
   setShowMoreDetails: (show: boolean) => void;
-  onEmployeeChange: (value: number) => void;
-  isEnterprise: boolean;
+  onDeviceCountChange: (type: keyof DeviceCounts, value: number) => void;
 }
 
 const formatLargeNumber = (value: number): string => {
@@ -25,11 +24,10 @@ const formatLargeNumber = (value: number): string => {
 };
 
 export const SavingsChart = ({ 
-  employees, 
+  deviceCounts, 
   showMoreDetails, 
   setShowMoreDetails, 
-  onEmployeeChange,
-  isEnterprise
+  onDeviceCountChange
 }: SavingsChartProps) => {
   const [chartData, setChartData] = useState<any[]>([]);
   const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
@@ -43,7 +41,7 @@ export const SavingsChart = ({
 
     setChartData([]);
 
-    const data = calculateCompoundedSavings(employees);
+    const data = calculateCompoundedSavings(deviceCounts);
     
     data.forEach((item, index) => {
       const timeout = setTimeout(() => {
@@ -57,8 +55,17 @@ export const SavingsChart = ({
       animationTimeoutRef.current.push(timeout);
     });
 
-    const targetTreeCount = Math.round(employees * 0.7);
-    const targetCarbonOffset = Math.round(employees * 1.2);
+    // Calculate total devices
+    const totalDevices = 
+      deviceCounts.macbooks +
+      deviceCounts.laptops +
+      deviceCounts.desktops +
+      deviceCounts.tablets +
+      deviceCounts.monitors +
+      deviceCounts.accessories * 0.1; // Count accessories as 1/10th of a full device for environmental calcs
+    
+    const targetTreeCount = Math.round(totalDevices * 0.4);
+    const targetCarbonOffset = Math.round(totalDevices * 0.7);
     
     const startTime = performance.now();
     const duration = 1000;
@@ -81,7 +88,12 @@ export const SavingsChart = ({
       animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
       animationTimeoutRef.current = [];
     };
-  }, [showMoreDetails, employees]);
+  }, [showMoreDetails, deviceCounts]);
+
+  // Handle individual device count changes
+  const handleDeviceChange = (type: keyof DeviceCounts, value: number) => {
+    onDeviceCountChange(type, value);
+  };
 
   return (
     <Dialog open={showMoreDetails} onOpenChange={setShowMoreDetails}>
@@ -94,12 +106,10 @@ export const SavingsChart = ({
         </DialogHeader>
 
         <div className="mb-6">
-          <EmployeeInput
-            employees={employees}
-            isEnterprise={isEnterprise}
+          <DeviceInput
+            deviceCounts={deviceCounts}
             sliderRef={sliderRef}
-            onEmployeeChange={onEmployeeChange}
-            onEnterpriseChange={() => {}} // Add empty function as this is handled by parent
+            onDeviceCountChange={handleDeviceChange}
             disabled={false}
           />
         </div>
@@ -112,7 +122,7 @@ export const SavingsChart = ({
             </p>
             <div className="opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-20 left-0 right-0 bg-white dark:bg-neutral-800 p-2 rounded-lg shadow-lg text-xs z-10 mx-2">
               Based on average CO2 absorption of 25kg per tree annually. 
-              Calculated using total CO2 reduction (156kg per device) divided by annual tree absorption capacity.
+              Calculated using total CO2 reduction divided by annual tree absorption capacity.
             </div>
           </div>
           <div className="p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
@@ -191,7 +201,7 @@ export const SavingsChart = ({
           </ResponsiveContainer>
         </div>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
-          This projection illustrates the potential financial savings and environmental benefits over a 4-year period, based on your organization's employee count.
+          This projection illustrates the potential financial savings and environmental benefits over a 4-year period, based on your organization's device inventory.
         </p>
       </DialogContent>
     </Dialog>

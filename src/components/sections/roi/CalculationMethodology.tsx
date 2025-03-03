@@ -19,19 +19,19 @@ interface MetricTooltips {
 const metricTooltips: MetricTooltips = {
   carbon: {
     title: "Carbon Reduction Impact",
-    description: "Based on a 156kg CO2 reduction per device lifecycle extended. This includes manufacturing emissions saved, reduced transportation needs, and energy savings from refurbishment vs new production. Extended device lifecycles from 3 to 3.9 years significantly reduce the carbon footprint of your IT infrastructure."
+    description: "Based on device-specific CO2 reductions per lifecycle extended. MacBooks: 220kg, Laptops: 156kg, Desktops: 250kg, Tablets: 100kg, Monitors: 120kg, Accessories: 15kg. Extended device lifecycles from 3 to 3.9 years significantly reduce the carbon footprint of your IT infrastructure."
   },
   ewaste: {
     title: "E-Waste Prevention Impact",
-    description: "Each extended device lifecycle prevents approximately 1.8kg of e-waste. This includes avoided electronic components, packaging materials, and associated waste from manufacturing. Our repair-first approach keeps devices in use longer, reducing the strain on landfills and the need for raw material extraction."
+    description: "Each extended device lifecycle prevents e-waste: MacBooks: 2.5kg, Laptops: 1.8kg, Desktops: 3.2kg, Tablets: 0.9kg, Monitors: 1.6kg, Accessories: 0.3kg. Our repair-first approach keeps devices in use longer, reducing the strain on landfills and the need for raw material extraction."
   },
   water: {
     title: "Water Conservation Impact",
-    description: "Manufacturing a single device requires approximately 1,200 liters of water. By extending device lifecycles through repair and refurbishment, we significantly reduce water consumption in the manufacturing process. This includes water saved from mining, component manufacturing, and assembly processes."
+    description: "Manufacturing devices requires significant water. By extending device lifecycles, we save: MacBooks: 1800L, Laptops: 1200L, Desktops: 1500L, Tablets: 700L, Monitors: 900L, Accessories: 100L per device lifecycle."
   },
   cost: {
     title: "Financial Impact",
-    description: "Cost savings are calculated based on multiple factors: reduced new device purchases ($1,000 avg. cost), extended lifecycle value (3 to 3.9 years), repair vs replacement savings, and 20% end-of-life value recovery through our certified refurbishment program. Includes $225 annual service cost per device."
+    description: "Cost savings based on per-incident costs (MacBook: $449, Laptop: $265, Desktop: $267, Tablet: $212, Monitor: $200, Accessories: $35) plus extended lifecycle value and 20% end-of-life value recovery through our certified refurbishment program."
   }
 };
 
@@ -59,13 +59,11 @@ export const CalculationMethodology = () => {
       
       <ul className="list-disc pl-4 space-y-1 dark:text-neutral-400">
         <li>Device lifecycle extension from 3 to 3.9 years (30% of devices)</li>
-        <li>CO2 reduction: 156kg per device lifecycle extended</li>
-        <li>Water conservation: 1,200L saved per device lifecycle</li>
-        <li>E-waste prevention: 1.8kg reduced per device</li>
-        <li>Average device cost: $1,000 with 20% resale value</li>
-        <li>Service cost: $225 per device annually</li>
-        <li>Average of 1.2 devices per employee</li>
-        <li>Time savings: 4.5 hours saved per device annually through proactive maintenance and reduced downtime</li>
+        <li>Per-incident costs: MacBook $449, Laptop $265, Desktop $267, Tablet $212, Monitor $200, Accessories $35</li>
+        <li>Water conservation varies by device type (700-1800L per device)</li>
+        <li>E-waste prevention varies by device type (0.3-3.2kg per device)</li>
+        <li>Average resale value: 20% of original device cost</li>
+        <li>Time savings: 3-6.5 hours saved per device annually through proactive maintenance and reduced downtime</li>
       </ul>
       <p className="mt-2 italic dark:text-neutral-500">
         Note: Actual impact may vary based on device types, usage patterns, and market conditions.

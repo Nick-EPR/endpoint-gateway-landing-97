@@ -1,16 +1,16 @@
 
 import { TrendingUp } from 'lucide-react';
-import { calculateAnnualSavings } from '@/utils/roiCalculations';
+import { calculateAnnualSavings, DeviceCounts } from '@/utils/roiCalculations';
 import { useCountUp } from '@/hooks/useCountUp';
 
 interface SavingsDisplayProps {
-  employees: number;
+  deviceCounts: DeviceCounts;
 }
 
-export const SavingsDisplay = ({ employees }: SavingsDisplayProps) => {
-  const annualSavings = calculateAnnualSavings(employees);
+export const SavingsDisplay = ({ deviceCounts }: SavingsDisplayProps) => {
+  const annualSavings = calculateAnnualSavings(deviceCounts);
   const animatedAnnualSavings = useCountUp(annualSavings, 1000);
-  const animatedFourYearSavings = useCountUp(annualSavings * 4, 1000); // Updated from 2-year to 4-year
+  const animatedFourYearSavings = useCountUp(annualSavings * 4, 1000);
 
   return (
     <div className="grid md:grid-cols-2 gap-6 mb-6">

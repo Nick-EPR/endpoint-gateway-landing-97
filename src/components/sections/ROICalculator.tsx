@@ -3,43 +3,32 @@ import { useState, useRef } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { StatsCards } from './roi/StatsCards';
-import { EmployeeInput } from './roi/EmployeeInput';
 import { SavingsDisplay } from './roi/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
 import { ROIHeader } from './roi/ROIHeader';
-import { EnterpriseToggle } from './roi/EnterpriseToggle';
 import { CalculationMethodology } from './roi/CalculationMethodology';
-import { calculateTrends, defaultTrends } from '@/utils/roiCalculations';
+import { calculateTrends, defaultTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roiCalculations';
 import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { DeviceInput } from './roi/DeviceInput';
 
 const ROICalculator = () => {
-  const [employees, setEmployees] = useState(150);
-  const [isEnterprise, setIsEnterprise] = useState(false);
+  const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());
   const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [currentTrends, setCurrentTrends] = useState(calculateTrends(150));
+  const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
   const sliderRef = useRef<HTMLDivElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
 
-  const handleEmployeeChange = (value: number) => {
-    setEmployees(value);
-    setCurrentTrends(calculateTrends(value));
-  };
-
-  const handleEnterpriseChange = (checked: boolean) => {
-    setIsEnterprise(checked);
-    // Adjust employee count when switching modes to ensure it's within valid range
-    if (checked && employees < 1000) {
-      setEmployees(1000);
-      setCurrentTrends(calculateTrends(1000));
-    } else if (!checked && employees > 300) {
-      setEmployees(300);
-      setCurrentTrends(calculateTrends(300));
-    }
+  const handleDeviceCountChange = (type: keyof DeviceCounts, value: number) => {
+    setDeviceCounts(prev => {
+      const newCounts = { ...prev, [type]: value };
+      setCurrentTrends(calculateTrends(newCounts));
+      return newCounts;
+    });
   };
 
   // Remove animation delay by passing false for animation
-  const { isAnimating } = useROIAnimation(false, handleEmployeeChange);
+  const { isAnimating } = useROIAnimation(false, () => {});
 
   return (
     <section id="roi-calculator" className="relative py-20 bg-neutral-light dark:bg-neutral-800 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
@@ -56,23 +45,16 @@ const ROICalculator = () => {
                 </div>
                 <h3 className="text-xl font-semibold dark:text-white">ROI Calculator</h3>
               </div>
-              <EnterpriseToggle 
-                isEnterprise={isEnterprise}
-                onEnterpriseChange={handleEnterpriseChange}
-                disabled={false}
-              />
             </div>
 
-            <EmployeeInput 
-              employees={employees}
-              isEnterprise={isEnterprise}
+            <DeviceInput 
+              deviceCounts={deviceCounts}
               sliderRef={sliderRef}
-              onEmployeeChange={handleEmployeeChange}
-              onEnterpriseChange={handleEnterpriseChange}
+              onDeviceCountChange={handleDeviceCountChange}
               disabled={false}
             />
 
-            <SavingsDisplay employees={employees} />
+            <SavingsDisplay deviceCounts={deviceCounts} />
 
             <div className="text-center mb-4">
               <Button 
@@ -93,9 +75,8 @@ const ROICalculator = () => {
       <SavingsChart 
         showMoreDetails={showMoreDetails}
         setShowMoreDetails={setShowMoreDetails}
-        employees={employees}
-        onEmployeeChange={handleEmployeeChange}
-        isEnterprise={isEnterprise}
+        deviceCounts={deviceCounts}
+        onDeviceCountChange={handleDeviceCountChange}
       />
     </section>
   );
