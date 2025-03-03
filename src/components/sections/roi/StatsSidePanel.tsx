@@ -26,8 +26,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel }: StatsSidePanelPr
     return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
-  const panelPosition = isDesktop ? 'left-panel' : 'bottom-panel';
-
   return (
     <>
       {/* Mobile/Tablet Toggle Button (fixed at bottom right) */}
@@ -46,13 +44,15 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel }: StatsSidePanelPr
       <div 
         className={cn(
           "fixed z-30 transition-all duration-300 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
-          isDesktop ? (
-            "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
-            isOpen ? "left-0" : "-left-[350px]"
-          ) : (
-            "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
-            isOpen ? "bottom-0" : "-bottom-[400px]"
-          )
+          isDesktop 
+            ? cn(
+                "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
+                isOpen ? "left-0" : "-left-[350px]"
+              )
+            : cn(
+                "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
+                isOpen ? "bottom-0" : "-bottom-[400px]"
+              )
         )}
       >
         {/* Panel Header with close button */}
