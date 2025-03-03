@@ -7,7 +7,7 @@ import { SavingsDisplay } from './roi/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
 import { ROIHeader } from './roi/ROIHeader';
 import { CalculationMethodology } from './roi/CalculationMethodology';
-import { calculateTrends, defaultTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roiCalculations';
+import { calculateTrends, defaultTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roi';
 import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/DeviceInput';

@@ -1,5 +1,5 @@
 
-import { Trend } from "@/utils/roiCalculations";
+import { Trend } from "@/utils/roi";
 import { ArrowUpRight, ArrowDownRight, Info, Leaf, Recycle, DollarSign, Clock } from "lucide-react";
 import { useCountUp } from "@/hooks/useCountUp";
 import { 

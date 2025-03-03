@@ -1,6 +1,6 @@
 
 import { TrendingUp } from 'lucide-react';
-import { calculateAnnualSavings, DeviceCounts } from '@/utils/roiCalculations';
+import { calculateAnnualSavings, DeviceCounts } from '@/utils/roi';
 import { useCountUp } from '@/hooks/useCountUp';
 
 interface SavingsDisplayProps {

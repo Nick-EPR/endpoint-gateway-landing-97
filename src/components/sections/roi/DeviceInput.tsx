@@ -1,7 +1,7 @@
 
 import { Slider } from "@/components/ui/slider";
 import { Input } from "@/components/ui/input";
-import { DeviceCounts } from "@/utils/roiCalculations";
+import { DeviceCounts } from "@/utils/roi";
 import { RefObject, useState, useEffect } from "react";
 import { Laptop, Monitor, Cpu, Tablet, Smartphone, MousePointer } from "lucide-react";
 

@@ -1,7 +1,7 @@
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { calculateCompoundedSavings, DeviceCounts } from '@/utils/roiCalculations';
+import { calculateCompoundedSavings, DeviceCounts } from '@/utils/roi';
 import { DeviceInput } from './DeviceInput';
 import { useEffect, useState, useRef } from 'react';
 
