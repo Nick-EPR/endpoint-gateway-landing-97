@@ -30,16 +30,18 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
 
   // Handle animation states based on calculator visibility
   useEffect(() => {
-    if (isCalculatorVisible && animationState === 'hidden') {
-      // Enter animation when calculator becomes visible
-      setAnimationState('entering');
-      const timer = setTimeout(() => setAnimationState('visible'), 500); // Duration of enter animation
-      return () => clearTimeout(timer);
-    } else if (!isCalculatorVisible && (animationState === 'visible' || animationState === 'entering')) {
-      // Exit animation when calculator becomes invisible
-      setAnimationState('exiting');
-      const timer = setTimeout(() => setAnimationState('hidden'), 500); // Duration of exit animation
-      return () => clearTimeout(timer);
+    if (isCalculatorVisible) {
+      setAnimationState(prev => prev === 'hidden' ? 'entering' : 'visible');
+      if (animationState === 'entering') {
+        const timer = setTimeout(() => setAnimationState('visible'), 500);
+        return () => clearTimeout(timer);
+      }
+    } else {
+      setAnimationState(prev => prev !== 'hidden' ? 'exiting' : 'hidden');
+      if (animationState === 'exiting') {
+        const timer = setTimeout(() => setAnimationState('hidden'), 500);
+        return () => clearTimeout(timer);
+      }
     }
   }, [isCalculatorVisible, animationState]);
 
@@ -57,17 +59,23 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
           isDesktop 
             ? cn(
                 "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
-                animationState === 'entering' ? "animate-fade-in left-0" : 
-                animationState === 'visible' ? "left-0" : 
-                animationState === 'exiting' ? "animate-fade-out -left-[320px]" : "-left-[320px]"
+                animationState === 'entering' ? "left-0 translate-x-0" : 
+                animationState === 'visible' ? "left-0 translate-x-0" : 
+                animationState === 'exiting' ? "-translate-x-full" : "-translate-x-full"
               )
             : cn(
                 "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
-                animationState === 'entering' ? "animate-fade-in bottom-0" : 
-                animationState === 'visible' ? "bottom-0" : 
-                animationState === 'exiting' ? "animate-fade-out -bottom-[400px]" : "-bottom-[400px]"
+                animationState === 'entering' ? "bottom-0 translate-y-0" : 
+                animationState === 'visible' ? "bottom-0 translate-y-0" : 
+                animationState === 'exiting' ? "translate-y-full" : "translate-y-full"
               )
         )}
+        style={{
+          width: isDesktop ? '320px' : '100%',
+          transform: isDesktop 
+            ? `translateY(-50%) translateX(${animationState === 'entering' || animationState === 'visible' ? '0' : '-100%'})` 
+            : `translateY(${animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
+        }}
       >
         {/* Panel Header with close button */}
         <div className="p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm">
@@ -78,10 +86,7 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         </div>
 
         {/* Panel Content */}
-        <div className={cn(
-          "p-3",
-          isDesktop ? "w-[320px]" : "w-full"
-        )}>
+        <div className="p-3 w-full">
           <StatsCards trends={trends} compact={true} />
         </div>
       </div>
