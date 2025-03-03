@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -24,28 +23,14 @@ const ROICalculator = () => {
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
-  // Toggle stats panel visibility
-  const toggleStatsPanel = () => {
-    setStatsVisible(prev => !prev);
-  };
-
-  // Auto-open stats panel on desktop only when section is visible
+  // Auto-open stats panel when section is visible
   useEffect(() => {
-    const isDesktop = window.innerWidth >= 1024;
-    if (isDesktop && isSectionVisible) {
+    if (isSectionVisible) {
       setStatsVisible(true);
+    } else {
+      setStatsVisible(false);
     }
-    
-    const handleResize = () => {
-      const isDesktop = window.innerWidth >= 1024;
-      if (isDesktop && isSectionVisible && !statsVisible) {
-        setStatsVisible(true);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [statsVisible, isSectionVisible]);
+  }, [isSectionVisible]);
 
   // Calculate total devices for enterprise mode
   useEffect(() => {
@@ -74,11 +59,11 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel - only show when calculator section is visible */}
+          {/* Stats Side Panel - now automatically shown when section is visible */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
-            togglePanel={toggleStatsPanel}
+            togglePanel={() => setStatsVisible(!statsVisible)}
             isCalculatorVisible={isSectionVisible}
           />
 

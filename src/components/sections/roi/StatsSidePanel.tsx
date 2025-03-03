@@ -10,7 +10,7 @@ interface StatsSidePanelProps {
   trends: Trend[];
   isOpen: boolean;
   togglePanel: () => void;
-  isCalculatorVisible: boolean; // New prop to track ROI calculator visibility
+  isCalculatorVisible: boolean; // Prop to track ROI calculator visibility
 }
 
 export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisible }: StatsSidePanelProps) => {
@@ -34,30 +34,18 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
 
   return (
     <>
-      {/* Mobile/Tablet Toggle Button (fixed at bottom right) */}
-      {!isDesktop && !isOpen && (
-        <div className="fixed bottom-24 right-4 z-40">
-          <Button 
-            onClick={togglePanel}
-            className="rounded-full w-12 h-12 bg-primary hover:bg-primary/90 text-white shadow-lg"
-          >
-            Stats
-          </Button>
-        </div>
-      )}
-
-      {/* Stats Panel */}
+      {/* Stats Panel - now automatically shown when in view */}
       <div 
         className={cn(
-          "fixed z-30 transition-all duration-300 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
+          "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
           isDesktop 
             ? cn(
                 "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
-                isOpen ? "left-0" : "-left-[320px]" // Slightly narrower
+                isCalculatorVisible && isOpen ? "left-0 animate-fade-in" : "-left-[320px]"
               )
             : cn(
                 "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
-                isOpen ? "bottom-0" : "-bottom-[400px]"
+                isCalculatorVisible && isOpen ? "bottom-0 animate-fade-in" : "-bottom-[400px]"
               )
         )}
       >
@@ -72,17 +60,17 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         {/* Panel Content */}
         <div className={cn(
           "p-3",
-          isDesktop ? "w-[320px]" : "w-full" // Narrower panel
+          isDesktop ? "w-[320px]" : "w-full"
         )}>
-          <StatsCards trends={trends} compact={true} /> {/* Use compact mode */}
+          <StatsCards trends={trends} compact={true} />
         </div>
 
-        {/* Desktop Tab/Handle */}
+        {/* Desktop Tab/Handle - now hidden for auto-appearance */}
         {isDesktop && (
           <div 
             className={cn(
-              "absolute top-1/2 -right-11 -translate-y-1/2 rotate-90 bg-primary text-white px-3 py-1.5 rounded-t-lg cursor-pointer shadow-md text-sm",
-              !isOpen && "animate-pulse"
+              "absolute top-1/2 -right-11 -translate-y-1/2 rotate-90 bg-primary text-white px-3 py-1.5 rounded-t-lg cursor-pointer shadow-md text-sm opacity-0 transition-opacity duration-300",
+              isCalculatorVisible && !isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
             onClick={togglePanel}
           >
