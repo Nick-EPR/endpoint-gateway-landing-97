@@ -34,15 +34,16 @@ export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) =>
   };
 
   const getIcon = (label: string) => {
+    const iconClass = compact ? "w-3.5 h-3.5 mr-1" : "w-4 h-4 mr-1.5";
     switch (label) {
       case "Carbon Reduction":
-        return <Leaf className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+        return <Leaf className={`${iconClass} text-green-600 dark:text-green-400`} />;
       case "E-Waste Prevention":
-        return <Recycle className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+        return <Recycle className={`${iconClass} text-green-600 dark:text-green-400`} />;
       case "Estimated ROI":
-        return <DollarSign className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+        return <DollarSign className={`${iconClass} text-green-600 dark:text-green-400`} />;
       case "Hours Saved":
-        return <Clock className="w-4 h-4 mr-1.5 text-green-600 dark:text-green-400" />;
+        return <Clock className={`${iconClass} text-green-600 dark:text-green-400`} />;
       default:
         return null;
     }
@@ -71,8 +72,10 @@ export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) =>
   return (
     <TooltipProvider delayDuration={0}>
       <div className={cn(
-        "grid gap-4",
-        compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+        "grid gap-3",
+        compact 
+          ? "grid-cols-1 sm:grid-cols-2" 
+          : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
         compact ? "mb-2" : "mb-8"
       )}>
         {trends.map((trend, index) => {
@@ -89,8 +92,8 @@ export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) =>
             <div 
               key={index} 
               className={cn(
-                "bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50 flex flex-col h-full",
-                compact && "p-3"
+                "bg-white/80 dark:bg-neutral-800/50 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50 flex flex-col h-full",
+                compact ? "p-2.5" : "p-4"
               )}
             >
               <div className="flex items-start justify-between mb-auto">
@@ -106,7 +109,10 @@ export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) =>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <button type="button" className="cursor-help p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-full transition-colors">
-                      <Info className="w-4 h-4 text-neutral-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary transition-colors" />
+                      <Info className={cn(
+                        "text-neutral-600 dark:text-neutral-400 hover:text-primary dark:hover:text-primary transition-colors",
+                        compact ? "w-3.5 h-3.5" : "w-4 h-4"
+                      )} />
                     </button>
                   </TooltipTrigger>
                   <TooltipContent 
@@ -118,10 +124,10 @@ export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) =>
                   </TooltipContent>
                 </Tooltip>
               </div>
-              <div className="flex items-baseline gap-2 mt-2">
+              <div className="flex items-baseline gap-2 mt-1.5">
                 <span className={cn(
                   "font-bold text-neutral-900 dark:text-white",
-                  compact ? "text-lg" : "text-xl"
+                  compact ? "text-base" : "text-xl"
                 )}>
                   {trend.value.startsWith('$') ? '$' : ''}
                   {animatedValue.toLocaleString()}
@@ -130,9 +136,9 @@ export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) =>
                 </span>
                 <div className={`flex items-center ${getTrendColor()}`}>
                   {shouldShowUpArrow(trend) ? (
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className={compact ? "w-3.5 h-3.5" : "w-4 h-4"} />
                   ) : (
-                    <ArrowDownRight className="w-4 h-4" />
+                    <ArrowDownRight className={compact ? "w-3.5 h-3.5" : "w-4 h-4"} />
                   )}
                   <span className={cn(
                     "font-medium", 

@@ -20,30 +20,32 @@ const ROICalculator = () => {
   const [isEnterprise, setIsEnterprise] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
+  const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   // Toggle stats panel visibility
   const toggleStatsPanel = () => {
     setStatsVisible(prev => !prev);
   };
 
-  // Auto-open stats panel on desktop
+  // Auto-open stats panel on desktop only when section is visible
   useEffect(() => {
     const isDesktop = window.innerWidth >= 1024;
-    if (isDesktop) {
+    if (isDesktop && isSectionVisible) {
       setStatsVisible(true);
     }
     
     const handleResize = () => {
       const isDesktop = window.innerWidth >= 1024;
-      if (isDesktop && !statsVisible) {
+      if (isDesktop && isSectionVisible && !statsVisible) {
         setStatsVisible(true);
       }
     };
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
-  }, [statsVisible]);
+  }, [statsVisible, isSectionVisible]);
 
   // Calculate total devices for enterprise mode
   useEffect(() => {
@@ -63,16 +65,21 @@ const ROICalculator = () => {
   const { isAnimating } = useROIAnimation(false, () => {});
 
   return (
-    <section id="roi-calculator" className="relative py-20 bg-neutral-light dark:bg-neutral-800 overflow-hidden border-t border-neutral-100 dark:border-neutral-800">
+    <section 
+      id="roi-calculator" 
+      className="relative py-20 bg-neutral-light dark:bg-neutral-800 overflow-hidden border-t border-neutral-100 dark:border-neutral-800"
+      ref={sectionRef}
+    >
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel */}
+          {/* Stats Side Panel - only show when calculator section is visible */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
-            togglePanel={toggleStatsPanel} 
+            togglePanel={toggleStatsPanel}
+            isCalculatorVisible={isSectionVisible}
           />
 
           <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 animate-fade-up transform hover:shadow-xl transition-all duration-300">
