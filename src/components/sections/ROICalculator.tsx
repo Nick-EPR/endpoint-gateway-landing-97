@@ -10,7 +10,7 @@ import { CalculationMethodology } from './roi/CalculationMethodology';
 import { calculateTrends, defaultTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roi';
 import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
-import { DeviceInput } from './roi/DeviceInput';
+import { DeviceInput } from './roi/device/DeviceInput';
 import { EnterpriseToggle } from './roi/EnterpriseToggle';
 
 const ROICalculator = () => {

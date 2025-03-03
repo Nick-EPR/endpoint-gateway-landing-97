@@ -1,7 +1,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { calculateCompoundedSavings, DeviceCounts } from '@/utils/roi';
-import { DeviceInput } from './DeviceInput';
+import { DeviceInput } from './device/DeviceInput';
 import { useEffect, useState, useRef } from 'react';
 import { EnvironmentalMetrics } from './chart/EnvironmentalMetrics';
 import { SavingsLineChart } from './chart/SavingsLineChart';
