@@ -1,14 +1,11 @@
-
 import { Shield, Network, Smartphone, Laptop, Cpu, FileText, Zap, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import GuideImage from "./tmobile/GuideImage";
 import FeatureCard from "./tmobile/FeatureCard";
 import BenefitCard from "./tmobile/BenefitCard";
-
 const TMobileBusiness = () => {
-  return (
-    <section className="py-12 md:py-16">
-      <div className="py-20 bg-neutral-light dark:bg-neutral-800">
+  return <section className="py-12 md:py-16">
+      <div className="py-20 bg-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
@@ -35,17 +32,11 @@ const TMobileBusiness = () => {
                 <p className="text-neutral dark:text-neutral-300 mb-6">
                   Essential information about the Windows 10 end-of-life timeline and recommended steps for a smooth transition to Windows 11.
                 </p>
-                <GuideImage 
-                  src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png" 
-                  alt="Windows 11 Transition Guide Page 1" 
-                  fileName="windows11-transition-guide-1.png" 
-                  isPartOfDocument={true} 
-                  nextPage={{
-                    src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
-                    alt: "Windows 11 Transition Guide Page 2",
-                    fileName: "windows11-transition-guide-2.png"
-                  }} 
-                />
+                <GuideImage src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png" alt="Windows 11 Transition Guide Page 1" fileName="windows11-transition-guide-1.png" isPartOfDocument={true} nextPage={{
+                src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
+                alt: "Windows 11 Transition Guide Page 2",
+                fileName: "windows11-transition-guide-2.png"
+              }} />
               </div>
 
               <div className="rounded-xl p-6 bg-white dark:bg-neutral-900/50 shadow-lg">
@@ -56,42 +47,18 @@ const TMobileBusiness = () => {
                 <p className="text-neutral dark:text-neutral-300 mb-6">
                   Discover how our partnership with T-Mobile revolutionizes healthcare connectivity with 5G solutions designed for modern medical environments.
                 </p>
-                <GuideImage 
-                  src="/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png" 
-                  alt="Healthcare Digital Transformation Guide Page 1" 
-                  fileName="healthcare-transformation-guide-1.png" 
-                  isPartOfDocument={true} 
-                  nextPage={{
-                    src: "/lovable-uploads/14f48861-ae47-4548-8b0d-5345bc615b39.png",
-                    alt: "Healthcare Digital Transformation Guide Page 2",
-                    fileName: "healthcare-transformation-guide-2.png"
-                  }} 
-                />
+                <GuideImage src="/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png" alt="Healthcare Digital Transformation Guide Page 1" fileName="healthcare-transformation-guide-1.png" isPartOfDocument={true} nextPage={{
+                src: "/lovable-uploads/14f48861-ae47-4548-8b0d-5345bc615b39.png",
+                alt: "Healthcare Digital Transformation Guide Page 2",
+                fileName: "healthcare-transformation-guide-2.png"
+              }} />
               </div>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto mb-12 md:mb-16">
-            <FeatureCard 
-              title="Partner Plus Connected Laptop" 
-              description="Experience seamless connectivity with our 5G-enabled laptops, designed specifically for modern business needs. No more juggling separate data plans or external connections." 
-              icon={Laptop} 
-              benefits={[
-                "Built-in secure 5G connectivity for anywhere access",
-                "Seamless integration with enterprise applications",
-                "Enhanced security features for mobile workforce"
-              ]} 
-            />
-            <FeatureCard 
-              title="PCaaS Solutions" 
-              description="Transform your IT infrastructure with our PC-as-a-Service model, offering flexible, subscription-based access to the latest technology without significant upfront investments." 
-              icon={Cpu} 
-              benefits={[
-                "All-inclusive device lifecycle management",
-                "Predictable monthly costs for easier budgeting",
-                "Scalable services that grow with your business"
-              ]} 
-            />
+            <FeatureCard title="Partner Plus Connected Laptop" description="Experience seamless connectivity with our 5G-enabled laptops, designed specifically for modern business needs. No more juggling separate data plans or external connections." icon={Laptop} benefits={["Built-in secure 5G connectivity for anywhere access", "Seamless integration with enterprise applications", "Enhanced security features for mobile workforce"]} />
+            <FeatureCard title="PCaaS Solutions" description="Transform your IT infrastructure with our PC-as-a-Service model, offering flexible, subscription-based access to the latest technology without significant upfront investments." icon={Cpu} benefits={["All-inclusive device lifecycle management", "Predictable monthly costs for easier budgeting", "Scalable services that grow with your business"]} />
           </div>
 
           <div className="max-w-5xl mx-auto">
@@ -119,8 +86,6 @@ const TMobileBusiness = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default TMobileBusiness;
