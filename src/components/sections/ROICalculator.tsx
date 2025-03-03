@@ -1,5 +1,5 @@
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { StatsCards } from './roi/StatsCards';
@@ -11,13 +11,21 @@ import { calculateTrends, defaultTrends, DeviceCounts, getDefaultDeviceCounts } 
 import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/DeviceInput';
+import { EnterpriseToggle } from './roi/EnterpriseToggle';
 
 const ROICalculator = () => {
   const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
+  const [isEnterprise, setIsEnterprise] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
+
+  // Calculate total devices for enterprise mode
+  useEffect(() => {
+    const totalDevices = Object.values(deviceCounts).reduce((sum, count) => sum + count, 0);
+    setIsEnterprise(totalDevices >= 1200);
+  }, [deviceCounts]);
 
   const handleDeviceCountChange = (type: keyof DeviceCounts, value: number) => {
     setDeviceCounts(prev => {
@@ -45,6 +53,12 @@ const ROICalculator = () => {
                 </div>
                 <h3 className="text-xl font-semibold dark:text-white">ROI Calculator</h3>
               </div>
+              
+              <EnterpriseToggle 
+                isEnterprise={isEnterprise} 
+                onEnterpriseChange={() => {}} // Controlled automatically based on device count
+                disabled={true} // Disabled as it's auto-determined
+              />
             </div>
 
             <DeviceInput 
@@ -52,6 +66,7 @@ const ROICalculator = () => {
               sliderRef={sliderRef}
               onDeviceCountChange={handleDeviceCountChange}
               disabled={false}
+              isEnterprise={isEnterprise}
             />
 
             <SavingsDisplay deviceCounts={deviceCounts} />
@@ -77,6 +92,7 @@ const ROICalculator = () => {
         setShowMoreDetails={setShowMoreDetails}
         deviceCounts={deviceCounts}
         onDeviceCountChange={handleDeviceCountChange}
+        isEnterprise={isEnterprise}
       />
     </section>
   );

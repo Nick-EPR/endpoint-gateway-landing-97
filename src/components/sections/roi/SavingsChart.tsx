@@ -10,6 +10,7 @@ interface SavingsChartProps {
   showMoreDetails: boolean;
   setShowMoreDetails: (show: boolean) => void;
   onDeviceCountChange: (type: keyof DeviceCounts, value: number) => void;
+  isEnterprise?: boolean;
 }
 
 const formatLargeNumber = (value: number): string => {
@@ -27,7 +28,8 @@ export const SavingsChart = ({
   deviceCounts, 
   showMoreDetails, 
   setShowMoreDetails, 
-  onDeviceCountChange
+  onDeviceCountChange,
+  isEnterprise = false
 }: SavingsChartProps) => {
   const [chartData, setChartData] = useState<any[]>([]);
   const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
@@ -111,6 +113,7 @@ export const SavingsChart = ({
             sliderRef={sliderRef}
             onDeviceCountChange={handleDeviceChange}
             disabled={false}
+            isEnterprise={isEnterprise}
           />
         </div>
         

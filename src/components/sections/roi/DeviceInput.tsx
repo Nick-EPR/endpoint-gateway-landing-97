@@ -10,6 +10,7 @@ interface DeviceInputProps {
   sliderRef: RefObject<HTMLDivElement>;
   onDeviceCountChange: (type: keyof DeviceCounts, value: number) => void;
   disabled?: boolean;
+  isEnterprise?: boolean;
 }
 
 interface DeviceSliderConfig {
@@ -21,7 +22,7 @@ interface DeviceSliderConfig {
   step: number;
 }
 
-export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disabled }: DeviceInputProps) => {
+export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disabled, isEnterprise = false }: DeviceInputProps) => {
   // Create a state object to track input values for each device
   const [inputValues, setInputValues] = useState<Record<keyof DeviceCounts, string>>({
     macbooks: deviceCounts.macbooks.toString(),
@@ -31,6 +32,69 @@ export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disa
     monitors: deviceCounts.monitors.toString(),
     accessories: deviceCounts.accessories.toString(),
   });
+
+  // Base configs for standard mode
+  const baseDeviceConfigs: DeviceSliderConfig[] = [
+    {
+      key: 'macbooks',
+      label: 'MacBooks',
+      icon: <Laptop className="w-4 h-4 text-primary" />,
+      min: 0,
+      max: isEnterprise ? 10000 : 500,
+      step: 1
+    },
+    {
+      key: 'laptops',
+      label: 'Laptops (non-MacBook)',
+      icon: <Laptop className="w-4 h-4 text-primary" />,
+      min: 0,
+      max: isEnterprise ? 10000 : 1000,
+      step: 1
+    },
+    {
+      key: 'desktops',
+      label: 'Desktops',
+      icon: <Cpu className="w-4 h-4 text-primary" />,
+      min: 0,
+      max: isEnterprise ? 10000 : 500,
+      step: 1
+    },
+    {
+      key: 'tablets',
+      label: 'Tablets/iPads',
+      icon: <Tablet className="w-4 h-4 text-primary" />,
+      min: 0,
+      max: isEnterprise ? 10000 : 300,
+      step: 1
+    },
+    {
+      key: 'monitors',
+      label: 'Monitors',
+      icon: <Monitor className="w-4 h-4 text-primary" />,
+      min: 0,
+      max: isEnterprise ? 10000 : 1000,
+      step: 1
+    },
+    {
+      key: 'accessories',
+      label: 'Accessories (mouse, keyboard, webcam, etc.)',
+      icon: <MousePointer className="w-4 h-4 text-primary" />,
+      min: 0,
+      max: isEnterprise ? 10000 : 2000,
+      step: 1
+    }
+  ];
+
+  // Create a modified version of the device configs based on enterprise mode
+  const [deviceConfigs, setDeviceConfigs] = useState<DeviceSliderConfig[]>(baseDeviceConfigs);
+
+  // Update device configs when enterprise mode changes
+  useEffect(() => {
+    setDeviceConfigs(baseDeviceConfigs.map(config => ({
+      ...config,
+      max: isEnterprise ? 10000 : config.max
+    })));
+  }, [isEnterprise]);
 
   // Update input values when device counts prop changes
   useEffect(() => {
@@ -43,57 +107,6 @@ export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disa
       accessories: deviceCounts.accessories.toString(),
     });
   }, [deviceCounts]);
-
-  const deviceConfigs: DeviceSliderConfig[] = [
-    {
-      key: 'macbooks',
-      label: 'MacBooks',
-      icon: <Laptop className="w-4 h-4 text-primary" />,
-      min: 0,
-      max: 500,
-      step: 1
-    },
-    {
-      key: 'laptops',
-      label: 'Laptops (non-MacBook)',
-      icon: <Laptop className="w-4 h-4 text-primary" />,
-      min: 0,
-      max: 1000,
-      step: 1
-    },
-    {
-      key: 'desktops',
-      label: 'Desktops',
-      icon: <Cpu className="w-4 h-4 text-primary" />,
-      min: 0,
-      max: 500,
-      step: 1
-    },
-    {
-      key: 'tablets',
-      label: 'Tablets/iPads',
-      icon: <Tablet className="w-4 h-4 text-primary" />,
-      min: 0,
-      max: 300,
-      step: 1
-    },
-    {
-      key: 'monitors',
-      label: 'Monitors',
-      icon: <Monitor className="w-4 h-4 text-primary" />,
-      min: 0,
-      max: 1000,
-      step: 1
-    },
-    {
-      key: 'accessories',
-      label: 'Accessories (mouse, keyboard, webcam, etc.)',
-      icon: <MousePointer className="w-4 h-4 text-primary" />,
-      min: 0,
-      max: 2000,
-      step: 1
-    }
-  ];
 
   const handleInputChange = (device: keyof DeviceCounts, e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -127,16 +140,26 @@ export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disa
     onDeviceCountChange(device, value);
   };
 
+  // Calculate midpoint for slider display
+  const getMidpoint = (min: number, max: number) => Math.round(max * 0.5);
+
   return (
     <div className="mb-8 px-2 sm:px-0" ref={sliderRef}>
-      <h3 className="text-lg font-semibold mb-6 text-neutral-800 dark:text-white">Device Inventory</h3>
+      <h3 className="text-lg font-semibold mb-6 text-neutral-800 dark:text-white">
+        Device Inventory
+        {isEnterprise && (
+          <span className="ml-2 text-sm font-normal text-indigo-600 dark:text-indigo-400">
+            Enterprise Mode Active
+          </span>
+        )}
+      </h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
         {deviceConfigs.map((config) => (
           <div key={config.key} className="bg-white/50 dark:bg-neutral-800/40 p-5 rounded-xl shadow-sm border border-neutral-100 dark:border-neutral-700">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center">
-                <div className="bg-primary/10 p-2 rounded-lg mr-3">
+                <div className={`p-2 rounded-lg mr-3 ${isEnterprise ? "bg-indigo-100 dark:bg-indigo-900/20" : "bg-primary/10"}`}>
                   {config.icon}
                 </div>
                 <label className="text-sm font-medium text-neutral-800 dark:text-neutral-200">
@@ -162,12 +185,12 @@ export const DeviceInput = ({ deviceCounts, sliderRef, onDeviceCountChange, disa
               onValueChange={(values) => handleSliderChange(config.key, values)}
               className="my-3 transition-opacity duration-300"
               disabled={disabled}
-              isEnterprise={config.key === 'macbooks' || config.key === 'tablets'}
+              isEnterprise={isEnterprise || config.key === 'macbooks' || config.key === 'tablets'}
             />
             <div className="flex justify-between text-xs text-neutral-500 dark:text-neutral-400 mt-1 px-1">
               <span>{config.min}</span>
               <span className="text-xs text-neutral-400 dark:text-neutral-500">
-                {Math.round(config.max * 0.5)}
+                {getMidpoint(config.min, config.max)}
               </span>
               <span>{config.max}</span>
             </div>
