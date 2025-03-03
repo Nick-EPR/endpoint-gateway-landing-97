@@ -51,6 +51,7 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
       return parseFloat(value);
     }
     if (value.startsWith('$')) {
+      // Remove $ and commas, then parse as float
       return parseFloat(value.slice(1).replace(/,/g, ''));
     }
     return parseFloat(value.replace(/[^\d.-]/g, ''));
@@ -69,7 +70,12 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
     <TooltipProvider delayDuration={0}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {trends.map((trend, index) => {
-          const numericValue = extractNumericValue(trend.value);
+          // Use absolute value for Estimated ROI to ensure it displays as positive
+          let numericValue = extractNumericValue(trend.value);
+          if (trend.label === "Estimated ROI") {
+            numericValue = Math.abs(numericValue);
+          }
+          
           const animatedValue = useCountUp(numericValue, 1000);
           const unit = getUnit(trend.value);
           

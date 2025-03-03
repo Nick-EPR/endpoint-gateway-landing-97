@@ -227,7 +227,7 @@ export const calculateTrends = (devices: DeviceCounts): Trend[] => {
     },
     {
       label: "Estimated ROI",
-      value: `$${annualSavings}`,
+      value: `$${Math.abs(annualSavings)}`,  // Use absolute value for ROI display
       trend: 30,
       tooltip: "Expected 4-year return on investment in dollars"
     },
