@@ -9,8 +9,11 @@ interface SavingsDisplayProps {
 
 export const SavingsDisplay = ({ deviceCounts }: SavingsDisplayProps) => {
   const annualSavings = calculateAnnualSavings(deviceCounts);
-  const animatedAnnualSavings = useCountUp(annualSavings, 1000);
-  const animatedFourYearSavings = useCountUp(annualSavings * 4, 1000);
+  const displayAnnualSavings = Math.abs(annualSavings); // Use absolute value to ensure positive display
+  const displayFourYearSavings = Math.abs(annualSavings * 4); // Use absolute value for 4-year savings as well
+  
+  const animatedAnnualSavings = useCountUp(displayAnnualSavings, 1000);
+  const animatedFourYearSavings = useCountUp(displayFourYearSavings, 1000);
 
   return (
     <div className="grid md:grid-cols-2 gap-6 mb-6">
