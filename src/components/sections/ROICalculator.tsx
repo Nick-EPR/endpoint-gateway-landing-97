@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Calculator, LineChart } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -23,7 +24,7 @@ const ROICalculator = () => {
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
-  // Auto-open stats panel when section is visible
+  // Auto-toggle stats panel based on section visibility
   useEffect(() => {
     if (isSectionVisible) {
       setStatsVisible(true);
@@ -59,7 +60,7 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel - now automatically shown when section is visible */}
+          {/* Stats Side Panel - animated based on section visibility */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 

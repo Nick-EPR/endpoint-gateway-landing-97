@@ -15,6 +15,7 @@ interface StatsSidePanelProps {
 
 export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisible }: StatsSidePanelProps) => {
   const [isDesktop, setIsDesktop] = useState(false);
+  const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
   
   // Check if we're on desktop or mobile
   useEffect(() => {
@@ -27,25 +28,44 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
-  // Don't render anything if calculator is not visible
-  if (!isCalculatorVisible) {
+  // Handle animation states based on calculator visibility
+  useEffect(() => {
+    if (isCalculatorVisible && animationState === 'hidden') {
+      // Enter animation when calculator becomes visible
+      setAnimationState('entering');
+      const timer = setTimeout(() => setAnimationState('visible'), 500); // Duration of enter animation
+      return () => clearTimeout(timer);
+    } else if (!isCalculatorVisible && (animationState === 'visible' || animationState === 'entering')) {
+      // Exit animation when calculator becomes invisible
+      setAnimationState('exiting');
+      const timer = setTimeout(() => setAnimationState('hidden'), 500); // Duration of exit animation
+      return () => clearTimeout(timer);
+    }
+  }, [isCalculatorVisible, animationState]);
+
+  // Don't render anything if panel should be fully hidden
+  if (animationState === 'hidden') {
     return null;
   }
 
   return (
     <>
-      {/* Stats Panel - now automatically shown when in view */}
+      {/* Stats Panel with animations */}
       <div 
         className={cn(
           "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
           isDesktop 
             ? cn(
                 "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
-                isCalculatorVisible && isOpen ? "left-0 animate-fade-in" : "-left-[320px]"
+                animationState === 'entering' ? "animate-fade-in left-0" : 
+                animationState === 'visible' ? "left-0" : 
+                animationState === 'exiting' ? "animate-fade-out -left-[320px]" : "-left-[320px]"
               )
             : cn(
                 "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
-                isCalculatorVisible && isOpen ? "bottom-0 animate-fade-in" : "-bottom-[400px]"
+                animationState === 'entering' ? "animate-fade-in bottom-0" : 
+                animationState === 'visible' ? "bottom-0" : 
+                animationState === 'exiting' ? "animate-fade-out -bottom-[400px]" : "-bottom-[400px]"
               )
         )}
       >
@@ -64,19 +84,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         )}>
           <StatsCards trends={trends} compact={true} />
         </div>
-
-        {/* Desktop Tab/Handle - now hidden for auto-appearance */}
-        {isDesktop && (
-          <div 
-            className={cn(
-              "absolute top-1/2 -right-11 -translate-y-1/2 rotate-90 bg-primary text-white px-3 py-1.5 rounded-t-lg cursor-pointer shadow-md text-sm opacity-0 transition-opacity duration-300",
-              isCalculatorVisible && !isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-            )}
-            onClick={togglePanel}
-          >
-            Statistics
-          </div>
-        )}
       </div>
     </>
   );
