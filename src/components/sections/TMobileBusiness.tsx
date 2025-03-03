@@ -5,7 +5,7 @@ import FeatureCard from "./tmobile/FeatureCard";
 import BenefitCard from "./tmobile/BenefitCard";
 const TMobileBusiness = () => {
   return <section className="py-12 md:py-16">
-      <div className="py-20 bg-primary-foreground">
+      <div className="py-20 bg-transparent">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
