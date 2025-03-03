@@ -15,7 +15,7 @@ interface StatsSidePanelProps {
 
 export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisible }: StatsSidePanelProps) => {
   const [isDesktop, setIsDesktop] = useState(false);
-  const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
+  const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>(isOpen ? 'visible' : 'hidden');
   
   // Check if we're on desktop or mobile
   useEffect(() => {
@@ -28,22 +28,40 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
-  // Handle animation states based on isOpen (which should reflect calculator visibility)
+  // Handle animation states based on isOpen
   useEffect(() => {
-    if (isOpen) {
-      // When panel should be open, start the entering animation
+    console.log("StatsSidePanel isOpen:", isOpen);
+    
+    if (isOpen && (animationState === 'hidden' || animationState === 'exiting')) {
+      console.log("Setting animation state to entering");
       setAnimationState('entering');
-      // After animation completes, set to visible state
-      const timer = setTimeout(() => setAnimationState('visible'), 500);
+      const timer = setTimeout(() => {
+        console.log("Setting animation state to visible");
+        setAnimationState('visible');
+      }, 50);
       return () => clearTimeout(timer);
-    } else if (animationState !== 'hidden') {
-      // Only start exiting animation if not already hidden
+    } 
+    else if (!isOpen && (animationState === 'visible' || animationState === 'entering')) {
+      console.log("Setting animation state to exiting");
       setAnimationState('exiting');
-      // After exit animation completes, set to hidden
-      const timer = setTimeout(() => setAnimationState('hidden'), 500);
+      const timer = setTimeout(() => {
+        console.log("Setting animation state to hidden");
+        setAnimationState('hidden');
+      }, 500);
       return () => clearTimeout(timer);
     }
   }, [isOpen, animationState]);
+
+  // Force the panel to be visible when calculator is visible
+  useEffect(() => {
+    if (isCalculatorVisible && !isOpen) {
+      console.log("Calculator is visible but panel is closed - should open");
+      // Let the parent component handle the toggle logic
+      // This is just a suggestion to open when calculator is visible
+    }
+  }, [isCalculatorVisible, isOpen]);
+
+  console.log("Current animation state:", animationState);
 
   // Don't render anything if panel should be fully hidden
   if (animationState === 'hidden') {
