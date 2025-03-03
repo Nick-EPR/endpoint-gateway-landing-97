@@ -4,9 +4,10 @@ import { DeviceCounts } from '@/utils/roi';
 
 interface EnvironmentalMetricsProps {
   deviceCounts: DeviceCounts;
+  isEnterprise?: boolean;
 }
 
-export const EnvironmentalMetrics = ({ deviceCounts }: EnvironmentalMetricsProps) => {
+export const EnvironmentalMetrics = ({ deviceCounts, isEnterprise = false }: EnvironmentalMetricsProps) => {
   const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
   const [animatedCarbonOffset, setAnimatedCarbonOffset] = useState(0);
 
@@ -20,8 +21,10 @@ export const EnvironmentalMetrics = ({ deviceCounts }: EnvironmentalMetricsProps
       deviceCounts.monitors +
       deviceCounts.accessories * 0.1; // Count accessories as 1/10th of a full device for environmental calcs
     
-    const targetTreeCount = Math.round(totalDevices * 0.4);
-    const targetCarbonOffset = Math.round(totalDevices * 0.7);
+    // Apply enterprise scaling factor if in enterprise mode
+    const enterpriseFactor = isEnterprise ? 1.2 : 1;
+    const targetTreeCount = Math.round(totalDevices * 0.4 * enterpriseFactor);
+    const targetCarbonOffset = Math.round(totalDevices * 0.7 * enterpriseFactor);
     
     const startTime = performance.now();
     const duration = 1000;
@@ -39,7 +42,7 @@ export const EnvironmentalMetrics = ({ deviceCounts }: EnvironmentalMetricsProps
     };
 
     requestAnimationFrame(animate);
-  }, [deviceCounts]);
+  }, [deviceCounts, isEnterprise]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

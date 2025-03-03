@@ -7,7 +7,7 @@ import {
 } from './constants';
 
 // Function to calculate annual savings based on device counts
-export const calculateAnnualSavings = (devices: DeviceCounts): number => {
+export const calculateAnnualSavings = (devices: DeviceCounts, isEnterprise: boolean = false): number => {
   // Calculate service costs
   const serviceCosts = 
     (devices.macbooks * PER_INCIDENT_COSTS.macbook) +
@@ -35,18 +35,21 @@ export const calculateAnnualSavings = (devices: DeviceCounts): number => {
     (devices.monitors * 0.3 * AVG_DEVICE_COST.monitor * 0.25) +
     (devices.accessories * 0.3 * AVG_DEVICE_COST.accessory * 0.25);
 
-  return Math.round(extendedLifecycleSavings + resaleValue - serviceCosts);
+  // Apply enterprise scaling factor if in enterprise mode
+  const enterpriseFactor = isEnterprise ? 1.35 : 1;
+  
+  return Math.round((extendedLifecycleSavings + resaleValue - serviceCosts) * enterpriseFactor);
 };
 
 // Function to calculate compounded savings over 4 years
-export const calculateCompoundedSavings = (devices: DeviceCounts) => {
+export const calculateCompoundedSavings = (devices: DeviceCounts, isEnterprise: boolean = false) => {
   const years = 4;
   const data = [];
   let totalSavings = 0;
   let totalCO2Saved = 0;
   
   for (let i = 1; i <= years; i++) {
-    totalSavings += calculateAnnualSavings(devices);
+    totalSavings += calculateAnnualSavings(devices, isEnterprise);
     totalCO2Saved += calculateEnvironmentalImpact(devices).co2Reduction;
     data.push({
       year: `Year ${i}`,
