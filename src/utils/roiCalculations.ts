@@ -1,4 +1,3 @@
-
 export interface Trend {
   label: string;
   value: string;
@@ -135,4 +134,4 @@ export const formatNumberWithCommas = (value: number, locale: string = 'en-US'):
   return new Intl.NumberFormat(locale).format(value);
 };
 
-export const defaultTrends = calculateTrends(1000);
+export const defaultTrends = calculateTrends(150);

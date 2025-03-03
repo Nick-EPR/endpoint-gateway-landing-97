@@ -14,10 +14,10 @@ import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 const ROICalculator = () => {
-  const [employees, setEmployees] = useState(1000);
-  const [isEnterprise, setIsEnterprise] = useState(true);
+  const [employees, setEmployees] = useState(150);
+  const [isEnterprise, setIsEnterprise] = useState(false);
   const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [currentTrends, setCurrentTrends] = useState(defaultTrends);
+  const [currentTrends, setCurrentTrends] = useState(calculateTrends(150));
   const sliderRef = useRef<HTMLDivElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
 
