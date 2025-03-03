@@ -8,12 +8,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 interface StatsCardsProps {
   trends?: Trend[];
+  compact?: boolean;
 }
 
-export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
+export const StatsCards = ({ trends = [], compact = false }: StatsCardsProps) => {
   if (!trends || trends.length === 0) {
     return null;
   }
@@ -68,7 +70,11 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
 
   return (
     <TooltipProvider delayDuration={0}>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+      <div className={cn(
+        "grid gap-4",
+        compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+        compact ? "mb-2" : "mb-8"
+      )}>
         {trends.map((trend, index) => {
           // Use absolute value for Estimated ROI to ensure it displays as positive
           let numericValue = extractNumericValue(trend.value);
@@ -80,11 +86,22 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
           const unit = getUnit(trend.value);
           
           return (
-            <div key={index} className="bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50 flex flex-col h-full">
+            <div 
+              key={index} 
+              className={cn(
+                "bg-white/80 dark:bg-neutral-800/50 rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow border border-neutral-100/10 dark:border-neutral-700/50 flex flex-col h-full",
+                compact && "p-3"
+              )}
+            >
               <div className="flex items-start justify-between mb-auto">
                 <div className="flex items-center">
                   {getIcon(trend.label)}
-                  <h4 className="text-sm font-medium text-neutral-800 dark:text-neutral-200">{trend.label}</h4>
+                  <h4 className={cn(
+                    "font-medium text-neutral-800 dark:text-neutral-200",
+                    compact ? "text-xs" : "text-sm"
+                  )}>
+                    {trend.label}
+                  </h4>
                 </div>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -102,7 +119,10 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
                 </Tooltip>
               </div>
               <div className="flex items-baseline gap-2 mt-2">
-                <span className="text-xl font-bold text-neutral-900 dark:text-white">
+                <span className={cn(
+                  "font-bold text-neutral-900 dark:text-white",
+                  compact ? "text-lg" : "text-xl"
+                )}>
                   {trend.value.startsWith('$') ? '$' : ''}
                   {animatedValue.toLocaleString()}
                   {trend.value.endsWith('%') ? '%' : ''}
@@ -114,7 +134,12 @@ export const StatsCards = ({ trends = [] }: StatsCardsProps) => {
                   ) : (
                     <ArrowDownRight className="w-4 h-4" />
                   )}
-                  <span className="text-sm font-medium">{Math.abs(trend.trend)}%</span>
+                  <span className={cn(
+                    "font-medium", 
+                    compact ? "text-xs" : "text-sm"
+                  )}>
+                    {Math.abs(trend.trend)}%
+                  </span>
                 </div>
               </div>
             </div>
