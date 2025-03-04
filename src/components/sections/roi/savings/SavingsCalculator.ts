@@ -6,6 +6,7 @@ import { DeviceCounts } from '@/utils/roi';
  */
 export const calculateDisplaySavings = (deviceCounts: DeviceCounts, isEnterprise: boolean = false) => {
   const annualSavings = calculateAnnualSavings(deviceCounts, isEnterprise);
+  // Ensure we're always working with positive values for display purposes
   const displayAnnualSavings = Math.abs(annualSavings);
   const displayFourYearSavings = Math.abs(annualSavings * 4);
   

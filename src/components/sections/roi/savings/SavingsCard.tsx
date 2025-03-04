@@ -9,7 +9,9 @@ interface SavingsCardProps {
 }
 
 export const SavingsCard = ({ title, value, icon = <TrendingUp className="w-5 h-5 text-primary mr-2" /> }: SavingsCardProps) => {
-  const animatedValue = useCountUp(value, 1000);
+  // Ensure we're always animating with positive values
+  const positiveValue = Math.abs(value);
+  const animatedValue = useCountUp(positiveValue, 1000);
 
   return (
     <div className="p-4 sm:p-6 bg-white/80 dark:bg-neutral-800/50 rounded-lg border border-neutral/10 dark:border-neutral-700/50 hover:border-primary/30 dark:hover:border-primary/30 transition-colors duration-300">
