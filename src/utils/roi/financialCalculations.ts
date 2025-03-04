@@ -1,3 +1,4 @@
+
 import { DeviceCounts } from './types';
 import { 
   PER_INCIDENT_COSTS, 
@@ -26,12 +27,14 @@ export const calculateAnnualSavings = (devices: DeviceCounts, isEnterprise: bool
     ((devices.accessories / 4) * (AVG_DEVICE_COST.accessory * RESALE_VALUE_PERCENTAGE));
 
   // Calculate cost savings from extended lifecycle
+  // Adjust the savings factor for monitors to be more realistic based on $150 value
   const extendedLifecycleSavings = 
     (devices.macbooks * 0.3 * AVG_DEVICE_COST.macbook * 0.25) +
     (devices.laptops * 0.3 * AVG_DEVICE_COST.laptop * 0.25) +
     (devices.desktops * 0.3 * AVG_DEVICE_COST.desktop * 0.25) +
     (devices.tablets * 0.3 * AVG_DEVICE_COST.tablet * 0.25) +
-    (devices.monitors * 0.3 * AVG_DEVICE_COST.monitor * 0.25) +
+    // Reduce the lifecycle extension factor for monitors from 0.3 to 0.15
+    (devices.monitors * 0.15 * AVG_DEVICE_COST.monitor * 0.25) +
     (devices.accessories * 0.3 * AVG_DEVICE_COST.accessory * 0.25);
 
   // No enterprise scaling factor - calculations are consistent regardless of enterprise mode

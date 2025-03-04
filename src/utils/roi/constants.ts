@@ -5,7 +5,8 @@ export const PER_INCIDENT_COSTS = {
   laptop: 265,
   desktop: 267,
   tablet: 212,
-  monitor: 200,
+  // Adjust monitor service cost to be more proportional to its $150 value
+  monitor: 75, // Reduced from 200 to 75 (approximately half of the $150 MSRP)
   accessory: 35
 };
 
