@@ -1,10 +1,10 @@
 
 import { ReactNode } from "react";
-import Navbar from "./navbar/Navbar";
-import Footer from "./Footer";
-import NavigationProgress from "./NavigationProgress";
-import StatusBanner from "./StatusBanner";
-import BottomNavbar from "./navbar/BottomNavbar";
+import Navbar from "../navbar/Navbar";
+import Footer from "../Footer";
+import NavigationProgress from "../NavigationProgress";
+import StatusBanner from "../StatusBanner";
+import BottomNavbar from "../navbar/BottomNavbar";
 
 interface IndexLayoutProps {
   children: ReactNode;

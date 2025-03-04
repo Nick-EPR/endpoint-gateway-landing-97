@@ -1,8 +1,8 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { fetchMonitors } from "@/utils/monitorUtils";
-import IndexLayout from "@/components/IndexLayout";
-import IndexSections from "@/components/IndexSections";
+import IndexLayout from "@/components/layout/IndexLayout";
+import IndexSections from "@/components/sections/IndexSections";
 import { useIndexScroll } from "@/hooks/useIndexScroll";
 import { useNavigation } from "@/hooks/useNavigation";
 import { useStatsPanel } from "@/hooks/useStatsPanel";
@@ -18,7 +18,7 @@ const Index = () => {
     queryFn: fetchMonitors,
     refetchInterval: 60000,
     staleTime: 55000,
-    gcTime: 120000, // Changed from cacheTime to gcTime for v5 compatibility
+    gcTime: 120000,
   });
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
