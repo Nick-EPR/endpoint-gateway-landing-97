@@ -14,19 +14,19 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
   if (!isOpen) return null;
 
   return (
-    <div className="md:hidden bg-white shadow-lg">
+    <div className="md:hidden bg-white dark:bg-neutral-900 shadow-lg dark:shadow-black/30">
       <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
         <ProductsDropdown scrolled={scrolled} isMobile onItemClick={onClose} />
         <Link 
           to="/pricing" 
-          className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
+          className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-left py-2"
           onClick={onClose}
         >
           Pricing
         </Link>
         <button 
           onClick={onFeatureClick} 
-          className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
+          className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-left py-2"
         >
           Features
         </button>
