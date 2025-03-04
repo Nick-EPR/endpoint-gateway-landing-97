@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+
+import { useEffect, useState, useRef } from 'react';
 import { Trend } from "@/utils/roi";
-import { X, Minimize2, Maximize2 } from 'lucide-react';
+import { X, Minimize2, Maximize2, Calculator } from 'lucide-react';
 import { StatsCards } from './StatsCards';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface StatsSidePanelProps {
   trends: Trend[];
@@ -16,6 +18,8 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
   const [isDesktop, setIsDesktop] = useState(false);
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
   const [isMinimized, setIsMinimized] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const { isVisible: isPanelInView } = useIntersectionObserver(panelRef, { threshold: 0.1 });
   
   useEffect(() => {
     const checkWidth = () => {
@@ -66,6 +70,7 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
   return (
     <>
       <div 
+        ref={panelRef}
         className={cn(
           "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
           isDesktop 
@@ -138,13 +143,23 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         )}
       </div>
 
+      {/* Floating action button that matches scroll-to-top button style */}
       {isMinimized && isDesktop && (
         <button
           onClick={toggleMinimize}
-          className="fixed z-40 left-10 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
-          aria-label="Maximize panel"
+          className={cn(
+            "fixed z-40 bottom-6 left-6 p-3 rounded-full shadow-lg transition-all duration-300",
+            "bg-primary text-white hover:bg-primary/90 flex items-center justify-center",
+            "transform transition-transform animate-fade-in w-12 h-12",
+            !isPanelInView && "translate-y-24 opacity-0 pointer-events-none"
+          )}
+          aria-label="Open ROI statistics panel"
         >
-          <Maximize2 className="h-5 w-5" />
+          {isPanelInView ? (
+            <Maximize2 className="h-5 w-5" />
+          ) : (
+            <Calculator className="h-5 w-5" />
+          )}
         </button>
       )}
     </>
