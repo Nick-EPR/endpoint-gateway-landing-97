@@ -5,13 +5,6 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
   const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(true);
   const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
 
-  // Reset the minimized state when calculator becomes visible
-  useEffect(() => {
-    if (isCalculatorVisible) {
-      setIsStatsPanelMinimized(false);
-    }
-  }, [isCalculatorVisible]);
-
   // Listen for custom event when stats panel is minimized
   useEffect(() => {
     const handleStatsMinimized = (event: CustomEvent<{minimized: boolean}>) => {
@@ -27,11 +20,18 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
   }, []);
 
   const toggleStatsPanel = () => {
-    setIsStatsPanelVisible(!isStatsPanelVisible);
+    if (isStatsPanelMinimized) {
+      // If minimized, maximize it instead of toggling visibility
+      setIsStatsPanelMinimized(false);
+    } else {
+      // Toggle visibility
+      setIsStatsPanelVisible(!isStatsPanelVisible);
+    }
   };
 
   const handleMaximizeCalculator = () => {
     setIsStatsPanelMinimized(false);
+    setIsStatsPanelVisible(true);
     
     // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 

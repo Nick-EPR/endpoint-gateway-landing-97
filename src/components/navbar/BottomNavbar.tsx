@@ -51,7 +51,7 @@ const BottomNavbar = ({
         )}
         
         {/* Maximize button - only shown when stats panel is minimized */}
-        {isCalculatorMinimized && onMaximizeCalculator && (
+        {isCalculatorMinimized && (
           <Button
             onClick={onMaximizeCalculator}
             className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"

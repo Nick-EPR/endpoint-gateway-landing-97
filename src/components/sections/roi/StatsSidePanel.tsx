@@ -34,13 +34,16 @@ const StatsSidePanel = ({
     }));
   }, [isMinimized]);
 
-  // If panel is closed or (minimized and calculator not visible), return null
-  if (!isOpen || (isMinimized && !isCalculatorVisible)) return null;
+  // If panel is closed, return null
+  if (!isOpen) return null;
+  
+  // If panel is minimized, return null but still dispatch the event
+  if (isMinimized) return null;
 
   return (
     <div 
       ref={panelRef}
-      className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300 ${isMinimized ? 'hidden' : 'opacity-100'}`}
+      className="fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300"
       style={{ maxHeight: '80vh' }}
     >
       <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
