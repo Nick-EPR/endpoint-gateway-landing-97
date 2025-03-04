@@ -24,6 +24,7 @@ import { useNavigation } from "./hooks/useNavigation";
 const queryClient = new QueryClient();
 
 function App() {
+  // Remove local state management since it will be managed by useNavigation
   const { isChatOpen, handleChatClick } = useNavigation();
 
   return (
