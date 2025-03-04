@@ -11,16 +11,17 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     }
   }, [isCalculatorVisible, isStatsPanelMinimized]);
 
-  // Find EventEmitter when ROI component is updated for minimized state
+  // Listen for custom event when stats panel is minimized
   useEffect(() => {
-    const handleStatsMinimized = (event: CustomEvent) => {
+    const handleStatsMinimized = (event: CustomEvent<{minimized: boolean}>) => {
       setIsStatsPanelMinimized(event.detail.minimized);
     };
 
-    window.addEventListener('statsMinimized' as any, handleStatsMinimized);
+    // Add type assertion to make TypeScript happy
+    window.addEventListener('statsMinimized', handleStatsMinimized as EventListener);
     
     return () => {
-      window.removeEventListener('statsMinimized' as any, handleStatsMinimized);
+      window.removeEventListener('statsMinimized', handleStatsMinimized as EventListener);
     };
   }, []);
 

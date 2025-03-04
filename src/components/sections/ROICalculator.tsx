@@ -54,8 +54,16 @@ const ROICalculator = () => {
   };
 
   const toggleStatsPanel = () => {
-    if (statsVisible) {
-      setIsStatsMinimized(!isStatsMinimized);
+    if (statsVisible && !isStatsMinimized) {
+      setIsStatsMinimized(true);
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: true }
+      }));
+    } else if (statsVisible && isStatsMinimized) {
+      setIsStatsMinimized(false);
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: false }
+      }));
     } else {
       setStatsVisible(true);
       setIsStatsMinimized(false);
@@ -64,6 +72,9 @@ const ROICalculator = () => {
 
   const maximizeStatsPanel = () => {
     setIsStatsMinimized(false);
+    window.dispatchEvent(new CustomEvent('statsMinimized', { 
+      detail: { minimized: false }
+    }));
   };
 
   const { isAnimating } = useROIAnimation(false, () => {});

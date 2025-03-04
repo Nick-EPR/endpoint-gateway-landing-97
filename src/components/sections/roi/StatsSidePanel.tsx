@@ -25,11 +25,22 @@ const StatsSidePanel = ({
   // Update panel height when minimized state changes
   useEffect(() => {
     if (panelRef.current) {
-      if (isMinimized) {
-        panelRef.current.style.height = '60px';
-      } else {
-        panelRef.current.style.height = 'auto';
-      }
+      const updatePanelSize = () => {
+        if (isMinimized) {
+          panelRef.current!.style.height = '60px';
+          panelRef.current!.style.overflow = 'hidden';
+        } else {
+          panelRef.current!.style.height = 'auto';
+          panelRef.current!.style.overflow = 'visible';
+        }
+      };
+      
+      updatePanelSize();
+      
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: isMinimized }
+      }));
     }
   }, [isMinimized]);
 
@@ -38,9 +49,8 @@ const StatsSidePanel = ({
   return (
     <div 
       ref={panelRef}
-      className={`fixed right-4 bottom-24 w-[320px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300 transform ${
-        isMinimized ? 'overflow-hidden' : ''
-      }`}
+      className={`fixed right-4 bottom-24 w-[320px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300`}
+      style={{ maxHeight: isMinimized ? '60px' : '80vh' }}
     >
       <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
         <h3 className="font-medium text-lg dark:text-white">ROI Stats</h3>
@@ -66,7 +76,7 @@ const StatsSidePanel = ({
         </div>
       </div>
       
-      <div className={`transition-all duration-300 p-4 ${isMinimized ? 'hidden' : 'block'}`}>
+      <div className={`transition-all duration-300 ${isMinimized ? 'hidden' : 'p-4 overflow-y-auto'}`}>
         <StatsCards trends={trends} />
       </div>
     </div>
