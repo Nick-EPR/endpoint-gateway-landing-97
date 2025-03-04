@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Calculator, ArrowUp, Maximize2 } from "lucide-react";
+import { MessageCircle, Calculator, ArrowUp } from "lucide-react";
 
 interface BottomNavbarProps {
   onChatClick: () => void;
