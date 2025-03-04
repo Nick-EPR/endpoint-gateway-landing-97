@@ -118,6 +118,10 @@ const Index = () => {
     }
   };
 
+  const handleMaximizeCalculator = () => {
+    setIsCalculatorOpen(true);
+  };
+
   return (
     <div className="min-h-screen dark:bg-neutral-900">
       <NavigationProgress />
@@ -177,6 +181,8 @@ const Index = () => {
       <BottomNavbar 
         onChatClick={handleChatClick}
         onCalculatorClick={handleCalculatorClick}
+        isCalculatorMinimized={!isCalculatorOpen && isCalculatorOpen !== undefined}
+        onMaximizeCalculator={handleMaximizeCalculator}
       />
     </div>
   );
