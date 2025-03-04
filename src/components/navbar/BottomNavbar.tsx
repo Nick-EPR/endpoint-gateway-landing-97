@@ -78,11 +78,12 @@ const BottomNavbar = ({
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
-            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-8 w-8 sm:h-11 sm:w-11 animate-fade-in"
-            size="icon"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
+            size="sm"
             aria-label="Scroll to top"
           >
             <ArrowUp className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="ml-1 sm:ml-2 text-xs sm:text-sm">Top</span>
           </Button>
         )}
       </div>
