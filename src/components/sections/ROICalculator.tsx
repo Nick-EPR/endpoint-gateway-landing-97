@@ -1,16 +1,18 @@
+
 import { useState, useRef, useEffect } from 'react';
-import { Calculator, LineChart } from 'lucide-react';
+import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { SavingsDisplay } from './roi/savings/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
 import { ROIHeader } from './roi/ROIHeader';
 import { CalculationMethodology } from './roi/CalculationMethodology';
-import { calculateTrends, defaultTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roi';
+import { calculateTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roi';
 import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/device/DeviceInput';
 import { EnterpriseToggle } from './roi/EnterpriseToggle';
 import { StatsSidePanel } from './roi/StatsSidePanel';
+import BottomNavbar from '../navbar/BottomNavbar';
 
 const ROICalculator = () => {
   const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());
@@ -18,6 +20,7 @@ const ROICalculator = () => {
   const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
@@ -115,7 +118,6 @@ const ROICalculator = () => {
                 onClick={() => setShowMoreDetails(true)} 
                 className="gap-2 dark:bg-neutral-800 dark:text-white dark:hover:bg-neutral-700"
               >
-                <LineChart className="w-4 h-4" />
                 View 4-Year Projection
               </Button>
             </div>
@@ -132,6 +134,14 @@ const ROICalculator = () => {
         onDeviceCountChange={handleDeviceCountChange}
         isEnterprise={isEnterprise}
         onEnterpriseChange={handleEnterpriseToggle}
+      />
+
+      {/* Add the BottomNavbar */}
+      <BottomNavbar 
+        onChatClick={() => setChatOpen(prev => !prev)}
+        onCalculatorClick={toggleStatsPanel}
+        isCalculatorMinimized={!statsVisible && isSectionVisible}
+        onMaximizeCalculator={toggleStatsPanel}
       />
     </section>
   );

@@ -7,6 +7,7 @@ import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { sections } from "./sections";
+import BottomNavbar from "@/components/navbar/BottomNavbar";
 
 // Lazily load the Hero component since it's above the fold
 const Hero = lazy(() => import("@/components/sections/Hero"));
@@ -32,6 +33,8 @@ SectionLoading.displayName = "SectionLoading";
 const Index = () => {
   const [scrolled, setScrolled] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   
   // Optimize the monitor query with better caching
   const { data: monitors } = useQuery({
@@ -100,6 +103,21 @@ const Index = () => {
     </Suspense>
   );
 
+  const handleChatClick = () => {
+    setIsChatOpen(prev => !prev);
+  };
+
+  const handleCalculatorClick = () => {
+    setIsCalculatorOpen(prev => !prev);
+    // Scroll to ROI section if calculator is opened
+    if (!isCalculatorOpen) {
+      const roiSection = document.getElementById('roi-calculator');
+      if (roiSection) {
+        roiSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <div className="min-h-screen dark:bg-neutral-900">
       <NavigationProgress />
@@ -154,6 +172,12 @@ const Index = () => {
       </main>
 
       <Footer />
+      
+      {/* Global bottom navbar */}
+      <BottomNavbar 
+        onChatClick={handleChatClick}
+        onCalculatorClick={handleCalculatorClick}
+      />
     </div>
   );
 };
