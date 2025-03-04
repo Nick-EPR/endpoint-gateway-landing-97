@@ -50,7 +50,7 @@ const BottomNavbar = ({
           </Button>
         )}
         
-        {/* Maximize button - only shown when calculator is minimized */}
+        {/* Maximize button - independent of ROI button visibility */}
         {isCalculatorMinimized && onMaximizeCalculator && (
           <Button
             onClick={onMaximizeCalculator}

@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState, Suspense, lazy, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Navbar from "../components/navbar/Navbar";
@@ -36,6 +37,7 @@ const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
   const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
+  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
   
   // Optimize the monitor query with better caching
   const { data: monitors } = useQuery({
@@ -64,9 +66,13 @@ const Index = () => {
         const roiSection = document.getElementById('roi-calculator');
         if (roiSection) {
           const rect = roiSection.getBoundingClientRect();
-          setIsCalculatorVisible(
-            rect.top < window.innerHeight && rect.bottom > 0
-          );
+          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+          setIsCalculatorVisible(isVisible);
+          
+          // Reset the minimized state when calculator becomes visible
+          if (isVisible && isStatsPanelMinimized) {
+            setIsStatsPanelMinimized(false);
+          }
         }
       });
     };
@@ -80,7 +86,7 @@ const Index = () => {
         cancelAnimationFrame(timeoutId);
       }
     };
-  }, []);
+  }, [isStatsPanelMinimized]);
 
   // Optimize intersection observer
   useEffect(() => {
@@ -120,19 +126,31 @@ const Index = () => {
   };
 
   const handleCalculatorClick = () => {
-    setIsCalculatorOpen(prev => !prev);
     // Scroll to ROI section if calculator is opened
-    if (!isCalculatorOpen) {
-      const roiSection = document.getElementById('roi-calculator');
-      if (roiSection) {
-        roiSection.scrollIntoView({ behavior: 'smooth' });
-      }
+    const roiSection = document.getElementById('roi-calculator');
+    if (roiSection) {
+      roiSection.scrollIntoView({ behavior: 'smooth' });
+      setIsCalculatorOpen(true);
+      setIsStatsPanelMinimized(false);
     }
   };
 
   const handleMaximizeCalculator = () => {
-    setIsCalculatorOpen(true);
+    setIsStatsPanelMinimized(false);
   };
+
+  // Find EventEmitter when ROI component is updated for minimized state
+  useEffect(() => {
+    const handleStatsMinimized = (event: CustomEvent) => {
+      setIsStatsPanelMinimized(event.detail.minimized);
+    };
+
+    window.addEventListener('statsMinimized' as any, handleStatsMinimized);
+    
+    return () => {
+      window.removeEventListener('statsMinimized' as any, handleStatsMinimized);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen dark:bg-neutral-900">
@@ -193,7 +211,7 @@ const Index = () => {
       <BottomNavbar 
         onChatClick={handleChatClick}
         onCalculatorClick={handleCalculatorClick}
-        isCalculatorMinimized={!isCalculatorOpen && isCalculatorOpen !== undefined}
+        isCalculatorMinimized={isStatsPanelMinimized}
         onMaximizeCalculator={handleMaximizeCalculator}
         isCalculatorVisible={isCalculatorVisible}
       />

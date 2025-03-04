@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -11,7 +12,6 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/device/DeviceInput';
 import { EnterpriseToggle } from './roi/EnterpriseToggle';
 import { StatsSidePanel } from './roi/StatsSidePanel';
-import BottomNavbar from '../navbar/BottomNavbar';
 
 const ROICalculator = () => {
   const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());
@@ -19,7 +19,7 @@ const ROICalculator = () => {
   const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
-  const [chatOpen, setChatOpen] = useState(false);
+  const [isStatsMinimized, setIsStatsMinimized] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
@@ -28,6 +28,7 @@ const ROICalculator = () => {
   useEffect(() => {
     if (isSectionVisible) {
       setStatsVisible(true);
+      setIsStatsMinimized(false);
     } else {
       setStatsVisible(false);
     }
@@ -54,7 +55,16 @@ const ROICalculator = () => {
   };
 
   const toggleStatsPanel = () => {
-    setStatsVisible(!statsVisible);
+    if (statsVisible) {
+      setIsStatsMinimized(!isStatsMinimized);
+    } else {
+      setStatsVisible(true);
+      setIsStatsMinimized(false);
+    }
+  };
+
+  const maximizeStatsPanel = () => {
+    setIsStatsMinimized(false);
   };
 
   const { isAnimating } = useROIAnimation(false, () => {});
@@ -72,6 +82,7 @@ const ROICalculator = () => {
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
+            isMinimized={isStatsMinimized}
             togglePanel={toggleStatsPanel}
             isCalculatorVisible={isSectionVisible}
           />

@@ -1,99 +1,76 @@
 
-import { useEffect, useState } from 'react';
-import { Trend } from "@/utils/roi";
+import { useEffect, useRef } from 'react';
 import { X, Minimize2 } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 import { StatsCards } from './StatsCards';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { ROITrends } from '@/utils/roi/types';
 
 interface StatsSidePanelProps {
-  trends: Trend[];
+  trends: ROITrends;
   isOpen: boolean;
+  isMinimized?: boolean;
   togglePanel: () => void;
-  isCalculatorVisible: boolean; // Prop to track ROI calculator visibility
+  isCalculatorVisible: boolean;
 }
 
-export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisible }: StatsSidePanelProps) => {
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
-  const [isMinimized, setIsMinimized] = useState(false);
-  
-  useEffect(() => {
-    const checkWidth = () => {
-      setIsDesktop(window.innerWidth >= 1024);
-    };
-    
-    checkWidth();
-    window.addEventListener('resize', checkWidth);
-    return () => window.removeEventListener('resize', checkWidth);
-  }, []);
+const StatsSidePanel = ({ 
+  trends, 
+  isOpen, 
+  isMinimized = false,
+  togglePanel, 
+  isCalculatorVisible 
+}: StatsSidePanelProps) => {
+  const panelRef = useRef<HTMLDivElement>(null);
 
+  // Update panel height when minimized state changes
   useEffect(() => {
-    if (isCalculatorVisible) {
-      setAnimationState(prev => prev === 'hidden' ? 'entering' : 'visible');
-      if (animationState === 'entering') {
-        const timer = setTimeout(() => setAnimationState('visible'), 500);
-        return () => clearTimeout(timer);
-      }
-    } else {
-      setAnimationState(prev => prev !== 'hidden' ? 'exiting' : 'hidden');
-      if (animationState === 'exiting') {
-        const timer = setTimeout(() => setAnimationState('hidden'), 500);
-        return () => clearTimeout(timer);
+    if (panelRef.current) {
+      if (isMinimized) {
+        panelRef.current.style.height = '60px';
+      } else {
+        panelRef.current.style.height = 'auto';
       }
     }
-  }, [isCalculatorVisible, animationState]);
+  }, [isMinimized]);
 
-  const toggleMinimize = () => {
-    setIsMinimized(!isMinimized);
-  };
-
-  if (animationState === 'hidden') {
-    return null;
-  }
+  if (!isOpen) return null;
 
   return (
     <div 
-      className={cn(
-        "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
-        isDesktop 
-          ? cn(
-              "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
-              isMinimized ? "-translate-x-full" : "",
-              animationState === 'entering' ? "left-0 translate-x-0" : 
-              animationState === 'visible' ? "left-0 translate-x-0" : 
-              animationState === 'exiting' ? "-translate-x-full" : "-translate-x-full"
-            )
-          : cn(
-              "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
-              isMinimized ? "translate-y-full" : "",
-              animationState === 'entering' ? "bottom-0 translate-y-0" : 
-              animationState === 'visible' ? "bottom-0 translate-y-0" : 
-              animationState === 'exiting' ? "translate-y-full" : "translate-y-full"
-            )
-      )}
-      style={{
-        width: isDesktop ? '320px' : '100%',
-        transform: isDesktop 
-          ? `translateY(-50%) translateX(${isMinimized ? '-100%' : animationState === 'entering' || animationState === 'visible' ? '0' : '-100%'})` 
-          : `translateY(${isMinimized ? '100%' : animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
-      }}
+      ref={panelRef}
+      className={`fixed right-4 bottom-24 w-[320px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300 transform ${
+        isMinimized ? 'overflow-hidden' : ''
+      }`}
     >
-      <div className="p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm">
-        <h3 className="font-medium text-base">ROI Statistics</h3>
-        <div className="flex items-center gap-1">
-          <Button variant="ghost" size="icon" onClick={toggleMinimize} className="h-7 w-7" aria-label="Minimize panel">
-            <Minimize2 className="h-4 w-4" />
-          </Button>
-          <Button variant="ghost" size="icon" onClick={togglePanel} className="h-7 w-7" aria-label="Close panel">
+      <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
+        <h3 className="font-medium text-lg dark:text-white">ROI Stats</h3>
+        <div className="flex gap-2">
+          {!isMinimized && (
+            <Button 
+              variant="ghost" 
+              onClick={togglePanel} 
+              size="icon" 
+              className="h-8 w-8 rounded-full"
+            >
+              <Minimize2 className="h-4 w-4" />
+            </Button>
+          )}
+          <Button 
+            variant="ghost" 
+            onClick={togglePanel} 
+            size="icon" 
+            className="h-8 w-8 rounded-full"
+          >
             <X className="h-4 w-4" />
           </Button>
         </div>
       </div>
-
-      <div className="p-3 w-full">
-        <StatsCards trends={trends} compact={true} />
+      
+      <div className={`transition-all duration-300 p-4 ${isMinimized ? 'hidden' : 'block'}`}>
+        <StatsCards trends={trends} className="grid-cols-1 gap-3" />
       </div>
     </div>
   );
 };
+
+export default StatsSidePanel;
