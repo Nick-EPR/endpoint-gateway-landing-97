@@ -36,17 +36,17 @@ const BottomNavbar = ({
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 py-3 bg-black/10 backdrop-blur-sm dark:bg-black/30">
-      <div className="container mx-auto flex justify-end items-center gap-6">
+      <div className="container mx-auto flex justify-end items-center gap-3 px-4 sm:px-6 md:gap-6">
         {/* ROI Calculator button - only shown when panel is not visible */}
         {!isCalculatorVisible && !isCalculatorMinimized && (
           <Button
             onClick={onCalculatorClick}
             className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white animate-fade-in"
-            size="lg"
+            size="sm"
             aria-label="Toggle ROI stats panel"
           >
-            <Calculator className="h-5 w-5" />
-            <span className="ml-2">ROI</span>
+            <Calculator className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="ml-1 sm:ml-2 text-xs sm:text-sm">ROI</span>
           </Button>
         )}
         
@@ -55,11 +55,11 @@ const BottomNavbar = ({
           <Button
             onClick={onMaximizeCalculator}
             className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white animate-fade-in"
-            size="lg"
+            size="sm"
             aria-label="Maximize ROI Stats Panel"
           >
-            <Calculator className="h-5 w-5" />
-            <span className="ml-2">ROI</span>
+            <Calculator className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="ml-1 sm:ml-2 text-xs sm:text-sm">ROI</span>
           </Button>
         )}
 
@@ -67,22 +67,22 @@ const BottomNavbar = ({
         <Button
           onClick={onChatClick}
           className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
-          size="lg"
+          size="sm"
           aria-label="Open chat"
         >
-          <MessageCircle className="h-5 w-5" />
-          <span className="ml-2">Chat</span>
+          <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />
+          <span className="ml-1 sm:ml-2 text-xs sm:text-sm">Chat</span>
         </Button>
 
         {/* Scroll to top button */}
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
-            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-11 w-11 animate-fade-in"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-8 w-8 sm:h-11 sm:w-11 animate-fade-in"
             size="icon"
             aria-label="Scroll to top"
           >
-            <ArrowUp className="h-5 w-5" />
+            <ArrowUp className="h-4 w-4 sm:h-5 sm:w-5" />
           </Button>
         )}
       </div>

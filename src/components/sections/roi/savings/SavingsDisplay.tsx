@@ -12,7 +12,7 @@ export const SavingsDisplay = ({ deviceCounts, isEnterprise = false }: SavingsDi
   const { annual, fourYear } = calculateDisplaySavings(deviceCounts, isEnterprise);
 
   return (
-    <div className="grid md:grid-cols-2 gap-6 mb-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6">
       <SavingsCard 
         title="Annual Savings" 
         value={annual} 
