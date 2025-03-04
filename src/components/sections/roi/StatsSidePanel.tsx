@@ -51,6 +51,7 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
 
   // Toggle minimized state
   const toggleMinimize = () => {
+    console.log('Toggling minimize state, current:', isMinimized);
     setIsMinimized(prev => !prev);
   };
 
@@ -97,8 +98,15 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         }}
       >
         {/* Panel Header with close and minimize buttons */}
-        <div className="p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm">
-          <h3 className="font-medium text-base">ROI Statistics</h3>
+        <div className={cn(
+          "p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm",
+          isMinimized && isDesktop && "writing-mode-vertical-rl rotate-180 h-full p-2 border-b-0 border-l"
+        )}>
+          {isMinimized ? (
+            <span className="font-medium text-base">ROI Stats</span>
+          ) : (
+            <h3 className="font-medium text-base">ROI Statistics</h3>
+          )}
           <div className="flex items-center gap-1">
             <Button 
               variant="ghost" 
@@ -113,15 +121,17 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
                 <Minimize2 className="h-4 w-4" />
               )}
             </Button>
-            <Button 
-              variant="ghost" 
-              size="icon" 
-              onClick={togglePanel} 
-              className="h-7 w-7"
-              aria-label="Close panel"
-            >
-              <X className="h-4 w-4" />
-            </Button>
+            {!isMinimized && (
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                onClick={togglePanel} 
+                className="h-7 w-7"
+                aria-label="Close panel"
+              >
+                <X className="h-4 w-4" />
+              </Button>
+            )}
           </div>
         </div>
 
