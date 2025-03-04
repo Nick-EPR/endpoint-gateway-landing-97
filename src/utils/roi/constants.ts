@@ -52,7 +52,7 @@ export const AVG_DEVICE_COST = {
   laptop: 1000,
   desktop: 1200,
   tablet: 500,
-  monitor: 300,
+  monitor: 150,  // Updated from 300 to 150
   accessory: 50
 };
 
