@@ -41,7 +41,7 @@ const BottomNavbar = ({
         {!isCalculatorVisible && !isCalculatorMinimized && (
           <Button
             onClick={onCalculatorClick}
-            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white animate-fade-in"
             size="lg"
             aria-label="Toggle ROI stats panel"
           >
@@ -51,10 +51,10 @@ const BottomNavbar = ({
         )}
         
         {/* Maximize button - only shown when stats panel is minimized */}
-        {isCalculatorMinimized && (
+        {isCalculatorMinimized && onMaximizeCalculator && (
           <Button
             onClick={onMaximizeCalculator}
-            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white animate-fade-in"
             size="lg"
             aria-label="Maximize ROI Stats Panel"
           >
@@ -78,7 +78,7 @@ const BottomNavbar = ({
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
-            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-11 w-11"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white h-11 w-11 animate-fade-in"
             size="icon"
             aria-label="Scroll to top"
           >
