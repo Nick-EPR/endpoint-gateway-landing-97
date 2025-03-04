@@ -100,19 +100,19 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         {/* Panel Header with close and minimize buttons */}
         <div className={cn(
           "p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm",
-          isMinimized && isDesktop && "writing-mode-vertical-rl rotate-180 h-full p-2 border-b-0 border-l"
+          isMinimized && isDesktop && "writing-mode-vertical-rl rotate-180 h-full p-2 border-b-0 border-l border-neutral-200 dark:border-neutral-700"
         )}>
           {isMinimized ? (
             <span className="font-medium text-base">ROI Stats</span>
           ) : (
             <h3 className="font-medium text-base">ROI Statistics</h3>
           )}
-          <div className="flex items-center gap-1">
+          <div className={cn("flex items-center gap-1", isMinimized && "mt-2")}>
             <Button 
               variant="ghost" 
               size="icon" 
-              onClick={toggleMinimize} 
-              className="h-7 w-7"
+              onClick={toggleMinimize}
+              className={cn("h-7 w-7", isMinimized && "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600")}
               aria-label={isMinimized ? "Maximize panel" : "Minimize panel"}
             >
               {isMinimized ? (
