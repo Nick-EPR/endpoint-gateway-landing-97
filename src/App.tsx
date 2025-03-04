@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
+import { useState } from "react";
 import Index from "./pages/Index";
 import Security from "./pages/Security";
 import Contact from "./pages/Contact";
@@ -22,6 +23,12 @@ import ChatButton from "./components/ChatButton";
 const queryClient = new QueryClient();
 
 function App() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const handleChatToggle = () => {
+    setIsChatOpen(prev => !prev);
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
@@ -43,7 +50,7 @@ function App() {
               <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <ChatButton />
+            <ChatButton isOpen={isChatOpen} onToggle={handleChatToggle} />
           </Router>
         </div>
       </ThemeProvider>
