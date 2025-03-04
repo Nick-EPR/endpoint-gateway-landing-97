@@ -3,10 +3,10 @@ import { useEffect, useRef } from 'react';
 import { X, Minimize2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import StatsCards from './StatsCards';
-import { calculateTrends } from '@/utils/roi';
+import { TrendResults } from '@/utils/roi/types';
 
 interface StatsSidePanelProps {
-  trends: ReturnType<typeof calculateTrends>;
+  trends: TrendResults;
   isOpen: boolean;
   isMinimized?: boolean;
   togglePanel: () => void;

@@ -15,6 +15,20 @@ export interface DeviceCounts {
   accessories: number;
 }
 
+export interface TrendResults {
+  fiveYearTotalSavings: number;
+  savingsPercentage: number;
+  averageAnnualSavings: number;
+  roi: number;
+  paybackPeriod: number;
+  laborSavings: number;
+  laborHoursSaved: number;
+  productivityGains: number;
+  productivityBoost: number;
+  carbonReduction: number;
+  treesEquivalent: number;
+}
+
 // Default device counts based on industry averages
 export const getDefaultDeviceCounts = (): DeviceCounts => {
   return {

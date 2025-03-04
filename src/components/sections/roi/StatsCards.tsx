@@ -2,11 +2,11 @@
 import { Maximize2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { calculateTrends } from '@/utils/roi';
+import { TrendResults } from '@/utils/roi/types';
 import { formatCurrency, formatPercentage } from '@/utils/roi/formatters';
 
 interface StatsCardsProps {
-  trends: ReturnType<typeof calculateTrends>;
+  trends: TrendResults;
   compact?: boolean;
   onMaximize?: () => void;
 }

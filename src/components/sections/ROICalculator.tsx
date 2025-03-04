@@ -6,7 +6,7 @@ import { SavingsDisplay } from './roi/savings/SavingsDisplay';
 import { SavingsChart } from './roi/SavingsChart';
 import { ROIHeader } from './roi/ROIHeader';
 import { CalculationMethodology } from './roi/CalculationMethodology';
-import { calculateTrends, DeviceCounts, getDefaultDeviceCounts } from '@/utils/roi';
+import { calculateTrends, DeviceCounts, getDefaultDeviceCounts, TrendResults } from '@/utils/roi';
 import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/device/DeviceInput';
@@ -16,7 +16,7 @@ import StatsSidePanel from './roi/StatsSidePanel';
 const ROICalculator = () => {
   const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());
   const [showMoreDetails, setShowMoreDetails] = useState(false);
-  const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
+  const [currentTrends, setCurrentTrends] = useState<TrendResults>(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
   const [isStatsMinimized, setIsStatsMinimized] = useState(false);
