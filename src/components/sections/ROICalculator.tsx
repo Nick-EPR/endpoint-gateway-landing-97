@@ -27,9 +27,6 @@ const ROICalculator = () => {
   useEffect(() => {
     if (isSectionVisible) {
       setStatsVisible(true);
-      setIsStatsMinimized(false);
-    } else {
-      setStatsVisible(false);
     }
   }, [isSectionVisible]);
 
@@ -56,18 +53,17 @@ const ROICalculator = () => {
   const toggleStatsPanel = () => {
     if (statsVisible && !isStatsMinimized) {
       setIsStatsMinimized(true);
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: true }
-      }));
     } else if (statsVisible && isStatsMinimized) {
       setIsStatsMinimized(false);
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: false }
-      }));
     } else {
       setStatsVisible(true);
       setIsStatsMinimized(false);
     }
+    
+    // Dispatch event to ensure all components are in sync
+    window.dispatchEvent(new CustomEvent('statsMinimized', { 
+      detail: { minimized: isStatsMinimized }
+    }));
   };
 
   const maximizeStatsPanel = () => {

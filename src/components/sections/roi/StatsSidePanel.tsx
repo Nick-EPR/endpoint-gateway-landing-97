@@ -44,12 +44,12 @@ const StatsSidePanel = ({
     }
   }, [isMinimized]);
 
-  if (!isOpen) return null;
+  if (!isOpen || (!isCalculatorVisible && !isMinimized)) return null;
 
   return (
     <div 
       ref={panelRef}
-      className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300`}
+      className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300 ${!isCalculatorVisible && !isMinimized ? 'opacity-0' : 'opacity-100'}`}
       style={{ maxHeight: isMinimized ? '60px' : '80vh' }}
     >
       {!isMinimized && (
