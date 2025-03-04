@@ -20,7 +20,9 @@ export function useNavigation() {
 
   return {
     isChatOpen,
+    setIsChatOpen,
     isCalculatorOpen,
+    setIsCalculatorOpen,
     handleChatClick,
     handleCalculatorClick
   };

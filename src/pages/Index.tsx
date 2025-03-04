@@ -6,6 +6,7 @@ import IndexSections from "@/components/sections/IndexSections";
 import { useIndexScroll } from "@/hooks/useIndexScroll";
 import { useNavigation } from "@/hooks/useNavigation";
 import { useStatsPanel } from "@/hooks/useStatsPanel";
+import ChatButton from "@/components/ChatButton";
 
 const Index = () => {
   const { scrolled, isCalculatorVisible } = useIndexScroll();
@@ -29,20 +30,24 @@ const Index = () => {
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
   return (
-    <IndexLayout
-      scrolled={scrolled}
-      hasOutage={hasOutage}
-      isChatOpen={isChatOpen}
-      isCalculatorOpen={isCalculatorOpen}
-      isCalculatorVisible={isCalculatorVisible}
-      isStatsPanelVisible={isStatsPanelVisible}
-      isStatsPanelMinimized={isStatsPanelMinimized}
-      onChatClick={handleChatClick}
-      onCalculatorClick={toggleStatsPanel}
-      onMaximizeCalculator={handleMaximizeCalculator}
-    >
-      <IndexSections />
-    </IndexLayout>
+    <>
+      <IndexLayout
+        scrolled={scrolled}
+        hasOutage={hasOutage}
+        isChatOpen={isChatOpen}
+        isCalculatorOpen={isCalculatorOpen}
+        isCalculatorVisible={isCalculatorVisible}
+        isStatsPanelVisible={isStatsPanelVisible}
+        isStatsPanelMinimized={isStatsPanelMinimized}
+        onChatClick={handleChatClick}
+        onCalculatorClick={toggleStatsPanel}
+        onMaximizeCalculator={handleMaximizeCalculator}
+      >
+        <IndexSections />
+      </IndexLayout>
+      
+      <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
+    </>
   );
 };
 
