@@ -27,6 +27,10 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
 
   const handleMaximizeCalculator = () => {
     setIsStatsPanelMinimized(false);
+    // Dispatch event to ensure all components are in sync
+    window.dispatchEvent(new CustomEvent('statsMinimized', { 
+      detail: { minimized: false }
+    }));
   };
 
   return { 

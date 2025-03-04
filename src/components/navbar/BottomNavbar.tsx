@@ -50,15 +50,16 @@ const BottomNavbar = ({
           </Button>
         )}
         
-        {/* Maximize button - independent of ROI button visibility */}
+        {/* Maximize button - only shown when stats panel is minimized */}
         {isCalculatorMinimized && onMaximizeCalculator && (
           <Button
             onClick={onMaximizeCalculator}
-            className="shadow-lg rounded-full p-0 w-11 h-11 bg-primary text-white hover:bg-primary/90 animate-fade-up"
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white"
+            size="lg"
             aria-label="Maximize ROI Stats Panel"
-            size="icon"
           >
             <Maximize2 className="h-5 w-5" />
+            <span className="ml-2">Stats</span>
           </Button>
         )}
 

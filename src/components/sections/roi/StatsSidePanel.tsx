@@ -52,10 +52,10 @@ const StatsSidePanel = ({
       className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300`}
       style={{ maxHeight: isMinimized ? '60px' : '80vh' }}
     >
-      <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
-        <h3 className="font-medium text-lg dark:text-white">ROI Stats</h3>
-        <div className="flex gap-2">
-          {!isMinimized && (
+      {!isMinimized && (
+        <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
+          <h3 className="font-medium text-lg dark:text-white">ROI Stats</h3>
+          <div className="flex gap-2">
             <Button 
               variant="ghost" 
               onClick={togglePanel} 
@@ -64,20 +64,20 @@ const StatsSidePanel = ({
             >
               <Minimize2 className="h-4 w-4" />
             </Button>
-          )}
-          <Button 
-            variant="ghost" 
-            onClick={togglePanel} 
-            size="icon" 
-            className="h-8 w-8 rounded-full"
-          >
-            <X className="h-4 w-4" />
-          </Button>
+            <Button 
+              variant="ghost" 
+              onClick={togglePanel} 
+              size="icon" 
+              className="h-8 w-8 rounded-full"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
       
-      <div className={`transition-all duration-300 ${isMinimized ? 'hidden' : 'p-4 overflow-y-auto'}`}>
-        <StatsCards trends={trends} />
+      <div className={`transition-all duration-300 ${isMinimized ? 'p-0' : 'p-4 overflow-y-auto'}`}>
+        <StatsCards trends={trends} compact={isMinimized} />
       </div>
     </div>
   );
