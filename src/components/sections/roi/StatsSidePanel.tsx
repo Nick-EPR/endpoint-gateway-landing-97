@@ -65,7 +65,7 @@ const StatsSidePanel = ({
       ref={panelRef}
       className={`fixed ${
         isMobile 
-          ? 'left-0 right-0 bottom-0 w-full rounded-b-none rounded-t-lg' 
+          ? 'left-0 right-0 bottom-0 w-full rounded-b-none rounded-t-lg shadow-xl z-[1100]' 
           : 'right-4 bottom-24 w-[800px] rounded-lg'
       } bg-white dark:bg-neutral-800 shadow-xl z-[1000] transition-all duration-300 ${
         isMinimized 
@@ -73,12 +73,14 @@ const StatsSidePanel = ({
           : 'opacity-100 scale-100 transform translate-y-0'
       }`}
       style={{ 
-        maxHeight: isMobile ? (mobileExpanded ? '80vh' : '160px') : '80vh',
+        maxHeight: isMobile 
+          ? (mobileExpanded ? '80vh' : '140px') 
+          : '80vh',
         transition: 'max-height 0.3s ease-in-out, opacity 0.3s, transform 0.3s'
       }}
     >
-      <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
-        <h3 className="font-medium text-lg dark:text-white">ROI Stats</h3>
+      <div className="p-3 border-b dark:border-neutral-700 flex justify-between items-center">
+        <h3 className="font-medium text-base sm:text-lg dark:text-white">ROI Stats</h3>
         <div className="flex gap-2">
           {isMobile && (
             <Button 
@@ -115,7 +117,11 @@ const StatsSidePanel = ({
         </div>
       </div>
       
-      <div className={`p-4 overflow-y-auto ${isMobile ? (mobileExpanded ? 'max-h-[calc(80vh-60px)]' : 'max-h-[100px]') : ''}`}>
+      <div className={`p-3 ${isMobile && !mobileExpanded ? 'pb-1' : 'p-4'} overflow-y-auto ${
+        isMobile 
+          ? (mobileExpanded ? 'max-h-[calc(80vh-60px)]' : 'max-h-[85px]') 
+          : ''
+      }`}>
         <StatsCards 
           trends={trends} 
           compact={isMobile && !mobileExpanded} 

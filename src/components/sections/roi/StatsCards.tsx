@@ -14,7 +14,7 @@ interface StatsCardsProps {
 const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) => {
   if (compact) {
     return (
-      <div className="flex items-center justify-between h-full">
+      <div className="flex items-center justify-between h-full w-full">
         <div className="flex flex-col">
           <p className="text-xs font-medium text-gray-600 dark:text-gray-300">
             5-Year Savings:
