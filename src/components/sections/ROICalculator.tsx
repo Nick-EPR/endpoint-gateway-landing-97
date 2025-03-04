@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -11,7 +10,7 @@ import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/device/DeviceInput';
 import { EnterpriseToggle } from './roi/EnterpriseToggle';
-import { StatsSidePanel } from './roi/StatsSidePanel';
+import StatsSidePanel from './roi/StatsSidePanel';
 
 const ROICalculator = () => {
   const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());

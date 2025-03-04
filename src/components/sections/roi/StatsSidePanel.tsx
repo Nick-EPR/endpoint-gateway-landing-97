@@ -2,11 +2,11 @@
 import { useEffect, useRef } from 'react';
 import { X, Minimize2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { StatsCards } from './StatsCards';
-import { ROITrends } from '@/utils/roi/types';
+import StatsCards from './StatsCards';
+import { calculateTrends } from '@/utils/roi';
 
 interface StatsSidePanelProps {
-  trends: ROITrends;
+  trends: ReturnType<typeof calculateTrends>;
   isOpen: boolean;
   isMinimized?: boolean;
   togglePanel: () => void;
@@ -67,7 +67,7 @@ const StatsSidePanel = ({
       </div>
       
       <div className={`transition-all duration-300 p-4 ${isMinimized ? 'hidden' : 'block'}`}>
-        <StatsCards trends={trends} className="grid-cols-1 gap-3" />
+        <StatsCards trends={trends} />
       </div>
     </div>
   );

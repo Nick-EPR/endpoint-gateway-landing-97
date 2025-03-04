@@ -1,43 +1,16 @@
 
-import { useEffect, useRef, useState, Suspense, lazy, memo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import Navbar from "../components/navbar/Navbar";
-import Footer from "../components/Footer";
-import NavigationProgress from "../components/NavigationProgress";
-import StatusBanner from "../components/StatusBanner";
 import { fetchMonitors } from "@/utils/monitorUtils";
-import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
-import { sections } from "./sections";
-import BottomNavbar from "@/components/navbar/BottomNavbar";
-
-// Lazily load the Hero component since it's above the fold
-const Hero = lazy(() => import("@/components/sections/Hero"));
-
-// Create a memoized section wrapper component
-const SectionWrapper = memo(({ className, children }: { className: string; children: React.ReactNode }) => (
-  <section className={className}>
-    {children}
-  </section>
-));
-
-SectionWrapper.displayName = "SectionWrapper";
-
-// Create a memoized loading component
-const SectionLoading = memo(() => (
-  <div className="flex items-center justify-center min-h-[200px]">
-    <LoadingSpinner />
-  </div>
-));
-
-SectionLoading.displayName = "SectionLoading";
+import IndexLayout from "@/components/IndexLayout";
+import IndexSections from "@/components/IndexSections";
+import { useIndexScroll } from "@/hooks/useIndexScroll";
+import { useNavigation } from "@/hooks/useNavigation";
+import { useStatsPanel } from "@/hooks/useStatsPanel";
 
 const Index = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
-  const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
-  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
+  const { scrolled, isCalculatorVisible } = useIndexScroll();
+  const { isChatOpen, isCalculatorOpen, handleChatClick, handleCalculatorClick } = useNavigation();
+  const { isStatsPanelMinimized, handleMaximizeCalculator } = useStatsPanel(isCalculatorVisible);
   
   // Optimize the monitor query with better caching
   const { data: monitors } = useQuery({
@@ -50,172 +23,20 @@ const Index = () => {
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
-  // Optimize scroll handler with debouncing
-  useEffect(() => {
-    let timeoutId: number;
-    
-    const handleScroll = () => {
-      if (timeoutId) {
-        cancelAnimationFrame(timeoutId);
-      }
-      
-      timeoutId = requestAnimationFrame(() => {
-        setScrolled(window.scrollY > 0);
-        
-        // Check if ROI section is visible
-        const roiSection = document.getElementById('roi-calculator');
-        if (roiSection) {
-          const rect = roiSection.getBoundingClientRect();
-          const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-          setIsCalculatorVisible(isVisible);
-          
-          // Reset the minimized state when calculator becomes visible
-          if (isVisible && isStatsPanelMinimized) {
-            setIsStatsPanelMinimized(false);
-          }
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Check initial visibility
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (timeoutId) {
-        cancelAnimationFrame(timeoutId);
-      }
-    };
-  }, [isStatsPanelMinimized]);
-
-  // Optimize intersection observer
-  useEffect(() => {
-    const options = {
-      threshold: 0.1,
-      rootMargin: '50px'
-    };
-
-    const callback: IntersectionObserverCallback = (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("animate-fade-up");
-          observerRef.current?.unobserve(entry.target);
-        }
-      });
-    };
-
-    observerRef.current = new IntersectionObserver(callback, options);
-
-    const elements = document.querySelectorAll(".animate-on-scroll");
-    elements.forEach(element => {
-      observerRef.current?.observe(element);
-    });
-
-    return () => observerRef.current?.disconnect();
-  }, []);
-
-  // Memoize the renderSection function
-  const renderSection = (Component: React.ComponentType) => (
-    <Suspense fallback={<SectionLoading />}>
-      <Component />
-    </Suspense>
-  );
-
-  const handleChatClick = () => {
-    setIsChatOpen(prev => !prev);
-  };
-
-  const handleCalculatorClick = () => {
-    // Scroll to ROI section if calculator is opened
-    const roiSection = document.getElementById('roi-calculator');
-    if (roiSection) {
-      roiSection.scrollIntoView({ behavior: 'smooth' });
-      setIsCalculatorOpen(true);
-      setIsStatsPanelMinimized(false);
-    }
-  };
-
-  const handleMaximizeCalculator = () => {
-    setIsStatsPanelMinimized(false);
-  };
-
-  // Find EventEmitter when ROI component is updated for minimized state
-  useEffect(() => {
-    const handleStatsMinimized = (event: CustomEvent) => {
-      setIsStatsPanelMinimized(event.detail.minimized);
-    };
-
-    window.addEventListener('statsMinimized' as any, handleStatsMinimized);
-    
-    return () => {
-      window.removeEventListener('statsMinimized' as any, handleStatsMinimized);
-    };
-  }, []);
-
   return (
-    <div className="min-h-screen dark:bg-neutral-900">
-      <NavigationProgress />
-      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
-      
-      {hasOutage && (
-        <div className="fixed top-[72px] w-full z-40">
-          <StatusBanner message="We're currently experiencing some technical issues and are working to resolve them." />
-        </div>
-      )}
-      
-      <Suspense fallback={<SectionLoading />}>
-        <Hero 
-          title="Comprehensive ITAM Solutions for Your Enterprise" 
-          subtitle="Transform your IT asset management with our end-to-end solution" 
-          buttonText="Get Started" 
-        />
-      </Suspense>
-
-      <main>
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.products)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.features)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.comparison)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.roi)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.tmobile)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
-          {renderSection(sections.partners)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
-          {renderSection(sections.partnership)}
-        </SectionWrapper>
-
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800">
-          {renderSection(sections.contact)}
-        </SectionWrapper>
-      </main>
-
-      <Footer />
-      
-      {/* Global bottom navbar with updated props */}
-      <BottomNavbar 
-        onChatClick={handleChatClick}
-        onCalculatorClick={handleCalculatorClick}
-        isCalculatorMinimized={isStatsPanelMinimized}
-        onMaximizeCalculator={handleMaximizeCalculator}
-        isCalculatorVisible={isCalculatorVisible}
-      />
-    </div>
+    <IndexLayout
+      scrolled={scrolled}
+      hasOutage={hasOutage}
+      isChatOpen={isChatOpen}
+      isCalculatorOpen={isCalculatorOpen}
+      isCalculatorVisible={isCalculatorVisible}
+      isStatsPanelMinimized={isStatsPanelMinimized}
+      onChatClick={handleChatClick}
+      onCalculatorClick={handleCalculatorClick}
+      onMaximizeCalculator={handleMaximizeCalculator}
+    >
+      <IndexSections />
+    </IndexLayout>
   );
 };
 
