@@ -9,7 +9,7 @@ import { useStatsPanel } from "@/hooks/useStatsPanel";
 
 const Index = () => {
   const { scrolled, isCalculatorVisible } = useIndexScroll();
-  const { isChatOpen, isCalculatorOpen, handleChatClick, handleCalculatorClick } = useNavigation();
+  const { isChatOpen, handleChatClick } = useNavigation();
   const { 
     isStatsPanelVisible, 
     isStatsPanelMinimized, 
@@ -33,7 +33,7 @@ const Index = () => {
       scrolled={scrolled}
       hasOutage={hasOutage}
       isChatOpen={isChatOpen}
-      isCalculatorOpen={isCalculatorOpen}
+      isCalculatorOpen={isCalculatorVisible}
       isCalculatorVisible={isCalculatorVisible}
       isStatsPanelVisible={isStatsPanelVisible}
       isStatsPanelMinimized={isStatsPanelMinimized}
