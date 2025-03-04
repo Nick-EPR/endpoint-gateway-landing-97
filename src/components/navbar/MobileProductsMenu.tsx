@@ -10,7 +10,7 @@ const MobileProductsMenu = ({ onItemClick, onAllProductsClick }: MobileProductsM
   return (
     <div className="flex flex-col space-y-2 pl-4">
       <div 
-        className="flex items-center gap-2 cursor-pointer text-primary"
+        className="flex items-center gap-2 cursor-pointer text-primary dark:text-primary"
         onClick={onAllProductsClick}
       >
         All Products
