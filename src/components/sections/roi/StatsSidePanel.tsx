@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Minimize2, X } from 'lucide-react';
+import { Minimize2, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import StatsCards from './StatsCards';
 import { TrendResults } from '@/utils/roi/types';
@@ -26,6 +26,7 @@ const StatsSidePanel = ({
 }: StatsSidePanelProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
 
   // Check for mobile viewport
   useEffect(() => {
@@ -52,6 +53,10 @@ const StatsSidePanel = ({
     }));
   }, [isMinimized]);
 
+  const toggleMobileExpand = () => {
+    setMobileExpanded(!mobileExpanded);
+  };
+
   // If panel is closed, return null
   if (!isOpen) return null;
   
@@ -67,11 +72,27 @@ const StatsSidePanel = ({
           ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10' 
           : 'opacity-100 scale-100 transform translate-y-0'
       }`}
-      style={{ maxHeight: isMobile ? '80vh' : '80vh' }}
+      style={{ 
+        maxHeight: isMobile ? (mobileExpanded ? '80vh' : '160px') : '80vh',
+        transition: 'max-height 0.3s ease-in-out, opacity 0.3s, transform 0.3s'
+      }}
     >
       <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
         <h3 className="font-medium text-lg dark:text-white">ROI Stats</h3>
         <div className="flex gap-2">
+          {isMobile && (
+            <Button 
+              variant="ghost" 
+              onClick={toggleMobileExpand} 
+              size="icon" 
+              className="h-8 w-8 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+            >
+              {mobileExpanded ? 
+                <ChevronDown className="h-4 w-4" /> : 
+                <ChevronUp className="h-4 w-4" />
+              }
+            </Button>
+          )}
           {!isMobile ? (
             <Button 
               variant="ghost" 
@@ -94,11 +115,11 @@ const StatsSidePanel = ({
         </div>
       </div>
       
-      <div className={`p-4 overflow-y-auto ${isMobile ? 'max-h-[60vh]' : ''}`}>
+      <div className={`p-4 overflow-y-auto ${isMobile ? (mobileExpanded ? 'max-h-[calc(80vh-60px)]' : 'max-h-[100px]') : ''}`}>
         <StatsCards 
           trends={trends} 
-          compact={isMobile} 
-          onMaximize={maximizePanel} 
+          compact={isMobile && !mobileExpanded} 
+          onMaximize={mobileExpanded ? undefined : maximizePanel} 
         />
       </div>
     </div>

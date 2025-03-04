@@ -14,24 +14,28 @@ interface StatsCardsProps {
 const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) => {
   if (compact) {
     return (
-      <div className="flex items-center justify-between h-full px-4">
-        <div className="flex items-center space-x-4">
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
+      <div className="flex items-center justify-between h-full">
+        <div className="flex flex-col">
+          <p className="text-xs font-medium text-gray-600 dark:text-gray-300">
             5-Year Savings:
           </p>
           <p className="text-lg font-bold text-primary">
             {formatCurrency(trends.fiveYearTotalSavings)}
           </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">
+            ROI: {trends.roi}x ({formatPercentage(trends.savingsPercentage)} reduction)
+          </p>
         </div>
         
         {onMaximize && (
           <Button 
-            variant="ghost" 
-            size="icon" 
-            className="h-8 w-8 rounded-full"
+            variant="outline" 
+            size="sm" 
+            className="h-8 rounded-full flex items-center gap-1 text-xs"
             onClick={onMaximize}
           >
-            <Maximize2 className="h-4 w-4" />
+            <Maximize2 className="h-3 w-3" />
+            <span>Expand</span>
           </Button>
         )}
       </div>
