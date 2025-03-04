@@ -56,7 +56,7 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
       {isMinimized && (
         <Button
           onClick={toggleMinimize}
-          className="fixed bottom-6 right-[calc(3rem+50px)] z-40 shadow-lg rounded-full p-0 w-10 h-10 bg-primary text-white hover:bg-primary/90 animate-fade-up"
+          className="fixed bottom-6 right-[calc(4.5rem+50px)] z-40 shadow-lg rounded-full p-0 w-10 h-10 bg-primary text-white hover:bg-primary/90 animate-fade-up"
           aria-label="Maximize ROI Stats Panel"
           size="icon"
         >
