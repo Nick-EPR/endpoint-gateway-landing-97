@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Trend } from "@/utils/roi";
-import { X } from 'lucide-react';
+import { X, Minimize2, Maximize2 } from 'lucide-react';
 import { StatsCards } from './StatsCards';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -10,12 +10,13 @@ interface StatsSidePanelProps {
   trends: Trend[];
   isOpen: boolean;
   togglePanel: () => void;
-  isCalculatorVisible: boolean; // Prop to track ROI calculator visibility
+  isCalculatorVisible: boolean;
 }
 
 export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisible }: StatsSidePanelProps) => {
   const [isDesktop, setIsDesktop] = useState(false);
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
+  const [isMinimized, setIsMinimized] = useState(false);
   
   // Check if we're on desktop or mobile
   useEffect(() => {
@@ -30,7 +31,10 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
 
   // Handle animation states based on calculator visibility
   useEffect(() => {
-    if (isCalculatorVisible) {
+    console.log('StatsSidePanel: isCalculatorVisible changed to', isCalculatorVisible);
+    console.log('StatsSidePanel: isOpen is', isOpen);
+    
+    if (isOpen && isCalculatorVisible) {
       setAnimationState(prev => prev === 'hidden' ? 'entering' : 'visible');
       if (animationState === 'entering') {
         const timer = setTimeout(() => setAnimationState('visible'), 500);
@@ -43,12 +47,26 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         return () => clearTimeout(timer);
       }
     }
-  }, [isCalculatorVisible, animationState]);
+  }, [isCalculatorVisible, isOpen, animationState]);
+
+  // Toggle minimized state
+  const toggleMinimize = () => {
+    setIsMinimized(prev => !prev);
+  };
 
   // Don't render anything if panel should be fully hidden
   if (animationState === 'hidden') {
     return null;
   }
+
+  // Calculate the appropriate width or height based on minimized state
+  const getMinimizedSize = () => {
+    if (isDesktop) {
+      return isMinimized ? '40px' : '320px'; // Width for desktop
+    } else {
+      return isMinimized ? '40px' : 'auto'; // Height for mobile
+    }
+  };
 
   return (
     <>
@@ -71,24 +89,48 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
               )
         )}
         style={{
-          width: isDesktop ? '320px' : '100%',
+          width: isDesktop ? getMinimizedSize() : '100%',
+          height: !isDesktop && isMinimized ? getMinimizedSize() : 'auto',
           transform: isDesktop 
             ? `translateY(-50%) translateX(${animationState === 'entering' || animationState === 'visible' ? '0' : '-100%'})` 
             : `translateY(${animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
         }}
       >
-        {/* Panel Header with close button */}
+        {/* Panel Header with close and minimize buttons */}
         <div className="p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm">
           <h3 className="font-medium text-base">ROI Statistics</h3>
-          <Button variant="ghost" size="icon" onClick={togglePanel} className="h-7 w-7">
-            <X className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={toggleMinimize} 
+              className="h-7 w-7"
+              aria-label={isMinimized ? "Maximize panel" : "Minimize panel"}
+            >
+              {isMinimized ? (
+                <Maximize2 className="h-4 w-4" />
+              ) : (
+                <Minimize2 className="h-4 w-4" />
+              )}
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={togglePanel} 
+              className="h-7 w-7"
+              aria-label="Close panel"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
-        {/* Panel Content */}
-        <div className="p-3 w-full">
-          <StatsCards trends={trends} compact={true} />
-        </div>
+        {/* Panel Content - only shown when not minimized */}
+        {!isMinimized && (
+          <div className="p-3 w-full">
+            <StatsCards trends={trends} compact={true} />
+          </div>
+        )}
       </div>
     </>
   );

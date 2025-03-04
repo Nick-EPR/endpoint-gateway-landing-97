@@ -18,31 +18,19 @@ const ROICalculator = () => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTrends, setCurrentTrends] = useState(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(false);
+  const [statsVisible, setStatsVisible] = useState(true);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
-  // Auto-toggle stats panel based on section visibility
+  // Debug logging
   useEffect(() => {
-    if (isSectionVisible) {
-      setStatsVisible(true);
-    } else {
-      setStatsVisible(false);
-    }
-  }, [isSectionVisible]);
+    console.log('ROICalculator: isSectionVisible is', isSectionVisible);
+    console.log('ROICalculator: statsVisible is', statsVisible);
+  }, [isSectionVisible, statsVisible]);
 
-  // Calculate total devices for auto-enterprise mode suggestion
-  useEffect(() => {
-    const totalDevices = Object.values(deviceCounts).reduce((sum, count) => sum + count, 0);
-    // Only auto-suggest enterprise mode, but don't force it
-    if (totalDevices >= 1200 && !isEnterprise) {
-      console.log("Enterprise mode suggested based on device count");
-      // We don't auto-set it anymore, just log the suggestion
-    }
-  }, [deviceCounts, isEnterprise]);
-
+  // Handle device count changes
   const handleDeviceCountChange = (type: keyof DeviceCounts, value: number) => {
     setDeviceCounts(prev => {
       const newCounts = { ...prev, [type]: value };
@@ -58,6 +46,12 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
+  // Toggle stats panel visibility
+  const toggleStatsPanel = () => {
+    console.log('toggleStatsPanel called, current value:', statsVisible);
+    setStatsVisible(prev => !prev);
+  };
+
   // Remove animation delay by passing false for animation
   const { isAnimating } = useROIAnimation(false, () => {});
 
@@ -71,11 +65,11 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel - animated based on section visibility */}
+          {/* Stats Side Panel - explicit control of visibility */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
-            togglePanel={() => setStatsVisible(!statsVisible)}
+            togglePanel={toggleStatsPanel}
             isCalculatorVisible={isSectionVisible}
           />
 
