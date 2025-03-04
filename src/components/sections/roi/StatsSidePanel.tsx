@@ -49,7 +49,7 @@ const StatsSidePanel = ({
   return (
     <div 
       ref={panelRef}
-      className={`fixed right-4 bottom-24 w-[400px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300`}
+      className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300`}
       style={{ maxHeight: isMinimized ? '60px' : '80vh' }}
     >
       <div className="p-4 border-b dark:border-neutral-700 flex justify-between items-center">
