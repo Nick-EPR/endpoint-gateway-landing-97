@@ -40,7 +40,7 @@ const StatsSidePanel = ({
   return (
     <div 
       ref={panelRef}
-      className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-40 transition-all duration-300 ${
+      className={`fixed right-4 bottom-24 w-[800px] bg-white dark:bg-neutral-800 rounded-lg shadow-xl z-[100] transition-all duration-300 ${
         isMinimized 
           ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10' 
           : 'opacity-100 scale-100 transform translate-y-0'

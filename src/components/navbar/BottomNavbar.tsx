@@ -58,8 +58,8 @@ const BottomNavbar = ({
             size="lg"
             aria-label="Maximize ROI Stats Panel"
           >
-            <Maximize2 className="h-5 w-5" />
-            <span className="ml-2">Stats</span>
+            <Calculator className="h-5 w-5" />
+            <span className="ml-2">ROI</span>
           </Button>
         )}
 
