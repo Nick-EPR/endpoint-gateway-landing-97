@@ -35,6 +35,7 @@ const Index = () => {
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  const [isCalculatorVisible, setIsCalculatorVisible] = useState(false);
   
   // Optimize the monitor query with better caching
   const { data: monitors } = useQuery({
@@ -58,10 +59,21 @@ const Index = () => {
       
       timeoutId = requestAnimationFrame(() => {
         setScrolled(window.scrollY > 0);
+        
+        // Check if ROI section is visible
+        const roiSection = document.getElementById('roi-calculator');
+        if (roiSection) {
+          const rect = roiSection.getBoundingClientRect();
+          setIsCalculatorVisible(
+            rect.top < window.innerHeight && rect.bottom > 0
+          );
+        }
       });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial visibility
+    
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (timeoutId) {
@@ -177,12 +189,13 @@ const Index = () => {
 
       <Footer />
       
-      {/* Global bottom navbar */}
+      {/* Global bottom navbar with updated props */}
       <BottomNavbar 
         onChatClick={handleChatClick}
         onCalculatorClick={handleCalculatorClick}
         isCalculatorMinimized={!isCalculatorOpen && isCalculatorOpen !== undefined}
         onMaximizeCalculator={handleMaximizeCalculator}
+        isCalculatorVisible={isCalculatorVisible}
       />
     </div>
   );

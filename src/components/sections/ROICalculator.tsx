@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,6 @@ const ROICalculator = () => {
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
-  // Auto-toggle stats panel based on section visibility
   useEffect(() => {
     if (isSectionVisible) {
       setStatsVisible(true);
@@ -35,13 +33,10 @@ const ROICalculator = () => {
     }
   }, [isSectionVisible]);
 
-  // Calculate total devices for auto-enterprise mode suggestion
   useEffect(() => {
     const totalDevices = Object.values(deviceCounts).reduce((sum, count) => sum + count, 0);
-    // Only auto-suggest enterprise mode, but don't force it
     if (totalDevices >= 1200 && !isEnterprise) {
       console.log("Enterprise mode suggested based on device count");
-      // We don't auto-set it anymore, just log the suggestion
     }
   }, [deviceCounts, isEnterprise]);
 
@@ -53,19 +48,15 @@ const ROICalculator = () => {
     });
   };
 
-  // Toggle enterprise mode manually
   const handleEnterpriseToggle = (enabled: boolean) => {
     setIsEnterprise(enabled);
-    // Recalculate trends with the new enterprise setting
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
-  // Explicitly toggle stats panel visibility
   const toggleStatsPanel = () => {
     setStatsVisible(!statsVisible);
   };
 
-  // Remove animation delay by passing false for animation
   const { isAnimating } = useROIAnimation(false, () => {});
 
   return (
@@ -78,7 +69,6 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
-          {/* Stats Side Panel - animated based on section visibility */}
           <StatsSidePanel 
             trends={currentTrends} 
             isOpen={statsVisible} 
@@ -98,7 +88,7 @@ const ROICalculator = () => {
               <EnterpriseToggle 
                 isEnterprise={isEnterprise} 
                 onEnterpriseChange={handleEnterpriseToggle}
-                disabled={false} // Enable manual toggling
+                disabled={false}
               />
             </div>
 
@@ -134,14 +124,6 @@ const ROICalculator = () => {
         onDeviceCountChange={handleDeviceCountChange}
         isEnterprise={isEnterprise}
         onEnterpriseChange={handleEnterpriseToggle}
-      />
-
-      {/* Add the BottomNavbar */}
-      <BottomNavbar 
-        onChatClick={() => setChatOpen(prev => !prev)}
-        onCalculatorClick={toggleStatsPanel}
-        isCalculatorMinimized={!statsVisible && isSectionVisible}
-        onMaximizeCalculator={toggleStatsPanel}
       />
     </section>
   );
