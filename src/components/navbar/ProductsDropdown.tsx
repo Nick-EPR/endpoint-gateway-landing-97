@@ -165,8 +165,10 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
             <ChevronDown size={16} />
           </button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px] z-50">
-          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
+        <DropdownMenuContent 
+          className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px] z-50"
+        >
+          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
             <ProductItem
               to="/heliam"
               imgSrc="/lovable-uploads/64b90815-7ab9-4ac6-b29f-29d4adb4537e.png"
@@ -175,7 +177,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
               HeliAM
             </ProductItem>
           </DropdownMenuItem>
-          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
+          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
             <ProductItem
               to="/toolbox"
               imgSrc="/lovable-uploads/578da381-52de-48c5-a714-3b9c9015b8a2.png"
@@ -184,7 +186,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
               Toolbox
             </ProductItem>
           </DropdownMenuItem>
-          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white">
+          <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
             <ProductItem
               to="/luemin"
               imgSrc="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
