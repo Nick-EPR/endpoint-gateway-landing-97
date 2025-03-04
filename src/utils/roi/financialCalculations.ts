@@ -1,4 +1,3 @@
-
 import { DeviceCounts } from './types';
 import { 
   PER_INCIDENT_COSTS, 
@@ -35,10 +34,8 @@ export const calculateAnnualSavings = (devices: DeviceCounts, isEnterprise: bool
     (devices.monitors * 0.3 * AVG_DEVICE_COST.monitor * 0.25) +
     (devices.accessories * 0.3 * AVG_DEVICE_COST.accessory * 0.25);
 
-  // Apply enterprise scaling factor if in enterprise mode
-  const enterpriseFactor = isEnterprise ? 1.35 : 1;
-  
-  return Math.round((extendedLifecycleSavings + resaleValue - serviceCosts) * enterpriseFactor);
+  // No enterprise scaling factor - calculations are consistent regardless of enterprise mode
+  return Math.round(extendedLifecycleSavings + resaleValue - serviceCosts);
 };
 
 // Function to calculate compounded savings over 4 years
