@@ -17,14 +17,14 @@ export const calculateAnnualSavings = (devices: DeviceCounts, isEnterprise: bool
     (devices.monitors * PER_INCIDENT_COSTS.monitor) +
     (devices.accessories * PER_INCIDENT_COSTS.accessory);
   
-  // Calculate resale value (assuming 1/4 of devices are replaced each year)
+  // Calculate resale value (assuming 1/10 of devices are replaced each year, changed from 1/4)
   const resaleValue = 
-    ((devices.macbooks / 4) * (AVG_DEVICE_COST.macbook * RESALE_VALUE_PERCENTAGE)) +
-    ((devices.laptops / 4) * (AVG_DEVICE_COST.laptop * RESALE_VALUE_PERCENTAGE)) +
-    ((devices.desktops / 4) * (AVG_DEVICE_COST.desktop * RESALE_VALUE_PERCENTAGE)) +
-    ((devices.tablets / 4) * (AVG_DEVICE_COST.tablet * RESALE_VALUE_PERCENTAGE)) +
-    ((devices.monitors / 4) * (AVG_DEVICE_COST.monitor * RESALE_VALUE_PERCENTAGE)) +
-    ((devices.accessories / 4) * (AVG_DEVICE_COST.accessory * RESALE_VALUE_PERCENTAGE));
+    ((devices.macbooks / 10) * (AVG_DEVICE_COST.macbook * RESALE_VALUE_PERCENTAGE)) +
+    ((devices.laptops / 10) * (AVG_DEVICE_COST.laptop * RESALE_VALUE_PERCENTAGE)) +
+    ((devices.desktops / 10) * (AVG_DEVICE_COST.desktop * RESALE_VALUE_PERCENTAGE)) +
+    ((devices.tablets / 10) * (AVG_DEVICE_COST.tablet * RESALE_VALUE_PERCENTAGE)) +
+    ((devices.monitors / 10) * (AVG_DEVICE_COST.monitor * RESALE_VALUE_PERCENTAGE)) +
+    ((devices.accessories / 10) * (AVG_DEVICE_COST.accessory * RESALE_VALUE_PERCENTAGE));
 
   // Calculate cost savings from extended lifecycle
   // Adjust the savings factor for monitors to be more realistic based on $150 value
