@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Trend } from "@/utils/roi";
-import { X } from 'lucide-react';
+import { X, Calculator, Maximize2, Minimize2 } from 'lucide-react';
 import { StatsCards } from './StatsCards';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -16,6 +16,7 @@ interface StatsSidePanelProps {
 export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisible }: StatsSidePanelProps) => {
   const [isDesktop, setIsDesktop] = useState(false);
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
+  const [isMinimized, setIsMinimized] = useState(false);
   
   // Check if we're on desktop or mobile
   useEffect(() => {
@@ -45,6 +46,11 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     }
   }, [isCalculatorVisible, animationState]);
 
+  // Toggle minimize/maximize state
+  const toggleMinimize = () => {
+    setIsMinimized(!isMinimized);
+  };
+
   // Don't render anything if panel should be fully hidden
   if (animationState === 'hidden') {
     return null;
@@ -52,6 +58,18 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
 
   return (
     <>
+      {/* Floating maximize button - appears next to scroll-to-top and chat buttons */}
+      {isMinimized && (
+        <Button
+          onClick={toggleMinimize}
+          className="fixed bottom-24 right-4 z-40 shadow-lg rounded-full p-0 w-10 h-10 bg-primary text-white hover:bg-primary/90 animate-fade-up"
+          aria-label="Maximize ROI Stats Panel"
+          size="icon"
+        >
+          <Maximize2 className="h-5 w-5" />
+        </Button>
+      )}
+
       {/* Stats Panel with animations */}
       <div 
         className={cn(
@@ -59,12 +77,14 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
           isDesktop 
             ? cn(
                 "top-1/2 -translate-y-1/2 h-auto max-h-[90vh] overflow-y-auto rounded-r-xl border-r border-t border-b border-neutral-200 dark:border-neutral-700",
+                isMinimized ? "-translate-x-full" : "",
                 animationState === 'entering' ? "left-0 translate-x-0" : 
                 animationState === 'visible' ? "left-0 translate-x-0" : 
                 animationState === 'exiting' ? "-translate-x-full" : "-translate-x-full"
               )
             : cn(
                 "left-0 right-0 rounded-t-xl border-t border-neutral-200 dark:border-neutral-700",
+                isMinimized ? "translate-y-full" : "",
                 animationState === 'entering' ? "bottom-0 translate-y-0" : 
                 animationState === 'visible' ? "bottom-0 translate-y-0" : 
                 animationState === 'exiting' ? "translate-y-full" : "translate-y-full"
@@ -73,16 +93,21 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         style={{
           width: isDesktop ? '320px' : '100%',
           transform: isDesktop 
-            ? `translateY(-50%) translateX(${animationState === 'entering' || animationState === 'visible' ? '0' : '-100%'})` 
-            : `translateY(${animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
+            ? `translateY(-50%) translateX(${isMinimized ? '-100%' : animationState === 'entering' || animationState === 'visible' ? '0' : '-100%'})` 
+            : `translateY(${isMinimized ? '100%' : animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
         }}
       >
-        {/* Panel Header with close button */}
+        {/* Panel Header with close and minimize buttons */}
         <div className="p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm">
           <h3 className="font-medium text-base">ROI Statistics</h3>
-          <Button variant="ghost" size="icon" onClick={togglePanel} className="h-7 w-7">
-            <X className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon" onClick={toggleMinimize} className="h-7 w-7" aria-label="Minimize panel">
+              <Minimize2 className="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={togglePanel} className="h-7 w-7" aria-label="Close panel">
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
 
         {/* Panel Content */}
