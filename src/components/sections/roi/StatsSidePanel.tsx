@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Trend } from "@/utils/roi";
 import { X, Minimize2, Maximize2 } from 'lucide-react';
@@ -18,7 +17,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
   const [isMinimized, setIsMinimized] = useState(false);
   
-  // Check if we're on desktop or mobile
   useEffect(() => {
     const checkWidth = () => {
       setIsDesktop(window.innerWidth >= 1024);
@@ -29,7 +27,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
-  // Handle animation states based on calculator visibility
   useEffect(() => {
     console.log('StatsSidePanel: isCalculatorVisible changed to', isCalculatorVisible);
     console.log('StatsSidePanel: isOpen is', isOpen);
@@ -49,29 +46,25 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     }
   }, [isCalculatorVisible, isOpen, animationState]);
 
-  // Toggle minimized state
   const toggleMinimize = () => {
     console.log('Toggling minimize state, current:', isMinimized);
     setIsMinimized(prev => !prev);
   };
 
-  // Don't render anything if panel should be fully hidden
   if (animationState === 'hidden') {
     return null;
   }
 
-  // Calculate the appropriate width or height based on minimized state
   const getMinimizedSize = () => {
     if (isDesktop) {
-      return isMinimized ? '40px' : '320px'; // Width for desktop
+      return isMinimized ? '40px' : '320px';
     } else {
-      return isMinimized ? '40px' : 'auto'; // Height for mobile
+      return isMinimized ? '40px' : 'auto';
     }
   };
 
   return (
     <>
-      {/* Stats Panel with animations */}
       <div 
         className={cn(
           "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
@@ -97,7 +90,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
             : `translateY(${animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
         }}
       >
-        {/* Panel Header with close and minimize buttons */}
         <div className={cn(
           "p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm",
           isMinimized && isDesktop && "writing-mode-vertical-rl rotate-180 h-full p-2 border-b-0 border-l border-neutral-200 dark:border-neutral-700"
@@ -115,7 +107,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
               className={cn(
                 "h-7 w-7", 
                 isMinimized && "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600",
-                // Add specific padding and styling for better visibility and click area
                 isMinimized && isDesktop && "p-1 mb-2 rounded-md"
               )}
               aria-label={isMinimized ? "Maximize panel" : "Minimize panel"}
@@ -140,7 +131,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
           </div>
         </div>
 
-        {/* Panel Content - only shown when not minimized */}
         {!isMinimized && (
           <div className="p-3 w-full">
             <StatsCards trends={trends} compact={true} />
@@ -148,8 +138,7 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         )}
       </div>
 
-      {/* Add a floating maximize button for desktop minimized mode that's easier to click */}
-      {isMinimized && isDesktop && animationState !== 'hidden' && (
+      {isMinimized && isDesktop && (
         <button
           onClick={toggleMinimize}
           className="fixed z-40 left-10 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
