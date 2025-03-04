@@ -13,6 +13,7 @@ interface IndexLayoutProps {
   isChatOpen: boolean;
   isCalculatorOpen: boolean;
   isCalculatorVisible: boolean;
+  isStatsPanelVisible: boolean;
   isStatsPanelMinimized: boolean;
   onChatClick: () => void;
   onCalculatorClick: () => void;
@@ -26,6 +27,7 @@ const IndexLayout = ({
   isChatOpen,
   isCalculatorOpen,
   isCalculatorVisible,
+  isStatsPanelVisible,
   isStatsPanelMinimized,
   onChatClick,
   onCalculatorClick,
@@ -51,7 +53,7 @@ const IndexLayout = ({
         onCalculatorClick={onCalculatorClick}
         isCalculatorMinimized={isStatsPanelMinimized}
         onMaximizeCalculator={onMaximizeCalculator}
-        isCalculatorVisible={isCalculatorVisible}
+        isCalculatorVisible={isStatsPanelVisible}
       />
     </div>
   );

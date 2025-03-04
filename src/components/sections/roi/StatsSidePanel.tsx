@@ -10,6 +10,7 @@ interface StatsSidePanelProps {
   isOpen: boolean;
   isMinimized?: boolean;
   togglePanel: () => void;
+  minimizePanel: () => void;
   maximizePanel: () => void;
   isCalculatorVisible: boolean;
 }
@@ -19,6 +20,7 @@ const StatsSidePanel = ({
   isOpen, 
   isMinimized = false,
   togglePanel, 
+  minimizePanel,
   maximizePanel,
   isCalculatorVisible 
 }: StatsSidePanelProps) => {
@@ -60,7 +62,7 @@ const StatsSidePanel = ({
           <div className="flex gap-2">
             <Button 
               variant="ghost" 
-              onClick={togglePanel} 
+              onClick={minimizePanel} 
               size="icon" 
               className="h-8 w-8 rounded-full"
             >

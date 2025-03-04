@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 
 export function useStatsPanel(isCalculatorVisible: boolean) {
+  const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(true);
   const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
 
   // Reset the minimized state when calculator becomes visible
@@ -25,6 +26,10 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     };
   }, []);
 
+  const toggleStatsPanel = () => {
+    setIsStatsPanelVisible(!isStatsPanelVisible);
+  };
+
   const handleMaximizeCalculator = () => {
     setIsStatsPanelMinimized(false);
     
@@ -41,8 +46,11 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
   };
 
   return { 
+    isStatsPanelVisible,
+    setIsStatsPanelVisible,
     isStatsPanelMinimized, 
     setIsStatsPanelMinimized,
+    toggleStatsPanel,
     handleMaximizeCalculator 
   };
 }

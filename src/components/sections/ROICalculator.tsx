@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -65,25 +64,17 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
+  // Separate functions for visibility and minimization
   const toggleStatsPanel = () => {
-    if (statsVisible && !isStatsMinimized) {
-      setIsStatsMinimized(true);
-    } else if (statsVisible && isStatsMinimized) {
-      setIsStatsMinimized(false);
-    } else {
-      setStatsVisible(true);
-      setIsStatsMinimized(false);
-    }
-    
-    // Dispatch event to ensure all components are in sync
-    window.dispatchEvent(new CustomEvent('statsMinimized', { 
-      detail: { minimized: isStatsMinimized }
-    }));
+    setStatsVisible(!statsVisible);
+  };
+
+  const minimizeStatsPanel = () => {
+    setIsStatsMinimized(true);
   };
 
   const maximizeStatsPanel = () => {
     setIsStatsMinimized(false);
-    setStatsVisible(true);
     
     // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
@@ -108,6 +99,7 @@ const ROICalculator = () => {
             isOpen={statsVisible} 
             isMinimized={isStatsMinimized}
             togglePanel={toggleStatsPanel}
+            minimizePanel={minimizeStatsPanel}
             maximizePanel={maximizeStatsPanel}
             isCalculatorVisible={isSectionVisible}
           />

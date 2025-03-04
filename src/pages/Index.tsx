@@ -10,7 +10,12 @@ import { useStatsPanel } from "@/hooks/useStatsPanel";
 const Index = () => {
   const { scrolled, isCalculatorVisible } = useIndexScroll();
   const { isChatOpen, isCalculatorOpen, handleChatClick, handleCalculatorClick } = useNavigation();
-  const { isStatsPanelMinimized, handleMaximizeCalculator } = useStatsPanel(isCalculatorVisible);
+  const { 
+    isStatsPanelVisible, 
+    isStatsPanelMinimized, 
+    toggleStatsPanel,
+    handleMaximizeCalculator 
+  } = useStatsPanel(isCalculatorVisible);
   
   // Optimize the monitor query with better caching
   const { data: monitors } = useQuery({
@@ -30,9 +35,10 @@ const Index = () => {
       isChatOpen={isChatOpen}
       isCalculatorOpen={isCalculatorOpen}
       isCalculatorVisible={isCalculatorVisible}
+      isStatsPanelVisible={isStatsPanelVisible}
       isStatsPanelMinimized={isStatsPanelMinimized}
       onChatClick={handleChatClick}
-      onCalculatorClick={handleCalculatorClick}
+      onCalculatorClick={toggleStatsPanel}
       onMaximizeCalculator={handleMaximizeCalculator}
     >
       <IndexSections />
