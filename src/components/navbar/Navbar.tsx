@@ -1,5 +1,5 @@
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import { Menu, X, Moon, Sun } from "lucide-react";
 import { useState, useEffect } from "react";
 import { NavbarProps } from "./types";

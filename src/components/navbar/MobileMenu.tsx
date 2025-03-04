@@ -17,6 +17,13 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
     <div className="md:hidden bg-white shadow-lg">
       <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
         <ProductsDropdown scrolled={scrolled} isMobile onItemClick={onClose} />
+        <Link 
+          to="/pricing" 
+          className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
+          onClick={onClose}
+        >
+          Pricing
+        </Link>
         <button 
           onClick={onFeatureClick} 
           className="text-neutral-600 hover:text-primary transition-colors duration-200 text-left py-2"
