@@ -58,11 +58,10 @@ export const CalculationMethodology = () => {
       </div>
       
       <ul className="list-disc pl-4 space-y-1 dark:text-neutral-400">
-        <li>Device lifecycle extension from 3 to 3.9 years (30% of devices)</li>
-        <li>Per-incident costs: MacBook $449, Laptop $265, Desktop $267, Tablet $212, Monitor $75, Accessories $35</li>
+        <li>Device lifecycle extension from 3 to 3.9 years (30% increase)</li>
         <li>Water conservation varies by device type (700-1800L per device)</li>
         <li>E-waste prevention varies by device type (0.3-3.2kg per device)</li>
-        <li>Average resale value: 20% of original device cost</li>
+        <li>Average resale value: 20% of original device cost (computing devices only)</li>
         <li>Device replacement rate: 10% of devices annually</li>
         <li>Time savings: 3-6.5 hours saved per device annually through proactive maintenance and reduced downtime</li>
       </ul>
