@@ -38,6 +38,20 @@ const ROICalculator = () => {
     }
   }, [deviceCounts, isEnterprise]);
 
+  // Listen for global stats minimized events
+  useEffect(() => {
+    const handleStatsMinimized = (event: CustomEvent<{minimized: boolean}>) => {
+      setIsStatsMinimized(event.detail.minimized);
+    };
+
+    // Add type assertion to make TypeScript happy
+    window.addEventListener('statsMinimized', handleStatsMinimized as EventListener);
+    
+    return () => {
+      window.removeEventListener('statsMinimized', handleStatsMinimized as EventListener);
+    };
+  }, []);
+
   const handleDeviceCountChange = (type: keyof DeviceCounts, value: number) => {
     setDeviceCounts(prev => {
       const newCounts = { ...prev, [type]: value };
@@ -69,6 +83,9 @@ const ROICalculator = () => {
 
   const maximizeStatsPanel = () => {
     setIsStatsMinimized(false);
+    setStatsVisible(true);
+    
+    // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
       detail: { minimized: false }
     }));
@@ -91,6 +108,7 @@ const ROICalculator = () => {
             isOpen={statsVisible} 
             isMinimized={isStatsMinimized}
             togglePanel={toggleStatsPanel}
+            maximizePanel={maximizeStatsPanel}
             isCalculatorVisible={isSectionVisible}
           />
 

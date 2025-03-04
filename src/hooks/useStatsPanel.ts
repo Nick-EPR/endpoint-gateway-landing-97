@@ -6,10 +6,10 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
 
   // Reset the minimized state when calculator becomes visible
   useEffect(() => {
-    if (isCalculatorVisible && isStatsPanelMinimized) {
+    if (isCalculatorVisible) {
       setIsStatsPanelMinimized(false);
     }
-  }, [isCalculatorVisible, isStatsPanelMinimized]);
+  }, [isCalculatorVisible]);
 
   // Listen for custom event when stats panel is minimized
   useEffect(() => {
@@ -27,10 +27,17 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
 
   const handleMaximizeCalculator = () => {
     setIsStatsPanelMinimized(false);
+    
     // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
       detail: { minimized: false }
     }));
+    
+    // Add scrolling to ROI calculator section if needed
+    const roiSection = document.getElementById('roi-calculator');
+    if (roiSection) {
+      roiSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return { 

@@ -10,6 +10,7 @@ interface StatsSidePanelProps {
   isOpen: boolean;
   isMinimized?: boolean;
   togglePanel: () => void;
+  maximizePanel: () => void;
   isCalculatorVisible: boolean;
 }
 
@@ -18,6 +19,7 @@ const StatsSidePanel = ({
   isOpen, 
   isMinimized = false,
   togglePanel, 
+  maximizePanel,
   isCalculatorVisible 
 }: StatsSidePanelProps) => {
   const panelRef = useRef<HTMLDivElement>(null);
@@ -77,7 +79,7 @@ const StatsSidePanel = ({
       )}
       
       <div className={`transition-all duration-300 ${isMinimized ? 'p-0' : 'p-4 overflow-y-auto'}`}>
-        <StatsCards trends={trends} compact={isMinimized} />
+        <StatsCards trends={trends} compact={isMinimized} onMaximize={maximizePanel} />
       </div>
     </div>
   );
