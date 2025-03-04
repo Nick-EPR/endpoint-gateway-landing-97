@@ -81,6 +81,17 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <ProductsDropdown scrolled={isWhiteBackground} />
+            <Link 
+              to="/pricing" 
+              className={isWhiteBackground
+                ? isDark
+                  ? 'text-neutral-200 hover:text-white transition-colors duration-200'
+                  : 'text-neutral-600 hover:text-primary transition-colors duration-200'
+                : 'text-white hover:text-primary transition-colors duration-200'
+              }
+            >
+              Pricing
+            </Link>
             <button 
               onClick={() => handleNavigation('features')} 
               className={getFeaturesClasses()}
