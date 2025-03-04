@@ -143,12 +143,12 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         )}
       </div>
 
-      {/* Floating action button that matches scroll-to-top button style */}
+      {/* Floating action button in lower-right corner */}
       {isMinimized && isDesktop && (
         <button
           onClick={toggleMinimize}
           className={cn(
-            "fixed z-40 bottom-6 left-6 p-3 rounded-full shadow-lg transition-all duration-300",
+            "fixed z-40 bottom-6 right-20 p-3 rounded-full shadow-lg transition-all duration-300", // Positioned to the left of other bottom-right buttons
             "bg-primary text-white hover:bg-primary/90 flex items-center justify-center",
             "transform transition-transform animate-fade-in w-12 h-12",
             !isPanelInView && "translate-y-24 opacity-0 pointer-events-none"
