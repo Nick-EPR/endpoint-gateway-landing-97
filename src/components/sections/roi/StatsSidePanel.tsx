@@ -112,11 +112,16 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
               variant="ghost" 
               size="icon" 
               onClick={toggleMinimize}
-              className={cn("h-7 w-7", isMinimized && "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600")}
+              className={cn(
+                "h-7 w-7", 
+                isMinimized && "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-600",
+                // Add specific padding and styling for better visibility and click area
+                isMinimized && isDesktop && "p-1 mb-2 rounded-md"
+              )}
               aria-label={isMinimized ? "Maximize panel" : "Minimize panel"}
             >
               {isMinimized ? (
-                <Maximize2 className="h-4 w-4" />
+                <Maximize2 className="h-4 w-4 text-primary dark:text-primary-foreground" />
               ) : (
                 <Minimize2 className="h-4 w-4" />
               )}
@@ -142,6 +147,17 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
           </div>
         )}
       </div>
+
+      {/* Add a floating maximize button for desktop minimized mode that's easier to click */}
+      {isMinimized && isDesktop && animationState !== 'hidden' && (
+        <button
+          onClick={toggleMinimize}
+          className="fixed z-40 left-10 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-full shadow-lg hover:bg-primary/90 transition-all duration-300"
+          aria-label="Maximize panel"
+        >
+          <Maximize2 className="h-5 w-5" />
+        </button>
+      )}
     </>
   );
 };
