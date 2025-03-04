@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Trend } from "@/utils/roi";
 import { X, Calculator, Maximize2, Minimize2 } from 'lucide-react';
@@ -18,7 +17,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
   const [animationState, setAnimationState] = useState<'entering' | 'visible' | 'exiting' | 'hidden'>('hidden');
   const [isMinimized, setIsMinimized] = useState(false);
   
-  // Check if we're on desktop or mobile
   useEffect(() => {
     const checkWidth = () => {
       setIsDesktop(window.innerWidth >= 1024);
@@ -29,7 +27,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     return () => window.removeEventListener('resize', checkWidth);
   }, []);
 
-  // Handle animation states based on calculator visibility
   useEffect(() => {
     if (isCalculatorVisible) {
       setAnimationState(prev => prev === 'hidden' ? 'entering' : 'visible');
@@ -46,23 +43,20 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
     }
   }, [isCalculatorVisible, animationState]);
 
-  // Toggle minimize/maximize state
   const toggleMinimize = () => {
     setIsMinimized(!isMinimized);
   };
 
-  // Don't render anything if panel should be fully hidden
   if (animationState === 'hidden') {
     return null;
   }
 
   return (
     <>
-      {/* Floating maximize button - appears next to scroll-to-top and chat buttons */}
       {isMinimized && (
         <Button
           onClick={toggleMinimize}
-          className="fixed bottom-6 right-6 z-40 shadow-lg rounded-full p-0 w-10 h-10 bg-primary text-white hover:bg-primary/90 animate-fade-up"
+          className="fixed bottom-6 right-[calc(3rem+50px)] z-40 shadow-lg rounded-full p-0 w-10 h-10 bg-primary text-white hover:bg-primary/90 animate-fade-up"
           aria-label="Maximize ROI Stats Panel"
           size="icon"
         >
@@ -70,7 +64,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
         </Button>
       )}
 
-      {/* Stats Panel with animations */}
       <div 
         className={cn(
           "fixed z-30 transition-all duration-500 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm shadow-xl",
@@ -97,7 +90,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
             : `translateY(${isMinimized ? '100%' : animationState === 'entering' || animationState === 'visible' ? '0' : '100%'})`
         }}
       >
-        {/* Panel Header with close and minimize buttons */}
         <div className="p-3 flex items-center justify-between border-b border-neutral-200 dark:border-neutral-700 sticky top-0 bg-white/95 dark:bg-neutral-800/95 backdrop-blur-sm">
           <h3 className="font-medium text-base">ROI Statistics</h3>
           <div className="flex items-center gap-1">
@@ -110,7 +102,6 @@ export const StatsSidePanel = ({ trends, isOpen, togglePanel, isCalculatorVisibl
           </div>
         </div>
 
-        {/* Panel Content */}
         <div className="p-3 w-full">
           <StatsCards trends={trends} compact={true} />
         </div>
