@@ -1,3 +1,4 @@
+
 import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -36,7 +37,7 @@ const Security = () => {
     description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security.",
     certification: {
       name: "DoD 5220.22-M",
-      logo: "/certification-logos/dod-logo.png",
+      logo: "/certification-logos/dod-logo.svg",
       alt: "Department of Defense Logo"
     }
   }, {
@@ -53,8 +54,8 @@ const Security = () => {
     title: "ISO27001:2023 Compliance",
     description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data.",
     certification: {
-      name: "ISO 27001:2023",
-      logo: "/certification-logos/iso-logo.png",
+      name: "ISO/IEC 27001:2017",
+      logo: "/lovable-uploads/5771aed6-61b2-492e-953a-49f8f45d74a6.png",
       alt: "ISO Certification Logo"
     }
   }];
