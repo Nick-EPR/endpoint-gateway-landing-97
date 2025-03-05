@@ -1,0 +1,7 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect x="30" y="30" width="140" height="140" rx="10" fill="#4CAF50"/>
+  <circle cx="100" cy="100" r="50" fill="white"/>
+  <path d="M80 80H105C110.52 80 115 84.48 115 90C115 95.52 110.52 100 105 100L115 120H100L90 100H80V120H65V80H80ZM80 90V95H100C101.1 95 102 94.1 102 93C102 91.9 101.1 91 100 91H80V90Z" fill="#4CAF50"/>
+  <text x="50" y="145" fill="white" font-family="Arial" font-weight="bold" font-size="16">R2v3 Certified</text>
+</svg>

@@ -1,0 +1,8 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
+  <rect x="30" y="30" width="140" height="140" rx="10" fill="#0078D4"/>
+  <text x="50" y="100" fill="white" font-family="Arial" font-weight="bold" font-size="24">ISO</text>
+  <text x="42" y="130" fill="white" font-family="Arial" font-weight="bold" font-size="20">27001</text>
+  <circle cx="100" cy="70" r="25" stroke="white" stroke-width="4" fill="none"/>
+  <line x1="100" y1="95" x2="100" y2="140" stroke="white" stroke-width="4"/>
+</svg>

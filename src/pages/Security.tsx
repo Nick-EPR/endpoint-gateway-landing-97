@@ -1,9 +1,9 @@
-
 import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
+import { CertificationLogo } from "../components/security/CertificationLogo";
 
 const Security = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -33,15 +33,30 @@ const Security = () => {
   const securityFeatures = [{
     icon: <Shield className="w-8 h-8 text-primary" />,
     title: "DoD-Standard Data Wiping",
-    description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security."
+    description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security.",
+    certification: {
+      name: "DoD 5220.22-M",
+      logo: "/certification-logos/dod-logo.png",
+      alt: "Department of Defense Logo"
+    }
   }, {
     icon: <CheckCircle2 className="w-8 h-8 text-primary" />,
     title: "R2V3-Certified Partnership",
-    description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility."
+    description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility.",
+    certification: {
+      name: "R2v3 Certified",
+      logo: "/certification-logos/r2v3-logo.png",
+      alt: "R2v3 Certification Logo"
+    }
   }, {
     icon: <Lock className="w-8 h-8 text-primary" />,
     title: "ISO27001:2023 Compliance",
-    description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data."
+    description: "Adherence to ISO27001:2023 standards across all operations, maintaining strict confidentiality and security protocols for client data.",
+    certification: {
+      name: "ISO 27001:2023",
+      logo: "/certification-logos/iso-logo.png",
+      alt: "ISO Certification Logo"
+    }
   }];
 
   const additionalFeatures = [{
@@ -110,7 +125,16 @@ const Security = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {securityFeatures.map((feature, index) => (
               <div key={index} className="p-6 bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border">
-                <div className="mb-4">{feature.icon}</div>
+                <div className="mb-4 flex justify-between items-start">
+                  <div>{feature.icon}</div>
+                  {feature.certification && (
+                    <CertificationLogo 
+                      name={feature.certification.name}
+                      logo={feature.certification.logo}
+                      alt={feature.certification.alt}
+                    />
+                  )}
+                </div>
                 <h3 className="text-xl font-semibold mb-3 text-foreground">{feature.title}</h3>
                 <p className="text-muted-foreground">{feature.description}</p>
               </div>
