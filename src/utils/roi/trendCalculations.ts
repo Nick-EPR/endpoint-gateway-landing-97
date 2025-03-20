@@ -21,6 +21,7 @@ export const calculateTrends = (devices: DeviceCounts, isEnterprise: boolean = f
   
   // Calculate derived values
   const fiveYearTotalSavings = annualSavings * 5;
+  const fourYearTotalSavings = annualSavings * 4; // Added 4-year calculation
   
   // Calculate rough approximation of current IT costs before savings
   const estimatedCurrentITCosts = totalDevices * 1000 * (RATES.incidentRate + RATES.turnoverRate);
@@ -52,6 +53,7 @@ export const calculateTrends = (devices: DeviceCounts, isEnterprise: boolean = f
   
   return {
     fiveYearTotalSavings,
+    fourYearTotalSavings,
     savingsPercentage,
     averageAnnualSavings,
     roi,

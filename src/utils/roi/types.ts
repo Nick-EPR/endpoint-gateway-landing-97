@@ -17,6 +17,7 @@ export interface DeviceCounts {
 
 export interface TrendResults {
   fiveYearTotalSavings: number;
+  fourYearTotalSavings: number; // Added this property
   savingsPercentage: number;
   averageAnnualSavings: number;
   roi: number;

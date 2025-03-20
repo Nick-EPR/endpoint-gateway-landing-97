@@ -20,10 +20,10 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
       <div className="flex items-center justify-between h-full w-full">
         <div className="flex flex-col">
           <p className="text-xs font-medium text-gray-600 dark:text-gray-300">
-            5-Year Savings:
+            4-Year Savings:
           </p>
           <p className="text-lg font-bold text-primary">
-            {formatCurrency(trends.fiveYearTotalSavings)}
+            {formatCurrency(trends.fourYearTotalSavings)}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
             ROI: {roundedRoi}x ({formatPercentage(trends.savingsPercentage)} reduction)
@@ -48,8 +48,8 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <StatCard
-        title="Total 5-Year Savings"
-        value={formatCurrency(trends.fiveYearTotalSavings)}
+        title="Total 4-Year Savings"
+        value={formatCurrency(trends.fourYearTotalSavings)}
         description={`${formatPercentage(trends.savingsPercentage)} reduction in costs`}
         className="bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary-foreground/5 dark:to-primary-foreground/10"
       />
