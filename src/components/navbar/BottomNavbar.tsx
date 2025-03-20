@@ -34,8 +34,8 @@ const BottomNavbar = ({
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 py-3 bg-black/10 backdrop-blur-sm dark:bg-black/30">
-      <div className="container mx-auto flex justify-end items-center gap-3 px-4 sm:px-6 md:gap-6">
+    <div className="fixed bottom-2 left-0 right-0 z-50 py-2 bg-black/10 backdrop-blur-sm dark:bg-black/30 rounded-full mx-auto max-w-md">
+      <div className="container mx-auto flex justify-center items-center gap-3 px-4 sm:px-6 md:gap-6">
         {!isCalculatorVisible && !isCalculatorMinimized && (
           <Button
             onClick={onCalculatorClick}

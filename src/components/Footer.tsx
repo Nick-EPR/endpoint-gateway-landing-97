@@ -84,8 +84,8 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Security Info */}
-        <div className="mt-8">
+        {/* Security Info - added pb-16 to provide space for the bottom navbar */}
+        <div className="mt-8 pb-16">
           <p className="text-sm text-neutral dark:text-neutral-400 text-center flex items-center justify-center gap-2">
             <Shield className="w-4 h-4 text-primary" />
             ISO27001:2022 Certified | SOC 2 Compliant | HIPAA Compliant
