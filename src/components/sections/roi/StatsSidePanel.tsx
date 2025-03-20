@@ -1,6 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react';
-import { Minimize2, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { Minimize2, X, ChevronDown, ChevronUp, Move } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import StatsCards from './StatsCards';
 import { TrendResults } from '@/utils/roi/types';
@@ -27,6 +27,10 @@ const StatsSidePanel = ({
   const panelRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const [initialPos, setInitialPos] = useState({ x: 0, y: 0 });
 
   // Check for mobile viewport
   useEffect(() => {
@@ -57,6 +61,73 @@ const StatsSidePanel = ({
     setMobileExpanded(!mobileExpanded);
   };
 
+  // Handle mouse down to start dragging
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return; // Don't allow dragging on mobile
+    
+    setIsDragging(true);
+    setDragStart({ x: e.clientX, y: e.clientY });
+    setInitialPos({ ...position });
+    
+    // Prevent text selection during drag
+    e.preventDefault();
+  };
+
+  // Handle touch start for mobile devices
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (isMobile) return; // Don't allow dragging on mobile
+    
+    setIsDragging(true);
+    setDragStart({ 
+      x: e.touches[0].clientX, 
+      y: e.touches[0].clientY 
+    });
+    setInitialPos({ ...position });
+  };
+
+  // Handle mouse move during drag
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!isDragging) return;
+      
+      const deltaX = e.clientX - dragStart.x;
+      const deltaY = e.clientY - dragStart.y;
+      
+      setPosition({
+        x: initialPos.x + deltaX,
+        y: initialPos.y + deltaY
+      });
+    };
+    
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging) return;
+      
+      const deltaX = e.touches[0].clientX - dragStart.x;
+      const deltaY = e.touches[0].clientY - dragStart.y;
+      
+      setPosition({
+        x: initialPos.x + deltaX,
+        y: initialPos.y + deltaY
+      });
+    };
+    
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleMouseUp);
+    
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleMouseUp);
+    };
+  }, [isDragging, dragStart, initialPos]);
+
   // If panel is closed, return null
   if (!isOpen) return null;
   
@@ -66,21 +137,42 @@ const StatsSidePanel = ({
       className={`fixed ${
         isMobile 
           ? 'left-0 right-0 bottom-0 w-full rounded-b-none rounded-t-lg shadow-xl z-[1100]' 
-          : 'right-4 bottom-24 w-[800px] rounded-lg'
+          : 'w-[800px] rounded-lg'
       } bg-white dark:bg-neutral-800 shadow-xl z-[1000] transition-all duration-300 ${
         isMinimized 
           ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10' 
-          : 'opacity-100 scale-100 transform translate-y-0'
-      }`}
+          : 'opacity-100 scale-100'
+      } ${isDragging ? 'cursor-grabbing' : ''}`}
       style={{ 
         maxHeight: isMobile 
           ? (mobileExpanded ? '80vh' : '140px') 
           : '80vh',
-        transition: 'max-height 0.3s ease-in-out, opacity 0.3s, transform 0.3s'
+        transition: isDragging 
+          ? 'none' 
+          : 'max-height 0.3s ease-in-out, opacity 0.3s, transform 0.3s',
+        transform: isMobile
+          ? isMinimized ? 'scale(0.95) translateY(10px)' : 'scale(1) translateY(0)'
+          : `translate(${position.x}px, ${position.y}px) ${isMinimized ? 'scale(0.95) translateY(10px)' : 'scale(1)'}`,
+        right: isMobile ? 0 : 'auto',
+        bottom: isMobile ? 0 : '24px',
+        // Set initial position for desktop if position is at default
+        ...(position.x === 0 && position.y === 0 && !isMobile) && {
+          right: '16px',
+          bottom: '24px',
+          left: 'auto',
+          top: 'auto'
+        }
       }}
     >
-      <div className="p-3 border-b dark:border-neutral-700 flex justify-between items-center">
-        <h3 className="font-medium text-base sm:text-lg dark:text-white">ROI Stats</h3>
+      <div 
+        className={`p-3 border-b dark:border-neutral-700 flex justify-between items-center ${!isMobile && 'cursor-grab'}`}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+      >
+        <div className="flex items-center gap-2">
+          {!isMobile && <Move className="h-4 w-4 text-neutral-500" />}
+          <h3 className="font-medium text-base sm:text-lg dark:text-white">ROI Stats</h3>
+        </div>
         <div className="flex gap-2">
           {isMobile && (
             <Button 
