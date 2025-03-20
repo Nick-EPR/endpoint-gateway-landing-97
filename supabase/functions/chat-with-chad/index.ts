@@ -29,6 +29,26 @@ Contact Information:
 - Sales: sales@lifetimeepr.com
 - Customer success: success@lifetimeepr.com
 
+ROI Calculation Methodology:
+- Financial Savings:
+  * IT asset manager labor: $600/hire × (12% incident + 10% turnover)
+  * HR manager labor: $75/hire × (12% incident + 10% turnover)
+  * Employee downtime: $462/day × 12% incident rate
+  * Repair vs. Replacement: $700 savings × 12% incident rate
+  * Residual value: 20% of retail value at disposition
+
+- Environmental Impact:
+  * Device lifecycle extension from 3 to 3.9 years (30% increase)
+  * Water conservation: 700-1800L per device saved
+  * E-waste prevention: 0.3-3.2kg per device
+  * CO₂ reduction: 15-250kg per device based on type
+
+- Time Savings:
+  * Pre-onboarding: 10-15 hours (HR: 4-6h, IT: 6-8h)
+  * First week: 15-20 hours total across teams
+  * Ongoing support: 10-15 hours over first 90 days
+  * Average time saved: 3-6.5 hours per device annually
+
 Guidelines:
 - Keep responses short and direct
 - Focus on immediate solutions
