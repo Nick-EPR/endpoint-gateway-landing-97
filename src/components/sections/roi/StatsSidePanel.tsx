@@ -31,7 +31,6 @@ const StatsSidePanel = ({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [initialPos, setInitialPos] = useState({ x: 0, y: 0 });
-  const [isPositionInitialized, setIsPositionInitialized] = useState(false);
 
   // Check for mobile viewport
   useEffect(() => {
@@ -49,19 +48,6 @@ const StatsSidePanel = ({
       window.removeEventListener('resize', checkIsMobile);
     };
   }, []);
-
-  // Initialize position on component mount
-  useEffect(() => {
-    if (!isMobile && !isPositionInitialized && panelRef.current) {
-      // Calculate position from right side of screen
-      const posX = 0; // No horizontal offset when using right positioning
-      const posY = 0;  // No vertical offset when using bottom positioning
-
-      setPosition({ x: posX, y: posY });
-      setInitialPos({ x: posX, y: posY });
-      setIsPositionInitialized(true);
-    }
-  }, [isMobile, isPositionInitialized]);
 
   // Update panel visibility when minimized state changes
   useEffect(() => {
@@ -173,8 +159,8 @@ const StatsSidePanel = ({
             bottom: 0
           } : 
           {
-            right: isPositionInitialized ? '16px' : 'auto',
-            bottom: isPositionInitialized ? '24px' : 'auto',
+            right: position.x === 0 ? '16px' : 'auto',
+            bottom: position.y === 0 ? '24px' : 'auto',
             position: 'fixed'
           })
       }}
