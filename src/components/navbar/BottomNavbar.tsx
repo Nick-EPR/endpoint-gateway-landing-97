@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Calculator, ArrowUp } from "lucide-react";
-import { useNavigation } from "@/hooks/useNavigation";
 
 interface BottomNavbarProps {
   onChatClick: () => void;

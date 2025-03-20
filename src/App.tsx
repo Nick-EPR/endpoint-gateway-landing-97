@@ -18,41 +18,46 @@ import Privacy from "./pages/Privacy";
 import WhatIsITAM from "./pages/WhatIsITAM";
 import Pricing from "./pages/Pricing";
 import ChatButton from "./components/ChatButton";
-import { useNavigation, NavigationProvider } from "./hooks/useNavigation";
+import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 
 // Create a client
 const queryClient = new QueryClient();
 
-function App() {
-  // Remove local state management since it will be managed by useNavigation
+function AppContent() {
   const { isChatOpen, handleChatClick } = useNavigation();
+  
+  return (
+    <div className="min-h-screen bg-background text-foreground">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/security" element={<Security />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/leadership" element={<Leadership />} />
+          <Route path="/heliam" element={<HeliAM />} />
+          <Route path="/toolbox" element={<Toolbox />} />
+          <Route path="/luemin" element={<Luemin />} />
+          <Route path="/mission" element={<Mission />} />
+          <Route path="/status" element={<Status />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/what-is-itam" element={<WhatIsITAM />} />
+          <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
+      </Router>
+    </div>
+  );
+}
 
+function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <NavigationProvider>
-          <div className="min-h-screen bg-background text-foreground">
-            <Router>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/security" element={<Security />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/leadership" element={<Leadership />} />
-                <Route path="/heliam" element={<HeliAM />} />
-                <Route path="/toolbox" element={<Toolbox />} />
-                <Route path="/luemin" element={<Luemin />} />
-                <Route path="/mission" element={<Mission />} />
-                <Route path="/status" element={<Status />} />
-                <Route path="/pricing" element={<Pricing />} />
-                <Route path="/terms" element={<Terms />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/what-is-itam" element={<WhatIsITAM />} />
-                <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-              <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
-            </Router>
-          </div>
+          <AppContent />
         </NavigationProvider>
       </ThemeProvider>
     </QueryClientProvider>

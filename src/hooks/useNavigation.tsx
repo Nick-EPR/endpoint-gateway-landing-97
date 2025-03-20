@@ -48,10 +48,7 @@ export const NavigationProvider = ({ children }: { children: React.ReactNode }) 
 export function useNavigation() {
   const context = useContext(NavigationContext);
   if (context === undefined) {
-    // Create singleton instance if no provider is found
-    // This behavior maintains the existing code functionality
-    // while still enabling shared state
-    return useNavigationState();
+    throw new Error("useNavigation must be used within a NavigationProvider");
   }
   return context;
 }

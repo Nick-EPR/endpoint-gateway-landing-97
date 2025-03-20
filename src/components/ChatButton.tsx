@@ -62,7 +62,7 @@ const ChatButton = ({ isOpen, onToggle }: ChatButtonProps) => {
 
     try {
       const { data, error } = await supabase.functions.invoke('chat-with-chad', {
-        body: { messages: newMessages }
+        body: { messages: newMessages.map(m => ({ role: m.role, content: m.content })) }
       });
 
       if (error) {
