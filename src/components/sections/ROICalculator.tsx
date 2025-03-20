@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,7 @@ const ROICalculator = () => {
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTrends, setCurrentTrends] = useState<TrendResults>(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(true); // Changed to true by default
+  const [statsVisible, setStatsVisible] = useState(false);
   const [isStatsMinimized, setIsStatsMinimized] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -26,7 +25,6 @@ const ROICalculator = () => {
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   useEffect(() => {
-    // Always show stats panel when section is visible
     if (isSectionVisible) {
       setStatsVisible(true);
     }
@@ -77,7 +75,6 @@ const ROICalculator = () => {
 
   const maximizeStatsPanel = () => {
     setIsStatsMinimized(false);
-    setStatsVisible(true); // Ensure panel is visible when maximizing
     
     // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
