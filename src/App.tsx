@@ -16,7 +16,6 @@ import Status from "./pages/Status";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import WhatIsITAM from "./pages/WhatIsITAM";
-import Pricing from "./pages/Pricing";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 
@@ -39,7 +38,6 @@ function AppContent() {
           <Route path="/luemin" element={<Luemin />} />
           <Route path="/mission" element={<Mission />} />
           <Route path="/status" element={<Status />} />
-          <Route path="/pricing" element={<Pricing />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/what-is-itam" element={<WhatIsITAM />} />
