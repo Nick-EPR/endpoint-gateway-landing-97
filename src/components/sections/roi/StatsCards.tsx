@@ -12,6 +12,9 @@ interface StatsCardsProps {
 }
 
 const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) => {
+  // Round the ROI value to 2 decimal places
+  const roundedRoi = parseFloat(trends.roi.toFixed(2));
+  
   if (compact) {
     return (
       <div className="flex items-center justify-between h-full w-full">
@@ -23,7 +26,7 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
             {formatCurrency(trends.fiveYearTotalSavings)}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            ROI: {trends.roi}x ({formatPercentage(trends.savingsPercentage)} reduction)
+            ROI: {roundedRoi}x ({formatPercentage(trends.savingsPercentage)} reduction)
           </p>
         </div>
         
@@ -60,7 +63,7 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
       
       <StatCard
         title="ROI"
-        value={`${trends.roi}x`}
+        value={`${roundedRoi}x`}
         description={`Payback in ${trends.paybackPeriod} months`}
         className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20"
       />
