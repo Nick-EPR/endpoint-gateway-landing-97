@@ -1,3 +1,4 @@
+
 import { useQuery } from "@tanstack/react-query";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import IndexLayout from "@/components/layout/IndexLayout";
@@ -90,10 +91,10 @@ const Index = () => {
             isOpen={isStatsPanelVisible}
             isMinimized={isStatsPanelMinimized}
             togglePanel={toggleStatsPanel}
-            minimizePanel={() => toggleStatsPanel(true)}
+            minimizePanel={() => toggleStatsPanel()}
             maximizePanel={handleMaximizeCalculator}
             isCalculatorVisible={isCalculatorVisible}
-            trends={defaultTrends} // Pass the defaultTrends to ensure we have valid data
+            trends={defaultTrends} 
           />
         </Suspense>
       )}
