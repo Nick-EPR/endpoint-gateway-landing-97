@@ -29,7 +29,7 @@ const PanelHeader = ({
       onTouchStart={handleTouchStart}
     >
       <div className="flex items-center gap-2">
-        {!isMobile && <Move className="h-4 w-4 text-neutral-500" />}
+        {!isMobile && <Move />}
         <h3 className="font-medium text-base sm:text-lg dark:text-white">ROI Stats</h3>
       </div>
       <div className="flex gap-2">
