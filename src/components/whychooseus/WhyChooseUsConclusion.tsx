@@ -1,8 +1,15 @@
 
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, Unlink } from "lucide-react";
+import { ArrowRight, Check, Unlink, Link as LinkIcon } from "lucide-react";
 
 const WhyChooseUsConclusion = () => {
+  const scrollToROI = () => {
+    const roiSection = document.getElementById('roi-calculator');
+    if (roiSection) {
+      roiSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
@@ -45,7 +52,13 @@ const WhyChooseUsConclusion = () => {
                   <div className="p-1 bg-primary/10 rounded-full mr-3 mt-1">
                     <Check className="h-4 w-4 text-primary" />
                   </div>
-                  <p className="text-foreground">Significant cost savings and operational efficiency</p>
+                  <button 
+                    onClick={scrollToROI} 
+                    className="text-foreground flex items-center group hover:text-primary transition-colors"
+                  >
+                    <span>Significant cost savings and operational efficiency</span>
+                    <LinkIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </button>
                 </div>
               </div>
               
