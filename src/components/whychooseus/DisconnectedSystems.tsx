@@ -1,5 +1,5 @@
 
-import { GitFork, Unlink, DollarSign, RotateCcw } from "lucide-react";
+import { GitFork, Unlink, DollarSign, RotateCcw, Database } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const DisconnectedSystems = () => {
@@ -80,7 +80,7 @@ const DisconnectedSystems = () => {
               <CardContent className="pt-6">
                 <div className="flex items-start mb-4">
                   <div className="p-2 bg-red-100 rounded-md mr-4">
-                    <Box className="h-6 w-6 text-red-500" />
+                    <Database className="h-6 w-6 text-red-500" />
                   </div>
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Incomplete Data Picture</h3>
