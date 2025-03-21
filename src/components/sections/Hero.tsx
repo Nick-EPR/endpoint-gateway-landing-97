@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Calculator, Info, ArrowRight } from "lucide-react";
@@ -111,18 +112,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
             
             <button 
               onClick={scrollToROI}
-              className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
             >
               <Calculator className="w-5 h-5" />
               Calculate Your Savings
-              <svg 
-                className="w-5 h-5 ml-auto transition-transform duration-300 group-hover:translate-x-1" 
-                fill="none" 
-                viewBox="0 0 24 24" 
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
             </button>
             
             <button 
