@@ -1,12 +1,13 @@
 
 import { Server, PackageOpen, MonitorSmartphone, Workflow, AlertTriangle } from "lucide-react";
+
 const PhysicalReality = () => {
   return <section className="py-16 md:py-24 bg-neutral-light dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <div className="inline-flex items-center justify-center mb-6">
-            <div className="p-3 bg-primary/10 rounded-full mb-2 animate-float">
-              <Server className="h-8 w-8 text-primary" />
+            <div className="p-3 bg-red-100 rounded-full mb-2 animate-float">
+              <Server className="h-8 w-8 text-red-500" />
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
@@ -23,13 +24,13 @@ const PhysicalReality = () => {
             <div className="aspect-video rounded-2xl overflow-hidden shadow-xl animate-on-scroll">
               <img alt="IT Asset Physical Management" className="w-full h-full object-cover" src="/lovable-uploads/8a4193c5-136d-406e-a66e-4c8fa14deb77.jpg" />
             </div>
-            <div className="absolute -bottom-6 -right-6 -z-10 w-full h-full rounded-2xl bg-primary/10"></div>
+            <div className="absolute -bottom-6 -right-6 -z-10 w-full h-full rounded-2xl bg-red-100"></div>
           </div>
 
           <div className="space-y-8">
             <div className="flex items-start">
-              <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg mr-4">
-                <PackageOpen className="h-6 w-6 text-primary" />
+              <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg mr-4">
+                <PackageOpen className="h-6 w-6 text-red-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Manual Procurement</h3>
@@ -41,8 +42,8 @@ const PhysicalReality = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg mr-4">
-                <MonitorSmartphone className="h-6 w-6 text-primary" />
+              <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg mr-4">
+                <MonitorSmartphone className="h-6 w-6 text-red-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Laborious Onboarding</h3>
@@ -54,8 +55,8 @@ const PhysicalReality = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg mr-4">
-                <Workflow className="h-6 w-6 text-primary" />
+              <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg mr-4">
+                <Workflow className="h-6 w-6 text-red-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">Non-Standardized Processes</h3>
@@ -67,8 +68,8 @@ const PhysicalReality = () => {
             </div>
 
             <div className="flex items-start">
-              <div className="flex-shrink-0 p-2 bg-primary/10 rounded-lg mr-4">
-                <AlertTriangle className="h-6 w-6 text-primary" />
+              <div className="flex-shrink-0 p-2 bg-red-100 rounded-lg mr-4">
+                <AlertTriangle className="h-6 w-6 text-red-500" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold mb-2">End-of-Life Risks</h3>
@@ -83,4 +84,5 @@ const PhysicalReality = () => {
       </div>
     </section>;
 };
+
 export default PhysicalReality;
