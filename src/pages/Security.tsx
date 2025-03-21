@@ -1,4 +1,5 @@
-import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound } from "lucide-react";
+
+import { Shield, Lock, CheckCircle2, FileCheck, Building2, FileWarning, KeyRound, FileText, Download } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Navbar from "../components/navbar/Navbar";
@@ -7,6 +8,7 @@ import { SecurityHero } from "../components/security/SecurityHero";
 import { PrimaryFeatures } from "../components/security/PrimaryFeatures";
 import { AdditionalFeatures } from "../components/security/AdditionalFeatures";
 import { SecurityContact } from "../components/security/SecurityContact";
+import { SecurityWhitepaper } from "../components/security/SecurityWhitepaper";
 import { SecurityFeature } from "../components/security/types";
 
 const Security = () => {
@@ -49,7 +51,7 @@ const Security = () => {
       description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility.",
       certification: {
         name: "R2v3 Certified",
-        logo: "/certification-logos/r2v3-logo.png",
+        logo: "/certification-logos/r2v3-logo.svg",
         alt: "R2v3 Certification Logo"
       }
     }, 
@@ -92,6 +94,7 @@ const Security = () => {
     <div className="min-h-screen bg-background">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
       <SecurityHero scrolled={scrolled} />
+      <SecurityWhitepaper />
       <PrimaryFeatures features={securityFeatures} />
       <AdditionalFeatures features={additionalFeatures} />
       <SecurityContact />
