@@ -1,11 +1,18 @@
+
 import { Link } from "react-router-dom";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Unlink } from "lucide-react";
+
 const WhyChooseUsConclusion = () => {
   return <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
+              <div className="inline-flex items-center mb-6">
+                <div className="p-3 bg-primary/10 rounded-full mr-3">
+                  <Unlink className="h-6 w-6 text-primary" />
+                </div>
+              </div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
                 Stop Struggling with Fragmented ITAM
               </h2>
@@ -61,4 +68,5 @@ const WhyChooseUsConclusion = () => {
       </div>
     </section>;
 };
+
 export default WhyChooseUsConclusion;
