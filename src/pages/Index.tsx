@@ -89,9 +89,11 @@ const Index = () => {
           <StatsPanelLazy
             isOpen={isStatsPanelVisible}
             isMinimized={isStatsPanelMinimized}
-            onClose={() => toggleStatsPanel()}
-            onMinimize={() => toggleStatsPanel(true)}
-            onMaximize={handleMaximizeCalculator}
+            togglePanel={toggleStatsPanel}
+            minimizePanel={() => toggleStatsPanel(true)}
+            maximizePanel={handleMaximizeCalculator}
+            isCalculatorVisible={isCalculatorVisible}
+            trends={{}} // Provide an empty object as trends (StatsSidePanel will use its defaults)
           />
         </Suspense>
       )}
