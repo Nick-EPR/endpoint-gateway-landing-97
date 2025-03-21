@@ -1,3 +1,4 @@
+
 import { Shield, Network, Smartphone, Laptop, Cpu, FileText, Zap, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import GuideImage from "./tmobile/GuideImage";
@@ -32,11 +33,23 @@ const TMobileBusiness = () => {
                 <p className="text-neutral dark:text-neutral-300 mb-6">
                   Essential information about the Windows 10 end-of-life timeline and recommended steps for a smooth transition to Windows 11.
                 </p>
-                <GuideImage src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png" alt="Windows 11 Transition Guide Page 1" fileName="windows11-transition-guide-1.png" isPartOfDocument={true} nextPage={{
-                src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
-                alt: "Windows 11 Transition Guide Page 2",
-                fileName: "windows11-transition-guide-2.png"
-              }} />
+                <GuideImage 
+                  src="/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png" 
+                  alt="Windows 11 Transition Guide" 
+                  fileName="windows11-transition-guide.png"
+                  pages={[
+                    {
+                      src: "/lovable-uploads/5f7f3800-f00c-4dc9-831d-dc17898e36d3.png",
+                      alt: "Windows 11 Transition Guide Page 1",
+                      fileName: "windows11-transition-guide-1.png"
+                    },
+                    {
+                      src: "/lovable-uploads/d6442af6-808f-4c9c-bbda-04b19709ec68.png",
+                      alt: "Windows 11 Transition Guide Page 2",
+                      fileName: "windows11-transition-guide-2.png"
+                    }
+                  ]}
+                />
               </div>
 
               <div className="rounded-xl p-6 bg-white dark:bg-neutral-900/50 shadow-lg">
@@ -47,11 +60,23 @@ const TMobileBusiness = () => {
                 <p className="text-neutral dark:text-neutral-300 mb-6">
                   Discover how our partnership with T-Mobile revolutionizes healthcare connectivity with 5G solutions designed for modern medical environments.
                 </p>
-                <GuideImage src="/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png" alt="Healthcare Digital Transformation Guide Page 1" fileName="healthcare-transformation-guide-1.png" isPartOfDocument={true} nextPage={{
-                src: "/lovable-uploads/14f48861-ae47-4548-8b0d-5345bc615b39.png",
-                alt: "Healthcare Digital Transformation Guide Page 2",
-                fileName: "healthcare-transformation-guide-2.png"
-              }} />
+                <GuideImage 
+                  src="/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png" 
+                  alt="Healthcare Digital Transformation Guide" 
+                  fileName="healthcare-transformation-guide.png"
+                  pages={[
+                    {
+                      src: "/lovable-uploads/ba322697-6a94-43af-a340-e3a4e4a5fdfd.png",
+                      alt: "Healthcare Digital Transformation Guide Page 1",
+                      fileName: "healthcare-transformation-guide-1.png"
+                    },
+                    {
+                      src: "/lovable-uploads/14f48861-ae47-4548-8b0d-5345bc615b39.png",
+                      alt: "Healthcare Digital Transformation Guide Page 2",
+                      fileName: "healthcare-transformation-guide-2.png"
+                    }
+                  ]}
+                />
               </div>
             </div>
           </div>

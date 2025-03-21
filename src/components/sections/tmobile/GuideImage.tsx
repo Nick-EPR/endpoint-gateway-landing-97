@@ -20,6 +20,11 @@ interface GuideImageProps {
     alt: string;
     fileName: string;
   };
+  pages?: Array<{
+    src: string;
+    alt: string;
+    fileName: string;
+  }>;
 }
 
 const GuideImage = ({
@@ -28,13 +33,19 @@ const GuideImage = ({
   fileName,
   isPartOfDocument,
   nextPage,
-  prevPage
+  prevPage,
+  pages = []
 }: GuideImageProps) => {
-  const [currentPage, setCurrentPage] = useState({
-    src,
-    alt,
-    fileName
-  });
+  // If pages array is provided, use it; otherwise, construct from props
+  const allPages = pages.length > 0 
+    ? pages 
+    : [
+        { src, alt, fileName },
+        ...(nextPage ? [nextPage] : [])
+      ];
+  
+  const [currentPageIndex, setCurrentPageIndex] = useState(0);
+  const currentPage = allPages[currentPageIndex];
 
   const downloadImage = (imageUrl: string, fileName: string) => {
     const link = document.createElement('a');
@@ -46,16 +57,19 @@ const GuideImage = ({
   };
 
   const handleNextPage = () => {
-    if (nextPage) {
-      setCurrentPage(nextPage);
+    if (currentPageIndex < allPages.length - 1) {
+      setCurrentPageIndex(currentPageIndex + 1);
     }
   };
 
   const handlePrevPage = () => {
-    if (prevPage) {
-      setCurrentPage(prevPage);
+    if (currentPageIndex > 0) {
+      setCurrentPageIndex(currentPageIndex - 1);
     }
   };
+
+  const hasNextPage = currentPageIndex < allPages.length - 1;
+  const hasPrevPage = currentPageIndex > 0;
 
   return (
     <Dialog>
@@ -71,11 +85,12 @@ const GuideImage = ({
         <div className="relative h-full flex flex-col">
           <ScrollArea className="flex-1">
             <div className="relative min-h-full flex items-center justify-center">
-              {isPartOfDocument && prevPage && (
+              {(isPartOfDocument || hasPrevPage) && (
                 <Button 
                   variant="ghost" 
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10" 
                   onClick={handlePrevPage}
+                  disabled={!hasPrevPage}
                 >
                   <ChevronLeft className="w-8 h-8" />
                 </Button>
@@ -85,11 +100,12 @@ const GuideImage = ({
                 alt={currentPage.alt} 
                 className="w-full h-auto object-contain" 
               />
-              {isPartOfDocument && nextPage && (
+              {(isPartOfDocument || hasNextPage) && (
                 <Button 
                   variant="ghost" 
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10" 
                   onClick={handleNextPage}
+                  disabled={!hasNextPage}
                 >
                   <ChevronRight className="w-8 h-8" />
                 </Button>
@@ -104,9 +120,26 @@ const GuideImage = ({
               className="shadow-md"
             >
               <Download className="w-4 h-4 mr-2" />
-              Download Page {isPartOfDocument ? (prevPage ? '2' : '1') : ''}
+              Download Page {currentPageIndex + 1} of {allPages.length}
             </Button>
           </div>
+          
+          {/* Page indicator */}
+          {allPages.length > 1 && (
+            <div className="absolute bottom-6 left-0 right-0 z-10 flex justify-center gap-2">
+              {allPages.map((_, index) => (
+                <Button
+                  key={index}
+                  variant={index === currentPageIndex ? "default" : "outline"}
+                  size="sm"
+                  className="w-8 h-8 p-0"
+                  onClick={() => setCurrentPageIndex(index)}
+                >
+                  {index + 1}
+                </Button>
+              ))}
+            </div>
+          )}
         </div>
       </DialogContent>
     </Dialog>
