@@ -1,9 +1,9 @@
-
 import { Download, FileText, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import GuideImage from "../sections/tmobile/GuideImage";
+import { LockIcon } from "lucide-react";
 
 export const SecurityWhitepaper = () => {
   return (
@@ -39,7 +39,7 @@ export const SecurityWhitepaper = () => {
                 <Card className="bg-card/50 border border-border">
                   <CardContent className="p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <Lock className="h-5 w-5 text-primary" />
+                      <LockIcon className="h-5 w-5 text-primary" />
                       <h3 className="font-semibold">Compliance</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">
