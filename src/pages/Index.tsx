@@ -6,8 +6,8 @@ import IndexSections from "@/components/sections/IndexSections";
 import { useIndexScroll } from "@/hooks/useIndexScroll";
 import { useNavigation } from "@/hooks/useNavigation";
 import { useStatsPanel } from "@/hooks/useStatsPanel";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Index = () => {
   const { scrolled, isCalculatorVisible } = useIndexScroll();
@@ -30,11 +30,15 @@ const Index = () => {
 
   // Get location state for possible scrollTo parameter
   const location = useLocation();
+  const navigate = useNavigate();
+  const initialScrollPerformed = useRef(false);
   
   // Handle scrolling to specific sections when navigating from other pages
   useEffect(() => {
-    if (location.state && location.state.scrollTo) {
+    if (location.state && location.state.scrollTo && !initialScrollPerformed.current) {
       const sectionId = location.state.scrollTo;
+      initialScrollPerformed.current = true;
+      
       setTimeout(() => {
         const section = document.getElementById(sectionId);
         if (section) {
@@ -44,10 +48,13 @@ const Index = () => {
           if (sectionId === 'roi-calculator') {
             handleMaximizeCalculator();
           }
+          
+          // Clear the location state to prevent re-scrolling when user navigates within the page
+          navigate('/', { replace: true });
         }
       }, 500); // Short delay to ensure page is rendered
     }
-  }, [location.state, handleMaximizeCalculator]);
+  }, [location.state, handleMaximizeCalculator, navigate]);
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
