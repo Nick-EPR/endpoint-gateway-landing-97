@@ -1,5 +1,5 @@
 
-import { PuzzlePiece } from "lucide-react";
+import { Puzzle } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const WhyChooseUsHero = () => {
@@ -16,7 +16,7 @@ const WhyChooseUsHero = () => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center mb-6 bg-primary/20 rounded-full px-4 py-2">
-            <PuzzlePiece className="mr-2 h-5 w-5 text-primary" />
+            <Puzzle className="mr-2 h-5 w-5 text-primary" />
             <span className="text-white font-medium">Simplify Your IT Asset Management</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
