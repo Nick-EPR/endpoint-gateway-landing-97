@@ -4,16 +4,20 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { TrendResults } from '@/utils/roi/types';
 import { formatCurrency, formatPercentage } from '@/utils/roi/formatters';
+import { defaultTrends } from '@/utils/roi/trendCalculations';
 
 interface StatsCardsProps {
-  trends: TrendResults;
+  trends?: TrendResults;
   compact?: boolean;
   onMaximize?: () => void;
 }
 
-const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) => {
+const StatsCards = ({ trends = defaultTrends, compact = false, onMaximize }: StatsCardsProps) => {
+  // Ensure we have valid trends, use defaultTrends as a fallback
+  const validTrends = trends || defaultTrends;
+  
   // Round the ROI value to 2 decimal places
-  const roundedRoi = parseFloat(trends.roi.toFixed(2));
+  const roundedRoi = parseFloat(validTrends.roi.toFixed(2));
   
   if (compact) {
     return (
@@ -23,10 +27,10 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
             4-Year Savings:
           </p>
           <p className="text-lg font-bold text-primary">
-            {formatCurrency(trends.fourYearTotalSavings)}
+            {formatCurrency(validTrends.fourYearTotalSavings)}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            ROI: {roundedRoi}x ({formatPercentage(trends.savingsPercentage)} reduction)
+            ROI: {roundedRoi}x ({formatPercentage(validTrends.savingsPercentage)} reduction)
           </p>
         </div>
         
@@ -49,14 +53,14 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       <StatCard
         title="Total 4-Year Savings"
-        value={formatCurrency(trends.fourYearTotalSavings)}
-        description={`${formatPercentage(trends.savingsPercentage)} reduction in costs`}
+        value={formatCurrency(validTrends.fourYearTotalSavings)}
+        description={`${formatPercentage(validTrends.savingsPercentage)} reduction in costs`}
         className="bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary-foreground/5 dark:to-primary-foreground/10"
       />
       
       <StatCard
         title="Annual Savings"
-        value={formatCurrency(trends.averageAnnualSavings)}
+        value={formatCurrency(validTrends.averageAnnualSavings)}
         description="Average per year"
         className="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20"
       />
@@ -64,28 +68,28 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
       <StatCard
         title="ROI"
         value={`${roundedRoi}x`}
-        description={`Payback in ${trends.paybackPeriod} months`}
+        description={`Payback in ${validTrends.paybackPeriod} months`}
         className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20"
       />
       
       <StatCard
         title="Labor Savings"
-        value={formatCurrency(trends.laborSavings)}
-        description={`${trends.laborHoursSaved.toLocaleString()} hours saved`}
+        value={formatCurrency(validTrends.laborSavings)}
+        description={`${validTrends.laborHoursSaved.toLocaleString()} hours saved`}
         className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20"
       />
       
       <StatCard
         title="Productivity Gains"
-        value={formatCurrency(trends.productivityGains)}
-        description={`${formatPercentage(trends.productivityBoost)} productivity increase`}
+        value={formatCurrency(validTrends.productivityGains)}
+        description={`${formatPercentage(validTrends.productivityBoost)} productivity increase`}
         className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20"
       />
       
       <StatCard
         title="Carbon Reduction"
-        value={`${trends.carbonReduction.toLocaleString()} kg`}
-        description={`${trends.treesEquivalent.toLocaleString()} trees worth of CO₂`}
+        value={`${validTrends.carbonReduction.toLocaleString()} kg`}
+        description={`${validTrends.treesEquivalent.toLocaleString()} trees worth of CO₂`}
         className="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20"
       />
     </div>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import StatsCards from './StatsCards';
 import { TrendResults } from '@/utils/roi/types';
 import { calculateTrends, getDefaultDeviceCounts } from '@/utils/roi';
+import { defaultTrends } from '@/utils/roi/trendCalculations';
 
 interface StatsSidePanelProps {
   trends?: TrendResults;
@@ -17,7 +18,7 @@ interface StatsSidePanelProps {
 }
 
 const StatsSidePanel = ({ 
-  trends: propTrends, 
+  trends, 
   isOpen, 
   isMinimized = false,
   togglePanel, 
@@ -25,8 +26,8 @@ const StatsSidePanel = ({
   maximizePanel,
   isCalculatorVisible 
 }: StatsSidePanelProps) => {
-  // Use provided trends or calculate default ones
-  const trends = propTrends || calculateTrends(getDefaultDeviceCounts());
+  // Use provided trends or use defaultTrends
+  const validTrends = trends || defaultTrends;
   
   const panelRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -219,7 +220,7 @@ const StatsSidePanel = ({
           : ''
       }`}>
         <StatsCards 
-          trends={trends} 
+          trends={validTrends} 
           compact={isMobile && !mobileExpanded} 
           onMaximize={mobileExpanded ? undefined : maximizePanel} 
         />

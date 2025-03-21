@@ -1,4 +1,3 @@
-
 import { useQuery } from "@tanstack/react-query";
 import { fetchMonitors } from "@/utils/monitorUtils";
 import IndexLayout from "@/components/layout/IndexLayout";
@@ -9,6 +8,7 @@ import { useStatsPanel } from "@/hooks/useStatsPanel";
 import { useEffect, useRef, lazy, Suspense } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { defaultTrends } from "@/utils/roi/trendCalculations";
 
 // Lazy load components that aren't needed for initial render
 const StatsPanelLazy = lazy(() => import("@/components/sections/roi/StatsSidePanel"));
@@ -93,7 +93,7 @@ const Index = () => {
             minimizePanel={() => toggleStatsPanel(true)}
             maximizePanel={handleMaximizeCalculator}
             isCalculatorVisible={isCalculatorVisible}
-            trends={{}} // Provide an empty object as trends (StatsSidePanel will use its defaults)
+            trends={defaultTrends} // Pass the defaultTrends to ensure we have valid data
           />
         </Suspense>
       )}
