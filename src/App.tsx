@@ -55,7 +55,11 @@ function AppContent() {
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ThemeProvider 
+        attribute="class"
+        defaultTheme="system" // Set to system to respect OS preferences
+        enableSystem // Enable system preference detection
+      >
         <NavigationProvider>
           <AppContent />
         </NavigationProvider>

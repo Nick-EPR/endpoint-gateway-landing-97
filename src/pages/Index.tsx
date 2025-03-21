@@ -24,6 +24,16 @@ const Index = () => {
     handleMaximizeCalculator 
   } = useStatsPanel(isCalculatorVisible);
   
+  // Effect to show stats panel when scrolling to calculator
+  useEffect(() => {
+    if (isCalculatorVisible && isStatsPanelMinimized) {
+      // Only unmute the panel when the calculator becomes visible
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: false }
+      }));
+    }
+  }, [isCalculatorVisible, isStatsPanelMinimized]);
+  
   // Optimize the monitor query with better caching
   const { data: monitors, isLoading: isMonitorsLoading } = useQuery({
     queryKey: ['monitors'],

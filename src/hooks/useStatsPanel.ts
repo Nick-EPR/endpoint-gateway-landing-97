@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export function useStatsPanel(isCalculatorVisible: boolean) {
   const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(true);
-  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
+  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(true); // Set to true by default
 
   // Listen for custom event when stats panel is minimized
   useEffect(() => {
