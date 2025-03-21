@@ -96,8 +96,13 @@ const GuideImage = ({
               )}
             </div>
           </ScrollArea>
-          <div className="flex justify-end mt-4">
-            <Button onClick={() => downloadImage(currentPage.src, currentPage.fileName)}>
+          
+          {/* Fixed position download button */}
+          <div className="absolute bottom-6 right-6 z-20">
+            <Button 
+              onClick={() => downloadImage(currentPage.src, currentPage.fileName)}
+              className="shadow-md"
+            >
               <Download className="w-4 h-4 mr-2" />
               Download Page {isPartOfDocument ? (prevPage ? '2' : '1') : ''}
             </Button>
