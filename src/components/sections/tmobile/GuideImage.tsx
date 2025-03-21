@@ -81,10 +81,10 @@ const GuideImage = ({
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-7xl w-[95vw] h-[90vh] p-6">
+      <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-6">
         <div className="relative h-full flex flex-col">
           <ScrollArea className="flex-1">
-            <div className="relative min-h-full flex items-center justify-center">
+            <div className="relative min-h-full flex items-center justify-center p-4">
               {(isPartOfDocument || hasPrevPage) && (
                 <Button 
                   variant="ghost" 
@@ -98,7 +98,7 @@ const GuideImage = ({
               <img 
                 src={currentPage.src} 
                 alt={currentPage.alt} 
-                className="w-full h-auto object-contain" 
+                className="max-h-[70vh] w-auto object-contain mx-auto" 
               />
               {(isPartOfDocument || hasNextPage) && (
                 <Button 
