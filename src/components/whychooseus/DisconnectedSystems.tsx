@@ -1,5 +1,5 @@
 
-import { Box, Unlink, DollarSign, RotateCcw } from "lucide-react";
+import { GitFork, Unlink, DollarSign, RotateCcw } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const DisconnectedSystems = () => {
@@ -7,6 +7,11 @@ const DisconnectedSystems = () => {
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto mb-16 text-center">
+          <div className="inline-flex items-center justify-center mb-6">
+            <div className="p-3 bg-red-100 rounded-full mb-2 animate-float">
+              <GitFork className="h-8 w-8 text-red-500" />
+            </div>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
             The Challenge of Disconnected Systems
           </h2>

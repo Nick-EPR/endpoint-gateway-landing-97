@@ -1,8 +1,14 @@
-import { PackageOpen, MonitorSmartphone, Workflow, AlertTriangle } from "lucide-react";
+
+import { Server, PackageOpen, MonitorSmartphone, Workflow, AlertTriangle } from "lucide-react";
 const PhysicalReality = () => {
   return <section className="py-16 md:py-24 bg-neutral-light dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto mb-16 text-center">
+          <div className="inline-flex items-center justify-center mb-6">
+            <div className="p-3 bg-primary/10 rounded-full mb-2 animate-float">
+              <Server className="h-8 w-8 text-primary" />
+            </div>
+          </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
             Beyond the Software: The Untouched Physical Reality
           </h2>
