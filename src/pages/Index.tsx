@@ -6,6 +6,8 @@ import IndexSections from "@/components/sections/IndexSections";
 import { useIndexScroll } from "@/hooks/useIndexScroll";
 import { useNavigation } from "@/hooks/useNavigation";
 import { useStatsPanel } from "@/hooks/useStatsPanel";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 const Index = () => {
   const { scrolled, isCalculatorVisible } = useIndexScroll();
@@ -25,6 +27,27 @@ const Index = () => {
     staleTime: 55000,
     gcTime: 120000,
   });
+
+  // Get location state for possible scrollTo parameter
+  const location = useLocation();
+  
+  // Handle scrolling to specific sections when navigating from other pages
+  useEffect(() => {
+    if (location.state && location.state.scrollTo) {
+      const sectionId = location.state.scrollTo;
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+          
+          // If the ROI calculator is the target, also maximize it
+          if (sectionId === 'roi-calculator') {
+            handleMaximizeCalculator();
+          }
+        }
+      }, 500); // Short delay to ensure page is rendered
+    }
+  }, [location.state, handleMaximizeCalculator]);
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 

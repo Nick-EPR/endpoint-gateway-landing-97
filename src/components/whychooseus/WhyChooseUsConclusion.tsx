@@ -1,13 +1,13 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Check, Unlink, Link as LinkIcon } from "lucide-react";
 
 const WhyChooseUsConclusion = () => {
-  const scrollToROI = () => {
-    const roiSection = document.getElementById('roi-calculator');
-    if (roiSection) {
-      roiSection.scrollIntoView({ behavior: 'smooth' });
-    }
+  const navigate = useNavigate();
+
+  const navigateToROI = () => {
+    // Navigate to homepage and then scroll to ROI calculator
+    navigate('/', { state: { scrollTo: 'roi-calculator' } });
   };
 
   return <section className="py-16 md:py-24 bg-background">
@@ -53,7 +53,7 @@ const WhyChooseUsConclusion = () => {
                     <Check className="h-4 w-4 text-primary" />
                   </div>
                   <button 
-                    onClick={scrollToROI} 
+                    onClick={navigateToROI} 
                     className="text-foreground flex items-center group hover:text-primary transition-colors"
                   >
                     <span>Significant cost savings and operational efficiency</span>
