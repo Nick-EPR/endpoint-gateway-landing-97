@@ -15,7 +15,7 @@ const PhysicalReality = () => {
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="relative">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-xl animate-on-scroll">
-              <img alt="IT Asset Physical Management" className="w-full h-full object-cover" src="/lovable-uploads/a5045023-7264-4440-a6c2-12276c798c19.jpg" />
+              <img alt="IT Asset Physical Management" className="w-full h-full object-cover" src="/lovable-uploads/8a4193c5-136d-406e-a66e-4c8fa14deb77.jpg" />
             </div>
             <div className="absolute -bottom-6 -right-6 -z-10 w-full h-full rounded-2xl bg-primary/10"></div>
           </div>
