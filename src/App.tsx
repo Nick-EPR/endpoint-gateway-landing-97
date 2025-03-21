@@ -16,6 +16,7 @@ import Status from "./pages/Status";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import WhatIsITAM from "./pages/WhatIsITAM";
+import WhyChooseUs from "./pages/WhyChooseUs";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 
@@ -41,6 +42,7 @@ function AppContent() {
           <Route path="/terms" element={<Terms />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/what-is-itam" element={<WhatIsITAM />} />
+          <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
