@@ -1,10 +1,7 @@
-
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
-
 const WhyChooseUsConclusion = () => {
-  return (
-    <section className="py-16 md:py-24 bg-background">
+  return <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -46,34 +43,22 @@ const WhyChooseUsConclusion = () => {
               </div>
               
               <div className="flex flex-wrap gap-4">
-                <Link 
-                  to="/contact" 
-                  className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors"
-                >
+                <Link to="/contact" className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
                   Request a Demo 
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-                <Link 
-                  to="/heliam" 
-                  className="inline-flex items-center bg-white text-foreground border-2 border-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors"
-                >
+                <Link to="/heliam" className="inline-flex items-center bg-white text-foreground border-2 border-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors">
                   Explore Our Platform
                 </Link>
               </div>
             </div>
             
             <div className="rounded-xl overflow-hidden shadow-xl">
-              <img 
-                src="https://images.unsplash.com/photo-1561121908-5bbe2c65179d?q=80" 
-                alt="Unified IT Asset Management" 
-                className="w-full h-auto"
-              />
+              <img alt="Unified IT Asset Management" className="w-full h-auto" src="/lovable-uploads/d7bbaada-6606-43c2-a665-e9e2c51442fe.jpg" />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default WhyChooseUsConclusion;
