@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Info } from "lucide-react";
 
 interface HeroProps {
   title: string;
@@ -70,6 +72,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     navigate('/contact');
   };
 
+  const handleWhyChooseUs = () => {
+    navigate('/why-choose-us');
+  };
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
@@ -103,6 +109,13 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               onClick={handleGetStarted}
             >
               {buttonText}
+            </button>
+            <button 
+              onClick={handleWhyChooseUs}
+              className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
+            >
+              <Info className="w-5 h-5" />
+              Why Choose Us
             </button>
             <button 
               onClick={scrollToROI}
