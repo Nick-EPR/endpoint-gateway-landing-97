@@ -1,4 +1,3 @@
-
 import { Download, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -36,7 +35,6 @@ const GuideImage = ({
   prevPage,
   pages = []
 }: GuideImageProps) => {
-  // If pages array is provided, use it; otherwise, construct from props
   const allPages = pages.length > 0 
     ? pages 
     : [
@@ -81,14 +79,14 @@ const GuideImage = ({
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="max-w-5xl w-[95vw] h-[90vh] p-6">
+      <DialogContent className="max-w-4xl w-[85vw] h-[90vh] p-4">
         <div className="relative h-full flex flex-col">
           <ScrollArea className="flex-1">
-            <div className="relative min-h-full flex items-center justify-center p-4">
+            <div className="relative min-h-full flex items-center justify-center p-2">
               {(isPartOfDocument || hasPrevPage) && (
                 <Button 
                   variant="ghost" 
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10" 
+                  className="absolute left-1 top-1/2 transform -translate-y-1/2 z-10" 
                   onClick={handlePrevPage}
                   disabled={!hasPrevPage}
                 >
@@ -98,12 +96,12 @@ const GuideImage = ({
               <img 
                 src={currentPage.src} 
                 alt={currentPage.alt} 
-                className="max-h-[70vh] w-auto object-contain mx-auto" 
+                className="max-h-[75vh] w-auto object-contain mx-auto" 
               />
               {(isPartOfDocument || hasNextPage) && (
                 <Button 
                   variant="ghost" 
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10" 
+                  className="absolute right-1 top-1/2 transform -translate-y-1/2 z-10" 
                   onClick={handleNextPage}
                   disabled={!hasNextPage}
                 >
@@ -113,7 +111,6 @@ const GuideImage = ({
             </div>
           </ScrollArea>
           
-          {/* Fixed position download button */}
           <div className="absolute bottom-6 right-6 z-20">
             <Button 
               onClick={() => downloadImage(currentPage.src, currentPage.fileName)}
@@ -124,7 +121,6 @@ const GuideImage = ({
             </Button>
           </div>
           
-          {/* Page indicator */}
           {allPages.length > 1 && (
             <div className="absolute bottom-6 left-0 right-0 z-10 flex justify-center gap-2">
               {allPages.map((_, index) => (
