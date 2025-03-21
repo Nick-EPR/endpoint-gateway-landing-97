@@ -1,9 +1,6 @@
-
 import { PackageOpen, MonitorSmartphone, Workflow, AlertTriangle } from "lucide-react";
-
 const PhysicalReality = () => {
-  return (
-    <section className="py-16 md:py-24 bg-neutral-light dark:bg-neutral-800">
+  return <section className="py-16 md:py-24 bg-neutral-light dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
@@ -18,11 +15,7 @@ const PhysicalReality = () => {
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="relative">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-xl animate-on-scroll">
-              <img
-                src="https://images.unsplash.com/photo-1588702547919-26089e690ecc?q=80"
-                alt="IT Asset Physical Management"
-                className="w-full h-full object-cover"
-              />
+              <img alt="IT Asset Physical Management" className="w-full h-full object-cover" src="/lovable-uploads/a5045023-7264-4440-a6c2-12276c798c19.jpg" />
             </div>
             <div className="absolute -bottom-6 -right-6 -z-10 w-full h-full rounded-2xl bg-primary/10"></div>
           </div>
@@ -82,8 +75,6 @@ const PhysicalReality = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PhysicalReality;
