@@ -11,7 +11,7 @@ const UnifiedSolution = () => {
               <img 
                 src="/lovable-uploads/11a5e41f-5de6-420a-8818-f40957857208.png" 
                 alt="EPR Logo" 
-                className="h-6 w-6"
+                className="h-8 w-8"
               />
             </div>
           </div>
