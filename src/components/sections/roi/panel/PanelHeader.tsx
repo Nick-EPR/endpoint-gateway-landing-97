@@ -52,6 +52,7 @@ const PanelHeader = ({
             onClick={minimizePanel} 
             size="icon" 
             className="h-8 w-8 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+            aria-label="Minimize ROI Stats Panel"
           >
             <Minimize2 className="h-4 w-4" />
           </Button>
@@ -61,6 +62,7 @@ const PanelHeader = ({
             onClick={togglePanel} 
             size="icon" 
             className="h-8 w-8 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+            aria-label="Close ROI Stats Panel"
           >
             <X className="h-4 w-4" />
           </Button>

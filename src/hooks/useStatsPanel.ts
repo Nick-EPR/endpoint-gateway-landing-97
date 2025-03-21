@@ -23,12 +23,27 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     if (minimize !== undefined) {
       // If minimize is specified, set the minimize state
       setIsStatsPanelMinimized(minimize);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: minimize }
+      }));
     } else if (isStatsPanelMinimized) {
       // If minimized, maximize it instead of toggling visibility
       setIsStatsPanelMinimized(false);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: false }
+      }));
     } else {
-      // Toggle visibility
-      setIsStatsPanelVisible(!isStatsPanelVisible);
+      // Toggle visibility (minimize)
+      setIsStatsPanelMinimized(true);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: true }
+      }));
     }
   };
 

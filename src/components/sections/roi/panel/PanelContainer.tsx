@@ -1,3 +1,4 @@
+
 import { CSSProperties, ReactNode, forwardRef, Ref } from 'react';
 
 interface PanelContainerProps {
@@ -40,10 +41,10 @@ const PanelContainer = forwardRef(({
   const baseClasses = `fixed ${
     isMobile 
       ? 'left-0 right-0 bottom-0 w-full rounded-b-none rounded-t-lg shadow-xl z-[1100]' 
-      : 'w-[800px] rounded-lg'
+      : 'w-[400px] rounded-lg'
   } bg-white dark:bg-neutral-800 shadow-xl z-[1000] transition-all duration-300 ${
     isMinimized 
-      ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10' 
+      ? 'opacity-0 pointer-events-none transform translate-y-10' 
       : 'opacity-100 scale-100'
   } ${isDragging ? 'cursor-grabbing' : ''}`;
 
