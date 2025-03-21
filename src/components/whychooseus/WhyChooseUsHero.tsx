@@ -8,8 +8,8 @@ const WhyChooseUsHero = () => {
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10"></div>
         <img 
-          src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80" 
-          alt="IT Asset Management" 
+          src="/lovable-uploads/881e6d25-f7a2-420b-9332-d3f6c212d4f5.png" 
+          alt="IT Asset Management Developers" 
           className="w-full h-full object-cover"
         />
       </div>
