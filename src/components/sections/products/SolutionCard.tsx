@@ -1,10 +1,11 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { Solution } from "@/types/solution";
 import DataFlow from "./DataFlow";
 import { cn } from "@/lib/utils";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface SolutionCardProps {
   solution: Solution;
@@ -13,6 +14,28 @@ interface SolutionCardProps {
 }
 
 const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProps) => {
+  // Use useMemo to prevent unnecessary renders
+  const logoElement = useMemo(() => {
+    if (!solution.logo) return null;
+    
+    return (
+      <div className="mb-6 h-16 flex items-center justify-center">
+        <OptimizedImage 
+          src={solution.logo} 
+          alt={`${solution.title} logo`}
+          loading="lazy"
+          className={`object-contain ${
+            solution.title === 'HeliAM' ? 'h-12' : 
+            solution.title === 'Luemin' ? 'max-w-[160px]' : 
+            'max-h-8'
+          }`} 
+          width={160}
+          height={64}
+        />
+      </div>
+    );
+  }, [solution.logo, solution.title]);
+
   return (
     <div className="relative">
       <div 
@@ -28,20 +51,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
           zIndex: 2
         }}
       >
-        {solution.logo ? (
-          <div className="mb-6 h-16 flex items-center justify-center">
-            <img 
-              src={solution.logo} 
-              alt={`${solution.title} logo`}
-              loading="lazy"
-              className={`object-contain ${
-                solution.title === 'HeliAM' ? 'h-12' : 
-                solution.title === 'Luemin' ? 'max-w-[160px]' : 
-                'max-h-8'
-              }`} 
-            />
-          </div>
-        ) : (
+        {solution.logo ? logoElement : (
           <h3 className="text-xl font-semibold mb-6 glass-text">
             {solution.title}
           </h3>

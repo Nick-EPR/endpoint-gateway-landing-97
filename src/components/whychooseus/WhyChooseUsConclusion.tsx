@@ -1,8 +1,10 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Check, Unlink, Link as LinkIcon } from "lucide-react";
+import { OptimizedImage } from "@/components/ui/optimized-image";
+import { memo } from "react";
 
-const WhyChooseUsConclusion = () => {
+const WhyChooseUsConclusion = memo(() => {
   const navigate = useNavigate();
 
   const navigateToROI = () => {
@@ -10,7 +12,8 @@ const WhyChooseUsConclusion = () => {
     navigate('/', { state: { scrollTo: 'roi-calculator' } });
   };
 
-  return <section className="py-16 md:py-24 bg-background">
+  return (
+    <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -74,12 +77,21 @@ const WhyChooseUsConclusion = () => {
             </div>
             
             <div className="rounded-xl overflow-hidden shadow-xl">
-              <img alt="Unified IT Asset Management" className="w-full h-auto" src="/lovable-uploads/d7bbaada-6606-43c2-a665-e9e2c51442fe.jpg" />
+              <OptimizedImage 
+                alt="Unified IT Asset Management" 
+                className="w-full h-auto" 
+                src="/lovable-uploads/d7bbaada-6606-43c2-a665-e9e2c51442fe.jpg"
+                width={800}
+                height={600}
+              />
             </div>
           </div>
         </div>
       </div>
-    </section>;
-};
+    </section>
+  );
+});
+
+WhyChooseUsConclusion.displayName = "WhyChooseUsConclusion";
 
 export default WhyChooseUsConclusion;

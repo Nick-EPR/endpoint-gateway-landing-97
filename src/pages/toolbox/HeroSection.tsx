@@ -2,16 +2,20 @@
 import { Button } from "@/components/ui/button";
 import warehouseImage from "/lovable-uploads/1677d91d-eaaf-4e2c-b98f-d73469344a71.png";
 import toolboxLogo from "/lovable-uploads/5f646840-4a0c-484c-bd5d-6707af1f66ca.png";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const HeroSection = () => {
   return (
     <section className="relative pt-32 pb-24 px-4">
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/75 to-black/60 backdrop-blur-[3px] z-10 dark:from-black/95 dark:via-black/85 dark:to-black/70"></div>
-        <img 
+        <OptimizedImage 
           src={warehouseImage}
           alt="Warehouse Operations"
           className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          priority
         />
       </div>
       <div className="container mx-auto relative z-20">

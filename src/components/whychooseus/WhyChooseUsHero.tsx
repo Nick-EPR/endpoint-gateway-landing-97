@@ -1,15 +1,20 @@
+
 import { Puzzle } from "lucide-react";
 import { Link } from "react-router-dom";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const WhyChooseUsHero = () => {
   return (
     <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/60 z-10"></div>
-        <img 
+        <OptimizedImage 
           src="/lovable-uploads/881e6d25-f7a2-420b-9332-d3f6c212d4f5.png" 
           alt="IT Asset Management Developers" 
           className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          priority
         />
       </div>
       <div className="container mx-auto px-4 relative z-20">

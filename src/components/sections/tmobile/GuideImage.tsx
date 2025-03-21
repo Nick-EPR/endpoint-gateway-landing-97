@@ -1,8 +1,10 @@
+
 import { Download, Maximize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface GuideImageProps {
   src: string;
@@ -73,7 +75,13 @@ const GuideImage = ({
     <Dialog>
       <DialogTrigger asChild>
         <div className="glass-card p-4 cursor-pointer hover:shadow-lg transition-shadow relative group">
-          <img src={src} alt={alt} className="w-full h-auto rounded-lg" />
+          <OptimizedImage 
+            src={src} 
+            alt={alt} 
+            className="w-full h-auto rounded-lg" 
+            width={600}
+            height={400}
+          />
           <div className="absolute inset-0 transition-colors rounded-lg flex items-center justify-center bg-transparent">
             <Maximize2 className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
@@ -93,10 +101,11 @@ const GuideImage = ({
                   <ChevronLeft className="w-8 h-8" />
                 </Button>
               )}
-              <img 
+              <OptimizedImage 
                 src={currentPage.src} 
                 alt={currentPage.alt} 
                 className="max-h-[75vh] w-auto object-contain mx-auto" 
+                priority
               />
               {(isPartOfDocument || hasNextPage) && (
                 <Button 

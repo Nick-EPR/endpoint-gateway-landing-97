@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { OptimizedImage } from "@/components/ui/optimized-image";
 
 interface SecurityHeroProps {
   scrolled: boolean;
@@ -10,7 +11,14 @@ export const SecurityHero = ({ scrolled }: SecurityHeroProps) => {
     <section className="relative pt-32 pb-32 md:pt-40 md:pb-48 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10"></div>
-        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80" alt="Security Background" className="w-full h-full object-cover" />
+        <OptimizedImage 
+          src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b" 
+          alt="Security Background" 
+          className="w-full h-full object-cover"
+          width={1920}
+          height={1080}
+          priority
+        />
       </div>
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">

@@ -6,8 +6,12 @@ import IndexSections from "@/components/sections/IndexSections";
 import { useIndexScroll } from "@/hooks/useIndexScroll";
 import { useNavigation } from "@/hooks/useNavigation";
 import { useStatsPanel } from "@/hooks/useStatsPanel";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, lazy, Suspense } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+
+// Lazy load components that aren't needed for initial render
+const StatsPanelLazy = lazy(() => import("@/components/sections/roi/StatsSidePanel"));
 
 const Index = () => {
   const { scrolled, isCalculatorVisible } = useIndexScroll();
@@ -20,12 +24,18 @@ const Index = () => {
   } = useStatsPanel(isCalculatorVisible);
   
   // Optimize the monitor query with better caching
-  const { data: monitors } = useQuery({
+  const { data: monitors, isLoading: isMonitorsLoading } = useQuery({
     queryKey: ['monitors'],
-    queryFn: fetchMonitors,
     refetchInterval: 60000,
     staleTime: 55000,
     gcTime: 120000,
+    queryFn: () => {
+      // Only fetch monitors when they're needed
+      if (document.visibilityState === 'visible') {
+        return fetchMonitors();
+      }
+      return null;
+    },
   });
 
   // Get location state for possible scrollTo parameter
@@ -72,6 +82,19 @@ const Index = () => {
       onMaximizeCalculator={handleMaximizeCalculator}
     >
       <IndexSections />
+      
+      {/* Lazy load the StatsPanel component only when needed */}
+      {isStatsPanelVisible && (
+        <Suspense fallback={<div className="fixed bottom-16 right-4 z-50 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg"><LoadingSpinner /></div>}>
+          <StatsPanelLazy
+            isOpen={isStatsPanelVisible}
+            isMinimized={isStatsPanelMinimized}
+            onClose={() => toggleStatsPanel()}
+            onMinimize={() => toggleStatsPanel(true)}
+            onMaximize={handleMaximizeCalculator}
+          />
+        </Suspense>
+      )}
     </IndexLayout>
   );
 };
