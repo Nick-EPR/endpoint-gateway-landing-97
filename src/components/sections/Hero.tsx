@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Info } from "lucide-react";
+import { Calculator, Info, ArrowRight } from "lucide-react";
 
 interface HeroProps {
   title: string;
@@ -36,7 +35,6 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     
     const updateText = () => {
       if (isDeleting2) {
-        // Speed up deletion
         const newText = displayText2.slice(0, -1);
         setDisplayText2(newText);
         
@@ -45,19 +43,18 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           setCurrentWord2(nextWordIndex);
         }
         
-        timeout = setTimeout(updateText, 50); // Decreased from 75ms to 50ms
+        timeout = setTimeout(updateText, 50);
       } else {
         if (displayText2.length < currentFullWord.length) {
           setDisplayText2(currentFullWord.slice(0, displayText2.length + 1));
-          timeout = setTimeout(updateText, 100); // Decreased from 150ms to 100ms
+          timeout = setTimeout(updateText, 100);
         } else {
-          // Decrease word display duration
-          timeout = setTimeout(() => setIsDeleting2(true), 2000); // Decreased from 3000ms to 2000ms
+          timeout = setTimeout(() => setIsDeleting2(true), 2000);
         }
       }
     };
 
-    timeout = setTimeout(updateText, 100); // Initial delay decreased to 100ms
+    timeout = setTimeout(updateText, 100);
     return () => clearTimeout(timeout);
   }, [displayText2, isDeleting2, currentWord2, rotatingWords2]);
 
@@ -105,31 +102,35 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             <button 
-              className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:scale-105 transform transition-all duration-300" 
-              onClick={handleGetStarted}
-            >
-              {buttonText}
-            </button>
-            <button 
               onClick={handleWhyChooseUs}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
             >
               <Info className="w-5 h-5" />
               Why Choose Us
             </button>
+            
             <button 
               onClick={scrollToROI}
               className="group bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
             >
+              <Calculator className="w-5 h-5" />
               Calculate Your Savings
               <svg 
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
+                className="w-5 h-5 ml-auto transition-transform duration-300 group-hover:translate-x-1" 
                 fill="none" 
                 viewBox="0 0 24 24" 
                 stroke="currentColor"
               >
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
+            </button>
+            
+            <button 
+              className="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 rounded-lg text-lg font-semibold hover:shadow-lg hover:scale-105 transform transition-all duration-300 flex items-center gap-2" 
+              onClick={handleGetStarted}
+            >
+              <ArrowRight className="w-5 h-5" />
+              {buttonText}
             </button>
           </div>
         </div>
