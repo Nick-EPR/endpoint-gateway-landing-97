@@ -1,5 +1,5 @@
 
-import { Network, CheckCircle2, Layers, Infinity, Receipt, LineChart } from "lucide-react";
+import { CheckCircle2, Layers, Infinity, Receipt, LineChart } from "lucide-react";
 
 const UnifiedSolution = () => {
   return (
@@ -8,7 +8,11 @@ const UnifiedSolution = () => {
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <div className="inline-flex items-center justify-center mb-6">
             <div className="p-3 bg-primary/10 rounded-full mb-2 animate-float">
-              <Network className="h-8 w-8 text-primary" />
+              <img 
+                src="/lovable-uploads/11a5e41f-5de6-420a-8818-f40957857208.png" 
+                alt="EPR Logo" 
+                className="h-8 w-8"
+              />
             </div>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
