@@ -1,7 +1,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { useDraggablePanel } from './hooks/useDraggablePanel';
+import { useDraggablePanel } from '@/components/sections/roi/hooks/useDraggablePanel';
 import MobileStatsPanel from './mobile/MobileStatsPanel';
 import DesktopStatsPanel from './desktop/DesktopStatsPanel';
 import { TrendResults } from '@/utils/roi/types';
