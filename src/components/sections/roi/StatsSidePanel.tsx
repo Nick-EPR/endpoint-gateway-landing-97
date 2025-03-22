@@ -160,6 +160,7 @@ const StatsSidePanel = ({
           : `translate(${position.x}px, ${position.y}px) ${isMinimized ? 'scale(0.95) translateY(10px)' : 'scale(1)'}`,
         right: isMobile ? 0 : 'auto',
         bottom: isMobile ? 0 : '24px',
+        visibility: isMinimized ? 'hidden' : 'visible',
         // Set initial position for desktop if position is at default
         ...(position.x === 0 && position.y === 0 && !isMobile) && {
           right: '16px',

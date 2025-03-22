@@ -1,3 +1,4 @@
+
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,7 @@ const ROICalculator = () => {
   const [currentTrends, setCurrentTrends] = useState<TrendResults>(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
-  const [isStatsMinimized, setIsStatsMinimized] = useState(false);
+  const [isStatsMinimized, setIsStatsMinimized] = useState(true); // Start minimized by default
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
@@ -64,15 +65,38 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
-  // Separate functions for visibility and minimization
+  // Toggle panel visibility
   const toggleStatsPanel = () => {
-    setStatsVisible(!statsVisible);
+    if (isStatsMinimized) {
+      // If minimized, maximize it
+      setIsStatsMinimized(false);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: false }
+      }));
+    } else {
+      // If not minimized, minimize it
+      setIsStatsMinimized(true);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: true }
+      }));
+    }
   };
 
+  // Explicitly minimize the panel
   const minimizeStatsPanel = () => {
     setIsStatsMinimized(true);
+    
+    // Dispatch event to ensure all components are in sync
+    window.dispatchEvent(new CustomEvent('statsMinimized', { 
+      detail: { minimized: true }
+    }));
   };
 
+  // Explicitly maximize the panel
   const maximizeStatsPanel = () => {
     setIsStatsMinimized(false);
     

@@ -21,14 +21,29 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
 
   const toggleStatsPanel = (minimize?: boolean) => {
     if (minimize !== undefined) {
-      // If minimize is specified, set the minimize state
+      // If minimize is specified, set the minimize state directly
       setIsStatsPanelMinimized(minimize);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: minimize }
+      }));
     } else if (isStatsPanelMinimized) {
       // If minimized, maximize it instead of toggling visibility
       setIsStatsPanelMinimized(false);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: false }
+      }));
     } else {
-      // Toggle visibility
-      setIsStatsPanelVisible(!isStatsPanelVisible);
+      // If not minimized, minimize rather than hiding
+      setIsStatsPanelMinimized(true);
+      
+      // Dispatch event to ensure all components are in sync
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: true }
+      }));
     }
   };
 
