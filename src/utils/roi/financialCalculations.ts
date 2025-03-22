@@ -76,5 +76,10 @@ export const calculateCompoundedSavings = (devices: DeviceCounts, isEnterprise: 
   return data;
 };
 
+// Function to generate chart data for the SavingsLineChart component
+export const generateChartData = (devices: DeviceCounts, isEnterprise: boolean = false) => {
+  return calculateCompoundedSavings(devices, isEnterprise);
+};
+
 // Import this function from environmentalCalculations
 import { calculateEnvironmentalImpact } from './environmentalCalculations';
