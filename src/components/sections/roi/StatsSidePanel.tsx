@@ -33,9 +33,10 @@ const StatsSidePanel = ({
   const isMobile = useIsMobile();
   const { position, isDragging, handleMouseDown, handleTouchStart } = useDraggablePanel(isMobile);
 
-  // Initialize isMinimized based on the prop
+  // Initialize isMinimized based on the prop and dispatch events
   useEffect(() => {
     console.log("StatsSidePanel rendered with isOpen:", isOpen, "isMinimized:", isMinimized);
+    
     // Dispatch custom event to notify other components
     window.dispatchEvent(
       new CustomEvent('statsMinimized', {

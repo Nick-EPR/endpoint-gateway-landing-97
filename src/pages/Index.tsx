@@ -78,6 +78,16 @@ const Index = () => {
     });
   }, [isStatsPanelVisible, isStatsPanelMinimized, isCalculatorVisible]);
 
+  const handleCalculatorClick = () => {
+    const roiSection = document.getElementById('roi-calculator');
+    if (roiSection) {
+      roiSection.scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        toggleStatsPanel(false); // Show and maximize panel
+      }, 300);
+    }
+  };
+
   return (
     <IndexLayout
       scrolled={scrolled}
@@ -88,20 +98,17 @@ const Index = () => {
       isStatsPanelVisible={isStatsPanelVisible}
       isStatsPanelMinimized={isStatsPanelMinimized}
       onChatClick={handleChatClick}
-      onCalculatorClick={() => {
-        console.log("Calculator button clicked");
-        toggleStatsPanel(false); // Show and maximize panel
-      }}
+      onCalculatorClick={handleCalculatorClick}
       onMaximizeCalculator={handleMaximizeCalculator}
     >
       <IndexSections />
       
-      {/* Single instance of stats panel */}
+      {/* Stats panel */}
       <Suspense fallback={<div className="fixed bottom-16 right-4 z-50 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg"><LoadingSpinner /></div>}>
         <StatsPanelLazy
           isOpen={isStatsPanelVisible}
           isMinimized={isStatsPanelMinimized}
-          togglePanel={toggleStatsPanel}
+          togglePanel={() => toggleStatsPanel()}
           minimizePanel={() => toggleStatsPanel(true)}
           maximizePanel={handleMaximizeCalculator}
           isCalculatorVisible={isCalculatorVisible}

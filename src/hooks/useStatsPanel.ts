@@ -12,12 +12,6 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     if (isCalculatorVisible) {
       setIsStatsPanelVisible(true);
       setIsStatsPanelMinimized(false);
-      
-      // Dispatch event to sync all components
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: false }
-      }));
-      
       console.log("Auto-showing stats panel because calculator is visible");
     }
   }, [isCalculatorVisible]);
@@ -74,11 +68,16 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
       detail: { minimized: false }
     }));
     
-    // Add scrolling to ROI calculator section if needed
-    const roiSection = document.getElementById('roi-calculator');
-    if (roiSection) {
-      roiSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    // Add scrolling to ROI calculator section
+    setTimeout(() => {
+      const roiSection = document.getElementById('roi-calculator');
+      if (roiSection) {
+        roiSection.scrollIntoView({ behavior: 'smooth' });
+        console.log("Scrolling to ROI calculator section");
+      } else {
+        console.log("ROI calculator section not found");
+      }
+    }, 100);
     
     console.log("Calculator maximized, panel state:", {
       isStatsPanelVisible: true,

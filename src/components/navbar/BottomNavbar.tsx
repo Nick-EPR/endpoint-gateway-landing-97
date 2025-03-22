@@ -44,7 +44,7 @@ const BottomNavbar = ({
   return (
     <div className="fixed bottom-2 right-2 z-50 py-2 bg-black/10 backdrop-blur-sm dark:bg-black/30 rounded-full">
       <div className="flex items-center gap-3 px-4">
-        {/* Always show ROI button when panel is minimized or not visible */}
+        {/* Show ROI button when panel is minimized or not visible */}
         {(isCalculatorMinimized || !isCalculatorVisible) && (
           <Button
             onClick={isCalculatorMinimized ? onMaximizeCalculator : onCalculatorClick}
