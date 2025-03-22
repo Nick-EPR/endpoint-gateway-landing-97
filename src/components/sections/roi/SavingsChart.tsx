@@ -1,112 +1,107 @@
 
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { calculateCompoundedSavings, DeviceCounts } from '@/utils/roi';
-import { DeviceInput } from './device/DeviceInput';
-import { useEffect, useState, useRef } from 'react';
-import { EnvironmentalMetrics } from './chart/EnvironmentalMetrics';
+import { useState, useEffect } from 'react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { X, LineChart, PanelRight } from 'lucide-react';
 import { SavingsLineChart } from './chart/SavingsLineChart';
+import { generateChartData } from '@/utils/roi/financialCalculations';
+import { DeviceCounts, TrendResults, calculateTrends } from '@/utils/roi';
+import { EnvironmentalMetrics } from './chart/EnvironmentalMetrics';
+import { DeviceInput } from './device/DeviceInput';
 import { EnterpriseToggle } from './EnterpriseToggle';
 
 interface SavingsChartProps {
-  deviceCounts: DeviceCounts;
   showMoreDetails: boolean;
   setShowMoreDetails: (show: boolean) => void;
+  deviceCounts: DeviceCounts;
   onDeviceCountChange: (type: keyof DeviceCounts, value: number) => void;
-  isEnterprise?: boolean;
-  onEnterpriseChange?: (checked: boolean) => void;
+  isEnterprise: boolean;
+  onEnterpriseChange: (enabled: boolean) => void;
+  onMinimizeStats?: () => void;
+  onMaximizeStats?: () => void;
+  isStatsMinimized?: boolean;
 }
 
 export const SavingsChart = ({ 
-  deviceCounts, 
   showMoreDetails, 
-  setShowMoreDetails, 
+  setShowMoreDetails,
+  deviceCounts,
   onDeviceCountChange,
-  isEnterprise = false,
-  onEnterpriseChange
+  isEnterprise,
+  onEnterpriseChange,
+  onMinimizeStats,
+  onMaximizeStats,
+  isStatsMinimized = true
 }: SavingsChartProps) => {
   const [chartData, setChartData] = useState<any[]>([]);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const animationTimeoutRef = useRef<NodeJS.Timeout[]>([]);
+  const [currentTrends, setCurrentTrends] = useState<TrendResults>(calculateTrends(deviceCounts, isEnterprise));
 
+  // Generate chart data when device counts or enterprise status changes
   useEffect(() => {
-    // Clear any existing timeouts
-    animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
-    animationTimeoutRef.current = [];
+    setCurrentTrends(calculateTrends(deviceCounts, isEnterprise));
+    setChartData(generateChartData(deviceCounts, isEnterprise));
+  }, [deviceCounts, isEnterprise]);
 
-    setChartData([]);
-
-    const data = calculateCompoundedSavings(deviceCounts, isEnterprise);
-    
-    // Animate data appearing on the chart
-    data.forEach((item, index) => {
-      const timeout = setTimeout(() => {
-        setChartData(prev => {
-          const exists = prev.some(p => p.year === item.year);
-          if (exists) return prev;
-          return [...prev, item];
-        });
-      }, index * 300);
-      
-      animationTimeoutRef.current.push(timeout);
-    });
-
-    return () => {
-      animationTimeoutRef.current.forEach(timeout => clearTimeout(timeout));
-      animationTimeoutRef.current = [];
-    };
-  }, [showMoreDetails, deviceCounts, isEnterprise]);
-
-  // Handle individual device count changes
-  const handleDeviceChange = (type: keyof DeviceCounts, value: number) => {
-    onDeviceCountChange(type, value);
-  };
-
-  // Handle enterprise mode toggle
-  const handleEnterpriseChange = (checked: boolean) => {
-    if (onEnterpriseChange) {
-      onEnterpriseChange(checked);
+  const toggleStatsPanel = () => {
+    if (isStatsMinimized && onMaximizeStats) {
+      onMaximizeStats();
+    } else if (!isStatsMinimized && onMinimizeStats) {
+      onMinimizeStats();
     }
   };
 
   return (
     <Dialog open={showMoreDetails} onOpenChange={setShowMoreDetails}>
-      <DialogContent className="max-w-4xl w-[95vw]">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold mb-2">4-Year Environmental & Financial Impact</DialogTitle>
-          <p className="text-lg text-neutral-600 dark:text-neutral-300 italic mb-4">
-            Driving sustainable cost savings and environmental impact
-          </p>
-          
-          {/* Enterprise toggle in the dialog */}
-          {onEnterpriseChange && (
-            <div className="mt-2 mb-4">
-              <EnterpriseToggle 
-                isEnterprise={isEnterprise} 
-                onEnterpriseChange={handleEnterpriseChange}
-                disabled={false}
-              />
-            </div>
-          )}
+      <DialogContent className="max-w-4xl w-full h-[90vh] overflow-auto">
+        <DialogHeader className="flex flex-row items-center justify-between">
+          <DialogTitle className="flex items-center gap-2">
+            <LineChart className="w-5 h-5" />
+            <span>4-Year Savings Projection</span>
+          </DialogTitle>
+          <div className="flex gap-2">
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={toggleStatsPanel}
+              className="rounded-full"
+            >
+              <PanelRight className="h-4 w-4" />
+            </Button>
+            <DialogClose asChild>
+              <Button variant="ghost" size="icon" className="rounded-full">
+                <X className="h-4 w-4" />
+              </Button>
+            </DialogClose>
+          </div>
         </DialogHeader>
-
-        <div className="mb-6">
-          <DeviceInput
-            deviceCounts={deviceCounts}
-            sliderRef={sliderRef}
-            onDeviceCountChange={handleDeviceChange}
-            disabled={false}
-            isEnterprise={isEnterprise}
-          />
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div className="md:col-span-2">
+            <EnterpriseToggle 
+              isEnterprise={isEnterprise} 
+              onEnterpriseChange={onEnterpriseChange} 
+              disabled={false}
+            />
+          </div>
         </div>
-        
-        <EnvironmentalMetrics deviceCounts={deviceCounts} isEnterprise={isEnterprise} />
 
-        <SavingsLineChart chartData={chartData} />
-        
-        <p className="text-sm text-neutral-600 dark:text-neutral-400 mt-4">
-          This projection illustrates the potential financial savings and environmental benefits over a 4-year period, based on your organization's device inventory.
-          {isEnterprise && " Enterprise mode is active, applying enterprise-scale efficiency factors."}
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 space-y-4">
+            <SavingsLineChart chartData={chartData} />
+            <EnvironmentalMetrics trends={currentTrends} />
+          </div>
+          
+          <div className="bg-neutral-50 dark:bg-neutral-850 p-4 rounded-lg">
+            <h3 className="font-semibold mb-4 dark:text-white">Adjust Device Count</h3>
+            <DeviceInput 
+              deviceCounts={deviceCounts}
+              onDeviceCountChange={onDeviceCountChange}
+              disabled={false}
+              compact={true}
+              isEnterprise={isEnterprise}
+            />
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

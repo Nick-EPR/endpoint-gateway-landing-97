@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -65,25 +64,15 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
-  // Toggle panel visibility
+  // Toggle panel visibility/minimization
   const toggleStatsPanel = () => {
-    if (isStatsMinimized) {
-      // If minimized, maximize it
-      setIsStatsMinimized(false);
-      
-      // Dispatch event to ensure all components are in sync
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: false }
-      }));
-    } else {
-      // If not minimized, minimize it
-      setIsStatsMinimized(true);
-      
-      // Dispatch event to ensure all components are in sync
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: true }
-      }));
-    }
+    const newMinimizedState = !isStatsMinimized;
+    setIsStatsMinimized(newMinimizedState);
+    
+    // Dispatch event to ensure all components are in sync
+    window.dispatchEvent(new CustomEvent('statsMinimized', { 
+      detail: { minimized: newMinimizedState }
+    }));
   };
 
   // Explicitly minimize the panel
@@ -176,6 +165,9 @@ const ROICalculator = () => {
         onDeviceCountChange={handleDeviceCountChange}
         isEnterprise={isEnterprise}
         onEnterpriseChange={handleEnterpriseToggle}
+        onMinimizeStats={minimizeStatsPanel}
+        onMaximizeStats={maximizeStatsPanel}
+        isStatsMinimized={isStatsMinimized}
       />
     </section>
   );

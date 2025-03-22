@@ -28,21 +28,14 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
       window.dispatchEvent(new CustomEvent('statsMinimized', { 
         detail: { minimized: minimize }
       }));
-    } else if (isStatsPanelMinimized) {
-      // If minimized, maximize it instead of toggling visibility
-      setIsStatsPanelMinimized(false);
-      
-      // Dispatch event to ensure all components are in sync
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: false }
-      }));
     } else {
-      // If not minimized, minimize rather than hiding
-      setIsStatsPanelMinimized(true);
+      // Toggle minimized state
+      const newMinimizedState = !isStatsPanelMinimized;
+      setIsStatsPanelMinimized(newMinimizedState);
       
       // Dispatch event to ensure all components are in sync
       window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: true }
+        detail: { minimized: newMinimizedState }
       }));
     }
   };
