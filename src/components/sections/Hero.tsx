@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Calculator, Info, ArrowRight } from "lucide-react";
-import { OptimizedImage } from "../ui/optimized-image";
 
 interface HeroProps {
   title: string;
@@ -79,13 +78,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
-        <OptimizedImage 
+        <img 
           src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
           alt="IT Asset Management Background"
           className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-          priority
         />
       </div>
 

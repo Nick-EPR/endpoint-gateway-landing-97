@@ -1,11 +1,8 @@
 
 import { Server, PackageOpen, MonitorSmartphone, Workflow, AlertTriangle } from "lucide-react";
-import { OptimizedImage } from "@/components/ui/optimized-image";
-import { memo } from "react";
 
-const PhysicalReality = memo(() => {
-  return (
-    <section className="py-16 md:py-24 bg-neutral-light dark:bg-neutral-800">
+const PhysicalReality = () => {
+  return <section className="py-16 md:py-24 bg-neutral-light dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto mb-16 text-center">
           <div className="inline-flex items-center justify-center mb-6">
@@ -25,13 +22,7 @@ const PhysicalReality = memo(() => {
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           <div className="relative">
             <div className="aspect-video rounded-2xl overflow-hidden shadow-xl animate-on-scroll">
-              <OptimizedImage 
-                alt="IT Asset Physical Management" 
-                className="w-full h-full object-cover" 
-                src="/lovable-uploads/8a4193c5-136d-406e-a66e-4c8fa14deb77.jpg" 
-                width={800}
-                height={450}
-              />
+              <img alt="IT Asset Physical Management" className="w-full h-full object-cover" src="/lovable-uploads/8a4193c5-136d-406e-a66e-4c8fa14deb77.jpg" />
             </div>
             <div className="absolute -bottom-6 -right-6 -z-10 w-full h-full rounded-2xl bg-red-100"></div>
           </div>
@@ -91,10 +82,7 @@ const PhysicalReality = memo(() => {
           </div>
         </div>
       </div>
-    </section>
-  );
-});
-
-PhysicalReality.displayName = "PhysicalReality";
+    </section>;
+};
 
 export default PhysicalReality;

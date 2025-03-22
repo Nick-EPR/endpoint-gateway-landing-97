@@ -4,11 +4,9 @@ import { Minimize2, X, ChevronDown, ChevronUp, Move } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import StatsCards from './StatsCards';
 import { TrendResults } from '@/utils/roi/types';
-import { calculateTrends, getDefaultDeviceCounts } from '@/utils/roi';
-import { defaultTrends } from '@/utils/roi/trendCalculations';
 
 interface StatsSidePanelProps {
-  trends?: TrendResults;
+  trends: TrendResults;
   isOpen: boolean;
   isMinimized?: boolean;
   togglePanel: () => void;
@@ -26,9 +24,6 @@ const StatsSidePanel = ({
   maximizePanel,
   isCalculatorVisible 
 }: StatsSidePanelProps) => {
-  // Use provided trends or use defaultTrends
-  const validTrends = trends || defaultTrends;
-  
   const panelRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState(false);
@@ -220,7 +215,7 @@ const StatsSidePanel = ({
           : ''
       }`}>
         <StatsCards 
-          trends={validTrends} 
+          trends={trends} 
           compact={isMobile && !mobileExpanded} 
           onMaximize={mobileExpanded ? undefined : maximizePanel} 
         />

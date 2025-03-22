@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
-import { OptimizedImage } from "@/components/ui/optimized-image";
 
 const HeroSection = () => {
   const [showLight, setShowLight] = useState(false);
@@ -19,13 +18,10 @@ const HeroSection = () => {
     <section className="relative pt-32 pb-24 px-4">
       <div className="absolute inset-0 w-full h-full">
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50 backdrop-blur-[2px] z-10 dark:from-black/90 dark:via-black/80 dark:to-black/70"></div>
-        <OptimizedImage 
-          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf"
+        <img 
+          src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80"
           alt="Modern Warehouse Asset Management"
           className="w-full h-full object-cover"
-          width={1920}
-          height={1080}
-          priority
         />
       </div>
       <div className="container mx-auto relative z-20">
