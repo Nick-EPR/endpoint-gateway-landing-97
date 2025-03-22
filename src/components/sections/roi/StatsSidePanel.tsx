@@ -35,16 +35,20 @@ const StatsSidePanel = ({
 
   // Initialize isMinimized based on the prop
   useEffect(() => {
+    console.log("StatsSidePanel rendered with isOpen:", isOpen, "isMinimized:", isMinimized);
     // Dispatch custom event to notify other components
     window.dispatchEvent(
       new CustomEvent('statsMinimized', {
         detail: { minimized: isMinimized },
       })
     );
-  }, [isMinimized]);
+  }, [isMinimized, isOpen]);
 
   // If panel is closed, return null
-  if (!isOpen) return null;
+  if (!isOpen) {
+    console.log("StatsSidePanel not rendering because isOpen is false");
+    return null;
+  }
 
   return isMobile ? (
     <MobileStatsPanel

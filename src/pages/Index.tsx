@@ -69,12 +69,14 @@ const Index = () => {
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
-  // Add console logs to debug the panel visibility
-  console.log("Stats Panel State:", { 
-    isStatsPanelVisible, 
-    isStatsPanelMinimized,
-    isCalculatorVisible
-  });
+  // Debug panel visibility
+  useEffect(() => {
+    console.log("Stats Panel Visibility State:", { 
+      isStatsPanelVisible, 
+      isStatsPanelMinimized,
+      isCalculatorVisible
+    });
+  }, [isStatsPanelVisible, isStatsPanelMinimized, isCalculatorVisible]);
 
   return (
     <IndexLayout
@@ -86,7 +88,10 @@ const Index = () => {
       isStatsPanelVisible={isStatsPanelVisible}
       isStatsPanelMinimized={isStatsPanelMinimized}
       onChatClick={handleChatClick}
-      onCalculatorClick={toggleStatsPanel}
+      onCalculatorClick={() => {
+        console.log("Calculator button clicked");
+        toggleStatsPanel(false); // Show and maximize panel
+      }}
       onMaximizeCalculator={handleMaximizeCalculator}
     >
       <IndexSections />
@@ -96,7 +101,7 @@ const Index = () => {
         <StatsPanelLazy
           isOpen={isStatsPanelVisible}
           isMinimized={isStatsPanelMinimized}
-          togglePanel={() => toggleStatsPanel()}
+          togglePanel={toggleStatsPanel}
           minimizePanel={() => toggleStatsPanel(true)}
           maximizePanel={handleMaximizeCalculator}
           isCalculatorVisible={isCalculatorVisible}
