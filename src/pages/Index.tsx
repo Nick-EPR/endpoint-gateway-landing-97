@@ -69,6 +69,13 @@ const Index = () => {
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
+  // Add console logs to debug the panel visibility
+  console.log("Stats Panel State:", { 
+    isStatsPanelVisible, 
+    isStatsPanelMinimized,
+    isCalculatorVisible
+  });
+
   return (
     <IndexLayout
       scrolled={scrolled}

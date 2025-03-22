@@ -20,6 +20,9 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
   }, []);
 
   const toggleStatsPanel = (minimize?: boolean) => {
+    // Always ensure the panel is visible when toggling
+    setIsStatsPanelVisible(true);
+    
     if (minimize !== undefined) {
       // If minimize is specified, set the minimize state directly
       setIsStatsPanelMinimized(minimize);
@@ -38,6 +41,12 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
         detail: { minimized: newMinimizedState }
       }));
     }
+    
+    // Log when panel state changes
+    console.log("Stats panel toggled:", { 
+      isStatsPanelVisible: true, 
+      isStatsPanelMinimized: minimize !== undefined ? minimize : !isStatsPanelMinimized 
+    });
   };
 
   const handleMaximizeCalculator = () => {
@@ -54,6 +63,12 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     if (roiSection) {
       roiSection.scrollIntoView({ behavior: 'smooth' });
     }
+    
+    // Log when maximizing calculator
+    console.log("Calculator maximized, panel state:", {
+      isStatsPanelVisible: true,
+      isStatsPanelMinimized: false
+    });
   };
 
   return { 
