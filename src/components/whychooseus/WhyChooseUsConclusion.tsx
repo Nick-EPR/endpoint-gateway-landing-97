@@ -1,6 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowRight, Check, Unlink, Link as LinkIcon } from "lucide-react";
+import { ArrowRight, Check, Unlink, ExternalLink } from "lucide-react";
 
 const WhyChooseUsConclusion = () => {
   const navigate = useNavigate();
@@ -56,8 +56,8 @@ const WhyChooseUsConclusion = () => {
                     onClick={navigateToROI} 
                     className="text-foreground flex items-center group hover:text-primary transition-colors"
                   >
-                    <span>Significant cost savings and operational efficiency</span>
-                    <LinkIcon className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="underline decoration-dotted decoration-primary/70 underline-offset-2">Significant cost savings and operational efficiency</span>
+                    <ExternalLink className="ml-2 h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
