@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 export function useStatsPanel(isCalculatorVisible: boolean) {
   const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(true);
-  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
+  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(true); // Set to true by default
 
   // Listen for custom event when stats panel is minimized
   useEffect(() => {
@@ -19,8 +19,11 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     };
   }, []);
 
-  const toggleStatsPanel = () => {
-    if (isStatsPanelMinimized) {
+  const toggleStatsPanel = (minimize?: boolean) => {
+    if (minimize !== undefined) {
+      // If minimize is specified, set the minimize state
+      setIsStatsPanelMinimized(minimize);
+    } else if (isStatsPanelMinimized) {
       // If minimized, maximize it instead of toggling visibility
       setIsStatsPanelMinimized(false);
     } else {

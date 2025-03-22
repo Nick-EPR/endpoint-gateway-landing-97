@@ -9,6 +9,7 @@ import { useStatsPanel } from "@/hooks/useStatsPanel";
 import { useEffect, useRef, lazy, Suspense } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
+import { defaultTrends } from "@/utils/roi/trendCalculations";
 
 // Lazy load components that aren't needed for initial render
 const StatsPanelLazy = lazy(() => import("@/components/sections/roi/StatsSidePanel"));
@@ -22,6 +23,16 @@ const Index = () => {
     toggleStatsPanel,
     handleMaximizeCalculator 
   } = useStatsPanel(isCalculatorVisible);
+  
+  // Effect to show stats panel when scrolling to calculator
+  useEffect(() => {
+    if (isCalculatorVisible && isStatsPanelMinimized) {
+      // Only unmute the panel when the calculator becomes visible
+      window.dispatchEvent(new CustomEvent('statsMinimized', { 
+        detail: { minimized: false }
+      }));
+    }
+  }, [isCalculatorVisible, isStatsPanelMinimized]);
   
   // Optimize the monitor query with better caching
   const { data: monitors, isLoading: isMonitorsLoading } = useQuery({
@@ -89,9 +100,11 @@ const Index = () => {
           <StatsPanelLazy
             isOpen={isStatsPanelVisible}
             isMinimized={isStatsPanelMinimized}
-            onClose={() => toggleStatsPanel()}
-            onMinimize={() => toggleStatsPanel(true)}
-            onMaximize={handleMaximizeCalculator}
+            togglePanel={toggleStatsPanel}
+            minimizePanel={() => toggleStatsPanel()}
+            maximizePanel={handleMaximizeCalculator}
+            isCalculatorVisible={isCalculatorVisible}
+            trends={defaultTrends} 
           />
         </Suspense>
       )}
