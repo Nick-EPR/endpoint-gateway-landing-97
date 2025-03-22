@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Calculator } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -11,17 +10,25 @@ import { useROIAnimation } from '@/hooks/useROIAnimation';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { DeviceInput } from './roi/device/DeviceInput';
 import { EnterpriseToggle } from './roi/EnterpriseToggle';
+import StatsSidePanel from './roi/StatsSidePanel';
 
 const ROICalculator = () => {
   const [deviceCounts, setDeviceCounts] = useState<DeviceCounts>(getDefaultDeviceCounts());
   const [showMoreDetails, setShowMoreDetails] = useState(false);
   const [currentTrends, setCurrentTrends] = useState<TrendResults>(calculateTrends(getDefaultDeviceCounts()));
   const [isEnterprise, setIsEnterprise] = useState(false);
-  const [isStatsMinimized, setIsStatsMinimized] = useState(true); // Start minimized by default
+  const [statsVisible, setStatsVisible] = useState(false);
+  const [isStatsMinimized, setIsStatsMinimized] = useState(false);
   const sliderRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sliderRef, { threshold: 0.5 });
   const { isVisible: isSectionVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+
+  useEffect(() => {
+    if (isSectionVisible) {
+      setStatsVisible(true);
+    }
+  }, [isSectionVisible]);
 
   useEffect(() => {
     const totalDevices = Object.values(deviceCounts).reduce((sum, count) => sum + count, 0);
@@ -57,28 +64,15 @@ const ROICalculator = () => {
     setCurrentTrends(calculateTrends(deviceCounts, enabled));
   };
 
-  // Toggle panel visibility/minimization
+  // Separate functions for visibility and minimization
   const toggleStatsPanel = () => {
-    const newMinimizedState = !isStatsMinimized;
-    setIsStatsMinimized(newMinimizedState);
-    
-    // Dispatch event to ensure all components are in sync
-    window.dispatchEvent(new CustomEvent('statsMinimized', { 
-      detail: { minimized: newMinimizedState }
-    }));
+    setStatsVisible(!statsVisible);
   };
 
-  // Explicitly minimize the panel
   const minimizeStatsPanel = () => {
     setIsStatsMinimized(true);
-    
-    // Dispatch event to ensure all components are in sync
-    window.dispatchEvent(new CustomEvent('statsMinimized', { 
-      detail: { minimized: true }
-    }));
   };
 
-  // Explicitly maximize the panel
   const maximizeStatsPanel = () => {
     setIsStatsMinimized(false);
     
@@ -100,6 +94,16 @@ const ROICalculator = () => {
         <div className="max-w-4xl mx-auto">
           <ROIHeader />
           
+          <StatsSidePanel 
+            trends={currentTrends} 
+            isOpen={statsVisible} 
+            isMinimized={isStatsMinimized}
+            togglePanel={toggleStatsPanel}
+            minimizePanel={minimizeStatsPanel}
+            maximizePanel={maximizeStatsPanel}
+            isCalculatorVisible={isSectionVisible}
+          />
+
           <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 animate-fade-up transform hover:shadow-xl transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
@@ -148,9 +152,6 @@ const ROICalculator = () => {
         onDeviceCountChange={handleDeviceCountChange}
         isEnterprise={isEnterprise}
         onEnterpriseChange={handleEnterpriseToggle}
-        onMinimizeStats={minimizeStatsPanel}
-        onMaximizeStats={maximizeStatsPanel}
-        isStatsMinimized={isStatsMinimized}
       />
     </section>
   );

@@ -1,21 +1,30 @@
 
 import { useState, useEffect } from 'react';
-import { DeviceCounts, TrendResults } from '@/utils/roi';
+import { DeviceCounts } from '@/utils/roi';
 
 interface EnvironmentalMetricsProps {
-  trends: TrendResults;
-  deviceCounts?: DeviceCounts;
+  deviceCounts: DeviceCounts;
   isEnterprise?: boolean;
 }
 
-export const EnvironmentalMetrics = ({ trends, deviceCounts, isEnterprise = false }: EnvironmentalMetricsProps) => {
+export const EnvironmentalMetrics = ({ deviceCounts, isEnterprise = false }: EnvironmentalMetricsProps) => {
   const [animatedTreeCount, setAnimatedTreeCount] = useState(0);
   const [animatedCarbonOffset, setAnimatedCarbonOffset] = useState(0);
 
   useEffect(() => {
-    // Use trends data if available, otherwise calculate from device counts
-    const targetTreeCount = Math.round(trends.treesEquivalent);
-    const targetCarbonOffset = Math.round(trends.carbonReduction / 1000); // Convert kg to tons
+    // Calculate total devices
+    const totalDevices = 
+      deviceCounts.macbooks +
+      deviceCounts.laptops +
+      deviceCounts.desktops +
+      deviceCounts.tablets +
+      deviceCounts.monitors +
+      deviceCounts.accessories * 0.1; // Count accessories as 1/10th of a full device for environmental calcs
+    
+    // Apply enterprise scaling factor if in enterprise mode
+    const enterpriseFactor = isEnterprise ? 1.2 : 1;
+    const targetTreeCount = Math.round(totalDevices * 0.4 * enterpriseFactor);
+    const targetCarbonOffset = Math.round(totalDevices * 0.7 * enterpriseFactor);
     
     const startTime = performance.now();
     const duration = 1000;
@@ -33,7 +42,7 @@ export const EnvironmentalMetrics = ({ trends, deviceCounts, isEnterprise = fals
     };
 
     requestAnimationFrame(animate);
-  }, [trends]);
+  }, [deviceCounts, isEnterprise]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

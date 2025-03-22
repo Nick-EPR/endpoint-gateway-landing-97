@@ -9,7 +9,6 @@ import { useStatsPanel } from "@/hooks/useStatsPanel";
 import { useEffect, useRef, lazy, Suspense } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
-import { defaultTrends } from "@/utils/roi/trendCalculations";
 
 // Lazy load components that aren't needed for initial render
 const StatsPanelLazy = lazy(() => import("@/components/sections/roi/StatsSidePanel"));
@@ -69,25 +68,6 @@ const Index = () => {
 
   const hasOutage = monitors?.some(monitor => monitor.status === "down");
 
-  // Debug panel visibility
-  useEffect(() => {
-    console.log("Stats Panel Visibility State:", { 
-      isStatsPanelVisible, 
-      isStatsPanelMinimized,
-      isCalculatorVisible
-    });
-  }, [isStatsPanelVisible, isStatsPanelMinimized, isCalculatorVisible]);
-
-  const handleCalculatorClick = () => {
-    const roiSection = document.getElementById('roi-calculator');
-    if (roiSection) {
-      roiSection.scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => {
-        toggleStatsPanel(false); // Show and maximize panel
-      }, 300);
-    }
-  };
-
   return (
     <IndexLayout
       scrolled={scrolled}
@@ -98,23 +78,23 @@ const Index = () => {
       isStatsPanelVisible={isStatsPanelVisible}
       isStatsPanelMinimized={isStatsPanelMinimized}
       onChatClick={handleChatClick}
-      onCalculatorClick={handleCalculatorClick}
+      onCalculatorClick={toggleStatsPanel}
       onMaximizeCalculator={handleMaximizeCalculator}
     >
       <IndexSections />
       
-      {/* Stats panel */}
-      <Suspense fallback={<div className="fixed bottom-16 right-4 z-50 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg"><LoadingSpinner /></div>}>
-        <StatsPanelLazy
-          isOpen={isStatsPanelVisible}
-          isMinimized={isStatsPanelMinimized}
-          togglePanel={() => toggleStatsPanel()}
-          minimizePanel={() => toggleStatsPanel(true)}
-          maximizePanel={handleMaximizeCalculator}
-          isCalculatorVisible={isCalculatorVisible}
-          trends={defaultTrends} 
-        />
-      </Suspense>
+      {/* Lazy load the StatsPanel component only when needed */}
+      {isStatsPanelVisible && (
+        <Suspense fallback={<div className="fixed bottom-16 right-4 z-50 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg"><LoadingSpinner /></div>}>
+          <StatsPanelLazy
+            isOpen={isStatsPanelVisible}
+            isMinimized={isStatsPanelMinimized}
+            onClose={() => toggleStatsPanel()}
+            onMinimize={() => toggleStatsPanel(true)}
+            onMaximize={handleMaximizeCalculator}
+          />
+        </Suspense>
+      )}
     </IndexLayout>
   );
 };

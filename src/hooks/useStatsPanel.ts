@@ -2,27 +2,16 @@
 import { useState, useEffect } from "react";
 
 export function useStatsPanel(isCalculatorVisible: boolean) {
-  // Panel starts hidden by default
-  const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(false);
-  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(true);
-
-  // Show panel when calculator section becomes visible
-  useEffect(() => {
-    console.log("Calculator visibility changed:", isCalculatorVisible);
-    if (isCalculatorVisible) {
-      setIsStatsPanelVisible(true);
-      setIsStatsPanelMinimized(false);
-      console.log("Auto-showing stats panel because calculator is visible");
-    }
-  }, [isCalculatorVisible]);
+  const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(true);
+  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(false);
 
   // Listen for custom event when stats panel is minimized
   useEffect(() => {
     const handleStatsMinimized = (event: CustomEvent<{minimized: boolean}>) => {
-      console.log("Stats minimized event received:", event.detail);
       setIsStatsPanelMinimized(event.detail.minimized);
     };
 
+    // Add type assertion to make TypeScript happy
     window.addEventListener('statsMinimized', handleStatsMinimized as EventListener);
     
     return () => {
@@ -30,59 +19,30 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     };
   }, []);
 
-  const toggleStatsPanel = (minimize?: boolean) => {
-    if (minimize !== undefined) {
-      // If minimize is specified, set that state directly
-      setIsStatsPanelMinimized(minimize);
-      
-      // Always make panel visible when toggling
-      setIsStatsPanelVisible(true);
-      
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: minimize }
-      }));
+  const toggleStatsPanel = () => {
+    if (isStatsPanelMinimized) {
+      // If minimized, maximize it instead of toggling visibility
+      setIsStatsPanelMinimized(false);
     } else {
-      // Toggle minimized state
-      const newMinimizedState = !isStatsPanelMinimized;
-      setIsStatsPanelMinimized(newMinimizedState);
-      
-      // Always make panel visible when toggling
-      setIsStatsPanelVisible(true);
-      
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: newMinimizedState }
-      }));
+      // Toggle visibility
+      setIsStatsPanelVisible(!isStatsPanelVisible);
     }
-    
-    console.log("Stats panel toggled:", { 
-      isStatsPanelVisible: true, 
-      isStatsPanelMinimized: minimize !== undefined ? minimize : !isStatsPanelMinimized 
-    });
   };
 
   const handleMaximizeCalculator = () => {
     setIsStatsPanelMinimized(false);
     setIsStatsPanelVisible(true);
     
+    // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
       detail: { minimized: false }
     }));
     
-    // Add scrolling to ROI calculator section
-    setTimeout(() => {
-      const roiSection = document.getElementById('roi-calculator');
-      if (roiSection) {
-        roiSection.scrollIntoView({ behavior: 'smooth' });
-        console.log("Scrolling to ROI calculator section");
-      } else {
-        console.log("ROI calculator section not found");
-      }
-    }, 100);
-    
-    console.log("Calculator maximized, panel state:", {
-      isStatsPanelVisible: true,
-      isStatsPanelMinimized: false
-    });
+    // Add scrolling to ROI calculator section if needed
+    const roiSection = document.getElementById('roi-calculator');
+    if (roiSection) {
+      roiSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return { 

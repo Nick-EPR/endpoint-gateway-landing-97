@@ -33,21 +33,12 @@ const BottomNavbar = ({
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Debug
-  useEffect(() => {
-    console.log("BottomNavbar rendering with:", {
-      isCalculatorMinimized,
-      isCalculatorVisible
-    });
-  }, [isCalculatorMinimized, isCalculatorVisible]);
-
   return (
     <div className="fixed bottom-2 right-2 z-50 py-2 bg-black/10 backdrop-blur-sm dark:bg-black/30 rounded-full">
       <div className="flex items-center gap-3 px-4">
-        {/* Show ROI button when panel is minimized or not visible */}
-        {(isCalculatorMinimized || !isCalculatorVisible) && (
+        {!isCalculatorVisible && !isCalculatorMinimized && (
           <Button
-            onClick={isCalculatorMinimized ? onMaximizeCalculator : onCalculatorClick}
+            onClick={onCalculatorClick}
             className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white animate-fade-in"
             size="sm"
             aria-label="Toggle ROI stats panel"
@@ -57,6 +48,18 @@ const BottomNavbar = ({
           </Button>
         )}
         
+        {isCalculatorMinimized && onMaximizeCalculator && (
+          <Button
+            onClick={onMaximizeCalculator}
+            className="bg-[#93C851] hover:bg-[#84b449] transition-colors duration-200 text-white rounded-full shadow-lg dark:bg-[#93C851] dark:hover:bg-[#84b449] dark:text-white animate-fade-in"
+            size="sm"
+            aria-label="Maximize ROI Stats Panel"
+          >
+            <Calculator className="h-4 w-4 sm:h-5 sm:w-5" />
+            <span className="ml-1 sm:ml-2 text-xs sm:text-sm">ROI</span>
+          </Button>
+        )}
+
         {showScrollTop && (
           <Button
             onClick={scrollToTop}
