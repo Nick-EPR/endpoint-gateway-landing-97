@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import { useMobile } from '@/hooks/use-mobile';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { useDraggablePanel } from './hooks/useDraggablePanel';
 import MobileStatsPanel from './mobile/MobileStatsPanel';
 import DesktopStatsPanel from './desktop/DesktopStatsPanel';
@@ -30,7 +30,7 @@ const StatsSidePanel = ({
   const validTrends = trends || defaultTrends;
 
   const panelRef = useRef<HTMLDivElement>(null);
-  const isMobile = useMobile();
+  const isMobile = useIsMobile();
   const { position, isDragging, handleMouseDown, handleTouchStart } = useDraggablePanel(isMobile);
 
   // Initialize isMinimized based on the prop
