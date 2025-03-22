@@ -1,9 +1,17 @@
-
 import { useState, useEffect } from "react";
 
 export function useStatsPanel(isCalculatorVisible: boolean) {
-  const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(true);
-  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(true); // Set to true by default
+  // Panel starts hidden by default
+  const [isStatsPanelVisible, setIsStatsPanelVisible] = useState(false);
+  const [isStatsPanelMinimized, setIsStatsPanelMinimized] = useState(true);
+
+  // Show panel when calculator section becomes visible
+  useEffect(() => {
+    if (isCalculatorVisible) {
+      setIsStatsPanelVisible(true);
+      setIsStatsPanelMinimized(false);
+    }
+  }, [isCalculatorVisible]);
 
   // Listen for custom event when stats panel is minimized
   useEffect(() => {
@@ -11,7 +19,6 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
       setIsStatsPanelMinimized(event.detail.minimized);
     };
 
-    // Add type assertion to make TypeScript happy
     window.addEventListener('statsMinimized', handleStatsMinimized as EventListener);
     
     return () => {
@@ -20,14 +27,13 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
   }, []);
 
   const toggleStatsPanel = (minimize?: boolean) => {
-    // Always ensure the panel is visible when toggling
-    setIsStatsPanelVisible(true);
-    
     if (minimize !== undefined) {
-      // If minimize is specified, set the minimize state directly
+      // If minimize is specified, set that state directly
       setIsStatsPanelMinimized(minimize);
       
-      // Dispatch event to ensure all components are in sync
+      // Keep panel visible but minimized
+      setIsStatsPanelVisible(true);
+      
       window.dispatchEvent(new CustomEvent('statsMinimized', { 
         detail: { minimized: minimize }
       }));
@@ -36,13 +42,14 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
       const newMinimizedState = !isStatsPanelMinimized;
       setIsStatsPanelMinimized(newMinimizedState);
       
-      // Dispatch event to ensure all components are in sync
+      // Keep panel visible
+      setIsStatsPanelVisible(true);
+      
       window.dispatchEvent(new CustomEvent('statsMinimized', { 
         detail: { minimized: newMinimizedState }
       }));
     }
     
-    // Log when panel state changes
     console.log("Stats panel toggled:", { 
       isStatsPanelVisible: true, 
       isStatsPanelMinimized: minimize !== undefined ? minimize : !isStatsPanelMinimized 
@@ -53,7 +60,6 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
     setIsStatsPanelMinimized(false);
     setIsStatsPanelVisible(true);
     
-    // Dispatch event to ensure all components are in sync
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
       detail: { minimized: false }
     }));
@@ -64,7 +70,6 @@ export function useStatsPanel(isCalculatorVisible: boolean) {
       roiSection.scrollIntoView({ behavior: 'smooth' });
     }
     
-    // Log when maximizing calculator
     console.log("Calculator maximized, panel state:", {
       isStatsPanelVisible: true,
       isStatsPanelMinimized: false
