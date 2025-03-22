@@ -24,16 +24,6 @@ const Index = () => {
     handleMaximizeCalculator 
   } = useStatsPanel(isCalculatorVisible);
   
-  // Effect to show stats panel when scrolling to calculator
-  useEffect(() => {
-    if (isCalculatorVisible && isStatsPanelMinimized) {
-      // Only unmute the panel when the calculator becomes visible
-      window.dispatchEvent(new CustomEvent('statsMinimized', { 
-        detail: { minimized: false }
-      }));
-    }
-  }, [isCalculatorVisible, isStatsPanelMinimized]);
-  
   // Optimize the monitor query with better caching
   const { data: monitors, isLoading: isMonitorsLoading } = useQuery({
     queryKey: ['monitors'],
@@ -94,20 +84,18 @@ const Index = () => {
     >
       <IndexSections />
       
-      {/* Lazy load the StatsPanel component only when needed */}
-      {isStatsPanelVisible && (
-        <Suspense fallback={<div className="fixed bottom-16 right-4 z-50 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg"><LoadingSpinner /></div>}>
-          <StatsPanelLazy
-            isOpen={isStatsPanelVisible}
-            isMinimized={isStatsPanelMinimized}
-            togglePanel={toggleStatsPanel}
-            minimizePanel={() => toggleStatsPanel()}
-            maximizePanel={handleMaximizeCalculator}
-            isCalculatorVisible={isCalculatorVisible}
-            trends={defaultTrends} 
-          />
-        </Suspense>
-      )}
+      {/* Single instance of stats panel */}
+      <Suspense fallback={<div className="fixed bottom-16 right-4 z-50 bg-white/80 dark:bg-neutral-800/80 backdrop-blur-sm p-4 rounded-lg shadow-lg"><LoadingSpinner /></div>}>
+        <StatsPanelLazy
+          isOpen={isStatsPanelVisible}
+          isMinimized={isStatsPanelMinimized}
+          togglePanel={() => toggleStatsPanel()}
+          minimizePanel={() => toggleStatsPanel(true)}
+          maximizePanel={handleMaximizeCalculator}
+          isCalculatorVisible={isCalculatorVisible}
+          trends={defaultTrends} 
+        />
+      </Suspense>
     </IndexLayout>
   );
 };

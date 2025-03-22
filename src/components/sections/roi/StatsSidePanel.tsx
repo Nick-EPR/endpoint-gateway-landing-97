@@ -4,7 +4,6 @@ import { Minimize2, X, ChevronDown, ChevronUp, Move } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import StatsCards from './StatsCards';
 import { TrendResults } from '@/utils/roi/types';
-import { calculateTrends, getDefaultDeviceCounts } from '@/utils/roi';
 import { defaultTrends } from '@/utils/roi/trendCalculations';
 
 interface StatsSidePanelProps {
@@ -54,7 +53,7 @@ const StatsSidePanel = ({
     };
   }, []);
 
-  // Update panel visibility when minimized state changes
+  // Initialize isMinimized based on the prop
   useEffect(() => {
     // Dispatch custom event to notify other components
     window.dispatchEvent(new CustomEvent('statsMinimized', { 
@@ -142,11 +141,11 @@ const StatsSidePanel = ({
       className={`fixed ${
         isMobile 
           ? 'left-0 right-0 bottom-0 w-full rounded-b-none rounded-t-lg shadow-xl z-[1100]' 
-          : 'w-[800px] rounded-lg'
+          : 'w-[350px] rounded-lg'
       } bg-white dark:bg-neutral-800 shadow-xl z-[1000] transition-all duration-300 ${
         isMinimized 
-          ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10' 
-          : 'opacity-100 scale-100'
+          ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10 invisible' 
+          : 'opacity-100 scale-100 visible'
       } ${isDragging ? 'cursor-grabbing' : ''}`}
       style={{ 
         maxHeight: isMobile 
@@ -154,13 +153,12 @@ const StatsSidePanel = ({
           : '80vh',
         transition: isDragging 
           ? 'none' 
-          : 'max-height 0.3s ease-in-out, opacity 0.3s, transform 0.3s',
+          : 'max-height 0.3s ease-in-out, opacity 0.3s, transform 0.3s, visibility 0.3s',
         transform: isMobile
           ? isMinimized ? 'scale(0.95) translateY(10px)' : 'scale(1) translateY(0)'
           : `translate(${position.x}px, ${position.y}px) ${isMinimized ? 'scale(0.95) translateY(10px)' : 'scale(1)'}`,
         right: isMobile ? 0 : 'auto',
         bottom: isMobile ? 0 : '24px',
-        visibility: isMinimized ? 'hidden' : 'visible',
         // Set initial position for desktop if position is at default
         ...(position.x === 0 && position.y === 0 && !isMobile) && {
           right: '16px',
