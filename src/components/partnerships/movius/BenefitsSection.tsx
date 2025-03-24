@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Check, Smartphone, DollarSign, Shield, Connection, RefreshCw } from "lucide-react";
+import { Check, Smartphone, DollarSign, Shield, Network, RefreshCw } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const benefitsData = [
@@ -37,7 +37,7 @@ const benefitsData = [
     ]
   },
   {
-    icon: Connection,
+    icon: Network,
     title: "Seamless Integration with Business Systems",
     description: "Integrate with popular CRM platforms, collaboration tools, and enterprise software through robust APIs.",
     points: [
