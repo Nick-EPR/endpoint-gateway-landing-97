@@ -9,12 +9,9 @@ import Footer from "@/components/Footer";
 import NavigationProgress from "@/components/NavigationProgress";
 import { useScrollTop } from "@/hooks/useScrollTop";
 import Navbar from "@/components/navbar/Navbar";
-import { useTheme } from "next-themes";
-import { useEffect } from "react";
 
 const MoviusPartnership = () => {
   const scrolled = useScrollTop();
-  const { theme } = useTheme();
   
   return (
     <>

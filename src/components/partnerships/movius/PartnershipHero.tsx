@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const PartnershipHero = () => {
   return (
-    <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-neutral-100 via-neutral-200 to-neutral-300 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 overflow-hidden">
+    <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-white/90 via-neutral-100 to-neutral-200 dark:from-neutral-900 dark:via-neutral-900 dark:to-neutral-800 overflow-hidden">
       {/* Orange accent elements */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500/20 via-orange-400 to-orange-500/20"></div>
       <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-orange-500/10 blur-3xl"></div>
@@ -19,7 +19,7 @@ const PartnershipHero = () => {
               <img 
                 src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" 
                 alt="Lifetime EPR Logo" 
-                className="h-10 dark:filter dark:brightness-150"
+                className="h-10 dark:brightness-150"
               />
               <div className="bg-neutral-400 dark:bg-neutral-700 h-8 w-px"></div>
               <img 

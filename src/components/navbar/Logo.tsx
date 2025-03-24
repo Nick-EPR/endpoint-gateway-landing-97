@@ -23,10 +23,8 @@ const Logo = ({ scrolled }: LogoProps) => {
   // Always use appropriate logo for specific pages or scrolled state
   const isScrolledView = scrolled || location.pathname === '/status';
   
-  // Use dark mode logo when:
-  // - In dark mode, OR
-  // - On Movius page in dark mode
-  const isDarkMode = theme === 'dark' || (isMoviusPage && theme === 'dark');
+  // Use dark mode logo only when in dark mode
+  const isDarkMode = theme === 'dark';
   const darkModeLogo = isDarkMode ? "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" : "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
 
   return (

@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { ChevronDown } from "lucide-react";
@@ -19,18 +18,15 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   const location = useLocation();
   const { theme } = useTheme();
   
-  // Check if we're on the Movius partnership page
-  const isMoviusPage = location.pathname === '/partnerships/movius';
-  
-  // Force dark mode on Movius page
-  const isDark = theme === 'dark' || isMoviusPage || forceLight;
+  // Use dark mode only when theme is dark, not based on page
+  const isDark = theme === 'dark';
 
   const getLinkClasses = (path: string) => {
     const isActive = location.pathname === path;
     const baseClasses = 'transition-colors duration-200';
     
-    // For Movius page, always use light text
-    if (isMoviusPage || forceLight) {
+    // Special case for forceLight prop
+    if (forceLight) {
       return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
     }
     
@@ -49,8 +45,8 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     const isActive = solutionsPages.includes(location.pathname);
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
-    // For Movius page, always use light text
-    if (isMoviusPage || forceLight) {
+    // Special case for forceLight prop
+    if (forceLight) {
       return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
     }
     

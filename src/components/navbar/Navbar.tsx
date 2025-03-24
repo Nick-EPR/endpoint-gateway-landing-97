@@ -33,13 +33,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   // Check if we're on the Movius partnership page 
   const isMoviusPage = location.pathname === '/partnerships/movius';
 
-  // Set dark theme for Movius page
-  useEffect(() => {
-    if (isMoviusPage && theme === 'light') {
-      setTheme('dark');
-    }
-  }, [isMoviusPage, setTheme, theme]);
-
+  // Remove the code that forces dark theme for Movius page
+  
   const handleNavigation = (sectionId: string) => {
     if (location.pathname === '/') {
       const element = document.getElementById(sectionId);
@@ -56,10 +51,9 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   // Always treat specific pages as having a white background, regardless of scroll position
-  // For Movius page, we'll always use dark styling
   const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status';
   // Only access theme after component has mounted to prevent hydration mismatch
-  const isDark = mounted ? (theme === 'dark' || isMoviusPage) : false;
+  const isDark = mounted ? theme === 'dark' : false;
 
   const getFeaturesClasses = () => {
     const baseClasses = 'transition-colors duration-200';
@@ -74,14 +68,12 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
   };
 
-  // For Movius page, use a dark background regardless of scroll position
-  const navbarBgClass = isMoviusPage 
-    ? 'bg-neutral-900 border-b border-neutral-800'
-    : isWhiteBackground 
-      ? isDark 
-        ? 'bg-neutral-900 border-b border-neutral-800' 
-        : 'bg-white shadow-sm' 
-      : 'bg-transparent';
+  // For Movius page, use an appropriate background based on theme
+  const navbarBgClass = isWhiteBackground 
+    ? isDark 
+      ? 'bg-neutral-900 border-b border-neutral-800' 
+      : 'bg-white shadow-sm' 
+    : 'bg-transparent';
 
   return (
     <header 
@@ -90,23 +82,23 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     >
       <div className={`transition-all duration-300 ${navbarBgClass}`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Logo scrolled={isWhiteBackground || isMoviusPage} />
+          <Logo scrolled={isWhiteBackground} />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <ProductsDropdown scrolled={isWhiteBackground || isMoviusPage} forceLight={isMoviusPage} />
+            <ProductsDropdown scrolled={isWhiteBackground} />
             <button 
               onClick={() => handleNavigation('features')} 
               className={getFeaturesClasses()}
             >
               Features
             </button>
-            <NavLinks scrolled={isWhiteBackground || isMoviusPage} />
+            <NavLinks scrolled={isWhiteBackground} />
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              className={`${isWhiteBackground && !isMoviusPage ? '' : 'text-white'} hover:bg-transparent`}
+              className={`${isWhiteBackground ? '' : 'text-white'} hover:bg-transparent`}
               aria-label="Toggle theme"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -129,7 +121,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               variant="ghost"
               size="icon"
               onClick={() => setTheme(isDark ? "light" : "dark")}
-              className={`${isWhiteBackground && !isMoviusPage ? '' : 'text-white'} hover:bg-transparent`}
+              className={`${isWhiteBackground ? '' : 'text-white'} hover:bg-transparent`}
               aria-label="Toggle theme"
             >
               <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -139,7 +131,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`p-2 ${
-                isWhiteBackground && !isMoviusPage
+                isWhiteBackground
                   ? isDark 
                     ? 'text-white' 
                     : 'text-neutral-600'
