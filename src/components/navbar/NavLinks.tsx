@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { ChevronDown } from "lucide-react";
@@ -77,11 +78,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
                 className="flex items-center gap-2 w-full"
                 onClick={onClose}
               >
-                <img 
-                  src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
-                  alt="Movius Logo" 
-                  className="h-4 w-auto" 
-                />
                 <span>Communication</span>
               </Link>
             </DropdownMenuItem>
@@ -130,7 +126,8 @@ function getFeaturesClasses() {
   const isFeatureActive = location.pathname === '/' && location.hash === '#features';
   const baseClasses = 'transition-colors duration-200';
   
-  if (location.pathname === '/what-is-itam' || location.pathname === '/status' || location.hash === '#features') {
+  // Add Movius page to the pages that need special treatment for the Features link
+  if (location.pathname === '/what-is-itam' || location.pathname === '/status' || location.pathname === '/partnerships/movius' || location.hash === '#features') {
     if (isDark) {
       return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
     }

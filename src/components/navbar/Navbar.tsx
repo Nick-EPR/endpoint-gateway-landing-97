@@ -32,8 +32,6 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
 
   // Check if we're on the Movius partnership page 
   const isMoviusPage = location.pathname === '/partnerships/movius';
-
-  // Remove the code that forces dark theme for Movius page
   
   const handleNavigation = (sectionId: string) => {
     if (location.pathname === '/') {
@@ -51,7 +49,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   // Always treat specific pages as having a white background, regardless of scroll position
-  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status';
+  // Include Movius page as having a white background
+  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage;
   // Only access theme after component has mounted to prevent hydration mismatch
   const isDark = mounted ? theme === 'dark' : false;
 
