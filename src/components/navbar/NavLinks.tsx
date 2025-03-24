@@ -65,27 +65,15 @@ const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
       </Link>
 
       <div className="relative flex items-center">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <span className={getSolutionsLinkClasses()}>Solutions</span>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Our solutions</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button 
-              className={`${getSolutionsLinkClasses()} p-1`}
-              aria-label="Solutions dropdown"
-            >
-              <ChevronDown size={16} />
-            </button>
+          <DropdownMenuTrigger className="focus:outline-none">
+            <div className={getSolutionsLinkClasses()}>
+              <span>Solutions</span>
+              <ChevronDown className="h-4 w-4" />
+            </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent 
+            align="start"
             className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px] z-50"
           >
             <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
