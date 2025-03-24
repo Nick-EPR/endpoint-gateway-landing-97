@@ -8,12 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
-} from "@/components/ui/tooltip";
 
 interface NavLinksProps {
   scrolled: boolean;
@@ -64,7 +58,7 @@ const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
         Security
       </Link>
 
-      <div className="relative flex items-center">
+      <div className="relative">
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none">
             <div className={getSolutionsLinkClasses()}>
