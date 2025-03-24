@@ -9,8 +9,8 @@ const HeroSection = () => {
 
   return (
     <section className="relative pt-24 pb-16 overflow-hidden">
-      {/* Blue tech background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-blue-600/5 to-blue-700/10 dark:from-blue-800/20 dark:via-blue-900/15 dark:to-blue-950/20"></div>
+      {/* Blue tech background - darkened at top */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-blue-600/20 to-blue-700/10 dark:from-blue-950/50 dark:via-blue-900/30 dark:to-blue-950/20"></div>
       
       {/* Tech pattern overlay */}
       <div className="absolute inset-0 opacity-10 dark:opacity-15" 
@@ -42,6 +42,9 @@ const HeroSection = () => {
         <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500/10 dark:bg-blue-500/15 blur-3xl"></div>
         <div className="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-blue-400/10 dark:bg-blue-400/15 blur-3xl"></div>
       </div>
+      
+      {/* Dark overlay at the very top to ensure navbar readability */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-blue-950/70 to-transparent"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 pt-12">
