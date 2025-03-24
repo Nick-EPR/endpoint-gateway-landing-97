@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button";
 
 const PartnershipHero = () => {
   return (
-    <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-700 overflow-hidden">
-      {/* Orange accent elements */}
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500/20 via-orange-400 to-orange-500/20"></div>
-      <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-orange-500/10 blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-orange-600/5 blur-3xl"></div>
+    <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700 dark:from-neutral-900 dark:via-neutral-800 dark:to-neutral-700 overflow-hidden">
+      {/* Accent elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400/20 via-blue-300 to-blue-400/20 dark:from-orange-500/20 dark:via-orange-400 dark:to-orange-500/20"></div>
+      <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-blue-400/10 dark:bg-orange-500/10 blur-3xl"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-blue-500/5 dark:bg-orange-600/5 blur-3xl"></div>
       
       <div className="container mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -30,22 +30,22 @@ const PartnershipHero = () => {
             </div>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white animate-fade-in">
-              Modernize Your Communications with <span className="text-orange-500">Movius</span> and Lifetime EndPoint Resources
+              Modernize Your Communications with <span className="text-blue-300 dark:text-orange-500">Movius</span> and Lifetime EndPoint Resources
             </h1>
             
-            <p className="text-lg text-neutral-300 animate-fade-in [animation-delay:200ms]">
+            <p className="text-lg text-blue-100 dark:text-neutral-300 animate-fade-in [animation-delay:200ms]">
               Transform your business communications with a secure, mobile-first solution that replaces legacy PBX systems and enhances customer engagement—all with expert implementation support.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in [animation-delay:400ms]">
-              <Button asChild size="lg" className="gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:opacity-90 border-none">
+              <Button asChild size="lg" className="gap-2 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-orange-500 dark:to-orange-600 hover:opacity-90 border-none">
                 <Link to="/contact">
                   Schedule a Consultation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               
-              <Button asChild variant="outline" size="lg" className="bg-transparent border-neutral-400 text-neutral-200 hover:bg-neutral-700 hover:text-white">
+              <Button asChild variant="outline" size="lg" className="bg-transparent border-blue-200 text-blue-100 hover:bg-blue-800/50 hover:text-white dark:border-neutral-400 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:text-white">
                 <a href="mailto:marc@lifetimeepr.com">
                   Contact Our Team
                 </a>
@@ -53,16 +53,16 @@ const PartnershipHero = () => {
             </div>
           </div>
           
-          <div className="relative rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:300ms] border border-neutral-600">
-            <div className="aspect-video bg-neutral-800 flex items-center justify-center">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:300ms] border border-blue-700/50 dark:border-neutral-600">
+            <div className="aspect-video bg-blue-900 dark:bg-neutral-800 flex items-center justify-center">
               <img 
                 src="https://images.unsplash.com/photo-1487887235947-a955ef187fcc" 
                 alt="Cell Tower Communications" 
                 className="w-full h-full object-cover opacity-80"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/60 via-blue-900/40 to-transparent dark:from-black/60 dark:via-black/40 dark:to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
-                <div className="w-16 h-1 bg-orange-500 mb-4 rounded-full"></div>
+                <div className="w-16 h-1 bg-blue-400 dark:bg-orange-500 mb-4 rounded-full"></div>
                 <p className="text-xl font-semibold">
                   Mobile-First Communications Platform
                 </p>
@@ -74,18 +74,18 @@ const PartnershipHero = () => {
           </div>
         </div>
         
-        <div className="mt-16 bg-neutral-800/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-neutral-700 animate-fade-in [animation-delay:500ms]">
+        <div className="mt-16 bg-blue-800/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-blue-700/50 dark:bg-neutral-800/80 dark:border-neutral-700 animate-fade-in [animation-delay:500ms]">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-white">About Movius Secure Communications</h2>
-              <p className="text-neutral-300">
+              <p className="text-blue-100 dark:text-neutral-300">
                 Movius offers a comprehensive alternative to legacy PBX systems, focusing on secure voice/messaging and customer engagement. As a mobile-first platform, Movius seamlessly integrates enterprise-grade communications with T-Mobile's network, providing a robust solution for modern businesses.
               </p>
             </div>
             
             <div>
               <h2 className="text-xl font-semibold mb-4 text-white">Lifetime EPR as Your Implementation Partner</h2>
-              <p className="text-neutral-300">
+              <p className="text-blue-100 dark:text-neutral-300">
                 Lifetime EndPoint Resources serves as your strategic implementation partner for Movius, bringing expertise in platform integration, asset management, security & compliance, and comprehensive support services to ensure a smooth transition and optimal performance.
               </p>
             </div>
