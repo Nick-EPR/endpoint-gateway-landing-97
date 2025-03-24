@@ -58,8 +58,8 @@ const LEPRAdvantageSection = () => {
               </p>
               <div className="relative rounded-xl overflow-hidden shadow-lg animate-fade-in">
                 <img 
-                  src="/lovable-uploads/95122f21-c52f-4dcc-a9de-8b09ca4a15ba.jpg" 
-                  alt="Lifetime EPR Team Support" 
+                  src="https://images.unsplash.com/photo-1466721591366-2d5fba72006d" 
+                  alt="Call Center Support" 
                   className="w-full"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex items-end">

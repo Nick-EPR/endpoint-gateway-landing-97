@@ -4,6 +4,7 @@ import { navigateToProductsSection } from "@/utils/navigation";
 import MobileProductsMenu from "./MobileProductsMenu";
 import DesktopProductsDropdown from "./DesktopProductsDropdown";
 import { useLocation } from "react-router-dom";
+import { useTheme } from "next-themes";
 
 interface ProductsDropdownProps {
   scrolled: boolean;
@@ -14,10 +15,11 @@ interface ProductsDropdownProps {
 
 const ProductsDropdown = ({ scrolled, isMobile, onItemClick, forceLight }: ProductsDropdownProps) => {
   const location = useLocation();
+  const { theme } = useTheme();
   const isMoviusPage = location.pathname === '/partnerships/movius';
   
-  // Use the dark styling for Movius page or when passed explicitly
-  const forceMoviusStyle = isMoviusPage || forceLight;
+  // Only apply Movius styling if we're on the Movius page AND in dark mode
+  const forceMoviusStyle = (isMoviusPage && theme === 'dark') || forceLight;
   
   const { getLinkClasses, isDark } = useNavLinkStyles(scrolled, forceMoviusStyle);
   
