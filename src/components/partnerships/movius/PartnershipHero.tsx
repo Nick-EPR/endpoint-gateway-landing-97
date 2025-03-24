@@ -55,7 +55,7 @@ const PartnershipHero = () => {
           <div className="relative rounded-xl overflow-hidden shadow-xl animate-fade-in [animation-delay:300ms] border border-neutral-200 dark:border-neutral-800">
             <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
               <img 
-                src="https://images.unsplash.com/photo-1487887235947-a955ef187fcc" 
+                src="/lovable-uploads/1bec5ea3-8432-40d1-8f5c-3cabbe8483be.png" 
                 alt="Cell Tower Communications" 
                 className="w-full h-full object-cover opacity-90"
               />
