@@ -11,20 +11,19 @@ import {
 
 interface NavLinksProps {
   scrolled: boolean;
-  forceDarkMode?: boolean;
   onClose?: () => void;
 }
 
-const NavLinks = ({ scrolled, forceDarkMode = false, onClose }: NavLinksProps) => {
+const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
   const location = useLocation();
   const { theme } = useTheme();
-  const isDark = theme === 'dark' || forceDarkMode;
+  const isDark = theme === 'dark';
 
   const getLinkClasses = (path: string) => {
     const isActive = location.pathname === path;
     const baseClasses = 'transition-colors duration-200';
     
-    if (scrolled && !forceDarkMode) {
+    if (scrolled) {
       if (isDark) {
         return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
       }
@@ -39,7 +38,7 @@ const NavLinks = ({ scrolled, forceDarkMode = false, onClose }: NavLinksProps) =
     const isActive = solutionsPages.includes(location.pathname);
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
-    if (scrolled && !forceDarkMode) {
+    if (scrolled) {
       if (isDark) {
         return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
       }

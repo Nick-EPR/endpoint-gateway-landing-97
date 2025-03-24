@@ -1,14 +1,14 @@
 
 import { useTheme } from "next-themes";
 
-export const useNavLinkStyles = (scrolled: boolean, forceDarkMode: boolean = false) => {
+export const useNavLinkStyles = (scrolled: boolean) => {
   const { theme } = useTheme();
-  const isDark = theme === 'dark' || forceDarkMode;
+  const isDark = theme === 'dark';
   
   const getLinkClasses = () => {
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
-    if (scrolled && !forceDarkMode) {
+    if (scrolled) {
       if (isDark) {
         return `${baseClasses} text-neutral-200 hover:text-white`;
       }

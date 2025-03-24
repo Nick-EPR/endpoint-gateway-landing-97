@@ -10,7 +10,7 @@ import MobileMenu from "./MobileMenu";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 
-const Navbar = ({ scrolled, forceDarkMode = false, onMouseEnter }: NavbarProps) => {
+const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -45,10 +45,10 @@ const Navbar = ({ scrolled, forceDarkMode = false, onMouseEnter }: NavbarProps) 
     setIsMenuOpen(false);
   };
 
-  // When forceDarkMode is true, always treat as transparent navbar with dark mode styles
-  const isWhiteBackground = !forceDarkMode && (scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status');
+  // Always treat the status page as having a white background, regardless of scroll position
+  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status';
   // Only access theme after component has mounted to prevent hydration mismatch
-  const isDark = mounted ? (forceDarkMode || theme === 'dark') : false;
+  const isDark = mounted ? theme === 'dark' : false;
 
   const getFeaturesClasses = () => {
     const baseClasses = 'transition-colors duration-200';
@@ -76,18 +76,18 @@ const Navbar = ({ scrolled, forceDarkMode = false, onMouseEnter }: NavbarProps) 
           : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Logo scrolled={isWhiteBackground} forceDarkMode={forceDarkMode} />
+          <Logo scrolled={isWhiteBackground} />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <ProductsDropdown scrolled={isWhiteBackground} forceDarkMode={forceDarkMode} />
+            <ProductsDropdown scrolled={isWhiteBackground} />
             <button 
               onClick={() => handleNavigation('features')} 
               className={getFeaturesClasses()}
             >
               Features
             </button>
-            <NavLinks scrolled={isWhiteBackground} forceDarkMode={forceDarkMode} />
+            <NavLinks scrolled={isWhiteBackground} />
             <Button
               variant="ghost"
               size="icon"
@@ -141,7 +141,6 @@ const Navbar = ({ scrolled, forceDarkMode = false, onMouseEnter }: NavbarProps) 
         <MobileMenu 
           isOpen={isMenuOpen}
           scrolled={scrolled}
-          forceDarkMode={forceDarkMode}
           onClose={() => setIsMenuOpen(false)}
           onFeatureClick={() => handleNavigation('features')}
         />
