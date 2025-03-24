@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import PartnershipHero from "@/components/partnerships/movius/PartnershipHero";
 import BenefitsSection from "@/components/partnerships/movius/BenefitsSection";
@@ -20,9 +20,9 @@ const MoviusPartnership = () => {
         <meta name="description" content="Transform your communications infrastructure with the strategic partnership between Movius Secure Communications and Lifetime EndPoint Resources." />
       </Helmet>
       <NavigationProgress />
-      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      <Navbar scrolled={true} onMouseEnter={() => {}} />
       
-      <main className="pt-16">
+      <main>
         <PartnershipHero />
         <BenefitsSection />
         <LEPRAdvantageSection />

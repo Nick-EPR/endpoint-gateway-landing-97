@@ -7,11 +7,9 @@ import { Button } from "@/components/ui/button";
 const PartnershipHero = () => {
   return (
     <section className="relative pt-32 pb-20 px-4 bg-white dark:bg-neutral-900 overflow-hidden">
-      {/* Subtle patterns/accents */}
-      <div className="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:20px_20px] dark:bg-[radial-gradient(#333_1px,transparent_1px)]"></div>
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary/20 via-primary to-primary/20"></div>
-      <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/5 blur-3xl"></div>
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl"></div>
+      {/* Background patterns with higher contrast */}
+      <div className="absolute inset-0 bg-[radial-gradient(#d1d5db_1px,transparent_1px)] [background-size:20px_20px] dark:bg-[radial-gradient(#444_1px,transparent_1px)] opacity-50"></div>
+      <div className="absolute top-0 left-0 w-full h-1 bg-primary/40"></div>
       
       <div className="container mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -34,7 +32,7 @@ const PartnershipHero = () => {
               Modernize Your Communications with <span className="text-primary">Movius</span> and Lifetime EndPoint Resources
             </h1>
             
-            <p className="text-lg text-neutral-600 dark:text-neutral-300 animate-fade-in [animation-delay:200ms]">
+            <p className="text-lg text-neutral-700 dark:text-neutral-300 animate-fade-in [animation-delay:200ms]">
               Transform your business communications with a secure, mobile-first solution that replaces legacy PBX systems and enhances customer engagement—all with expert implementation support.
             </p>
             
@@ -79,14 +77,14 @@ const PartnershipHero = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <h2 className="text-xl font-semibold mb-4 text-neutral-900 dark:text-white">About Movius Secure Communications</h2>
-              <p className="text-neutral-600 dark:text-neutral-300">
+              <p className="text-neutral-700 dark:text-neutral-300">
                 Movius offers a comprehensive alternative to legacy PBX systems, focusing on secure voice/messaging and customer engagement. As a mobile-first platform, Movius seamlessly integrates enterprise-grade communications with T-Mobile's network, providing a robust solution for modern businesses.
               </p>
             </div>
             
             <div>
               <h2 className="text-xl font-semibold mb-4 text-neutral-900 dark:text-white">Lifetime EPR as Your Implementation Partner</h2>
-              <p className="text-neutral-600 dark:text-neutral-300">
+              <p className="text-neutral-700 dark:text-neutral-300">
                 Lifetime EndPoint Resources serves as your strategic implementation partner for Movius, bringing expertise in platform integration, asset management, security & compliance, and comprehensive support services to ensure a smooth transition and optimal performance.
               </p>
             </div>
