@@ -20,7 +20,7 @@ const MoviusPartnership = () => {
         <meta name="description" content="Transform your communications infrastructure with the strategic partnership between Movius Secure Communications and Lifetime EndPoint Resources." />
       </Helmet>
       <NavigationProgress />
-      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      <Navbar scrolled={scrolled} forceDarkMode={true} onMouseEnter={() => {}} />
       
       <main className="pt-16">
         <PartnershipHero />

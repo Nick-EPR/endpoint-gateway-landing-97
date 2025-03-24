@@ -8,11 +8,12 @@ import { useState } from "react";
 interface MobileMenuProps {
   isOpen: boolean;
   scrolled: boolean;
+  forceDarkMode?: boolean;
   onClose: () => void;
   onFeatureClick: () => void;
 }
 
-const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuProps) => {
+const MobileMenu = ({ isOpen, scrolled, forceDarkMode = false, onClose, onFeatureClick }: MobileMenuProps) => {
   const [showSolutions, setShowSolutions] = useState(false);
 
   if (!isOpen) return null;
@@ -20,7 +21,7 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
   return (
     <div className="md:hidden bg-white dark:bg-neutral-900 shadow-lg dark:shadow-black/30">
       <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-        <ProductsDropdown scrolled={scrolled} isMobile onItemClick={onClose} />
+        <ProductsDropdown scrolled={scrolled} forceDarkMode={forceDarkMode} isMobile onItemClick={onClose} />
         <button 
           onClick={onFeatureClick} 
           className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-left py-2"

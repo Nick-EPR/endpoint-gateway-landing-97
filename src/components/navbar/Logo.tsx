@@ -4,9 +4,10 @@ import { useTheme } from "next-themes";
 
 interface LogoProps {
   scrolled: boolean;
+  forceDarkMode?: boolean;
 }
 
-const Logo = ({ scrolled }: LogoProps) => {
+const Logo = ({ scrolled, forceDarkMode = false }: LogoProps) => {
   const location = useLocation();
   const { theme } = useTheme();
   
@@ -17,11 +18,12 @@ const Logo = ({ scrolled }: LogoProps) => {
     }
   };
 
-  // Always use appropriate logo for scrolled state on status page
+  // Always use appropriate logo for scrolled state on status page or when forceDarkMode is false
   const isScrolledView = scrolled || location.pathname === '/status';
   
   // Dark mode logo for transparent navbar
-  const darkModeLogo = theme === 'dark' ? "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" : "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
+  const isDarkMode = theme === 'dark' || forceDarkMode;
+  const darkModeLogo = isDarkMode ? "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" : "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
 
   return (
     <div className="relative h-8 md:h-10 w-[120px] md:w-[150px]">
@@ -30,14 +32,14 @@ const Logo = ({ scrolled }: LogoProps) => {
           src={darkModeLogo}
           alt="Lifetime EndPoint Resources"
           className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 ${
-            isScrolledView ? 'opacity-100' : 'opacity-0'
+            isScrolledView && !forceDarkMode ? 'opacity-100' : 'opacity-0'
           }`}
         />
         <img 
           src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png"
           alt="Lifetime EndPoint Resources"
           className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 ${
-            isScrolledView ? 'opacity-0' : 'opacity-100'
+            isScrolledView && !forceDarkMode ? 'opacity-0' : 'opacity-100'
           }`}
         />
       </Link>

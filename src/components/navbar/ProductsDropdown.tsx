@@ -6,12 +6,13 @@ import DesktopProductsDropdown from "./DesktopProductsDropdown";
 
 interface ProductsDropdownProps {
   scrolled: boolean;
+  forceDarkMode?: boolean;
   isMobile?: boolean;
   onItemClick?: () => void;
 }
 
-const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownProps) => {
-  const { getLinkClasses, isDark } = useNavLinkStyles(scrolled);
+const ProductsDropdown = ({ scrolled, forceDarkMode = false, isMobile, onItemClick }: ProductsDropdownProps) => {
+  const { getLinkClasses, isDark } = useNavLinkStyles(scrolled, forceDarkMode);
   
   const handleProductsNavigation = (e: React.MouseEvent) => {
     navigateToProductsSection(e, onItemClick);
@@ -27,7 +28,7 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick }: ProductsDropdownP
   return (
     <DesktopProductsDropdown 
       scrolled={scrolled} 
-      isDark={isDark} 
+      isDark={isDark || forceDarkMode}
       linkClasses={getLinkClasses()} 
       onAllProductsClick={handleProductsNavigation} 
     />
