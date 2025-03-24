@@ -18,13 +18,9 @@ const PartnershipHero = () => {
               />
               <div className="bg-neutral-200 dark:bg-neutral-700 h-8 w-px"></div>
               <img 
-                src="/lovable-uploads/movius-logo.png" 
+                src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
                 alt="Movius Logo" 
                 className="h-10"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "https://placehold.co/200x80/93C851/FFFFFF?text=MOVIUS";
-                }}
               />
             </div>
             

@@ -48,14 +48,9 @@ const Partnership = () => {
                   />
                   <div className="bg-white/30 h-8 w-px"></div>
                   <img 
-                    src="/lovable-uploads/movius-logo.png" 
+                    src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
                     alt="Movius Logo" 
                     className="h-8 brightness-200"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "https://placehold.co/200x80/FFFFFF/FFFFFF?text=MOVIUS";
-                      target.className = "h-8 bg-white/20 p-1 rounded";
-                    }}
                   />
                 </div>
                 <p className="text-lg font-medium">Modernize Your Communications</p>

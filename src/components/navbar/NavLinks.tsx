@@ -76,6 +76,11 @@ const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
                 className="flex items-center gap-2 w-full"
                 onClick={onClose}
               >
+                <img 
+                  src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
+                  alt="Movius Logo" 
+                  className="h-4 w-auto" 
+                />
                 <span>Movius Communications</span>
               </Link>
             </DropdownMenuItem>

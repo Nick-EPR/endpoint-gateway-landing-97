@@ -68,13 +68,9 @@ const CallToActionSection = () => {
               </p>
               <div className="h-8 w-px bg-border hidden md:block"></div>
               <img 
-                src="/lovable-uploads/movius-logo.png" 
+                src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
                 alt="Movius Logo" 
                 className="h-8"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "https://placehold.co/200x80/93C851/FFFFFF?text=MOVIUS";
-                }}
               />
             </div>
           </div>
