@@ -66,7 +66,7 @@ const PartnershipHero = () => {
                   Mobile-First Communications Platform
                 </p>
                 <p className="text-sm opacity-90">
-                  Integrated with <span style={{color: "#DB006D"}}>T-Mobile's</span> network for enterprise-grade security
+                  Integrated with T-Mobile's network for enterprise-grade security
                 </p>
               </div>
             </div>
