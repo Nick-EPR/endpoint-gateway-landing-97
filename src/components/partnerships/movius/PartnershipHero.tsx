@@ -16,7 +16,7 @@ const PartnershipHero = () => {
           <div className="space-y-6">
             <div className="flex space-x-6 items-center mb-6">
               <img 
-                src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" 
+                src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png" 
                 alt="Lifetime EPR Logo" 
                 className="h-10"
               />
