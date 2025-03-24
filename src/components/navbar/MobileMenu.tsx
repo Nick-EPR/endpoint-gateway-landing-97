@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import ProductsDropdown from "./ProductsDropdown";
 import NavLinks from "./NavLinks";
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -14,6 +15,10 @@ interface MobileMenuProps {
 
 const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuProps) => {
   const [showSolutions, setShowSolutions] = useState(false);
+  const location = useLocation();
+
+  // Check if we're currently on the features section
+  const isFeatureActive = location.pathname === '/' && location.hash === '#features';
 
   if (!isOpen) return null;
 
@@ -44,12 +49,17 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
           )}
         </div>
         
-        <button 
-          onClick={onFeatureClick} 
-          className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-left py-2"
+        <a
+          href="/#features"
+          className={`text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-left py-2 ${isFeatureActive ? 'text-primary font-medium' : ''}`}
+          onClick={(e) => {
+            e.preventDefault();
+            onFeatureClick();
+            onClose();
+          }}
         >
           Features
-        </button>
+        </a>
         
         <Link 
           to="/security" 

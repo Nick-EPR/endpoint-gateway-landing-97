@@ -85,12 +85,23 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
         </DropdownMenu>
       </div>
       
-      <button 
-        onClick={onClose} 
+      <a 
+        href="/#features" 
         className={getFeaturesClasses()}
+        onClick={(e) => {
+          e.preventDefault();
+          if (location.pathname !== '/') {
+            window.location.href = '/#features';
+          } else {
+            document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+            // Update URL with hash
+            window.history.pushState(null, '', `#features`);
+          }
+          if (onClose) onClose();
+        }}
       >
         Features
-      </button>
+      </a>
 
       <Link 
         to="/security" 
@@ -123,7 +134,8 @@ function getFeaturesClasses() {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   
-  const isFeatureActive = location.pathname === '/' && location.hash === '#features';
+  // Check if we're on the homepage with #features OR checking for features in any hash
+  const isFeatureActive = (location.pathname === '/' && location.hash === '#features') || location.hash === '#features';
   const baseClasses = 'transition-colors duration-200';
   
   // Add Movius page to the pages that need special treatment for the Features link
