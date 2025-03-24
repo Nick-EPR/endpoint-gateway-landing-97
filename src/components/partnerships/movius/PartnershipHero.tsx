@@ -6,8 +6,13 @@ import { Button } from "@/components/ui/button";
 
 const PartnershipHero = () => {
   return (
-    <section className="relative pt-32 pb-20 px-4 bg-gradient-to-b from-primary/10 to-background">
-      <div className="container mx-auto">
+    <section className="relative pt-32 pb-20 px-4 bg-gradient-to-br from-neutral-900 via-neutral-900 to-neutral-800 overflow-hidden">
+      {/* Orange accent elements */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-500/20 via-orange-400 to-orange-500/20"></div>
+      <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-orange-500/10 blur-3xl"></div>
+      <div className="absolute -bottom-32 -left-32 w-96 h-96 rounded-full bg-orange-600/5 blur-3xl"></div>
+      
+      <div className="container mx-auto relative z-10">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div className="flex space-x-6 items-center mb-6">
@@ -16,7 +21,7 @@ const PartnershipHero = () => {
                 alt="Lifetime EPR Logo" 
                 className="h-10"
               />
-              <div className="bg-neutral-200 dark:bg-neutral-700 h-8 w-px"></div>
+              <div className="bg-neutral-700 h-8 w-px"></div>
               <img 
                 src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
                 alt="Movius Logo" 
@@ -24,23 +29,23 @@ const PartnershipHero = () => {
               />
             </div>
             
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground animate-fade-in">
-              Modernize Your Communications with Movius and Lifetime EndPoint Resources
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white animate-fade-in">
+              Modernize Your Communications with <span className="text-orange-400">Movius</span> and Lifetime EndPoint Resources
             </h1>
             
-            <p className="text-lg text-muted-foreground animate-fade-in [animation-delay:200ms]">
+            <p className="text-lg text-neutral-300 animate-fade-in [animation-delay:200ms]">
               Transform your business communications with a secure, mobile-first solution that replaces legacy PBX systems and enhances customer engagement—all with expert implementation support.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in [animation-delay:400ms]">
-              <Button asChild size="lg" className="gap-2">
+              <Button asChild size="lg" className="gap-2 bg-gradient-to-r from-orange-500 to-orange-600 hover:opacity-90 border-none">
                 <Link to="/contact">
                   Schedule a Consultation
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
               
-              <Button asChild variant="outline" size="lg">
+              <Button asChild variant="outline" size="lg" className="bg-transparent border-neutral-600 text-neutral-200 hover:bg-neutral-800 hover:text-white">
                 <a href="mailto:marc@lifetimeepr.com">
                   Contact Our Team
                 </a>
@@ -48,15 +53,16 @@ const PartnershipHero = () => {
             </div>
           </div>
           
-          <div className="relative rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:300ms]">
-            <div className="aspect-video bg-neutral-100 dark:bg-neutral-800 flex items-center justify-center">
+          <div className="relative rounded-xl overflow-hidden shadow-2xl animate-fade-in [animation-delay:300ms] border border-neutral-700">
+            <div className="aspect-video bg-neutral-800 flex items-center justify-center">
               <img 
                 src="/lovable-uploads/a5045023-7264-4440-a6c2-12276c798c19.jpg" 
                 alt="Secure Mobile Communications" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover opacity-80"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/40 to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
+                <div className="w-16 h-1 bg-orange-500 mb-4 rounded-full"></div>
                 <p className="text-xl font-semibold">
                   Mobile-First Communications Platform
                 </p>
@@ -68,18 +74,18 @@ const PartnershipHero = () => {
           </div>
         </div>
         
-        <div className="mt-16 bg-card rounded-xl p-6 shadow-md border border-border animate-fade-in [animation-delay:500ms]">
+        <div className="mt-16 bg-neutral-800/80 backdrop-blur-sm rounded-xl p-6 shadow-md border border-neutral-700 animate-fade-in [animation-delay:500ms]">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h2 className="text-xl font-semibold mb-4">About Movius Secure Communications</h2>
-              <p className="text-muted-foreground">
+              <h2 className="text-xl font-semibold mb-4 text-white">About Movius Secure Communications</h2>
+              <p className="text-neutral-300">
                 Movius offers a comprehensive alternative to legacy PBX systems, focusing on secure voice/messaging and customer engagement. As a mobile-first platform, Movius seamlessly integrates enterprise-grade communications with T-Mobile's network, providing a robust solution for modern businesses.
               </p>
             </div>
             
             <div>
-              <h2 className="text-xl font-semibold mb-4">Lifetime EPR as Your Implementation Partner</h2>
-              <p className="text-muted-foreground">
+              <h2 className="text-xl font-semibold mb-4 text-white">Lifetime EPR as Your Implementation Partner</h2>
+              <p className="text-neutral-300">
                 Lifetime EndPoint Resources serves as your strategic implementation partner for Movius, bringing expertise in platform integration, asset management, security & compliance, and comprehensive support services to ensure a smooth transition and optimal performance.
               </p>
             </div>
