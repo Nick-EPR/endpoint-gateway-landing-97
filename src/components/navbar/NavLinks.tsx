@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { ChevronDown } from "lucide-react";
@@ -62,14 +63,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
 
   return (
     <>
-      <Link 
-        to="/security" 
-        className={getLinkClasses('/security')}
-        onClick={onClose}
-      >
-        Security
-      </Link>
-
       <div className="relative">
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none">
@@ -99,6 +92,14 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+
+      <Link 
+        to="/security" 
+        className={getLinkClasses('/security')}
+        onClick={onClose}
+      >
+        Security
+      </Link>
       
       <Link 
         to="/mission" 
