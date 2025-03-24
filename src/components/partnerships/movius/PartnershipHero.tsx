@@ -16,20 +16,20 @@ const PartnershipHero = () => {
           <div className="space-y-6">
             <div className="flex space-x-6 items-center mb-6">
               <img 
-                src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png" 
-                alt="Lifetime EPR Logo" 
+                src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
+                alt="Movius Logo" 
                 className="h-10"
               />
               <div className="bg-neutral-400 h-8 w-px"></div>
               <img 
-                src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
-                alt="Movius Logo" 
+                src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png" 
+                alt="Lifetime EPR Logo" 
                 className="h-10"
               />
             </div>
             
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-neutral-900 dark:text-white animate-fade-in">
-              Modernize Your Communications with <span className="text-primary">Movius</span> and Lifetime EndPoint Resources
+              Modernize Your Communications with <span style={{color: "#FF4E3B"}}>Movius</span> and <span style={{color: "#93C852"}}>Lifetime EndPoint Resources</span>
             </h1>
             
             <p className="text-lg text-neutral-700 dark:text-neutral-300 animate-fade-in [animation-delay:200ms]">
