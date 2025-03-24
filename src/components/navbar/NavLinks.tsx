@@ -63,13 +63,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
 
   return (
     <>
-      <button 
-        onClick={onClose} 
-        className={getFeaturesClasses()}
-      >
-        Features
-      </button>
-      
       <div className="relative">
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none">
@@ -99,6 +92,13 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      
+      <button 
+        onClick={onClose} 
+        className={getFeaturesClasses()}
+      >
+        Features
+      </button>
 
       <Link 
         to="/security" 

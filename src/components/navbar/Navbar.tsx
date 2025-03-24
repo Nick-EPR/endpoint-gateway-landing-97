@@ -87,12 +87,6 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             <ProductsDropdown scrolled={isWhiteBackground} />
-            <button 
-              onClick={() => handleNavigation('features')} 
-              className={getFeaturesClasses()}
-            >
-              Features
-            </button>
             <NavLinks scrolled={isWhiteBackground} />
             <Button
               variant="ghost"
