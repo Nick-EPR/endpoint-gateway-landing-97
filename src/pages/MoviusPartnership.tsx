@@ -16,7 +16,7 @@ const MoviusPartnership = () => {
   return (
     <>
       <Helmet>
-        <title>Movius & Lifetime EPR Partnership | Secure Communications</title>
+        <title>Movius Communications Solution | Lifetime EPR</title>
         <meta name="description" content="Transform your communications infrastructure with the strategic partnership between Movius Secure Communications and Lifetime EndPoint Resources." />
       </Helmet>
       <NavigationProgress />

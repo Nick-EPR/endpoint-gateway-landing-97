@@ -2,6 +2,8 @@
 import { Link } from "react-router-dom";
 import ProductsDropdown from "./ProductsDropdown";
 import NavLinks from "./NavLinks";
+import { ChevronDown, ChevronRight } from "lucide-react";
+import { useState } from "react";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -11,6 +13,8 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuProps) => {
+  const [showSolutions, setShowSolutions] = useState(false);
+
   if (!isOpen) return null;
 
   return (
@@ -23,9 +27,54 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
         >
           Features
         </button>
+        
         <div className="flex flex-col space-y-4">
-          <NavLinks scrolled={true} onClose={onClose} />
+          <Link 
+            to="/security" 
+            className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200"
+            onClick={onClose}
+          >
+            Security
+          </Link>
+          
+          <div className="space-y-2">
+            <button 
+              onClick={() => setShowSolutions(!showSolutions)}
+              className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 flex items-center justify-between w-full"
+            >
+              <span>Solutions</span>
+              {showSolutions ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+            </button>
+            
+            {showSolutions && (
+              <div className="pl-4 space-y-2 border-l border-neutral-200 dark:border-neutral-700">
+                <Link 
+                  to="/partnerships/movius" 
+                  className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 block py-1"
+                  onClick={onClose}
+                >
+                  Movius Communications
+                </Link>
+              </div>
+            )}
+          </div>
+          
+          <Link 
+            to="/mission" 
+            className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200"
+            onClick={onClose}
+          >
+            Mission
+          </Link>
+          <Link 
+            to="/contact" 
+            className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200"
+            onClick={onClose}
+          >
+            Contact
+          </Link>
         </div>
+        
         <a 
           href="https://app.lifetimeepr.io"
           className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200 inline-block text-center"
