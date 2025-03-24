@@ -63,6 +63,13 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
 
   return (
     <>
+      <button 
+        onClick={onClose} 
+        className={getFeaturesClasses()}
+      >
+        Features
+      </button>
+      
       <div className="relative">
         <DropdownMenu>
           <DropdownMenuTrigger className="focus:outline-none">
@@ -118,5 +125,24 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     </>
   );
 };
+
+// Helper function for "Features" link class
+function getFeaturesClasses() {
+  const location = useLocation();
+  const { theme } = useTheme();
+  const isDark = theme === 'dark';
+  
+  const isFeatureActive = location.pathname === '/' && location.hash === '#features';
+  const baseClasses = 'transition-colors duration-200';
+  
+  if (location.pathname === '/what-is-itam' || location.pathname === '/status' || location.hash === '#features') {
+    if (isDark) {
+      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+    }
+    return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+  }
+  
+  return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
+}
 
 export default NavLinks;
