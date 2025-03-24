@@ -17,11 +17,15 @@ const Logo = ({ scrolled }: LogoProps) => {
     }
   };
 
-  // Always use appropriate logo for scrolled state on status page
-  const isScrolledView = scrolled || location.pathname === '/status';
+  // Check if we're on the Movius partnership page
+  const isMoviusPage = location.pathname === '/partnerships/movius';
+
+  // Always use appropriate logo for specific pages or scrolled state
+  const isScrolledView = scrolled || location.pathname === '/status' || isMoviusPage;
   
-  // Dark mode logo for transparent navbar
-  const darkModeLogo = theme === 'dark' ? "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" : "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
+  // Dark mode logo for transparent navbar or Movius page
+  const isDarkMode = theme === 'dark' || isMoviusPage;
+  const darkModeLogo = isDarkMode ? "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" : "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
 
   return (
     <div className="relative h-8 md:h-10 w-[120px] md:w-[150px]">

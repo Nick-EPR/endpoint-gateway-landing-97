@@ -12,16 +12,27 @@ import {
 interface NavLinksProps {
   scrolled: boolean;
   onClose?: () => void;
+  forceLight?: boolean;
 }
 
-const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
+const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   const location = useLocation();
   const { theme } = useTheme();
-  const isDark = theme === 'dark';
+  
+  // Check if we're on the Movius partnership page
+  const isMoviusPage = location.pathname === '/partnerships/movius';
+  
+  // Force dark mode on Movius page
+  const isDark = theme === 'dark' || isMoviusPage || forceLight;
 
   const getLinkClasses = (path: string) => {
     const isActive = location.pathname === path;
     const baseClasses = 'transition-colors duration-200';
+    
+    // For Movius page, always use light text
+    if (isMoviusPage || forceLight) {
+      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+    }
     
     if (scrolled) {
       if (isDark) {
@@ -37,6 +48,11 @@ const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
     const solutionsPages = ['/partnerships/movius'];
     const isActive = solutionsPages.includes(location.pathname);
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
+    
+    // For Movius page, always use light text
+    if (isMoviusPage || forceLight) {
+      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+    }
     
     if (scrolled) {
       if (isDark) {
