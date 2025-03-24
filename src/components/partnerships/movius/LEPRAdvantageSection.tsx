@@ -27,7 +27,7 @@ const advantages = [
 
 const LEPRAdvantageSection = () => {
   return (
-    <section className="py-16 md:py-24 bg-white dark:bg-neutral-800">
+    <section className="py-16 md:py-24 bg-neutral-50 dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="order-2 lg:order-1">
@@ -42,8 +42,8 @@ const LEPRAdvantageSection = () => {
                     <item.icon className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
+                    <h3 className="text-xl font-semibold mb-2 text-neutral-900 dark:text-white">{item.title}</h3>
+                    <p className="text-neutral-600 dark:text-neutral-300">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -52,11 +52,11 @@ const LEPRAdvantageSection = () => {
           
           <div className="order-1 lg:order-2">
             <div className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold">The Lifetime EndPoint Resources Advantage</h2>
-              <p className="text-lg text-muted-foreground">
+              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">The Lifetime EndPoint Resources Advantage</h2>
+              <p className="text-lg text-neutral-600 dark:text-neutral-300">
                 As your strategic implementation partner for Movius Secure Communications, Lifetime EPR brings specialized expertise and a comprehensive support ecosystem to ensure your successful transition.
               </p>
-              <div className="relative rounded-xl overflow-hidden shadow-lg animate-fade-in">
+              <div className="relative rounded-xl overflow-hidden shadow-lg animate-fade-in border border-neutral-200 dark:border-neutral-700">
                 <img 
                   src="https://images.unsplash.com/photo-1466721591366-2d5fba72006d" 
                   alt="Call Center Support" 
