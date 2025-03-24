@@ -63,10 +63,10 @@ const PartnershipHero = () => {
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <div className="w-16 h-1 bg-primary mb-4 rounded-full"></div>
                 <p className="text-xl font-semibold">
-                  Mobile-First Communications Platform
+                  <span style={{color: "#DD0174"}}>Mobile-First</span> Communications Platform
                 </p>
                 <p className="text-sm opacity-90">
-                  Integrated with T-Mobile's network for enterprise-grade security
+                  Integrated with <span style={{color: "#DB006D"}}>T-Mobile's</span> network for enterprise-grade security
                 </p>
               </div>
             </div>
