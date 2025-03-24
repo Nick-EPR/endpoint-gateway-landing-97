@@ -59,7 +59,7 @@ const PartnershipHero = () => {
                 alt="Cell Tower Communications" 
                 className="w-full h-full object-cover opacity-90"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-neutral-900/60 via-neutral-800/40 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-neutral-900/80 via-neutral-800/60 to-transparent"></div>
               <div className="absolute bottom-6 left-6 right-6 text-white">
                 <div className="w-16 h-1 bg-primary mb-4 rounded-full"></div>
                 <p className="text-xl font-semibold">
