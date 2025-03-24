@@ -36,6 +36,13 @@ const NavLinks = ({ scrolled, onClose }: NavLinksProps) => {
         Security
       </Link>
       <Link 
+        to="/partnerships/movius" 
+        className={getLinkClasses('/partnerships/movius')}
+        onClick={onClose}
+      >
+        Partnerships
+      </Link>
+      <Link 
         to="/mission" 
         className={getLinkClasses('/mission')}
         onClick={onClose}

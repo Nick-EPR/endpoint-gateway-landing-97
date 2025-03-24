@@ -1,78 +1,71 @@
 
-import { Star, Users } from "lucide-react";
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Partnership = () => {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-12">
-            <img
-              src="/lovable-uploads/afd5064d-80e1-4dc3-9a47-00f189d67bdd.png"
-              alt="Lifetime Service"
-              className="h-16 w-auto mx-auto mb-8 dark:invert dark:brightness-200"
-            />
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3">
-              <Users className="w-8 h-8 text-primary" />
-              Strategic Partnership
+    <div className="container mx-auto px-4 py-12 md:py-20">
+      <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border">
+        <div className="grid md:grid-cols-2">
+          <div className="p-8 md:p-12 flex flex-col justify-center">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">
+              Strategic Partnership: Movius Secure Communications
             </h2>
-            <p className="text-lg text-neutral mb-8 animate-on-scroll">
-              Enhancing our ITAM solutions through strategic collaboration
+            <p className="text-muted-foreground mb-6">
+              Transform your business communications with the power of mobile-first technology. 
+              Our strategic partnership with Movius delivers a comprehensive alternative to legacy 
+              PBX systems, focusing on secure voice/messaging and enhanced customer engagement.
             </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="animate-on-scroll">
-              <h3 className="text-2xl font-semibold mb-4 text-primary">
-                Partnership with Lifetime Service
-              </h3>
-              <p className="text-neutral dark:text-neutral-300 mb-6">
-                Through our exclusive partnership with Lifetime Service, we deliver comprehensive repair and maintenance solutions that set us apart in the industry.
-              </p>
-              <ul className="space-y-4 text-neutral dark:text-neutral-300">
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
-                  </div>
-                  <span className="ml-3">Expert repair services for all IT assets</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
-                  </div>
-                  <span className="ml-3">Rapid response times and efficient resolution</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-primary-light flex items-center justify-center mt-1">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
-                  </div>
-                  <span className="ml-3">Nationwide coverage for consistent service quality</span>
-                </li>
-              </ul>
-              <a href="https://lifetimeservice.com" target="_blank" rel="noopener noreferrer" className="inline-block mt-8 text-primary hover:text-secondary transition-colors">
-                Learn more about Lifetime Service →
-              </a>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild className="gap-2">
+                <Link to="/partnerships/movius">
+                  Learn About Our Partnership
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <a href="mailto:marc@lifetimeepr.com">
+                  Contact Our Team
+                </a>
+              </Button>
             </div>
-            <div className="bg-neutral-light dark:bg-neutral-800/50 p-8 rounded-xl animate-on-scroll">
-              <div className="text-center mb-6">
-                <h4 className="text-xl font-semibold mb-2 text-neutral-900 dark:text-white">Partnership Benefits</h4>
-                <p className="text-neutral dark:text-neutral-300">Our collaboration delivers enhanced value to clients through:</p>
-              </div>
-              <div className="space-y-4">
-                <div className="p-4 bg-white dark:bg-neutral-900/50 rounded-lg shadow-sm">
-                  <p className="text-neutral dark:text-neutral-300">Integrated repair tracking within your ITAM system</p>
+          </div>
+          <div className="bg-neutral-100 dark:bg-neutral-800 relative min-h-[300px]">
+            <img 
+              src="/lovable-uploads/a5045023-7264-4440-a6c2-12276c798c19.jpg" 
+              alt="Mobile Business Communications" 
+              className="w-full h-full object-cover absolute inset-0"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-transparent to-transparent p-8 md:p-12 flex flex-col justify-end">
+              <div className="text-white">
+                <div className="mb-4 flex space-x-4 items-center">
+                  <img 
+                    src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" 
+                    alt="Lifetime EPR Logo" 
+                    className="h-8 brightness-200"
+                  />
+                  <div className="bg-white/30 h-8 w-px"></div>
+                  <img 
+                    src="/lovable-uploads/movius-logo.png" 
+                    alt="Movius Logo" 
+                    className="h-8 brightness-200"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "https://placehold.co/200x80/FFFFFF/FFFFFF?text=MOVIUS";
+                      target.className = "h-8 bg-white/20 p-1 rounded";
+                    }}
+                  />
                 </div>
-                <div className="p-4 bg-white dark:bg-neutral-900/50 rounded-lg shadow-sm">
-                  <p className="text-neutral dark:text-neutral-300">Streamlined maintenance scheduling and reporting</p>
-                </div>
-                <div className="p-4 bg-white dark:bg-neutral-900/50 rounded-lg shadow-sm">
-                  <p className="text-neutral dark:text-neutral-300">Cost-effective repair solutions that extend asset lifecycle</p>
-                </div>
+                <p className="text-lg font-medium">Modernize Your Communications</p>
+                <p className="text-sm opacity-80">Mobile-first platform with enterprise-grade security</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

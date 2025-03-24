@@ -1,7 +1,9 @@
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "next-themes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Page imports
 import Index from "./pages/Index";
 import Security from "./pages/Security";
 import Contact from "./pages/Contact";
@@ -17,6 +19,7 @@ import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import WhatIsITAM from "./pages/WhatIsITAM";
 import WhyChooseUs from "./pages/WhyChooseUs";
+import MoviusPartnership from "./pages/MoviusPartnership";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 
@@ -44,6 +47,7 @@ function AppContent() {
           <Route path="/what-is-itam" element={<WhatIsITAM />} />
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
+          <Route path="/partnerships/movius" element={<MoviusPartnership />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
