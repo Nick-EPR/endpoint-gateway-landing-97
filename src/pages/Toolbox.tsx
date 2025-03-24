@@ -7,6 +7,9 @@ import HeroSection from "./toolbox/HeroSection";
 import FeaturesSection from "./toolbox/FeaturesSection";
 import StatsSection from "./toolbox/StatsSection";
 import IntegrationSection from "./toolbox/IntegrationSection";
+import ClientsSection from "./toolbox/ClientsSection";
+import CTASection from "./toolbox/CTASection";
+import DemoSection from "./toolbox/DemoSection";
 
 const Toolbox = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,9 +39,12 @@ const Toolbox = () => {
     <div className="min-h-screen bg-white dark:bg-neutral-900">
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
       <HeroSection />
+      <ClientsSection />
       <FeaturesSection />
       <StatsSection />
+      <DemoSection />
       <IntegrationSection />
+      <CTASection />
       <Footer />
     </div>
   );
