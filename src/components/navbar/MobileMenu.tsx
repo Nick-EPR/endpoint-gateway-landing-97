@@ -38,7 +38,7 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
                 className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 block py-1"
                 onClick={onClose}
               >
-                Movius Communications
+                Communication
               </Link>
             </div>
           )}

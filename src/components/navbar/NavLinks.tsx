@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { ChevronDown } from "lucide-react";
@@ -19,14 +18,12 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   const location = useLocation();
   const { theme } = useTheme();
   
-  // Use dark mode only when theme is dark, not based on page
   const isDark = theme === 'dark';
 
   const getLinkClasses = (path: string) => {
     const isActive = location.pathname === path;
     const baseClasses = 'transition-colors duration-200';
     
-    // Special case for forceLight prop
     if (forceLight) {
       return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
     }
@@ -46,7 +43,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     const isActive = solutionsPages.includes(location.pathname);
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
-    // Special case for forceLight prop
     if (forceLight) {
       return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
     }
@@ -86,7 +82,7 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
                   alt="Movius Logo" 
                   className="h-4 w-auto" 
                 />
-                <span>Movius Communications</span>
+                <span>Communication</span>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -126,7 +122,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   );
 };
 
-// Helper function for "Features" link class
 function getFeaturesClasses() {
   const location = useLocation();
   const { theme } = useTheme();
