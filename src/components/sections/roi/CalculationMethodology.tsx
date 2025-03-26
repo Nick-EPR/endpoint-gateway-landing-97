@@ -9,7 +9,7 @@ import {
 
 interface MetricTooltip {
   title: string;
-  description: string;
+  description: React.ReactNode;
 }
 
 interface MetricTooltips {
@@ -19,39 +19,148 @@ interface MetricTooltips {
 const metricTooltips: MetricTooltips = {
   carbon: {
     title: "Carbon Reduction Impact",
-    description: "Based on device-specific CO2 reductions per lifecycle extended. MacBooks: 220kg, Laptops: 156kg, Desktops: 250kg, Tablets: 100kg, Monitors: 120kg, Accessories: 15kg. Extended device lifecycles from 3 to 3.9 years significantly reduce the carbon footprint of your IT infrastructure."
+    description: (
+      <div className="space-y-2">
+        <p>CO₂ reduction per lifecycle extension:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>MacBooks: 220kg</li>
+          <li>Laptops: 156kg</li>
+          <li>Desktops: 250kg</li>
+          <li>Tablets: 100kg</li>
+          <li>Monitors: 120kg</li>
+          <li>Accessories: 15kg</li>
+        </ul>
+        <p className="text-xs mt-1">Device lifecycles extended from 3 to 3.9 years significantly reduce overall carbon footprint.</p>
+      </div>
+    )
   },
   ewaste: {
     title: "E-Waste Prevention Impact",
-    description: "Each extended device lifecycle prevents e-waste: MacBooks: 2.5kg, Laptops: 1.8kg, Desktops: 3.2kg, Tablets: 0.9kg, Monitors: 1.6kg, Accessories: 0.3kg. Our repair-first approach keeps devices in use longer, reducing the strain on landfills and the need for raw material extraction."
+    description: (
+      <div className="space-y-2">
+        <p>E-waste prevention per device:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>MacBooks: 2.5kg</li>
+          <li>Laptops: 1.8kg</li>
+          <li>Desktops: 3.2kg</li>
+          <li>Tablets: 0.9kg</li>
+          <li>Monitors: 1.6kg</li>
+          <li>Accessories: 0.3kg</li>
+        </ul>
+        <p className="text-xs mt-1">Our repair-first approach keeps devices in use longer, reducing landfill impact.</p>
+      </div>
+    )
   },
   water: {
     title: "Water Conservation Impact",
-    description: "Manufacturing devices requires significant water. By extending device lifecycles, we save: MacBooks: 1800L, Laptops: 1200L, Desktops: 1500L, Tablets: 700L, Monitors: 900L, Accessories: 100L per device lifecycle."
+    description: (
+      <div className="space-y-2">
+        <p>Water saved per lifecycle extension:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>MacBooks: 1,800L</li>
+          <li>Laptops: 1,200L</li>
+          <li>Desktops: 1,500L</li>
+          <li>Tablets: 700L</li>
+          <li>Monitors: 900L</li>
+          <li>Accessories: 100L</li>
+        </ul>
+        <p className="text-xs mt-1">Manufacturing new devices requires significant water resources.</p>
+      </div>
+    )
   },
   cost: {
     title: "Financial Impact",
-    description: "Cost savings based on per-incident costs (MacBook: $449, Laptop: $265, Desktop: $267, Tablet: $212, Monitor: $75, Accessories: $35) plus extended lifecycle value and 20% end-of-life value recovery through our certified refurbishment program."
+    description: (
+      <div className="space-y-2">
+        <p>Cost savings based on:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Per-incident costs by device type</li>
+          <li>MacBook: $449</li>
+          <li>Laptop: $265</li>
+          <li>Desktop: $267</li>
+          <li>Tablet: $212</li>
+          <li>Monitor: $75</li>
+          <li>Accessories: $35</li>
+        </ul>
+        <p className="text-xs mt-1">Additional value from lifecycle extension and 20% end-of-life recovery through certified refurbishment.</p>
+      </div>
+    )
   },
   laborSavings: {
     title: "Labor Savings Calculation",
-    description: "IT asset manager: 1 business day × $3k/wk = $600/hire × (12% incident rate + 10% turnover rate). HR manager: 1 hour × $3k/wk = $75/hire × (12% incident rate + 10% turnover rate)."
+    description: (
+      <div className="space-y-2">
+        <ul className="list-disc pl-4 space-y-1">
+          <li><span className="font-medium">IT asset manager:</span> 1 business day × $3k/wk = $600/hire</li>
+          <li><span className="font-medium">Total:</span> $600 × (12% incident rate + 10% turnover rate)</li>
+          <li><span className="font-medium">HR manager:</span> 1 hour × $3k/wk = $75/hire</li>
+          <li><span className="font-medium">Total:</span> $75 × (12% incident rate + 10% turnover rate)</li>
+        </ul>
+      </div>
+    )
   },
   downtime: {
     title: "Downtime Cost Savings",
-    description: "Remote employee downtime: $462/day (based on $100k salary + 20% benefits) × 12% incident rate. This represents the cost of lost productivity when an asset is non-functional."
+    description: (
+      <div className="space-y-2">
+        <ul className="list-disc pl-4 space-y-1">
+          <li><span className="font-medium">Remote employee downtime:</span> $462/day</li>
+          <li><span className="font-medium">Based on:</span> $100k salary + 20% benefits</li>
+          <li><span className="font-medium">Applied to:</span> 12% incident rate</li>
+        </ul>
+        <p className="text-xs mt-1">Represents the cost of lost productivity when an asset is non-functional.</p>
+      </div>
+    )
   },
   repair: {
     title: "Repair vs Replacement Savings",
-    description: "Average repair cost: $300. Average replacement cost: $1,000. Average savings: $700 × 12% incident rate. Our repair-first approach significantly reduces the need for costly new device purchases."
+    description: (
+      <div className="space-y-2">
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Average repair cost: $300</li>
+          <li>Average replacement cost: $1,000</li>
+          <li>Average savings: $700 per incident</li>
+          <li>Applied to: 12% incident rate</li>
+        </ul>
+        <p className="text-xs mt-1">Our repair-first approach significantly reduces the need for costly new device purchases.</p>
+      </div>
+    )
   },
   residual: {
     title: "Residual Value Recovery",
-    description: "20% of retail value recovered during disposition compared to $0 without our program. This applies to computing devices at end-of-lifecycle, creating value where there was previously none."
+    description: (
+      <div className="space-y-2">
+        <ul className="list-disc pl-4 space-y-1">
+          <li>20% of retail value recovered during disposition</li>
+          <li>Compared to $0 without our program</li>
+          <li>Applies to computing devices at end-of-lifecycle</li>
+        </ul>
+        <p className="text-xs mt-1">Creates value where there was previously none through our specialized refurbishment process.</p>
+      </div>
+    )
   },
   onboarding: {
     title: "Onboarding Time Savings",
-    description: "Pre-onboarding: 10-15 hours (HR: 4-6h, IT: 6-8h). First week: 15-20 hours (HR: 3-5h, IT: 5-8h, Manager: 5-7h). Ongoing support: 10-15 hours over first 90 days (IT: 4-6h, Manager: 6-9h)."
+    description: (
+      <div className="space-y-2">
+        <p className="font-medium">Pre-onboarding: 10-15 hours</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>HR: 4-6 hours</li>
+          <li>IT: 6-8 hours</li>
+        </ul>
+        <p className="font-medium mt-1">First week: 15-20 hours</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>HR: 3-5 hours</li>
+          <li>IT: 5-8 hours</li>
+          <li>Manager: 5-7 hours</li>
+        </ul>
+        <p className="font-medium mt-1">Ongoing support: 10-15 hours over first 90 days</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>IT: 4-6 hours</li>
+          <li>Manager: 6-9 hours</li>
+        </ul>
+      </div>
+    )
   }
 };
 
@@ -65,11 +174,18 @@ export const CalculationMethodology = () => {
             <TooltipProvider key={key}>
               <Tooltip delayDuration={0}>
                 <TooltipTrigger asChild>
-                  <Info className="h-4 w-4 text-primary cursor-help" />
+                  <div className="h-5 w-5 rounded-full bg-blue-500/10 flex items-center justify-center cursor-help">
+                    <Info className="h-3.5 w-3.5 text-blue-500" />
+                  </div>
                 </TooltipTrigger>
-                <TooltipContent side="top" align="center" className="max-w-xs dark:bg-neutral-800 dark:border-neutral-700">
-                  <p className="font-semibold mb-1 dark:text-white">{content.title}</p>
-                  <p className="text-xs dark:text-neutral-300">{content.description}</p>
+                <TooltipContent 
+                  side="top" 
+                  align="center" 
+                  className="max-w-xs w-max border-blue-200 dark:border-blue-800 dark:bg-neutral-800 dark:text-white"
+                  sideOffset={5}
+                >
+                  <p className="font-semibold mb-1.5 text-sm border-b border-blue-100 dark:border-blue-900 pb-1 text-blue-600 dark:text-blue-300">{content.title}</p>
+                  <div className="text-xs pt-1 dark:text-neutral-300">{content.description}</div>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
@@ -116,3 +232,4 @@ export const CalculationMethodology = () => {
     </div>
   );
 };
+
