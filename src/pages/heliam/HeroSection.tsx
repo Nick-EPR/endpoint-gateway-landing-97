@@ -1,30 +1,22 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
-
 const HeroSection = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
-
-  return (
-    <section className="relative pt-24 pb-16 overflow-hidden">
+  return <section className="relative pt-24 pb-16 overflow-hidden">
       {/* Blue tech background - darkened at top */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-blue-600/20 to-blue-700/10 dark:from-blue-950/50 dark:via-blue-900/30 dark:to-blue-950/20"></div>
       
       {/* Tech pattern overlay */}
-      <div className="absolute inset-0 opacity-10 dark:opacity-15" 
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '30px'
-        }}
-      ></div>
+      <div className="absolute inset-0 opacity-10 dark:opacity-15" style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+      backgroundSize: '30px'
+    }}></div>
       
       {/* Digital circuit lines */}
       <div className="absolute inset-0 overflow-hidden opacity-20 dark:opacity-30">
-        <svg className="absolute top-0 left-0 w-full h-full" 
-             viewBox="0 0 100 100" 
-             preserveAspectRatio="none">
+        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
           <path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="rgba(14, 165, 233, 0.3)" strokeWidth="0.2" fill="none"></path>
           <path d="M0,20 L100,20" stroke="rgba(14, 165, 233, 0.3)" strokeWidth="0.2"></path>
           <path d="M0,40 L100,40" stroke="rgba(14, 165, 233, 0.3)" strokeWidth="0.2"></path>
@@ -66,44 +58,17 @@ const HeroSection = () => {
               <Button size="lg" className="gap-2 rounded-full bg-blue-500 hover:bg-blue-600">
                 Get Started <ArrowRight className="h-4 w-4" />
               </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="gap-2 rounded-full dark:text-white border-blue-200 dark:border-blue-800" 
-                onClick={() => setIsVideoModalOpen(true)}
-              >
-                <Play className="h-4 w-4 fill-current" /> Watch Demo
-              </Button>
+              
             </div>
             
-            <div className="pt-8 flex items-center gap-6">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4].map((i) => (
-                  <div 
-                    key={i} 
-                    className="w-8 h-8 rounded-full border-2 border-white dark:border-neutral-800 overflow-hidden bg-neutral-200 dark:bg-neutral-700"
-                  ></div>
-                ))}
-              </div>
-              <div className="text-sm text-neutral-600 dark:text-neutral-300">
-                <strong>500+</strong> organizations trust HeliAM
-              </div>
-            </div>
+            
           </div>
           
           <div className="lg:w-1/2 relative">
             <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl dark:shadow-blue-500/10 lg:ml-12 border border-blue-200/30 dark:border-blue-500/20">
-              <img 
-                src="https://images.unsplash.com/photo-1606765962248-7ff407b51667?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-                alt="HeliAM Dashboard" 
-                className="w-full h-auto rounded-xl"
-              />
+              <img src="https://images.unsplash.com/photo-1606765962248-7ff407b51667?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="HeliAM Dashboard" className="w-full h-auto rounded-xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <img 
-                src={heliamLogo} 
-                alt="HeliAM Logo" 
-                className="absolute bottom-4 right-4 h-12"
-              />
+              <img src={heliamLogo} alt="HeliAM Logo" className="absolute bottom-4 right-4 h-12" />
             </div>
             
             {/* Stats card - updated with blue theme */}
@@ -118,8 +83,6 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
