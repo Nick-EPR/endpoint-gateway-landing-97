@@ -58,6 +58,27 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
   };
 
+  // Check if Features is active (on homepage with #features hash)
+  const isFeatureActive = (location.pathname === '/' && location.hash === '#features') || location.hash === '#features';
+  
+  // Use the same style logic for features as other links
+  const getFeaturesClasses = () => {
+    const baseClasses = 'transition-colors duration-200';
+    
+    if (forceLight) {
+      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+    }
+    
+    if (scrolled) {
+      if (isDark) {
+        return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
+      }
+      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+    }
+    
+    return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
+  };
+
   return (
     <>
       <div className="relative">
@@ -128,25 +149,5 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     </>
   );
 };
-
-function getFeaturesClasses() {
-  const location = useLocation();
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-  
-  // Check if we're on the homepage with #features OR checking for features in any hash
-  const isFeatureActive = (location.pathname === '/' && location.hash === '#features') || location.hash === '#features';
-  const baseClasses = 'transition-colors duration-200';
-  
-  // Add Movius page to the pages that need special treatment for the Features link
-  if (location.pathname === '/what-is-itam' || location.pathname === '/status' || location.pathname === '/partnerships/movius' || location.hash === '#features') {
-    if (isDark) {
-      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
-    }
-    return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
-  }
-  
-  return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
-}
 
 export default NavLinks;
