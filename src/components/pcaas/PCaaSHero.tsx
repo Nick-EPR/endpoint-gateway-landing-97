@@ -1,7 +1,10 @@
+
 import { Button } from "@/components/ui/button";
 import { Smartphone, Shield, Zap } from "lucide-react";
+
 const PCaaSHero = () => {
-  return <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 via-white to-neutral-50 dark:from-primary/5 dark:via-neutral-900 dark:to-neutral-800">
+  return (
+    <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 via-white to-neutral-50 dark:from-primary/5 dark:via-neutral-900 dark:to-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Headline */}
@@ -23,12 +26,31 @@ const PCaaSHero = () => {
             fully connected, secure, and ready-to-deploy endpoints that scale as fast as their business.
           </p>
           
-          {/* Powered by badge */}
-          <div className="flex items-center justify-center gap-2 mb-10">
+          {/* Partner Logos */}
+          <div className="flex flex-col items-center justify-center gap-6 mb-10">
             <span className="text-sm text-neutral-600 dark:text-neutral-400">Powered by</span>
-            <span className="font-semibold text-primary">T-Mobile</span>
-            <span className="text-neutral-400">+</span>
-            <span className="font-semibold text-primary">Lifetime EndPoint Resources</span>
+            <div className="flex items-center justify-center gap-8 flex-wrap">
+              {/* T-Mobile Logo */}
+              <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
+                <img
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=200&h=80&q=80"
+                  alt="T-Mobile Logo"
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+              
+              {/* Plus symbol */}
+              <span className="text-2xl text-neutral-400 font-light">+</span>
+              
+              {/* Lifetime EPR Logo */}
+              <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
+                <img
+                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=200&h=80&q=80"
+                  alt="Lifetime EndPoint Resources Logo"
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+            </div>
           </div>
           
           {/* CTA Button */}
@@ -67,6 +89,8 @@ const PCaaSHero = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default PCaaSHero;
