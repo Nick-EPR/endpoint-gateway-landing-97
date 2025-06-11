@@ -1,10 +1,7 @@
-
 import { Button } from "@/components/ui/button";
 import { Smartphone, Shield, Zap } from "lucide-react";
-
 const PCaaSHero = () => {
-  return (
-    <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 via-white to-neutral-50 dark:from-primary/5 dark:via-neutral-900 dark:to-neutral-800">
+  return <section className="pt-20 pb-16 bg-gradient-to-br from-primary/10 via-white to-neutral-50 dark:from-primary/5 dark:via-neutral-900 dark:to-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           {/* Main Headline */}
@@ -31,16 +28,12 @@ const PCaaSHero = () => {
             <span className="text-sm text-neutral-600 dark:text-neutral-400">Powered by</span>
             <span className="font-semibold text-primary">T-Mobile</span>
             <span className="text-neutral-400">+</span>
-            <span className="font-semibold text-primary">Lifetime Endpoint Resources</span>
+            <span className="font-semibold text-primary">Lifetime EndPoint Resources</span>
           </div>
           
           {/* CTA Button */}
           <div className="mb-12">
-            <Button 
-              size="lg" 
-              className="text-lg px-8 py-4 bg-primary hover:bg-primary/90"
-              onClick={() => window.open('https://test.lifetimeepr.io/pcaas-enrollment', '_blank')}
-            >
+            <Button size="lg" className="text-lg px-8 py-4 bg-primary hover:bg-primary/90" onClick={() => window.open('https://test.lifetimeepr.io/pcaas-enrollment', '_blank')}>
               Get Started Today
             </Button>
           </div>
@@ -74,8 +67,6 @@ const PCaaSHero = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default PCaaSHero;
