@@ -14,9 +14,9 @@ const PCaaSHero = () => {
       ref={heroRef}
       className="pt-32 pb-16 bg-gradient-to-br from-primary/10 via-white to-neutral-50 dark:from-primary/5 dark:via-neutral-900 dark:to-neutral-800 relative overflow-hidden"
     >
-      {/* Light background image */}
+      {/* Darker background image */}
       <div 
-        className="absolute inset-0 opacity-40 dark:opacity-15"
+        className="absolute inset-0 opacity-20 dark:opacity-10"
         style={{
           backgroundImage: `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80')`,
           backgroundSize: 'cover',
