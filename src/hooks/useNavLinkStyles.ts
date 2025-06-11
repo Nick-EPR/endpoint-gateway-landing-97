@@ -6,8 +6,9 @@ export const useNavLinkStyles = (scrolled: boolean, forceMoviusStyle?: boolean) 
   const { theme } = useTheme();
   const location = useLocation();
   
-  // Check if we're on the Movius partnership page 
+  // Check if we're on the Movius partnership page or PCaaS page
   const isMoviusPage = location.pathname === '/partnerships/movius';
+  const isPCaaSPage = location.pathname === '/pcaas';
   
   // Use the user's theme preference, don't force dark mode
   const isDark = theme === 'dark';
@@ -15,8 +16,8 @@ export const useNavLinkStyles = (scrolled: boolean, forceMoviusStyle?: boolean) 
   const getLinkClasses = () => {
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
-    // For Movius page with light background, need better visibility
-    if (isMoviusPage && !scrolled && theme === 'light') {
+    // For Movius or PCaaS page with light background, need better visibility
+    if ((isMoviusPage || isPCaaSPage) && !scrolled && theme === 'light') {
       return `${baseClasses} text-neutral-800 hover:text-primary`;
     }
     

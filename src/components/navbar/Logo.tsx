@@ -17,11 +17,12 @@ const Logo = ({ scrolled }: LogoProps) => {
     }
   };
 
-  // Check if we're on the Movius partnership page
+  // Check if we're on the Movius partnership page or PCaaS page
   const isMoviusPage = location.pathname === '/partnerships/movius';
+  const isPCaaSPage = location.pathname === '/pcaas';
 
   // Always use appropriate logo for specific pages or scrolled state
-  const isScrolledView = scrolled || location.pathname === '/status';
+  const isScrolledView = scrolled || location.pathname === '/status' || isMoviusPage || isPCaaSPage;
   
   // Use dark mode logo only when in dark mode
   const isDarkMode = theme === 'dark';

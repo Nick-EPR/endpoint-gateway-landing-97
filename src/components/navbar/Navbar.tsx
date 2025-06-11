@@ -30,8 +30,9 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     setIsFeatureActive(isOnFeatures);
   }, [location]);
 
-  // Check if we're on the Movius partnership page 
+  // Check if we're on the Movius partnership page or PCaaS page
   const isMoviusPage = location.pathname === '/partnerships/movius';
+  const isPCaaSPage = location.pathname === '/pcaas';
   
   const handleNavigation = (sectionId: string) => {
     if (location.pathname === '/') {
@@ -49,8 +50,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   // Always treat specific pages as having a white background, regardless of scroll position
-  // Include Movius page as having a white background
-  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage;
+  // Include Movius and PCaaS pages as having a white background
+  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage || isPCaaSPage;
   // Only access theme after component has mounted to prevent hydration mismatch
   const isDark = mounted ? theme === 'dark' : false;
 
@@ -67,7 +68,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
   };
 
-  // For Movius page, use an appropriate background based on theme
+  // For Movius and PCaaS pages, use an appropriate background based on theme
   const navbarBgClass = isWhiteBackground 
     ? isDark 
       ? 'bg-neutral-900 border-b border-neutral-800' 
