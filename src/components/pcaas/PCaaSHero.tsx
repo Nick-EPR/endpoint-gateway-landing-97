@@ -33,7 +33,7 @@ const PCaaSHero = () => {
               {/* T-Mobile Logo */}
               <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
                 <img
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=200&h=80&q=80"
+                  src="/lovable-uploads/ee44a1eb-a16e-4d5f-a307-d13e5e3b9f8c.png"
                   alt="T-Mobile Logo"
                   className="h-12 w-auto object-contain"
                 />
@@ -45,7 +45,7 @@ const PCaaSHero = () => {
               {/* Lifetime EPR Logo */}
               <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
                 <img
-                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=200&h=80&q=80"
+                  src="/lovable-uploads/467232dc-d05e-4376-85e7-318f7ce01380.png"
                   alt="Lifetime EndPoint Resources Logo"
                   className="h-12 w-auto object-contain"
                 />
