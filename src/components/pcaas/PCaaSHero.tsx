@@ -1,5 +1,6 @@
 
 import { Button } from "@/components/ui/button";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Smartphone, Shield, Zap } from "lucide-react";
 
 const PCaaSHero = () => {
@@ -31,24 +32,32 @@ const PCaaSHero = () => {
             <span className="text-sm text-neutral-600 dark:text-neutral-400">Powered by</span>
             <div className="flex items-center justify-center gap-8 flex-wrap">
               {/* T-Mobile Logo */}
-              <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
-                <img
-                  src="/lovable-uploads/ee44a1eb-a16e-4d5f-a307-d13e5e3b9f8c.png"
-                  alt="T-Mobile Logo"
-                  className="h-12 w-auto object-contain"
-                />
+              <div className="w-24">
+                <AspectRatio ratio={1 / 1}>
+                  <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700 h-full">
+                    <img
+                      src="/lovable-uploads/ee44a1eb-a16e-4d5f-a307-d13e5e3b9f8c.png"
+                      alt="T-Mobile Logo"
+                      className="h-12 w-auto object-contain"
+                    />
+                  </div>
+                </AspectRatio>
               </div>
               
               {/* Plus symbol */}
               <span className="text-2xl text-neutral-400 font-light">+</span>
               
               {/* Lifetime EPR Logo */}
-              <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700">
-                <img
-                  src="/lovable-uploads/467232dc-d05e-4376-85e7-318f7ce01380.png"
-                  alt="Lifetime EndPoint Resources Logo"
-                  className="h-12 w-auto object-contain"
-                />
+              <div className="w-24">
+                <AspectRatio ratio={1 / 1}>
+                  <div className="flex items-center justify-center bg-white dark:bg-neutral-800 rounded-lg p-4 shadow-sm border border-neutral-200 dark:border-neutral-700 h-full">
+                    <img
+                      src="/lovable-uploads/467232dc-d05e-4376-85e7-318f7ce01380.png"
+                      alt="Lifetime EndPoint Resources Logo"
+                      className="h-12 w-auto object-contain"
+                    />
+                  </div>
+                </AspectRatio>
               </div>
             </div>
           </div>
