@@ -1,0 +1,86 @@
+
+import { Card, CardContent } from "@/components/ui/card";
+import { DollarSign, Wifi, Rocket, Shield, Settings, Building2, Zap } from "lucide-react";
+
+const WhyChoosePCaaS = () => {
+  const benefits = [
+    {
+      icon: DollarSign,
+      title: "No Upfront Hardware Costs / Predictable Monthly Pricing",
+      description: "Skip the big CapEx hit. Pay one predictable monthly fee that includes the device, software, support, and 5G connectivity. No CapEx."
+    },
+    {
+      icon: Wifi,
+      title: "Always-On 5G Connectivity, Anywhere",
+      description: "Eliminate patchy Wi-Fi or unreliable hotspots. Get always-on connectivity, stronger security, and seamless access to cloud tools, ideal for hybrid teams, remote employees, and field workers. T-Mobile's 5G network covers 99% of the U.S."
+    },
+    {
+      icon: Rocket,
+      title: "Fast, Scalable Deployment",
+      description: "Devices ship pre-configured and ready to use within days. Onboard new users fast, refresh old devices, and standardize your IT experience without IT bottlenecks. Built to scale quickly."
+    },
+    {
+      icon: Shield,
+      title: "Enterprise-Level Support and Security",
+      description: "Receive 24/7 helpdesk support, proactive patching, Microsoft Defender, remote wipe, and secure data return – keeping your devices compliant and protected from day one. Lifecycle tracking tools provide transparency."
+    },
+    {
+      icon: Settings,
+      title: "End-to-End Device Management",
+      description: "We handle everything from kitting to break-fix, to offboarding and secure retirement, taking repetitive device logistics off your plate so your internal team can focus on strategy."
+    },
+    {
+      icon: Building2,
+      title: "Built for SMBs",
+      description: "Ideal for SMBs with 10–300 employees, remote/hybrid teams, fast-scaling startups, and those without dedicated IT staff or overwhelmed internal IT. Great for retail, professional services, construction/field teams, healthcare, education, and compliance-sensitive sectors."
+    },
+    {
+      icon: Zap,
+      title: "Future-Proof",
+      description: "5G-ready, cloud-enabled, and AI-capable for tomorrow's workloads."
+    }
+  ];
+
+  return (
+    <section className="py-20 bg-neutral-50 dark:bg-neutral-800">
+      <div className="container mx-auto px-4">
+        <div className="max-w-6xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
+              Why SMBs Are Switching to PCaaS
+            </h2>
+            <p className="text-xl text-primary font-semibold">
+              Simplify Your IT. Mobilize Your Workforce. Cut CapEx.
+            </p>
+          </div>
+
+          {/* Benefits Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
+              <Card key={index} className="h-full hover:shadow-lg transition-shadow">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <benefit.icon className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-neutral-900 dark:text-white mb-3 text-lg">
+                        {benefit.title}
+                      </h3>
+                      <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default WhyChoosePCaaS;

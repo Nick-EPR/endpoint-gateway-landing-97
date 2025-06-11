@@ -20,6 +20,7 @@ import Privacy from "./pages/Privacy";
 import WhatIsITAM from "./pages/WhatIsITAM";
 import WhyChooseUs from "./pages/WhyChooseUs";
 import MoviusPartnership from "./pages/MoviusPartnership";
+import PCaaS from "./pages/PCaaS";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 
@@ -48,6 +49,7 @@ function AppContent() {
           <Route path="/why-choose-us" element={<WhyChooseUs />} />
           <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
           <Route path="/partnerships/movius" element={<MoviusPartnership />} />
+          <Route path="/pcaas" element={<PCaaS />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
