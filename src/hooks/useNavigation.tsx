@@ -1,6 +1,7 @@
 
 import { useState, useCallback } from "react";
 import { createContext, useContext } from "react";
+import { useStatsPanel } from "./useStatsPanel";
 
 // Create a context to share navigation state across components
 const NavigationContext = createContext<ReturnType<typeof useNavigationState> | undefined>(undefined);
@@ -9,6 +10,16 @@ const NavigationContext = createContext<ReturnType<typeof useNavigationState> | 
 function useNavigationState() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isCalculatorOpen, setIsCalculatorOpen] = useState(false);
+  
+  // Integrate stats panel functionality
+  const {
+    isStatsPanelVisible,
+    setIsStatsPanelVisible,
+    isStatsPanelMinimized,
+    setIsStatsPanelMinimized,
+    toggleStatsPanel,
+    handleMaximizeCalculator
+  } = useStatsPanel(isCalculatorOpen);
 
   const handleChatClick = useCallback(() => {
     setIsChatOpen(prev => !prev);
@@ -28,8 +39,15 @@ function useNavigationState() {
     setIsChatOpen,
     isCalculatorOpen,
     setIsCalculatorOpen,
+    isCalculatorVisible: isCalculatorOpen, // Alias for backward compatibility
+    isStatsPanelVisible,
+    setIsStatsPanelVisible,
+    isStatsPanelMinimized,
+    setIsStatsPanelMinimized,
     handleChatClick,
-    handleCalculatorClick
+    handleCalculatorClick,
+    handleMaximizeCalculator,
+    toggleStatsPanel
   };
 }
 
