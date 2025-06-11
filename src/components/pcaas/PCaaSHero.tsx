@@ -34,7 +34,7 @@ const PCaaSHero = () => {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
               Simplify Your IT.{" "}
-              <span className="text-primary drop-shadow-sm">Mobilize</span> Your Workforce.{" "}
+              <span className="drop-shadow-sm" style={{ color: '#E20074' }}>Mobilize</span> Your Workforce.{" "}
               <span className="text-primary drop-shadow-sm">Cut CapEx.</span>
             </h1>
             
