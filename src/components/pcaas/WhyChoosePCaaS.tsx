@@ -1,8 +1,13 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { DollarSign, Wifi, Rocket, Shield, Settings, Building2, Zap } from "lucide-react";
+import { DollarSign, Wifi, Rocket, Shield, Settings, Building2, Zap, TrendingUp } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useRef } from "react";
 
 const WhyChoosePCaaS = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+
   const benefits = [
     {
       icon: DollarSign,
@@ -42,14 +47,19 @@ const WhyChoosePCaaS = () => {
   ];
 
   return (
-    <section className="py-20 bg-neutral-50 dark:bg-neutral-800">
+    <section ref={sectionRef} className="py-20 bg-neutral-50 dark:bg-neutral-800">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4">
-              Why SMBs Are Switching to PCaaS
-            </h2>
+          <div className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <TrendingUp className="w-8 h-8 text-primary" />
+              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
+                Why SMBs Are Switching to PCaaS
+              </h2>
+            </div>
             <p className="text-xl text-primary font-semibold">
               Simplify Your IT. Mobilize Your Workforce. Cut CapEx.
             </p>
@@ -58,14 +68,20 @@ const WhyChoosePCaaS = () => {
           {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <Card key={index} className="h-full hover:shadow-lg transition-shadow">
+              <Card 
+                key={index} 
+                className={`h-full hover:shadow-xl transition-all duration-500 group border-l-4 border-l-transparent hover:border-l-primary ${
+                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                       <benefit.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-neutral-900 dark:text-white mb-3 text-lg">
+                      <h3 className="font-bold text-neutral-900 dark:text-white mb-3 text-lg group-hover:text-primary transition-colors">
                         {benefit.title}
                       </h3>
                       <p className="text-neutral-700 dark:text-neutral-300 leading-relaxed">

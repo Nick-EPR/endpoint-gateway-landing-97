@@ -1,8 +1,13 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Users, Shield, Wifi, Settings, TrendingUp, CheckCircle } from "lucide-react";
+import { Users, Shield, Wifi, Settings, TrendingUp, CheckCircle, Target } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useRef } from "react";
 
 const WhoBenefitsMost = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+
   const scenarios = [
     {
       icon: Users,
@@ -43,14 +48,19 @@ const WhoBenefitsMost = () => {
   ];
 
   return (
-    <section className="py-20 bg-white dark:bg-neutral-900">
+    <section ref={sectionRef} className="py-20 bg-white dark:bg-neutral-900">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-6">
-              Who Benefits Most from PCaaS?
-            </h2>
+          <div className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}>
+            <div className="flex items-center justify-center gap-3 mb-6">
+              <Target className="w-8 h-8 text-primary" />
+              <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white">
+                Who Benefits Most from PCaaS?
+              </h2>
+            </div>
             <p className="text-lg text-neutral-600 dark:text-neutral-400 max-w-3xl mx-auto">
               PCaaS is designed for the unique challenges facing small and medium-sized businesses today.
             </p>
@@ -59,14 +69,20 @@ const WhoBenefitsMost = () => {
           {/* Scenarios Grid */}
           <div className="grid md:grid-cols-2 gap-8">
             {scenarios.map((scenario, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-primary">
+              <Card 
+                key={index} 
+                className={`hover:shadow-xl transition-all duration-500 border-l-4 border-l-primary group ${
+                  isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                }`}
+                style={{ transitionDelay: `${index * 200}ms` }}
+              >
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                       <scenario.icon className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-bold text-neutral-900 dark:text-white text-lg mb-2">
+                      <h3 className="font-bold text-neutral-900 dark:text-white text-lg mb-2 group-hover:text-primary transition-colors">
                         {scenario.title}
                       </h3>
                       <p className="text-neutral-600 dark:text-neutral-400 mb-3">
@@ -75,8 +91,8 @@ const WhoBenefitsMost = () => {
                     </div>
                   </div>
                   <div className="pl-16">
-                    <div className="flex items-start gap-2">
-                      <span className="text-primary font-semibold text-sm">→</span>
+                    <div className="flex items-start gap-2 bg-primary/5 rounded-lg p-3 group-hover:bg-primary/10 transition-colors">
+                      <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                       <p className="text-primary font-medium">
                         {scenario.solution}
                       </p>
