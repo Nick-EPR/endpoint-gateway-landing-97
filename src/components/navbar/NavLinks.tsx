@@ -40,7 +40,7 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   };
 
   const getSolutionsLinkClasses = () => {
-    const solutionsPages = ['/partnerships/movius'];
+    const solutionsPages = ['/partnerships/movius', '/pcaas'];
     const isActive = solutionsPages.includes(location.pathname);
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
@@ -100,6 +100,15 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
                 onClick={onClose}
               >
                 <span>Communication</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
+              <Link
+                to="/pcaas"
+                className="flex items-center gap-2 w-full"
+                onClick={onClose}
+              >
+                <span>PCaaS</span>
               </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>

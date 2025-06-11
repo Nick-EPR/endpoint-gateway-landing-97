@@ -45,6 +45,13 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
               >
                 Communication
               </Link>
+              <Link 
+                to="/pcaas" 
+                className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 block py-1"
+                onClick={onClose}
+              >
+                PCaaS
+              </Link>
             </div>
           )}
         </div>
