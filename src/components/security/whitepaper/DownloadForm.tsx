@@ -1,50 +1,84 @@
 
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
+const whitepaperFormSchema = z.object({
+  name: z.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(100, "Name must be less than 100 characters")
+    .regex(/^[a-zA-Z\s'-]+$/, "Name can only contain letters, spaces, hyphens, and apostrophes"),
+  email: z.string()
+    .email("Please enter a valid email address")
+    .max(255, "Email must be less than 255 characters"),
+  company: z.string()
+    .min(2, "Company name must be at least 2 characters")
+    .max(200, "Company name must be less than 200 characters")
+    .regex(/^[a-zA-Z0-9\s&.,-]+$/, "Company name contains invalid characters")
+});
+
+type WhitepaperFormData = z.infer<typeof whitepaperFormSchema>;
+
 const DownloadForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm<WhitepaperFormData>({
+    resolver: zodResolver(whitepaperFormSchema)
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit = async (data: WhitepaperFormData) => {
     setIsLoading(true);
 
     try {
+      // Sanitize input data
+      const sanitizedData = {
+        name: data.name.trim(),
+        email: data.email.toLowerCase().trim(),
+        company: data.company.trim()
+      };
+
+      console.log('Submitting whitepaper download with data:', sanitizedData);
+
       const { error: dbError } = await supabase
         .from('whitepaper_downloads')
         .insert({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
+          name: sanitizedData.name,
+          email: sanitizedData.email,
+          company: sanitizedData.company,
         });
 
-      if (dbError) throw dbError;
+      if (dbError) {
+        console.error('Database error:', dbError);
+        throw dbError;
+      }
 
       const { error: emailError } = await supabase.functions.invoke('send-whitepaper', {
-        body: formData
+        body: sanitizedData
       });
 
-      if (emailError) throw emailError;
+      if (emailError) {
+        console.error('Email error:', emailError);
+        // Don't throw email error as form was successfully submitted to database
+        console.warn('Email sending failed but download was recorded successfully');
+      }
 
       toast({
         title: "Success!",
         description: "The whitepaper has been sent to your email.",
       });
 
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-      });
+      reset();
 
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -68,36 +102,45 @@ const DownloadForm = () => {
           <p className="text-neutral-600 text-center mb-8">
             Get detailed insights into our security measures, compliance standards, and commitment to protecting your data.
           </p>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
               <Input
+                {...register('name')}
                 type="text"
                 placeholder="Full Name"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                required
+                maxLength={100}
                 disabled={isLoading}
+                className={errors.name ? 'border-red-500' : ''}
               />
+              {errors.name && (
+                <p className="mt-1 text-sm text-red-500">{errors.name.message}</p>
+              )}
             </div>
             <div>
               <Input
+                {...register('email')}
                 type="email"
                 placeholder="Work Email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                required
+                maxLength={255}
                 disabled={isLoading}
+                className={errors.email ? 'border-red-500' : ''}
               />
+              {errors.email && (
+                <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
+              )}
             </div>
             <div>
               <Input
+                {...register('company')}
                 type="text"
                 placeholder="Company Name"
-                value={formData.company}
-                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                required
+                maxLength={200}
                 disabled={isLoading}
+                className={errors.company ? 'border-red-500' : ''}
               />
+              {errors.company && (
+                <p className="mt-1 text-sm text-red-500">{errors.company.message}</p>
+              )}
             </div>
             <Button 
               type="submit" 
