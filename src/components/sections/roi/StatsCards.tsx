@@ -50,7 +50,7 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
       <StatCard
         title="Total 4-Year Savings"
         value={formatCurrency(trends.fourYearTotalSavings)}
-        description={`${formatPercentage(trends.savingsPercentage)} reduction in costs`}
+        description="Total cost reduction over 4 years"
         className="bg-gradient-to-br from-primary/5 to-primary/10 dark:from-primary-foreground/5 dark:to-primary-foreground/10"
       />
       
@@ -78,7 +78,7 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
       <StatCard
         title="Productivity Gains"
         value={formatCurrency(trends.productivityGains)}
-        description={`${formatPercentage(trends.productivityBoost)} productivity increase`}
+        description="Enhanced operational efficiency"
         className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20"
       />
       
