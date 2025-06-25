@@ -1,4 +1,3 @@
-
 import { Maximize2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,8 +11,9 @@ interface StatsCardsProps {
 }
 
 const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) => {
-  // Round the ROI value to 2 decimal places
-  const roundedRoi = parseFloat(trends.roi.toFixed(2));
+  // Static values as requested
+  const staticRoi = 2.1; // 210%
+  const staticPaybackPeriod = 6; // 6 months
   
   if (compact) {
     return (
@@ -26,7 +26,7 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
             {formatCurrency(trends.fourYearTotalSavings)}
           </p>
           <p className="text-xs text-gray-500 dark:text-gray-400">
-            ROI: {roundedRoi}x ({formatPercentage(trends.savingsPercentage)} reduction)
+            ROI: {staticRoi}x ({formatPercentage(trends.savingsPercentage)} reduction)
           </p>
         </div>
         
@@ -63,8 +63,8 @@ const StatsCards = ({ trends, compact = false, onMaximize }: StatsCardsProps) =>
       
       <StatCard
         title="ROI"
-        value={`${roundedRoi}x`}
-        description={`Payback in ${trends.paybackPeriod} months`}
+        value={`${staticRoi}x`}
+        description={`Payback in ${staticPaybackPeriod} months`}
         className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20"
       />
       
