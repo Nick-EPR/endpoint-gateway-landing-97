@@ -14,9 +14,9 @@ const WhatIsPCaaS = () => {
     { text: "Built-in 5G connectivity (75–125GB/month)", icon: RefreshCw },
     { text: "Pre-configured setup + shipping (devices arrive ready-to-use)", icon: Check },
     { text: "24/7 helpdesk support", icon: Headphones },
-    { text: "Break-fix service, device recovery, and advanced exchange", icon: RefreshCw },
+    { text: "Scalability and Flexibility - Easily scale devices as your business grows, adapt quickly to onboarding new employees.", icon: RefreshCw },
     { text: "Embedded Security Agent + Remote Wipe, Microsoft Defender, Patch management", icon: Shield },
-    { text: "Secure offboarding and end-of-life device management", icon: Shield }
+    { text: "Advanced Exchange ensures minimal downtime as this proactive service keeps end-users productive and eliminates long wait times typically associated with traditional warranty or repair processes.", icon: Shield }
   ];
 
   return (
@@ -36,12 +36,15 @@ const WhatIsPCaaS = () => {
             <div className="max-w-4xl mx-auto">
               <p className="text-lg text-neutral-700 dark:text-neutral-300 mb-6">
                 PCaaS stands for <strong>PC-as-a-Service</strong>. It's a <strong>fully managed device solution</strong> that 
-                bundles 5G-ready laptops, Microsoft 365, live support, security, and lifecycle services into{" "}
+                bundles 5G-ready laptops, Microsoft 365, live 24/7 support, security, and lifecycle services into{" "}
                 <strong>one predictable monthly fee</strong>.
               </p>
               <p className="text-lg text-neutral-700 dark:text-neutral-300">
-                This is <strong>not just leasing</strong>, but a fully managed service where device ownership 
-                transfer is an option at the end of the term.
+                This is <strong>not just leasing</strong>, but a fully managed service - Unlike traditional outdated DaaS (Device 
+                as a Service programs, PCaaS (PC-as-a-Service) provides a comprehensive, end-to-end solution 
+                that includes procurement, configuration, deployment, asset management, helpdesk support, and 
+                advanced exchange. It enables organizations to offload the day-to-day burden of managing end-user devices while ensuring users always have up-to-date, secure, and optimized technology. 
+                This allows IT teams to focus on strategic initiatives rather than hardware logistics.
               </p>
             </div>
           </div>

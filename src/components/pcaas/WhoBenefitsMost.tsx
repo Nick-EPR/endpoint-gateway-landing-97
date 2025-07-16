@@ -44,6 +44,12 @@ const WhoBenefitsMost = () => {
       title: "You want to standardize your team's devices",
       description: "Consistent hardware makes support, updates, and scaling easier.",
       solution: "PCaaS provides standardized, enterprise-grade devices for your entire team."
+    },
+    {
+      icon: Target,
+      title: "You're in Real Estate",
+      description: "Agents need reliable devices for client meetings, property showings, and mobile work.",
+      solution: "PCaaS ensures agents have dependable, 5G-connected devices for seamless property management and client interactions."
     }
   ];
 
