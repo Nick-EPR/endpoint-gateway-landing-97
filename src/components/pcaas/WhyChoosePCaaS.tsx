@@ -1,6 +1,6 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { DollarSign, Wifi, Rocket, Shield, Settings, Building2, Zap, TrendingUp } from "lucide-react";
+import { DollarSign, Wifi, Zap, Shield, Settings, Users, TrendingUp } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useRef } from "react";
 
@@ -20,14 +20,14 @@ const WhyChoosePCaaS = () => {
       description: "Eliminate patchy Wi-Fi or unreliable hotspots. Get always-on connectivity, stronger security, and seamless access to cloud tools, ideal for hybrid teams, remote employees, and field workers. T-Mobile's 5G network covers 99% of the U.S."
     },
     {
-      icon: Rocket,
+      icon: Zap,
       title: "Fast, Scalable Deployment",
       description: "Devices ship pre-configured and ready to use within days. Onboard new users fast, refresh old devices, and standardize your IT experience without IT bottlenecks. Built to scale quickly."
     },
     {
       icon: Shield,
       title: "Enterprise-Level Support and Security",
-      description: "Receive 24/7 helpdesk support, proactive patching, Microsoft Defender, remote wipe, and secure data return – keeping your devices compliant and protected from day one. Lifecycle tracking tools provide transparency."
+      description: "Receive 24/7/365 helpdesk support for the PCaaS laptop, proactive patching, Microsoft Defender, remote wipe, and secure data connectivity – keeping your devices compliant and protected from day one. Lifecycle tracking tools provide transparency."
     },
     {
       icon: Settings,
@@ -35,12 +35,12 @@ const WhyChoosePCaaS = () => {
       description: "We handle everything from kitting to break-fix, to offboarding and secure retirement, taking repetitive device logistics off your plate so your internal team can focus on strategy."
     },
     {
-      icon: Building2,
+      icon: Users,
       title: "Built for SMBs",
-      description: "Ideal for SMBs with 10–300 employees, remote/hybrid teams, fast-scaling startups, and those without dedicated IT staff or overwhelmed internal IT. Great for retail, professional services, construction/field teams, healthcare, education, and compliance-sensitive sectors."
+      description: "Ideal for SMBs with 10–300 employees, remote/hybrid teams, fast-scaling startups, and those without dedicated IT staff or overwhelmed internal IT. Great for retail, professional services, real estate, construction/field teams, healthcare, education, and compliance-sensitive sectors."
     },
     {
-      icon: Zap,
+      icon: TrendingUp,
       title: "Future-Proof",
       description: "5G-ready, cloud-enabled, and AI-capable for tomorrow's workloads."
     }
