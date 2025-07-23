@@ -16,7 +16,7 @@ const WhatIsPCaaS = () => {
     { text: "24/7/365 helpdesk support for the PCaaS laptop", icon: Headphones },
     { text: "Scalability and Flexibility - Easily scale devices as your business grows, adapt quickly to onboarding new employees.", icon: RefreshCw },
     { text: "Embedded Security Agent + Remote Wipe, Microsoft Defender, Patch Management", icon: Shield },
-    { text: "Advanced Exchange ensures minimal downtime as this proactive service keeps end-users productive and eliminates long wait times typically associated with traditional warranty or repair processes.", icon: Shield }
+    { text: "Advanced Exchange ensures minimal downtime as this service keeps end-users productive and eliminates long wait times typically associated with traditional warranty or repair processes.", icon: Shield }
   ];
 
   return (
@@ -43,7 +43,7 @@ const WhatIsPCaaS = () => {
                 This is <strong>not just leasing</strong>, but a fully managed service for the laptop - Unlike traditional outdated DaaS (Device 
                 as a Service) programs, PCaaS (PC-as-a-Service) provides a comprehensive, end-to-end solution 
                 that includes procurement, configuration, deployment, asset management, helpdesk support, and 
-                advanced exchange. It enables organizations to offload the day-to-day burden of managing end-user deviceslaptops while ensuring users always have up-to-date, secure, and optimized technology. 
+                advanced exchange. It enables organizations to offload the day-to-day burden of managing end-user devices while ensuring users always have up-to-date, secure, and optimized technology.
                 This allows IT teams to focus on strategic initiatives rather than hardware logistics.
               </p>
             </div>
