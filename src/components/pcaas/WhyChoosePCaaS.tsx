@@ -27,7 +27,7 @@ const WhyChoosePCaaS = () => {
     {
       icon: Shield,
       title: "Enterprise-Level Support and Security",
-      description: "Receive 24/7/365 helpdesk support for the PCaaS laptop, proactive patching, remote wipe, and secure data connectivity – keeping your devices compliant."
+      description: "Receive helpdesk support for the PCaaS laptop, patching, remote wipe, and secure data connectivity – keeping your devices compliant."
     },
     {
       icon: Settings,
@@ -42,7 +42,7 @@ const WhyChoosePCaaS = () => {
     {
       icon: TrendingUp,
       title: "Future-Proof",
-      description: "5G-ready, cloud-enabled, and AI-capable for tomorrow's workloads."
+      description: "5G-ready, cloud-enabled for tomorrow's workloads."
     }
   ];
 
