@@ -27,7 +27,7 @@ const WhyChoosePCaaS = () => {
     {
       icon: Shield,
       title: "Enterprise-Level Support and Security",
-      description: "Receive 24/7/365 helpdesk support for the PCaaS laptop, proactive patching, Microsoft Defender, remote wipe, and secure data connectivity – keeping your devices compliant and protected from day one. Lifecycle tracking tools provide transparency."
+      description: "Receive 24/7/365 helpdesk support for the PCaaS laptop, proactive patching, remote wipe, and secure data connectivity – keeping your devices compliant."
     },
     {
       icon: Settings,
