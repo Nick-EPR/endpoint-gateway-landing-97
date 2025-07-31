@@ -15,8 +15,7 @@ const WhatIsPCaaS = () => {
     { text: "Devices ship pre-configured and ready to use within days. Onboard new users fast, refresh old devices", icon: Check },
     { text: "24/7/365 helpdesk support for the PCaaS laptop", icon: Headphones },
     { text: "Scalability and Flexibility - Easily scale devices as your business grows, adapt quickly to onboarding new employees.", icon: RefreshCw },
-    { text: "Embedded Security Agent + Remote Wipe, Patch Management", icon: Shield },
-    { text: "Advanced Exchange ensures minimal downtime as this service keeps end-users productive and eliminates long wait times typically associated with traditional warranty or repair processes.", icon: Shield }
+    { text: "Embedded Security Agent + Remote Wipe, Patch Management", icon: Shield }
   ];
 
   return (
