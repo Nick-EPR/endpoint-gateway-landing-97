@@ -22,7 +22,7 @@ const WhyChoosePCaaS = () => {
     {
       icon: Zap,
       title: "Fast, Scalable Deployment",
-      description: "Devices ship pre-configured and ready to use within days. Onboard new users fast, refresh old devices, and standardize your IT experience without IT bottlenecks. Built to scale quickly."
+      description: "Onboard new users fast, refresh old devices, and standardize your IT experience without IT bottlenecks. Built to scale quickly."
     },
     {
       icon: Shield,
