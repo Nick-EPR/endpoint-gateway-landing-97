@@ -37,12 +37,7 @@ const WhyChoosePCaaS = () => {
     {
       icon: Users,
       title: "Built for SMBs",
-      description: "Ideal for SMBs with 1–300 employees, remote/hybrid teams, fast-scaling startups, and those without dedicated IT staff or overwhelmed internal IT. Great for retail, professional services, real estate, construction/field teams, healthcare, education, and compliance-sensitive sectors."
-    },
-    {
-      icon: TrendingUp,
-      title: "Future-Proof",
-      description: "5G-ready, cloud-enabled for tomorrow's workloads."
+      description: "Ideal for SMBs with 1–300 employees, remote/hybrid teams, fast-scaling startups, and those without dedicated IT staff. Great for retail, professional services, real estate, construction/field teams, healthcare, education, and compliance-sensitive sectors."
     }
   ];
 
