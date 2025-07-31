@@ -30,11 +30,6 @@ const WhyChoosePCaaS = () => {
       description: "Receive helpdesk support for the PCaaS laptop, patching, remote wipe, and secure data connectivity – keeping your devices compliant."
     },
     {
-      icon: Settings,
-      title: "End-to-End Device Management",
-      description: "We handle everything from kitting to break-fix, to offboarding and secure retirement, taking repetitive device logistics off your plate so your internal team can focus on strategy."
-    },
-    {
       icon: Users,
       title: "Built for SMBs",
       description: "Ideal for SMBs with 1–300 employees, remote/hybrid teams, fast-scaling startups, and those without dedicated IT staff. Great for retail, professional services, real estate, construction/field teams, healthcare, education, and compliance-sensitive sectors."
