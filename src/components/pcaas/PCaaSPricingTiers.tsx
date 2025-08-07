@@ -1,7 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp } from "lucide-react";
+import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery } from "lucide-react";
 import { useState } from "react";
 
 interface TierFeature {
@@ -284,6 +284,25 @@ const PCaaSPricingTiers = () => {
     }
 
     return <span className="text-xs text-neutral-700 dark:text-neutral-300">{value}</span>;
+  };
+
+  const getDeviceSpecIcon = (category: string) => {
+    const iconMap: { [key: string]: any } = {
+      "Model": Laptop,
+      "Preloaded Operating System": Monitor,
+      "Processor": Cpu,
+      "Color": Palette,
+      "Human Presence Detection": Eye,
+      "Display Size": Monitor,
+      "Anti-Glare": Sun,
+      "Touchscreen": Smartphone,
+      "Camera": Camera,
+      "Fingerprint Reader": Fingerprint,
+      "Memory": HardDrive,
+      "Storage": HardDrive,
+      "Battery": Battery
+    };
+    return iconMap[category] || Laptop;
   };
 
   const renderFeatureValue = (value: string | boolean, isEssential: boolean = true, feature?: TierFeature) => {
@@ -679,7 +698,13 @@ const PCaaSPricingTiers = () => {
                       {/* Basic specs - always shown when expanded */}
                       {basicDeviceSpecs.map((spec, specIndex) => (
                         <div key={specIndex} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
-                          <div className="px-4 py-3 pl-16">
+                          <div className="px-4 py-3 pl-8 flex items-center gap-3">
+                            <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                              {(() => {
+                                const IconComponent = getDeviceSpecIcon(spec.category);
+                                return <IconComponent className="w-3 h-3 text-primary" />;
+                              })()}
+                            </div>
                             <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
                               {spec.category}
                             </span>
@@ -709,7 +734,13 @@ const PCaaSPricingTiers = () => {
                       {/* Detailed specs */}
                       {detailedDeviceSpecs.map((spec, specIndex) => (
                         <div key={`detailed-${specIndex}`} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
-                          <div className="px-4 py-3 pl-16">
+                          <div className="px-4 py-3 pl-8 flex items-center gap-3">
+                            <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                              {(() => {
+                                const IconComponent = getDeviceSpecIcon(spec.category);
+                                return <IconComponent className="w-3 h-3 text-primary" />;
+                              })()}
+                            </div>
                             <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
                               {spec.category}
                             </span>
