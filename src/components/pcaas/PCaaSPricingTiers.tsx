@@ -136,7 +136,36 @@ const PCaaSPricingTiers = () => {
       const essentialValue = feature.essential;
       const professionalValue = feature.professional;
       
-      // Handle 5G Data comparison
+      // Handle Device comparison with part highlighting
+      if (feature.category === "Device" && 
+          typeof essentialValue === 'string' && typeof professionalValue === 'string') {
+        // Find common and different parts
+        const essentialParts = essentialValue.split(' ');
+        const professionalParts = professionalValue.split(' ');
+        
+        // Find the differing part (R5 vs R7, Pro 340 vs Pro 350)
+        let commonPrefix = '';
+        let differentPart = '';
+        
+        if (professionalValue.includes('R7 Pro 350')) {
+          commonPrefix = 'Lenovo Thinkpad T14 Gen 6 ';
+          differentPart = 'R7 Pro 350';
+        }
+        
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
+              <TrendingUp className="w-3 h-3" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">{commonPrefix}</span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">{differentPart}</span>
+          </div>
+        );
+      }
+      
+      // Handle 5G Data comparison with improved styling
       if (feature.category === "5G High Speed Data Allowance" && 
           typeof essentialValue === 'string' && typeof professionalValue === 'string') {
         const essentialGB = parseInt(essentialValue.replace(/\D/g, ''));
@@ -145,31 +174,97 @@ const PCaaSPricingTiers = () => {
         
         return (
           <div className="text-sm text-neutral-700 dark:text-neutral-300">
-            <span className="text-green-600 dark:text-green-400 font-semibold">+{difference}GB </span>
-            {value}
+            <span className="text-green-600 dark:text-green-400 font-semibold mr-1">+{difference}GB</span>
+            <span>{value}</span>
           </div>
         );
       }
 
-      // Handle upgrades for other features
-      const upgradeFeatures = [
-        "Device", // R5 to R7 processor
-        "AI", // Basic to Enterprise Copilot
-        "Standard Security", // Windows Security to Absolute Resilience
-        "Patch Management", // Unmanaged to Managed
-        "Helpdesk", // Email/Phone to Email/Phone/Live Chat
-        "Deployment", // Ground to 2 Day Shipping
-        "Business Continuity" // Ground to 2 Day Shipping
-      ];
-
-      if (upgradeFeatures.includes(feature.category) && essentialValue !== false) {
+      // Handle AI comparison with part highlighting
+      if (feature.category === "AI") {
         return (
-          <div className="text-sm text-neutral-700 dark:text-neutral-300">
+          <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
             </span>
-            {value}
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">Microsoft Copilot - </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">Enterprise</span>
+          </div>
+        );
+      }
+
+      // Handle Security comparison with part highlighting
+      if (feature.category === "Standard Security") {
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
+              <TrendingUp className="w-3 h-3" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">{value}</span>
+          </div>
+        );
+      }
+
+      // Handle Patch Management with part highlighting
+      if (feature.category === "Patch Management") {
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
+              <TrendingUp className="w-3 h-3" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">Managed</span>
+            <span className="text-neutral-400 dark:text-neutral-500"> Patch Management</span>
+          </div>
+        );
+      }
+
+      // Handle Helpdesk with part highlighting
+      if (feature.category === "Helpdesk") {
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
+              <TrendingUp className="w-3 h-3" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">24/7/365 Email, Phone, </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">Live Chat</span>
+          </div>
+        );
+      }
+
+      // Handle Deployment with part highlighting
+      if (feature.category === "Deployment") {
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
+              <TrendingUp className="w-3 h-3" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">End User Level </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">2 Day Shipping</span>
+          </div>
+        );
+      }
+
+      // Handle Business Continuity with part highlighting
+      if (feature.category === "Business Continuity") {
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
+              <TrendingUp className="w-3 h-3" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">Advanced Exchange </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">2 Day Shipping</span>
           </div>
         );
       }
@@ -182,7 +277,8 @@ const PCaaSPricingTiers = () => {
               <Plus className="w-3 h-3" />
               ADDED
             </span>
-            {value}
+            <br />
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">{value}</span>
           </div>
         );
       }
@@ -272,55 +368,77 @@ const PCaaSPricingTiers = () => {
         {/* Device Comparison - Special detailed card */}
         <DeviceComparisonCard />
         
-        {/* Other features */}
-        {features.filter(feature => feature.category !== "Device").map((feature, index) => (
-          <Card 
-            key={index}
-            className="hover:shadow-md transition-all duration-200 border border-neutral-200 dark:border-neutral-700"
-          >
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                {/* Feature Name */}
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="font-semibold text-neutral-900 dark:text-white">
-                    {feature.category}
-                  </span>
-                </div>
+        {/* Feature Comparison Table */}
+        <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
+          {/* Table Header */}
+          <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+            <div className="p-4 font-semibold text-neutral-900 dark:text-white">
+              Features
+            </div>
+            <div className={`p-4 text-center font-semibold transition-all duration-300 ${
+              highlightedTier === 'essential' 
+                ? 'bg-primary/10 dark:bg-primary/20' 
+                : ''
+            }`}>
+              Essential
+            </div>
+            <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+            <div className={`p-4 text-center font-semibold transition-all duration-300 ${
+              highlightedTier === 'professional' 
+                ? 'bg-primary/10 dark:bg-primary/20' 
+                : ''
+            }`}>
+              Professional
+            </div>
+          </div>
 
-                {/* Essential Features */}
-                <div className={`md:text-center transition-all duration-300 rounded-lg p-3 ${
-                  highlightedTier === 'essential' 
-                    ? 'bg-primary/10 dark:bg-primary/20 shadow-md' 
-                    : ''
-                }`}>
-                  <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1 font-medium uppercase tracking-wide">
-                    Essential
-                  </div>
-                  <div className="min-h-[2rem] flex items-center md:justify-center">
-                    {renderFeatureValue(feature.essential, true, feature)}
-                  </div>
+          {/* Table Body */}
+          {features.filter(feature => feature.category !== "Device").map((feature, index) => (
+            <div 
+              key={index}
+              className={`grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ${
+                index !== features.filter(f => f.category !== "Device").length - 1 
+                  ? 'border-b border-neutral-100 dark:border-neutral-800' 
+                  : ''
+              }`}
+            >
+              {/* Feature Name */}
+              <div className="p-4 flex items-center gap-3">
+                <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <feature.icon className="w-4 h-4 text-primary" />
                 </div>
+                <span className="font-medium text-neutral-900 dark:text-white">
+                  {feature.category}
+                </span>
+              </div>
 
-                {/* Professional Features */}
-                <div className={`md:text-center transition-all duration-300 rounded-lg p-3 ${
-                  highlightedTier === 'professional' 
-                    ? 'bg-primary/10 dark:bg-primary/20 shadow-md' 
-                    : ''
-                }`}>
-                  <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1 font-medium uppercase tracking-wide">
-                    Professional
-                  </div>
-                  <div className="min-h-[2rem] flex items-center md:justify-center">
-                    {renderFeatureValue(feature.professional, false, feature)}
-                  </div>
+              {/* Essential Column */}
+              <div className={`p-4 text-center transition-all duration-300 ${
+                highlightedTier === 'essential' 
+                  ? 'bg-primary/5 dark:bg-primary/10' 
+                  : ''
+              }`}>
+                <div className="flex items-center justify-center min-h-[3rem]">
+                  {renderFeatureValue(feature.essential, true, feature)}
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        ))}
+
+              {/* Vertical Separator */}
+              <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+
+              {/* Professional Column */}
+              <div className={`p-4 text-center transition-all duration-300 ${
+                highlightedTier === 'professional' 
+                  ? 'bg-primary/5 dark:bg-primary/10' 
+                  : ''
+              }`}>
+                <div className="flex items-center justify-center min-h-[3rem]">
+                  {renderFeatureValue(feature.professional, false, feature)}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
