@@ -225,10 +225,20 @@ const PCaaSPricingTiers = () => {
     if (!isEssential && spec) {
       // Handle memory upgrade with highlighting
       if (spec.category === "Memory" && spec.hasUpgrade) {
+        const essentialMemory = parseInt(String(spec.essential).replace(/\D/g, ''));
+        const professionalMemory = parseInt(String(spec.professional).replace(/\D/g, ''));
+        const difference = professionalMemory - essentialMemory;
+        
         return (
-          <div className="text-xs text-neutral-700 dark:text-neutral-300">
-            <span className="text-green-600 dark:text-green-400 font-semibold mr-1">+16GB</span>
-            <span>{value}</span>
+          <div className="text-xs">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-1">
+              <TrendingUp className="w-2 h-2" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">{essentialMemory}GB </span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {difference}GB</span>
+            <span className="text-neutral-700 dark:text-neutral-300"> ({professionalMemory}GB total)</span>
           </div>
         );
       }
