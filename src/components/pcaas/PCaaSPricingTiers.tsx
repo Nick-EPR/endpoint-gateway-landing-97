@@ -243,7 +243,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">AMD Ryzen AI </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">7 PRO 350</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 7 PRO 350</span>
           </div>
         );
       }
@@ -258,7 +258,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">4 Cell 57 WH </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">Li-Polymer</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Li-Polymer</span>
           </div>
         );
       }
@@ -272,7 +272,7 @@ const PCaaSPricingTiers = () => {
               ADDED
             </span>
             <br />
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">{value}</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{value}</span>
           </div>
         );
       }
@@ -313,7 +313,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">Lenovo Thinkpad T14 Gen 6 </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">R7 Pro 350</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ R7 Pro 350</span>
           </div>
         );
       }
@@ -343,7 +343,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">Microsoft Copilot - </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">Enterprise</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Enterprise</span>
           </div>
         );
       }
@@ -357,7 +357,7 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">{value}</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {value}</span>
           </div>
         );
       }
@@ -371,7 +371,7 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">Managed</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Managed</span>
             <span className="text-neutral-400 dark:text-neutral-500"> Patch Management</span>
           </div>
         );
@@ -387,7 +387,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">24/7/365 Email, Phone, </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">Live Chat</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Live Chat</span>
           </div>
         );
       }
@@ -402,7 +402,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">End User Level </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">2 Day Shipping</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 2 Day Shipping</span>
           </div>
         );
       }
@@ -417,7 +417,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">Advanced Exchange </span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">2 Day Shipping</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 2 Day Shipping</span>
           </div>
         );
       }
@@ -431,7 +431,7 @@ const PCaaSPricingTiers = () => {
               ADDED
             </span>
             <br />
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">{value}</span>
+            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{value}</span>
           </div>
         );
       }
