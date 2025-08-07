@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus } from "lucide-react";
+import DeviceComparisonCard from "./DeviceComparisonCard";
 
 interface TierFeature {
   category: string;
@@ -247,7 +248,11 @@ const PCaaSPricingTiers = () => {
           Feature Comparison
         </h4>
         
-        {features.map((feature, index) => (
+        {/* Device Comparison - Special detailed card */}
+        <DeviceComparisonCard />
+        
+        {/* Other features */}
+        {features.filter(feature => feature.category !== "Device").map((feature, index) => (
           <Card 
             key={index}
             className="hover:shadow-md transition-all duration-200 border border-neutral-200 dark:border-neutral-700"
