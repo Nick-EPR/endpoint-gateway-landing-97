@@ -1,8 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus } from "lucide-react";
-import DeviceComparisonCard from "./DeviceComparisonCard";
+import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 interface TierFeature {
@@ -10,10 +9,22 @@ interface TierFeature {
   icon: any;
   essential: string | boolean;
   professional: string | boolean;
+  hasUpgrade?: boolean;
+  isNew?: boolean;
+  isDeviceSpec?: boolean;
+}
+
+interface DeviceSpec {
+  category: string;
+  essential: string | boolean;
+  professional: string | boolean;
+  hasUpgrade?: boolean;
+  isNew?: boolean;
 }
 
 const PCaaSPricingTiers = () => {
   const [highlightedTier, setHighlightedTier] = useState<string | null>(null);
+  const [isDeviceExpanded, setIsDeviceExpanded] = useState(false);
 
   const tiers = {
     essential: {
@@ -28,12 +39,91 @@ const PCaaSPricingTiers = () => {
     }
   };
 
+  const deviceSpecs: DeviceSpec[] = [
+    {
+      category: "Model",
+      essential: "Lenovo ThinkPad T14 Gen 6 R5 Pro 340",
+      professional: "Lenovo ThinkPad T14 Gen 6 R7 Pro 350"
+    },
+    {
+      category: "Preloaded Operating System",
+      essential: "Windows 11 Pro",
+      professional: "Windows 11 Pro"
+    },
+    {
+      category: "Processor",
+      essential: "AMD Ryzen AI 5 PRO 340",
+      professional: "AMD Ryzen AI 7 PRO 350",
+      hasUpgrade: true
+    },
+    {
+      category: "Color",
+      essential: "Black",
+      professional: "Black"
+    },
+    {
+      category: "Human Presence Detection",
+      essential: false,
+      professional: true,
+      isNew: true
+    },
+    {
+      category: "Display Size",
+      essential: "14\"",
+      professional: "14\""
+    },
+    {
+      category: "Anti-Glare",
+      essential: false,
+      professional: true,
+      isNew: true
+    },
+    {
+      category: "Touchscreen",
+      essential: false,
+      professional: true,
+      isNew: true
+    },
+    {
+      category: "Camera",
+      essential: "5MP RGB+IR with Microphone",
+      professional: "5MP RGB+IR with Microphone"
+    },
+    {
+      category: "Fingerprint Reader",
+      essential: true,
+      professional: true
+    },
+    {
+      category: "Memory",
+      essential: "16GB DDR5 5600",
+      professional: "32GB DDR5 5600",
+      hasUpgrade: true
+    },
+    {
+      category: "Storage",
+      essential: "512GB SSD M.2",
+      professional: "512GB SSD M.2"
+    },
+    {
+      category: "Battery",
+      essential: "4 Cell 57 WH Li-Ion",
+      professional: "4 Cell 57 WH Li-Polymer",
+      hasUpgrade: true
+    }
+  ];
+
+  // Basic specs to show when collapsed (first 3 items)
+  const basicDeviceSpecs = deviceSpecs.slice(0, 3);
+  const detailedDeviceSpecs = deviceSpecs.slice(3);
+
   const features: TierFeature[] = [
     {
-      category: "Device",
+      category: "Device Specifications",
       icon: Laptop,
       essential: "Lenovo Thinkpad T14 Gen 6 R5 Pro 340",
-      professional: "Lenovo Thinkpad T14 Gen 6 R7 Pro 350"
+      professional: "Lenovo Thinkpad T14 Gen 6 R7 Pro 350",
+      isDeviceSpec: true
     },
     {
       category: "5G High Speed Data Allowance",
@@ -114,6 +204,82 @@ const PCaaSPricingTiers = () => {
       professional: "Recovery"
     }
   ];
+
+  const renderDeviceSpecValue = (value: string | boolean, isEssential: boolean = true, spec?: DeviceSpec) => {
+    if (value === false) {
+      return (
+        <div className="flex items-center justify-center">
+          <X className="w-4 h-4 text-red-500" />
+        </div>
+      );
+    }
+    if (value === true) {
+      return (
+        <div className="flex items-center justify-center">
+          <Check className="w-4 h-4 text-green-500" />
+        </div>
+      );
+    }
+
+    // Show indicators for Professional tier
+    if (!isEssential && spec) {
+      // Handle memory upgrade with highlighting
+      if (spec.category === "Memory" && spec.hasUpgrade) {
+        return (
+          <div className="text-xs text-neutral-700 dark:text-neutral-300">
+            <span className="text-green-600 dark:text-green-400 font-semibold mr-1">+16GB</span>
+            <span>{value}</span>
+          </div>
+        );
+      }
+
+      // Handle processor upgrade with highlighting
+      if (spec.category === "Processor" && spec.hasUpgrade) {
+        return (
+          <div className="text-xs">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-1">
+              <TrendingUp className="w-2 h-2" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">AMD Ryzen AI </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">7 PRO 350</span>
+          </div>
+        );
+      }
+
+      // Handle battery upgrade with highlighting  
+      if (spec.category === "Battery" && spec.hasUpgrade) {
+        return (
+          <div className="text-xs">
+            <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-1">
+              <TrendingUp className="w-2 h-2" />
+              UPGRADE
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">4 Cell 57 WH </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">Li-Polymer</span>
+          </div>
+        );
+      }
+
+      // Handle new features
+      if (spec.isNew && spec.essential === false) {
+        return (
+          <div className="text-xs">
+            <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold text-xs mr-1">
+              <Plus className="w-2 h-2" />
+              ADDED
+            </span>
+            <br />
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">{value}</span>
+          </div>
+        );
+      }
+    }
+
+    return <span className="text-xs text-neutral-700 dark:text-neutral-300">{value}</span>;
+  };
 
   const renderFeatureValue = (value: string | boolean, isEssential: boolean = true, feature?: TierFeature) => {
     if (value === false) {
@@ -365,9 +531,6 @@ const PCaaSPricingTiers = () => {
           Feature Comparison
         </h4>
         
-        {/* Device Comparison - Special detailed card */}
-        <DeviceComparisonCard />
-        
         {/* Feature Comparison Table */}
         <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
           {/* Table Header */}
@@ -393,49 +556,186 @@ const PCaaSPricingTiers = () => {
           </div>
 
           {/* Table Body */}
-          {features.filter(feature => feature.category !== "Device").map((feature, index) => (
-            <div 
-              key={index}
-              className={`grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ${
-                index !== features.filter(f => f.category !== "Device").length - 1 
-                  ? 'border-b border-neutral-100 dark:border-neutral-800' 
-                  : ''
-              }`}
-            >
-              {/* Feature Name */}
-              <div className="p-4 flex items-center gap-3">
-                <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <feature.icon className="w-4 h-4 text-primary" />
-                </div>
-                <span className="font-medium text-neutral-900 dark:text-white">
-                  {feature.category}
-                </span>
-              </div>
+          {features.map((feature, index) => (
+            <div key={index}>
+              {/* Regular Feature Row */}
+              {!feature.isDeviceSpec && (
+                <div 
+                  className={`grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ${
+                    index !== features.length - 1 
+                      ? 'border-b border-neutral-100 dark:border-neutral-800' 
+                      : ''
+                  }`}
+                >
+                  {/* Feature Name */}
+                  <div className="p-4 flex items-center gap-3">
+                    <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <feature.icon className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="font-medium text-neutral-900 dark:text-white">
+                      {feature.category}
+                    </span>
+                  </div>
 
-              {/* Essential Column */}
-              <div className={`p-4 text-center transition-all duration-300 ${
-                highlightedTier === 'essential' 
-                  ? 'bg-primary/5 dark:bg-primary/10' 
-                  : ''
-              }`}>
-                <div className="flex items-center justify-center min-h-[3rem]">
-                  {renderFeatureValue(feature.essential, true, feature)}
-                </div>
-              </div>
+                  {/* Essential Column */}
+                  <div className={`p-4 text-center transition-all duration-300 ${
+                    highlightedTier === 'essential' 
+                      ? 'bg-primary/5 dark:bg-primary/10' 
+                      : ''
+                  }`}>
+                    <div className="flex items-center justify-center min-h-[3rem]">
+                      {renderFeatureValue(feature.essential, true, feature)}
+                    </div>
+                  </div>
 
-              {/* Vertical Separator */}
-              <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+                  {/* Vertical Separator */}
+                  <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
 
-              {/* Professional Column */}
-              <div className={`p-4 text-center transition-all duration-300 ${
-                highlightedTier === 'professional' 
-                  ? 'bg-primary/5 dark:bg-primary/10' 
-                  : ''
-              }`}>
-                <div className="flex items-center justify-center min-h-[3rem]">
-                  {renderFeatureValue(feature.professional, false, feature)}
+                  {/* Professional Column */}
+                  <div className={`p-4 text-center transition-all duration-300 ${
+                    highlightedTier === 'professional' 
+                      ? 'bg-primary/5 dark:bg-primary/10' 
+                      : ''
+                  }`}>
+                    <div className="flex items-center justify-center min-h-[3rem]">
+                      {renderFeatureValue(feature.professional, false, feature)}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {/* Device Specifications Expandable Row */}
+              {feature.isDeviceSpec && (
+                <div className="border-b border-neutral-100 dark:border-neutral-800">
+                  {/* Device Header Row */}
+                  <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200">
+                    {/* Feature Name with Toggle */}
+                    <div className="p-4 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <feature.icon className="w-4 h-4 text-primary" />
+                        </div>
+                        <div>
+                          <span className="font-medium text-neutral-900 dark:text-white">
+                            {feature.category}
+                          </span>
+                          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                            {isDeviceExpanded ? "Detailed hardware comparison" : "Click to view detailed specs"}
+                          </p>
+                        </div>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => setIsDeviceExpanded(!isDeviceExpanded)}
+                        className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary"
+                      >
+                        {isDeviceExpanded ? (
+                          <>
+                            <ChevronUp className="w-4 h-4" />
+                            Hide Details
+                          </>
+                        ) : (
+                          <>
+                            <ChevronDown className="w-4 h-4" />
+                            Show Details
+                          </>
+                        )}
+                      </Button>
+                    </div>
+
+                    {/* Essential Device Summary */}
+                    <div className={`p-4 text-center transition-all duration-300 ${
+                      highlightedTier === 'essential' 
+                        ? 'bg-primary/5 dark:bg-primary/10' 
+                        : ''
+                    }`}>
+                      <div className="flex items-center justify-center min-h-[3rem]">
+                        {renderFeatureValue(feature.essential, true, feature)}
+                      </div>
+                    </div>
+
+                    {/* Vertical Separator */}
+                    <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+
+                    {/* Professional Device Summary */}
+                    <div className={`p-4 text-center transition-all duration-300 ${
+                      highlightedTier === 'professional' 
+                        ? 'bg-primary/5 dark:bg-primary/10' 
+                        : ''
+                    }`}>
+                      <div className="flex items-center justify-center min-h-[3rem]">
+                        {renderFeatureValue(feature.professional, false, feature)}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Expanded Device Details */}
+                  {isDeviceExpanded && (
+                    <div className="bg-neutral-25 dark:bg-neutral-900/50">
+                      {/* Basic specs - always shown when expanded */}
+                      {basicDeviceSpecs.map((spec, specIndex) => (
+                        <div key={specIndex} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
+                          <div className="px-4 py-3 pl-16">
+                            <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
+                              {spec.category}
+                            </span>
+                          </div>
+                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                            highlightedTier === 'essential' 
+                              ? 'bg-primary/5 dark:bg-primary/10' 
+                              : ''
+                          }`}>
+                            <div className="flex items-center justify-center">
+                              {renderDeviceSpecValue(spec.essential, true, spec)}
+                            </div>
+                          </div>
+                          <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                            highlightedTier === 'professional' 
+                              ? 'bg-primary/5 dark:bg-primary/10' 
+                              : ''
+                          }`}>
+                            <div className="flex items-center justify-center">
+                              {renderDeviceSpecValue(spec.professional, false, spec)}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      
+                      {/* Detailed specs */}
+                      {detailedDeviceSpecs.map((spec, specIndex) => (
+                        <div key={`detailed-${specIndex}`} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
+                          <div className="px-4 py-3 pl-16">
+                            <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
+                              {spec.category}
+                            </span>
+                          </div>
+                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                            highlightedTier === 'essential' 
+                              ? 'bg-primary/5 dark:bg-primary/10' 
+                              : ''
+                          }`}>
+                            <div className="flex items-center justify-center">
+                              {renderDeviceSpecValue(spec.essential, true, spec)}
+                            </div>
+                          </div>
+                          <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                            highlightedTier === 'professional' 
+                              ? 'bg-primary/5 dark:bg-primary/10' 
+                              : ''
+                          }`}>
+                            <div className="flex items-center justify-center">
+                              {renderDeviceSpecValue(spec.professional, false, spec)}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           ))}
         </div>
