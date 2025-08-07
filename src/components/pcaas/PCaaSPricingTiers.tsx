@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -12,20 +11,16 @@ interface TierFeature {
 }
 
 const PCaaSPricingTiers = () => {
-  const [selectedTier, setSelectedTier] = useState<'essential' | 'professional'>('essential');
-
   const tiers = {
     essential: {
       name: "Essential Bundle",
       price: "$99",
       popular: false,
-      color: "border-neutral-200 dark:border-neutral-700"
     },
     professional: {
       name: "Professional Bundle", 
       price: "$175",
       popular: true,
-      color: "border-primary dark:border-primary"
     }
   };
 
@@ -118,85 +113,99 @@ const PCaaSPricingTiers = () => {
 
   const renderFeatureValue = (value: string | boolean) => {
     if (value === false) {
-      return <X className="w-4 h-4 text-red-500" />;
+      return (
+        <div className="flex items-center justify-center">
+          <X className="w-4 h-4 text-red-500" />
+        </div>
+      );
     }
     if (value === true) {
-      return <Check className="w-4 h-4 text-green-500" />;
+      return (
+        <div className="flex items-center justify-center">
+          <Check className="w-4 h-4 text-green-500" />
+        </div>
+      );
     }
     return <span className="text-sm text-neutral-700 dark:text-neutral-300">{value}</span>;
   };
 
   return (
     <div className="space-y-8">
-      {/* Tier Selection */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        {Object.entries(tiers).map(([key, tier]) => (
-          <Card 
-            key={key}
-            className={`cursor-pointer transition-all duration-300 hover:shadow-lg ${
-              selectedTier === key ? tier.color : 'border-neutral-200 dark:border-neutral-700'
-            } ${selectedTier === key ? 'ring-2 ring-primary/20' : ''}`}
-            onClick={() => setSelectedTier(key as 'essential' | 'professional')}
-          >
-            <CardContent className="p-6 text-center relative">
-              {tier.popular && (
-                <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-                  Most Popular
-                </Badge>
-              )}
-              <h3 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
-                {tier.name}
-              </h3>
-              <div className="text-3xl font-bold text-primary mb-2">
-                {tier.price}
-                <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400">
+      {/* Header */}
+      <div className="text-center">
+        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
+          Compare T-Mobile PCaaS Plans
+        </h3>
+        <p className="text-neutral-600 dark:text-neutral-400">
+          Choose the plan that best fits your business needs
+        </p>
+      </div>
+
+      {/* Side-by-Side Comparison */}
+      <Card className="border-2 border-primary/20 dark:border-primary/30 overflow-hidden">
+        <CardContent className="p-0">
+          {/* Headers */}
+          <div className="grid grid-cols-1 md:grid-cols-3 border-b border-neutral-200 dark:border-neutral-700">
+            <div className="p-6 bg-neutral-50 dark:bg-neutral-800">
+              <h4 className="font-semibold text-neutral-900 dark:text-white">Features</h4>
+            </div>
+            <div className="p-6 text-center border-l border-neutral-200 dark:border-neutral-700">
+              <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                {tiers.essential.name}
+              </h4>
+              <div className="text-2xl font-bold text-primary mb-3">
+                {tiers.essential.price}
+                <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
                   /month/36 months
                 </span>
               </div>
-              <Button 
-                variant={selectedTier === key ? "default" : "outline"}
-                size="sm"
-                className="mt-2"
-              >
-                {selectedTier === key ? 'Selected' : 'Select Plan'}
+              <Button variant="outline" size="sm" className="w-full">
+                Get Started
               </Button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Selected Tier Details */}
-      <Card className="border-2 border-primary/20 dark:border-primary/30">
-        <CardContent className="p-8">
-          <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3">
-            <Check className="w-6 h-6 text-primary" />
-            {tiers[selectedTier].name} Features
-          </h3>
-          
-          <div className="space-y-4">
-            {features.map((feature, index) => {
-              const value = selectedTier === 'essential' ? feature.essential : feature.professional;
-              
-              return (
-                <div 
-                  key={index}
-                  className="flex items-start gap-4 p-4 rounded-lg hover:bg-primary/5 transition-colors"
-                >
-                  <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <feature.icon className="w-4 h-4 text-primary" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-neutral-900 dark:text-white mb-1">
-                      {feature.category}
-                    </h4>
-                    <div className="flex items-center gap-2">
-                      {renderFeatureValue(value)}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            </div>
+            <div className="p-6 text-center border-l border-neutral-200 dark:border-neutral-700 bg-primary/5 dark:bg-primary/10 relative">
+              <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
+                Most Popular
+              </Badge>
+              <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
+                {tiers.professional.name}
+              </h4>
+              <div className="text-2xl font-bold text-primary mb-3">
+                {tiers.professional.price}
+                <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
+                  /month/36 months
+                </span>
+              </div>
+              <Button size="sm" className="w-full">
+                Get Started
+              </Button>
+            </div>
           </div>
+
+          {/* Feature Comparison Rows */}
+          {features.map((feature, index) => (
+            <div 
+              key={index}
+              className={`grid grid-cols-1 md:grid-cols-3 border-b border-neutral-200 dark:border-neutral-700 hover:bg-primary/5 transition-colors ${
+                index % 2 === 0 ? 'bg-neutral-50/50 dark:bg-neutral-800/50' : ''
+              }`}
+            >
+              <div className="p-4 flex items-center gap-3 bg-neutral-50 dark:bg-neutral-800">
+                <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
+                  <feature.icon className="w-3 h-3 text-primary" />
+                </div>
+                <span className="font-medium text-neutral-900 dark:text-white text-sm">
+                  {feature.category}
+                </span>
+              </div>
+              <div className="p-4 border-l border-neutral-200 dark:border-neutral-700">
+                {renderFeatureValue(feature.essential)}
+              </div>
+              <div className="p-4 border-l border-neutral-200 dark:border-neutral-700">
+                {renderFeatureValue(feature.professional)}
+              </div>
+            </div>
+          ))}
         </CardContent>
       </Card>
     </div>
