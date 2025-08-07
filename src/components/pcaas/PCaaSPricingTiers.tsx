@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface TierFeature {
   category: string;
@@ -26,6 +26,37 @@ const PCaaSPricingTiers = () => {
   const [highlightedTier, setHighlightedTier] = useState<string | null>(null);
   const [selectedTier, setSelectedTier] = useState<string | null>('essential'); // Default to Essential as "Most Popular"
   const [isDeviceExpanded, setIsDeviceExpanded] = useState(false);
+  const [essentialPrice, setEssentialPrice] = useState(199); // Start higher than target
+  const [professionalPrice, setProfessionalPrice] = useState(299); // Start higher than target
+
+  // Animation hook for counting down prices
+  useEffect(() => {
+    const essentialTarget = 99;
+    const professionalTarget = 175;
+    const duration = 2000; // 2 seconds
+    const frameDuration = 1000 / 60; // 60 FPS
+    const totalFrames = Math.round(duration / frameDuration);
+    
+    let frame = 0;
+    const timer = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      
+      if (progress >= 1) {
+        setEssentialPrice(essentialTarget);
+        setProfessionalPrice(professionalTarget);
+        clearInterval(timer);
+      } else {
+        // Easing function for smooth countdown
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        
+        setEssentialPrice(Math.round(199 - (199 - essentialTarget) * easeOut));
+        setProfessionalPrice(Math.round(299 - (299 - professionalTarget) * easeOut));
+      }
+    }, frameDuration);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const tiers = {
     essential: {
@@ -520,7 +551,7 @@ const PCaaSPricingTiers = () => {
               {tiers.essential.name}
             </h4>
             <div className="text-3xl font-bold text-primary mb-3">
-              {tiers.essential.price}
+              ${essentialPrice}
               <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
                 per month/36 months
               </span>
@@ -546,7 +577,7 @@ const PCaaSPricingTiers = () => {
               {tiers.professional.name}
             </h4>
             <div className="text-3xl font-bold text-primary mb-3">
-              {tiers.professional.price}
+              ${professionalPrice}
               <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
                 per month/36 months
               </span>
