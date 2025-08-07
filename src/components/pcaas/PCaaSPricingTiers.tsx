@@ -327,8 +327,9 @@ const PCaaSPricingTiers = () => {
         
         return (
           <div className="text-sm text-neutral-700 dark:text-neutral-300">
-            <span className="text-green-600 dark:text-green-400 font-semibold mr-1">+{difference}GB</span>
-            <span>{value}</span>
+            <span className="text-neutral-700 dark:text-neutral-300">{essentialGB} GB </span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {difference} GB</span>
+            <span className="text-neutral-700 dark:text-neutral-300"> ({professionalGB} GB total)</span>
           </div>
         );
       }
