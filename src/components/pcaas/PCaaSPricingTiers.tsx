@@ -225,8 +225,8 @@ const PCaaSPricingTiers = () => {
     if (!isEssential && spec) {
       // Handle memory upgrade with highlighting
       if (spec.category === "Memory" && spec.hasUpgrade) {
-        const essentialMemory = parseInt(String(spec.essential).replace(/\D/g, ''));
-        const professionalMemory = parseInt(String(spec.professional).replace(/\D/g, ''));
+        const essentialMemory = parseInt(String(spec.essential).match(/^(\d+)/)?.[1] || '0');
+        const professionalMemory = parseInt(String(spec.professional).match(/^(\d+)/)?.[1] || '0');
         const difference = professionalMemory - essentialMemory;
         
         return (
