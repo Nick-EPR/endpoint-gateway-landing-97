@@ -13,12 +13,12 @@ interface TierFeature {
 const PCaaSPricingTiers = () => {
   const tiers = {
     essential: {
-      name: "Essential Bundle",
+      name: "Essential",
       price: "$99",
       popular: false,
     },
     professional: {
-      name: "Professional Bundle", 
+      name: "Professional", 
       price: "$175",
       popular: true,
     }
