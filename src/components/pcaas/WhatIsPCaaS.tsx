@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Check, Laptop, Shield, Headphones, RefreshCw } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useRef } from "react";
+import PCaaSPricingTiers from "./PCaaSPricingTiers";
 
 const WhatIsPCaaS = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,33 +49,12 @@ const WhatIsPCaaS = () => {
             </div>
           </div>
 
-          {/* What's Included Card */}
-          <Card className={`border-2 border-primary/20 dark:border-primary/30 transition-all duration-1000 delay-300 hover:shadow-xl ${
+          {/* Interactive Pricing Tiers */}
+          <div className={`transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-8 text-center flex items-center justify-center gap-3">
-                <Check className="w-6 h-6 text-primary" />
-                What's Included in Your PCaaS Bundle
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4">
-                {inclusions.map((item, index) => (
-                  <div 
-                    key={index} 
-                    className={`flex items-start gap-3 group transition-all duration-500 hover:bg-primary/5 rounded-lg p-3 ${
-                      isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'
-                    }`}
-                    style={{ transitionDelay: `${400 + index * 100}ms` }}
-                  >
-                    <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                      <item.icon className="w-4 h-4 text-primary" />
-                    </div>
-                    <span className="text-neutral-700 dark:text-neutral-300">{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
+            <PCaaSPricingTiers />
+          </div>
         </div>
       </div>
     </section>
