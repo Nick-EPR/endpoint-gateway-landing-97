@@ -146,6 +146,42 @@ const PCaaSPricingTiers = () => {
           </div>
         );
       }
+
+      // Handle upgrades for other features
+      const upgradeFeatures = [
+        "Device", // R5 to R7 processor
+        "AI", // Basic to Enterprise Copilot
+        "Standard Security", // Windows Security to Absolute Resilience
+        "Patch Management", // Unmanaged to Managed
+        "Helpdesk", // Email/Phone to Email/Phone/Live Chat
+        "Deployment", // Ground to 2 Day Shipping
+        "Business Continuity" // Ground to 2 Day Shipping
+      ];
+
+      if (upgradeFeatures.includes(feature.category) && essentialValue !== false) {
+        return (
+          <div className="text-sm text-neutral-700 dark:text-neutral-300">
+            <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold text-xs mr-2">
+              <Check className="w-3 h-3" />
+              UPGRADE
+            </span>
+            {value}
+          </div>
+        );
+      }
+
+      // Handle new features (Essential is false, Professional has value)
+      if (essentialValue === false && professionalValue !== false) {
+        return (
+          <div className="text-sm text-neutral-700 dark:text-neutral-300">
+            <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-400 font-semibold text-xs mr-2">
+              <Check className="w-3 h-3" />
+              NEW
+            </span>
+            {value}
+          </div>
+        );
+      }
     }
 
     return <span className="text-sm text-neutral-700 dark:text-neutral-300">{value}</span>;
