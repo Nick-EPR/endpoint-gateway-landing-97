@@ -24,6 +24,7 @@ interface DeviceSpec {
 
 const PCaaSPricingTiers = () => {
   const [highlightedTier, setHighlightedTier] = useState<string | null>(null);
+  const [selectedTier, setSelectedTier] = useState<string | null>('essential'); // Default to Essential as "Most Popular"
   const [isDeviceExpanded, setIsDeviceExpanded] = useState(false);
 
   const tiers = {
@@ -501,13 +502,13 @@ const PCaaSPricingTiers = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <Card 
           className={`border-2 ${
-            highlightedTier === 'essential' 
+            selectedTier === 'essential' || highlightedTier === 'essential'
               ? 'border-primary dark:border-primary shadow-xl' 
               : 'border-primary dark:border-primary'
           } hover:shadow-xl transition-all duration-300 relative cursor-pointer`}
           onMouseEnter={() => setHighlightedTier('essential')}
           onMouseLeave={() => setHighlightedTier(null)}
-          onClick={() => setHighlightedTier(highlightedTier === 'essential' ? null : 'essential')}
+          onClick={() => setSelectedTier('essential')}
         >
           <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
             <Badge className="bg-primary text-primary-foreground px-4 py-1">
@@ -532,13 +533,13 @@ const PCaaSPricingTiers = () => {
 
         <Card 
           className={`border-2 ${
-            highlightedTier === 'professional' 
+            selectedTier === 'professional' || highlightedTier === 'professional'
               ? 'border-primary dark:border-primary shadow-xl' 
               : 'border-neutral-200 dark:border-neutral-700'
           } hover:shadow-lg transition-all duration-300 cursor-pointer`}
           onMouseEnter={() => setHighlightedTier('professional')}
           onMouseLeave={() => setHighlightedTier(null)}
-          onClick={() => setHighlightedTier(highlightedTier === 'professional' ? null : 'professional')}
+          onClick={() => setSelectedTier('professional')}
         >
           <CardContent className="p-6 text-center">
             <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
@@ -571,7 +572,7 @@ const PCaaSPricingTiers = () => {
               Features
             </div>
             <div className={`p-4 text-center font-semibold transition-all duration-300 ${
-              highlightedTier === 'essential' 
+              selectedTier === 'essential' || highlightedTier === 'essential'
                 ? 'bg-primary/10 dark:bg-primary/20' 
                 : ''
             }`}>
@@ -579,7 +580,7 @@ const PCaaSPricingTiers = () => {
             </div>
             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
             <div className={`p-4 text-center font-semibold transition-all duration-300 ${
-              highlightedTier === 'professional' 
+              selectedTier === 'professional' || highlightedTier === 'professional'
                 ? 'bg-primary/10 dark:bg-primary/20' 
                 : ''
             }`}>
@@ -611,7 +612,7 @@ const PCaaSPricingTiers = () => {
 
                   {/* Essential Column */}
                   <div className={`p-4 text-center transition-all duration-300 ${
-                    highlightedTier === 'essential' 
+                    selectedTier === 'essential' || highlightedTier === 'essential'
                       ? 'bg-primary/5 dark:bg-primary/10' 
                       : ''
                   }`}>
@@ -625,7 +626,7 @@ const PCaaSPricingTiers = () => {
 
                   {/* Professional Column */}
                   <div className={`p-4 text-center transition-all duration-300 ${
-                    highlightedTier === 'professional' 
+                    selectedTier === 'professional' || highlightedTier === 'professional'
                       ? 'bg-primary/5 dark:bg-primary/10' 
                       : ''
                   }`}>
@@ -678,7 +679,7 @@ const PCaaSPricingTiers = () => {
 
                     {/* Essential Device Summary */}
                     <div className={`p-4 text-center transition-all duration-300 ${
-                      highlightedTier === 'essential' 
+                      selectedTier === 'essential' || highlightedTier === 'essential'
                         ? 'bg-primary/5 dark:bg-primary/10' 
                         : ''
                     }`}>
@@ -692,7 +693,7 @@ const PCaaSPricingTiers = () => {
 
                     {/* Professional Device Summary */}
                     <div className={`p-4 text-center transition-all duration-300 ${
-                      highlightedTier === 'professional' 
+                      selectedTier === 'professional' || highlightedTier === 'professional'
                         ? 'bg-primary/5 dark:bg-primary/10' 
                         : ''
                     }`}>
@@ -720,7 +721,7 @@ const PCaaSPricingTiers = () => {
                             </span>
                           </div>
                           <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            highlightedTier === 'essential' 
+                            selectedTier === 'essential' || highlightedTier === 'essential'
                               ? 'bg-primary/5 dark:bg-primary/10' 
                               : ''
                           }`}>
@@ -730,7 +731,7 @@ const PCaaSPricingTiers = () => {
                           </div>
                           <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
                           <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            highlightedTier === 'professional' 
+                            selectedTier === 'professional' || highlightedTier === 'professional'
                               ? 'bg-primary/5 dark:bg-primary/10' 
                               : ''
                           }`}>
@@ -756,7 +757,7 @@ const PCaaSPricingTiers = () => {
                             </span>
                           </div>
                           <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            highlightedTier === 'essential' 
+                            selectedTier === 'essential' || highlightedTier === 'essential'
                               ? 'bg-primary/5 dark:bg-primary/10' 
                               : ''
                           }`}>
@@ -766,7 +767,7 @@ const PCaaSPricingTiers = () => {
                           </div>
                           <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
                           <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            highlightedTier === 'professional' 
+                            selectedTier === 'professional' || highlightedTier === 'professional'
                               ? 'bg-primary/5 dark:bg-primary/10' 
                               : ''
                           }`}>
