@@ -303,21 +303,8 @@ const PCaaSPricingTiers = () => {
       const professionalValue = feature.professional;
       
       // Handle Device comparison with part highlighting
-      if (feature.category === "Device" && 
+      if (feature.category === "Device Specifications" && 
           typeof essentialValue === 'string' && typeof professionalValue === 'string') {
-        // Find common and different parts
-        const essentialParts = essentialValue.split(' ');
-        const professionalParts = professionalValue.split(' ');
-        
-        // Find the differing part (R5 vs R7, Pro 340 vs Pro 350)
-        let commonPrefix = '';
-        let differentPart = '';
-        
-        if (professionalValue.includes('R7 Pro 350')) {
-          commonPrefix = 'Lenovo Thinkpad T14 Gen 6 ';
-          differentPart = 'R7 Pro 350';
-        }
-        
         return (
           <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
@@ -325,8 +312,8 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-neutral-400 dark:text-neutral-500">{commonPrefix}</span>
-            <span className="text-blue-600 dark:text-blue-400 font-semibold">{differentPart}</span>
+            <span className="text-neutral-400 dark:text-neutral-500">Lenovo Thinkpad T14 Gen 6 </span>
+            <span className="text-blue-600 dark:text-blue-400 font-semibold">R7 Pro 350</span>
           </div>
         );
       }
