@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus } from "lucide-react";
 import DeviceComparisonCard from "./DeviceComparisonCard";
+import { useState } from "react";
 
 interface TierFeature {
   category: string;
@@ -12,16 +13,18 @@ interface TierFeature {
 }
 
 const PCaaSPricingTiers = () => {
+  const [highlightedTier, setHighlightedTier] = useState<string | null>(null);
+
   const tiers = {
     essential: {
       name: "Essential",
       price: "$99",
-      popular: false,
+      popular: true,
     },
     professional: {
       name: "Professional", 
       price: "$175",
-      popular: true,
+      popular: false,
     }
   };
 
@@ -202,9 +205,23 @@ const PCaaSPricingTiers = () => {
 
       {/* Plan Headers */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <Card className="border-2 border-neutral-200 dark:border-neutral-700 hover:shadow-lg transition-all duration-300">
-          <CardContent className="p-6 text-center">
-            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
+        <Card 
+          className={`border-2 ${
+            highlightedTier === 'essential' 
+              ? 'border-primary dark:border-primary shadow-xl' 
+              : 'border-primary dark:border-primary'
+          } hover:shadow-xl transition-all duration-300 relative cursor-pointer`}
+          onMouseEnter={() => setHighlightedTier('essential')}
+          onMouseLeave={() => setHighlightedTier(null)}
+          onClick={() => setHighlightedTier(highlightedTier === 'essential' ? null : 'essential')}
+        >
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
+            <Badge className="bg-primary text-primary-foreground px-4 py-1">
+              Most Popular
+            </Badge>
+          </div>
+          <CardContent className="p-6 text-center bg-primary/5 dark:bg-primary/10">
+            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2 mt-2">
               {tiers.essential.name}
             </h4>
             <div className="text-3xl font-bold text-primary mb-3">
@@ -213,20 +230,24 @@ const PCaaSPricingTiers = () => {
                 /month/36 months
               </span>
             </div>
-            <Button variant="outline" size="sm" className="w-full">
+            <Button size="sm" className="w-full">
               Get Started
             </Button>
           </CardContent>
         </Card>
 
-        <Card className="border-2 border-primary dark:border-primary hover:shadow-xl transition-all duration-300 relative">
-          <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-            <Badge className="bg-primary text-primary-foreground px-4 py-1">
-              Most Popular
-            </Badge>
-          </div>
-          <CardContent className="p-6 text-center bg-primary/5 dark:bg-primary/10">
-            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2 mt-2">
+        <Card 
+          className={`border-2 ${
+            highlightedTier === 'professional' 
+              ? 'border-primary dark:border-primary shadow-xl' 
+              : 'border-neutral-200 dark:border-neutral-700'
+          } hover:shadow-lg transition-all duration-300 cursor-pointer`}
+          onMouseEnter={() => setHighlightedTier('professional')}
+          onMouseLeave={() => setHighlightedTier(null)}
+          onClick={() => setHighlightedTier(highlightedTier === 'professional' ? null : 'professional')}
+        >
+          <CardContent className="p-6 text-center">
+            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
               {tiers.professional.name}
             </h4>
             <div className="text-3xl font-bold text-primary mb-3">
@@ -235,7 +256,7 @@ const PCaaSPricingTiers = () => {
                 /month/36 months
               </span>
             </div>
-            <Button size="sm" className="w-full">
+            <Button variant="outline" size="sm" className="w-full">
               Get Started
             </Button>
           </CardContent>
@@ -270,7 +291,11 @@ const PCaaSPricingTiers = () => {
                 </div>
 
                 {/* Essential Features */}
-                <div className="md:text-center">
+                <div className={`md:text-center transition-all duration-300 rounded-lg p-3 ${
+                  highlightedTier === 'essential' 
+                    ? 'bg-primary/10 dark:bg-primary/20 shadow-md' 
+                    : ''
+                }`}>
                   <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1 font-medium uppercase tracking-wide">
                     Essential
                   </div>
@@ -280,7 +305,11 @@ const PCaaSPricingTiers = () => {
                 </div>
 
                 {/* Professional Features */}
-                <div className="md:text-center">
+                <div className={`md:text-center transition-all duration-300 rounded-lg p-3 ${
+                  highlightedTier === 'professional' 
+                    ? 'bg-primary/10 dark:bg-primary/20 shadow-md' 
+                    : ''
+                }`}>
                   <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1 font-medium uppercase tracking-wide">
                     Professional
                   </div>
