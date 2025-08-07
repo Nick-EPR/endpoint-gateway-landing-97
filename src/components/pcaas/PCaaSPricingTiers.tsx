@@ -522,7 +522,7 @@ const PCaaSPricingTiers = () => {
             <div className="text-3xl font-bold text-primary mb-3">
               {tiers.essential.price}
               <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
-                /month/36 months
+                per month/36 months
               </span>
             </div>
             <Button size="sm" className="w-full">
@@ -548,7 +548,7 @@ const PCaaSPricingTiers = () => {
             <div className="text-3xl font-bold text-primary mb-3">
               {tiers.professional.price}
               <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
-                /month/36 months
+                per month/36 months
               </span>
             </div>
             <Button variant="outline" size="sm" className="w-full">
