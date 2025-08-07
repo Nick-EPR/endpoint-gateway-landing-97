@@ -276,6 +276,11 @@ const PCaaSPricingTiers = () => {
           </div>
         );
       }
+      
+      // Handle identical device specs - show in grey for Professional tier
+      if (spec && spec.essential === spec.professional && typeof spec.professional === 'string') {
+        return <span className="text-xs text-neutral-400 dark:text-neutral-500">{value}</span>;
+      }
     }
 
     return <span className="text-xs text-neutral-700 dark:text-neutral-300">{value}</span>;
@@ -332,7 +337,7 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-neutral-700 dark:text-neutral-300">{essentialGB} GB </span>
+            <span className="text-neutral-400 dark:text-neutral-500">{essentialGB} GB </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {difference} GB</span>
             <span className="text-neutral-700 dark:text-neutral-300"> ({professionalGB} GB total)</span>
           </div>
@@ -440,6 +445,11 @@ const PCaaSPricingTiers = () => {
             <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{value}</span>
           </div>
         );
+      }
+      
+      // Handle identical features - show in grey for Professional tier
+      if (essentialValue === professionalValue && typeof professionalValue === 'string') {
+        return <span className="text-sm text-neutral-400 dark:text-neutral-500">{value}</span>;
       }
     }
 
