@@ -141,73 +141,95 @@ const PCaaSPricingTiers = () => {
         </p>
       </div>
 
-      {/* Side-by-Side Comparison */}
-      <Card className="border-2 border-primary/20 dark:border-primary/30 overflow-hidden">
-        <CardContent className="p-0">
-          {/* Headers */}
-          <div className="grid grid-cols-1 md:grid-cols-3 border-b border-neutral-200 dark:border-neutral-700">
-            <div className="p-6 bg-neutral-50 dark:bg-neutral-800">
-              <h4 className="font-semibold text-neutral-900 dark:text-white">Features</h4>
+      {/* Plan Headers */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <Card className="border-2 border-neutral-200 dark:border-neutral-700 hover:shadow-lg transition-all duration-300">
+          <CardContent className="p-6 text-center">
+            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
+              {tiers.essential.name}
+            </h4>
+            <div className="text-3xl font-bold text-primary mb-3">
+              {tiers.essential.price}
+              <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
+                /month/36 months
+              </span>
             </div>
-            <div className="p-6 text-center border-l border-neutral-200 dark:border-neutral-700">
-              <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
-                {tiers.essential.name}
-              </h4>
-              <div className="text-2xl font-bold text-primary mb-3">
-                {tiers.essential.price}
-                <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
-                  /month/36 months
-                </span>
-              </div>
-              <Button variant="outline" size="sm" className="w-full">
-                Get Started
-              </Button>
-            </div>
-            <div className="p-6 text-center border-l border-neutral-200 dark:border-neutral-700 bg-primary/5 dark:bg-primary/10 relative">
-              <Badge className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground">
-                Most Popular
-              </Badge>
-              <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
-                {tiers.professional.name}
-              </h4>
-              <div className="text-2xl font-bold text-primary mb-3">
-                {tiers.professional.price}
-                <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
-                  /month/36 months
-                </span>
-              </div>
-              <Button size="sm" className="w-full">
-                Get Started
-              </Button>
-            </div>
-          </div>
+            <Button variant="outline" size="sm" className="w-full">
+              Get Started
+            </Button>
+          </CardContent>
+        </Card>
 
-          {/* Feature Comparison Rows */}
-          {features.map((feature, index) => (
-            <div 
-              key={index}
-              className={`grid grid-cols-1 md:grid-cols-3 border-b border-neutral-200 dark:border-neutral-700 hover:bg-primary/5 transition-colors ${
-                index % 2 === 0 ? 'bg-neutral-50/50 dark:bg-neutral-800/50' : ''
-              }`}
-            >
-              <div className="p-4 flex items-center gap-3 bg-neutral-50 dark:bg-neutral-800">
-                <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center flex-shrink-0">
-                  <feature.icon className="w-3 h-3 text-primary" />
-                </div>
-                <span className="font-medium text-neutral-900 dark:text-white text-sm">
-                  {feature.category}
-                </span>
-              </div>
-              <div className="p-4 border-l border-neutral-200 dark:border-neutral-700">
-                {renderFeatureValue(feature.essential)}
-              </div>
-              <div className="p-4 border-l border-neutral-200 dark:border-neutral-700">
-                {renderFeatureValue(feature.professional)}
-              </div>
+        <Card className="border-2 border-primary dark:border-primary hover:shadow-xl transition-all duration-300 relative">
+          <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
+            <Badge className="bg-primary text-primary-foreground px-4 py-1">
+              Most Popular
+            </Badge>
+          </div>
+          <CardContent className="p-6 text-center bg-primary/5 dark:bg-primary/10">
+            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2 mt-2">
+              {tiers.professional.name}
+            </h4>
+            <div className="text-3xl font-bold text-primary mb-3">
+              {tiers.professional.price}
+              <span className="text-sm font-normal text-neutral-600 dark:text-neutral-400 block">
+                /month/36 months
+              </span>
             </div>
-          ))}
-        </CardContent>
-      </Card>
+            <Button size="sm" className="w-full">
+              Get Started
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Feature Comparison */}
+      <div className="space-y-4">
+        <h4 className="text-lg font-semibold text-neutral-900 dark:text-white text-center mb-6">
+          Feature Comparison
+        </h4>
+        
+        {features.map((feature, index) => (
+          <Card 
+            key={index}
+            className="hover:shadow-md transition-all duration-200 border border-neutral-200 dark:border-neutral-700"
+          >
+            <CardContent className="p-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                {/* Feature Name */}
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-4 h-4 text-primary" />
+                  </div>
+                  <span className="font-semibold text-neutral-900 dark:text-white">
+                    {feature.category}
+                  </span>
+                </div>
+
+                {/* Essential Features */}
+                <div className="md:text-center">
+                  <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1 font-medium uppercase tracking-wide">
+                    Essential
+                  </div>
+                  <div className="min-h-[2rem] flex items-center md:justify-center">
+                    {renderFeatureValue(feature.essential)}
+                  </div>
+                </div>
+
+                {/* Professional Features */}
+                <div className="md:text-center">
+                  <div className="text-xs text-neutral-500 dark:text-neutral-400 mb-1 font-medium uppercase tracking-wide">
+                    Professional
+                  </div>
+                  <div className="min-h-[2rem] flex items-center md:justify-center">
+                    {renderFeatureValue(feature.professional)}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };
