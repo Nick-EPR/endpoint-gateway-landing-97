@@ -272,7 +272,7 @@ const PCaaSPricingTiers = () => {
               ADDED
             </span>
             <br />
-            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{value}</span>
+            <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{value}</span>
           </div>
         );
       }
@@ -431,7 +431,7 @@ const PCaaSPricingTiers = () => {
               ADDED
             </span>
             <br />
-            <span className="text-emerald-600 dark:text-emerald-400 font-semibold">{value}</span>
+            <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{value}</span>
           </div>
         );
       }
