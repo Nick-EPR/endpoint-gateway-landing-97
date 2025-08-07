@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, TrendingUp, Plus, Laptop } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Check, X, TrendingUp, Plus, Laptop, ChevronDown, ChevronUp } from "lucide-react";
 
 interface DeviceSpec {
   category: string;
@@ -11,6 +13,8 @@ interface DeviceSpec {
 }
 
 export const DeviceComparisonCard = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const deviceSpecs: DeviceSpec[] = [
     {
       category: "Model",
@@ -85,6 +89,10 @@ export const DeviceComparisonCard = () => {
     }
   ];
 
+  // Basic specs to show when collapsed (first 3 items)
+  const basicSpecs = deviceSpecs.slice(0, 3);
+  const detailedSpecs = deviceSpecs.slice(3);
+
   const renderSpecValue = (value: string | boolean, isEssential: boolean = true, spec?: DeviceSpec) => {
     if (value === false) {
       return (
@@ -147,19 +155,39 @@ export const DeviceComparisonCard = () => {
     <Card className="hover:shadow-md transition-all duration-200 border border-neutral-200 dark:border-neutral-700">
       <CardContent className="p-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-          {/* Feature Name */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Laptop className="w-4 h-4 text-primary" />
+          {/* Feature Name with Toggle */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Laptop className="w-4 h-4 text-primary" />
+              </div>
+              <div>
+                <span className="font-semibold text-neutral-900 dark:text-white">
+                  Device Specifications
+                </span>
+                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                  {isExpanded ? "Detailed hardware comparison" : "Click to view detailed specs"}
+                </p>
+              </div>
             </div>
-            <div>
-              <span className="font-semibold text-neutral-900 dark:text-white">
-                Device Specifications
-              </span>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-                Detailed hardware comparison
-              </p>
-            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary"
+            >
+              {isExpanded ? (
+                <>
+                  <ChevronUp className="w-4 h-4" />
+                  Hide Details
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="w-4 h-4" />
+                  Show Details
+                </>
+              )}
+            </Button>
           </div>
 
           {/* Essential Specs */}
@@ -168,8 +196,20 @@ export const DeviceComparisonCard = () => {
               Essential
             </div>
             <div className="space-y-3">
-              {deviceSpecs.map((spec, index) => (
+              {/* Always show basic specs */}
+              {basicSpecs.map((spec, index) => (
                 <div key={index} className="border-b border-neutral-100 dark:border-neutral-700 last:border-b-0 pb-2 last:pb-0">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1 font-medium">
+                    {spec.category}
+                  </div>
+                  <div className="min-h-[1.5rem] flex items-center md:justify-center">
+                    {renderSpecValue(spec.essential, true, spec)}
+                  </div>
+                </div>
+              ))}
+              {/* Show detailed specs when expanded */}
+              {isExpanded && detailedSpecs.map((spec, index) => (
+                <div key={`detailed-${index}`} className="border-b border-neutral-100 dark:border-neutral-700 last:border-b-0 pb-2 last:pb-0 animate-fade-in">
                   <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1 font-medium">
                     {spec.category}
                   </div>
@@ -187,8 +227,20 @@ export const DeviceComparisonCard = () => {
               Professional
             </div>
             <div className="space-y-3">
-              {deviceSpecs.map((spec, index) => (
+              {/* Always show basic specs */}
+              {basicSpecs.map((spec, index) => (
                 <div key={index} className="border-b border-neutral-100 dark:border-neutral-700 last:border-b-0 pb-2 last:pb-0">
+                  <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1 font-medium">
+                    {spec.category}
+                  </div>
+                  <div className="min-h-[1.5rem] flex items-center md:justify-center">
+                    {renderSpecValue(spec.professional, false, spec)}
+                  </div>
+                </div>
+              ))}
+              {/* Show detailed specs when expanded */}
+              {isExpanded && detailedSpecs.map((spec, index) => (
+                <div key={`detailed-${index}`} className="border-b border-neutral-100 dark:border-neutral-700 last:border-b-0 pb-2 last:pb-0 animate-fade-in">
                   <div className="text-xs text-neutral-600 dark:text-neutral-400 mb-1 font-medium">
                     {spec.category}
                   </div>
