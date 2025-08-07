@@ -111,7 +111,7 @@ const PCaaSPricingTiers = () => {
     }
   ];
 
-  const renderFeatureValue = (value: string | boolean) => {
+  const renderFeatureValue = (value: string | boolean, isEssential: boolean = true, feature?: TierFeature) => {
     if (value === false) {
       return (
         <div className="flex items-center justify-center">
@@ -126,6 +126,28 @@ const PCaaSPricingTiers = () => {
         </div>
       );
     }
+
+    // Calculate and show difference for Professional tier
+    if (!isEssential && feature) {
+      const essentialValue = feature.essential;
+      const professionalValue = feature.professional;
+      
+      // Handle 5G Data comparison
+      if (feature.category === "5G High Speed Data Allowance" && 
+          typeof essentialValue === 'string' && typeof professionalValue === 'string') {
+        const essentialGB = parseInt(essentialValue.replace(/\D/g, ''));
+        const professionalGB = parseInt(professionalValue.replace(/\D/g, ''));
+        const difference = professionalGB - essentialGB;
+        
+        return (
+          <div className="text-sm text-neutral-700 dark:text-neutral-300">
+            <span className="text-green-600 dark:text-green-400 font-semibold">+{difference}GB </span>
+            {value}
+          </div>
+        );
+      }
+    }
+
     return <span className="text-sm text-neutral-700 dark:text-neutral-300">{value}</span>;
   };
 
@@ -212,7 +234,7 @@ const PCaaSPricingTiers = () => {
                     Essential
                   </div>
                   <div className="min-h-[2rem] flex items-center md:justify-center">
-                    {renderFeatureValue(feature.essential)}
+                    {renderFeatureValue(feature.essential, true, feature)}
                   </div>
                 </div>
 
@@ -222,7 +244,7 @@ const PCaaSPricingTiers = () => {
                     Professional
                   </div>
                   <div className="min-h-[2rem] flex items-center md:justify-center">
-                    {renderFeatureValue(feature.professional)}
+                    {renderFeatureValue(feature.professional, false, feature)}
                   </div>
                 </div>
               </div>
