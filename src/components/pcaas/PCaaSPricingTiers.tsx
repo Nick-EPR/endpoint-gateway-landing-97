@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery } from "lucide-react";
+import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface TierFeature {
@@ -320,9 +320,18 @@ const PCaaSPricingTiers = () => {
         );
       }
       
-      // Handle identical device specs - show in grey for Professional tier
+      // Handle identical device specs - show "Carried over" for Professional tier
       if (spec && spec.essential === spec.professional && typeof spec.professional === 'string') {
-        return <span className="text-xs text-neutral-400 dark:text-neutral-500">{value}</span>;
+        return (
+          <div className="text-xs">
+            <span className="inline-flex items-center gap-1 text-neutral-400 dark:text-neutral-500 font-semibold text-xs mr-1">
+              <ArrowRight className="w-2 h-2" />
+              CARRIED OVER
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">{value}</span>
+          </div>
+        );
       }
     }
 
@@ -509,9 +518,18 @@ const PCaaSPricingTiers = () => {
         );
       }
       
-      // Handle identical features - show in grey for Professional tier
+      // Handle identical features - show "Carried over" for Professional tier
       if (essentialValue === professionalValue && typeof professionalValue === 'string') {
-        return <span className="text-sm text-neutral-400 dark:text-neutral-500">{value}</span>;
+        return (
+          <div className="text-sm">
+            <span className="inline-flex items-center gap-1 text-neutral-400 dark:text-neutral-500 font-semibold text-xs mr-2">
+              <ArrowRight className="w-3 h-3" />
+              CARRIED OVER
+            </span>
+            <br />
+            <span className="text-neutral-400 dark:text-neutral-500">{value}</span>
+          </div>
+        );
       }
     }
 
