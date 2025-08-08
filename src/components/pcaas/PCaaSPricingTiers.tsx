@@ -738,7 +738,7 @@ const PCaaSPricingTiers = () => {
                     </div>
 
                     {/* Expanded Device Details */}
-                    <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up overflow-hidden">
+                    <CollapsibleContent className="overflow-hidden transition-all duration-300 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95">
                       <div className="bg-neutral-25 dark:bg-neutral-900/50">
                         {/* Basic specs - always shown when expanded */}
                         {basicDeviceSpecs.map((spec, specIndex) => (
