@@ -286,7 +286,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">AMD Ryzen AI </span>
-            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 7 PRO 350</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">7 PRO 350</span>
           </div>
         );
       }
@@ -380,7 +380,7 @@ const PCaaSPricingTiers = () => {
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">Lenovo Thinkpad T14 Gen 6 </span>
-            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ R7 Pro 350</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">R7 Pro 350</span>
           </div>
         );
       }
@@ -415,8 +415,8 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-neutral-400 dark:text-neutral-500">Microsoft Copilot - </span>
-            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Enterprise</span>
+            <span className="text-neutral-400 dark:text-neutral-500">Microsoft Copilot </span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">Enterprise</span>
           </div>
         );
       }
