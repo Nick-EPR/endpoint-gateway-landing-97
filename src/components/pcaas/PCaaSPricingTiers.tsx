@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -670,147 +671,150 @@ const PCaaSPricingTiers = () => {
 
               {/* Device Specifications Expandable Row */}
               {feature.isDeviceSpec && (
-                <div className="border-b border-neutral-100 dark:border-neutral-800">
-                  {/* Device Header Row */}
-                  <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200">
-                    {/* Feature Name with Toggle */}
-                    <div className="p-4 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                          <feature.icon className="w-4 h-4 text-primary" />
+                <Collapsible open={isDeviceExpanded} onOpenChange={setIsDeviceExpanded}>
+                  <div className="border-b border-neutral-100 dark:border-neutral-800">
+                    {/* Device Header Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200">
+                      {/* Feature Name with Toggle */}
+                      <div className="p-4 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <feature.icon className="w-4 h-4 text-primary" />
+                          </div>
+                          <div>
+                            <span className="font-medium text-neutral-900 dark:text-white">
+                              {feature.category}
+                            </span>
+                            <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
+                              {isDeviceExpanded ? "Detailed hardware comparison" : "Click to view detailed specs"}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <span className="font-medium text-neutral-900 dark:text-white">
-                            {feature.category}
-                          </span>
-                          <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1">
-                            {isDeviceExpanded ? "Detailed hardware comparison" : "Click to view detailed specs"}
-                          </p>
+                        <CollapsibleTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary"
+                          >
+                            {isDeviceExpanded ? (
+                              <>
+                                <ChevronUp className="w-4 h-4 transition-transform duration-200" />
+                                Hide Details
+                              </>
+                            ) : (
+                              <>
+                                <ChevronDown className="w-4 h-4 transition-transform duration-200" />
+                                Show Details
+                              </>
+                            )}
+                          </Button>
+                        </CollapsibleTrigger>
+                      </div>
+
+                      {/* Essential Device Summary */}
+                      <div className={`p-4 text-center transition-all duration-300 ${
+                        selectedTier === 'essential' || highlightedTier === 'essential'
+                          ? 'bg-primary/5 dark:bg-primary/10' 
+                          : ''
+                      }`}>
+                        <div className="flex items-center justify-center min-h-[3rem]">
+                          {renderFeatureValue(feature.essential, true, feature)}
                         </div>
                       </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => setIsDeviceExpanded(!isDeviceExpanded)}
-                        className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary"
-                      >
-                        {isDeviceExpanded ? (
-                          <>
-                            <ChevronUp className="w-4 h-4" />
-                            Hide Details
-                          </>
-                        ) : (
-                          <>
-                            <ChevronDown className="w-4 h-4" />
-                            Show Details
-                          </>
-                        )}
-                      </Button>
-                    </div>
 
-                    {/* Essential Device Summary */}
-                    <div className={`p-4 text-center transition-all duration-300 ${
-                      selectedTier === 'essential' || highlightedTier === 'essential'
-                        ? 'bg-primary/5 dark:bg-primary/10' 
-                        : ''
-                    }`}>
-                      <div className="flex items-center justify-center min-h-[3rem]">
-                        {renderFeatureValue(feature.essential, true, feature)}
+                      {/* Vertical Separator */}
+                      <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+
+                      {/* Professional Device Summary */}
+                      <div className={`p-4 text-center transition-all duration-300 ${
+                        selectedTier === 'professional' || highlightedTier === 'professional'
+                          ? 'bg-primary/5 dark:bg-primary/10' 
+                          : ''
+                      }`}>
+                        <div className="flex items-center justify-center min-h-[3rem]">
+                          {renderFeatureValue(feature.professional, false, feature)}
+                        </div>
                       </div>
                     </div>
 
-                    {/* Vertical Separator */}
-                    <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-
-                    {/* Professional Device Summary */}
-                    <div className={`p-4 text-center transition-all duration-300 ${
-                      selectedTier === 'professional' || highlightedTier === 'professional'
-                        ? 'bg-primary/5 dark:bg-primary/10' 
-                        : ''
-                    }`}>
-                      <div className="flex items-center justify-center min-h-[3rem]">
-                        {renderFeatureValue(feature.professional, false, feature)}
+                    {/* Expanded Device Details */}
+                    <CollapsibleContent className="data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up overflow-hidden">
+                      <div className="bg-neutral-25 dark:bg-neutral-900/50">
+                        {/* Basic specs - always shown when expanded */}
+                        {basicDeviceSpecs.map((spec, specIndex) => (
+                          <div key={specIndex} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
+                            <div className="px-4 py-3 pl-8 flex items-center gap-3">
+                              <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                {(() => {
+                                  const IconComponent = getDeviceSpecIcon(spec.category);
+                                  return <IconComponent className="w-3 h-3 text-primary" />;
+                                })()}
+                              </div>
+                              <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
+                                {spec.category}
+                              </span>
+                            </div>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                              selectedTier === 'essential' || highlightedTier === 'essential'
+                                ? 'bg-primary/5 dark:bg-primary/10' 
+                                : ''
+                            }`}>
+                              <div className="flex items-center justify-center">
+                                {renderDeviceSpecValue(spec.essential, true, spec)}
+                              </div>
+                            </div>
+                            <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                              selectedTier === 'professional' || highlightedTier === 'professional'
+                                ? 'bg-primary/5 dark:bg-primary/10' 
+                                : ''
+                            }`}>
+                              <div className="flex items-center justify-center">
+                                {renderDeviceSpecValue(spec.professional, false, spec)}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                        
+                        {/* Detailed specs */}
+                        {detailedDeviceSpecs.map((spec, specIndex) => (
+                          <div key={`detailed-${specIndex}`} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
+                            <div className="px-4 py-3 pl-8 flex items-center gap-3">
+                              <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                {(() => {
+                                  const IconComponent = getDeviceSpecIcon(spec.category);
+                                  return <IconComponent className="w-3 h-3 text-primary" />;
+                                })()}
+                              </div>
+                              <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
+                                {spec.category}
+                              </span>
+                            </div>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                              selectedTier === 'essential' || highlightedTier === 'essential'
+                                ? 'bg-primary/5 dark:bg-primary/10' 
+                                : ''
+                            }`}>
+                              <div className="flex items-center justify-center">
+                                {renderDeviceSpecValue(spec.essential, true, spec)}
+                              </div>
+                            </div>
+                            <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                              selectedTier === 'professional' || highlightedTier === 'professional'
+                                ? 'bg-primary/5 dark:bg-primary/10' 
+                                : ''
+                            }`}>
+                              <div className="flex items-center justify-center">
+                                {renderDeviceSpecValue(spec.professional, false, spec)}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    </div>
+                    </CollapsibleContent>
                   </div>
-
-                  {/* Expanded Device Details */}
-                  {isDeviceExpanded && (
-                    <div className="bg-neutral-25 dark:bg-neutral-900/50">
-                      {/* Basic specs - always shown when expanded */}
-                      {basicDeviceSpecs.map((spec, specIndex) => (
-                        <div key={specIndex} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
-                          <div className="px-4 py-3 pl-8 flex items-center gap-3">
-                            <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                              {(() => {
-                                const IconComponent = getDeviceSpecIcon(spec.category);
-                                return <IconComponent className="w-3 h-3 text-primary" />;
-                              })()}
-                            </div>
-                            <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
-                              {spec.category}
-                            </span>
-                          </div>
-                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            selectedTier === 'essential' || highlightedTier === 'essential'
-                              ? 'bg-primary/5 dark:bg-primary/10' 
-                              : ''
-                          }`}>
-                            <div className="flex items-center justify-center">
-                              {renderDeviceSpecValue(spec.essential, true, spec)}
-                            </div>
-                          </div>
-                          <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            selectedTier === 'professional' || highlightedTier === 'professional'
-                              ? 'bg-primary/5 dark:bg-primary/10' 
-                              : ''
-                          }`}>
-                            <div className="flex items-center justify-center">
-                              {renderDeviceSpecValue(spec.professional, false, spec)}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                      
-                      {/* Detailed specs */}
-                      {detailedDeviceSpecs.map((spec, specIndex) => (
-                        <div key={`detailed-${specIndex}`} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
-                          <div className="px-4 py-3 pl-8 flex items-center gap-3">
-                            <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                              {(() => {
-                                const IconComponent = getDeviceSpecIcon(spec.category);
-                                return <IconComponent className="w-3 h-3 text-primary" />;
-                              })()}
-                            </div>
-                            <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
-                              {spec.category}
-                            </span>
-                          </div>
-                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            selectedTier === 'essential' || highlightedTier === 'essential'
-                              ? 'bg-primary/5 dark:bg-primary/10' 
-                              : ''
-                          }`}>
-                            <div className="flex items-center justify-center">
-                              {renderDeviceSpecValue(spec.essential, true, spec)}
-                            </div>
-                          </div>
-                          <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-                          <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                            selectedTier === 'professional' || highlightedTier === 'professional'
-                              ? 'bg-primary/5 dark:bg-primary/10' 
-                              : ''
-                          }`}>
-                            <div className="flex items-center justify-center">
-                              {renderDeviceSpecValue(spec.professional, false, spec)}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
+                </Collapsible>
               )}
             </div>
           ))}
