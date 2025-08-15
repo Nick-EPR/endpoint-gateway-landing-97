@@ -388,7 +388,7 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-neutral-400 dark:text-neutral-500">Lenovo Thinkpad T14 Gen 6 </span>
+            <span className="text-neutral-400 dark:text-neutral-500"><span className="text-[#E2231A]">Lenovo</span> Thinkpad T14 Gen 6 </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">R7 Pro 350</span>
           </div>
         );
