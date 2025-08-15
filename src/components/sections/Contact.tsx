@@ -210,7 +210,7 @@ const Contact = () => {
                     "placeholder-neutral-400 dark:placeholder-neutral-500",
                     "resize-vertical"
                   )}
-                  placeholder="Tell us about your needs"
+                  placeholder="Tell us about your IT asset management requirements"
                   disabled={isSubmitting}
                 ></textarea>
                 {errors.message && (
