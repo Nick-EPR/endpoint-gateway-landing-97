@@ -543,6 +543,16 @@ const PCaaSPricingTiers = () => {
       }
     }
 
+    // Handle Lenovo branding in main features table
+    if (typeof value === 'string' && value.includes('Lenovo')) {
+      const parts = value.split('Lenovo');
+      return (
+        <span className="text-sm text-neutral-700 dark:text-neutral-300">
+          {parts[0]}<span className="text-[#FF6B6B]">Lenovo</span>{parts[1]}
+        </span>
+      );
+    }
+
     return <span className="text-sm text-neutral-700 dark:text-neutral-300">{value}</span>;
   };
 
