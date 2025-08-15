@@ -541,7 +541,7 @@ const PCaaSPricingTiers = () => {
       {/* Header */}
       <div className="text-center">
         <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-          Compare T-Mobile PCaaS Plans
+          Compare <span className="text-[#E20074]">T-Mobile</span> PCaaS Plans
         </h3>
         <p className="text-neutral-600 dark:text-neutral-400">
           Choose the plan that best fits your business needs
