@@ -340,7 +340,7 @@ const PCaaSPricingTiers = () => {
       const parts = value.split('Lenovo');
       return (
         <span className="text-xs text-neutral-700 dark:text-neutral-300">
-          {parts[0]}<span className="text-[#E2231A]">Lenovo</span>{parts[1]}
+          {parts[0]}<span className="text-[#FF6B6B]">Lenovo</span>{parts[1]}
         </span>
       );
     }
@@ -398,7 +398,7 @@ const PCaaSPricingTiers = () => {
               UPGRADE
             </span>
             <br />
-            <span className="text-neutral-400 dark:text-neutral-500"><span className="text-[#E2231A]">Lenovo</span> Thinkpad T14 Gen 6 </span>
+            <span className="text-neutral-400 dark:text-neutral-500"><span className="text-[#FF6B6B]">Lenovo</span> Thinkpad T14 Gen 6 </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">R7 Pro 350</span>
           </div>
         );
