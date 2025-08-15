@@ -223,7 +223,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   className="bg-[#93C851] text-white px-8 py-4 rounded-lg hover:bg-[#84b449] transition-colors duration-200 text-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "Sending..." : "Schedule a Consultation"}
+                  {isSubmitting ? "Sending..." : "Send"}
                 </button>
               </div>
             </form>
