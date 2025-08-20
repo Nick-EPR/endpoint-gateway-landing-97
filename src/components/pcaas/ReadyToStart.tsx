@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Phone, Globe, Rocket, CheckCircle } from "lucide-react";
+import { ArrowRight, Mail, Monitor, Globe, Rocket, CheckCircle } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useRef } from "react";
 const ReadyToStart = () => {
@@ -11,7 +11,7 @@ const ReadyToStart = () => {
   });
   const steps = [{
     text: "Check your elgibility",
-    icon: Phone
+    icon: Monitor
   }, {
     text: "Choose your bundle",
     icon: CheckCircle
