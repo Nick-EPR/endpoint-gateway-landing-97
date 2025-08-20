@@ -100,7 +100,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               <span className="sr-only">Toggle theme</span>
             </Button>
             <a 
-              href="https://app.lifetimeepr.io"
+              href="https://lifetimeepr.app"
               className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200"
               target="_blank"
               rel="noopener noreferrer"
