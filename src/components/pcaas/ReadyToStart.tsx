@@ -50,6 +50,22 @@ const ReadyToStart = () => {
               </div>)}
           </div>
 
+          {/* Questions Section */}
+          <div className={`mb-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="bg-white/50 dark:bg-neutral-800/50 backdrop-blur-sm rounded-lg p-6 border border-neutral-200/20 dark:border-neutral-700/20">
+              <p className="text-neutral-600 dark:text-neutral-400 mb-3">
+                Have more questions?
+              </p>
+              <a 
+                href="mailto:sales@lifetimeepr.com"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+                Email us
+              </a>
+            </div>
+          </div>
+
           {/* CTA Button */}
           <div className={`mb-12 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90 shadow-xl group transition-all duration-300 hover:scale-105" onClick={() => window.open('https://test.lifetimeepr.io/pcaas-enrollment', '_blank')}>
