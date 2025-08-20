@@ -10,10 +10,10 @@ const ReadyToStart = () => {
     threshold: 0.1
   });
   const steps = [{
-    text: "Contact our team",
+    text: "Check your elgibility",
     icon: Phone
   }, {
-    text: "Customize your bundle",
+    text: "Choose your bundle",
     icon: CheckCircle
   }, {
     text: "Deploy in days",
