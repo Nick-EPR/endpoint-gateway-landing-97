@@ -50,8 +50,16 @@ const ReadyToStart = () => {
               </div>)}
           </div>
 
-          {/* Questions Section */}
+          {/* CTA Button */}
           <div className={`mb-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90 shadow-xl group transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/contact'}>
+              Start Your PCaaS Journey
+              <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+
+          {/* Questions Section */}
+          <div className={`mb-12 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <div className="bg-white/50 dark:bg-neutral-800/50 backdrop-blur-sm rounded-lg p-6 border border-neutral-200/20 dark:border-neutral-700/20">
               <p className="text-neutral-600 dark:text-neutral-400 mb-3">
                 Have more questions?
@@ -64,14 +72,6 @@ const ReadyToStart = () => {
                 Email us
               </a>
             </div>
-          </div>
-
-          {/* CTA Button */}
-          <div className={`mb-12 transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90 shadow-xl group transition-all duration-300 hover:scale-105" onClick={() => window.open('https://test.lifetimeepr.io/pcaas-enrollment', '_blank')}>
-              Start Your PCaaS Journey
-              <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </Button>
           </div>
 
           {/* Contact Options */}
