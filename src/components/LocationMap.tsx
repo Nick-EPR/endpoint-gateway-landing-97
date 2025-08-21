@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { Skeleton } from "./ui/skeleton";
+import { supabase } from "@/integrations/supabase/client";
 
 const locations = [
   {
@@ -26,10 +27,26 @@ const locations = [
 const LocationMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
-  const [mapboxToken, setMapboxToken] = useState('pk.eyJ1IjoibmljazIyNTEyIiwiYSI6ImNtN2RoMDg3dDAzMmYybHB1eWpydDBpbDEifQ.Htsl1CZzmwbAdHooJgUKQA');
+  const [mapboxToken, setMapboxToken] = useState<string>('');
   const [isZooming, setIsZooming] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const rotationAnimationRef = useRef<number>();
+
+  // Fetch Mapbox token from Supabase Edge Function
+  useEffect(() => {
+    const fetchMapboxToken = async () => {
+      try {
+        const { data, error } = await supabase.functions.invoke('get-mapbox-token');
+        if (error) throw error;
+        setMapboxToken(data.token);
+      } catch (error) {
+        console.error('Error fetching Mapbox token:', error);
+        setIsLoading(false);
+      }
+    };
+    
+    fetchMapboxToken();
+  }, []);
 
   useEffect(() => {
     const initializeMap = () => {
