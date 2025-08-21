@@ -52,7 +52,7 @@ const ReadyToStart = () => {
 
           {/* CTA Button */}
           <div className={`mb-8 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90 shadow-xl group transition-all duration-300 hover:scale-105" onClick={() => window.location.href = '/contact'}>
+            <Button size="lg" className="text-xl px-12 py-6 bg-primary hover:bg-primary/90 shadow-xl group transition-all duration-300 hover:scale-105" onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}>
               Start Your PCaaS Journey
               <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
             </Button>

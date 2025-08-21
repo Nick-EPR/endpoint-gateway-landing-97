@@ -595,7 +595,7 @@ const PCaaSPricingTiers = () => {
                 per month/36 months
               </span>
             </div>
-            <Button size="sm" className="w-full">
+            <Button size="sm" className="w-full" onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}>
               Get Started
             </Button>
           </CardContent>
@@ -621,7 +621,7 @@ const PCaaSPricingTiers = () => {
                 per month/36 months
               </span>
             </div>
-            <Button variant="outline" size="sm" className="w-full">
+            <Button variant="outline" size="sm" className="w-full" onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}>
               Get Started
             </Button>
           </CardContent>

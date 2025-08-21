@@ -98,7 +98,7 @@ const PCaaSHero = () => {
               <Button 
                 size="lg" 
                 className="text-lg px-8 py-4 bg-primary hover:bg-primary/90 shadow-lg group transition-all duration-300 hover:scale-105" 
-                onClick={() => window.open('https://test.lifetimeepr.io/pcaas-enrollment', '_blank')}
+                onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}
               >
                 Get Started Today
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
