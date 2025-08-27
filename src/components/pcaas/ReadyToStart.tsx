@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Mail, Monitor, Globe, Rocket, CheckCircle } from "lucide-react";
+import { ArrowRight, MessageSquare, Monitor, Globe, Rocket, CheckCircle } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 const ReadyToStart = () => {
+  const navigate = useNavigate();
   const sectionRef = useRef<HTMLElement>(null);
   const {
     isVisible
@@ -64,13 +66,13 @@ const ReadyToStart = () => {
               <p className="text-neutral-600 dark:text-neutral-400 mb-3">
                 Have more questions?
               </p>
-              <a 
-                href="mailto:sales@lifetimeepr.com"
+              <button 
+                onClick={() => navigate('/contact')}
                 className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
               >
-                <Mail className="w-4 h-4" />
-                Email us
-              </a>
+                <MessageSquare className="w-4 h-4" />
+                Contact us
+              </button>
             </div>
           </div>
 
