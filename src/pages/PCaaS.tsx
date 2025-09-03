@@ -34,6 +34,8 @@ const PCaaS = () => {
     }
   }, [searchParams]);
 
+  const hasCompletedSignup = searchParams.has('success') || searchParams.has('done');
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -60,11 +62,11 @@ const PCaaS = () => {
         onClose={() => setShowSuccessBanner(false)} 
       />
       <div className={showSuccessBanner ? "pt-20" : ""}>
-        <PCaaSHero />
+        <PCaaSHero hideGetStarted={hasCompletedSignup} />
         <WhatIsPCaaS />
         <WhyChoosePCaaS />
         <WhoBenefitsMost />
-        <ReadyToStart />
+        <ReadyToStart hideGetStarted={hasCompletedSignup} />
       </div>
     </IndexLayout>
   );

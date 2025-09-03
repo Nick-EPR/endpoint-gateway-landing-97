@@ -5,7 +5,7 @@ import { Smartphone, Shield, Zap, ArrowRight } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useRef } from "react";
 
-const PCaaSHero = () => {
+const PCaaSHero = ({ hideGetStarted = false }: { hideGetStarted?: boolean }) => {
   const heroRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(heroRef, { threshold: 0.1 });
 
@@ -92,18 +92,20 @@ const PCaaSHero = () => {
             </div>
             
             {/* CTA Button */}
-            <div className={`mb-12 transition-all duration-1000 delay-500 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}>
-              <Button 
-                size="lg" 
-                className="text-lg px-8 py-4 bg-primary hover:bg-primary/90 shadow-lg group transition-all duration-300 hover:scale-105" 
-                onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}
-              >
-                Get Started Today
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </div>
+            {!hideGetStarted && (
+              <div className={`mb-12 transition-all duration-1000 delay-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 py-4 bg-primary hover:bg-primary/90 shadow-lg group transition-all duration-300 hover:scale-105" 
+                  onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}
+                >
+                  Get Started Today
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            )}
             
             {/* Key benefits icons */}
             <div className={`grid md:grid-cols-3 gap-8 max-w-2xl mx-auto transition-all duration-1000 delay-600 ${
