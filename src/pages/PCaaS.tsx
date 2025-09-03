@@ -32,7 +32,7 @@ const PCaaS = () => {
     
     toast({
       title: "Welcome to PCaaS!",
-      description: "Thank you for signing up for PC-as-a-Service. We'll be in touch soon!",
+      description: "Thank you for signing up for T-Mobile PCaaS. We'll be in touch soon!",
       duration: 5000,
     });
   }, [searchParams]);
