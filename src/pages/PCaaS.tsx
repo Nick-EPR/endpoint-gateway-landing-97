@@ -39,9 +39,10 @@ const PCaaS = () => {
     
     console.log('Showing toast...');
     toast({
-      title: "Welcome to PCaaS!",
+      title: "🎉 Welcome to PCaaS!",
       description: "Thank you for signing up for PC-as-a-Service. We'll be in touch soon!",
-      duration: 5000,
+      duration: 10000,
+      variant: "default",
     });
     console.log('Toast called');
   }, [searchParams]);
