@@ -23,6 +23,7 @@ import MoviusPartnership from "./pages/MoviusPartnership";
 import PCaaS from "./pages/PCaaS";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
+import { Toaster } from "./components/ui/toaster";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -54,6 +55,7 @@ function AppContent() {
         </Routes>
         <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
       </Router>
+      <Toaster />
     </div>
   );
 }
