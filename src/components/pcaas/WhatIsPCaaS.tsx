@@ -5,7 +5,7 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { useRef } from "react";
 import PCaaSPricingTiers from "./PCaaSPricingTiers";
 
-const WhatIsPCaaS = () => {
+const WhatIsPCaaS = ({ hasCompletedSignup = false }: { hasCompletedSignup?: boolean }) => {
   const sectionRef = useRef<HTMLElement>(null);
   const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
@@ -53,7 +53,7 @@ const WhatIsPCaaS = () => {
           <div className={`transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}>
-            <PCaaSPricingTiers />
+            <PCaaSPricingTiers hasCompletedSignup={hasCompletedSignup} />
           </div>
         </div>
       </div>

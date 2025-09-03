@@ -23,7 +23,7 @@ interface DeviceSpec {
   isNew?: boolean;
 }
 
-const PCaaSPricingTiers = () => {
+const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?: boolean }) => {
   const [highlightedTier, setHighlightedTier] = useState<string | null>(null);
   const [selectedTier, setSelectedTier] = useState<string | null>('essential'); // Default to Essential as "Most Popular"
   const [isDeviceExpanded, setIsDeviceExpanded] = useState(false);
@@ -596,7 +596,7 @@ const PCaaSPricingTiers = () => {
               </span>
             </div>
             <Button size="sm" className="w-full" onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}>
-              Get Started
+              {hasCompletedSignup ? "I need more" : "Get Started"}
             </Button>
           </CardContent>
         </Card>
@@ -622,7 +622,7 @@ const PCaaSPricingTiers = () => {
               </span>
             </div>
             <Button variant="outline" size="sm" className="w-full" onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}>
-              Get Started
+              {hasCompletedSignup ? "I need more" : "Get Started"}
             </Button>
           </CardContent>
         </Card>

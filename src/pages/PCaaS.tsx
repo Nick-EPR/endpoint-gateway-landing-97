@@ -63,7 +63,7 @@ const PCaaS = () => {
       />
       <div className={showSuccessBanner ? "pt-20" : ""}>
         <PCaaSHero hideGetStarted={hasCompletedSignup} />
-        <WhatIsPCaaS />
+        <WhatIsPCaaS hasCompletedSignup={hasCompletedSignup} />
         <WhyChoosePCaaS />
         <WhoBenefitsMost />
         <ReadyToStart hideGetStarted={hasCompletedSignup} />
