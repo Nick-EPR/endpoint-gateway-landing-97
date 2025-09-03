@@ -28,13 +28,22 @@ const PCaaS = () => {
 
   // Show success toast when user returns from signup
   useEffect(() => {
-    if (searchParams.get('done') === null) return;
+    console.log('PCaaS useEffect triggered');
+    console.log('searchParams:', searchParams.toString());
+    console.log('done param:', searchParams.get('done'));
     
+    if (!searchParams.has('done')) {
+      console.log('No done param found, returning early');
+      return;
+    }
+    
+    console.log('Showing toast...');
     toast({
       title: "Welcome to PCaaS!",
-      description: "Thank you for signing up for T-Mobile PCaaS. We'll be in touch soon!",
+      description: "Thank you for signing up for PC-as-a-Service. We'll be in touch soon!",
       duration: 5000,
     });
+    console.log('Toast called');
   }, [searchParams]);
 
   useEffect(() => {
