@@ -222,12 +222,12 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
       category: "Deployment",
       icon: Zap,
       essential: "Company Level Ground",
-      professional: "End User Level + 2 Day"
+      professional: "End User Level + 2-Day"
     },
     {
       category: "Business Continuity",
       icon: Zap,
-      essential: "UPS 2-Day Shipping",
+      essential: "2-Day Shipping",
       professional: "Overnight"
     },
     {
@@ -494,7 +494,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">End User Level </span>
-            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 2 Day Shipping</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 2-Day</span>
           </div>
         );
       }
@@ -508,8 +508,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
               UPGRADE
             </span>
             <br />
-            <span className="text-neutral-400 dark:text-neutral-500">Advanced Exchange </span>
-            <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 2 Day Shipping</span>
+            <span className="text-blue-300 dark:text-blue-300 font-semibold">Overnight</span>
           </div>
         );
       }
