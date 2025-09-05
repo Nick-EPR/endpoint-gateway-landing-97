@@ -221,14 +221,14 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
     {
       category: "Deployment",
       icon: Zap,
-      essential: "Company Level Ground Shipping",
-      professional: "End User Level 2 Day Shipping"
+      essential: "Company Level Ground",
+      professional: "End User Level + 2 Day"
     },
     {
       category: "Business Continuity",
       icon: Zap,
-      essential: "Advanced Exchange Ground Shipping",
-      professional: "Advanced Exchange 2 Day Shipping"
+      essential: "UPS 2-Day Shipping",
+      professional: "Overnight"
     },
     {
       category: "End of Lease",
