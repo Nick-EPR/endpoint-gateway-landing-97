@@ -5,7 +5,7 @@ import { Sparkles, ArrowRight } from "lucide-react";
 const PCaaSPromoBanner = () => {
   return (
     <section 
-      className="relative overflow-hidden min-h-[60vh] flex items-center justify-center"
+      className="relative overflow-hidden parallelogram-section flex items-center justify-center"
       style={{ 
         background: 'linear-gradient(135deg, #e20074 0%, #b8005a 100%)' 
       }}
