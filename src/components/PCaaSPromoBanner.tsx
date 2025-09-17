@@ -40,12 +40,12 @@ const PCaaSPromoBanner = () => {
           <img 
             src="/lovable-uploads/tmo-premiere-light.png" 
             alt="T-Mobile Premier Partner"
-            className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:hidden"
+            className="absolute h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:hidden"
           />
           <img 
             src="/lovable-uploads/tmo-premiere-dark.png" 
             alt="T-Mobile Premier Partner"
-            className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 hidden dark:block"
+            className="absolute h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 hidden dark:block"
           />
         </div>
         {/* Apple-style Product Announcement */}
