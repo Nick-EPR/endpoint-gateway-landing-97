@@ -601,7 +601,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
         </Card>
 
         <Card 
-          className={`border-2 ${
+          className={`border-2 relative ${
             selectedTier === 'professional' || highlightedTier === 'professional'
               ? 'border-primary dark:border-primary shadow-xl' 
               : 'border-neutral-200 dark:border-neutral-700'
@@ -610,7 +610,10 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
           onMouseLeave={() => setHighlightedTier(null)}
           onClick={() => setSelectedTier('professional')}
         >
-          <CardContent className="p-6 text-center">
+          <div className="absolute top-4 right-4 z-10">
+            <Badge className="bg-orange-500 text-white">Coming Soon</Badge>
+          </div>
+          <CardContent className="p-6 text-center blur-sm opacity-75">
             <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
               {tiers.professional.name}
             </h4>
@@ -620,8 +623,8 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                 per month/36 months
               </span>
             </div>
-            <Button variant="outline" size="sm" className="w-full" onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}>
-              {hasCompletedSignup ? "I need more" : "Get Started"}
+            <Button variant="outline" size="sm" className="w-full" disabled>
+              Coming Soon
             </Button>
           </CardContent>
         </Card>
@@ -648,7 +651,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
               Essential
             </div>
             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-            <div className={`p-4 text-center font-semibold transition-all duration-300 ${
+            <div className={`p-4 text-center font-semibold transition-all duration-300 blur-sm opacity-75 ${
               selectedTier === 'professional' || highlightedTier === 'professional'
                 ? 'bg-primary/10 dark:bg-primary/20' 
                 : ''
@@ -694,7 +697,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                   <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
 
                   {/* Professional Column */}
-                  <div className={`p-4 text-center transition-all duration-300 ${
+                  <div className={`p-4 text-center transition-all duration-300 blur-sm opacity-75 ${
                     selectedTier === 'professional' || highlightedTier === 'professional'
                       ? 'bg-primary/5 dark:bg-primary/10' 
                       : ''
@@ -763,7 +766,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                       <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
 
                       {/* Professional Device Summary */}
-                      <div className={`p-4 text-center transition-all duration-300 ${
+                      <div className={`p-4 text-center transition-all duration-300 blur-sm opacity-75 ${
                         selectedTier === 'professional' || highlightedTier === 'professional'
                           ? 'bg-primary/5 dark:bg-primary/10' 
                           : ''
@@ -801,7 +804,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                               </div>
                             </div>
                             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                            <div className={`px-4 py-3 text-center transition-all duration-300 blur-sm opacity-75 ${
                               selectedTier === 'professional' || highlightedTier === 'professional'
                                 ? 'bg-primary/5 dark:bg-primary/10' 
                                 : ''
@@ -837,7 +840,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                               </div>
                             </div>
                             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
+                            <div className={`px-4 py-3 text-center transition-all duration-300 blur-sm opacity-75 ${
                               selectedTier === 'professional' || highlightedTier === 'professional'
                                 ? 'bg-primary/5 dark:bg-primary/10' 
                                 : ''
