@@ -36,16 +36,16 @@ const PCaaSPromoBanner = () => {
     <section className="bg-white dark:bg-neutral-900 parallelogram-section relative z-20" style={{ marginTop: '0', padding: '6rem 0 8rem 0' }}>
       <div className="container mx-auto px-4 max-w-7xl relative">
         {/* T-Mobile Premier Partner Logos */}
-        <div className="absolute -bottom-30 left-4 z-30">
+        <div className="absolute bottom-4 left-4 z-30">
           <img 
             src="/lovable-uploads/tmo-premiere-light.png" 
             alt="T-Mobile Premier Partner"
-            className="absolute h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:hidden"
+            className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:hidden"
           />
           <img 
             src="/lovable-uploads/tmo-premiere-dark.png" 
             alt="T-Mobile Premier Partner"
-            className="absolute h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 hidden dark:block"
+            className="h-8 md:h-10 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 hidden dark:block"
           />
         </div>
         {/* Apple-style Product Announcement */}
