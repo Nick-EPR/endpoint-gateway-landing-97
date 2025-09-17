@@ -5,7 +5,7 @@ import { Sparkles } from "lucide-react";
 const PCaaSPromoBanner = () => {
   return (
     <div 
-      className="relative overflow-hidden py-4 px-4"
+      className="relative overflow-hidden py-4 px-4 mt-[72px]"
       style={{ 
         background: 'linear-gradient(135deg, #e20074 0%, #b8005a 100%)' 
       }}
