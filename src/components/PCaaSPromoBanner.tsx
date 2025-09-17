@@ -15,18 +15,17 @@ const PCaaSPromoBanner = () => {
           <div className="flex items-center gap-3 bg-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
             <Sparkles className="h-6 w-6 text-white" />
             <span className="text-white font-semibold text-xl">
-              NEW: PCaaS Program Now Available
+              NEW: PC-as-a-Service Now Available
             </span>
           </div>
           
           <h1 className="text-white text-5xl md:text-6xl font-bold max-w-4xl leading-tight">
-            Complete IT Asset Management 
-            <span className="block text-white/90">as a Service</span>
+            Simplify Your IT. Mobilize Your Workforce.
+            <span className="block text-white/90">Cut CapEx.</span>
           </h1>
           
           <p className="text-white/90 text-xl max-w-2xl leading-relaxed">
-            Transform your IT operations with our comprehensive Platform-as-a-Service solution. 
-            Get enterprise-grade ITAM without the complexity.
+            A fully managed device solution combining 5G connectivity with white-glove IT services for SMBs.
           </p>
           
           <Link to="/pcaas">
