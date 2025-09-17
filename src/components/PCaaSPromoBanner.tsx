@@ -10,7 +10,7 @@ const PCaaSPromoBanner = () => {
         background: 'linear-gradient(135deg, #e20074 0%, #b8005a 100%)' 
       }}
     >
-      <div className="relative z-20 max-w-7xl mx-auto px-6 py-20 text-center">
+      <div className="relative z-20 max-w-7xl mx-auto px-6 py-20 text-center flex flex-col items-center justify-center">
         <div className="flex flex-col items-center gap-8">
           <div className="flex items-center gap-3 bg-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
             <Sparkles className="h-6 w-6 text-white" />
