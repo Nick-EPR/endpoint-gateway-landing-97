@@ -33,7 +33,7 @@ const PCaaSPromoBanner = () => {
   ];
 
   return (
-    <section className="bg-white dark:bg-neutral-900 parallelogram-section relative z-20" style={{ marginTop: '0', padding: '6rem 0 5rem 0' }}>
+    <section className="bg-white dark:bg-neutral-900 parallelogram-section relative z-20" style={{ marginTop: '0', padding: '6rem 0 8rem 0' }}>
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Apple-style Product Announcement */}
         <div className="text-center mb-16 space-y-6">
