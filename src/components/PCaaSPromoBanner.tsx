@@ -100,7 +100,7 @@ const PCaaSPromoBanner = () => {
           <Card className="relative overflow-hidden border-2 border-neutral-200 dark:border-neutral-700 hover:border-[#e20074] transition-all duration-300 hover:shadow-xl">
             <CardContent className="p-8">
               <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Professional</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Coming Soon</h3>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-5xl font-bold text-[#e20074]">${professionalPrice}</span>
                   <span className="text-neutral-500 dark:text-neutral-400">/month</span>
