@@ -50,8 +50,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   // Always treat specific pages as having a white background, regardless of scroll position
-  // Include Movius and PCaaS pages as having a white background
-  const isWhiteBackground = scrolled || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage || isPCaaSPage;
+  // Include homepage, Movius and PCaaS pages as having a white background (homepage has PCaaS banner at top)
+  const isWhiteBackground = scrolled || location.pathname === '/' || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage || isPCaaSPage;
   // Only access theme after component has mounted to prevent hydration mismatch
   const isDark = mounted ? theme === 'dark' : false;
 
