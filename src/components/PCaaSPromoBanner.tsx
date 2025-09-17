@@ -63,9 +63,6 @@ const PCaaSPromoBanner = () => {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
           {/* Essential Tier */}
           <Card className="relative overflow-hidden border-2 border-neutral-200 dark:border-neutral-700 hover:border-[#e20074] transition-all duration-300 hover:shadow-xl">
-            <div className="absolute top-4 right-4">
-              <Badge className="bg-emerald-500 text-white">Most Popular</Badge>
-            </div>
             <CardContent className="p-8">
               <div className="text-center mb-6">
                 <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Essential</h3>

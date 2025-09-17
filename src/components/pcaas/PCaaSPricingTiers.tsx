@@ -63,7 +63,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
     essential: {
       name: "Essential",
       price: "$99",
-      popular: true,
+      
     },
     professional: {
       name: "Professional", 
@@ -579,13 +579,8 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
           onMouseLeave={() => setHighlightedTier(null)}
           onClick={() => setSelectedTier('essential')}
         >
-          <div className="absolute -top-2 left-1/2 -translate-x-1/2 z-10">
-            <Badge className="bg-primary text-primary-foreground px-4 py-1">
-              Most Popular
-            </Badge>
-          </div>
           <CardContent className="p-6 text-center bg-primary/5 dark:bg-primary/10">
-            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2 mt-2">
+            <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
               {tiers.essential.name}
             </h4>
             <div className="text-3xl font-bold text-primary mb-3">
