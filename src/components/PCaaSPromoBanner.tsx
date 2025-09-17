@@ -1,46 +1,52 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sparkles } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 
 const PCaaSPromoBanner = () => {
   return (
-    <div 
-      className="relative overflow-hidden py-4 px-4 mt-[72px]"
+    <section 
+      className="relative overflow-hidden min-h-[60vh] flex items-center justify-center"
       style={{ 
         background: 'linear-gradient(135deg, #e20074 0%, #b8005a 100%)' 
       }}
     >
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-center sm:text-left">
-          <div className="flex items-center gap-2">
-            <Sparkles className="h-5 w-5 text-white" />
-            <span className="text-white font-semibold text-lg">
+      <div className="relative z-20 max-w-7xl mx-auto px-6 py-20 text-center">
+        <div className="flex flex-col items-center gap-8">
+          <div className="flex items-center gap-3 bg-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
+            <Sparkles className="h-6 w-6 text-white" />
+            <span className="text-white font-semibold text-xl">
               NEW: PCaaS Program Now Available
             </span>
           </div>
           
-          <div className="hidden sm:block w-px h-6 bg-white/30"></div>
+          <h1 className="text-white text-5xl md:text-6xl font-bold max-w-4xl leading-tight">
+            Complete IT Asset Management 
+            <span className="block text-white/90">as a Service</span>
+          </h1>
           
-          <p className="text-white/90 text-sm">
-            Complete IT Asset Management as a Service
+          <p className="text-white/90 text-xl max-w-2xl leading-relaxed">
+            Transform your IT operations with our comprehensive Platform-as-a-Service solution. 
+            Get enterprise-grade ITAM without the complexity.
           </p>
           
-          <Link to="/pcaas" className="ml-auto">
+          <Link to="/pcaas">
             <Button 
-              variant="outline" 
-              size="sm"
-              className="bg-white text-[#e20074] border-white hover:bg-white/90 hover:text-[#b8005a] font-semibold transition-all duration-200"
+              size="lg"
+              className="bg-white text-[#e20074] border-white hover:bg-white/90 hover:text-[#b8005a] font-semibold transition-all duration-200 text-lg px-8 py-4 group"
             >
-              Get Started
+              Get Started Today
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
         </div>
       </div>
       
-      {/* Subtle decorative elements */}
-      <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -translate-y-16 translate-x-16"></div>
-      <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
-    </div>
+      {/* Enhanced decorative elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-32 translate-x-32"></div>
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-24 -translate-x-24"></div>
+      <div className="absolute top-1/2 left-1/4 w-32 h-32 bg-white/3 rounded-full"></div>
+      <div className="absolute top-1/4 right-1/3 w-24 h-24 bg-white/3 rounded-full"></div>
+    </section>
   );
 };
 
