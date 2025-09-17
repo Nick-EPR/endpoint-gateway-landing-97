@@ -149,7 +149,7 @@ const PCaaSPromoBanner = () => {
               size="lg"
               className="bg-gradient-to-r from-[#e20074] to-[#b8005a] hover:from-[#b8005a] hover:to-[#e20074] text-white font-semibold transition-all duration-300 text-lg px-12 py-4 group shadow-lg hover:shadow-xl"
             >
-              Get Started Today
+              Learn more
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </Link>
