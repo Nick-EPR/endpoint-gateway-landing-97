@@ -10,8 +10,8 @@ const PCaaSPromoBanner = () => {
         background: 'linear-gradient(135deg, #e20074 0%, #b8005a 100%)' 
       }}
     >
-      <div className="relative z-20 max-w-7xl mx-auto px-6 py-20 text-center flex flex-col items-center justify-center">
-        <div className="flex flex-col items-center gap-8">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 text-center">
+        <div className="flex flex-col items-center justify-center gap-8 w-full py-20">
           <div className="flex items-center gap-3 bg-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
             <Sparkles className="h-6 w-6 text-white" />
             <span className="text-white font-semibold text-xl">
@@ -19,16 +19,16 @@ const PCaaSPromoBanner = () => {
             </span>
           </div>
           
-          <h1 className="text-white text-5xl md:text-6xl font-bold max-w-4xl leading-tight">
+          <h1 className="text-white text-5xl md:text-6xl font-bold max-w-4xl leading-tight mx-auto">
             Simplify Your IT. Mobilize Your Workforce.
             <span className="block text-white/90">Cut CapEx.</span>
           </h1>
           
-          <p className="text-white/90 text-xl max-w-2xl leading-relaxed">
+          <p className="text-white/90 text-xl max-w-2xl leading-relaxed mx-auto">
             A fully managed device solution combining 5G connectivity with white-glove IT services for SMBs.
           </p>
           
-          <Link to="/pcaas">
+          <Link to="/pcaas" className="mx-auto">
             <Button 
               size="lg"
               className="bg-white text-[#e20074] border-white hover:bg-white/90 hover:text-[#b8005a] font-semibold transition-all duration-200 text-lg px-8 py-4 group"
