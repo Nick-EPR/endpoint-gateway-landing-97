@@ -40,7 +40,7 @@ const PCaaSPromoBanner = () => {
           <div className="flex items-center justify-center gap-3 mb-6">
             <Badge variant="outline" className="bg-gradient-to-r from-[#e20074] to-[#b8005a] text-white border-none px-6 py-2 text-sm font-semibold">
               <Sparkles className="h-4 w-4 mr-2" />
-              Introducing PCaaS
+              Now Available
             </Badge>
           </div>
           
