@@ -35,19 +35,6 @@ const PCaaSPromoBanner = () => {
   return (
     <section className="bg-white dark:bg-neutral-900 parallelogram-section relative z-20" style={{ marginTop: '0', padding: '6rem 0 8rem 0' }}>
       <div className="container mx-auto px-4 max-w-7xl relative">
-        {/* T-Mobile Premier Partner Logos */}
-        <div className="absolute bottom-[-5.625rem] left-4 z-30">
-          <img 
-            src="/lovable-uploads/tmo-premiere-light.png" 
-            alt="T-Mobile Premier Partner"
-            className="h-6 md:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:hidden"
-          />
-          <img 
-            src="/lovable-uploads/tmo-premiere-dark.png" 
-            alt="T-Mobile Premier Partner"
-            className="h-6 md:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 hidden dark:block"
-          />
-        </div>
         {/* Apple-style Product Announcement */}
         <div className="text-center mb-16 space-y-6">
           <div className="flex items-center justify-center gap-3 mb-6">
@@ -169,6 +156,20 @@ const PCaaSPromoBanner = () => {
           <p className="mt-4 text-sm text-neutral-500 dark:text-neutral-400">
             Join businesses transforming their IT infrastructure
           </p>
+          
+          {/* T-Mobile Premier Partner Logos */}
+          <div className="mt-8">
+            <img 
+              src="/lovable-uploads/tmo-premiere-light.png" 
+              alt="T-Mobile Premier Partner"
+              className="h-6 md:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 dark:hidden mx-auto"
+            />
+            <img 
+              src="/lovable-uploads/tmo-premiere-dark.png" 
+              alt="T-Mobile Premier Partner"
+              className="h-6 md:h-8 w-auto opacity-80 hover:opacity-100 transition-opacity duration-300 hidden dark:block mx-auto"
+            />
+          </div>
         </div>
       </div>
     </section>
