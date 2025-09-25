@@ -91,21 +91,31 @@ const PCaaSHero = ({ hideGetStarted = false }: { hideGetStarted?: boolean }) => 
               </div>
             </div>
             
-            {/* CTA Button */}
-            {!hideGetStarted && (
-              <div className={`mb-12 transition-all duration-1000 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}>
+            {/* CTA Buttons */}
+            <div className={`mb-12 transition-all duration-1000 delay-500 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Button 
+                  variant="outline"
                   size="lg" 
-                  className="text-lg px-8 py-4 bg-primary hover:bg-primary/90 shadow-lg group transition-all duration-300 hover:scale-105" 
-                  onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}
+                  className="text-lg px-8 py-4 shadow-lg group transition-all duration-300 hover:scale-105" 
+                  onClick={() => window.open('https://www.t-mobile.com/coverage/coverage-map', '_blank')}
                 >
-                  Get Started Today
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  Check Coverage
                 </Button>
+                {!hideGetStarted && (
+                  <Button 
+                    size="lg" 
+                    className="text-lg px-8 py-4 bg-primary hover:bg-primary/90 shadow-lg group transition-all duration-300 hover:scale-105" 
+                    onClick={() => window.open('https://lifetimeepr.app/pcaas', '_blank')}
+                  >
+                    Get Started Today
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                )}
               </div>
-            )}
+            </div>
             
             {/* Key benefits icons */}
             <div className={`grid md:grid-cols-3 gap-8 max-w-2xl mx-auto transition-all duration-1000 delay-600 ${
