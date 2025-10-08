@@ -11,13 +11,11 @@ const Solutions = () => {
   const solutions: Solution[] = [{
     title: "HeliAM",
     description: "Our core IT asset management platform that provides comprehensive lifecycle management within the Lifetime EPR ecosystem",
-    logo: heliamLogo,
-    path: "/heliam"
+    logo: heliamLogo
   }, {
     title: "Toolbox",
     description: "Integrated suite of tools within HeliAM that optimizes asset tracking, security, and management throughout the lifecycle",
-    logo: toolboxLogo,
-    path: "/toolbox"
+    logo: toolboxLogo
   }, {
     title: "Luemin",
     description: "Unified Endpoint Management (UEM) solution integrated into the Lifetime EPR platform for comprehensive device management",
