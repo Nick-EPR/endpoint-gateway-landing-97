@@ -10,7 +10,7 @@ export const TermsHero = ({ scrolled }: TermsHeroProps) => {
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10"></div>
         <img 
-          src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d"
+          src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
           alt="Terms Background"
           className="w-full h-full object-cover"
         />
