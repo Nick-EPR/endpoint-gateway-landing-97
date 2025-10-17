@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Shield, Lock, Users, Database, Server, Copyright, AlertCircle, XCircle, FileText, Mail } from "lucide-react";
 import {
   Accordion,
@@ -51,7 +51,18 @@ const Terms = () => {
       icon: Database,
       title: "Data Privacy",
       summary: "How we handle and protect your data",
-      content: "We collect and process data in accordance with our Privacy Policy. By using our services, you consent to such processing and warrant that all data provided by you is accurate."
+      content: (
+        <>
+          We collect and process data in accordance with our{" "}
+          <Link 
+            to="/privacy" 
+            className="text-primary hover:underline font-medium"
+          >
+            Privacy Policy
+          </Link>
+          . By using our services, you consent to such processing and warrant that all data provided by you is accurate.
+        </>
+      )
     },
     {
       icon: Lock,
@@ -122,7 +133,7 @@ const Terms = () => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent>
-                    <p className="text-neutral-600 dark:text-neutral-300 pt-2">{term.content}</p>
+                    <div className="text-neutral-600 dark:text-neutral-300 pt-2">{term.content}</div>
                   </AccordionContent>
                 </AccordionItem>
               ))}
