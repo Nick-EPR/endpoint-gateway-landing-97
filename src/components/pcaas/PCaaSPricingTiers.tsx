@@ -33,7 +33,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
   // Animation hook for counting down prices
   useEffect(() => {
     const essentialTarget = 99;
-    const professionalTarget = 175;
+    const professionalTarget = 199;
     const duration = 2000; // 2 seconds
     const frameDuration = 1000 / 60; // 60 FPS
     const totalFrames = Math.round(duration / frameDuration);
@@ -67,7 +67,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
     },
     professional: {
       name: "Professional", 
-      price: "$175",
+      price: "$199",
       popular: false,
     }
   };

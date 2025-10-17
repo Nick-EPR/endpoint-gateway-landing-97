@@ -7,7 +7,7 @@ import { useCountUp } from "@/hooks/useCountUp";
 
 const PCaaSPromoBanner = () => {
   const essentialPrice = useCountUp(99, 2000);
-  const professionalPrice = useCountUp(175, 2000);
+  const professionalPrice = useCountUp(199, 2000);
 
   const quickSpecs = [
     {
