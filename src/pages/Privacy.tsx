@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FileText, Share2, Lock, UserCheck, Cookie, Baby, RefreshCw, Mail, Database, Shield } from "lucide-react";
 import {
@@ -10,13 +10,24 @@ import {
 import { PolicyCard } from "@/components/ui/policy-card";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
+import { PrivacyHero } from "@/components/privacy/PrivacyHero";
 
 const Privacy = () => {
   const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const policies = [
     {
@@ -89,61 +100,48 @@ const Privacy = () => {
   ];
 
   return (
-    <div className="min-h-screen relative">
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 backdrop-blur-sm z-10"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1506377295352-e3154d43ea9e"
-          alt="Privacy Background"
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="relative z-10">
-        <Navbar scrolled={true} onMouseEnter={() => {}} />
-        
-        <main className="container mx-auto px-4 py-20 md:py-32">
-          <div className="max-w-4xl mx-auto bg-white/95 rounded-xl p-8 backdrop-blur-sm">
-            <h1 className="text-4xl font-bold mb-4">Privacy Policy</h1>
-            <p className="text-neutral mb-8">
-              We take your privacy seriously. This policy outlines how we collect, use, and protect your personal information when you use our services.
-            </p>
-            
-            <div className="grid md:grid-cols-2 gap-4 mb-12">
-              {policies.slice(0, 4).map((policy, index) => (
-                <PolicyCard
-                  key={index}
-                  icon={policy.icon}
-                  title={policy.title}
-                  description={policy.summary}
-                />
-              ))}
-            </div>
-
-            <div className="bg-white rounded-lg shadow-sm border p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-4">Detailed Privacy Policy</h2>
-              <Accordion type="single" collapsible className="w-full">
-                {policies.map((policy, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="hover:no-underline">
-                      <div className="flex items-center gap-2">
-                        <policy.icon className="h-5 w-5 text-primary" />
-                        <span>{policy.title}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="text-neutral pt-2 whitespace-pre-line">
-                        {policy.content}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+    <div className="min-h-screen bg-background">
+      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      
+      <PrivacyHero scrolled={scrolled} />
+      
+      <main className="container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 mb-12">
+            {policies.slice(0, 4).map((policy, index) => (
+              <PolicyCard
+                key={index}
+                icon={policy.icon}
+                title={policy.title}
+                description={policy.summary}
+              />
+            ))}
           </div>
-        </main>
 
-        <Footer />
-      </div>
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6 mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-white">Detailed Privacy Policy</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {policies.map((policy, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <policy.icon className="h-5 w-5 text-primary" />
+                      <span className="text-neutral-900 dark:text-white">{policy.title}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="text-neutral-700 dark:text-neutral-300 pt-2 whitespace-pre-line">
+                      {policy.content}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };
