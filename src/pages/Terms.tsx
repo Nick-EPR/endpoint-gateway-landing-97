@@ -1,5 +1,4 @@
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Shield, Lock, Users, Database, Server, Copyright, AlertCircle, XCircle, FileText, Mail } from "lucide-react";
 import {
@@ -9,15 +8,25 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { PolicyCard } from "@/components/ui/policy-card";
+import { TermsHero } from "@/components/terms/TermsHero";
 import Navbar from "../components/navbar/Navbar";
 import Footer from "../components/Footer";
 
 const Terms = () => {
   const { pathname } = useLocation();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const terms = [
     {
@@ -83,59 +92,46 @@ const Terms = () => {
   ];
 
   return (
-    <div className="min-h-screen relative bg-background">
-      <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40 backdrop-blur-sm z-10 dark:from-black/80 dark:to-black/60"></div>
-        <img 
-          src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d"
-          alt="Terms Background"
-          className="w-full h-full object-cover"
-        />
-      </div>
-      <div className="relative z-10">
-        <Navbar scrolled={true} onMouseEnter={() => {}} />
-        
-        <main className="container mx-auto px-4 py-20 md:py-32">
-          <div className="max-w-4xl mx-auto bg-white/95 dark:bg-neutral-900/90 rounded-xl p-8 backdrop-blur-sm shadow-lg border border-gray-200 dark:border-neutral-800">
-            <h1 className="text-4xl font-bold mb-4 text-neutral-900 dark:text-white">Terms of Service</h1>
-            <p className="text-neutral dark:text-neutral-300 mb-8">
-              Please read these terms carefully before using our services. These terms outline your rights and responsibilities when using Lifetime EPR's services.
-            </p>
-            
-            <div className="grid md:grid-cols-2 gap-4 mb-12">
-              {terms.slice(0, 4).map((term, index) => (
-                <PolicyCard
-                  key={index}
-                  icon={term.icon}
-                  title={term.title}
-                  description={term.summary}
-                />
-              ))}
-            </div>
-
-            <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-sm border border-gray-200 dark:border-neutral-700 p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-white">Detailed Terms</h2>
-              <Accordion type="single" collapsible className="w-full">
-                {terms.map((term, index) => (
-                  <AccordionItem key={index} value={`item-${index}`}>
-                    <AccordionTrigger className="hover:no-underline">
-                      <div className="flex items-center gap-2">
-                        <term.icon className="h-5 w-5 text-primary" />
-                        <span className="dark:text-white">{term.title}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <p className="text-neutral-600 dark:text-neutral-300 pt-2">{term.content}</p>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
+    <div className="min-h-screen bg-background">
+      <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      
+      <TermsHero scrolled={scrolled} />
+      
+      <main className="container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-4 mb-12">
+            {terms.slice(0, 4).map((term, index) => (
+              <PolicyCard
+                key={index}
+                icon={term.icon}
+                title={term.title}
+                description={term.summary}
+              />
+            ))}
           </div>
-        </main>
 
-        <Footer />
-      </div>
+          <div className="bg-card rounded-lg shadow-sm border border-border p-6 mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-neutral-900 dark:text-white">Detailed Terms</h2>
+            <Accordion type="single" collapsible className="w-full">
+              {terms.map((term, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger className="hover:no-underline">
+                    <div className="flex items-center gap-2">
+                      <term.icon className="h-5 w-5 text-primary" />
+                      <span className="text-neutral-900 dark:text-white">{term.title}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <p className="text-neutral-600 dark:text-neutral-300 pt-2">{term.content}</p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
     </div>
   );
 };
