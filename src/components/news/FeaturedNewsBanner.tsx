@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ExternalLink, X } from "lucide-react";
+import { Calendar, ExternalLink, X, Newspaper } from "lucide-react";
 import { format } from "date-fns";
 
 const FeaturedNewsBanner = () => {
@@ -78,15 +78,19 @@ const FeaturedNewsBanner = () => {
               const isExternal = article.article_type === 'external';
               const CardContent = (
                 <div className="flex gap-2 p-2 rounded-lg bg-card hover:bg-accent/50 transition-colors border border-border">
-                    {article.featured_image_url && (
-                      <div className="flex-shrink-0 w-12 h-12 rounded overflow-hidden">
-                        <img
-                          src={article.featured_image_url}
-                          alt={article.title}
-                          className="w-full h-full object-cover"
-                        />
+                  <div className="flex-shrink-0 w-12 h-12 rounded overflow-hidden">
+                    {article.featured_image_url ? (
+                      <img
+                        src={article.featured_image_url}
+                        alt={article.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-muted flex items-center justify-center">
+                        <Newspaper className="w-6 h-6 text-muted-foreground" />
                       </div>
                     )}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
                       <Badge variant="secondary" className="text-xs capitalize rounded-md px-2 py-1">
