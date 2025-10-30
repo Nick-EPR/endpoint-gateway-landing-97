@@ -13,15 +13,26 @@ import Autoplay from "embla-carousel-autoplay";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ExternalLink, X, Newspaper } from "lucide-react";
 import { format } from "date-fns";
+import { cn } from "@/lib/utils";
 
 const FeaturedNewsBanner = () => {
   const [isDismissed, setIsDismissed] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const dismissed = localStorage.getItem('featuredNewsBanner_dismissed');
     if (dismissed === 'true') {
       setIsDismissed(true);
     }
+  }, []);
+
+  useEffect(() => {
+    // Delay the slide-down animation for smooth UX after page load
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const { data: featuredNews, isLoading } = useQuery({
@@ -44,7 +55,11 @@ const FeaturedNewsBanner = () => {
   }
 
   return (
-    <div className="sticky top-[72px] w-full bg-background/95 backdrop-blur-sm border-b border-border z-40 relative">
+    <div className={cn(
+      "sticky top-[72px] w-full bg-background/95 backdrop-blur-sm border-b border-border z-40 relative",
+      "transition-all duration-700 ease-out",
+      isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+    )}>
       <div className="container mx-auto px-4 py-2">
         <Carousel
           opts={{
