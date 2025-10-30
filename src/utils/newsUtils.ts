@@ -1,10 +1,14 @@
 
 export interface NewsArticle {
   id: string;
+  article_type: 'internal' | 'external';
   title: string;
   slug: string;
   excerpt: string;
-  content: string; // Markdown supported
+  url: string;
+  content?: string; // Only for internal articles
+  external_url?: string; // Only for external articles
+  source_publication?: string; // e.g., "CRN", "TechCrunch"
   author_name: string;
   author_title: string;
   featured_image_url: string;
@@ -34,6 +38,8 @@ export interface FetchNewsParams {
   featured?: boolean;
   slug?: string;
   tag?: string;
+  type?: 'internal' | 'external';
+  source?: string;
 }
 
 const API_BASE_URL = 'https://rphvgpigazqrrxalxmzm.supabase.co/functions/v1/api-v1-news';
@@ -47,6 +53,8 @@ export const fetchNewsArticles = async (params?: FetchNewsParams): Promise<NewsA
   if (params?.featured) searchParams.append('featured', 'true');
   if (params?.slug) searchParams.append('slug', params.slug);
   if (params?.tag) searchParams.append('tag', params.tag);
+  if (params?.type) searchParams.append('type', params.type);
+  if (params?.source) searchParams.append('source', params.source);
 
   const url = `${API_BASE_URL}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
   

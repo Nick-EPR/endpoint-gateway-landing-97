@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Calendar, User, ArrowRight, Eye } from "lucide-react";
+import { Calendar, User, ArrowRight, Eye, ExternalLink } from "lucide-react";
 import { NewsArticle } from "@/utils/newsUtils";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
@@ -11,9 +11,10 @@ interface NewsCardProps {
 
 export const NewsCard = ({ article }: NewsCardProps) => {
   const formattedDate = format(new Date(article.published_at), "MMMM d, yyyy");
+  const isExternal = article.article_type === 'external';
   
-  return (
-    <Link to={`/news/${article.slug}`}>
+  const CardContent = (
+    <>
       <div className="group bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-border overflow-hidden h-full flex flex-col">
         {/* Featured Image */}
         {article.featured_image_url && (
@@ -33,10 +34,18 @@ export const NewsCard = ({ article }: NewsCardProps) => {
         
         {/* Content */}
         <div className="p-6 flex-1 flex flex-col">
-          {/* Category Badge */}
-          <Badge variant="outline" className="w-fit mb-3 capitalize">
-            {article.category}
-          </Badge>
+          {/* Category and Source Badge */}
+          <div className="flex items-center gap-2 mb-3">
+            <Badge variant="outline" className="w-fit capitalize">
+              {article.category}
+            </Badge>
+            {isExternal && article.source_publication && (
+              <Badge variant="secondary" className="w-fit text-xs gap-1">
+                <ExternalLink className="w-3 h-3" />
+                {article.source_publication}
+              </Badge>
+            )}
+          </div>
           
           {/* Title */}
           <h3 className="text-xl font-semibold mb-3 text-foreground group-hover:text-primary transition-colors">
@@ -68,11 +77,35 @@ export const NewsCard = ({ article }: NewsCardProps) => {
           
           {/* Read More Link */}
           <div className="flex items-center gap-2 text-primary font-medium mt-4 group-hover:gap-3 transition-all">
-            Read More
-            <ArrowRight className="w-4 h-4" />
+            {isExternal ? (
+              <>
+                Read on {article.source_publication || 'External Site'}
+                <ExternalLink className="w-4 h-4" />
+              </>
+            ) : (
+              <>
+                Read More
+                <ArrowRight className="w-4 h-4" />
+              </>
+            )}
           </div>
         </div>
       </div>
+    </>
+  );
+  
+  return isExternal ? (
+    <a 
+      href={article.external_url} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="block h-full"
+    >
+      {CardContent}
+    </a>
+  ) : (
+    <Link to={`/news/${article.slug}`} className="block h-full">
+      {CardContent}
     </Link>
   );
 };

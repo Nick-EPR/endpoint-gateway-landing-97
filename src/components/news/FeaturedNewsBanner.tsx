@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from "@/components/ui/badge";
-import { Calendar } from "lucide-react";
+import { Calendar, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 
 const FeaturedNewsBanner = () => {
@@ -59,16 +59,10 @@ const FeaturedNewsBanner = () => {
           </div>
 
           <CarouselContent className="-ml-4">
-            {articles.map((article) => (
-              <CarouselItem
-                key={article.id}
-                className="pl-4 md:basis-1/2 lg:basis-1/3"
-              >
-                <Link
-                  to={`/news/${article.slug}`}
-                  className="block group hover:opacity-80 transition-opacity"
-                >
-                  <div className="flex gap-2 p-2 rounded-lg bg-card hover:bg-accent/50 transition-colors border border-border">
+            {articles.map((article) => {
+              const isExternal = article.article_type === 'external';
+              const CardContent = (
+                <div className="flex gap-2 p-2 rounded-lg bg-card hover:bg-accent/50 transition-colors border border-border">
                     {article.featured_image_url && (
                       <div className="flex-shrink-0 w-12 h-12 rounded overflow-hidden">
                         <img
@@ -78,26 +72,56 @@ const FeaturedNewsBanner = () => {
                         />
                       </div>
                     )}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
-                        <Badge variant="secondary" className="text-xs capitalize">
-                          {article.category}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <Badge variant="secondary" className="text-xs capitalize">
+                        {article.category}
+                      </Badge>
+                      {isExternal && article.source_publication && (
+                        <Badge variant="outline" className="text-xs gap-1">
+                          <ExternalLink className="w-2 h-2" />
+                          {article.source_publication}
                         </Badge>
-                        {article.published_at && (
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {format(new Date(article.published_at), "MMM d")}
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
-                        {article.title}
-                      </h3>
+                      )}
+                      {article.published_at && (
+                        <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {format(new Date(article.published_at), "MMM d")}
+                        </span>
+                      )}
                     </div>
+                    <h3 className="text-sm font-medium text-foreground line-clamp-2 group-hover:text-primary transition-colors">
+                      {article.title}
+                    </h3>
                   </div>
-                </Link>
-              </CarouselItem>
-            ))}
+                </div>
+              );
+              
+              return (
+                <CarouselItem
+                  key={article.id}
+                  className="pl-4 md:basis-1/2 lg:basis-1/3"
+                >
+                  {isExternal ? (
+                    <a
+                      href={article.external_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block group hover:opacity-80 transition-opacity"
+                    >
+                      {CardContent}
+                    </a>
+                  ) : (
+                    <Link
+                      to={`/news/${article.slug}`}
+                      className="block group hover:opacity-80 transition-opacity"
+                    >
+                      {CardContent}
+                    </Link>
+                  )}
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
         </Carousel>
       </div>

@@ -1,8 +1,8 @@
-
 import { NewsArticle } from "@/utils/newsUtils";
 import { Calendar, User, Eye, Tag } from "lucide-react";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
+import { ExternalArticlePreview } from "./ExternalArticlePreview";
 
 interface NewsArticleContentProps {
   article: NewsArticle;
@@ -11,6 +11,12 @@ interface NewsArticleContentProps {
 export const NewsArticleContent = ({ article }: NewsArticleContentProps) => {
   const formattedDate = format(new Date(article.published_at), "MMMM d, yyyy");
 
+  // For external articles, show preview with link to external source
+  if (article.article_type === 'external') {
+    return <ExternalArticlePreview article={article} />;
+  }
+
+  // For internal articles, render full content
   return (
     <article className="max-w-4xl mx-auto">
       {/* Featured Image */}
@@ -56,10 +62,12 @@ export const NewsArticleContent = ({ article }: NewsArticleContentProps) => {
       </div>
 
       {/* Article Content (HTML) */}
-      <div 
-        className="prose prose-lg dark:prose-invert max-w-none mb-8 prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-a:text-primary"
-        dangerouslySetInnerHTML={{ __html: article.content }}
-      />
+      {article.content && (
+        <div 
+          className="prose prose-lg dark:prose-invert max-w-none mb-8 prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-a:text-primary"
+          dangerouslySetInnerHTML={{ __html: article.content }}
+        />
+      )}
 
       {/* Tags */}
       {article.tags.length > 0 && (
