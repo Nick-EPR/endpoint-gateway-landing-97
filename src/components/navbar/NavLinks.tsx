@@ -149,6 +149,13 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
         Mission
       </Link>
       <Link 
+        to="/news" 
+        className={getLinkClasses('/news')}
+        onClick={onClose}
+      >
+        News
+      </Link>
+      <Link 
         to="/contact" 
         className={getLinkClasses('/contact')}
         onClick={onClose}

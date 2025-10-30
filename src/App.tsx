@@ -18,6 +18,8 @@ import WhatIsITAM from "./pages/WhatIsITAM";
 import WhyChooseUs from "./pages/WhyChooseUs";
 import MoviusPartnership from "./pages/MoviusPartnership";
 import PCaaS from "./pages/PCaaS";
+import News from "./pages/News";
+import NewsArticle from "./pages/NewsArticle";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 import { Toaster } from "./components/ui/toaster";
@@ -45,6 +47,8 @@ function AppContent() {
           <Route path="/security/whitepaper" element={<SecurityWhitepaper />} />
           <Route path="/partnerships/movius" element={<MoviusPartnership />} />
           <Route path="/pcaas" element={<PCaaS />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/news/:slug" element={<NewsArticle />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
