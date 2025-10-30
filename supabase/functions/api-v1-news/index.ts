@@ -80,6 +80,15 @@ Deno.serve(async (req) => {
       );
     }
 
+    // If searching by slug and no article found, return 404
+    if (slug && (!data || data.length === 0)) {
+      console.log("Article not found for slug:", slug);
+      return new Response(
+        JSON.stringify({ success: false, error: "Article not found" }),
+        { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     // Return response
     return new Response(
       JSON.stringify({
