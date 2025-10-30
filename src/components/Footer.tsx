@@ -15,8 +15,8 @@ const Footer = () => {
               className="h-8 mb-4 dark:hidden"
             />
             <img 
-              src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png"
-              alt="Lifetime EndPoint Resources"
+              src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png"
+              alt="Lifetime EPR Triangle Emblem"
               className="h-8 mb-4 hidden dark:block"
             />
             <p className="text-neutral dark:text-neutral-400">
