@@ -30,9 +30,10 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
     setIsFeatureActive(isOnFeatures);
   }, [location]);
 
-  // Check if we're on the Movius partnership page or PCaaS page
+  // Check if we're on the Movius partnership page, PCaaS page, or news pages
   const isMoviusPage = location.pathname === '/partnerships/movius';
   const isPCaaSPage = location.pathname === '/pcaas';
+  const isNewsPage = location.pathname.startsWith('/news');
   
   const handleNavigation = (sectionId: string) => {
     if (location.pathname === '/') {
@@ -50,8 +51,8 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   // Always treat specific pages as having a white background, regardless of scroll position
-  // Include homepage, Movius and PCaaS pages as having a white background (homepage has PCaaS banner at top)
-  const isWhiteBackground = scrolled || location.pathname === '/' || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage || isPCaaSPage;
+  // Include homepage, Movius, PCaaS, and news pages as having a white background (homepage has PCaaS banner at top)
+  const isWhiteBackground = scrolled || location.pathname === '/' || location.pathname === '/what-is-itam' || location.pathname === '/status' || isMoviusPage || isPCaaSPage || isNewsPage;
   // Only access theme after component has mounted to prevent hydration mismatch
   const isDark = mounted ? theme === 'dark' : false;
 
