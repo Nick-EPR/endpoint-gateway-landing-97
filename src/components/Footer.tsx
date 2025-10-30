@@ -92,8 +92,8 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Bottom Logo - added pb-16 to provide space for the bottom navbar */}
-        <div className="mt-8 pb-16 flex justify-center">
+        {/* Bottom Logo - provides space for the bottom navbar */}
+        <div className="mt-8 pb-8 flex justify-center">
           <Link to="/" className="block">
             <img 
               src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png"
