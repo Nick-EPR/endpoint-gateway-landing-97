@@ -29,8 +29,8 @@ const FeaturedNewsBanner = () => {
   }
 
   return (
-    <div className="fixed top-[72px] left-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-40">
-      <div className="container mx-auto px-4 py-4">
+    <div className="sticky top-[72px] w-full bg-background/95 backdrop-blur-sm border-b border-border z-40">
+      <div className="container mx-auto px-4 py-2">
         <Carousel
           opts={{
             align: "start",
@@ -45,7 +45,7 @@ const FeaturedNewsBanner = () => {
           ]}
           className="w-full"
         >
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center justify-between mb-1">
             <div className="flex items-center gap-2">
               <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
               <span className="text-sm font-semibold text-foreground">
@@ -68,9 +68,9 @@ const FeaturedNewsBanner = () => {
                   to={`/news/${article.slug}`}
                   className="block group hover:opacity-80 transition-opacity"
                 >
-                  <div className="flex gap-3 p-3 rounded-lg bg-card hover:bg-accent/50 transition-colors border border-border">
+                  <div className="flex gap-2 p-2 rounded-lg bg-card hover:bg-accent/50 transition-colors border border-border">
                     {article.featured_image_url && (
-                      <div className="flex-shrink-0 w-16 h-16 rounded overflow-hidden">
+                      <div className="flex-shrink-0 w-12 h-12 rounded overflow-hidden">
                         <img
                           src={article.featured_image_url}
                           alt={article.title}
