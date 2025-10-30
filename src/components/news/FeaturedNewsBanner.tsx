@@ -20,7 +20,7 @@ const FeaturedNewsBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem('featuredNewsBanner_dismissed');
+    const dismissed = sessionStorage.getItem('featuredNewsBanner_dismissed');
     if (dismissed === 'true') {
       setIsDismissed(true);
     }
@@ -46,7 +46,7 @@ const FeaturedNewsBanner = () => {
 
   const handleClose = () => {
     setIsDismissed(true);
-    localStorage.setItem('featuredNewsBanner_dismissed', 'true');
+    sessionStorage.setItem('featuredNewsBanner_dismissed', 'true');
   };
 
   // Don't render if no featured articles or still loading or dismissed
