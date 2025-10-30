@@ -1,2 +1,5 @@
 
 project_id = "enqatyvjcztoicadviix"
+
+[functions.api-v1-news]
+verify_jwt = false

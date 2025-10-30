@@ -47,6 +47,69 @@ export type Database = {
         }
         Relationships: []
       }
+      news_articles: {
+        Row: {
+          author_name: string
+          author_title: string
+          category: string
+          content: string
+          created_at: string
+          excerpt: string
+          featured_image_url: string | null
+          id: string
+          is_featured: boolean | null
+          published: boolean | null
+          published_at: string
+          seo_description: string | null
+          seo_title: string | null
+          slug: string
+          tags: string[] | null
+          title: string
+          updated_at: string
+          view_count: number | null
+        }
+        Insert: {
+          author_name: string
+          author_title: string
+          category: string
+          content: string
+          created_at?: string
+          excerpt: string
+          featured_image_url?: string | null
+          id?: string
+          is_featured?: boolean | null
+          published?: boolean | null
+          published_at?: string
+          seo_description?: string | null
+          seo_title?: string | null
+          slug: string
+          tags?: string[] | null
+          title: string
+          updated_at?: string
+          view_count?: number | null
+        }
+        Update: {
+          author_name?: string
+          author_title?: string
+          category?: string
+          content?: string
+          created_at?: string
+          excerpt?: string
+          featured_image_url?: string | null
+          id?: string
+          is_featured?: boolean | null
+          published?: boolean | null
+          published_at?: string
+          seo_description?: string | null
+          seo_title?: string | null
+          slug?: string
+          tags?: string[] | null
+          title?: string
+          updated_at?: string
+          view_count?: number | null
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -124,10 +187,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      get_secret: {
-        Args: { secret_name: string }
-        Returns: string
-      }
+      get_secret: { Args: { secret_name: string }; Returns: string }
     }
     Enums: {
       [_ in never]: never

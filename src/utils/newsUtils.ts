@@ -36,8 +36,7 @@ export interface FetchNewsParams {
   tag?: string;
 }
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://enqatyvjcztoicadviix.supabase.co';
-const API_BASE_URL = `${SUPABASE_URL}/functions/v1/api-v1-news`;
+const API_BASE_URL = 'https://enqatyvjcztoicadviix.supabase.co/functions/v1/api-v1-news';
 
 export const fetchNewsArticles = async (params?: FetchNewsParams): Promise<NewsApiResponse> => {
   const searchParams = new URLSearchParams();
