@@ -61,5 +61,16 @@ export const fetchNewsArticles = async (params?: FetchNewsParams): Promise<NewsA
 
 export const fetchArticleBySlug = async (slug: string): Promise<NewsArticle | null> => {
   const response = await fetchNewsArticles({ slug });
-  return response.success && response.data.length > 0 ? response.data[0] : null;
+  
+  if (!response.success) {
+    return null;
+  }
+  
+  // Handle both array and single object responses
+  if (Array.isArray(response.data)) {
+    return response.data.length > 0 ? response.data[0] : null;
+  }
+  
+  // If data is a single object, return it directly
+  return response.data as NewsArticle;
 };
