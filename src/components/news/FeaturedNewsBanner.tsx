@@ -74,11 +74,11 @@ const FeaturedNewsBanner = () => {
                     )}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-1">
-                      <Badge variant="secondary" className="text-xs capitalize">
+                      <Badge variant="secondary" className="text-xs capitalize rounded-md px-2 py-1">
                         {article.category}
                       </Badge>
                       {isExternal && article.source_publication && (
-                        <Badge variant="outline" className="text-xs gap-1">
+                        <Badge variant="outline" className="text-xs gap-1 rounded-md px-2 py-1">
                           <ExternalLink className="w-2 h-2" />
                           {article.source_publication}
                         </Badge>
