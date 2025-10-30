@@ -1,4 +1,3 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { ChevronDown } from "lucide-react";
@@ -8,6 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Badge } from "@/components/ui/badge";
+import { useUnreadNews } from "@/hooks/useUnreadNews";
 
 interface NavLinksProps {
   scrolled: boolean;
@@ -18,6 +19,7 @@ interface NavLinksProps {
 const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   const location = useLocation();
   const { theme } = useTheme();
+  const { data: unreadCount = 0 } = useUnreadNews();
   
   const isDark = theme === 'dark';
 
@@ -150,10 +152,18 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
       </Link>
       <Link 
         to="/news" 
-        className={getLinkClasses('/news')}
+        className={`${getLinkClasses('/news')} relative inline-flex items-center gap-1.5`}
         onClick={onClose}
       >
         News
+        {unreadCount > 0 && (
+          <Badge 
+            variant="destructive" 
+            className="h-5 min-w-5 px-1 text-xs animate-pulse"
+          >
+            {unreadCount}
+          </Badge>
+        )}
       </Link>
       <Link 
         to="/contact" 

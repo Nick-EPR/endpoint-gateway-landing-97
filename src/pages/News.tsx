@@ -33,6 +33,11 @@ const News = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Mark news as read when visiting the page
+  useEffect(() => {
+    localStorage.setItem('lastNewsVisit', new Date().toISOString());
+  }, []);
+
   // Fetch news articles
   const { data, isLoading, isError, refetch } = useQuery({
     queryKey: ["news", selectedCategory, currentPage],
