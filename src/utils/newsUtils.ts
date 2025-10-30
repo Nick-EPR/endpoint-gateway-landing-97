@@ -36,7 +36,7 @@ export interface FetchNewsParams {
   tag?: string;
 }
 
-const API_BASE_URL = 'https://enqatyvjcztoicadviix.supabase.co/functions/v1/api-v1-news';
+const API_BASE_URL = 'https://rphvgpigazqrrxalxmzm.supabase.co/functions/v1/api-v1-news';
 
 export const fetchNewsArticles = async (params?: FetchNewsParams): Promise<NewsApiResponse> => {
   const searchParams = new URLSearchParams();
