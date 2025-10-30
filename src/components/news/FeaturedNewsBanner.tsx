@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { fetchNewsArticles } from "@/utils/newsUtils";
@@ -10,10 +11,19 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, ExternalLink } from "lucide-react";
+import { Calendar, ExternalLink, X } from "lucide-react";
 import { format } from "date-fns";
 
 const FeaturedNewsBanner = () => {
+  const [isDismissed, setIsDismissed] = useState(false);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem('featuredNewsBanner_dismissed');
+    if (dismissed === 'true') {
+      setIsDismissed(true);
+    }
+  }, []);
+
   const { data: featuredNews, isLoading } = useQuery({
     queryKey: ["featured-news"],
     queryFn: () => fetchNewsArticles({ featured: true, limit: 10 }),
@@ -23,13 +33,18 @@ const FeaturedNewsBanner = () => {
 
   const articles = featuredNews?.data || [];
 
-  // Don't render if no featured articles or still loading
-  if (isLoading || articles.length === 0) {
+  const handleClose = () => {
+    setIsDismissed(true);
+    localStorage.setItem('featuredNewsBanner_dismissed', 'true');
+  };
+
+  // Don't render if no featured articles or still loading or dismissed
+  if (isLoading || articles.length === 0 || isDismissed) {
     return null;
   }
 
   return (
-    <div className="sticky top-[72px] w-full bg-background/95 backdrop-blur-sm border-b border-border z-40">
+    <div className="sticky top-[72px] w-full bg-background/95 backdrop-blur-sm border-b border-border z-40 relative">
       <div className="container mx-auto px-4 py-2">
         <Carousel
           opts={{
@@ -125,6 +140,14 @@ const FeaturedNewsBanner = () => {
           </CarouselContent>
         </Carousel>
       </div>
+      
+      <button
+        onClick={handleClose}
+        className="absolute bottom-2 right-2 h-6 w-6 rounded-full bg-background/80 hover:bg-accent border border-border flex items-center justify-center transition-colors"
+        aria-label="Close featured news banner"
+      >
+        <X className="h-3 w-3" />
+      </button>
     </div>
   );
 };
