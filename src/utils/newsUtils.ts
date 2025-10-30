@@ -42,7 +42,7 @@ export interface FetchNewsParams {
   source?: string;
 }
 
-const API_BASE_URL = 'https://9b091317-c2bd-4966-af66-a6e93877dc0a.lovableproject.com/docs/api/news';
+const API_BASE_URL = 'https://rphvgpigazqrrxalxmzm.supabase.co/functions/v1/api-v1-news';
 
 export const fetchNewsArticles = async (params?: FetchNewsParams): Promise<NewsApiResponse> => {
   const searchParams = new URLSearchParams();
