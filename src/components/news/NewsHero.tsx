@@ -22,7 +22,7 @@ export const NewsHero = () => {
           </div>
           <p className="text-xl md:text-2xl text-white/90 animate-fade-up" 
              style={{ animationDelay: "0.2s" }}>
-            Stay updated with the latest announcements, partnerships, and insights from Lifetime EPR
+            Stay updated with the latest announcements, partnerships, and insights from <span className="text-primary font-medium">Lifetime EPR</span>
           </p>
         </div>
       </div>

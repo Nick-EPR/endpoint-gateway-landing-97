@@ -4,6 +4,22 @@ import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { ExternalArticlePreview } from "./ExternalArticlePreview";
 
+// Helper function to highlight company names in HTML content
+const highlightCompanyNames = (html: string): string => {
+  if (!html) return html;
+  
+  // Replace company names with styled spans
+  return html
+    .replace(
+      /Lifetime EndPoint Resources/g, 
+      '<span class="text-primary font-medium">Lifetime EndPoint Resources</span>'
+    )
+    .replace(
+      /Lifetime EPR/g, 
+      '<span class="text-primary font-medium">Lifetime EPR</span>'
+    );
+};
+
 interface NewsArticleContentProps {
   article: NewsArticle;
 }
@@ -65,7 +81,7 @@ export const NewsArticleContent = ({ article }: NewsArticleContentProps) => {
       {article.content && (
         <div 
           className="prose prose-lg dark:prose-invert max-w-none mb-8 prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-a:text-primary"
-          dangerouslySetInnerHTML={{ __html: article.content }}
+          dangerouslySetInnerHTML={{ __html: highlightCompanyNames(article.content) }}
         />
       )}
 
