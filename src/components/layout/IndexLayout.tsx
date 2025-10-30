@@ -5,6 +5,7 @@ import Footer from "../Footer";
 import NavigationProgress from "../NavigationProgress";
 import StatusBanner from "../StatusBanner";
 import BottomNavbar from "../navbar/BottomNavbar";
+import FeaturedNewsBanner from "../news/FeaturedNewsBanner";
 
 interface IndexLayoutProps {
   children: ReactNode;
@@ -37,6 +38,8 @@ const IndexLayout = ({
     <div className="min-h-screen dark:bg-neutral-900">
       <NavigationProgress />
       <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
+      
+      <FeaturedNewsBanner />
       
       {hasOutage && (
         <div className="fixed top-[72px] w-full z-40">
