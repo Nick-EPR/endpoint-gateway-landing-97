@@ -3,7 +3,6 @@ import { NewsArticle } from "@/utils/newsUtils";
 import { Calendar, User, Eye, Tag } from "lucide-react";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
-import ReactMarkdown from "react-markdown";
 
 interface NewsArticleContentProps {
   article: NewsArticle;
@@ -56,10 +55,11 @@ export const NewsArticleContent = ({ article }: NewsArticleContentProps) => {
         )}
       </div>
 
-      {/* Article Content (Markdown) */}
-      <div className="prose prose-lg dark:prose-invert max-w-none mb-8 prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-a:text-primary">
-        <ReactMarkdown>{article.content}</ReactMarkdown>
-      </div>
+      {/* Article Content (HTML) */}
+      <div 
+        className="prose prose-lg dark:prose-invert max-w-none mb-8 prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground prose-li:text-foreground prose-a:text-primary"
+        dangerouslySetInnerHTML={{ __html: article.content }}
+      />
 
       {/* Tags */}
       {article.tags.length > 0 && (
