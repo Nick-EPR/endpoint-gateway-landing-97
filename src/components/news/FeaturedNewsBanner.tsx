@@ -80,7 +80,7 @@ const FeaturedNewsBanner = () => {
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <Badge variant="secondary" className="text-xs">
+                        <Badge variant="secondary" className="text-xs capitalize">
                           {article.category}
                         </Badge>
                         {article.published_at && (
