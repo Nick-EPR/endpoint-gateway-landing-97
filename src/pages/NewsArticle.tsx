@@ -73,15 +73,21 @@ const NewsArticle = () => {
       <div className="min-h-screen bg-background">
         <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
         
-        <section className="pt-32 pb-16 md:pt-40 md:pb-24">
+        {/* Fixed Back Button */}
+        <div className="fixed top-[72px] left-0 w-full bg-background/80 backdrop-blur-sm border-b border-border z-30 py-3">
           <div className="container mx-auto px-4">
             <Link to="/news">
-              <Button variant="ghost" className="gap-2 mb-8 -ml-2">
+              <Button variant="ghost" className="gap-2">
                 <ArrowLeft className="w-4 h-4" />
                 Back to News
               </Button>
             </Link>
-            
+          </div>
+        </div>
+        
+        {/* Adjust padding to account for fixed button */}
+        <section className="pt-40 pb-16 md:pt-48 md:pb-24">
+          <div className="container mx-auto px-4">
             <NewsArticleContent article={article} />
           </div>
         </section>
