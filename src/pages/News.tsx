@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import { NewsHero } from "@/components/news/NewsHero";
 import { NewsGrid } from "@/components/news/NewsGrid";
 import { CategoryFilter } from "@/components/news/CategoryFilter";
+import { FeaturedArticlesSection } from "@/components/news/FeaturedArticlesSection";
 import { fetchNewsArticles } from "@/utils/newsUtils";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -37,6 +38,13 @@ const News = () => {
   useEffect(() => {
     localStorage.setItem('lastNewsVisit', new Date().toISOString());
   }, []);
+
+  // Fetch featured articles
+  const { data: featuredData } = useQuery({
+    queryKey: ["featured-news"],
+    queryFn: () => fetchNewsArticles({ featured: true, limit: 3 }),
+    refetchInterval: 5 * 60 * 1000, // Refetch every 5 minutes
+  });
 
   // Fetch news articles
   const { data, isLoading, isError, refetch } = useQuery({
@@ -82,6 +90,11 @@ const News = () => {
     <div className="min-h-screen bg-background">
       <Navbar scrolled={scrolled} onMouseEnter={() => {}} />
       <NewsHero />
+      
+      {/* Featured Articles Section */}
+      {featuredData?.success && featuredData.data.length > 0 && (
+        <FeaturedArticlesSection articles={featuredData.data} />
+      )}
       
       {/* Main Content */}
       <section className="py-16 md:py-24 bg-background">
