@@ -1,5 +1,4 @@
-
-import { Newspaper } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const NewsHero = () => {
   return (
@@ -17,6 +16,13 @@ export const NewsHero = () => {
              style={{ animationDelay: "0.2s" }}>
             Stay updated with the latest announcements, partnerships, and insights from <span className="text-primary font-medium">Lifetime EPR</span>
           </p>
+          <Link 
+            to="#news"
+            className="inline-block bg-white text-neutral-800 dark:bg-primary dark:text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary hover:text-white dark:hover:bg-primary/90 transition-colors duration-300 animate-fade-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            View All Articles
+          </Link>
         </div>
       </div>
       <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
