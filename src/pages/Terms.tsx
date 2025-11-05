@@ -98,7 +98,7 @@ const Terms = () => {
       icon: Mail,
       title: "Contact Information",
       summary: "How to reach us about these terms",
-      content: "For any questions about these Terms of Service, please contact us at legal@lifetimeepr.com."
+      content: "For any questions about these Terms of Service, please contact us at customersupport@lifetimeepr.com."
     }
   ];
 
