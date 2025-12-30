@@ -282,7 +282,7 @@ const RollingDigit = ({ targetDigit, startDigit, delay = 0, isActive, rollToZero
   );
 };
 
-// Cash register price display
+// Cash register price display with sliding dollar sign
 interface CashRegisterPriceProps {
   value: number;
   startValue: number;
@@ -293,10 +293,10 @@ interface CashRegisterPriceProps {
 const CashRegisterPrice = ({ value, startValue, isActive, animationKey }: CashRegisterPriceProps) => {
   const [hasAnimated, setHasAnimated] = useState(false);
   
-  // Track when animation completes to hide extra digits
+  // Track when animation completes to collapse extra digits
   useEffect(() => {
     if (isActive) {
-      const timer = setTimeout(() => setHasAnimated(true), 2000); // After animation completes
+      const timer = setTimeout(() => setHasAnimated(true), 1800); // Slightly before roll completes
       return () => clearTimeout(timer);
     } else {
       setHasAnimated(false);
@@ -309,36 +309,54 @@ const CashRegisterPrice = ({ value, startValue, isActive, animationKey }: CashRe
   // Pad end digits to match start digits length
   const paddedEndDigits = [...Array(startDigits.length - endDigits.length).fill(null), ...endDigits];
   
+  // Calculate width of leading digits that will collapse (for $ slide effect)
+  const leadingDigitCount = startDigits.length - endDigits.length;
+  
   return (
     <div 
       key={animationKey}
-      className="flex text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter"
+      className="flex items-baseline text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter"
     >
-      {startDigits.map((startDigit, index) => {
-        const endDigit = paddedEndDigits[index];
-        const isLeadingDigit = endDigit === null; // This digit doesn't exist in the final value
-        
-        return (
-          <div
-            key={`${animationKey}-${index}`}
-            className="relative"
-            style={{
-              opacity: isLeadingDigit && hasAnimated ? 0 : 1,
-              width: isLeadingDigit && hasAnimated ? 0 : undefined,
-              transition: 'opacity 0.5s ease-out, width 0.5s ease-out',
-              overflow: 'hidden',
-            }}
-          >
-            <RollingDigit
-              targetDigit={isLeadingDigit ? 0 : endDigit}
-              startDigit={startDigit}
-              delay={index * 120}
-              isActive={isActive}
-              rollToZero={isLeadingDigit}
-            />
-          </div>
-        );
-      })}
+      {/* Dollar sign that slides right */}
+      <span 
+        className="inline-block"
+        style={{
+          marginRight: hasAnimated ? 0 : `${leadingDigitCount * 0.65}em`,
+          transition: 'margin-right 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
+        }}
+      >
+        $
+      </span>
+      
+      {/* Digits container */}
+      <div className="flex">
+        {startDigits.map((startDigit, index) => {
+          const endDigit = paddedEndDigits[index];
+          const isLeadingDigit = endDigit === null;
+          
+          return (
+            <div
+              key={`${animationKey}-${index}`}
+              className="relative overflow-hidden"
+              style={{
+                width: isLeadingDigit 
+                  ? (hasAnimated ? 0 : '0.65em') 
+                  : '0.65em',
+                opacity: isLeadingDigit && hasAnimated ? 0 : 1,
+                transition: 'width 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-out',
+              }}
+            >
+              <RollingDigit
+                targetDigit={isLeadingDigit ? 0 : endDigit}
+                startDigit={startDigit}
+                delay={index * 120}
+                isActive={isActive}
+                rollToZero={isLeadingDigit}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
@@ -601,9 +619,6 @@ const Billboard = () => {
 
                     {/* Massive price display with cash register animation */}
                     <div className="mb-4 flex items-baseline justify-center">
-                      <span className="text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter">
-                        $
-                      </span>
                       <CashRegisterPrice 
                         value={99}
                         startValue={199}
