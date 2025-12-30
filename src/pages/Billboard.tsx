@@ -716,29 +716,34 @@ const Billboard = () => {
       </div>
 
       {/* QR Code section - dynamic based on current slide */}
-      <div className="absolute bottom-8 right-8 flex items-center gap-4 z-20 bg-white rounded-2xl p-4 shadow-2xl">
-        <div className="flex flex-col items-center">
-          <div className="bg-white p-2 rounded-lg">
-            <QRCodeSVG 
-              value={slides[current]?.type === "promo" ? "https://lifetimeepr.com/pcaas" : "https://lifetimeepr.com/contact"} 
-              size={96}
-              level="H"
-              includeMargin={false}
-            />
-          </div>
-          <span className="text-neutral-900 font-semibold text-sm mt-2">Scan to Connect</span>
-          <span className="text-neutral-600 text-xs">
-            {slides[current]?.type === "promo" ? "lifetimeepr.com/pcaas" : "lifetimeepr.com/contact"}
-          </span>
-        </div>
-      </div>
+      {(() => {
+        const qrPaths = ['/pcaas', '/why-choose-us', '/why-choose-us', '/contact'];
+        const currentPath = qrPaths[current] || '/contact';
+        return (
+          <>
+            <div className="absolute bottom-8 right-8 flex items-center gap-4 z-20 bg-white rounded-2xl p-4 shadow-2xl">
+              <div className="flex flex-col items-center">
+                <div className="bg-white p-2 rounded-lg">
+                  <QRCodeSVG 
+                    value={`https://lifetimeepr.com${currentPath}`}
+                    size={96}
+                    level="H"
+                    includeMargin={false}
+                  />
+                </div>
+                <span className="text-neutral-900 font-semibold text-sm mt-2">Scan to Connect</span>
+              </div>
+            </div>
 
-      {/* Website URL */}
-      <div className="absolute bottom-8 left-8 z-20">
-        <span className="text-white/60 text-lg font-light tracking-wider">
-          lifetimeepr.com
-        </span>
-      </div>
+            {/* Website URL */}
+            <div className="absolute bottom-8 left-8 z-20">
+              <span className="text-white/60 text-lg font-light tracking-wider">
+                lifetimeepr.com<span className="font-bold text-white">{currentPath}</span>
+              </span>
+            </div>
+          </>
+        );
+      })()}
 
       {/* Fullscreen hint */}
       <div className="absolute top-8 right-8 z-20 text-white/40 text-sm">
