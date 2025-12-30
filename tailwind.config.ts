@@ -87,15 +87,15 @@ export default {
         "emblem-wave-in": {
           "0%": {
             opacity: "0",
-            transform: "scale(0.5) rotate(-10deg)",
+            transform: "scale(0.9)",
           },
-          "60%": {
-            opacity: "0.06",
-            transform: "scale(1.1) rotate(2deg)",
+          "70%": {
+            opacity: "0.03",
+            transform: "scale(1.02)",
           },
           "100%": {
             opacity: "0.03",
-            transform: "scale(1) rotate(0deg)",
+            transform: "scale(1)",
           },
         },
       },
