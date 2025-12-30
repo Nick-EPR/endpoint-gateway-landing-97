@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, LucideIcon, Laptop, Signal, Headphones, Cloud } from "lucide-react";
+import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, LucideIcon, Laptop, Signal, Headphones, Cloud, Server, PackageOpen, MonitorSmartphone, Workflow, AlertTriangle } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -114,6 +114,36 @@ const slides: Slide[] = [
       },
     ],
     partnerLogos: [leprLogo, tMobileLogo],
+  },
+  {
+    id: "physical-reality",
+    type: "challenge",
+    icon: Server,
+    title: "Beyond the Software",
+    subtitle: "The Untouched Physical Reality of IT Assets",
+    gradient: "from-orange-950 via-neutral-900 to-neutral-900",
+    challenges: [
+      {
+        icon: PackageOpen,
+        title: "Manual Procurement",
+        description: "Multiple spreadsheets, emails, and manual approval processes for ordering assets",
+      },
+      {
+        icon: MonitorSmartphone,
+        title: "Laborious Onboarding",
+        description: "Hours of IT staff time for provisioning, BIOS config, and UEM deployment",
+      },
+      {
+        icon: Workflow,
+        title: "Non-Standardized Processes",
+        description: "Complex if-then logic based on roles and locations creates inconsistency",
+      },
+      {
+        icon: AlertTriangle,
+        title: "End-of-Life Risks",
+        description: "Data security risks and missed asset value recovery opportunities",
+      },
+    ],
   },
   {
     id: "challenge",
@@ -320,8 +350,8 @@ const Billboard = () => {
                   <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-6xl w-full">
                     {/* Header with icon */}
                     <div className="flex items-center gap-4 mb-6 animate-fade-in">
-                      <div className="bg-red-500/20 p-4 rounded-2xl">
-                        <slide.icon className="w-12 h-12 text-red-400" />
+                      <div className={`${slide.id === "physical-reality" ? "bg-orange-500/20" : "bg-red-500/20"} p-4 rounded-2xl`}>
+                        <slide.icon className={`w-12 h-12 ${slide.id === "physical-reality" ? "text-orange-400" : "text-red-400"}`} />
                       </div>
                     </div>
                     
@@ -338,12 +368,12 @@ const Billboard = () => {
                       {slide.challenges.map((challenge, index) => (
                         <div
                           key={index}
-                          className="bg-white/10 backdrop-blur-sm border-l-4 border-red-500 rounded-xl p-6 text-left animate-float"
+                          className={`bg-white/10 backdrop-blur-sm border-l-4 ${slide.id === "physical-reality" ? "border-orange-500" : "border-red-500"} rounded-xl p-6 text-left animate-float`}
                           style={{ animationDelay: `${index * 0.3}s` }}
                         >
                           <div className="flex items-start gap-4">
-                            <div className="bg-red-500/20 p-3 rounded-xl shrink-0">
-                              <challenge.icon className="w-8 h-8 text-red-400" />
+                            <div className={`${slide.id === "physical-reality" ? "bg-orange-500/20" : "bg-red-500/20"} p-3 rounded-xl shrink-0`}>
+                              <challenge.icon className={`w-8 h-8 ${slide.id === "physical-reality" ? "text-orange-400" : "text-red-400"}`} />
                             </div>
                             <div>
                               <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
