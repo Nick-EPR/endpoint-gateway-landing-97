@@ -83,7 +83,7 @@ export const PlatformFeatures = memo(({
             <div className="text-center mt-32 mb-16">
               <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up" style={{ animationDelay: '200ms' }}>
                 <Settings className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-semibold dark:text-white">Build Your Perfect ITAM Solution</h3>
+                <h3 className="text-xl font-semibold dark:text-white">Your Perfect ITAM Solution</h3>
               </div>
               <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '300ms' }}>
                 Choose from our specialized products to create an ITAM solution that perfectly matches 
