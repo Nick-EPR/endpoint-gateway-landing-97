@@ -283,6 +283,36 @@ const Billboard = () => {
     };
   }, [toggleFullscreen]);
 
+  // Count-down animation for promo slide price
+  const [priceDisplay, setPriceDisplay] = useState(99);
+  const isPromoSlideActive = slides[current]?.id === "pcaas-promo";
+
+  useEffect(() => {
+    if (isPromoSlideActive) {
+      const startValue = 999;
+      const endValue = 99;
+      const duration = 1500;
+      const startTime = performance.now();
+
+      const animate = (currentTime: number) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Cubic ease-out for dramatic slowdown at the end
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        
+        const currentValue = Math.round(startValue - (startValue - endValue) * easeOut);
+        setPriceDisplay(currentValue);
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+  }, [isPromoSlideActive]);
+
   useEffect(() => {
     if (!api) return;
 
@@ -454,7 +484,7 @@ const Billboard = () => {
                     {/* Massive price display */}
                     <div className="animate-fade-in mb-4">
                       <span className="text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter">
-                        {slide.price}
+                        ${priceDisplay}
                       </span>
                       <span className="text-2xl md:text-3xl lg:text-4xl font-light text-white/70 ml-2">
                         {slide.priceSubtext}
