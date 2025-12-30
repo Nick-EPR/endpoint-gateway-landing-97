@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { QrCode } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
 import {
   Carousel,
   CarouselContent,
@@ -220,10 +220,12 @@ const Billboard = () => {
       <div className="absolute bottom-8 right-8 flex items-center gap-4 z-20 bg-white rounded-2xl p-4 shadow-2xl">
         <div className="flex flex-col items-center">
           <div className="bg-white p-2 rounded-lg">
-            {/* QR Code placeholder - in production, use a QR code library */}
-            <div className="w-24 h-24 bg-neutral-900 rounded-lg flex items-center justify-center relative overflow-hidden">
-              <QrCode className="w-20 h-20 text-white" />
-            </div>
+            <QRCodeSVG 
+              value="https://lifetimeepr.com/contact" 
+              size={96}
+              level="H"
+              includeMargin={false}
+            />
           </div>
           <span className="text-neutral-900 font-semibold text-sm mt-2">Scan to Connect</span>
           <span className="text-neutral-600 text-xs">lifetimeepr.com/contact</span>
