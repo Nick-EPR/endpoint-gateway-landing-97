@@ -20,6 +20,7 @@ import MoviusPartnership from "./pages/MoviusPartnership";
 import PCaaS from "./pages/PCaaS";
 import News from "./pages/News";
 import NewsArticle from "./pages/NewsArticle";
+import Billboard from "./pages/Billboard";
 import ChatButton from "./components/ChatButton";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 import { Toaster } from "./components/ui/toaster";
@@ -49,6 +50,7 @@ function AppContent() {
           <Route path="/pcaas" element={<PCaaS />} />
           <Route path="/news" element={<News />} />
           <Route path="/news/:slug" element={<NewsArticle />} />
+          <Route path="/billboard" element={<Billboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
