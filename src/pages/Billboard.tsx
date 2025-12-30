@@ -13,7 +13,7 @@ import Autoplay from "embla-carousel-autoplay";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
-import mainLogo from "/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png";
+
 
 interface ChallengeItem {
   icon: LucideIcon;
@@ -61,15 +61,6 @@ interface SolutionSlide {
 type Slide = ProductSlide | ChallengeSlide | SolutionSlide;
 
 const slides: Slide[] = [
-  {
-    id: "brand",
-    type: "product",
-    logo: mainLogo,
-    title: "Complete ITAM Solutions",
-    subtitle: "Enterprise IT Asset Management",
-    description: "Streamline your entire IT asset lifecycle with our comprehensive platform",
-    gradient: "from-neutral-900 via-neutral-800 to-neutral-900",
-  },
   {
     id: "challenge",
     type: "challenge",
@@ -351,18 +342,12 @@ const Billboard = () => {
                     <img
                       src={slide.logo}
                       alt={slide.title}
-                      className={`mb-8 animate-fade-in ${
-                        slide.id === "brand" 
-                          ? "h-32 md:h-40 lg:h-48" 
-                          : "h-24 md:h-32 lg:h-40"
-                      }`}
+                      className="h-24 md:h-32 lg:h-40 mb-8 animate-fade-in"
                     />
                     
-                    {slide.id !== "brand" && (
-                      <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 tracking-tight animate-fade-in">
-                        {slide.title}
-                      </h1>
-                    )}
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-4 tracking-tight animate-fade-in">
+                      {slide.title}
+                    </h1>
                     
                     <h2 className="text-2xl md:text-3xl lg:text-4xl font-light text-white/80 mb-6 animate-fade-in">
                       {slide.subtitle}
