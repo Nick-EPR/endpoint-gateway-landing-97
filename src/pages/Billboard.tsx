@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { GitFork, Unlink, DollarSign, RotateCcw, Database, LucideIcon } from "lucide-react";
+import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, LucideIcon } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -42,7 +42,23 @@ interface ChallengeSlide {
   challenges: ChallengeItem[];
 }
 
-type Slide = ProductSlide | ChallengeSlide;
+interface SolutionItem {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+interface SolutionSlide {
+  id: string;
+  type: "solution";
+  icon: LucideIcon;
+  title: string;
+  subtitle: string;
+  gradient: string;
+  solutions: SolutionItem[];
+}
+
+type Slide = ProductSlide | ChallengeSlide | SolutionSlide;
 
 const slides: Slide[] = [
   {
@@ -81,6 +97,36 @@ const slides: Slide[] = [
         icon: Database,
         title: "Incomplete Data Picture",
         description: "No unified view of IT assets throughout the entire lifecycle",
+      },
+    ],
+  },
+  {
+    id: "solution",
+    type: "solution",
+    icon: CheckCircle2,
+    title: "Our Solution: Unified ITAM",
+    subtitle: "How Lifetime EPR Solves These Challenges",
+    gradient: "from-emerald-950 via-neutral-900 to-neutral-900",
+    solutions: [
+      {
+        icon: Layers,
+        title: "All-In-One Platform",
+        description: "Unified solution covering help desk, CMDB, UEM/MDM, and asset tracking",
+      },
+      {
+        icon: Infinity,
+        title: "No Integration Headaches",
+        description: "Zero integration development costs and no API maintenance worries",
+      },
+      {
+        icon: Receipt,
+        title: "Complete Lifecycle Management",
+        description: "Automated workflows from procurement to secure decommissioning",
+      },
+      {
+        icon: LineChart,
+        title: "Cost-Effective Solution",
+        description: "Predictable pricing, reduced IT labor, and extended asset value recovery",
       },
     ],
   },
@@ -251,6 +297,48 @@ const Billboard = () => {
                               </h3>
                               <p className="text-base md:text-lg text-white/60">
                                 {challenge.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : slide.type === "solution" ? (
+                  <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-6xl w-full">
+                    {/* Header with icon */}
+                    <div className="flex items-center gap-4 mb-6 animate-fade-in">
+                      <div className="bg-emerald-500/20 p-4 rounded-2xl">
+                        <slide.icon className="w-12 h-12 text-emerald-400" />
+                      </div>
+                    </div>
+                    
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 tracking-tight animate-fade-in">
+                      {slide.title}
+                    </h1>
+                    
+                    <h2 className="text-xl md:text-2xl lg:text-3xl font-light text-white/70 mb-10 animate-fade-in">
+                      {slide.subtitle}
+                    </h2>
+
+                    {/* 2x2 Grid of solutions */}
+                    <div className="grid grid-cols-2 gap-6 w-full max-w-5xl">
+                      {slide.solutions.map((solution, index) => (
+                        <div
+                          key={index}
+                          className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 rounded-xl p-6 text-left animate-fade-in"
+                          style={{ animationDelay: `${index * 150}ms` }}
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="bg-emerald-500/20 p-3 rounded-xl shrink-0">
+                              <solution.icon className="w-8 h-8 text-emerald-400" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+                                {solution.title}
+                              </h3>
+                              <p className="text-base md:text-lg text-white/60">
+                                {solution.description}
                               </p>
                             </div>
                           </div>
