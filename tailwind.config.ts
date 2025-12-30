@@ -96,17 +96,6 @@ export default {
           "100%": {
             opacity: "1",
             transform: "scale(1)",
-          },
-        },
-        "emblem-wave-out": {
-          "0%": {
-            opacity: "1",
-            transform: "scale(1)",
-          },
-          "100%": {
-            opacity: "0",
-            transform: "scale(0.9)",
-          },
         },
         "emblem-grid-pulse": {
           "0%, 100%": {
@@ -116,13 +105,13 @@ export default {
             opacity: "0.02",
           },
         },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 3s ease-in-out infinite",
         "emblem-wave-in": "emblem-wave-in 0.6s ease-out both",
-        "emblem-wave-out": "emblem-wave-out 0.4s ease-in forwards",
         "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
       },
     },
