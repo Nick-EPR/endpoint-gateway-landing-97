@@ -395,6 +395,7 @@ const Billboard = () => {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isUIHidden, setIsUIHidden] = useState(false);
 
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
@@ -410,6 +411,9 @@ const Billboard = () => {
     const handleKeydown = (e: KeyboardEvent) => {
       if (e.key === "f" || e.key === "F") {
         toggleFullscreen();
+      }
+      if (e.key === "h" || e.key === "H") {
+        setIsUIHidden((h) => !h);
       }
       if (e.key === " ") {
         e.preventDefault();
@@ -767,23 +771,32 @@ const Billboard = () => {
       })()}
 
       {/* Fullscreen hint */}
-      <div className="absolute top-8 right-8 z-20 text-white/40 text-sm">
-        <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">F</kbd> for fullscreen</span>
-        {isPaused && (
-          <span className="ml-4 text-yellow-400">⏸ Paused</span>
-        )}
-      </div>
+      {!isUIHidden && (
+        <div className="absolute top-8 right-8 z-20 text-white/40 text-sm transition-opacity duration-300">
+          <div>
+            <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">F</kbd> for fullscreen</span>
+            {isPaused && (
+              <span className="ml-4 text-yellow-400">⏸ Paused</span>
+            )}
+          </div>
+          <div className="mt-1">
+            <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">H</kbd> to hide UI</span>
+          </div>
+        </div>
+      )}
 
       {/* Fullscreen button */}
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          toggleFullscreen();
-        }}
-        className="absolute top-8 left-8 z-20 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-all text-sm backdrop-blur-sm border border-white/20"
-      >
-        {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-      </button>
+      {!isUIHidden && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            toggleFullscreen();
+          }}
+          className="absolute top-8 left-8 z-20 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-all text-sm backdrop-blur-sm border border-white/20"
+        >
+          {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+        </button>
+      )}
     </div>
   );
 };
