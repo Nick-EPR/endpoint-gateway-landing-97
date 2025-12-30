@@ -296,7 +296,7 @@ const CashRegisterPrice = ({ value, startValue, isActive, animationKey }: CashRe
   // Track when animation completes to collapse extra digits
   useEffect(() => {
     if (isActive) {
-      const timer = setTimeout(() => setHasAnimated(true), 1800); // Slightly before roll completes
+      const timer = setTimeout(() => setHasAnimated(true), 800); // Collapse before digit reaches 0
       return () => clearTimeout(timer);
     } else {
       setHasAnimated(false);
