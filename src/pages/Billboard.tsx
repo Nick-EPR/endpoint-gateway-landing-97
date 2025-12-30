@@ -775,15 +775,15 @@ const Billboard = () => {
       {/* Fullscreen hint */}
       {!isUIHidden && (
         <div className="absolute top-8 right-8 z-20 text-white/40 text-sm transition-opacity duration-300">
-          <div>
-            <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">F</kbd> for fullscreen</span>
-            {isPaused && (
-              <span className="ml-4 text-yellow-400">⏸ Paused</span>
-            )}
-          </div>
-          <div className="mt-1">
-            <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">H</kbd> to hide UI</span>
-          </div>
+          <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">F</kbd> for fullscreen</span>
+          {isPaused && (
+            <span className="ml-4 text-yellow-400">⏸ Paused</span>
+          )}
+        </div>
+      )}
+      {!isUIHidden && (
+        <div className="absolute top-14 right-8 z-20 text-white/40 text-sm transition-opacity duration-300">
+          <span>Press <kbd className="bg-white/10 px-2 py-1 rounded">H</kbd> to hide UI</span>
         </div>
       )}
 
