@@ -17,10 +17,9 @@ const Solutions = () => {
     description: "Integrated suite of tools within HeliAM that optimizes asset tracking, security, and management throughout the lifecycle",
     logo: toolboxLogo
   }, {
-    title: "Luemin",
+  title: "Luemin",
     description: "Unified Endpoint Management (UEM) solution integrated into the Lifetime EPR platform for comprehensive device management",
-    logo: lueminLogo,
-    comingSoon: true
+    logo: lueminLogo
   }];
 
   return (
