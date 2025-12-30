@@ -227,17 +227,21 @@ const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) =
   }, [isActive, delay]);
   
   // Create a strip of digits that will roll through
-  const rollCount = 10; // How many digits to roll through
+  const rollCount = 10;
   const digitStrip: number[] = [];
   
-  // Build the strip: random-ish digits at top, target digit at bottom
+  // Build the strip: cycling digits at top, target digit at bottom
   for (let i = 0; i < rollCount; i++) {
     digitStrip.push((targetDigit + rollCount - i) % 10);
   }
   digitStrip.push(targetDigit); // Target digit at the very bottom
   
-  // Calculate the final position (show the last digit)
-  const finalPosition = rollCount * 100; // percentage to translateY up
+  // Steps to move = rollCount (to show the last digit)
+  const steps = rollCount;
+  
+  // When inactive, show final position immediately; when active, animate to it
+  const showFinal = !isActive || hasAnimated;
+  const finalTranslate = `translateY(-${steps}em)`;
   
   return (
     <div 
@@ -245,15 +249,14 @@ const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) =
       style={{ 
         height: '1em',
         lineHeight: '1em',
+        width: '0.65em', // Fixed width for consistent spacing
       }}
     >
       <div
         className="flex flex-col"
         style={{
-          transform: hasAnimated 
-            ? `translateY(-${finalPosition}%)` 
-            : 'translateY(0)',
-          transition: hasAnimated 
+          transform: showFinal ? finalTranslate : 'translateY(0)',
+          transition: isActive && hasAnimated 
             ? `transform 1.6s cubic-bezier(0.16, 1, 0.3, 1)`
             : 'none',
         }}
