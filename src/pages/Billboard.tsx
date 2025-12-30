@@ -822,11 +822,11 @@ const Billboard = () => {
                 alt="EPR Emblem" 
                 className="w-8 h-8 object-contain opacity-60"
               />
-              <span className="text-white/60 text-lg font-light tracking-wider">
-                lifetimeepr.com
+              <span className="text-lg tracking-wider">
+                <span className="font-bold text-white">lifetimeepr.com</span>
                 <span 
                   key={currentPath}
-                  className="font-bold text-white inline-block animate-[fadeSlideIn_0.4s_ease-out]"
+                  className="font-light text-white/60 inline-block animate-[fadeSlideIn_0.4s_ease-out]"
                   style={{
                     animation: 'fadeSlideIn 0.4s ease-out'
                   }}
