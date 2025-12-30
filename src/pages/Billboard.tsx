@@ -113,7 +113,7 @@ const slides: Slide[] = [
         description: "Live helpdesk for device, OS, and software issues",
       },
     ],
-    partnerLogos: [tMobileLogo, leprLogo],
+    partnerLogos: [leprLogo, tMobileLogo],
   },
   {
     id: "challenge",
