@@ -214,18 +214,30 @@ interface RollingDigitProps {
 }
 
 const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  // Trigger animation after component mounts with a small delay
+  useEffect(() => {
+    if (isActive) {
+      const timer = setTimeout(() => setHasAnimated(true), 50 + delay);
+      return () => clearTimeout(timer);
+    } else {
+      setHasAnimated(false);
+    }
+  }, [isActive, delay]);
+  
   // Create a strip of digits that will roll through
-  // We'll show multiple "9"s above, then descend to the target
-  const rollCount = 12; // How many digits to roll through for dramatic effect
+  const rollCount = 10; // How many digits to roll through
   const digitStrip: number[] = [];
   
-  // Build the strip: start high and roll down to target
-  for (let i = rollCount; i >= 0; i--) {
-    digitStrip.push((targetDigit + i) % 10);
+  // Build the strip: random-ish digits at top, target digit at bottom
+  for (let i = 0; i < rollCount; i++) {
+    digitStrip.push((targetDigit + rollCount - i) % 10);
   }
+  digitStrip.push(targetDigit); // Target digit at the very bottom
   
-  // Calculate the final position (bottom of the strip)
-  const finalPosition = (rollCount) * 100; // percentage
+  // Calculate the final position (show the last digit)
+  const finalPosition = rollCount * 100; // percentage to translateY up
   
   return (
     <div 
@@ -238,11 +250,11 @@ const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) =
       <div
         className="flex flex-col"
         style={{
-          transform: isActive 
+          transform: hasAnimated 
             ? `translateY(-${finalPosition}%)` 
             : 'translateY(0)',
-          transition: isActive 
-            ? `transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`
+          transition: hasAnimated 
+            ? `transform 1.6s cubic-bezier(0.16, 1, 0.3, 1)`
             : 'none',
         }}
       >
