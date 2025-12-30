@@ -131,7 +131,7 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
   const emblems = [];
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      const delay = col * 0.03; // 30ms stagger per column (left to right wave)
+      const delay = col * 0.075; // 75ms stagger per column (~3s total wave)
       emblems.push(
         <img
           key={`${slideKey}-${row}-${col}`}
