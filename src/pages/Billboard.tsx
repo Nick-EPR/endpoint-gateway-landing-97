@@ -209,11 +209,13 @@ const slides: Slide[] = [
 // Rolling digit component for cash register effect
 interface RollingDigitProps {
   targetDigit: number;
+  startDigit?: number;
   delay?: number;
   isActive: boolean;
+  rollToZero?: boolean;
 }
 
-const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) => {
+const RollingDigit = ({ targetDigit, startDigit, delay = 0, isActive, rollToZero = false }: RollingDigitProps) => {
   const [hasAnimated, setHasAnimated] = useState(false);
   
   // Trigger animation after component mounts with a small delay
@@ -230,11 +232,16 @@ const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) =
   const rollCount = 10;
   const digitStrip: number[] = [];
   
-  // Build the strip: cycling digits at top, target digit at bottom
-  for (let i = 0; i < rollCount; i++) {
-    digitStrip.push((targetDigit + rollCount - i) % 10);
+  // Start from startDigit if provided, otherwise use targetDigit
+  const start = startDigit ?? targetDigit;
+  const end = rollToZero ? 0 : targetDigit;
+  
+  // Build the strip: start digit at top, cycling through to target at bottom
+  digitStrip.push(start);
+  for (let i = 1; i < rollCount; i++) {
+    digitStrip.push((start + i) % 10);
   }
-  digitStrip.push(targetDigit); // Target digit at the very bottom
+  digitStrip.push(end); // Target digit at the very bottom
   
   // Steps to move = rollCount (to show the last digit)
   const steps = rollCount;
@@ -278,26 +285,60 @@ const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) =
 // Cash register price display
 interface CashRegisterPriceProps {
   value: number;
+  startValue: number;
   isActive: boolean;
   animationKey: number;
 }
 
-const CashRegisterPrice = ({ value, isActive, animationKey }: CashRegisterPriceProps) => {
-  const digits = value.toString().split('').map(Number);
+const CashRegisterPrice = ({ value, startValue, isActive, animationKey }: CashRegisterPriceProps) => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  
+  // Track when animation completes to hide extra digits
+  useEffect(() => {
+    if (isActive) {
+      const timer = setTimeout(() => setHasAnimated(true), 2000); // After animation completes
+      return () => clearTimeout(timer);
+    } else {
+      setHasAnimated(false);
+    }
+  }, [isActive]);
+  
+  const startDigits = startValue.toString().split('').map(Number);
+  const endDigits = value.toString().split('').map(Number);
+  
+  // Pad end digits to match start digits length
+  const paddedEndDigits = [...Array(startDigits.length - endDigits.length).fill(null), ...endDigits];
   
   return (
     <div 
       key={animationKey}
       className="flex text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter"
     >
-      {digits.map((digit, index) => (
-        <RollingDigit
-          key={`${animationKey}-${index}`}
-          targetDigit={digit}
-          delay={index * 120} // Stagger each digit by 120ms
-          isActive={isActive}
-        />
-      ))}
+      {startDigits.map((startDigit, index) => {
+        const endDigit = paddedEndDigits[index];
+        const isLeadingDigit = endDigit === null; // This digit doesn't exist in the final value
+        
+        return (
+          <div
+            key={`${animationKey}-${index}`}
+            className="relative"
+            style={{
+              opacity: isLeadingDigit && hasAnimated ? 0 : 1,
+              width: isLeadingDigit && hasAnimated ? 0 : undefined,
+              transition: 'opacity 0.5s ease-out, width 0.5s ease-out',
+              overflow: 'hidden',
+            }}
+          >
+            <RollingDigit
+              targetDigit={isLeadingDigit ? 0 : endDigit}
+              startDigit={startDigit}
+              delay={index * 120}
+              isActive={isActive}
+              rollToZero={isLeadingDigit}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
@@ -564,7 +605,8 @@ const Billboard = () => {
                         $
                       </span>
                       <CashRegisterPrice 
-                        value={99} 
+                        value={99}
+                        startValue={199}
                         isActive={isPromoSlideActive}
                         animationKey={animationKey}
                       />
