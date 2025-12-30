@@ -84,21 +84,18 @@ export default {
             transform: "translateY(-10px)",
           },
         },
-        "emblem-wave": {
+        "emblem-wave-in": {
           "0%": {
             opacity: "0",
-            transform: "scale(0.8)",
-            filter: "blur(4px)",
+            transform: "scale(0.5) rotate(-10deg)",
           },
-          "50%": {
-            opacity: "0.05",
-            transform: "scale(1.02)",
-            filter: "blur(0px)",
+          "60%": {
+            opacity: "0.06",
+            transform: "scale(1.1) rotate(2deg)",
           },
           "100%": {
             opacity: "0.03",
-            transform: "scale(1)",
-            filter: "blur(0px)",
+            transform: "scale(1) rotate(0deg)",
           },
         },
       },
@@ -106,7 +103,7 @@ export default {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 3s ease-in-out infinite",
-        "emblem-wave": "emblem-wave 1.2s ease-out forwards",
+        "emblem-wave-in": "emblem-wave-in 0.6s ease-out forwards",
       },
     },
   },
