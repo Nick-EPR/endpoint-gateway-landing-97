@@ -317,16 +317,8 @@ const CashRegisterPrice = ({ value, startValue, isActive, animationKey }: CashRe
       key={animationKey}
       className="flex items-baseline text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter"
     >
-      {/* Dollar sign that slides right */}
-      <span 
-        className="inline-block"
-        style={{
-          marginRight: hasAnimated ? 0 : `${leadingDigitCount * 0.65}em`,
-          transition: 'margin-right 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
-        }}
-      >
-        $
-      </span>
+      {/* Dollar sign */}
+      <span className="inline-block">$</span>
       
       {/* Digits container */}
       <div className="flex">
