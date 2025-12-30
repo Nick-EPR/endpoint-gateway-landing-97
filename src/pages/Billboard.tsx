@@ -122,6 +122,41 @@ const slides: Slide[] = [
     ],
   },
 ];
+// Animated emblem grid component for wave effect
+const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
+  const emblemSize = 50;
+  const cols = Math.ceil(1920 / emblemSize) + 1; // ~40 columns for typical screens
+  const rows = Math.ceil(1080 / emblemSize) + 1; // ~22 rows
+  
+  const emblems = [];
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const delay = col * 0.03; // 30ms stagger per column (left to right wave)
+      emblems.push(
+        <img
+          key={`${slideKey}-${row}-${col}`}
+          src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png"
+          alt=""
+          className="w-[50px] h-[50px] object-contain animate-emblem-wave-in"
+          style={{ animationDelay: `${delay}s` }}
+        />
+      );
+    }
+  }
+  
+  return (
+    <div 
+      className="absolute inset-0 pointer-events-none overflow-hidden"
+      style={{ 
+        display: 'grid',
+        gridTemplateColumns: `repeat(${cols}, 50px)`,
+        gridTemplateRows: `repeat(${rows}, 50px)`,
+      }}
+    >
+      {emblems}
+    </div>
+  );
+};
 
 const Billboard = () => {
   const [api, setApi] = useState<CarouselApi>();
@@ -222,17 +257,8 @@ const Billboard = () => {
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent rounded-full" />
                 </div>
                 
-                {/* EPR Emblem background overlay - repeating pattern with wave animation */}
-                <div 
-                  key={`emblem-${current}-${slide.id}`}
-                  className="absolute inset-0 pointer-events-none animate-emblem-wave"
-                  style={{
-                    backgroundImage: 'url(/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png)',
-                    backgroundSize: '50px 50px',
-                    backgroundRepeat: 'repeat',
-                    backgroundPosition: 'center center',
-                  }}
-                />
+                {/* EPR Emblem background overlay - grid with left-to-right wave animation */}
+                <EmblemWaveBackground key={`emblem-grid-${current}-${slide.id}`} slideKey={`${current}-${slide.id}`} />
 
                 {/* Render based on slide type */}
                 {slide.type === "challenge" ? (
