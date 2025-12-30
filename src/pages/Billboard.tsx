@@ -396,7 +396,20 @@ const Billboard = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isUIHidden, setIsUIHidden] = useState(false);
-  const [hiddenSlides, setHiddenSlides] = useState<Set<number>>(new Set());
+  const [hiddenSlides, setHiddenSlides] = useState<Set<number>>(() => {
+    try {
+      const saved = localStorage.getItem('billboard-hidden-slides');
+      if (saved) {
+        return new Set(JSON.parse(saved));
+      }
+    } catch {}
+    return new Set();
+  });
+
+  // Persist hidden slides to localStorage
+  useEffect(() => {
+    localStorage.setItem('billboard-hidden-slides', JSON.stringify([...hiddenSlides]));
+  }, [hiddenSlides]);
 
   const toggleSlideVisibility = useCallback((index: number) => {
     setHiddenSlides(prev => {
