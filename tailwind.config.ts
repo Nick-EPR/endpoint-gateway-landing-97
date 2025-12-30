@@ -96,7 +96,15 @@ export default {
           "100%": {
             opacity: "1",
             transform: "scale(1)",
+        },
+        "emblem-grid-pulse": {
+          "0%, 100%": {
+            opacity: "0.03",
           },
+          "50%": {
+            opacity: "0.02",
+          },
+        },
         },
       },
       animation: {
@@ -104,6 +112,7 @@ export default {
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 3s ease-in-out infinite",
         "emblem-wave-in": "emblem-wave-in 0.6s ease-out both",
+        "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
       },
     },
   },

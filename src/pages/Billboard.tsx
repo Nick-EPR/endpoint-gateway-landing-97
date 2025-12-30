@@ -145,7 +145,7 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
   }
   
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03]">
+    <div className="absolute inset-0 pointer-events-none overflow-hidden animate-emblem-grid-pulse">
       <div 
         style={{ 
           display: 'grid',
