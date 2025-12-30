@@ -257,7 +257,7 @@ const Billboard = () => {
                   className="absolute inset-0 pointer-events-none opacity-[0.03]"
                   style={{
                     backgroundImage: 'url(/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png)',
-                    backgroundSize: '100px 100px',
+                    backgroundSize: '50px 50px',
                     backgroundRepeat: 'repeat',
                   }}
                 />
