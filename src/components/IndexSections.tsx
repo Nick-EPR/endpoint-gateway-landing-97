@@ -2,7 +2,6 @@
 import { Suspense, lazy, memo } from "react";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { SectionKey, sections } from "@/pages/sections";
-import PCaaSPromoBanner from "@/components/PCaaSPromoBanner";
 
 // Create a memoized section wrapper component
 const SectionWrapper = memo(({ className, children }: { className: string; children: React.ReactNode }) => (
@@ -35,8 +34,6 @@ const IndexSections = () => {
 
   return (
     <>
-      <PCaaSPromoBanner />
-      
       <Suspense fallback={<SectionLoading />}>
         <Hero 
           title="Comprehensive ITAM Solutions for Your Enterprise" 
