@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, LucideIcon } from "lucide-react";
+import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, LucideIcon, Laptop, Signal, Headphones, Cloud } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +13,10 @@ import Autoplay from "embla-carousel-autoplay";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
+
+// Partner logos for PCaaS
+const tMobileLogo = "/lovable-uploads/ee44a1eb-a16e-4d5f-a307-d13e5e3b9f8c.png";
+const leprLogo = "/lovable-uploads/467232dc-d05e-4376-85e7-318f7ce01380.png";
 
 
 interface ChallengeItem {
@@ -58,9 +62,59 @@ interface SolutionSlide {
   solutions: SolutionItem[];
 }
 
-type Slide = ProductSlide | ChallengeSlide | SolutionSlide;
+interface PromoFeature {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+interface PromoSlide {
+  id: string;
+  type: "promo";
+  price: string;
+  priceSubtext: string;
+  title: string;
+  subtitle: string;
+  gradient: string;
+  features: PromoFeature[];
+  partnerLogos: string[];
+}
+
+type Slide = ProductSlide | ChallengeSlide | SolutionSlide | PromoSlide;
 
 const slides: Slide[] = [
+  {
+    id: "pcaas-promo",
+    type: "promo",
+    price: "$99",
+    priceSubtext: "/mo for 36 months",
+    title: "Everything Your Team Needs. One Simple Price.",
+    subtitle: "PC-as-a-Service powered by T-Mobile 5G",
+    gradient: "from-pink-950 via-neutral-900 to-neutral-900",
+    features: [
+      {
+        icon: Laptop,
+        title: "Lenovo ThinkPad T14",
+        description: "Enterprise-grade laptop, preconfigured and ready to deploy",
+      },
+      {
+        icon: Signal,
+        title: "75GB 5G Data",
+        description: "Always-on T-Mobile 5G connectivity, no Wi-Fi required",
+      },
+      {
+        icon: Cloud,
+        title: "Microsoft 365",
+        description: "Business Standard including Teams, Outlook, and more",
+      },
+      {
+        icon: Headphones,
+        title: "24/7/365 Support",
+        description: "Live helpdesk for device, OS, and software issues",
+      },
+    ],
+    partnerLogos: [tMobileLogo, leprLogo],
+  },
   {
     id: "challenge",
     type: "challenge",
@@ -343,6 +397,66 @@ const Billboard = () => {
                               </h3>
                               <p className="text-base md:text-lg text-white/60">
                                 {solution.description}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : slide.type === "promo" ? (
+                  <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-6xl w-full">
+                    {/* Partner logos */}
+                    <div className="flex items-center gap-6 mb-8 animate-fade-in">
+                      <img 
+                        src={slide.partnerLogos[0]} 
+                        alt="T-Mobile" 
+                        className="h-12 md:h-16 object-contain"
+                      />
+                      <span className="text-white/40 text-3xl font-light">+</span>
+                      <img 
+                        src={slide.partnerLogos[1]} 
+                        alt="Lifetime EPR" 
+                        className="h-12 md:h-16 object-contain"
+                      />
+                    </div>
+
+                    {/* Massive price display */}
+                    <div className="animate-fade-in mb-4">
+                      <span className="text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter">
+                        {slide.price}
+                      </span>
+                      <span className="text-2xl md:text-3xl lg:text-4xl font-light text-white/70 ml-2">
+                        {slide.priceSubtext}
+                      </span>
+                    </div>
+                    
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 tracking-tight animate-fade-in">
+                      {slide.title}
+                    </h1>
+                    
+                    <h2 className="text-xl md:text-2xl font-light text-pink-300 mb-10 animate-fade-in">
+                      {slide.subtitle}
+                    </h2>
+
+                    {/* 2x2 Grid of features */}
+                    <div className="grid grid-cols-2 gap-6 w-full max-w-5xl">
+                      {slide.features.map((feature, index) => (
+                        <div
+                          key={index}
+                          className="bg-white/10 backdrop-blur-sm border-l-4 border-pink-500 rounded-xl p-6 text-left animate-float"
+                          style={{ animationDelay: `${index * 0.2}s` }}
+                        >
+                          <div className="flex items-start gap-4">
+                            <div className="bg-pink-500/20 p-3 rounded-xl shrink-0">
+                              <feature.icon className="w-8 h-8 text-pink-400" />
+                            </div>
+                            <div>
+                              <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+                                {feature.title}
+                              </h3>
+                              <p className="text-base md:text-lg text-white/60">
+                                {feature.description}
                               </p>
                             </div>
                           </div>
