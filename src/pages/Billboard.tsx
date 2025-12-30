@@ -251,6 +251,15 @@ const Billboard = () => {
                   <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-white/5 rounded-full blur-3xl animate-pulse delay-1000" />
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent rounded-full" />
                 </div>
+                
+                {/* EPR Emblem background overlay */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <img 
+                    src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png"
+                    alt=""
+                    className="w-[60%] h-auto max-w-[800px] opacity-[0.03] select-none"
+                  />
+                </div>
 
                 {/* Render based on slide type */}
                 {slide.type === "challenge" ? (
