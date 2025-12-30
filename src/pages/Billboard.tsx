@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, LucideIcon } from "lucide-react";
+import { GitFork, Unlink, DollarSign, RotateCcw, Database, CheckCircle2, Layers, Infinity, Receipt, LineChart, ArrowRight, LucideIcon } from "lucide-react";
 import {
   Carousel,
   CarouselContent,
@@ -58,7 +58,20 @@ interface SolutionSlide {
   solutions: SolutionItem[];
 }
 
-type Slide = ProductSlide | ChallengeSlide | SolutionSlide;
+interface TransitionPair {
+  challenge: { icon: LucideIcon; title: string };
+  solution: { icon: LucideIcon; title: string };
+}
+
+interface TransitionSlide {
+  id: string;
+  type: "transition";
+  title: string;
+  gradient: string;
+  pairs: TransitionPair[];
+}
+
+type Slide = ProductSlide | ChallengeSlide | SolutionSlide | TransitionSlide;
 
 const slides: Slide[] = [
   {
@@ -97,6 +110,30 @@ const slides: Slide[] = [
         icon: Database,
         title: "Incomplete Data Picture",
         description: "No unified view of IT assets throughout the entire lifecycle",
+      },
+    ],
+  },
+  {
+    id: "transition",
+    type: "transition",
+    title: "From Challenge to Solution",
+    gradient: "from-red-950 via-neutral-900 to-emerald-950",
+    pairs: [
+      {
+        challenge: { icon: Unlink, title: "Fragmented Tools" },
+        solution: { icon: Layers, title: "All-In-One Platform" },
+      },
+      {
+        challenge: { icon: DollarSign, title: "Integration Costs" },
+        solution: { icon: Infinity, title: "No Integration Headaches" },
+      },
+      {
+        challenge: { icon: RotateCcw, title: "Maintenance Burden" },
+        solution: { icon: Receipt, title: "Complete Lifecycle Mgmt" },
+      },
+      {
+        challenge: { icon: Database, title: "Incomplete Data" },
+        solution: { icon: LineChart, title: "Cost-Effective Solution" },
       },
     ],
   },
@@ -346,7 +383,58 @@ const Billboard = () => {
                       ))}
                     </div>
                   </div>
-                ) : (
+                ) : slide.type === "transition" ? (
+                  <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-6xl w-full">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-12 tracking-tight animate-fade-in">
+                      {slide.title}
+                    </h1>
+
+                    {/* Transition pairs grid */}
+                    <div className="flex flex-col gap-6 w-full max-w-5xl">
+                      {slide.pairs.map((pair, index) => (
+                        <div
+                          key={index}
+                          className="flex items-center justify-center gap-4 md:gap-8"
+                          style={{ animationDelay: `${index * 200}ms` }}
+                        >
+                          {/* Challenge side - slides in from left */}
+                          <div 
+                            className="flex items-center gap-3 bg-red-500/10 border border-red-500/30 rounded-xl px-6 py-4 min-w-[200px] md:min-w-[280px] animate-slide-in-left"
+                            style={{ animationDelay: `${index * 150}ms` }}
+                          >
+                            <div className="bg-red-500/20 p-2 rounded-lg shrink-0">
+                              <pair.challenge.icon className="w-6 h-6 text-red-400" />
+                            </div>
+                            <span className="text-lg md:text-xl font-medium text-red-300">
+                              {pair.challenge.title}
+                            </span>
+                          </div>
+
+                          {/* Animated arrow */}
+                          <div 
+                            className="flex items-center animate-morph-arrow"
+                            style={{ animationDelay: `${index * 150 + 300}ms` }}
+                          >
+                            <ArrowRight className="w-8 h-8 md:w-10 md:h-10" />
+                          </div>
+
+                          {/* Solution side - slides in from right */}
+                          <div 
+                            className="flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-6 py-4 min-w-[200px] md:min-w-[280px] animate-slide-in-right animate-pulse-glow"
+                            style={{ animationDelay: `${index * 150 + 100}ms` }}
+                          >
+                            <div className="bg-emerald-500/20 p-2 rounded-lg shrink-0">
+                              <pair.solution.icon className="w-6 h-6 text-emerald-400" />
+                            </div>
+                            <span className="text-lg md:text-xl font-medium text-emerald-300">
+                              {pair.solution.title}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : slide.type === "product" ? (
                   <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-5xl">
                     <img
                       src={slide.logo}
@@ -387,7 +475,7 @@ const Billboard = () => {
                       </div>
                     )}
                   </div>
-                )}
+                ) : null}
               </div>
             </CarouselItem>
           ))}
