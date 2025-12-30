@@ -287,8 +287,8 @@ const Billboard = () => {
                       {slide.challenges.map((challenge, index) => (
                         <div
                           key={index}
-                          className="bg-white/10 backdrop-blur-sm border-l-4 border-red-500 rounded-xl p-6 text-left animate-fade-in"
-                          style={{ animationDelay: `${index * 150}ms` }}
+                          className="bg-white/10 backdrop-blur-sm border-l-4 border-red-500 rounded-xl p-6 text-left animate-float"
+                          style={{ animationDelay: `${index * 0.3}s` }}
                         >
                           <div className="flex items-start gap-4">
                             <div className="bg-red-500/20 p-3 rounded-xl shrink-0">
@@ -329,8 +329,8 @@ const Billboard = () => {
                       {slide.solutions.map((solution, index) => (
                         <div
                           key={index}
-                          className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 rounded-xl p-6 text-left animate-fade-in"
-                          style={{ animationDelay: `${index * 150}ms` }}
+                          className="bg-white/10 backdrop-blur-sm border-l-4 border-emerald-500 rounded-xl p-6 text-left animate-float"
+                          style={{ animationDelay: `${index * 0.3}s` }}
                         >
                           <div className="flex items-start gap-4">
                             <div className="bg-emerald-500/20 p-3 rounded-xl shrink-0">
