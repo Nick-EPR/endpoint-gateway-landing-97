@@ -206,6 +206,87 @@ const slides: Slide[] = [
     ],
   },
 ];
+// Rolling digit component for cash register effect
+interface RollingDigitProps {
+  targetDigit: number;
+  delay?: number;
+  isActive: boolean;
+}
+
+const RollingDigit = ({ targetDigit, delay = 0, isActive }: RollingDigitProps) => {
+  // Create a strip of digits that will roll through
+  // We'll show multiple "9"s above, then descend to the target
+  const rollCount = 12; // How many digits to roll through for dramatic effect
+  const digitStrip: number[] = [];
+  
+  // Build the strip: start high and roll down to target
+  for (let i = rollCount; i >= 0; i--) {
+    digitStrip.push((targetDigit + i) % 10);
+  }
+  
+  // Calculate the final position (bottom of the strip)
+  const finalPosition = (rollCount) * 100; // percentage
+  
+  return (
+    <div 
+      className="relative overflow-hidden"
+      style={{ 
+        height: '1em',
+        lineHeight: '1em',
+      }}
+    >
+      <div
+        className="flex flex-col"
+        style={{
+          transform: isActive 
+            ? `translateY(-${finalPosition}%)` 
+            : 'translateY(0)',
+          transition: isActive 
+            ? `transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`
+            : 'none',
+        }}
+      >
+        {digitStrip.map((d, i) => (
+          <span
+            key={i}
+            className="block text-center"
+            style={{ height: '1em', lineHeight: '1em' }}
+          >
+            {d}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Cash register price display
+interface CashRegisterPriceProps {
+  value: number;
+  isActive: boolean;
+  animationKey: number;
+}
+
+const CashRegisterPrice = ({ value, isActive, animationKey }: CashRegisterPriceProps) => {
+  const digits = value.toString().split('').map(Number);
+  
+  return (
+    <div 
+      key={animationKey}
+      className="flex text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter"
+    >
+      {digits.map((digit, index) => (
+        <RollingDigit
+          key={`${animationKey}-${index}`}
+          targetDigit={digit}
+          delay={index * 120} // Stagger each digit by 120ms
+          isActive={isActive}
+        />
+      ))}
+    </div>
+  );
+};
+
 // Animated emblem grid component for wave effect
 const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
   const emblemSize = 50;
@@ -283,33 +364,14 @@ const Billboard = () => {
     };
   }, [toggleFullscreen]);
 
-  // Count-down animation for promo slide price
-  const [priceDisplay, setPriceDisplay] = useState(99);
+  // Cash register animation state
   const isPromoSlideActive = slides[current]?.id === "pcaas-promo";
+  const [animationKey, setAnimationKey] = useState(0);
 
+  // Reset animation when promo slide becomes active
   useEffect(() => {
     if (isPromoSlideActive) {
-      const startValue = 999;
-      const endValue = 99;
-      const duration = 1500;
-      const startTime = performance.now();
-
-      const animate = (currentTime: number) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        
-        // Cubic ease-out for dramatic slowdown at the end
-        const easeOut = 1 - Math.pow(1 - progress, 3);
-        
-        const currentValue = Math.round(startValue - (startValue - endValue) * easeOut);
-        setPriceDisplay(currentValue);
-
-        if (progress < 1) {
-          requestAnimationFrame(animate);
-        }
-      };
-
-      requestAnimationFrame(animate);
+      setAnimationKey(prev => prev + 1);
     }
   }, [isPromoSlideActive]);
 
@@ -481,11 +543,16 @@ const Billboard = () => {
                       />
                     </div>
 
-                    {/* Massive price display */}
-                    <div className="animate-fade-in mb-4">
+                    {/* Massive price display with cash register animation */}
+                    <div className="mb-4 flex items-baseline justify-center">
                       <span className="text-7xl md:text-9xl lg:text-[10rem] font-black text-white tracking-tighter">
-                        ${priceDisplay}
+                        $
                       </span>
+                      <CashRegisterPrice 
+                        value={99} 
+                        isActive={isPromoSlideActive}
+                        animationKey={animationKey}
+                      />
                       <span className="text-2xl md:text-3xl lg:text-4xl font-light text-white/70 ml-2">
                         {slide.priceSubtext}
                       </span>
