@@ -524,19 +524,21 @@ const Billboard = () => {
         ))}
       </div>
 
-      {/* QR Code section */}
+      {/* QR Code section - dynamic based on current slide */}
       <div className="absolute bottom-8 right-8 flex items-center gap-4 z-20 bg-white rounded-2xl p-4 shadow-2xl">
         <div className="flex flex-col items-center">
           <div className="bg-white p-2 rounded-lg">
             <QRCodeSVG 
-              value="https://lifetimeepr.com/contact" 
+              value={slides[current]?.type === "promo" ? "https://lifetimeepr.com/pcaas" : "https://lifetimeepr.com/contact"} 
               size={96}
               level="H"
               includeMargin={false}
             />
           </div>
           <span className="text-neutral-900 font-semibold text-sm mt-2">Scan to Connect</span>
-          <span className="text-neutral-600 text-xs">lifetimeepr.com/contact</span>
+          <span className="text-neutral-600 text-xs">
+            {slides[current]?.type === "promo" ? "lifetimeepr.com/pcaas" : "lifetimeepr.com/contact"}
+          </span>
         </div>
       </div>
 
