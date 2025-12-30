@@ -107,7 +107,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"
             >
               <Info className="w-5 h-5" />
-              Why Choose Us
+              Why Choose Us?
             </button>
             
             <button 
