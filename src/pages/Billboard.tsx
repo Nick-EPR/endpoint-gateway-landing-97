@@ -279,10 +279,14 @@ const Billboard = () => {
                   </div>
                 ) : slide.type === "solution" ? (
                   <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-6xl w-full">
-                    {/* Header with icon */}
+                    {/* Header with EPR emblem */}
                     <div className="flex items-center gap-4 mb-6 animate-fade-in">
-                      <div className="bg-emerald-500/20 p-4 rounded-2xl">
-                        <slide.icon className="w-12 h-12 text-emerald-400" />
+                      <div className="bg-emerald-500/20 p-4 rounded-2xl animate-float">
+                        <img 
+                          src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
+                          alt="EPR Emblem" 
+                          className="w-12 h-12 object-contain"
+                        />
                       </div>
                     </div>
                     
