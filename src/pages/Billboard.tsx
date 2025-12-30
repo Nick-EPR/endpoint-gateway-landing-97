@@ -738,9 +738,30 @@ const Billboard = () => {
             {/* Website URL */}
             <div className="absolute bottom-8 left-8 z-20">
               <span className="text-white/60 text-lg font-light tracking-wider">
-                lifetimeepr.com<span className="font-bold text-white">{currentPath}</span>
+                lifetimeepr.com
+                <span 
+                  key={currentPath}
+                  className="font-bold text-white inline-block animate-[fadeSlideIn_0.4s_ease-out]"
+                  style={{
+                    animation: 'fadeSlideIn 0.4s ease-out'
+                  }}
+                >
+                  {currentPath}
+                </span>
               </span>
             </div>
+            <style>{`
+              @keyframes fadeSlideIn {
+                0% {
+                  opacity: 0;
+                  transform: translateY(8px);
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+            `}</style>
           </>
         );
       })()}
