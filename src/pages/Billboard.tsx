@@ -396,6 +396,51 @@ const Billboard = () => {
   const [isPaused, setIsPaused] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isUIHidden, setIsUIHidden] = useState(false);
+  const [hiddenSlides, setHiddenSlides] = useState<Set<number>>(new Set());
+
+  const toggleSlideVisibility = useCallback((index: number) => {
+    setHiddenSlides(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(index)) {
+        newSet.delete(index);
+      } else {
+        // Don't allow hiding all slides
+        if (newSet.size < slides.length - 1) {
+          newSet.add(index);
+        }
+      }
+      return newSet;
+    });
+  }, []);
+
+  // Skip to next visible slide when current becomes hidden
+  useEffect(() => {
+    if (!api || hiddenSlides.size === 0) return;
+    
+    if (hiddenSlides.has(current)) {
+      // Find next visible slide
+      let next = (current + 1) % slides.length;
+      while (hiddenSlides.has(next) && next !== current) {
+        next = (next + 1) % slides.length;
+      }
+      api.scrollTo(next);
+    }
+  }, [api, current, hiddenSlides]);
+
+  // Custom autoplay that skips hidden slides
+  useEffect(() => {
+    if (!api || isPaused) return;
+
+    const interval = setInterval(() => {
+      let next = (current + 1) % slides.length;
+      while (hiddenSlides.has(next)) {
+        next = (next + 1) % slides.length;
+      }
+      api.scrollTo(next);
+    }, 15000); // Match the autoplay delay
+
+    return () => clearInterval(interval);
+  }, [api, current, isPaused, hiddenSlides]);
 
   const toggleFullscreen = useCallback(() => {
     if (!document.fullscreenElement) {
@@ -703,21 +748,37 @@ const Billboard = () => {
 
       {/* Progress indicators */}
       {!isUIHidden && (
-        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={(e) => {
-                e.stopPropagation();
-                api?.scrollTo(index);
-              }}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                current === index 
-                  ? "bg-white w-8" 
-                  : "bg-white/40 hover:bg-white/60"
-              }`}
-            />
-          ))}
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20">
+          <div className="flex gap-3">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (!hiddenSlides.has(index)) {
+                    api?.scrollTo(index);
+                  }
+                }}
+                onContextMenu={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  toggleSlideVisibility(index);
+                }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 relative ${
+                  hiddenSlides.has(index)
+                    ? "bg-white/20 ring-1 ring-white/30"
+                    : current === index 
+                      ? "bg-white w-8" 
+                      : "bg-white/40 hover:bg-white/60"
+                }`}
+              >
+                {hiddenSlides.has(index) && (
+                  <span className="absolute inset-0 flex items-center justify-center text-white/60 text-[8px] font-bold">×</span>
+                )}
+              </button>
+            ))}
+          </div>
+          <span className="text-white/30 text-xs">Right-click to hide/show slides</span>
         </div>
       )}
 
