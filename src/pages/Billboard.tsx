@@ -252,13 +252,15 @@ const Billboard = () => {
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-radial from-white/5 to-transparent rounded-full" />
                 </div>
                 
-                {/* EPR Emblem background overlay - repeating pattern */}
+                {/* EPR Emblem background overlay - repeating pattern with wave animation */}
                 <div 
-                  className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                  key={`emblem-${current}-${slide.id}`}
+                  className="absolute inset-0 pointer-events-none animate-emblem-wave"
                   style={{
                     backgroundImage: 'url(/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png)',
                     backgroundSize: '50px 50px',
                     backgroundRepeat: 'repeat',
+                    backgroundPosition: 'center center',
                   }}
                 />
 
