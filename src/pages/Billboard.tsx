@@ -121,36 +121,6 @@ const slides: Slide[] = [
       },
     ],
   },
-  {
-    id: "heliam",
-    type: "product",
-    logo: heliamLogo,
-    title: "HeliAM",
-    subtitle: "Hardware Asset Management",
-    description: "Track, manage, and optimize your IT hardware assets from procurement to retirement",
-    stats: ["Real-time Tracking", "Lifecycle Management", "Compliance Ready"],
-    gradient: "from-blue-950 via-neutral-900 to-neutral-900",
-  },
-  {
-    id: "toolbox",
-    type: "product",
-    logo: toolboxLogo,
-    title: "Toolbox",
-    subtitle: "Depot Repair Management",
-    description: "Integrated suite of tools for asset tracking, security, and management",
-    stats: ["Repair Tracking", "Parts Inventory", "Workflow Automation"],
-    gradient: "from-emerald-950 via-neutral-900 to-neutral-900",
-  },
-  {
-    id: "luemin",
-    type: "product",
-    logo: lueminLogo,
-    title: "Luemin",
-    subtitle: "Unified Endpoint Management",
-    description: "Comprehensive device management for modern enterprises",
-    stats: ["Remote Management", "Security Policies", "Software Deployment"],
-    gradient: "from-purple-950 via-neutral-900 to-neutral-900",
-  },
 ];
 
 const Billboard = () => {
