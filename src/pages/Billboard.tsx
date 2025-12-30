@@ -802,8 +802,13 @@ const Billboard = () => {
               </div>
             </div>
 
-            {/* Website URL */}
-            <div className="absolute bottom-8 left-8 z-20">
+            {/* Website URL with EPR emblem */}
+            <div className="absolute bottom-8 left-8 z-20 flex items-center gap-3">
+              <img 
+                src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
+                alt="EPR Emblem" 
+                className="w-8 h-8 object-contain opacity-60"
+              />
               <span className="text-white/60 text-lg font-light tracking-wider">
                 lifetimeepr.com
                 <span 
