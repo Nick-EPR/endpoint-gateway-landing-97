@@ -137,7 +137,7 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
           key={`${slideKey}-${row}-${col}`}
           src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png"
           alt=""
-          className="w-[50px] h-[50px] object-contain animate-emblem-wave-in"
+          className="w-[50px] h-[50px] object-contain opacity-0 animate-emblem-wave-in motion-reduce:animate-none motion-reduce:opacity-100"
           style={{ animationDelay: `${delay}s` }}
         />
       );
@@ -145,15 +145,16 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
   }
   
   return (
-    <div 
-      className="absolute inset-0 pointer-events-none overflow-hidden"
-      style={{ 
-        display: 'grid',
-        gridTemplateColumns: `repeat(${cols}, 50px)`,
-        gridTemplateRows: `repeat(${rows}, 50px)`,
-      }}
-    >
-      {emblems}
+    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03]">
+      <div 
+        style={{ 
+          display: 'grid',
+          gridTemplateColumns: `repeat(${cols}, 50px)`,
+          gridTemplateRows: `repeat(${rows}, 50px)`,
+        }}
+      >
+        {emblems}
+      </div>
     </div>
   );
 };

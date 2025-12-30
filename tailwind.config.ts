@@ -90,11 +90,11 @@ export default {
             transform: "scale(0.9)",
           },
           "70%": {
-            opacity: "0.03",
+            opacity: "1",
             transform: "scale(1.02)",
           },
           "100%": {
-            opacity: "0.03",
+            opacity: "1",
             transform: "scale(1)",
           },
         },
@@ -103,7 +103,7 @@ export default {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         "float": "float 3s ease-in-out infinite",
-        "emblem-wave-in": "emblem-wave-in 0.6s ease-out forwards",
+        "emblem-wave-in": "emblem-wave-in 0.6s ease-out both",
       },
     },
   },
