@@ -657,17 +657,22 @@ const Billboard = () => {
                 ) : slide.type === "promo" ? (
                   <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-6xl w-full">
                     {/* Partner logos */}
-                    <div className="flex items-center gap-6 mb-8 animate-fade-in">
+                    <div className="flex items-center gap-6 mb-8">
                       <img 
                         src={slide.partnerLogos[0]} 
-                        alt="T-Mobile" 
-                        className="h-12 md:h-16 object-contain"
+                        alt="Lifetime EPR" 
+                        className="h-12 md:h-16 object-contain animate-[slideInFromLeft_0.6s_ease-out_forwards]"
+                        style={{ animation: 'slideInFromLeft 0.6s ease-out forwards' }}
                       />
-                      <span className="text-white/40 text-3xl font-light">+</span>
+                      <span 
+                        className="text-white/40 text-3xl font-light opacity-0 animate-[fadeIn_0.3s_ease-out_0.5s_forwards]"
+                        style={{ animation: 'fadeIn 0.3s ease-out 0.5s forwards' }}
+                      >+</span>
                       <img 
                         src={slide.partnerLogos[1]} 
-                        alt="Lifetime EPR" 
-                        className="h-12 md:h-16 object-contain"
+                        alt="T-Mobile" 
+                        className="h-12 md:h-16 object-contain animate-[slideInFromRight_0.6s_ease-out_forwards]"
+                        style={{ animation: 'slideInFromRight 0.6s ease-out forwards' }}
                       />
                     </div>
 
@@ -844,6 +849,34 @@ const Billboard = () => {
                 100% {
                   opacity: 1;
                   transform: translateY(0);
+                }
+              }
+              @keyframes slideInFromLeft {
+                0% {
+                  opacity: 0;
+                  transform: translateX(-100px);
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateX(0);
+                }
+              }
+              @keyframes slideInFromRight {
+                0% {
+                  opacity: 0;
+                  transform: translateX(100px);
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateX(0);
+                }
+              }
+              @keyframes fadeIn {
+                0% {
+                  opacity: 0;
+                }
+                100% {
+                  opacity: 1;
                 }
               }
             `}</style>
