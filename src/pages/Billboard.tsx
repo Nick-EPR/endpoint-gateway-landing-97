@@ -702,22 +702,24 @@ const Billboard = () => {
       </Carousel>
 
       {/* Progress indicators */}
-      <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-3 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={(e) => {
-              e.stopPropagation();
-              api?.scrollTo(index);
-            }}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              current === index 
-                ? "bg-white w-8" 
-                : "bg-white/40 hover:bg-white/60"
-            }`}
-          />
-        ))}
-      </div>
+      {!isUIHidden && (
+        <div className="absolute bottom-24 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={(e) => {
+                e.stopPropagation();
+                api?.scrollTo(index);
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                current === index 
+                  ? "bg-white w-8" 
+                  : "bg-white/40 hover:bg-white/60"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       {/* QR Code section - dynamic based on current slide */}
       {(() => {
