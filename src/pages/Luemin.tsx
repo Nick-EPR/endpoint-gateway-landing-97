@@ -89,17 +89,14 @@ const Luemin = () => {
         </div>
         <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
-            <div className="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm mb-8 animate-fade-in">
-              Coming Soon
-            </div>
-            <img src={lueminLogo} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in [animation-delay:200ms]" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fade-in [animation-delay:400ms]">
+            <img src={lueminLogo} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in" />
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fade-in [animation-delay:200ms]">
               Unified Endpoint Management
             </h1>
-            <p className="text-lg text-white/90 max-w-2xl animate-fade-in [animation-delay:600ms]">
+            <p className="text-lg text-white/90 max-w-2xl animate-fade-in [animation-delay:400ms]">
               Complete device management and security, fully integrated with the Lifetime EPR ecosystem.
             </p>
-            <div className="flex gap-4 mt-8 animate-fade-in [animation-delay:800ms]">
+            <div className="flex gap-4 mt-8 animate-fade-in [animation-delay:600ms]">
               <Button size="lg" className="bg-primary/90 hover:bg-primary text-white">
                 Join Waitlist
               </Button>
