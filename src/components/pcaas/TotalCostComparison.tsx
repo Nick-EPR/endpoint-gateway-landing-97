@@ -38,17 +38,18 @@ const TotalCostComparison = () => {
   // Staggered row animation + PCaaS card reveal
   useEffect(() => {
     if (hasAnimated) {
-      // Stagger each row with 200ms delay
+      // Stagger each row with 400ms delay
       costData.forEach((_, index) => {
         setTimeout(() => {
           setVisibleRows(prev => [...prev, index]);
-        }, 200 * (index + 1));
+        }, 400 * (index + 1));
       });
       
       // After all rows are shown + a pause, reveal PCaaS card
+      // 9 rows x 400ms = 3600ms + 800ms pause = 4400ms
       setTimeout(() => {
         setShowPCaaSCard(true);
-      }, 2500);
+      }, 4400);
     }
   }, [hasAnimated]);
 
