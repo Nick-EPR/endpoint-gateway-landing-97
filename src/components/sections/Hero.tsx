@@ -88,7 +88,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up text-white">
-            <span className="text-white">Complete</span>
+            <span className="text-white">Our</span>
             &nbsp;ITAM Solutions for&nbsp;
             <span className="relative inline-block min-w-[200px]">
               <span className="absolute left-0 whitespace-nowrap text-primary opacity-100 transition-opacity duration-300">
