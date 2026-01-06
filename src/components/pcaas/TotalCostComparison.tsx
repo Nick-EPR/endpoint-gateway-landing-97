@@ -1,4 +1,8 @@
 import { Check, AlertCircle } from "lucide-react";
+import { useRef, useState, useEffect } from "react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { AnimatedPrice } from "@/components/ui/AnimatedPrice";
+import { AnimatedPriceRange } from "@/components/ui/AnimatedPriceRange";
 
 interface CostItem {
   category: string;
@@ -19,6 +23,15 @@ const costData: CostItem[] = [
 ];
 
 const TotalCostComparison = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.3 });
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    if (isVisible && !hasAnimated) {
+      setHasAnimated(true);
+    }
+  }, [isVisible, hasAnimated]);
   const renderPCaaSCost = (cost: string) => {
     if (cost === "$0" || cost === "Included") {
       return (
@@ -43,7 +56,7 @@ const TotalCostComparison = () => {
   };
 
   return (
-    <div className="mb-12">
+    <div ref={sectionRef} className="mb-12">
       {/* Desktop: Side-by-side cards */}
       <div className="hidden lg:flex gap-6 items-stretch">
         {/* Left Side - Header Section */}
@@ -56,7 +69,7 @@ const TotalCostComparison = () => {
           </p>
           <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
             <p className="text-green-700 dark:text-green-400 font-medium text-xs">
-              Save up to <span className="text-base font-bold">$2,606</span> over 36 months
+              Save up to <span className="text-base font-bold"><AnimatedPrice value={2606} isActive={hasAnimated} /></span> over 36 months
             </p>
           </div>
         </div>
@@ -84,7 +97,9 @@ const TotalCostComparison = () => {
             <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
-                <span className="text-lg font-bold text-red-500 dark:text-red-400">$3,935–$6,170</span>
+                <span className="text-lg font-bold text-red-500 dark:text-red-400">
+                  <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={hasAnimated} />
+                </span>
               </div>
             </div>
           </div>
@@ -111,7 +126,9 @@ const TotalCostComparison = () => {
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-t border-primary/30">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
-                <span className="text-lg font-bold text-primary">$3,564</span>
+                <span className="text-lg font-bold text-primary">
+                  <AnimatedPrice value={3564} isActive={hasAnimated} />
+                </span>
               </div>
             </div>
           </div>
@@ -149,7 +166,9 @@ const TotalCostComparison = () => {
             <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
-                <span className="text-lg font-bold text-red-500 dark:text-red-400">$3,935–$6,170</span>
+                <span className="text-lg font-bold text-red-500 dark:text-red-400">
+                  <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={hasAnimated} />
+                </span>
               </div>
             </div>
           </div>
@@ -176,7 +195,9 @@ const TotalCostComparison = () => {
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-t border-primary/30">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
-                <span className="text-lg font-bold text-primary">$3,564</span>
+                <span className="text-lg font-bold text-primary">
+                  <AnimatedPrice value={3564} isActive={hasAnimated} />
+                </span>
               </div>
             </div>
           </div>
@@ -184,7 +205,7 @@ const TotalCostComparison = () => {
           {/* Savings Callout */}
           <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center">
             <p className="text-green-700 dark:text-green-400 font-medium">
-              Save up to <span className="text-xl font-bold">$2,606</span> over 36 months with PCaaS
+              Save up to <span className="text-xl font-bold"><AnimatedPrice value={2606} isActive={hasAnimated} /></span> over 36 months with PCaaS
             </p>
           </div>
         </div>
