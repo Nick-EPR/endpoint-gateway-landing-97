@@ -6,7 +6,7 @@ import { comparisons } from "./comparison/comparisonData";
 
 const ComparisonSection = () => {
   return (
-    <section className="py-20 bg-white dark:bg-neutral-900">
+    <section className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 flex items-center justify-center gap-2 dark:text-white">
           <Table2 className="h-8 w-8 dark:text-neutral-300" />
