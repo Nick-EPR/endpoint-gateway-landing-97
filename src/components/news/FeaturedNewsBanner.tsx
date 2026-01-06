@@ -8,6 +8,7 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import { ExternalLink, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -69,6 +70,7 @@ const FeaturedNewsBanner = () => {
                 loop: true,
               }}
               plugins={[
+                Fade(),
                 Autoplay({
                   delay: 5000,
                   stopOnInteraction: true,
