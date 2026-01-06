@@ -56,8 +56,7 @@ const FeaturedNewsBanner = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center h-10 gap-3">
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
+            <span className="text-xs font-medium uppercase tracking-wide" style={{ color: '#93C852' }}>
               Featured
             </span>
           </div>
