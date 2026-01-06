@@ -26,12 +26,34 @@ const TotalCostComparison = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.3 });
   const [hasAnimated, setHasAnimated] = useState(false);
+  const [visibleRows, setVisibleRows] = useState<number[]>([]);
+  const [showPCaaSCard, setShowPCaaSCard] = useState(false);
 
   useEffect(() => {
     if (isVisible && !hasAnimated) {
       setHasAnimated(true);
     }
   }, [isVisible, hasAnimated]);
+
+  // Staggered row animation + PCaaS card reveal
+  useEffect(() => {
+    if (hasAnimated) {
+      // Stagger each row with 200ms delay
+      costData.forEach((_, index) => {
+        setTimeout(() => {
+          setVisibleRows(prev => [...prev, index]);
+        }, 200 * (index + 1));
+      });
+      
+      // After all rows are shown + a pause, reveal PCaaS card
+      setTimeout(() => {
+        setShowPCaaSCard(true);
+      }, 2500);
+    }
+  }, [hasAnimated]);
+
+  const allRowsVisible = visibleRows.length === costData.length;
+
   const renderPCaaSCost = (cost: string) => {
     if (cost === "$0" || cost === "Included") {
       return (
@@ -44,15 +66,40 @@ const TotalCostComparison = () => {
     return <span>{cost}</span>;
   };
 
-  const renderLaptopCost = (cost: string) => {
+  const renderLaptopCostAnimated = (cost: string, rowIndex: number) => {
+    const isRowVisible = visibleRows.includes(rowIndex);
     const numMatch = cost.match(/\$([0-9,]+)/);
     const isHighCost = numMatch && parseInt(numMatch[1].replace(',', '')) >= 500;
-    
-    return (
-      <span className={isHighCost ? 'text-red-500 dark:text-red-400' : 'text-neutral-700 dark:text-neutral-300'}>
-        {cost}
-      </span>
-    );
+    const colorClass = isHighCost ? 'text-red-500 dark:text-red-400' : 'text-neutral-700 dark:text-neutral-300';
+
+    // Check if it's a range
+    const rangeMatch = cost.match(/\$([0-9,]+)–\$([0-9,]+)/);
+    if (rangeMatch) {
+      const minValue = parseInt(rangeMatch[1].replace(',', ''));
+      const maxValue = parseInt(rangeMatch[2].replace(',', ''));
+      return (
+        <span className={colorClass}>
+          <AnimatedPriceRange 
+            minValue={minValue} 
+            maxValue={maxValue} 
+            isActive={isRowVisible} 
+          />
+        </span>
+      );
+    }
+
+    // Single value
+    const singleMatch = cost.match(/\$([0-9,]+)/);
+    if (singleMatch) {
+      const value = parseInt(singleMatch[1].replace(',', ''));
+      return (
+        <span className={colorClass}>
+          <AnimatedPrice value={value} isActive={isRowVisible} />
+        </span>
+      );
+    }
+
+    return <span className={colorClass}>{cost}</span>;
   };
 
   return (
@@ -67,9 +114,9 @@ const TotalCostComparison = () => {
           <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
             36-month cost: $1,000 laptop vs. PCaaS
           </p>
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+          <div className={`bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3 transition-all duration-500 ${showPCaaSCard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <p className="text-green-700 dark:text-green-400 font-medium text-xs">
-              Save up to <span className="text-base font-bold"><AnimatedPrice value={2606} isActive={hasAnimated} /></span> over 36 months
+              Save up to <span className="text-base font-bold"><AnimatedPrice value={2606} isActive={showPCaaSCard} /></span> over 36 months
             </p>
           </div>
         </div>
@@ -87,25 +134,36 @@ const TotalCostComparison = () => {
             <div className="p-4 flex-1">
               <div className="space-y-2">
                 {costData.map((row, index) => (
-                  <div key={index} className="flex justify-between text-sm">
+                  <div 
+                    key={index} 
+                    className={`flex justify-between text-sm transition-all duration-500 ease-out ${
+                      visibleRows.includes(index) 
+                        ? 'opacity-100 translate-x-0' 
+                        : 'opacity-0 -translate-x-4'
+                    }`}
+                  >
                     <span className="text-neutral-600 dark:text-neutral-400">{row.category}</span>
-                    <span className="font-medium">{renderLaptopCost(row.laptopCost)}</span>
+                    <span className="font-medium">{renderLaptopCostAnimated(row.laptopCost, index)}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700">
+            <div className={`bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700 transition-all duration-500 ${allRowsVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
                 <span className="text-lg font-bold text-red-500 dark:text-red-400">
-                  <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={hasAnimated} />
+                  <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={allRowsVisible} />
                 </span>
               </div>
             </div>
           </div>
 
           {/* PCaaS Program Card */}
-          <div className="flex-1 bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden flex flex-col">
+          <div className={`flex-1 bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden flex flex-col transition-all duration-700 ease-out ${
+            showPCaaSCard 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-8'
+          }`}>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-b border-primary/30">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-primary" />
@@ -127,7 +185,7 @@ const TotalCostComparison = () => {
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
                 <span className="text-lg font-bold text-primary">
-                  <AnimatedPrice value={3564} isActive={hasAnimated} />
+                  <AnimatedPrice value={3564} isActive={showPCaaSCard} />
                 </span>
               </div>
             </div>
@@ -156,25 +214,36 @@ const TotalCostComparison = () => {
             <div className="p-4">
               <div className="space-y-2">
                 {costData.map((row, index) => (
-                  <div key={index} className="flex justify-between text-sm">
+                  <div 
+                    key={index} 
+                    className={`flex justify-between text-sm transition-all duration-500 ease-out ${
+                      visibleRows.includes(index) 
+                        ? 'opacity-100 translate-x-0' 
+                        : 'opacity-0 -translate-x-4'
+                    }`}
+                  >
                     <span className="text-neutral-600 dark:text-neutral-400">{row.category}</span>
-                    <span className="font-medium">{renderLaptopCost(row.laptopCost)}</span>
+                    <span className="font-medium">{renderLaptopCostAnimated(row.laptopCost, index)}</span>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700">
+            <div className={`bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700 transition-all duration-500 ${allRowsVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
                 <span className="text-lg font-bold text-red-500 dark:text-red-400">
-                  <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={hasAnimated} />
+                  <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={allRowsVisible} />
                 </span>
               </div>
             </div>
           </div>
 
           {/* PCaaS Program Card */}
-          <div className="bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden">
+          <div className={`bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden transition-all duration-700 ease-out ${
+            showPCaaSCard 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-8'
+          }`}>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-b border-primary/30">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-primary" />
@@ -196,16 +265,16 @@ const TotalCostComparison = () => {
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
                 <span className="text-lg font-bold text-primary">
-                  <AnimatedPrice value={3564} isActive={hasAnimated} />
+                  <AnimatedPrice value={3564} isActive={showPCaaSCard} />
                 </span>
               </div>
             </div>
           </div>
 
           {/* Savings Callout */}
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center">
+          <div className={`bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4 text-center transition-all duration-500 ${showPCaaSCard ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <p className="text-green-700 dark:text-green-400 font-medium">
-              Save up to <span className="text-xl font-bold"><AnimatedPrice value={2606} isActive={hasAnimated} /></span> over 36 months with PCaaS
+              Save up to <span className="text-xl font-bold"><AnimatedPrice value={2606} isActive={showPCaaSCard} /></span> over 36 months with PCaaS
             </p>
           </div>
         </div>
