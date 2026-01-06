@@ -31,6 +31,30 @@ const StatsSidePanel = ({
   const [isDragging, setIsDragging] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [initialPos, setInitialPos] = useState({ x: 0, y: 0 });
+  
+  // State for fade in/out animation with delayed unmount
+  const [shouldRender, setShouldRender] = useState(isOpen);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Handle fade in/out with delayed unmount
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+      // Small delay to ensure DOM is ready before starting fade-in
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setIsVisible(true);
+        });
+      });
+    } else {
+      setIsVisible(false);
+      // Wait for fade-out animation to complete before unmounting
+      const timer = setTimeout(() => {
+        setShouldRender(false);
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
 
   // Check for mobile viewport
   useEffect(() => {
@@ -128,8 +152,8 @@ const StatsSidePanel = ({
     };
   }, [isDragging, dragStart, initialPos]);
 
-  // If panel is closed, return null
-  if (!isOpen) return null;
+  // If panel should not render, return null
+  if (!shouldRender) return null;
   
   return (
     <div 
@@ -138,10 +162,10 @@ const StatsSidePanel = ({
         isMobile 
           ? 'left-0 right-0 bottom-0 w-full rounded-b-none rounded-t-lg shadow-xl z-[1100]' 
           : 'w-[800px] rounded-lg'
-      } bg-white dark:bg-neutral-800 shadow-xl z-[1000] transition-all duration-300 ${
-        isMinimized 
-          ? 'opacity-0 scale-95 pointer-events-none transform translate-y-10' 
-          : 'opacity-100 scale-100'
+      } bg-white dark:bg-neutral-800 shadow-xl z-[1000] transition-all duration-300 ease-out ${
+        isVisible && !isMinimized 
+          ? 'opacity-100 scale-100 translate-y-0' 
+          : 'opacity-0 scale-95 pointer-events-none translate-y-4'
       } ${isDragging ? 'cursor-grabbing' : ''}`}
       style={{ 
         maxHeight: isMobile 
