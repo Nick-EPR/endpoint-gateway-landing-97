@@ -87,7 +87,7 @@ const ROICalculator = () => {
   return (
     <section 
       id="roi-calculator" 
-      className="relative py-20 bg-neutral-light dark:bg-neutral-800 overflow-hidden border-t border-neutral-100 dark:border-neutral-800"
+      className="relative py-20 bg-transparent overflow-hidden"
       ref={sectionRef}
     >
       <div className="container mx-auto px-4 relative z-10">

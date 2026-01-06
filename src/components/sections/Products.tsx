@@ -23,7 +23,7 @@ const Solutions = () => {
   }];
 
   return (
-    <section id="solutions" className="py-8 md:py-12 bg-white dark:bg-neutral-900">
+    <section id="solutions" className="py-8 md:py-12 bg-transparent">
       <div className="container mx-auto px-4">
         <SectionHeader triangleImage={triangleImage} />
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">

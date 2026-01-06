@@ -49,7 +49,7 @@ const Features = () => {
   const isSearching = searchQuery.length > 0;
 
   return (
-    <section id="features" className="py-20 md:py-32 bg-neutral-light dark:bg-neutral-800/80">
+    <section id="features" className="py-20 md:py-32 bg-transparent">
       <div className="container mx-auto px-4 max-w-7xl">
         {!isSearching && (
           <>
