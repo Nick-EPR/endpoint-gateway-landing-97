@@ -4,6 +4,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (theme === 'dark' || (!theme && systemDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
     <title>Lifetime EPR | IT Asset Management Solutions</title>
     <meta name="description" content="Comprehensive IT Asset Management solutions for enterprise businesses. Secure, compliant, and efficient lifecycle management for your IT assets." />
     <meta name="author" content="Lifetime EPR" />
