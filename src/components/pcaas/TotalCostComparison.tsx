@@ -45,11 +45,11 @@ const TotalCostComparison = () => {
         }, 400 * (index + 1));
       });
       
-      // After all rows are shown + a pause, reveal PCaaS card
-      // 9 rows x 400ms = 3600ms + 800ms pause = 4400ms
+      // After all rows are shown + a longer pause, reveal PCaaS card
+      // 9 rows x 400ms = 3600ms + 1500ms pause = 5100ms
       setTimeout(() => {
         setShowPCaaSCard(true);
-      }, 4400);
+      }, 5100);
     }
   }, [hasAnimated]);
 
