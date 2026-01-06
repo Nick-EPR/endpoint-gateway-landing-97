@@ -78,7 +78,7 @@ const FeaturedNewsBanner = () => {
               ]}
               className="w-full h-6 overflow-hidden"
             >
-              <CarouselContent className="mt-0 h-6">
+              <CarouselContent className="!-mt-0 h-6">
                 {articles.map((article) => {
                   const isExternal = article.article_type === 'external';
                   const sourceLabel = isExternal && article.source_publication 
@@ -100,7 +100,7 @@ const FeaturedNewsBanner = () => {
                   );
                   
                   return (
-                    <CarouselItem key={article.id} className="pt-0 basis-full h-6 flex items-center">
+                    <CarouselItem key={article.id} className="!pt-0 basis-full h-6 flex items-center">
                       {isExternal ? (
                         <a
                           href={article.external_url}
