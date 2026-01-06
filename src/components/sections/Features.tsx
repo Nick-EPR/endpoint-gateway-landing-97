@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Layers } from "lucide-react";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
@@ -13,6 +14,22 @@ import { featureData } from "./features/featureData";
 
 const Features = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleCorePlatformClick = () => {
+    const section = document.getElementById('perfect-itam-solution');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handlePCaaSClick = () => {
+    navigate('/pcaas');
+  };
+
+  const handleNetworkSolutionsClick = () => {
+    navigate('/partnerships/movius');
+  };
 
   const filteredFeatures = (features: Feature[]) => {
     const searchTerm = searchQuery.toLowerCase();
@@ -42,13 +59,22 @@ const Features = () => {
               Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
             </p>
             <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up" style={{ animationDelay: '100ms' }}>
-              <button className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors">
+              <button 
+                onClick={handleCorePlatformClick}
+                className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
+              >
                 Core Platform
               </button>
-              <button className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors">
+              <button 
+                onClick={handlePCaaSClick}
+                className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors"
+              >
                 PC as a Service
               </button>
-              <button className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors">
+              <button 
+                onClick={handleNetworkSolutionsClick}
+                className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors"
+              >
                 Advanced Network Solutions
               </button>
             </div>
