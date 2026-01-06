@@ -5,7 +5,6 @@ import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/component
 import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import TotalCostComparison from "./TotalCostComparison";
-
 interface TierFeature {
   category: string;
   icon: any;
@@ -15,7 +14,6 @@ interface TierFeature {
   isNew?: boolean;
   isDeviceSpec?: boolean;
 }
-
 interface DeviceSpec {
   category: string;
   essential: string | boolean;
@@ -23,8 +21,11 @@ interface DeviceSpec {
   hasUpgrade?: boolean;
   isNew?: boolean;
 }
-
-const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?: boolean }) => {
+const PCaaSPricingTiers = ({
+  hasCompletedSignup = false
+}: {
+  hasCompletedSignup?: boolean;
+}) => {
   const [highlightedTier, setHighlightedTier] = useState<string | null>(null);
   const [selectedTier, setSelectedTier] = useState<string | null>('essential'); // Default to Essential as "Most Popular"
   const [isDeviceExpanded, setIsDeviceExpanded] = useState(false);
@@ -38,12 +39,10 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
     const duration = 2000; // 2 seconds
     const frameDuration = 1000 / 60; // 60 FPS
     const totalFrames = Math.round(duration / frameDuration);
-    
     let frame = 0;
     const timer = setInterval(() => {
       frame++;
       const progress = frame / totalFrames;
-      
       if (progress >= 1) {
         setEssentialPrice(essentialTarget);
         setProfessionalPrice(professionalTarget);
@@ -51,208 +50,168 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
       } else {
         // Easing function for smooth countdown
         const easeOut = 1 - Math.pow(1 - progress, 3);
-        
         setEssentialPrice(Math.round(199 - (199 - essentialTarget) * easeOut));
         setProfessionalPrice(Math.round(299 - (299 - professionalTarget) * easeOut));
       }
     }, frameDuration);
-
     return () => clearInterval(timer);
   }, []);
-
   const tiers = {
     essential: {
       name: "Essential",
-      price: "$99",
-      
+      price: "$99"
     },
     professional: {
-      name: "Professional", 
+      name: "Professional",
       price: "$199",
-      popular: false,
+      popular: false
     }
   };
-
-  const deviceSpecs: DeviceSpec[] = [
-    {
-      category: "Model",
-      essential: "Lenovo ThinkPad T14 Gen 6 R5 Pro 340",
-      professional: "Lenovo ThinkPad T14 Gen 6 R7 Pro 350"
-    },
-    {
-      category: "Preloaded Operating System",
-      essential: "Windows 11 Pro",
-      professional: "Windows 11 Pro"
-    },
-    {
-      category: "Processor",
-      essential: "AMD Ryzen AI 5 PRO 340",
-      professional: "AMD Ryzen AI 7 PRO 350",
-      hasUpgrade: true
-    },
-    {
-      category: "Color",
-      essential: "Black",
-      professional: "Black"
-    },
-    {
-      category: "Human Presence Detection",
-      essential: false,
-      professional: true,
-      isNew: true
-    },
-    {
-      category: "Display Size",
-      essential: "14\"",
-      professional: "14\""
-    },
-    {
-      category: "Anti-Glare",
-      essential: false,
-      professional: true,
-      isNew: true
-    },
-    {
-      category: "Touchscreen",
-      essential: false,
-      professional: true,
-      isNew: true
-    },
-    {
-      category: "Camera",
-      essential: "5MP RGB+IR with Microphone",
-      professional: "5MP RGB+IR with Microphone"
-    },
-    {
-      category: "Fingerprint Reader",
-      essential: true,
-      professional: true
-    },
-    {
-      category: "Memory",
-      essential: "16GB DDR5 5600",
-      professional: "32GB DDR5 5600",
-      hasUpgrade: true
-    },
-    {
-      category: "Storage",
-      essential: "512GB SSD M.2",
-      professional: "512GB SSD M.2"
-    },
-    {
-      category: "Battery",
-      essential: "4 Cell 57 WH Li-Ion",
-      professional: "4 Cell 57 WH Li-Polymer",
-      hasUpgrade: true
-    }
-  ];
+  const deviceSpecs: DeviceSpec[] = [{
+    category: "Model",
+    essential: "Lenovo ThinkPad T14 Gen 6 R5 Pro 340",
+    professional: "Lenovo ThinkPad T14 Gen 6 R7 Pro 350"
+  }, {
+    category: "Preloaded Operating System",
+    essential: "Windows 11 Pro",
+    professional: "Windows 11 Pro"
+  }, {
+    category: "Processor",
+    essential: "AMD Ryzen AI 5 PRO 340",
+    professional: "AMD Ryzen AI 7 PRO 350",
+    hasUpgrade: true
+  }, {
+    category: "Color",
+    essential: "Black",
+    professional: "Black"
+  }, {
+    category: "Human Presence Detection",
+    essential: false,
+    professional: true,
+    isNew: true
+  }, {
+    category: "Display Size",
+    essential: "14\"",
+    professional: "14\""
+  }, {
+    category: "Anti-Glare",
+    essential: false,
+    professional: true,
+    isNew: true
+  }, {
+    category: "Touchscreen",
+    essential: false,
+    professional: true,
+    isNew: true
+  }, {
+    category: "Camera",
+    essential: "5MP RGB+IR with Microphone",
+    professional: "5MP RGB+IR with Microphone"
+  }, {
+    category: "Fingerprint Reader",
+    essential: true,
+    professional: true
+  }, {
+    category: "Memory",
+    essential: "16GB DDR5 5600",
+    professional: "32GB DDR5 5600",
+    hasUpgrade: true
+  }, {
+    category: "Storage",
+    essential: "512GB SSD M.2",
+    professional: "512GB SSD M.2"
+  }, {
+    category: "Battery",
+    essential: "4 Cell 57 WH Li-Ion",
+    professional: "4 Cell 57 WH Li-Polymer",
+    hasUpgrade: true
+  }];
 
   // Basic specs to show when collapsed (first 3 items)
   const basicDeviceSpecs = deviceSpecs.slice(0, 3);
   const detailedDeviceSpecs = deviceSpecs.slice(3);
-
-  const features: TierFeature[] = [
-    {
-      category: "Device Specifications",
-      icon: Laptop,
-      essential: "Lenovo Thinkpad T14 Gen 6 R5 Pro 340",
-      professional: "Lenovo Thinkpad T14 Gen 6 R7 Pro 350",
-      isDeviceSpec: true
-    },
-    {
-      category: "5G High Speed Data Allowance",
-      icon: Wifi,
-      essential: "75 GB",
-      professional: "125 GB"
-    },
-    {
-      category: "AI",
-      icon: Zap,
-      essential: "Microsoft Copilot Bing Chat (included with Windows 11)",
-      professional: "Microsoft Copilot - Enterprise"
-    },
-    {
-      category: "Collaboration Services",
-      icon: Users,
-      essential: false,
-      professional: "Microsoft M365 Business Standard (including Teams)"
-    },
-    {
-      category: "Standard Security",
-      icon: Shield,
-      essential: "Window Security (included with Windows 11)",
-      professional: "Absolute Resilience for Automation"
-    },
-    {
-      category: "Patch Management",
-      icon: Shield,
-      essential: "Unmanaged Patch Management",
-      professional: "Managed Patch Management"
-    },
-    {
-      category: "Internal Hardware Loss Prevention",
-      icon: Shield,
-      essential: "Embedded Agent",
-      professional: "Embedded Agent"
-    },
-    {
-      category: "Managed Security Services",
-      icon: Shield,
-      essential: false,
-      professional: "Proactive Workstation Monitoring"
-    },
-    {
-      category: "Helpdesk",
-      icon: Headphones,
-      essential: "24/7/365 Email, Phone",
-      professional: "24/7/365 Email, Phone, Live Chat"
-    },
-    {
-      category: "Support",
-      icon: Headphones,
-      essential: "Device, Operating System, and Microsoft Software Support",
-      professional: "Device, Operating System, and Microsoft Software Support"
-    },
-    {
-      category: "Remote Support",
-      icon: Headphones,
-      essential: "User-Initiated Remote Support",
-      professional: "User-Initiated Remote Support"
-    },
-    {
-      category: "Deployment",
-      icon: Zap,
-      essential: "Company Level Ground",
-      professional: "End User Level + 2-Day"
-    },
-    {
-      category: "Business Continuity",
-      icon: Zap,
-      essential: "2-Day Shipping",
-      professional: "Overnight"
-    },
-    {
-      category: "End of Lease",
-      icon: Zap,
-      essential: "Recovery",
-      professional: "Recovery"
-    }
-  ];
-
+  const features: TierFeature[] = [{
+    category: "Device Specifications",
+    icon: Laptop,
+    essential: "Lenovo Thinkpad T14 Gen 6 R5 Pro 340",
+    professional: "Lenovo Thinkpad T14 Gen 6 R7 Pro 350",
+    isDeviceSpec: true
+  }, {
+    category: "5G High Speed Data Allowance",
+    icon: Wifi,
+    essential: "75 GB",
+    professional: "125 GB"
+  }, {
+    category: "AI",
+    icon: Zap,
+    essential: "Microsoft Copilot Bing Chat (included with Windows 11)",
+    professional: "Microsoft Copilot - Enterprise"
+  }, {
+    category: "Collaboration Services",
+    icon: Users,
+    essential: false,
+    professional: "Microsoft M365 Business Standard (including Teams)"
+  }, {
+    category: "Standard Security",
+    icon: Shield,
+    essential: "Window Security (included with Windows 11)",
+    professional: "Absolute Resilience for Automation"
+  }, {
+    category: "Patch Management",
+    icon: Shield,
+    essential: "Unmanaged Patch Management",
+    professional: "Managed Patch Management"
+  }, {
+    category: "Internal Hardware Loss Prevention",
+    icon: Shield,
+    essential: "Embedded Agent",
+    professional: "Embedded Agent"
+  }, {
+    category: "Managed Security Services",
+    icon: Shield,
+    essential: false,
+    professional: "Proactive Workstation Monitoring"
+  }, {
+    category: "Helpdesk",
+    icon: Headphones,
+    essential: "24/7/365 Email, Phone",
+    professional: "24/7/365 Email, Phone, Live Chat"
+  }, {
+    category: "Support",
+    icon: Headphones,
+    essential: "Device, Operating System, and Microsoft Software Support",
+    professional: "Device, Operating System, and Microsoft Software Support"
+  }, {
+    category: "Remote Support",
+    icon: Headphones,
+    essential: "User-Initiated Remote Support",
+    professional: "User-Initiated Remote Support"
+  }, {
+    category: "Deployment",
+    icon: Zap,
+    essential: "Company Level Ground",
+    professional: "End User Level + 2-Day"
+  }, {
+    category: "Business Continuity",
+    icon: Zap,
+    essential: "2-Day Shipping",
+    professional: "Overnight"
+  }, {
+    category: "End of Lease",
+    icon: Zap,
+    essential: "Recovery",
+    professional: "Recovery"
+  }];
   const renderDeviceSpecValue = (value: string | boolean, isEssential: boolean = true, spec?: DeviceSpec) => {
     if (value === false) {
-      return (
-        <div className="flex items-center justify-center">
+      return <div className="flex items-center justify-center">
           <X className="w-4 h-4 text-red-500" />
-        </div>
-      );
+        </div>;
     }
     if (value === true) {
-      return (
-        <div className="flex items-center justify-center">
+      return <div className="flex items-center justify-center">
           <Check className="w-4 h-4 text-green-500" />
-        </div>
-      );
+        </div>;
     }
 
     // Show indicators for Professional tier
@@ -262,9 +221,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
         const essentialMemory = parseInt(String(spec.essential).match(/^(\d+)/)?.[1] || '0');
         const professionalMemory = parseInt(String(spec.professional).match(/^(\d+)/)?.[1] || '0');
         const difference = professionalMemory - essentialMemory;
-        
-        return (
-          <div className="text-xs">
+        return <div className="text-xs">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-1">
               <TrendingUp className="w-2 h-2" />
               UPGRADE
@@ -273,14 +230,12 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <span className="text-neutral-400 dark:text-neutral-500">{essentialMemory}GB </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {difference}GB</span>
             <span className="text-neutral-700 dark:text-neutral-300"> ({professionalMemory}GB total)</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle processor upgrade with highlighting
       if (spec.category === "Processor" && spec.hasUpgrade) {
-        return (
-          <div className="text-xs">
+        return <div className="text-xs">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-1">
               <TrendingUp className="w-2 h-2" />
               UPGRADE
@@ -288,14 +243,12 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">AMD Ryzen AI </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">7 PRO 350</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle battery upgrade with highlighting  
       if (spec.category === "Battery" && spec.hasUpgrade) {
-        return (
-          <div className="text-xs">
+        return <div className="text-xs">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-1">
               <TrendingUp className="w-2 h-2" />
               UPGRADE
@@ -303,54 +256,47 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">4 Cell 57 WH </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Li-Polymer</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle new features
       if (spec.isNew && spec.essential === false) {
-        return (
-          <div className="text-xs">
+        return <div className="text-xs">
             <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold text-xs mr-1">
               <Plus className="w-2 h-2" />
               ADDED
             </span>
             <br />
             <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{value}</span>
-          </div>
-        );
+          </div>;
       }
-      
+
       // Handle identical device specs - show "Carried over" for Professional tier
       if (spec && spec.essential === spec.professional && typeof spec.professional === 'string') {
-        return (
-          <div className="text-xs">
+        return <div className="text-xs">
             <span className="inline-flex items-center gap-1 text-neutral-400 dark:text-neutral-500 font-semibold text-xs mr-1">
               <ArrowRight className="w-2 h-2" />
               CARRIED OVER
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">{value}</span>
-          </div>
-        );
+          </div>;
       }
     }
 
     // Handle Lenovo branding in essential column
     if (typeof value === 'string' && value.includes('Lenovo')) {
       const parts = value.split('Lenovo');
-      return (
-        <span className="text-xs text-neutral-700 dark:text-neutral-300">
+      return <span className="text-xs text-neutral-700 dark:text-neutral-300">
           {parts[0]}<span className="text-[#FF6B6B]">Lenovo</span>{parts[1]}
-        </span>
-      );
+        </span>;
     }
-
     return <span className="text-xs text-neutral-700 dark:text-neutral-300">{value}</span>;
   };
-
   const getDeviceSpecIcon = (category: string) => {
-    const iconMap: { [key: string]: any } = {
+    const iconMap: {
+      [key: string]: any;
+    } = {
       "Model": Laptop,
       "Preloaded Operating System": Monitor,
       "Processor": Cpu,
@@ -367,33 +313,26 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
     };
     return iconMap[category] || Laptop;
   };
-
   const renderFeatureValue = (value: string | boolean, isEssential: boolean = true, feature?: TierFeature) => {
     if (value === false) {
-      return (
-        <div className="flex items-center justify-center">
+      return <div className="flex items-center justify-center">
           <X className="w-4 h-4 text-red-500" />
-        </div>
-      );
+        </div>;
     }
     if (value === true) {
-      return (
-        <div className="flex items-center justify-center">
+      return <div className="flex items-center justify-center">
           <Check className="w-4 h-4 text-green-500" />
-        </div>
-      );
+        </div>;
     }
 
     // Calculate and show difference for Professional tier
     if (!isEssential && feature) {
       const essentialValue = feature.essential;
       const professionalValue = feature.professional;
-      
+
       // Handle Device comparison with part highlighting
-      if (feature.category === "Device Specifications" && 
-          typeof essentialValue === 'string' && typeof professionalValue === 'string') {
-        return (
-          <div className="text-sm">
+      if (feature.category === "Device Specifications" && typeof essentialValue === 'string' && typeof professionalValue === 'string') {
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
@@ -401,19 +340,15 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-neutral-400 dark:text-neutral-500"><span className="text-[#FF6B6B]">Lenovo</span> Thinkpad T14 Gen 6 </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">R7 Pro 350</span>
-          </div>
-        );
+          </div>;
       }
-      
+
       // Handle 5G Data comparison with improved styling
-      if (feature.category === "5G High Speed Data Allowance" && 
-          typeof essentialValue === 'string' && typeof professionalValue === 'string') {
+      if (feature.category === "5G High Speed Data Allowance" && typeof essentialValue === 'string' && typeof professionalValue === 'string') {
         const essentialGB = parseInt(essentialValue.replace(/\D/g, ''));
         const professionalGB = parseInt(professionalValue.replace(/\D/g, ''));
         const difference = professionalGB - essentialGB;
-        
-        return (
-          <div className="text-sm text-neutral-700 dark:text-neutral-300">
+        return <div className="text-sm text-neutral-700 dark:text-neutral-300">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
@@ -422,14 +357,12 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <span className="text-neutral-400 dark:text-neutral-500">{essentialGB} GB </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {difference} GB</span>
             <span className="text-neutral-700 dark:text-neutral-300"> ({professionalGB} GB total)</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle AI comparison with part highlighting
       if (feature.category === "AI") {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
@@ -437,28 +370,24 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">Microsoft Copilot </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">Enterprise</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle Security comparison with part highlighting
       if (feature.category === "Standard Security") {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
             </span>
             <br />
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ {value}</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle Patch Management with part highlighting
       if (feature.category === "Patch Management") {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
@@ -466,14 +395,12 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Managed</span>
             <span className="text-neutral-400 dark:text-neutral-500"> Patch Management</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle Helpdesk with part highlighting
       if (feature.category === "Helpdesk") {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
@@ -481,14 +408,12 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">24/7/365 Email, Phone, </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ Live Chat</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle Deployment with part highlighting
       if (feature.category === "Deployment") {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
@@ -496,68 +421,56 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">End User Level </span>
             <span className="text-blue-300 dark:text-blue-300 font-semibold">+ 2-Day</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle Business Continuity with part highlighting
       if (feature.category === "Business Continuity") {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-blue-600 dark:text-blue-400 font-semibold text-xs mr-2">
               <TrendingUp className="w-3 h-3" />
               UPGRADE
             </span>
             <br />
             <span className="text-blue-300 dark:text-blue-300 font-semibold">Overnight</span>
-          </div>
-        );
+          </div>;
       }
 
       // Handle new features (Essential is false, Professional has value)
       if (essentialValue === false && professionalValue !== false) {
-        return (
-          <div className="text-sm text-neutral-700 dark:text-neutral-300">
+        return <div className="text-sm text-neutral-700 dark:text-neutral-300">
             <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-semibold text-xs mr-2">
               <Plus className="w-3 h-3" />
               ADDED
             </span>
             <br />
             <span className="text-neutral-700 dark:text-neutral-300 font-semibold">{value}</span>
-          </div>
-        );
+          </div>;
       }
-      
+
       // Handle identical features - show "Carried over" for Professional tier
       if (essentialValue === professionalValue && typeof professionalValue === 'string') {
-        return (
-          <div className="text-sm">
+        return <div className="text-sm">
             <span className="inline-flex items-center gap-1 text-neutral-400 dark:text-neutral-500 font-semibold text-xs mr-2">
               <ArrowRight className="w-3 h-3" />
               CARRIED OVER
             </span>
             <br />
             <span className="text-neutral-400 dark:text-neutral-500">{value}</span>
-          </div>
-        );
+          </div>;
       }
     }
 
     // Handle Lenovo branding in main features table
     if (typeof value === 'string' && value.includes('Lenovo')) {
       const parts = value.split('Lenovo');
-      return (
-        <span className="text-sm text-neutral-700 dark:text-neutral-300">
+      return <span className="text-sm text-neutral-700 dark:text-neutral-300">
           {parts[0]}<span className="text-[#FF6B6B]">Lenovo</span>{parts[1]}
-        </span>
-      );
+        </span>;
     }
-
     return <span className="text-sm text-neutral-700 dark:text-neutral-300">{value}</span>;
   };
-
-  return (
-    <div className="space-y-8">
+  return <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
         <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">
@@ -565,12 +478,8 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
         </h3>
         <div className="flex items-center justify-center gap-2 mb-4">
           <span className="text-neutral-600 dark:text-neutral-400">Powered by</span>
-          <img 
-            src="/lovable-uploads/t-mobile-emblem.webp" 
-            alt="T-Mobile" 
-            className="h-6 w-auto"
-          />
-          <span className="text-[#E20074] font-semibold">T-Mobile</span>
+          <img src="/lovable-uploads/t-mobile-emblem.webp" alt="T-Mobile" className="h-6 w-auto" />
+          
         </div>
         <p className="text-neutral-600 dark:text-neutral-400">
           Choose the plan that best fits your business needs
@@ -579,16 +488,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
 
       {/* Plan Headers */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <Card 
-          className={`border-2 ${
-            selectedTier === 'essential' || highlightedTier === 'essential'
-              ? 'border-primary dark:border-primary shadow-xl' 
-              : 'border-primary dark:border-primary'
-          } hover:shadow-xl transition-all duration-300 relative cursor-pointer`}
-          onMouseEnter={() => setHighlightedTier('essential')}
-          onMouseLeave={() => setHighlightedTier(null)}
-          onClick={() => setSelectedTier('essential')}
-        >
+        <Card className={`border-2 ${selectedTier === 'essential' || highlightedTier === 'essential' ? 'border-primary dark:border-primary shadow-xl' : 'border-primary dark:border-primary'} hover:shadow-xl transition-all duration-300 relative cursor-pointer`} onMouseEnter={() => setHighlightedTier('essential')} onMouseLeave={() => setHighlightedTier(null)} onClick={() => setSelectedTier('essential')}>
           <CardContent className="p-6 text-center bg-primary/5 dark:bg-primary/10">
             <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
               {tiers.essential.name}
@@ -605,16 +505,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
           </CardContent>
         </Card>
 
-        <Card 
-          className={`border-2 relative ${
-            selectedTier === 'professional' || highlightedTier === 'professional'
-              ? 'border-primary dark:border-primary shadow-xl' 
-              : 'border-neutral-200 dark:border-neutral-700'
-          } hover:shadow-lg transition-all duration-300 cursor-pointer`}
-          onMouseEnter={() => setHighlightedTier('professional')}
-          onMouseLeave={() => setHighlightedTier(null)}
-          onClick={() => setSelectedTier('professional')}
-        >
+        <Card className={`border-2 relative ${selectedTier === 'professional' || highlightedTier === 'professional' ? 'border-primary dark:border-primary shadow-xl' : 'border-neutral-200 dark:border-neutral-700'} hover:shadow-lg transition-all duration-300 cursor-pointer`} onMouseEnter={() => setHighlightedTier('professional')} onMouseLeave={() => setHighlightedTier(null)} onClick={() => setSelectedTier('professional')}>
           <div className="absolute top-4 right-4 z-10">
             <Badge className="bg-orange-500 text-white">Coming Soon</Badge>
           </div>
@@ -651,35 +542,19 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
             <div className="p-4 font-semibold text-neutral-900 dark:text-white">
               Features
             </div>
-            <div className={`p-4 text-center font-semibold transition-all duration-300 ${
-              selectedTier === 'essential' || highlightedTier === 'essential'
-                ? 'bg-primary/10 dark:bg-primary/20' 
-                : ''
-            }`}>
+            <div className={`p-4 text-center font-semibold transition-all duration-300 ${selectedTier === 'essential' || highlightedTier === 'essential' ? 'bg-primary/10 dark:bg-primary/20' : ''}`}>
               Essential
             </div>
             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-            <div className={`p-4 text-center font-semibold transition-all duration-300 blur-sm opacity-75 ${
-              selectedTier === 'professional' || highlightedTier === 'professional'
-                ? 'bg-primary/10 dark:bg-primary/20' 
-                : ''
-            }`}>
+            <div className={`p-4 text-center font-semibold transition-all duration-300 blur-sm opacity-75 ${selectedTier === 'professional' || highlightedTier === 'professional' ? 'bg-primary/10 dark:bg-primary/20' : ''}`}>
               Professional
             </div>
           </div>
 
           {/* Table Body */}
-          {features.map((feature, index) => (
-            <div key={index}>
+          {features.map((feature, index) => <div key={index}>
               {/* Regular Feature Row */}
-              {!feature.isDeviceSpec && (
-                <div 
-                  className={`grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ${
-                    index !== features.length - 1 
-                      ? 'border-b border-neutral-100 dark:border-neutral-800' 
-                      : ''
-                  }`}
-                >
+              {!feature.isDeviceSpec && <div className={`grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200 ${index !== features.length - 1 ? 'border-b border-neutral-100 dark:border-neutral-800' : ''}`}>
                   {/* Feature Name */}
                   <div className="p-4 flex items-center gap-3">
                     <div className="w-8 h-8 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -691,11 +566,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                   </div>
 
                   {/* Essential Column */}
-                  <div className={`p-4 text-center transition-all duration-300 ${
-                    selectedTier === 'essential' || highlightedTier === 'essential'
-                      ? 'bg-primary/5 dark:bg-primary/10' 
-                      : ''
-                  }`}>
+                  <div className={`p-4 text-center transition-all duration-300 ${selectedTier === 'essential' || highlightedTier === 'essential' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                     <div className="flex items-center justify-center min-h-[3rem]">
                       {renderFeatureValue(feature.essential, true, feature)}
                     </div>
@@ -705,21 +576,15 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                   <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
 
                   {/* Professional Column */}
-                  <div className={`p-4 text-center transition-all duration-300 blur-sm opacity-75 ${
-                    selectedTier === 'professional' || highlightedTier === 'professional'
-                      ? 'bg-primary/5 dark:bg-primary/10' 
-                      : ''
-                  }`}>
+                  <div className={`p-4 text-center transition-all duration-300 blur-sm opacity-75 ${selectedTier === 'professional' || highlightedTier === 'professional' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                     <div className="flex items-center justify-center min-h-[3rem]">
                       {renderFeatureValue(feature.professional, false, feature)}
                     </div>
                   </div>
-                </div>
-              )}
+                </div>}
 
               {/* Device Specifications Expandable Row */}
-              {feature.isDeviceSpec && (
-                <Collapsible open={isDeviceExpanded} onOpenChange={setIsDeviceExpanded}>
+              {feature.isDeviceSpec && <Collapsible open={isDeviceExpanded} onOpenChange={setIsDeviceExpanded}>
                   <div className="border-b border-neutral-100 dark:border-neutral-800">
                     {/* Device Header Row */}
                     <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-all duration-200">
@@ -739,32 +604,20 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                           </div>
                         </div>
                         <CollapsibleTrigger asChild>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary"
-                          >
-                            {isDeviceExpanded ? (
-                              <>
+                          <Button variant="ghost" size="sm" className="flex items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400 hover:text-primary">
+                            {isDeviceExpanded ? <>
                                 <ChevronUp className="w-4 h-4 transition-transform duration-200" />
                                 Hide Details
-                              </>
-                            ) : (
-                              <>
+                              </> : <>
                                 <ChevronDown className="w-4 h-4 transition-transform duration-200" />
                                 Show Details
-                              </>
-                            )}
+                              </>}
                           </Button>
                         </CollapsibleTrigger>
                       </div>
 
                       {/* Essential Device Summary */}
-                      <div className={`p-4 text-center transition-all duration-300 ${
-                        selectedTier === 'essential' || highlightedTier === 'essential'
-                          ? 'bg-primary/5 dark:bg-primary/10' 
-                          : ''
-                      }`}>
+                      <div className={`p-4 text-center transition-all duration-300 ${selectedTier === 'essential' || highlightedTier === 'essential' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                         <div className="flex items-center justify-center min-h-[3rem]">
                           {renderFeatureValue(feature.essential, true, feature)}
                         </div>
@@ -774,11 +627,7 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                       <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
 
                       {/* Professional Device Summary */}
-                      <div className={`p-4 text-center transition-all duration-300 blur-sm opacity-75 ${
-                        selectedTier === 'professional' || highlightedTier === 'professional'
-                          ? 'bg-primary/5 dark:bg-primary/10' 
-                          : ''
-                      }`}>
+                      <div className={`p-4 text-center transition-all duration-300 blur-sm opacity-75 ${selectedTier === 'professional' || highlightedTier === 'professional' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                         <div className="flex items-center justify-center min-h-[3rem]">
                           {renderFeatureValue(feature.professional, false, feature)}
                         </div>
@@ -789,87 +638,63 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
                     <CollapsibleContent className="overflow-hidden transition-all duration-300 ease-out data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95">
                       <div className="bg-neutral-25 dark:bg-neutral-900/50">
                         {/* Basic specs - always shown when expanded */}
-                        {basicDeviceSpecs.map((spec, specIndex) => (
-                          <div key={specIndex} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
+                        {basicDeviceSpecs.map((spec, specIndex) => <div key={specIndex} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
                             <div className="px-4 py-3 pl-8 flex items-center gap-3">
                               <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
                                 {(() => {
-                                  const IconComponent = getDeviceSpecIcon(spec.category);
-                                  return <IconComponent className="w-3 h-3 text-primary" />;
-                                })()}
+                          const IconComponent = getDeviceSpecIcon(spec.category);
+                          return <IconComponent className="w-3 h-3 text-primary" />;
+                        })()}
                               </div>
                               <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
                                 {spec.category}
                               </span>
                             </div>
-                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                              selectedTier === 'essential' || highlightedTier === 'essential'
-                                ? 'bg-primary/5 dark:bg-primary/10' 
-                                : ''
-                            }`}>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 ${selectedTier === 'essential' || highlightedTier === 'essential' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                               <div className="flex items-center justify-center">
                                 {renderDeviceSpecValue(spec.essential, true, spec)}
                               </div>
                             </div>
                             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-                            <div className={`px-4 py-3 text-center transition-all duration-300 blur-sm opacity-75 ${
-                              selectedTier === 'professional' || highlightedTier === 'professional'
-                                ? 'bg-primary/5 dark:bg-primary/10' 
-                                : ''
-                            }`}>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 blur-sm opacity-75 ${selectedTier === 'professional' || highlightedTier === 'professional' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                               <div className="flex items-center justify-center">
                                 {renderDeviceSpecValue(spec.professional, false, spec)}
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          </div>)}
                         
                         {/* Detailed specs */}
-                        {detailedDeviceSpecs.map((spec, specIndex) => (
-                          <div key={`detailed-${specIndex}`} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
+                        {detailedDeviceSpecs.map((spec, specIndex) => <div key={`detailed-${specIndex}`} className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1px_1fr] border-b border-neutral-100 dark:border-neutral-800 last:border-b-0">
                             <div className="px-4 py-3 pl-8 flex items-center gap-3">
                               <div className="w-6 h-6 bg-primary/10 dark:bg-primary/20 rounded-lg flex items-center justify-center flex-shrink-0">
                                 {(() => {
-                                  const IconComponent = getDeviceSpecIcon(spec.category);
-                                  return <IconComponent className="w-3 h-3 text-primary" />;
-                                })()}
+                          const IconComponent = getDeviceSpecIcon(spec.category);
+                          return <IconComponent className="w-3 h-3 text-primary" />;
+                        })()}
                               </div>
                               <span className="text-sm text-neutral-600 dark:text-neutral-400 font-medium">
                                 {spec.category}
                               </span>
                             </div>
-                            <div className={`px-4 py-3 text-center transition-all duration-300 ${
-                              selectedTier === 'essential' || highlightedTier === 'essential'
-                                ? 'bg-primary/5 dark:bg-primary/10' 
-                                : ''
-                            }`}>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 ${selectedTier === 'essential' || highlightedTier === 'essential' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                               <div className="flex items-center justify-center">
                                 {renderDeviceSpecValue(spec.essential, true, spec)}
                               </div>
                             </div>
                             <div className="hidden md:block w-px bg-neutral-200 dark:bg-neutral-700"></div>
-                            <div className={`px-4 py-3 text-center transition-all duration-300 blur-sm opacity-75 ${
-                              selectedTier === 'professional' || highlightedTier === 'professional'
-                                ? 'bg-primary/5 dark:bg-primary/10' 
-                                : ''
-                            }`}>
+                            <div className={`px-4 py-3 text-center transition-all duration-300 blur-sm opacity-75 ${selectedTier === 'professional' || highlightedTier === 'professional' ? 'bg-primary/5 dark:bg-primary/10' : ''}`}>
                               <div className="flex items-center justify-center">
                                 {renderDeviceSpecValue(spec.professional, false, spec)}
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          </div>)}
                       </div>
                     </CollapsibleContent>
                   </div>
-                </Collapsible>
-              )}
-            </div>
-          ))}
+                </Collapsible>}
+            </div>)}
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default PCaaSPricingTiers;
