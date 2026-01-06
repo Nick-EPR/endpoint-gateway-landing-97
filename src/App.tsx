@@ -53,7 +53,7 @@ function AppContent() {
           <Route path="/billboard" element={<Billboard />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} />
+        {/* <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} /> */}
       </Router>
       <Toaster />
     </div>
