@@ -10,25 +10,17 @@ serve(async (req) => {
   }
 
   try {
-    // Get the Mapbox token from Supabase secrets
-    const { data, error } = await fetch(
-      `${Deno.env.get('SUPABASE_URL')}/rest/v1/rpc/get_secret`,
-      {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ secret_name: 'MAPBOX_PUBLIC_TOKEN' })
-      }
-    ).then(res => res.text())
+    // Get the Mapbox token directly from environment variables
+    const token = Deno.env.get('MAPBOX_PUBLIC_TOKEN')
 
-    if (!data) {
-      throw new Error('Failed to retrieve Mapbox token')
+    if (!token) {
+      throw new Error('MAPBOX_PUBLIC_TOKEN is not configured')
     }
 
+    console.log('Successfully retrieved Mapbox token')
+
     return new Response(
-      JSON.stringify({ token: data.replace(/"/g, '') }),
+      JSON.stringify({ token }),
       { 
         headers: { 
           ...corsHeaders, 
