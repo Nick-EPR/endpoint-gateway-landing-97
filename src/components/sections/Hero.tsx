@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Calculator, Info, ArrowRight } from "lucide-react";
+import { Calculator, Info, ArrowRight, Layers, Monitor, Network } from "lucide-react";
 
 interface HeroProps {
   title: string;
@@ -74,6 +74,21 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     navigate('/why-choose-us');
   };
 
+  const scrollToPerfectSolution = () => {
+    const section = document.getElementById('perfect-itam-solution');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handlePCaaS = () => {
+    navigate('/pcaas');
+  };
+
+  const handleAdvancedNetwork = () => {
+    navigate('/partnerships/movius');
+  };
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
@@ -98,6 +113,32 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               <span className="invisible">{rotatingWords2[currentWord2]}</span>
             </span>
           </h1>
+          
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 animate-fade-up" style={{ animationDelay: "0.1s" }}>
+            <button 
+              onClick={scrollToPerfectSolution}
+              className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/30 transition-all duration-300 flex items-center gap-2"
+            >
+              <Layers className="w-4 h-4" />
+              Core Platform
+            </button>
+            
+            <button 
+              onClick={handlePCaaS}
+              className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/30 transition-all duration-300 flex items-center gap-2"
+            >
+              <Monitor className="w-4 h-4" />
+              PC as a Service
+            </button>
+            
+            <button 
+              onClick={handleAdvancedNetwork}
+              className="bg-primary/20 backdrop-blur-sm border border-primary/30 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary/30 transition-all duration-300 flex items-center gap-2"
+            >
+              <Network className="w-4 h-4" />
+              Advanced Network Solutions
+            </button>
+          </div>
           <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
             {subtitle}
           </p>
