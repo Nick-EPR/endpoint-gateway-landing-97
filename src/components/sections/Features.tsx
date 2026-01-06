@@ -38,9 +38,20 @@ const Features = () => {
               <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
               Our Solutions
             </h2>
-            <p className="text-center text-base md:text-lg mb-12 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
+            <p className="text-center text-base md:text-lg mb-6 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
               Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
             </p>
+            <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up" style={{ animationDelay: '100ms' }}>
+              <button className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors">
+                Core Platform
+              </button>
+              <button className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors">
+                PC as a Service
+              </button>
+              <button className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors">
+                Advanced Network Solutions
+              </button>
+            </div>
           </>
         )}
 
