@@ -45,9 +45,9 @@ const PartnershipHero = () => {
               </Button>
               
               <Button asChild variant="outline" size="lg">
-                <a href="mailto:marc@lifetimeepr.com">
+                <Link to="/contact">
                   Contact Our Team
-                </a>
+                </Link>
               </Button>
             </div>
           </div>
