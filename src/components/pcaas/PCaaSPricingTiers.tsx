@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Check, X, Laptop, Zap, Shield, Users, Wifi, Headphones, TrendingUp, Plus, ChevronDown, ChevronUp, Monitor, Cpu, Palette, Eye, Sun, Smartphone, Camera, Fingerprint, HardDrive, Battery, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import TotalCostComparison from "./TotalCostComparison";
 
 interface TierFeature {
   category: string;
@@ -624,6 +625,9 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
           </CardContent>
         </Card>
       </div>
+
+      {/* Total Cost Comparison */}
+      <TotalCostComparison />
 
       {/* Feature Comparison */}
       <div className="space-y-4">
