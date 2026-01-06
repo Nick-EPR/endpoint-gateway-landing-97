@@ -153,7 +153,10 @@ const TotalCostComparison = () => {
             PCaaS Program Description
           </div>
           <div className="p-4 font-semibold text-neutral-900 dark:text-white text-center bg-primary/10 dark:bg-primary/20">
-            36-Month Cost
+            <div>36-Month Cost</div>
+            <div className="text-xs font-normal text-neutral-500 dark:text-neutral-400 mt-1">
+              (Essential Bundle @ $99/mo)
+            </div>
           </div>
         </div>
 
@@ -264,8 +267,11 @@ const TotalCostComparison = () => {
               {renderLaptopCost(totalRow.laptopCost, true)}
             </div>
             <div className="text-center">
-              <span className="text-xs font-medium text-primary uppercase tracking-wide block mb-2">
+              <span className="text-xs font-medium text-primary uppercase tracking-wide block mb-1">
                 PCaaS Program
+              </span>
+              <span className="text-xs font-normal text-neutral-500 dark:text-neutral-400 block mb-2">
+                (Essential @ $99/mo)
               </span>
               {renderPCaaSCost(totalRow.pcaasCost, true)}
             </div>
