@@ -116,16 +116,16 @@ const Features = () => {
 
           {!isSearching && (
             <div className="max-w-4xl mx-auto mt-20">
-              <h3 className="text-xl font-semibold text-center mb-8">Additional Platform Capabilities</h3>
+              <h3 className="text-xl font-semibold text-center mb-8 text-foreground">Additional Platform Capabilities</h3>
               <div className="grid md:grid-cols-2 gap-8">
                 {featureData.detailedFeatures.map((category, index) => (
                   <div key={index} className="space-y-4">
-                    <h4 className="font-semibold text-lg text-neutral-800">{category.category}</h4>
+                    <h4 className="font-semibold text-lg text-foreground">{category.category}</h4>
                     <ul className="space-y-2">
                       {category.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-2 text-neutral-600">
+                        <li key={featureIndex} className="flex items-start gap-2 text-muted-foreground">
                           <div className="mt-1.5">
-                            <div className="w-1.5 h-1.5 rounded-full bg-neutral-400"></div>
+                            <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground/50"></div>
                           </div>
                           <span>{feature}</span>
                         </li>
