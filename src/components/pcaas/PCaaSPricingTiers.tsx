@@ -560,9 +560,18 @@ const PCaaSPricingTiers = ({ hasCompletedSignup = false }: { hasCompletedSignup?
     <div className="space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
-          Compare <span className="text-[#E20074]">T-Mobile</span> PCaaS Plans
+        <h3 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">
+          Compare PCaaS Plans
         </h3>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <span className="text-neutral-600 dark:text-neutral-400">Powered by</span>
+          <img 
+            src="/lovable-uploads/t-mobile-emblem.webp" 
+            alt="T-Mobile" 
+            className="h-6 w-auto"
+          />
+          <span className="text-[#E20074] font-semibold">T-Mobile</span>
+        </div>
         <p className="text-neutral-600 dark:text-neutral-400">
           Choose the plan that best fits your business needs
         </p>
