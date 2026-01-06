@@ -1,7 +1,6 @@
 
 interface DesktopProductsDropdownProps {
   scrolled: boolean;
-  isDark: boolean;
   linkClasses: string;
   onAllProductsClick: (e: React.MouseEvent) => void;
 }
