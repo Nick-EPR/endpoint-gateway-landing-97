@@ -170,7 +170,7 @@ const TotalCostComparison = () => {
           <div className={`flex-1 bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden flex flex-col transition-all duration-700 ease-out ${showPCaaSCard ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-b border-primary/30">
               <div className="flex items-center gap-2">
-                <Check className="w-4 h-4 text-primary" />
+                <img src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" alt="EPR" className="h-4 w-auto" />
                 <h5 className="font-semibold text-neutral-900 dark:text-white text-sm">PCaaS Program</h5>
                 <span className="text-xs text-neutral-500 dark:text-neutral-400">(Essential @ $99/mo)</span>
               </div>
