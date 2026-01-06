@@ -12,8 +12,7 @@ interface ProductsDropdownProps {
 }
 
 const ProductsDropdown = ({ scrolled, isMobile, onItemClick, forceLight }: ProductsDropdownProps) => {
-  // Removed code that was forcing Movius styling
-  const { getLinkClasses, isDark } = useNavLinkStyles(scrolled, forceLight);
+  const { getLinkClasses } = useNavLinkStyles(scrolled, forceLight);
   
   const handleProductsNavigation = (e: React.MouseEvent) => {
     navigateToProductsSection(e, onItemClick);
@@ -29,7 +28,6 @@ const ProductsDropdown = ({ scrolled, isMobile, onItemClick, forceLight }: Produ
   return (
     <DesktopProductsDropdown 
       scrolled={scrolled} 
-      isDark={isDark} 
       linkClasses={getLinkClasses()} 
       onAllProductsClick={handleProductsNavigation} 
     />

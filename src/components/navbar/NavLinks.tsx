@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom";
-import { useTheme } from "next-themes";
 import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
@@ -18,10 +17,7 @@ interface NavLinksProps {
 
 const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   const location = useLocation();
-  const { theme } = useTheme();
   const { data: unreadCount = 0 } = useUnreadNews();
-  
-  const isDark = theme === 'dark';
 
   const getLinkClasses = (path: string) => {
     const isActive = location.pathname === path;
@@ -32,10 +28,8 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     }
     
     if (scrolled) {
-      if (isDark) {
-        return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
-      }
-      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+      // Use Tailwind dark: variants to prevent flash on initial load
+      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-white'}`;
     }
     
     return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
@@ -51,10 +45,8 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     }
     
     if (scrolled) {
-      if (isDark) {
-        return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
-      }
-      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+      // Use Tailwind dark: variants to prevent flash on initial load
+      return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-white'}`;
     }
     
     return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
@@ -72,10 +64,8 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     }
     
     if (scrolled) {
-      if (isDark) {
-        return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
-      }
-      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 hover:text-primary'}`;
+      // Use Tailwind dark: variants to prevent flash on initial load
+      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-white'}`;
     }
     
     return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
