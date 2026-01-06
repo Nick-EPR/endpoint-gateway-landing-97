@@ -43,35 +43,35 @@ const IndexSections = () => {
       </Suspense>
 
       <main>
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.products)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
           {renderSection(sections.features)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.comparison)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
           {renderSection(sections.roi)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.tmobile)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800 parallelogram-section">
+        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
           {renderSection(sections.partners)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
+        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.partnership)}
         </SectionWrapper>
 
-        <SectionWrapper className="bg-neutral-light dark:bg-neutral-800">
+        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A]">
           {renderSection(sections.contact)}
         </SectionWrapper>
       </main>
