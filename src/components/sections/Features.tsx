@@ -69,7 +69,7 @@ const Features = () => {
               </button>
               <button 
                 onClick={handlePCaaSClick}
-                className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors"
+                className="px-6 py-2.5 rounded-full bg-[#E20074] text-white font-medium hover:bg-[#E20074]/90 transition-colors"
               >
                 PC as a Service
               </button>
