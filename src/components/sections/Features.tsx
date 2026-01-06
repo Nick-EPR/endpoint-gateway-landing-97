@@ -75,7 +75,7 @@ const Features = () => {
               </button>
               <button 
                 onClick={handleNetworkSolutionsClick}
-                className="px-6 py-2.5 rounded-full bg-white dark:bg-neutral-700 text-neutral-800 dark:text-white font-medium border border-neutral-200 dark:border-neutral-600 hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors"
+                className="px-6 py-2.5 rounded-full bg-[#FF4E3C] text-white font-medium hover:bg-[#FF4E3C]/90 transition-colors"
               >
                 Advanced Network Solutions
               </button>
