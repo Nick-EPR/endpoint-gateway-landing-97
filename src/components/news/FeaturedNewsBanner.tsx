@@ -67,7 +67,9 @@ const FeaturedNewsBanner = () => {
               opts={{
                 align: "start",
                 loop: true,
+                axis: "y",
               }}
+              orientation="vertical"
               plugins={[
                 Autoplay({
                   delay: 5000,
@@ -75,9 +77,9 @@ const FeaturedNewsBanner = () => {
                   stopOnMouseEnter: true,
                 }),
               ]}
-              className="w-full [&_.embla__slide]:transition-opacity [&_.embla__slide]:duration-500"
+              className="w-full h-6 overflow-hidden"
             >
-              <CarouselContent className="ml-0">
+              <CarouselContent className="mt-0 h-6">
                 {articles.map((article) => {
                   const isExternal = article.article_type === 'external';
                   const sourceLabel = isExternal && article.source_publication 
@@ -99,7 +101,7 @@ const FeaturedNewsBanner = () => {
                   );
                   
                   return (
-                    <CarouselItem key={article.id} className="pl-0 basis-full">
+                    <CarouselItem key={article.id} className="pt-0 basis-full h-6 flex items-center">
                       {isExternal ? (
                         <a
                           href={article.external_url}
