@@ -354,7 +354,7 @@ const CashRegisterPrice = ({ value, startValue, isActive, animationKey }: CashRe
 };
 
 // Animated emblem grid component for wave effect
-const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
+const EmblemWaveBackground = ({ slideKey, isExiting = false }: { slideKey: string; isExiting?: boolean }) => {
   const emblemSize = 50;
   const cols = Math.ceil(1920 / emblemSize) + 1; // ~40 columns for typical screens
   const rows = Math.ceil(1080 / emblemSize) + 1; // ~22 rows
@@ -368,7 +368,11 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
           key={`${slideKey}-${row}-${col}`}
           src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png"
           alt=""
-          className="w-[50px] h-[50px] object-contain opacity-0 animate-emblem-wave-in motion-reduce:animate-none motion-reduce:opacity-100"
+          className={`w-[50px] h-[50px] object-contain motion-reduce:animate-none motion-reduce:opacity-100 ${
+            isExiting 
+              ? 'animate-emblem-wave-out' 
+              : 'opacity-0 animate-emblem-wave-in'
+          }`}
           style={{ animationDelay: `${delay}s` }}
         />
       );
@@ -376,7 +380,7 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
   }
   
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03] animate-emblem-grid-pulse">
+    <div className={`absolute inset-0 pointer-events-none overflow-hidden ${isExiting ? 'opacity-[0.03]' : 'opacity-[0.03] animate-emblem-grid-pulse'}`}>
       <div 
         style={{ 
           display: 'grid',
@@ -393,6 +397,8 @@ const EmblemWaveBackground = ({ slideKey }: { slideKey: string }) => {
 const Billboard = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const [previousSlide, setPreviousSlide] = useState<number | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [isUIHidden, setIsUIHidden] = useState(false);
@@ -405,6 +411,19 @@ const Billboard = () => {
     } catch {}
     return new Set();
   });
+
+  // Handle emblem transition when slide changes
+  useEffect(() => {
+    if (previousSlide !== null && previousSlide !== current) {
+      setIsTransitioning(true);
+      // Exit animation takes ~3s (40 columns × 75ms)
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setPreviousSlide(null);
+      }, 3200);
+      return () => clearTimeout(timer);
+    }
+  }, [current, previousSlide]);
 
   // Persist hidden slides to localStorage
   useEffect(() => {
@@ -508,7 +527,13 @@ const Billboard = () => {
 
     setCurrent(api.selectedScrollSnap());
     api.on("select", () => {
-      setCurrent(api.selectedScrollSnap());
+      const newSlide = api.selectedScrollSnap();
+      setCurrent(prev => {
+        if (prev !== newSlide) {
+          setPreviousSlide(prev);
+        }
+        return newSlide;
+      });
     });
   }, [api]);
 
@@ -563,6 +588,15 @@ const Billboard = () => {
                 </div>
                 
                 {/* EPR Emblem background overlay - grid with left-to-right wave animation */}
+                {/* Exiting emblem grid (fades out left-to-right) */}
+                {isTransitioning && previousSlide !== null && (
+                  <EmblemWaveBackground 
+                    key={`emblem-grid-exit-${previousSlide}-${slides[previousSlide]?.id}`} 
+                    slideKey={`exit-${previousSlide}-${slides[previousSlide]?.id}`} 
+                    isExiting={true}
+                  />
+                )}
+                {/* Entering emblem grid (fades in left-to-right) */}
                 <EmblemWaveBackground key={`emblem-grid-${current}-${slide.id}`} slideKey={`${current}-${slide.id}`} />
 
                 {/* Render based on slide type */}

@@ -80,7 +80,7 @@ export const PlatformFeatures = memo(({
 
         {!isSearching && (
           <>
-            <div id="perfect-itam-solution" className="text-center mt-32 mb-16">
+            <div className="text-center mt-32 mb-16">
               <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up" style={{ animationDelay: '200ms' }}>
                 <Settings className="w-6 h-6 text-primary" />
                 <h3 className="text-xl font-semibold dark:text-white">Your Perfect ITAM Solution</h3>
