@@ -24,10 +24,12 @@ const Features = () => {
   };
 
   const handlePCaaSClick = () => {
+    window.scrollTo(0, 0);
     navigate('/pcaas');
   };
 
   const handleNetworkSolutionsClick = () => {
+    window.scrollTo(0, 0);
     navigate('/partnerships/movius');
   };
 
