@@ -16,68 +16,68 @@ const costData: CostRow[] = [
     laptopDescription: "Laptop only",
     laptopCost: "$1,000",
     pcaasDescription: "Fully set up laptop + services",
-    pcaasCost: "Included in subscription",
+    pcaasCost: "Included",
   },
   {
     category: "IT Setup Labor",
-    laptopDescription: "Customer responsible for imaging/config",
+    laptopDescription: "Customer imaging/config",
     laptopCost: "$100–$320",
-    pcaasDescription: "Configured before shipment",
+    pcaasDescription: "Pre-configured",
     pcaasCost: "$0",
   },
   {
-    category: "Employee Downtime (Onboarding)",
-    laptopDescription: "Wait for device setup",
+    category: "Employee Downtime",
+    laptopDescription: "Wait for setup",
     laptopCost: "$100–$250",
-    pcaasDescription: "Ready to use out of box",
+    pcaasDescription: "Ready out of box",
     pcaasCost: "$0",
   },
   {
-    category: "Software and Security Install",
-    laptopDescription: "Manual agent and security install",
+    category: "Software/Security",
+    laptopDescription: "Manual install",
     laptopCost: "$50–$160",
-    pcaasDescription: "Pre-installed and tested",
+    pcaasDescription: "Pre-installed",
     pcaasCost: "$0",
   },
   {
     category: "Break/Fix Support",
-    laptopDescription: "Customer responsible for troubleshooting",
+    laptopDescription: "Customer troubleshoots",
     laptopCost: "$300–$800",
     pcaasDescription: "24/7 Helpdesk",
-    pcaasCost: "Included in subscription",
+    pcaasCost: "Included",
   },
   {
-    category: "Replacement When Broken",
-    laptopDescription: "Purchase another laptop + set up",
+    category: "Replacement",
+    laptopDescription: "Buy + set up another",
     laptopCost: "$1,250–$1,730",
-    pcaasDescription: "Overnight Advanced Exchange",
-    pcaasCost: "Included in subscription",
+    pcaasDescription: "Overnight Exchange",
+    pcaasCost: "Included",
   },
   {
     category: "Asset Tracking",
     laptopDescription: "None; high risk",
     laptopCost: "$100–$200",
-    pcaasDescription: "Full lifecycle tracking",
-    pcaasCost: "Included in subscription",
+    pcaasDescription: "Full lifecycle",
+    pcaasCost: "Included",
   },
   {
-    category: "Helpdesk Ticket Volume",
+    category: "Helpdesk Tickets",
     laptopDescription: "3–6 tickets/year",
     laptopCost: "$135–$450",
-    pcaasDescription: "All tickets included",
-    pcaasCost: "Included in subscription",
+    pcaasDescription: "All included",
+    pcaasCost: "Included",
   },
   {
     category: "Connectivity",
     laptopDescription: "Wi-Fi only",
     laptopCost: "$900–$1,350",
-    pcaasDescription: "Built-in secure 5G connectivity",
-    pcaasCost: "Included in subscription",
+    pcaasDescription: "Built-in 5G",
+    pcaasCost: "Included",
   },
 ];
 
 const totalRow: CostRow = {
-  category: "True 36-Month Total Cost",
+  category: "36-Month Total",
   laptopDescription: "",
   laptopCost: "$3,935–$6,170",
   pcaasDescription: "",
@@ -89,7 +89,7 @@ const TotalCostComparison = () => {
   const renderPCaaSCost = (cost: string, isTotal: boolean = false) => {
     if (isTotal) {
       return (
-        <span className="text-xl md:text-2xl font-bold text-primary">
+        <span className="text-lg font-bold text-primary">
           {cost}
         </span>
       );
@@ -110,7 +110,7 @@ const TotalCostComparison = () => {
   const renderLaptopCost = (cost: string, isTotal: boolean = false) => {
     if (isTotal) {
       return (
-        <span className="text-xl md:text-2xl font-bold text-red-500 dark:text-red-400">
+        <span className="text-lg font-bold text-red-500 dark:text-red-400">
           {cost}
         </span>
       );
@@ -130,19 +130,19 @@ const TotalCostComparison = () => {
   return (
     <div className="mb-12">
       {/* Desktop: Side-by-side layout */}
-      <div className="hidden lg:flex gap-10 items-center">
+      <div className="hidden lg:flex gap-8 items-center">
         {/* Left Side - Header Section (vertically centered) */}
-        <div className="w-1/4 flex-shrink-0">
-          <h4 className="text-2xl font-bold text-neutral-900 dark:text-white mb-4">
+        <div className="w-1/5 flex-shrink-0">
+          <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-3">
             Total Cost Comparison
           </h4>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-6">
-            See the true 36-month cost of ownership: a standard $1,000 laptop vs. our PCaaS program
+          <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
+            36-month cost: $1,000 laptop vs. PCaaS
           </p>
           {/* Savings Callout */}
-          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-            <p className="text-green-700 dark:text-green-400 font-medium text-sm">
-              Save up to <span className="text-lg font-bold">$2,606</span> over 36 months with PCaaS
+          <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+            <p className="text-green-700 dark:text-green-400 font-medium text-xs">
+              Save up to <span className="text-base font-bold">$2,606</span> over 36 months
             </p>
           </div>
         </div>
@@ -151,24 +151,21 @@ const TotalCostComparison = () => {
         <div className="flex-1">
           <div className="bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-[1.5fr_1.5fr_1fr_1.5fr_1fr] bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
-              <div className="p-4 font-semibold text-neutral-900 dark:text-white">
-                Cost Category
+            <div className="grid grid-cols-[1.2fr_1.2fr_0.8fr_1.2fr_0.8fr] bg-neutral-50 dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700">
+              <div className="py-2 px-3 font-semibold text-sm text-neutral-900 dark:text-white">
+                Category
               </div>
-              <div className="p-4 font-semibold text-neutral-900 dark:text-white text-center">
-                $1,000 Laptop Description
+              <div className="py-2 px-3 font-semibold text-sm text-neutral-900 dark:text-white text-center">
+                Laptop
               </div>
-              <div className="p-4 font-semibold text-neutral-900 dark:text-white text-center">
-                Est. 36-Month Cost
+              <div className="py-2 px-3 font-semibold text-sm text-neutral-900 dark:text-white text-center">
+                Cost
               </div>
-              <div className="p-4 font-semibold text-neutral-900 dark:text-white text-center bg-primary/10 dark:bg-primary/20 border-l-4 border-primary">
-                PCaaS Program Description
+              <div className="py-2 px-3 font-semibold text-sm text-neutral-900 dark:text-white text-center bg-primary/10 dark:bg-primary/20 border-l-2 border-primary">
+                PCaaS
               </div>
-              <div className="p-4 font-semibold text-neutral-900 dark:text-white text-center bg-primary/10 dark:bg-primary/20">
-                <div>36-Month Cost</div>
-                <div className="text-xs font-normal text-neutral-500 dark:text-neutral-400 mt-1">
-                  (Essential Bundle @ $99/mo)
-                </div>
+              <div className="py-2 px-3 font-semibold text-sm text-neutral-900 dark:text-white text-center bg-primary/10 dark:bg-primary/20">
+                Cost
               </div>
             </div>
 
@@ -176,41 +173,41 @@ const TotalCostComparison = () => {
             {costData.map((row, index) => (
               <div
                 key={index}
-                className={`grid grid-cols-[1.5fr_1.5fr_1fr_1.5fr_1fr] border-b border-neutral-100 dark:border-neutral-800 hover:bg-neutral-50 dark:hover:bg-neutral-800/50 transition-colors`}
+                className="grid grid-cols-[1.2fr_1.2fr_0.8fr_1.2fr_0.8fr] border-b border-neutral-100 dark:border-neutral-800"
               >
-                <div className="p-4 flex items-center">
-                  <span className="font-medium text-neutral-900 dark:text-white">
+                <div className="py-1.5 px-3 flex items-center">
+                  <span className="text-sm font-medium text-neutral-900 dark:text-white">
                     {row.category}
                   </span>
                 </div>
-                <div className="p-4 text-center text-neutral-600 dark:text-neutral-400 flex items-center justify-center">
+                <div className="py-1.5 px-3 text-center text-xs text-neutral-600 dark:text-neutral-400 flex items-center justify-center">
                   {row.laptopDescription}
                 </div>
-                <div className="p-4 text-center flex items-center justify-center">
+                <div className="py-1.5 px-3 text-center text-sm flex items-center justify-center">
                   {renderLaptopCost(row.laptopCost)}
                 </div>
-                <div className="p-4 text-center text-neutral-600 dark:text-neutral-400 flex items-center justify-center bg-primary/5 dark:bg-primary/10 border-l-4 border-primary">
+                <div className="py-1.5 px-3 text-center text-xs text-neutral-600 dark:text-neutral-400 flex items-center justify-center bg-primary/5 dark:bg-primary/10 border-l-2 border-primary">
                   {row.pcaasDescription}
                 </div>
-                <div className="p-4 text-center flex items-center justify-center bg-primary/5 dark:bg-primary/10">
+                <div className="py-1.5 px-3 text-center text-sm flex items-center justify-center bg-primary/5 dark:bg-primary/10">
                   {renderPCaaSCost(row.pcaasCost)}
                 </div>
               </div>
             ))}
 
             {/* Total Row */}
-            <div className="grid grid-cols-[1.5fr_1.5fr_1fr_1.5fr_1fr] bg-neutral-100 dark:bg-neutral-800">
-              <div className="p-5 flex items-center">
-                <span className="text-lg font-bold text-neutral-900 dark:text-white">
+            <div className="grid grid-cols-[1.2fr_1.2fr_0.8fr_1.2fr_0.8fr] bg-neutral-100 dark:bg-neutral-800">
+              <div className="py-2.5 px-3 flex items-center">
+                <span className="text-sm font-bold text-neutral-900 dark:text-white">
                   {totalRow.category}
                 </span>
               </div>
-              <div className="p-5"></div>
-              <div className="p-5 flex items-center justify-center">
+              <div className="py-2.5 px-3"></div>
+              <div className="py-2.5 px-3 flex items-center justify-center">
                 {renderLaptopCost(totalRow.laptopCost, true)}
               </div>
-              <div className="p-5 bg-primary/10 dark:bg-primary/20 border-l-4 border-primary"></div>
-              <div className="p-5 flex items-center justify-center bg-primary/10 dark:bg-primary/20">
+              <div className="py-2.5 px-3 bg-primary/10 dark:bg-primary/20 border-l-2 border-primary"></div>
+              <div className="py-2.5 px-3 flex items-center justify-center bg-primary/10 dark:bg-primary/20">
                 {renderPCaaSCost(totalRow.pcaasCost, true)}
               </div>
             </div>
