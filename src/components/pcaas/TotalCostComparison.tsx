@@ -113,7 +113,7 @@ const TotalCostComparison = () => {
             <img 
               src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
               alt="EPR" 
-              className="h-8 w-auto"
+              className="h-8 w-auto transition-transform duration-300 hover:scale-110 cursor-pointer"
             />
             <h4 className="text-xl font-bold text-neutral-900 dark:text-white">
               Total Cost Comparison
@@ -213,7 +213,7 @@ const TotalCostComparison = () => {
           <img 
             src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
             alt="EPR" 
-            className="h-6 w-auto"
+            className="h-6 w-auto transition-transform duration-300 hover:scale-110 cursor-pointer"
           />
           <h4 className="text-lg font-semibold text-neutral-900 dark:text-white">
             Total Cost Comparison
