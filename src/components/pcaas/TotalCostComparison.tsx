@@ -109,9 +109,16 @@ const TotalCostComparison = () => {
       <div className="hidden lg:flex gap-6 items-stretch">
         {/* Left Side - Header Section */}
         <div className="w-1/5 flex-shrink-0 flex flex-col justify-center">
-          <h4 className="text-xl font-bold text-neutral-900 dark:text-white mb-2">
-            Total Cost Comparison
-          </h4>
+          <div className="flex items-center gap-2 mb-2">
+            <img 
+              src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
+              alt="EPR" 
+              className="h-8 w-auto"
+            />
+            <h4 className="text-xl font-bold text-neutral-900 dark:text-white">
+              Total Cost Comparison
+            </h4>
+          </div>
           <p className="text-xs text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">
             36-month cost: $1,000 laptop vs. PCaaS
           </p>
@@ -202,9 +209,16 @@ const TotalCostComparison = () => {
 
       {/* Mobile/Tablet: Stacked cards */}
       <div className="lg:hidden">
-        <h4 className="text-lg font-semibold text-neutral-900 dark:text-white text-center mb-2">
-          Total Cost Comparison
-        </h4>
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <img 
+            src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
+            alt="EPR" 
+            className="h-6 w-auto"
+          />
+          <h4 className="text-lg font-semibold text-neutral-900 dark:text-white">
+            Total Cost Comparison
+          </h4>
+        </div>
         <p className="text-sm text-neutral-600 dark:text-neutral-400 text-center mb-6 max-w-md mx-auto">
           36-month cost: $1,000 laptop vs. PCaaS
         </p>
