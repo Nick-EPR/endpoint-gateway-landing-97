@@ -8,7 +8,6 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import Fade from "embla-carousel-fade";
 import { ExternalLink, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -70,14 +69,13 @@ const FeaturedNewsBanner = () => {
                 loop: true,
               }}
               plugins={[
-                Fade(),
                 Autoplay({
                   delay: 5000,
                   stopOnInteraction: true,
                   stopOnMouseEnter: true,
                 }),
               ]}
-              className="w-full"
+              className="w-full [&_.embla__slide]:transition-opacity [&_.embla__slide]:duration-500"
             >
               <CarouselContent className="ml-0">
                 {articles.map((article) => {
