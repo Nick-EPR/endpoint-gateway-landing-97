@@ -70,10 +70,9 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   };
 
   // For Movius and PCaaS pages, use an appropriate background based on theme
+  // Using Tailwind dark: variants to prevent flash on initial load
   const navbarBgClass = isWhiteBackground 
-    ? isDark 
-      ? 'bg-[#020817] border-b border-[#1e293b]' 
-      : 'bg-white shadow-sm' 
+    ? 'bg-white dark:bg-[#020817] shadow-sm dark:shadow-none dark:border-b dark:border-[#1e293b]' 
     : 'bg-transparent';
 
   return (
@@ -127,9 +126,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`p-2 ${
                 isWhiteBackground
-                  ? isDark 
-                    ? 'text-white' 
-                    : 'text-neutral-600'
+                  ? 'text-neutral-600 dark:text-white'
                   : 'text-white'
               } hover:text-primary`}
               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
