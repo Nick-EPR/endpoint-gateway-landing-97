@@ -1,34 +1,60 @@
-import { Check, AlertCircle } from "lucide-react";
+import { Check, AlertCircle, DollarSign } from "lucide-react";
 import { useRef, useState, useEffect } from "react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 import { AnimatedPrice } from "@/components/ui/AnimatedPrice";
 import { AnimatedPriceRange } from "@/components/ui/AnimatedPriceRange";
-
 interface CostItem {
   category: string;
   laptopCost: string;
   pcaasCost: string;
 }
-
-const costData: CostItem[] = [
-  { category: "Hardware", laptopCost: "$1,000", pcaasCost: "Included" },
-  { category: "IT Setup Labor", laptopCost: "$100–$320", pcaasCost: "$0" },
-  { category: "Employee Downtime", laptopCost: "$100–$250", pcaasCost: "$0" },
-  { category: "Software/Security", laptopCost: "$50–$160", pcaasCost: "$0" },
-  { category: "Break/Fix Support", laptopCost: "$300–$800", pcaasCost: "Included" },
-  { category: "Replacement", laptopCost: "$1,250–$1,730", pcaasCost: "Included" },
-  { category: "Asset Tracking", laptopCost: "$100–$200", pcaasCost: "Included" },
-  { category: "Helpdesk Tickets", laptopCost: "$135–$450", pcaasCost: "Included" },
-  { category: "Connectivity", laptopCost: "$900–$1,350", pcaasCost: "Included" },
-];
-
+const costData: CostItem[] = [{
+  category: "Hardware",
+  laptopCost: "$1,000",
+  pcaasCost: "Included"
+}, {
+  category: "IT Setup Labor",
+  laptopCost: "$100–$320",
+  pcaasCost: "$0"
+}, {
+  category: "Employee Downtime",
+  laptopCost: "$100–$250",
+  pcaasCost: "$0"
+}, {
+  category: "Software/Security",
+  laptopCost: "$50–$160",
+  pcaasCost: "$0"
+}, {
+  category: "Break/Fix Support",
+  laptopCost: "$300–$800",
+  pcaasCost: "Included"
+}, {
+  category: "Replacement",
+  laptopCost: "$1,250–$1,730",
+  pcaasCost: "Included"
+}, {
+  category: "Asset Tracking",
+  laptopCost: "$100–$200",
+  pcaasCost: "Included"
+}, {
+  category: "Helpdesk Tickets",
+  laptopCost: "$135–$450",
+  pcaasCost: "Included"
+}, {
+  category: "Connectivity",
+  laptopCost: "$900–$1,350",
+  pcaasCost: "Included"
+}];
 const TotalCostComparison = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.3 });
+  const {
+    isVisible
+  } = useIntersectionObserver(sectionRef, {
+    threshold: 0.3
+  });
   const [hasAnimated, setHasAnimated] = useState(false);
   const [visibleRows, setVisibleRows] = useState<number[]>([]);
   const [showPCaaSCard, setShowPCaaSCard] = useState(false);
-
   useEffect(() => {
     if (isVisible && !hasAnimated) {
       setHasAnimated(true);
@@ -44,7 +70,7 @@ const TotalCostComparison = () => {
           setVisibleRows(prev => [...prev, index]);
         }, 400 * (index + 1));
       });
-      
+
       // After all rows are shown + a longer pause, reveal PCaaS card
       // 9 rows x 400ms = 3600ms + 1500ms pause = 5100ms
       setTimeout(() => {
@@ -52,21 +78,16 @@ const TotalCostComparison = () => {
       }, 5100);
     }
   }, [hasAnimated]);
-
   const allRowsVisible = visibleRows.length === costData.length;
-
   const renderPCaaSCost = (cost: string) => {
     if (cost === "$0" || cost === "Included") {
-      return (
-        <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-500 font-medium">
+      return <span className="inline-flex items-center gap-1 text-green-600 dark:text-green-500 font-medium">
           <Check className="w-3.5 h-3.5" />
           {cost}
-        </span>
-      );
+        </span>;
     }
     return <span>{cost}</span>;
   };
-
   const renderLaptopCostAnimated = (cost: string, rowIndex: number) => {
     const isRowVisible = visibleRows.includes(rowIndex);
     const numMatch = cost.match(/\$([0-9,]+)/);
@@ -78,43 +99,28 @@ const TotalCostComparison = () => {
     if (rangeMatch) {
       const minValue = parseInt(rangeMatch[1].replace(',', ''));
       const maxValue = parseInt(rangeMatch[2].replace(',', ''));
-      return (
-        <span className={colorClass}>
-          <AnimatedPriceRange 
-            minValue={minValue} 
-            maxValue={maxValue} 
-            isActive={isRowVisible} 
-          />
-        </span>
-      );
+      return <span className={colorClass}>
+          <AnimatedPriceRange minValue={minValue} maxValue={maxValue} isActive={isRowVisible} />
+        </span>;
     }
 
     // Single value
     const singleMatch = cost.match(/\$([0-9,]+)/);
     if (singleMatch) {
       const value = parseInt(singleMatch[1].replace(',', ''));
-      return (
-        <span className={colorClass}>
+      return <span className={colorClass}>
           <AnimatedPrice value={value} isActive={isRowVisible} />
-        </span>
-      );
+        </span>;
     }
-
     return <span className={colorClass}>{cost}</span>;
   };
-
-  return (
-    <div ref={sectionRef} className="mb-12">
+  return <div ref={sectionRef} className="mb-12">
       {/* Desktop: Side-by-side cards */}
       <div className="hidden lg:flex gap-6 items-stretch">
         {/* Left Side - Header Section */}
         <div className="w-1/5 flex-shrink-0 flex flex-col justify-center">
           <div className="flex items-center gap-2 mb-2">
-            <img 
-              src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
-              alt="EPR" 
-              className="h-8 w-auto transition-transform duration-300 hover:scale-110 cursor-pointer"
-            />
+            <img src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" alt="EPR" className="h-8 w-auto transition-transform duration-300 hover:scale-110 cursor-pointer" />
             <h4 className="text-xl font-bold text-neutral-900 dark:text-white">
               Total Cost Comparison
             </h4>
@@ -135,25 +141,16 @@ const TotalCostComparison = () => {
           <div className="flex-1 bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl overflow-hidden flex flex-col">
             <div className="bg-red-50 dark:bg-red-900/20 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
               <div className="flex items-center gap-2">
-                <AlertCircle className="w-4 h-4 text-red-500" />
+                <DollarSign className="w-4 h-4 text-red-500" />
                 <h5 className="font-semibold text-neutral-900 dark:text-white text-sm">Traditional Laptop</h5>
               </div>
             </div>
             <div className="p-4 flex-1">
               <div className="space-y-2">
-                {costData.map((row, index) => (
-                  <div 
-                    key={index} 
-                    className={`flex justify-between text-sm transition-all duration-500 ease-out ${
-                      visibleRows.includes(index) 
-                        ? 'opacity-100 translate-x-0' 
-                        : 'opacity-0 -translate-x-4'
-                    }`}
-                  >
+                {costData.map((row, index) => <div key={index} className={`flex justify-between text-sm transition-all duration-500 ease-out ${visibleRows.includes(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
                     <span className="text-neutral-600 dark:text-neutral-400">{row.category}</span>
                     <span className="font-medium">{renderLaptopCostAnimated(row.laptopCost, index)}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             <div className={`bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700 transition-all duration-500 ${allRowsVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -161,23 +158,16 @@ const TotalCostComparison = () => {
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
                 <span className="text-lg font-bold text-red-500 dark:text-red-400 relative">
                   <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={allRowsVisible} />
-                  <span 
-                    className={`absolute left-0 top-1/2 h-0.5 bg-red-600 dark:bg-red-400 transition-all duration-700 ease-out ${
-                      showPCaaSCard ? 'w-full' : 'w-0'
-                    }`}
-                    style={{ transform: 'translateY(-50%)' }}
-                  />
+                  <span className={`absolute left-0 top-1/2 h-0.5 bg-red-600 dark:bg-red-400 transition-all duration-700 ease-out ${showPCaaSCard ? 'w-full' : 'w-0'}`} style={{
+                  transform: 'translateY(-50%)'
+                }} />
                 </span>
               </div>
             </div>
           </div>
 
           {/* PCaaS Program Card */}
-          <div className={`flex-1 bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden flex flex-col transition-all duration-700 ease-out ${
-            showPCaaSCard 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-8'
-          }`}>
+          <div className={`flex-1 bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden flex flex-col transition-all duration-700 ease-out ${showPCaaSCard ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-b border-primary/30">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-primary" />
@@ -187,12 +177,10 @@ const TotalCostComparison = () => {
             </div>
             <div className="p-4 flex-1">
               <div className="space-y-2">
-                {costData.map((row, index) => (
-                  <div key={index} className="flex justify-between text-sm">
+                {costData.map((row, index) => <div key={index} className="flex justify-between text-sm">
                     <span className="text-neutral-600 dark:text-neutral-400">{row.category}</span>
                     {renderPCaaSCost(row.pcaasCost)}
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-t border-primary/30">
@@ -210,11 +198,7 @@ const TotalCostComparison = () => {
       {/* Mobile/Tablet: Stacked cards */}
       <div className="lg:hidden">
         <div className="flex items-center justify-center gap-2 mb-2">
-          <img 
-            src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
-            alt="EPR" 
-            className="h-6 w-auto transition-transform duration-300 hover:scale-110 cursor-pointer"
-          />
+          <img src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" alt="EPR" className="h-6 w-auto transition-transform duration-300 hover:scale-110 cursor-pointer" />
           <h4 className="text-lg font-semibold text-neutral-900 dark:text-white">
             Total Cost Comparison
           </h4>
@@ -234,19 +218,10 @@ const TotalCostComparison = () => {
             </div>
             <div className="p-4">
               <div className="space-y-2">
-                {costData.map((row, index) => (
-                  <div 
-                    key={index} 
-                    className={`flex justify-between text-sm transition-all duration-500 ease-out ${
-                      visibleRows.includes(index) 
-                        ? 'opacity-100 translate-x-0' 
-                        : 'opacity-0 -translate-x-4'
-                    }`}
-                  >
+                {costData.map((row, index) => <div key={index} className={`flex justify-between text-sm transition-all duration-500 ease-out ${visibleRows.includes(index) ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`}>
                     <span className="text-neutral-600 dark:text-neutral-400">{row.category}</span>
                     <span className="font-medium">{renderLaptopCostAnimated(row.laptopCost, index)}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             <div className={`bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700 transition-all duration-500 ${allRowsVisible ? 'opacity-100' : 'opacity-0'}`}>
@@ -254,23 +229,16 @@ const TotalCostComparison = () => {
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
                 <span className="text-lg font-bold text-red-500 dark:text-red-400 relative">
                   <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={allRowsVisible} />
-                  <span 
-                    className={`absolute left-0 top-1/2 h-0.5 bg-red-600 dark:bg-red-400 transition-all duration-700 ease-out ${
-                      showPCaaSCard ? 'w-full' : 'w-0'
-                    }`}
-                    style={{ transform: 'translateY(-50%)' }}
-                  />
+                  <span className={`absolute left-0 top-1/2 h-0.5 bg-red-600 dark:bg-red-400 transition-all duration-700 ease-out ${showPCaaSCard ? 'w-full' : 'w-0'}`} style={{
+                  transform: 'translateY(-50%)'
+                }} />
                 </span>
               </div>
             </div>
           </div>
 
           {/* PCaaS Program Card */}
-          <div className={`bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden transition-all duration-700 ease-out ${
-            showPCaaSCard 
-              ? 'opacity-100 translate-x-0' 
-              : 'opacity-0 -translate-x-8'
-          }`}>
+          <div className={`bg-primary/5 dark:bg-primary/10 border-2 border-primary rounded-xl overflow-hidden transition-all duration-700 ease-out ${showPCaaSCard ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-b border-primary/30">
               <div className="flex items-center gap-2">
                 <Check className="w-4 h-4 text-primary" />
@@ -280,12 +248,10 @@ const TotalCostComparison = () => {
             </div>
             <div className="p-4">
               <div className="space-y-2">
-                {costData.map((row, index) => (
-                  <div key={index} className="flex justify-between text-sm">
+                {costData.map((row, index) => <div key={index} className="flex justify-between text-sm">
                     <span className="text-neutral-600 dark:text-neutral-400">{row.category}</span>
                     {renderPCaaSCost(row.pcaasCost)}
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
             <div className="bg-primary/20 dark:bg-primary/30 px-4 py-3 border-t border-primary/30">
@@ -306,8 +272,6 @@ const TotalCostComparison = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default TotalCostComparison;
