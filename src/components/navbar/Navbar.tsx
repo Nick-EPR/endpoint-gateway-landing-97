@@ -72,7 +72,7 @@ const Navbar = ({ scrolled, onMouseEnter }: NavbarProps) => {
   // For Movius and PCaaS pages, use an appropriate background based on theme
   const navbarBgClass = isWhiteBackground 
     ? isDark 
-      ? 'bg-neutral-900 border-b border-neutral-800' 
+      ? 'bg-[#020817] border-b border-[#1e293b]' 
       : 'bg-white shadow-sm' 
     : 'bg-transparent';
 
