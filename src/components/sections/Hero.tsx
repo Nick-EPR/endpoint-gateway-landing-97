@@ -78,7 +78,14 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
-        <img 
+        <div 
+          className="absolute inset-0 z-10 opacity-20"
+          style={{
+            backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.4) 1px, transparent 1px)',
+            backgroundSize: '24px 24px'
+          }}
+        ></div>
+        <img
           src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
           alt="IT Asset Management Background"
           className="w-full h-full object-cover"
