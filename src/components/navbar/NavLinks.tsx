@@ -52,8 +52,8 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
   };
 
-  // Check if Features is active (on homepage with #features hash)
-  const isFeatureActive = (location.pathname === '/' && location.hash === '#features') || location.hash === '#features';
+  // Check if Features is active (on homepage with #perfect-itam-solution hash)
+  const isFeatureActive = (location.pathname === '/' && location.hash === '#perfect-itam-solution') || location.hash === '#perfect-itam-solution';
   
   // Use the same style logic for features as other links
   const getFeaturesClasses = () => {
@@ -108,16 +108,16 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
       </div>
       
       <a 
-        href="/#features" 
+        href="/#perfect-itam-solution" 
         className={getFeaturesClasses()}
         onClick={(e) => {
           e.preventDefault();
           if (location.pathname !== '/') {
-            window.location.href = '/#features';
+            window.location.href = '/#perfect-itam-solution';
           } else {
-            document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('perfect-itam-solution')?.scrollIntoView({ behavior: 'smooth' });
             // Update URL with hash
-            window.history.pushState(null, '', `#features`);
+            window.history.pushState(null, '', `#perfect-itam-solution`);
           }
           if (onClose) onClose();
         }}
