@@ -4,8 +4,8 @@ import { Calculator } from 'lucide-react';
 export const ROIHeader = () => {
   return (
     <div className="text-center mb-12 relative z-10">
-      <h2 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-up flex items-center justify-center gap-3">
-        <Calculator className="w-10 h-10 md:w-12 md:h-12 text-primary" />
+      <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-up flex items-center justify-center gap-3">
+        <Calculator className="w-8 h-8 md:w-10 md:h-10 text-primary" />
         Calculate Your Potential Savings
       </h2>
       <p className="text-lg text-neutral mb-8 animate-fade-up delay-100">
