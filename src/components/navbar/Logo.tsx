@@ -16,13 +16,8 @@ const Logo = ({ scrolled }: LogoProps) => {
     }
   };
 
-  // Check if we're on pages that should always show emblem
-  const isMoviusPage = location.pathname === '/partnerships/movius';
-  const isPCaaSPage = location.pathname === '/pcaas';
-  const forceEmblem = location.pathname === '/status' || isMoviusPage || isPCaaSPage;
-
-  // Show emblem if mobile (limited space) OR on specific pages that always need compact
-  const showEmblem = isMobile || forceEmblem;
+  // Show emblem only on mobile (limited screen width)
+  const showEmblem = isMobile;
 
   // Full text logos
   const lightModeLogo = "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
