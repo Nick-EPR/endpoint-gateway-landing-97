@@ -47,7 +47,7 @@ const OurSolutionsHeader = () => {
       <div 
         className="absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.25) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
         }}
       ></div>
