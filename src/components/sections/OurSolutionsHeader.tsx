@@ -45,7 +45,7 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="relative pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
       <div 
-        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
+        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none animate-drift"
         style={{
           backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.5) 1.5px, transparent 1.5px)',
           backgroundSize: '20px 20px'
