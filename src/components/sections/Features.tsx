@@ -31,17 +31,11 @@ const Features = () => {
   return (
     <section id="features" className="py-20 md:py-32 bg-transparent">
       <div className="container mx-auto px-4 max-w-7xl">
-        <SearchFeatures
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          onClear={handleClearSearch}
-        />
-
-        <div className={isSearching ? "space-y-12" : ""}>
+        <div>
           <PlatformFeatures 
-            features={filteredFeatures(featureData.platformFeatures)}
+            features={featureData.platformFeatures}
             triangleImage={triangleImage}
-            isSearching={isSearching}
+            isSearching={false}
           />
 
           <div className="grid md:grid-cols-3 gap-8">

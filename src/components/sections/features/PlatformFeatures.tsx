@@ -12,7 +12,7 @@ interface PlatformFeaturesProps {
 }
 
 const FeatureTitle = memo(({ children, description }: { children: React.ReactNode; description?: string }) => (
-  <div className="text-center mb-16 mt-20">
+  <div className="text-center mb-12">
     <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up">
       <Package className="w-8 h-8 text-primary" />
       <h3 className="text-xl font-semibold dark:text-white">{children}</h3>
