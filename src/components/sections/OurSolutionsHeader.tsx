@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { Layers } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Layers, ArrowRight } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 
 const OurSolutionsHeader = () => {
   const navigate = useNavigate();
@@ -58,16 +58,21 @@ const OurSolutionsHeader = () => {
             <Card
               key={solution.title}
               onClick={solution.onClick}
-              className="cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700"
+              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700"
               style={{ animationDelay: `${(index + 1) * 100}ms` }}
             >
               <div className={`h-1.5 ${solution.accentColor}`} />
-              <CardHeader className="pt-5">
+              <CardHeader className="pt-5 pb-2">
                 <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
                   {solution.description}
                 </CardDescription>
               </CardHeader>
+              <CardFooter className="pt-0 pb-4">
+                <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+                  Learn More <ArrowRight className="w-4 h-4" />
+                </span>
+              </CardFooter>
             </Card>
           ))}
         </div>
