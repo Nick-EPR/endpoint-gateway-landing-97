@@ -75,10 +75,15 @@ const FeaturedNewsBanner = () => {
     )}>
       <div className="container mx-auto px-4">
         <div className="flex items-center h-10 gap-3">
-          <div className="flex items-center gap-2 flex-shrink-0 min-w-[70px]">
+          <div 
+            className={cn(
+              "flex items-center gap-2 flex-shrink-0 overflow-hidden transition-all duration-300 ease-out",
+              isCurrentFeatured ? "w-[70px]" : "w-0"
+            )}
+          >
             <span 
               className={cn(
-                "text-xs font-medium uppercase tracking-wide transition-opacity duration-300",
+                "text-xs font-medium uppercase tracking-wide whitespace-nowrap transition-opacity duration-300",
                 isCurrentFeatured ? "opacity-100" : "opacity-0"
               )}
               style={{ color: '#93C852' }}
