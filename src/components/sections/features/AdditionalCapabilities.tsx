@@ -4,7 +4,7 @@ const AdditionalCapabilities = () => {
   return (
     <section className="py-20 md:py-32 bg-transparent">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h2 className="text-4xl md:text-6xl font-bold text-center mb-12 text-foreground">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-foreground">
           Additional Platform Capabilities
         </h2>
         <div className="grid md:grid-cols-2 gap-8">
