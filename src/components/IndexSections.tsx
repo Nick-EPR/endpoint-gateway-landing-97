@@ -23,6 +23,7 @@ SectionLoading.displayName = "SectionLoading";
 
 // Lazily load the Hero component since it's above the fold
 const Hero = lazy(() => import("@/components/sections/Hero"));
+const OurSolutionsHeader = lazy(() => import("@/components/sections/OurSolutionsHeader"));
 
 const IndexSections = () => {
   // Memoize the renderSection function
@@ -34,6 +35,10 @@ const IndexSections = () => {
 
   return (
     <>
+      <Suspense fallback={<SectionLoading />}>
+        <OurSolutionsHeader />
+      </Suspense>
+
       <Suspense fallback={<SectionLoading />}>
         <Hero 
           title="Comprehensive ITAM Solutions for Your Enterprise" 
