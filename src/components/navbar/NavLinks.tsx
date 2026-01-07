@@ -36,7 +36,7 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
   };
 
   const getSolutionsLinkClasses = () => {
-    const solutionsPages = ['/partnerships/movius', '/pcaas'];
+    const solutionsPages = ['/partnerships/movius', '/pcaas', '/ans'];
     const isActive = solutionsPages.includes(location.pathname);
     const baseClasses = 'transition-colors duration-200 flex items-center gap-1';
     
@@ -85,6 +85,32 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
             align="start"
             className="bg-white dark:bg-neutral-900 dark:border-neutral-800 min-w-[200px] z-50"
           >
+            <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
+              <Link
+                to="/#products"
+                className="flex items-center gap-2 w-full"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (location.pathname !== '/') {
+                    window.location.href = '/#products';
+                  } else {
+                    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+                  }
+                  if (onClose) onClose();
+                }}
+              >
+                <span>Core Platform</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
+              <Link
+                to="/ans"
+                className="flex items-center gap-2 w-full"
+                onClick={onClose}
+              >
+                <span>ANS</span>
+              </Link>
+            </DropdownMenuItem>
             <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
               <Link
                 to="/partnerships/movius"
