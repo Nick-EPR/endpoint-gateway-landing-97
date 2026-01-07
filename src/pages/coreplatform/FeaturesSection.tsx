@@ -16,7 +16,7 @@ const FeaturesSection = () => {
       title: "Asset Discovery",
       description: "Automatically discover and inventory all IT assets across your organization with comprehensive scanning technology.",
       icon: Search,
-      video: "https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Invoice%20Parsing.mov",
+      video: "https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Invoice%20Parsing%20Trimmed.mov",
       details: [
         "Identify hardware, software, and cloud assets",
         "Capture detailed configuration information",
@@ -29,7 +29,7 @@ const FeaturesSection = () => {
       title: "Lifecycle Tracking",
       description: "Track and manage assets throughout their entire lifecycle, from procurement to retirement and disposal.",
       icon: Layers,
-      video: "https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Asset%20Lifecycle%20Timeline.mov",
+      video: "https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Asset%20Lifecycle%20Timeline%20Trimmed.mov",
       details: [
         "Procurement and onboarding workflows",
         "Maintenance and upgrade tracking",
