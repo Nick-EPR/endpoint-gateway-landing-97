@@ -47,17 +47,21 @@ const CorePlatform = () => {
       
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
       <HeroSection />
-      <section className="py-12 bg-slate-50 dark:bg-[#020817]">
+      <section className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
         <Products />
       </section>
-      <section className="py-12 bg-slate-100 dark:bg-[#0F172A]">
+      <section className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
         <Features />
       </section>
-      <section className="py-12 bg-slate-50 dark:bg-[#020817]">
+      <section className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
         <AdditionalCapabilities />
       </section>
-      <FeaturesSection />
-      <IntegrationSection />
+      <section className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
+        <FeaturesSection />
+      </section>
+      <section className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
+        <IntegrationSection />
+      </section>
       <CTASection />
       <Footer />
     </div>
