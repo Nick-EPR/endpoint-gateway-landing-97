@@ -151,24 +151,22 @@ const FeaturesSection = () => {
                 </div>
                 
                 <div className="order-1 md:order-2 relative">
-                  <div className="overflow-hidden">
-                    {feature.video ? (
-                      <video 
-                        src={feature.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-auto block bg-transparent"
-                      />
-                    ) : (
-                      <img 
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-auto"
-                      />
-                    )}
-                  </div>
+                  {feature.video ? (
+                    <video 
+                      src={feature.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto block"
+                    />
+                  ) : (
+                    <img 
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-auto"
+                    />
+                  )}
                   
                   {/* Decorative elements */}
                   <div className="absolute -z-10 -bottom-6 -right-6 w-24 h-24 rounded-lg bg-primary/10 dark:bg-primary/20"></div>
