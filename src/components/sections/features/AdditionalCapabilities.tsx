@@ -4,9 +4,9 @@ const AdditionalCapabilities = () => {
   return (
     <section className="py-20 md:py-32 bg-transparent">
       <div className="container mx-auto px-4 max-w-4xl">
-        <h3 className="text-2xl font-semibold text-center mb-12 text-foreground">
+        <h2 className="text-4xl md:text-6xl font-bold text-center mb-12 text-foreground">
           Additional Platform Capabilities
-        </h3>
+        </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {featureData.detailedFeatures.map((category, index) => (
             <div key={index} className="space-y-4">
