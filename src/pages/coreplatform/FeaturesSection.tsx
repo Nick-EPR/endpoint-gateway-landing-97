@@ -33,7 +33,7 @@ const FeaturesSection = () => {
       title: "Lifecycle Tracking",
       description: "Track and manage assets throughout their entire lifecycle, from procurement to retirement and disposal.",
       icon: Layers,
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000",
+      video: "https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Asset%20Lifecycle%20Timeline.mov",
       details: [
         "Procurement and onboarding workflows",
         "Maintenance and upgrade tracking",
