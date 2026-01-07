@@ -46,12 +46,12 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
           <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
           Our Solutions
         </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8 md:mb-12">
           {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full" style={{
           animationDelay: `${200 + index * 150}ms`,
           animationFillMode: 'forwards'
