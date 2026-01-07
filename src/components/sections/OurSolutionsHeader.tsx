@@ -32,14 +32,15 @@ const OurSolutionsHeader = () => {
     icon: "/lovable-uploads/t-mobile-emblem.webp",
     iconType: "image" as const,
     iconSize: "w-5 h-5"
-  }, {
+}, {
     title: "Advanced Network Solutions",
     description: "Purpose built coverage for seamless connectivity and enhanced security",
     onClick: handleNetworkSolutionsClick,
     accentColor: "bg-[#FF4E3C]",
     icon: TowerControl,
     iconType: "lucide" as const,
-    iconSize: "w-8 h-8"
+    iconSize: "w-8 h-8",
+    imageBackground: "/images/5g-cell-tower.jpg"
   }];
   return <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -71,18 +72,28 @@ const OurSolutionsHeader = () => {
                   <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
                 </>
               )}
+              {solution.imageBackground && (
+                <>
+                  <img
+                    src={solution.imageBackground}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+                </>
+              )}
               <div className={`h-1.5 ${solution.accentColor} relative z-10`} />
-              <CardHeader className={`pt-5 pb-2 flex-1 relative z-10 ${solution.videoBackground ? 'text-white' : ''}`}>
+              <CardHeader className={`pt-5 pb-2 flex-1 relative z-10 ${(solution.videoBackground || solution.imageBackground) ? 'text-white' : ''}`}>
                 <div className="flex items-center gap-3">
-                  {solution.iconType === "image" ? <img src={solution.icon as string} alt={solution.title} className={`${solution.iconSize} object-contain`} /> : <solution.icon className={`${solution.iconSize} text-[#FF4E3C]`} />}
-                  <CardTitle className={`text-lg ${solution.videoBackground ? 'text-white' : 'dark:text-white'}`}>{solution.title}</CardTitle>
+                  {solution.iconType === "image" ? <img src={solution.icon as string} alt={solution.title} className={`${solution.iconSize} object-contain`} /> : <solution.icon className={`${solution.iconSize} ${solution.imageBackground ? 'text-white' : 'text-[#FF4E3C]'}`} />}
+                  <CardTitle className={`text-lg ${(solution.videoBackground || solution.imageBackground) ? 'text-white' : 'dark:text-white'}`}>{solution.title}</CardTitle>
                 </div>
-                <CardDescription className={`text-sm leading-relaxed mt-2 ${solution.videoBackground ? 'text-white/90' : ''}`}>
+                <CardDescription className={`text-sm leading-relaxed mt-2 ${(solution.videoBackground || solution.imageBackground) ? 'text-white/90' : ''}`}>
                   {solution.description}
                 </CardDescription>
               </CardHeader>
-              <CardFooter className={`pt-0 pb-4 mt-auto relative z-10 ${solution.videoBackground ? 'text-white' : ''}`}>
-                <span className={`text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all ${solution.videoBackground ? 'text-white' : 'text-primary'}`}>
+              <CardFooter className={`pt-0 pb-4 mt-auto relative z-10 ${(solution.videoBackground || solution.imageBackground) ? 'text-white' : ''}`}>
+                <span className={`text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all ${(solution.videoBackground || solution.imageBackground) ? 'text-white' : 'text-primary'}`}>
                   Learn More <ArrowRight className="w-4 h-4" />
                 </span>
               </CardFooter>
