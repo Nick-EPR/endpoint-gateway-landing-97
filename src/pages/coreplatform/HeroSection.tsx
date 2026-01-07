@@ -22,7 +22,7 @@ const HeroSection = () => {
       }, 50);
       
       return () => clearInterval(typingInterval);
-    }, 300);
+    }, 2000);
     
     return () => clearTimeout(startDelay);
   }, []);
