@@ -21,9 +21,8 @@ const SectionLoading = memo(() => (
 
 SectionLoading.displayName = "SectionLoading";
 
-// Lazily load components
+// Lazily load the Hero component since it's above the fold
 const Hero = lazy(() => import("@/components/sections/Hero"));
-const Features = lazy(() => import("@/components/sections/Features"));
 
 const IndexSections = () => {
   // Memoize the renderSection function
@@ -35,13 +34,6 @@ const IndexSections = () => {
 
   return (
     <>
-      {/* Our Solutions - now first */}
-      <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
-        <Suspense fallback={<SectionLoading />}>
-          <Features />
-        </Suspense>
-      </SectionWrapper>
-
       <Suspense fallback={<SectionLoading />}>
         <Hero 
           title="Comprehensive ITAM Solutions for Your Enterprise" 
@@ -56,6 +48,10 @@ const IndexSections = () => {
         </SectionWrapper>
 
         <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
+          {renderSection(sections.features)}
+        </SectionWrapper>
+
+        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.comparison)}
         </SectionWrapper>
 
