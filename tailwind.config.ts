@@ -186,6 +186,7 @@ export default {
         "fade-left": "fade-left 0.5s ease-out forwards",
         "drift": "drift 20s ease-in-out infinite",
         "dot-pulse": "dot-pulse 4s ease-in-out infinite",
+        "dot-wave": "dot-wave 8s ease-in-out infinite",
       },
     },
   },
