@@ -9,6 +9,7 @@ import CaseStudySection from "@/components/ans/CaseStudySection";
 import ImpactSection from "@/components/ans/ImpactSection";
 import PartnershipSection from "@/components/ans/PartnershipSection";
 import CTASection from "@/components/ans/CTASection";
+import LearnMoreSection from "@/components/ans/LearnMoreSection";
 
 const ANS = () => {
   useScrollTop();
@@ -32,6 +33,7 @@ const ANS = () => {
         <ChallengeSection />
         <SolutionSection />
         <CaseStudySection />
+        <LearnMoreSection />
         <ImpactSection />
         <PartnershipSection />
         <CTASection />
