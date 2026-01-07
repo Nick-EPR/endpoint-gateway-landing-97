@@ -40,32 +40,6 @@ const FeaturesSection = () => {
         "End-of-life planning and processing",
         "Historical audit trails for compliance"
       ]
-    },
-    {
-      id: "compliance",
-      title: "Compliance & Reporting",
-      description: "Ensure adherence to security policies and compliance requirements with comprehensive monitoring and reporting.",
-      icon: Shield,
-      image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=1000",
-      details: [
-        "R2v3 and ISO 14001 compliance tracking",
-        "DoD standard adherence monitoring",
-        "Software license compliance tracking",
-        "Role-based access control and audit logs"
-      ]
-    },
-    {
-      id: "optimization",
-      title: "Cost Optimization",
-      description: "Turn asset data into actionable insights with powerful analytics and cost optimization tools.",
-      icon: BarChart3,
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000",
-      details: [
-        "Total cost of ownership analysis",
-        "Usage patterns and trend analysis",
-        "ROI tracking and reporting",
-        "Budget forecasting and planning"
-      ]
     }
   ];
 
@@ -152,22 +126,14 @@ const FeaturesSection = () => {
                 
                 <div className="order-1 md:order-2 relative">
                   <div className="overflow-hidden rounded-xl">
-                    {feature.video ? (
-                      <video 
-                        src={feature.video}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-auto block scale-125"
-                      />
-                    ) : (
-                      <img 
-                        src={feature.image}
-                        alt={feature.title}
-                        className="w-full h-auto"
-                      />
-                    )}
+                    <video 
+                      src={feature.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-auto block scale-125"
+                    />
                   </div>
                   
                   {/* Decorative elements */}
