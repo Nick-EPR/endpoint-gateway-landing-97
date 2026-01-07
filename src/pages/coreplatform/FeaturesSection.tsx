@@ -172,7 +172,7 @@ const FeaturesSection = () => {
                   
                   {/* Decorative elements */}
                   <div className="absolute -z-10 -bottom-6 -right-6 w-24 h-24 rounded-lg bg-primary/10 dark:bg-primary/20"></div>
-                  <div className="absolute -z-10 -top-6 -left-6 w-16 h-16 rounded-full bg-blue-500/10 dark:bg-blue-500/20"></div>
+                  <div className="absolute -z-10 -top-6 -left-6 w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20"></div>
                 </div>
               </div>
             </TabsContent>
