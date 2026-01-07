@@ -53,11 +53,11 @@ const PartnershipSection = () => {
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <div className="flex items-center gap-2 text-muted-foreground">
+            <div className="flex items-center gap-2">
               <img
-                src="/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png"
+                src="/lovable-uploads/Lifetime_EPR_Emblem.png"
                 alt="Lifetime EPR"
-                className="h-8 w-auto dark:brightness-0 dark:invert"
+                className="h-10 w-auto"
               />
             </div>
             <div className="text-2xl text-muted-foreground/30">+</div>
