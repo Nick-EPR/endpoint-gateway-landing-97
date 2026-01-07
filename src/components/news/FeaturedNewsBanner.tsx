@@ -123,7 +123,7 @@ const FeaturedNewsBanner = () => {
                   const content = (
                     <span className="flex items-center gap-2 text-sm">
                       {!article.is_featured && (
-                        <Newspaper className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                        <Newspaper className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#93C852' }} />
                       )}
                       <span className="truncate text-foreground group-hover:text-primary transition-colors">
                         {article.title}
