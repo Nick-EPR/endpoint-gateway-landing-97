@@ -56,6 +56,9 @@ const CorePlatform = () => {
       <section className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
         <AdditionalCapabilities />
       </section>
+      <section className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
+        <FeaturesSection />
+      </section>
       <CTASection />
       <Footer />
     </div>
