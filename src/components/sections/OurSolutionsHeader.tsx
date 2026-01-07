@@ -46,7 +46,7 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-4xl md:text-6xl font-semibold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-3 dark:text-white">
+        <h2 className="text-3xl md:text-4xl font-semibold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-3 dark:text-white">
           <img 
             src="/lovable-uploads/Lifetime_EPR_Emblem.png" 
             alt="Lifetime EPR" 
