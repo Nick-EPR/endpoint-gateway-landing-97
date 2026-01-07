@@ -1,4 +1,4 @@
-import { ExternalLink, Building2, Stethoscope, Wifi } from "lucide-react";
+import { ExternalLink, Heart, Stethoscope, Wifi } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -8,7 +8,7 @@ const articles = [
     description: "Discover how Boston Children's Hospital transformed patient care with T-Mobile's advanced network solutions.",
     source: "T-Mobile Business",
     url: "https://www.t-mobile.com/business/enterprise/boston-childrens-hospital",
-    icon: Building2,
+    icon: Heart,
     thumbnail: "/lovable-uploads/boston-childrens.webp",
   },
   {
