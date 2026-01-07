@@ -1,7 +1,11 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Cpu, Wifi, Wrench } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const IntegrationSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
   const products = [
     {
       name: "HeliAM",
@@ -27,9 +31,9 @@ const IntegrationSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-neutral-50 dark:bg-neutral-900/50">
+    <section ref={sectionRef} className="py-20 bg-neutral-50 dark:bg-neutral-900/50">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-bold mb-6 dark:text-white">Unified Ecosystem</h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-300">
             The Core Platform seamlessly integrates with our entire product ecosystem, providing a unified experience across all your IT asset management needs.
@@ -40,7 +44,7 @@ const IntegrationSection = () => {
         <div className="max-w-4xl mx-auto mb-16">
           <div className="relative flex flex-col items-center">
             {/* Center logo */}
-            <div className="relative z-10 bg-white dark:bg-neutral-800 rounded-full p-6 shadow-xl border-4 border-primary/20">
+            <div className={`relative z-10 bg-white dark:bg-neutral-800 rounded-full p-6 shadow-xl border-4 border-primary/20 transition-all duration-700 ${isVisible ? "opacity-100 scale-100" : "opacity-0 scale-90"}`} style={{ transitionDelay: "200ms" }}>
               <img 
                 src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
                 alt="Lifetime EPR Core Platform" 
@@ -61,7 +65,8 @@ const IntegrationSection = () => {
                 <Link 
                   key={product.name}
                   to={product.path}
-                  className="group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-neutral-200 dark:border-neutral-700"
+                  className={`group bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-neutral-200 dark:border-neutral-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                  style={{ transitionDelay: `${400 + index * 150}ms` }}
                 >
                   <div className={`w-12 h-12 ${product.color} rounded-lg flex items-center justify-center mb-4`}>
                     <product.icon className="h-6 w-6 text-white" />
@@ -82,10 +87,10 @@ const IntegrationSection = () => {
         </div>
 
         {/* Integration benefits */}
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-lg">
+        <div className={`bg-white dark:bg-neutral-800 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto shadow-lg transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "800ms" }}>
           <h3 className="text-2xl font-bold text-center mb-8 dark:text-white">Why Choose a Unified Platform?</h3>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="flex gap-4">
+            <div className={`flex gap-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "900ms" }}>
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-primary font-bold">1</span>
               </div>
@@ -94,7 +99,7 @@ const IntegrationSection = () => {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">All your asset data in one centralized platform with real-time synchronization.</p>
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className={`flex gap-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1000ms" }}>
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-primary font-bold">2</span>
               </div>
@@ -103,7 +108,7 @@ const IntegrationSection = () => {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">Automated processes that span across discovery, management, and retirement.</p>
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className={`flex gap-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1100ms" }}>
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-primary font-bold">3</span>
               </div>
@@ -112,7 +117,7 @@ const IntegrationSection = () => {
                 <p className="text-sm text-neutral-600 dark:text-neutral-400">One login, one interface, one support team for all your ITAM needs.</p>
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className={`flex gap-4 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`} style={{ transitionDelay: "1200ms" }}>
               <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                 <span className="text-primary font-bold">4</span>
               </div>

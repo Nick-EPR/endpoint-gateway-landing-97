@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { 
   Search,
   Layers, 
@@ -8,8 +9,11 @@ import {
   Database,
   FileCheck
 } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const FeaturesSection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
   const features = [
     {
       id: "discovery",
@@ -73,9 +77,9 @@ const FeaturesSection = () => {
   ];
 
   return (
-    <section id="features" className="py-20 bg-white dark:bg-neutral-900">
+    <section ref={sectionRef} id="features" className="py-20 bg-white dark:bg-neutral-900">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-bold mb-6 dark:text-white">Complete Asset Management Platform</h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-300">
             The Core Platform provides everything you need to manage, secure, and optimize your IT assets at every stage of their lifecycle.
@@ -84,7 +88,11 @@ const FeaturesSection = () => {
 
         <div className="space-y-24">
           {features.map((feature, index) => (
-            <div key={feature.id} className="grid md:grid-cols-2 gap-8 items-center">
+            <div 
+              key={feature.id} 
+              className={`grid md:grid-cols-2 gap-8 items-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${200 + index * 200}ms` }}
+            >
               <div className={index % 2 === 0 ? "order-2 md:order-1" : "order-2"}>
                 <h3 className="text-2xl font-bold mb-4 dark:text-white">{feature.title}</h3>
                 <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">
@@ -124,11 +132,15 @@ const FeaturesSection = () => {
         </div>
         
         {/* Capabilities section */}
-        <div className="mt-24">
+        <div className={`mt-24 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "600ms" }}>
           <h3 className="text-2xl font-bold text-center mb-12 dark:text-white">Platform Capabilities</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {capabilities.map((capability, index) => (
-              <div key={index} className="bg-neutral-50 dark:bg-neutral-800/30 p-8 rounded-xl">
+              <div 
+                key={index} 
+                className={`bg-neutral-50 dark:bg-neutral-800/30 p-8 rounded-xl transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: `${700 + index * 100}ms` }}
+              >
                 <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
                   <capability.icon className="h-6 w-6 text-primary" />
                 </div>
