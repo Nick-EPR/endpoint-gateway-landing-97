@@ -159,7 +159,7 @@ const FeaturesSection = () => {
                         loop
                         muted
                         playsInline
-                        className="w-full h-auto block scale-110"
+                        className="w-full h-auto block scale-125"
                       />
                     ) : (
                       <img 
