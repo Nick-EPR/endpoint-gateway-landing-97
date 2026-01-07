@@ -87,17 +87,9 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
           >
             <DropdownMenuItem className="dark:focus:bg-neutral-800 dark:focus:text-white dark:text-neutral-200 focus:text-neutral-900">
               <Link
-                to="/#products"
+                to="/core-platform"
                 className="flex items-center gap-2 w-full"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (location.pathname !== '/') {
-                    window.location.href = '/#products';
-                  } else {
-                    document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
-                  }
-                  if (onClose) onClose();
-                }}
+                onClick={onClose}
               >
                 <span>Core Platform</span>
               </Link>
