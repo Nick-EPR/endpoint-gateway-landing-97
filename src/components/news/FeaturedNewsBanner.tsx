@@ -6,6 +6,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { ExternalLink, X } from "lucide-react";
@@ -14,6 +15,8 @@ import { cn } from "@/lib/utils";
 const FeaturedNewsBanner = () => {
   const [isDismissed, setIsDismissed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = useState<CarouselApi>();
 
   useEffect(() => {
     const dismissed = sessionStorage.getItem('featuredNewsBanner_dismissed');
@@ -29,14 +32,31 @@ const FeaturedNewsBanner = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const { data: featuredNews, isLoading } = useQuery({
-    queryKey: ["featured-news"],
-    queryFn: () => fetchNewsArticles({ featured: true, limit: 10 }),
+  useEffect(() => {
+    if (!api) return;
+    
+    const onSelect = () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    };
+    
+    api.on("select", onSelect);
+    onSelect();
+    
+    return () => {
+      api.off("select", onSelect);
+    };
+  }, [api]);
+
+  const { data: newsData, isLoading } = useQuery({
+    queryKey: ["all-news-banner"],
+    queryFn: () => fetchNewsArticles({ limit: 15 }),
     refetchInterval: 5 * 60 * 1000,
     staleTime: 2 * 60 * 1000,
   });
 
-  const articles = featuredNews?.data || [];
+  const articles = newsData?.data || [];
+  const currentArticle = articles[currentIndex];
+  const isCurrentFeatured = currentArticle?.is_featured ?? false;
 
   const handleClose = () => {
     setIsDismissed(true);
@@ -55,14 +75,21 @@ const FeaturedNewsBanner = () => {
     )}>
       <div className="container mx-auto px-4">
         <div className="flex items-center h-10 gap-3">
-          <div className="flex items-center gap-2 flex-shrink-0">
-            <span className="text-xs font-medium uppercase tracking-wide" style={{ color: '#93C852' }}>
+          <div className="flex items-center gap-2 flex-shrink-0 min-w-[70px]">
+            <span 
+              className={cn(
+                "text-xs font-medium uppercase tracking-wide transition-opacity duration-300",
+                isCurrentFeatured ? "opacity-100" : "opacity-0"
+              )}
+              style={{ color: '#93C852' }}
+            >
               Featured
             </span>
           </div>
           
           <div className="flex-1 min-w-0 overflow-hidden">
             <Carousel
+              setApi={setApi}
               opts={{
                 align: "start",
                 loop: true,
