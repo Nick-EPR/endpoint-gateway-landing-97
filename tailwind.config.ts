@@ -136,58 +136,6 @@ export default {
             transform: "translateX(0)",
           },
         },
-        "drift": {
-          "0%, 100%": {
-            backgroundPosition: "0px 0px",
-          },
-          "50%": {
-            backgroundPosition: "10px 10px",
-          },
-        },
-        "dot-pulse": {
-          "0%, 100%": {
-            opacity: "0.2",
-          },
-          "50%": {
-            opacity: "1",
-          },
-        },
-        "dot-wave": {
-          "0%": {
-            backgroundPosition: "0% 0%",
-            opacity: "0.3",
-          },
-          "25%": {
-            backgroundPosition: "50% 25%",
-            opacity: "0.7",
-          },
-          "50%": {
-            backgroundPosition: "100% 50%",
-            opacity: "1",
-          },
-          "75%": {
-            backgroundPosition: "50% 75%",
-            opacity: "0.7",
-          },
-          "100%": {
-            backgroundPosition: "0% 100%",
-            opacity: "0.3",
-          },
-        },
-        "dot-pulse-wave": {
-          "0%": {
-            opacity: "0.2",
-            transform: "scale(0.8)",
-          },
-          "50%": {
-            opacity: "1",
-            transform: "scale(1.2)",
-          },
-          "100%": {
-            opacity: "0.2",
-            transform: "scale(0.8)",
-          },
-        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
@@ -198,10 +146,6 @@ export default {
         "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
         "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out 1s both",
         "fade-left": "fade-left 0.5s ease-out forwards",
-        "drift": "drift 20s ease-in-out infinite",
-        "dot-pulse": "dot-pulse 4s ease-in-out infinite",
-        "dot-wave": "dot-wave 8s ease-in-out infinite",
-        "dot-pulse-wave": "dot-pulse-wave 3s ease-in-out infinite",
       },
     },
   },
