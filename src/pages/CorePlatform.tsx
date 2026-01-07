@@ -6,8 +6,9 @@ import HeroSection from "./coreplatform/HeroSection";
 import FeaturesSection from "./coreplatform/FeaturesSection";
 import IntegrationSection from "./coreplatform/IntegrationSection";
 import CTASection from "./coreplatform/CTASection";
-import { PlatformFeatures } from "@/components/sections/features/PlatformFeatures";
-import { featureData } from "@/components/sections/features/featureData";
+import Products from "@/components/sections/Products";
+import Features from "@/components/sections/Features";
+import AdditionalCapabilities from "@/components/sections/features/AdditionalCapabilities";
 
 const CorePlatform = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,14 +47,14 @@ const CorePlatform = () => {
       
       <Navbar scrolled={isScrolled} onMouseEnter={handleMouseEnter} />
       <HeroSection />
-      <section className="py-20 bg-white dark:bg-neutral-900">
-        <div className="container mx-auto px-4 max-w-7xl">
-          <PlatformFeatures 
-            features={featureData.platformFeatures}
-            triangleImage="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png"
-            isSearching={false}
-          />
-        </div>
+      <section className="py-12 bg-slate-50 dark:bg-[#020817]">
+        <Products />
+      </section>
+      <section className="py-12 bg-slate-100 dark:bg-[#0F172A]">
+        <Features />
+      </section>
+      <section className="py-12 bg-slate-50 dark:bg-[#020817]">
+        <AdditionalCapabilities />
       </section>
       <FeaturesSection />
       <IntegrationSection />
