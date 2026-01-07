@@ -57,7 +57,7 @@ const HeroSection = () => {
                   <img 
                     src="/lovable-uploads/Lifetime_EPR_Emblem.png" 
                     alt="" 
-                    className="inline-block w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 ml-1 align-text-bottom animate-fade-in"
+                    className="inline-block w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 ml-0.5 align-baseline animate-fade-in"
                   />
                 )}
               </span>
