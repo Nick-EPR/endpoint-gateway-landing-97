@@ -45,17 +45,19 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-3 dark:text-white">
+        <div className="flex flex-col items-center mb-8 md:mb-12 animate-fade-up">
           <img 
             src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
             alt="Decorative triangle" 
             loading="lazy"
             width="100"
             height="100"
-            className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float"
+            className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float mb-4"
           />
-          Our Solutions
-        </h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-center dark:text-white">
+            Our Solutions
+          </h2>
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8 md:mb-12">
           {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-left opacity-0 flex flex-col h-full relative" style={{
