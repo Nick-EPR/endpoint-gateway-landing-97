@@ -80,6 +80,19 @@ const FeaturesSection = () => {
     <section ref={sectionRef} id="features" className="pt-32 md:pt-40 pb-20">
       <div className="container mx-auto px-4">
         <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="flex justify-center mb-8 relative">
+            <div className="relative">
+              <img 
+                src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
+                alt="Decorative triangle"
+                loading="lazy"
+                width={100}
+                height={100}
+                className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float" 
+              />
+              <div className="absolute -bottom-8 left-1/2 w-0.5 h-8 bg-primary/20 -translate-x-1/2 animate-pulse"></div>
+            </div>
+          </div>
           <h2 className="text-3xl font-bold mb-6 dark:text-white">Complete Asset Management Platform</h2>
           <p className="text-lg text-neutral-600 dark:text-neutral-300">
             The Core Platform provides everything you need to manage, secure, and optimize your IT assets at every stage of their lifecycle.
