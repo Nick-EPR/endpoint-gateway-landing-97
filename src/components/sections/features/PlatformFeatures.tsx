@@ -78,35 +78,6 @@ export const PlatformFeatures = memo(({
           </div>
         </div>
 
-        {!isSearching && (
-          <>
-            <div id="perfect-itam-solution" className="text-center mt-32 mb-16">
-              <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up" style={{ animationDelay: '200ms' }}>
-                <Settings className="w-6 h-6 text-primary" />
-                <h3 className="text-xl font-semibold dark:text-white">Your Perfect ITAM Solution</h3>
-              </div>
-              <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '300ms' }}>
-                Choose from our specialized products to create an ITAM solution that perfectly matches 
-                your use case and business requirements.
-              </p>
-            </div>
-
-            <div 
-              className="absolute -bottom-16 left-1/2 w-0.5 h-16 bg-primary/20 -translate-x-1/2"
-              style={{
-                animation: 'pulse 2s infinite'
-              }}
-            >
-              <div 
-                className="absolute w-8 h-8 rounded-full -bottom-4 -left-[14px] border-2 border-primary/20"
-                style={{
-                  animation: 'pulse 2s infinite'
-                }}
-              />
-            </div>
-            <div className="absolute -bottom-32 left-0 w-full" />
-          </>
-        )}
       </div>
       <style>{`
         @keyframes pulse {
