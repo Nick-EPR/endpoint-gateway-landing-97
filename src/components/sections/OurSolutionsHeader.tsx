@@ -46,8 +46,8 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
-          <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
+        <h2 className="text-4xl md:text-6xl font-bold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-3 dark:text-white">
+          <Layers className="w-10 h-10 md:w-12 md:h-12 text-neutral-700 dark:text-neutral-300" />
           Our Solutions
         </h2>
         
