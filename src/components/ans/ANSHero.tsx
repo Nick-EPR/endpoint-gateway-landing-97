@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { TowerControl, ArrowRight, Shield, Radio, Wifi } from "lucide-react";
@@ -8,6 +8,7 @@ import hospitalVideo from "@/assets/hospital-hero-video.mp4";
 const ANSHero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const scrollToSolutions = () => {
     const element = document.getElementById("solutions");
@@ -29,12 +30,19 @@ const ANSHero = () => {
     >
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
+        {/* Placeholder gradient - always visible as fallback */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+        
+        {/* Video with fade-in transition */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover blur-sm scale-105"
+          onCanPlay={() => setIsVideoLoaded(true)}
+          className={`absolute inset-0 w-full h-full object-cover blur-sm scale-105 transition-opacity duration-1000 ease-out ${
+            isVideoLoaded ? "opacity-100" : "opacity-0"
+          }`}
         >
           <source src={hospitalVideo} type="video/mp4" />
         </video>
