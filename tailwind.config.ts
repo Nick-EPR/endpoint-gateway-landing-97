@@ -174,6 +174,20 @@ export default {
             opacity: "0.3",
           },
         },
+        "dot-pulse-wave": {
+          "0%": {
+            opacity: "0.2",
+            transform: "scale(0.8)",
+          },
+          "50%": {
+            opacity: "1",
+            transform: "scale(1.2)",
+          },
+          "100%": {
+            opacity: "0.2",
+            transform: "scale(0.8)",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
@@ -187,6 +201,7 @@ export default {
         "drift": "drift 20s ease-in-out infinite",
         "dot-pulse": "dot-pulse 4s ease-in-out infinite",
         "dot-wave": "dot-wave 8s ease-in-out infinite",
+        "dot-pulse-wave": "dot-pulse-wave 3s ease-in-out infinite",
       },
     },
   },

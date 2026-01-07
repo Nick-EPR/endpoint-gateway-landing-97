@@ -76,14 +76,46 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      <div className="absolute inset-0 w-full h-full z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
-        <img
-          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-          alt="IT Asset Management Background"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      {/* Dark gradient base */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-0" />
+
+      {/* Animated dot layers - diagonal wave from top-left to bottom-right */}
+      {/* Layer 1 - Primary wave */}
+      <div 
+        className="absolute inset-0 z-[1]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.7) 2px, transparent 2px)',
+          backgroundSize: '30px 30px',
+          animation: 'dot-pulse-wave 3s ease-in-out infinite',
+        }}
+      />
+
+      {/* Layer 2 - Offset diagonal wave */}
+      <div 
+        className="absolute inset-0 z-[1]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.5) 2px, transparent 2px)',
+          backgroundSize: '30px 30px',
+          backgroundPosition: '15px 15px',
+          animation: 'dot-pulse-wave 3s ease-in-out infinite',
+          animationDelay: '-1s',
+        }}
+      />
+
+      {/* Layer 3 - Third wave for depth */}
+      <div 
+        className="absolute inset-0 z-[1]"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.3) 2px, transparent 2px)',
+          backgroundSize: '30px 30px',
+          backgroundPosition: '7px 7px',
+          animation: 'dot-pulse-wave 3s ease-in-out infinite',
+          animationDelay: '-2s',
+        }}
+      />
+
+      {/* Overlay gradient for text readability */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-[2]" />
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
