@@ -20,7 +20,7 @@ const FeaturesSection = () => {
       title: "Asset Discovery",
       description: "Automatically discover and inventory all IT assets across your organization with comprehensive scanning technology.",
       icon: Search,
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1000",
+      video: "https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Invoice%20Parsing.mov",
       details: [
         "Identify hardware, software, and cloud assets",
         "Capture detailed configuration information",
@@ -152,11 +152,22 @@ const FeaturesSection = () => {
                 
                 <div className="order-1 md:order-2 relative">
                   <div className="aspect-video rounded-xl overflow-hidden shadow-lg dark:shadow-primary/10">
-                    <img 
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                    />
+                    {feature.video ? (
+                      <video 
+                        src={feature.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <img 
+                        src={feature.image}
+                        alt={feature.title}
+                        className="w-full h-full object-cover"
+                      />
+                    )}
                   </div>
                   
                   {/* Decorative elements */}
