@@ -50,9 +50,16 @@ const HeroSection = () => {
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
               Complete IT Asset Management{" "}
-              <span className="text-primary">
+            <span className="text-primary">
                 {displayText}
                 {!isTypingComplete && <span className="animate-pulse">|</span>}
+                {isTypingComplete && (
+                  <img 
+                    src="/lovable-uploads/Lifetime_EPR_Emblem.png" 
+                    alt="" 
+                    className="inline-block w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 ml-2 align-middle"
+                  />
+                )}
               </span>
             </h1>
             
