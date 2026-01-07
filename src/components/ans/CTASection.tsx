@@ -6,7 +6,7 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const CTASection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   return (
     <section
