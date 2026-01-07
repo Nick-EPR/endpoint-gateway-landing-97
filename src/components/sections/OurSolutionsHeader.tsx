@@ -45,9 +45,9 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="relative pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
       <div 
-        className="absolute inset-0 opacity-30 dark:opacity-20"
+        className="absolute inset-0"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.15) 1px, transparent 1px)',
           backgroundSize: '24px 24px'
         }}
       ></div>
