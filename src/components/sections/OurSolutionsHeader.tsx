@@ -31,8 +31,9 @@ const OurSolutionsHeader = () => {
     accentColor: "bg-[#E20074]",
     icon: "/lovable-uploads/t-mobile-emblem.webp",
     iconType: "image" as const,
-    iconSize: "w-5 h-5"
-}, {
+    iconSize: "w-5 h-5",
+    imageBackground: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+  }, {
     title: "Advanced Network Solutions",
     description: "Purpose built coverage for seamless connectivity and enhanced security",
     onClick: handleNetworkSolutionsClick,
