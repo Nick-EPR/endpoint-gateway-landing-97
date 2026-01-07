@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const HeroSection = () => {
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
-  const fullText = ", From Procurement to Retirement";
+  const fullText = "From Procurement to Retirement";
   useEffect(() => {
     let currentIndex = 0;
     const startDelay = setTimeout(() => {
