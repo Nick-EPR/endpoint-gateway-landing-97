@@ -1,8 +1,32 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const HeroSection = () => {
+  const [displayText, setDisplayText] = useState("");
+  const [isTypingComplete, setIsTypingComplete] = useState(false);
+  const fullText = "From Procurement to Retirement";
+
+  useEffect(() => {
+    let currentIndex = 0;
+    const startDelay = setTimeout(() => {
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= fullText.length) {
+          setDisplayText(fullText.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+          setIsTypingComplete(true);
+        }
+      }, 50);
+      
+      return () => clearInterval(typingInterval);
+    }, 300);
+    
+    return () => clearTimeout(startDelay);
+  }, []);
+
   return (
     <section className="relative pt-24 pb-16 overflow-hidden min-h-[80vh] flex items-center">
       {/* Video background */}
@@ -45,7 +69,11 @@ const HeroSection = () => {
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
-              Complete IT Asset Management <span className="text-primary">From Procurement to Retirement</span>
+              Complete IT Asset Management{" "}
+              <span className="text-primary">
+                {displayText}
+                {!isTypingComplete && <span className="animate-pulse">|</span>}
+              </span>
             </h1>
             
             <p className="text-lg text-white/80 max-w-lg">
