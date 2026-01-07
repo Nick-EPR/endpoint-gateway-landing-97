@@ -32,20 +32,20 @@ const HeroSection = () => {
       
       {/* Animated circles background */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-blue-500/10 blur-3xl"></div>
-        <div className="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-blue-400/10 blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl"></div>
+        <div className="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-primary/10 blur-3xl"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 pt-12">
           <div className="lg:w-1/2 space-y-6">
             <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 shadow-sm w-fit border border-white/20">
-              <div className="h-2 w-2 rounded-full bg-blue-400 animate-pulse"></div>
+              <div className="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
               <span className="text-sm font-medium text-white/90">Full Lifecycle IT Asset Management</span>
             </div>
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
-              Complete IT Asset Management <span className="text-blue-400">From Procurement to Retirement</span>
+              Complete IT Asset Management <span className="text-primary">From Procurement to Retirement</span>
             </h1>
             
             <p className="text-lg text-white/80 max-w-lg">
@@ -54,7 +54,7 @@ const HeroSection = () => {
             
             <div className="flex flex-wrap gap-4 pt-4">
               <Link to="/contact">
-                <Button size="lg" className="gap-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white">
+                <Button size="lg" className="gap-2 rounded-full bg-primary hover:bg-primary/90 text-white">
                   Get Started <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
@@ -78,7 +78,7 @@ const HeroSection = () => {
             {/* Stats cards */}
             <div className="absolute -bottom-6 -left-6 lg:-left-10 bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-4 z-20 max-w-[200px] animate-fade-up [animation-delay:600ms] border border-white/20">
               <div className="flex items-center gap-2 text-lg font-bold text-white">
-                <span className="text-blue-400">100%</span> Visibility
+                <span className="text-primary">100%</span> Visibility
               </div>
               <p className="text-xs text-white/70">
                 across all IT assets
@@ -87,7 +87,7 @@ const HeroSection = () => {
             
             <div className="absolute -top-6 -right-6 lg:-right-10 bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-4 z-20 max-w-[200px] animate-fade-up [animation-delay:800ms] border border-white/20">
               <div className="flex items-center gap-2 text-lg font-bold text-white">
-                <span className="text-blue-400">Full</span> Lifecycle
+                <span className="text-primary">Full</span> Lifecycle
               </div>
               <p className="text-xs text-white/70">
                 procurement to retirement
