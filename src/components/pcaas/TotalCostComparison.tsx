@@ -156,11 +156,8 @@ const TotalCostComparison = () => {
             <div className={`bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700 transition-all duration-500 ${allRowsVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
-                <span className="text-lg font-bold text-red-500 dark:text-red-400 relative">
+                <span className="text-lg font-bold text-red-500 dark:text-red-400">
                   <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={allRowsVisible} />
-                  <span className={`absolute left-0 top-1/2 h-0.5 bg-red-600 dark:bg-red-400 transition-all duration-700 ease-out ${showPCaaSCard ? 'w-full' : 'w-0'}`} style={{
-                  transform: 'translateY(-50%)'
-                }} />
                 </span>
               </div>
             </div>
@@ -227,11 +224,8 @@ const TotalCostComparison = () => {
             <div className={`bg-neutral-100 dark:bg-neutral-800 px-4 py-3 border-t border-neutral-200 dark:border-neutral-700 transition-all duration-500 ${allRowsVisible ? 'opacity-100' : 'opacity-0'}`}>
               <div className="flex justify-between items-center">
                 <span className="font-bold text-sm text-neutral-900 dark:text-white">36-Month Total</span>
-                <span className="text-lg font-bold text-red-500 dark:text-red-400 relative">
+                <span className="text-lg font-bold text-red-500 dark:text-red-400">
                   <AnimatedPriceRange minValue={3935} maxValue={6170} isActive={allRowsVisible} />
-                  <span className={`absolute left-0 top-1/2 h-0.5 bg-red-600 dark:bg-red-400 transition-all duration-700 ease-out ${showPCaaSCard ? 'w-full' : 'w-0'}`} style={{
-                  transform: 'translateY(-50%)'
-                }} />
                 </span>
               </div>
             </div>
