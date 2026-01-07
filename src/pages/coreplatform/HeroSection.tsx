@@ -24,7 +24,7 @@ const HeroSection = () => {
   }, []);
   return <section className="relative pt-24 pb-16 overflow-hidden min-h-[80vh] flex items-center">
       {/* Video background */}
-      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover scale-125">
+      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover scale-125 blur-sm">
         <source src="https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Screen%20Recording%202026-01-07%20at%201.17.39%20PM.mov" type="video/mp4" />
       </video>
       
