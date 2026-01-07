@@ -44,12 +44,33 @@ const OurSolutionsHeader = () => {
     imageBackground: "/images/5g-cell-tower.jpg"
   }];
   return <section className="relative pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
+      {/* Wave Layer 1 - Primary wave */}
       <div 
-        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none animate-drift animate-dot-pulse"
+        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.5) 1.5px, transparent 1.5px)',
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.6) 1.5px, transparent 1.5px)',
           backgroundSize: '20px 20px',
-          animation: 'drift 20s ease-in-out infinite, dot-pulse 4s ease-in-out infinite'
+          animation: 'dot-wave 8s ease-in-out infinite'
+        }}
+      />
+      {/* Wave Layer 2 - Offset wave */}
+      <div 
+        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.4) 1.5px, transparent 1.5px)',
+          backgroundSize: '25px 25px',
+          animation: 'dot-wave 10s ease-in-out infinite',
+          animationDelay: '-3s'
+        }}
+      />
+      {/* Wave Layer 3 - Counter wave */}
+      <div 
+        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.3) 1.5px, transparent 1.5px)',
+          backgroundSize: '30px 30px',
+          animation: 'dot-wave 12s ease-in-out infinite reverse',
+          animationDelay: '-6s'
         }}
       />
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
