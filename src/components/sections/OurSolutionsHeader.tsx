@@ -55,7 +55,7 @@ const OurSolutionsHeader = () => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8 md:mb-12">
-          {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full relative" style={{
+          {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-left opacity-0 flex flex-col h-full relative" style={{
           animationDelay: `${200 + index * 150}ms`,
           animationFillMode: 'forwards'
         }}>
