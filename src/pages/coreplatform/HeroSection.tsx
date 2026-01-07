@@ -46,10 +46,7 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 pt-12">
           <div className="lg:w-1/2 space-y-6">
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 py-1 shadow-sm w-fit border border-white/20">
-              <div className="h-2 w-2 rounded-full bg-primary animate-pulse"></div>
-              <span className="text-sm font-medium text-white/90">Full Lifecycle IT Asset Management</span>
-            </div>
+            
             
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white">
               Complete IT Asset Management{" "}
