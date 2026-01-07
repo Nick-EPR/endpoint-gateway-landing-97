@@ -4,7 +4,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import HeroSection from "./coreplatform/HeroSection";
 import FeaturesSection from "./coreplatform/FeaturesSection";
-import IntegrationSection from "./coreplatform/IntegrationSection";
+
 import CTASection from "./coreplatform/CTASection";
 import Products from "@/components/sections/Products";
 import Features from "@/components/sections/Features";
@@ -58,9 +58,6 @@ const CorePlatform = () => {
       </section>
       <section className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
         <FeaturesSection />
-      </section>
-      <section className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
-        <IntegrationSection />
       </section>
       <CTASection />
       <Footer />
