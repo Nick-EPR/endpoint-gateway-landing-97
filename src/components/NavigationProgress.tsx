@@ -40,7 +40,7 @@ const NavigationProgress = () => {
 
   return (
     <div className="fixed top-0 left-0 w-full z-50">
-      <Progress value={progress} className="h-1" />
+      <Progress value={progress} className="h-1 bg-transparent" />
     </div>
   );
 };
