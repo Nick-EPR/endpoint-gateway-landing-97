@@ -59,7 +59,7 @@ const OurSolutionsHeader = () => {
             loading="lazy"
             width="100"
             height="100"
-            className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float mb-4 backdrop-blur-[2px] bg-white/10"
+            className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float mb-4 backdrop-blur-[1px] bg-white/10"
           />
           <h2 className="text-3xl md:text-5xl font-bold text-center dark:text-white">
             Our Solutions
