@@ -86,7 +86,7 @@ const OurSolutionsHeader = () => {
               <div className={`h-1.5 ${solution.accentColor} relative z-10`} />
               <CardHeader className={`pt-5 pb-2 flex-1 relative z-10 ${(solution.videoBackground || solution.imageBackground) ? 'text-white' : ''}`}>
                 <div className="flex items-center gap-3">
-                  {solution.iconType === "image" ? <img src={solution.icon as string} alt={solution.title} className={`${solution.iconSize} object-contain`} /> : <solution.icon className={`${solution.iconSize} ${solution.imageBackground ? 'text-white' : 'text-[#FF4E3C]'}`} />}
+                  {solution.iconType === "image" ? <img src={solution.icon as string} alt={solution.title} className={`${solution.iconSize} object-contain`} /> : <solution.icon className={`${solution.iconSize} text-[#FF4E3C]`} />}
                   <CardTitle className={`text-lg ${(solution.videoBackground || solution.imageBackground) ? 'text-white' : 'dark:text-white'}`}>{solution.title}</CardTitle>
                 </div>
                 <CardDescription className={`text-sm leading-relaxed mt-2 ${(solution.videoBackground || solution.imageBackground) ? 'text-white/90' : ''}`}>
