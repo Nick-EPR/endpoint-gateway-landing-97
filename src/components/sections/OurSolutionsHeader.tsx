@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowRight, TowerControl } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import corePlatformVideo from "@/assets/core-platform-video.mp4";
 const OurSolutionsHeader = () => {
   const navigate = useNavigate();
   const handleCorePlatformClick = () => {
@@ -56,22 +57,37 @@ const OurSolutionsHeader = () => {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8 md:mb-12">
-          {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full" style={{
+          {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full relative" style={{
           animationDelay: `${200 + index * 150}ms`,
           animationFillMode: 'forwards'
         }}>
-              <div className={`h-1.5 ${solution.accentColor}`} />
-              <CardHeader className="pt-5 pb-2 flex-1">
+              {/* Video background for Core Platform card */}
+              {index === 0 && (
+                <>
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute inset-0 w-full h-full object-cover blur-[1px]"
+                  >
+                    <source src={corePlatformVideo} type="video/mp4" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
+                </>
+              )}
+              <div className={`h-1.5 ${solution.accentColor} relative z-10`} />
+              <CardHeader className={`pt-5 pb-2 flex-1 relative z-10 ${index === 0 ? 'text-white' : ''}`}>
                 <div className="flex items-center gap-3">
                   {solution.iconType === "image" ? <img src={solution.icon as string} alt={solution.title} className={`${solution.iconSize} object-contain`} /> : <solution.icon className={`${solution.iconSize} text-[#FF4E3C]`} />}
-                  <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
+                  <CardTitle className={`text-lg ${index === 0 ? 'text-white' : 'dark:text-white'}`}>{solution.title}</CardTitle>
                 </div>
-                <CardDescription className="text-sm leading-relaxed mt-2">
+                <CardDescription className={`text-sm leading-relaxed mt-2 ${index === 0 ? 'text-white/90' : ''}`}>
                   {solution.description}
                 </CardDescription>
               </CardHeader>
-              <CardFooter className="pt-0 pb-4 mt-auto">
-                <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
+              <CardFooter className="pt-0 pb-4 mt-auto relative z-10">
+                <span className={`text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all ${index === 0 ? 'text-white' : 'text-primary'}`}>
                   Learn More <ArrowRight className="w-4 h-4" />
                 </span>
               </CardFooter>
