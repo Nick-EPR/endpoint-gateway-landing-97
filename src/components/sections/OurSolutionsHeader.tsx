@@ -45,10 +45,11 @@ const OurSolutionsHeader = () => {
   }];
   return <section className="relative pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
       <div 
-        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none animate-drift"
+        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none animate-drift animate-dot-pulse"
         style={{
           backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.5) 1.5px, transparent 1.5px)',
-          backgroundSize: '20px 20px'
+          backgroundSize: '20px 20px',
+          animation: 'drift 20s ease-in-out infinite, dot-pulse 4s ease-in-out infinite'
         }}
       />
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
