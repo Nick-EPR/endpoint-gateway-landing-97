@@ -1,12 +1,10 @@
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Layers } from "lucide-react";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
 import lueminLogo from "/lovable-uploads/82f53487-163f-495f-a2d0-f1535273a1df.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
-import { Feature, DetailedFeature } from "./features/types";
+import { Feature } from "./features/types";
 import { SearchFeatures } from "./features/SearchFeatures";
 import { PlatformFeatures } from "./features/PlatformFeatures";
 import { ProductFeatureColumn } from "./features/ProductFeatureColumn";
@@ -14,24 +12,6 @@ import { featureData } from "./features/featureData";
 
 const Features = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate();
-
-  const handleCorePlatformClick = () => {
-    const section = document.getElementById('perfect-itam-solution');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handlePCaaSClick = () => {
-    window.scrollTo(0, 0);
-    navigate('/pcaas');
-  };
-
-  const handleNetworkSolutionsClick = () => {
-    window.scrollTo(0, 0);
-    navigate('/partnerships/movius');
-  };
 
   const filteredFeatures = (features: Feature[]) => {
     const searchTerm = searchQuery.toLowerCase();
@@ -51,39 +31,7 @@ const Features = () => {
   return (
     <section id="features" className="py-20 md:py-32 bg-transparent">
       <div className="container mx-auto px-4 max-w-7xl">
-        {!isSearching && (
-          <>
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
-              <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
-              Our Solutions
-            </h2>
-            <p className="text-center text-base md:text-lg mb-6 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
-              Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
-            </p>
-            <div className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-up" style={{ animationDelay: '100ms' }}>
-              <button 
-                onClick={handleCorePlatformClick}
-                className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
-              >
-                Core Platform
-              </button>
-              <button 
-                onClick={handlePCaaSClick}
-                className="px-6 py-2.5 rounded-full bg-[#E20074] text-white font-medium hover:bg-[#E20074]/90 transition-colors"
-              >
-                PC as a Service
-              </button>
-              <button 
-                onClick={handleNetworkSolutionsClick}
-                className="px-6 py-2.5 rounded-full bg-[#FF4E3C] text-white font-medium hover:bg-[#FF4E3C]/90 transition-colors"
-              >
-                Advanced Network Solutions
-              </button>
-            </div>
-          </>
-        )}
-
-        <SearchFeatures 
+        <SearchFeatures
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onClear={handleClearSearch}
