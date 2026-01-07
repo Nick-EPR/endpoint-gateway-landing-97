@@ -41,7 +41,7 @@ export const PlatformFeatures = memo(({
   isSearching = false
 }: PlatformFeaturesProps) => {
   return (
-    <div className="relative mb-16">
+    <div className="relative mb-32">
       <div className="relative">
         {!isSearching && (
           <FeatureTitle
