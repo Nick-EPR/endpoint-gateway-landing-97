@@ -136,6 +136,14 @@ export default {
             transform: "translateX(0)",
           },
         },
+        "drift": {
+          "0%, 100%": {
+            backgroundPosition: "0px 0px",
+          },
+          "50%": {
+            backgroundPosition: "10px 10px",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
@@ -146,6 +154,7 @@ export default {
         "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
         "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out 1s both",
         "fade-left": "fade-left 0.5s ease-out forwards",
+        "drift": "drift 20s ease-in-out infinite",
       },
     },
   },
