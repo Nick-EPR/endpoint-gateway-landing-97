@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Layers, ArrowRight } from "lucide-react";
+import { Layers, ArrowRight, TowerControl } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 
 const OurSolutionsHeader = () => {
@@ -28,18 +28,24 @@ const OurSolutionsHeader = () => {
       description: "Lifetime EPR's full IT asset lifecycle management",
       onClick: handleCorePlatformClick,
       accentColor: "bg-primary",
+      icon: "/lovable-uploads/fd6a644f-7ba7-4e3b-84b7-c8c3ad303a49.png",
+      iconType: "image" as const,
     },
     {
       title: "PC as a Service",
       description: "First to market device solution combining 5G connectivity with IT services for SMBs",
       onClick: handlePCaaSClick,
       accentColor: "bg-[#E20074]",
+      icon: "/lovable-uploads/t-mobile-emblem.webp",
+      iconType: "image" as const,
     },
     {
       title: "Advanced Network Solutions",
       description: "Purpose built coverage for seamless connectivity and enhanced security",
       onClick: handleNetworkSolutionsClick,
       accentColor: "bg-[#FF4E3C]",
+      icon: TowerControl,
+      iconType: "lucide" as const,
     },
   ];
 
@@ -63,8 +69,19 @@ const OurSolutionsHeader = () => {
             >
               <div className={`h-1.5 ${solution.accentColor}`} />
               <CardHeader className="pt-5 pb-2">
-                <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
+                <div className="flex items-center gap-3">
+                  {solution.iconType === "image" ? (
+                    <img 
+                      src={solution.icon as string} 
+                      alt={solution.title} 
+                      className="w-7 h-7 object-contain"
+                    />
+                  ) : (
+                    <solution.icon className="w-7 h-7 text-[#FF4E3C]" />
+                  )}
+                  <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
+                </div>
+                <CardDescription className="text-sm leading-relaxed mt-2">
                   {solution.description}
                 </CardDescription>
               </CardHeader>
