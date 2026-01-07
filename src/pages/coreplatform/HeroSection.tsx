@@ -2,12 +2,10 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
 const HeroSection = () => {
   const [displayText, setDisplayText] = useState("");
   const [isTypingComplete, setIsTypingComplete] = useState(false);
   const fullText = "From Procurement to Retirement";
-
   useEffect(() => {
     let currentIndex = 0;
     const startDelay = setTimeout(() => {
@@ -20,39 +18,24 @@ const HeroSection = () => {
           setIsTypingComplete(true);
         }
       }, 50);
-      
       return () => clearInterval(typingInterval);
     }, 2000);
-    
     return () => clearTimeout(startDelay);
   }, []);
-
-  return (
-    <section className="relative pt-24 pb-16 overflow-hidden min-h-[80vh] flex items-center">
+  return <section className="relative pt-24 pb-16 overflow-hidden min-h-[80vh] flex items-center">
       {/* Video background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover scale-125"
-      >
-        <source 
-          src="https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Screen%20Recording%202026-01-07%20at%201.17.39%20PM.mov" 
-          type="video/mp4" 
-        />
+      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover scale-125">
+        <source src="https://enqatyvjcztoicadviix.supabase.co/storage/v1/object/public/assets/clips/Screen%20Recording%202026-01-07%20at%201.17.39%20PM.mov" type="video/mp4" />
       </video>
       
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
       
       {/* Tech pattern overlay */}
-      <div className="absolute inset-0 opacity-10" 
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '30px'
-        }}
-      ></div>
+      <div className="absolute inset-0 opacity-10" style={{
+      backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+      backgroundSize: '30px'
+    }}></div>
       
       {/* Animated circles background */}
       <div className="absolute inset-0 overflow-hidden">
@@ -94,38 +77,9 @@ const HeroSection = () => {
             </div>
           </div>
           
-          <div className="lg:w-1/2 relative">
-            <div className="relative z-10 rounded-xl overflow-hidden lg:ml-12">
-              <img 
-                src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
-                alt="Lifetime EPR Logo" 
-                className="w-48 h-48 mx-auto object-contain drop-shadow-2xl"
-              />
-            </div>
-            
-            {/* Stats cards */}
-            <div className="absolute -bottom-6 -left-6 lg:-left-10 bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-4 z-20 max-w-[200px] animate-fade-up [animation-delay:600ms] border border-white/20">
-              <div className="flex items-center gap-2 text-lg font-bold text-white">
-                <span className="text-primary">100%</span> Visibility
-              </div>
-              <p className="text-xs text-white/70">
-                across all IT assets
-              </p>
-            </div>
-            
-            <div className="absolute -top-6 -right-6 lg:-right-10 bg-white/10 backdrop-blur-md rounded-lg shadow-lg p-4 z-20 max-w-[200px] animate-fade-up [animation-delay:800ms] border border-white/20">
-              <div className="flex items-center gap-2 text-lg font-bold text-white">
-                <span className="text-primary">Full</span> Lifecycle
-              </div>
-              <p className="text-xs text-white/70">
-                procurement to retirement
-              </p>
-            </div>
-          </div>
+          
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default HeroSection;
