@@ -9,7 +9,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { ExternalLink, X } from "lucide-react";
+import { ExternalLink, Newspaper, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const FeaturedNewsBanner = () => {
@@ -119,6 +119,9 @@ const FeaturedNewsBanner = () => {
                   
                   const content = (
                     <span className="flex items-center gap-2 text-sm">
+                      {!article.is_featured && (
+                        <Newspaper className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                      )}
                       <span className="truncate text-foreground group-hover:text-primary transition-colors">
                         {article.title}
                       </span>
