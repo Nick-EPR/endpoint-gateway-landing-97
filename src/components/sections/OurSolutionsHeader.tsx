@@ -47,9 +47,12 @@ const OurSolutionsHeader = () => {
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-3xl md:text-5xl font-bold text-center mb-8 md:mb-12 animate-fade-up flex items-center justify-center gap-3 dark:text-white">
           <img 
-            src="/lovable-uploads/Lifetime_EPR_Emblem.png" 
-            alt="Lifetime EPR" 
-            className="w-10 h-10 md:w-14 md:h-14 object-contain"
+            src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
+            alt="Decorative triangle" 
+            loading="lazy"
+            width="100"
+            height="100"
+            className="w-[6.25rem] h-auto shadow-lg border border-neutral-200/20 rounded-lg p-2 animate-float"
           />
           Our Solutions
         </h2>
