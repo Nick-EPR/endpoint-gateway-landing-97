@@ -22,8 +22,8 @@ const Logo = ({ scrolled }: LogoProps) => {
   // Show emblem only on mobile (limited screen width)
   const showEmblem = isMobile;
   
-  // Check if current page has a dark background requiring light logo
-  const hasDarkBackground = darkBackgroundPages.includes(location.pathname);
+  // Check if current page has a dark background requiring light logo (only when not scrolled)
+  const hasDarkBackground = darkBackgroundPages.includes(location.pathname) && !scrolled;
 
   // Full text logos
   const lightModeLogo = "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
