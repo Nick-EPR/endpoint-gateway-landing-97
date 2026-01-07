@@ -116,6 +116,16 @@ export default {
             opacity: "0.02",
           },
         },
+        "slide-fade-in-left": {
+          "0%": {
+            opacity: "0",
+            transform: "translateX(8px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
@@ -124,6 +134,7 @@ export default {
         "emblem-wave-in": "emblem-wave-in 0.6s ease-out both",
         "emblem-wave-out": "emblem-wave-out 0.4s ease-in forwards",
         "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
+        "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out",
       },
     },
   },
