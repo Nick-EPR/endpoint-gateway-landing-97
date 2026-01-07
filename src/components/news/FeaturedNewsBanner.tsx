@@ -92,7 +92,10 @@ const FeaturedNewsBanner = () => {
             </span>
           </div>
           
-          <div className="flex-1 min-w-0 overflow-hidden">
+          <div className={cn(
+            "flex-1 min-w-0 overflow-hidden transition-all duration-300 ease-out",
+            !isCurrentFeatured && "-ml-3"
+          )}>
             <Carousel
               setApi={setApi}
               opts={{
