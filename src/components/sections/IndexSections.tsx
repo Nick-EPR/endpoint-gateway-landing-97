@@ -52,6 +52,10 @@ const IndexSections = () => {
         </SectionWrapper>
 
         <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
+          {renderSection(sections.itamSolution)}
+        </SectionWrapper>
+
+        <SectionWrapper className="bg-white dark:bg-neutral-900 parallelogram-section">
           {renderSection(sections.comparison)}
         </SectionWrapper>
 

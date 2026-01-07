@@ -1,7 +1,7 @@
-
 import Hero from "@/components/sections/Hero";
 import Products from "@/components/sections/Products";
 import Features from "@/components/sections/Features";
+import { ITAMSolutionSection } from "@/components/sections/features/ITAMSolutionSection";
 import ComparisonSection from "@/components/sections/ComparisonSection";
 import Partners from "@/components/sections/Partners";
 import ROICalculator from "@/components/sections/ROICalculator";
@@ -14,8 +14,9 @@ export const sections = {
   hero: Hero,
   products: Products,
   features: Features,
+  itamSolution: ITAMSolutionSection,
   comparison: ComparisonSection,
-  roi: ROICalculator,    // Moved ROI calculator to be after comparison section
+  roi: ROICalculator,
   partners: Partners,
   about: About,
   contact: Contact,
