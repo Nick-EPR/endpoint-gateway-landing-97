@@ -7,7 +7,7 @@ import hospitalVideo from "@/assets/hospital-hero-video.mp4";
 
 const ANSHero = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   const scrollToSolutions = () => {

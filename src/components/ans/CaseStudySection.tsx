@@ -4,7 +4,7 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const CaseStudySection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   const features = [
     { label: "Not a pilot", description: "Production-grade deployment" },

@@ -5,7 +5,7 @@ import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const SolutionSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const isVisible = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   const solutions = [
     {
