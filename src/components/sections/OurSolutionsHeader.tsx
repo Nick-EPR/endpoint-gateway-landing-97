@@ -4,12 +4,8 @@ import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/comp
 const OurSolutionsHeader = () => {
   const navigate = useNavigate();
   const handleCorePlatformClick = () => {
-    const section = document.getElementById('perfect-itam-solution');
-    if (section) {
-      section.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
+    window.scrollTo(0, 0);
+    navigate('/core-platform');
   };
   const handlePCaaSClick = () => {
     window.scrollTo(0, 0);
