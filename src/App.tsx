@@ -22,6 +22,7 @@ import News from "./pages/News";
 import NewsArticle from "./pages/NewsArticle";
 import Billboard from "./pages/Billboard";
 import ChatButton from "./components/ChatButton";
+import ScrollToTop from "./components/ScrollToTop";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
 import { Toaster } from "./components/ui/toaster";
 
@@ -34,6 +35,7 @@ function AppContent() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Router>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/security" element={<Security />} />
