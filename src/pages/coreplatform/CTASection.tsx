@@ -9,7 +9,7 @@ const CTASection = () => {
   const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
 
   return (
-    <section ref={sectionRef} className="pt-48 pb-20 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm relative overflow-hidden">
+    <section ref={sectionRef} className="pt-48 pb-20 bg-slate-50 dark:bg-[#020817] relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 right-0 w-72 h-72 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
