@@ -1,15 +1,15 @@
-
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, Check, Unlink, ExternalLink } from "lucide-react";
-
 const WhyChooseUsConclusion = () => {
   const navigate = useNavigate();
-
   const navigateToROI = () => {
     // Navigate to homepage and then scroll to ROI calculator
-    navigate('/', { state: { scrollTo: 'roi-calculator' } });
+    navigate('/', {
+      state: {
+        scrollTo: 'roi-calculator'
+      }
+    });
   };
-
   return <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
@@ -52,25 +52,14 @@ const WhyChooseUsConclusion = () => {
                   <div className="p-1 bg-primary/10 rounded-full mr-3 mt-1">
                     <Check className="h-4 w-4 text-primary" />
                   </div>
-                  <button 
-                    onClick={navigateToROI} 
-                    className="text-foreground flex items-center group hover:text-primary transition-colors"
-                  >
+                  <button onClick={navigateToROI} className="text-foreground flex items-center group hover:text-primary transition-colors">
                     <span className="underline decoration-dotted decoration-primary/70 underline-offset-2">Significant cost savings and operational efficiency</span>
                     <ExternalLink className="ml-2 h-4 w-4 text-primary group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
               
-              <div className="flex flex-wrap gap-4">
-                <Link to="/contact" className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                  Request a Demo 
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link to="/heliam" className="inline-flex items-center bg-white text-foreground border-2 border-primary px-6 py-3 rounded-lg font-semibold hover:bg-primary/10 transition-colors">
-                  Explore Our Platform
-                </Link>
-              </div>
+              
             </div>
             
             <div className="rounded-xl overflow-hidden shadow-xl">
@@ -81,5 +70,4 @@ const WhyChooseUsConclusion = () => {
       </div>
     </section>;
 };
-
 export default WhyChooseUsConclusion;
