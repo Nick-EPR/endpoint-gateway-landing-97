@@ -36,28 +36,28 @@ const Logo = ({ scrolled }: LogoProps) => {
       showEmblem ? 'w-8 md:w-10' : 'w-[120px] md:w-[150px]'
     }`}>
       <Link to="/" onClick={handleLogoClick}>
-        {/* Full logo - visible on desktop when space is available */}
+        {/* Full logo - light mode */}
         <img 
-          src={darkModeLogo}
+          src={lightModeLogo}
           alt="Lifetime EndPoint Resources"
-          className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 ${
+          className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 dark:opacity-0 ${
             showEmblem ? 'opacity-0' : 'opacity-100'
           }`}
         />
-        {/* EPR Emblem - visible when space is limited (mobile/compact) - light mode */}
+        {/* Full logo - dark mode */}
         <img 
-          src={emblemLogo}
-          alt="EPR"
-          className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 dark:opacity-0 ${
-            showEmblem ? 'opacity-100' : 'opacity-0'
+          src={darkModeLogo}
+          alt="Lifetime EndPoint Resources"
+          className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 opacity-0 ${
+            showEmblem ? '' : 'dark:opacity-100'
           }`}
         />
-        {/* EPR Emblem - visible when space is limited (mobile/compact) - dark mode */}
+        {/* EPR Emblem - visible when space is limited (mobile/compact) */}
         <img 
           src={emblemLogo}
           alt="EPR"
           className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 ${
-            showEmblem ? 'opacity-0 dark:opacity-100' : 'opacity-0'
+            showEmblem ? 'opacity-100' : 'opacity-0'
           }`}
         />
       </Link>
