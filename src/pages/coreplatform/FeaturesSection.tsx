@@ -1,10 +1,6 @@
-import { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Search,
   Layers, 
-  Shield,
-  BarChart3,
   Radio,
   Users,
   Zap,
@@ -86,64 +82,46 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        <Tabs defaultValue="discovery" className="w-full">
-          <div className="flex justify-center mb-8">
-            <TabsList className="grid grid-cols-2 md:grid-cols-4 bg-neutral-100 dark:bg-neutral-800/50 p-1 rounded-lg">
-              {features.map(feature => (
-                <TabsTrigger 
-                  key={feature.id} 
-                  value={feature.id}
-                  className="data-[state=active]:bg-white dark:data-[state=active]:bg-neutral-800 data-[state=active]:text-primary text-xs md:text-sm"
-                >
-                  <feature.icon className="h-4 w-4 mr-2" />
-                  <span className="hidden sm:inline">{feature.title}</span>
-                  <span className="sm:hidden">{feature.title.split(' ')[0]}</span>
-                </TabsTrigger>
-              ))}
-            </TabsList>
-          </div>
-
-          {features.map(feature => (
-            <TabsContent key={feature.id} value={feature.id} className="animate-fade-in">
-              <div className="grid md:grid-cols-2 gap-8 items-center">
-                <div className="order-2 md:order-1">
-                  <h3 className="text-2xl font-bold mb-4 dark:text-white">{feature.title}</h3>
-                  <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">
-                    {feature.description}
-                  </p>
-                  
-                  <ul className="space-y-3">
-                    {feature.details.map((detail, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5">
-                          <feature.icon className="h-3 w-3 text-primary" />
-                        </div>
-                        <span className="text-neutral-700 dark:text-neutral-300">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+        <div className="space-y-24">
+          {features.map((feature, index) => (
+            <div key={feature.id} className="grid md:grid-cols-2 gap-8 items-center">
+              <div className={index % 2 === 0 ? "order-2 md:order-1" : "order-2"}>
+                <h3 className="text-2xl font-bold mb-4 dark:text-white">{feature.title}</h3>
+                <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-6">
+                  {feature.description}
+                </p>
+                
+                <ul className="space-y-3">
+                  {feature.details.map((detail, detailIndex) => (
+                    <li key={detailIndex} className="flex items-start">
+                      <div className="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center mr-3 mt-0.5">
+                        <feature.icon className="h-3 w-3 text-primary" />
+                      </div>
+                      <span className="text-neutral-700 dark:text-neutral-300">{detail}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              
+              <div className={`relative ${index % 2 === 0 ? "order-1 md:order-2" : "order-1"}`}>
+                <div className="overflow-hidden rounded-xl">
+                  <video 
+                    src={feature.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-auto block scale-125"
+                  />
                 </div>
                 
-                <div className="order-1 md:order-2 relative">
-                  <div className="overflow-hidden rounded-xl">
-                    <video 
-                      src={feature.video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-auto block scale-125"
-                    />
-                  </div>
-                  
-                  {/* Decorative elements */}
-                  <div className="absolute -z-10 -bottom-6 -right-6 w-24 h-24 rounded-lg bg-primary/10 dark:bg-primary/20"></div>
-                  <div className="absolute -z-10 -top-6 -left-6 w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20"></div>
-                </div>
+                {/* Decorative elements */}
+                <div className="absolute -z-10 -bottom-6 -right-6 w-24 h-24 rounded-lg bg-primary/10 dark:bg-primary/20"></div>
+                <div className="absolute -z-10 -top-6 -left-6 w-16 h-16 rounded-full bg-primary/10 dark:bg-primary/20"></div>
               </div>
-            </TabsContent>
+            </div>
           ))}
-        </Tabs>
+        </div>
         
         {/* Capabilities section */}
         <div className="mt-24">
