@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Layers } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
 const OurSolutionsHeader = () => {
   const navigate = useNavigate();
@@ -21,6 +22,27 @@ const OurSolutionsHeader = () => {
     navigate('/partnerships/movius');
   };
 
+  const solutions = [
+    {
+      title: "Core Platform",
+      description: "Lifetime EPR's full IT asset lifecycle management",
+      onClick: handleCorePlatformClick,
+      accentColor: "bg-primary",
+    },
+    {
+      title: "PC as a Service",
+      description: "First to market device solution combining 5G connectivity with IT services for SMBs",
+      onClick: handlePCaaSClick,
+      accentColor: "bg-[#E20074]",
+    },
+    {
+      title: "Advanced Network Solutions",
+      description: "Purpose built coverage for seamless connectivity and enhanced security",
+      onClick: handleNetworkSolutionsClick,
+      accentColor: "bg-[#FF4E3C]",
+    },
+  ];
+
   return (
     <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
@@ -28,28 +50,26 @@ const OurSolutionsHeader = () => {
           <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
           Our Solutions
         </h2>
-        <p className="text-center text-base md:text-lg mb-6 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
+        <p className="text-center text-base md:text-lg mb-8 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
           Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
         </p>
-        <div className="flex flex-wrap justify-center gap-3 animate-fade-up" style={{ animationDelay: '100ms' }}>
-          <button 
-            onClick={handleCorePlatformClick}
-            className="px-6 py-2.5 rounded-full bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
-          >
-            Core Platform
-          </button>
-          <button 
-            onClick={handlePCaaSClick}
-            className="px-6 py-2.5 rounded-full bg-[#E20074] text-white font-medium hover:bg-[#E20074]/90 transition-colors"
-          >
-            PC as a Service
-          </button>
-          <button 
-            onClick={handleNetworkSolutionsClick}
-            className="px-6 py-2.5 rounded-full bg-[#FF4E3C] text-white font-medium hover:bg-[#FF4E3C]/90 transition-colors"
-          >
-            Advanced Network Solutions
-          </button>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-up" style={{ animationDelay: '100ms' }}>
+          {solutions.map((solution, index) => (
+            <Card
+              key={solution.title}
+              onClick={solution.onClick}
+              className="cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700"
+              style={{ animationDelay: `${(index + 1) * 100}ms` }}
+            >
+              <div className={`h-1.5 ${solution.accentColor}`} />
+              <CardHeader className="pt-5">
+                <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  {solution.description}
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          ))}
         </div>
       </div>
     </section>
