@@ -17,7 +17,7 @@ const OurSolutionsHeader = () => {
   };
   const handleNetworkSolutionsClick = () => {
     window.scrollTo(0, 0);
-    navigate('/partnerships/movius');
+    navigate('/ans');
   };
   const solutions = [{
     title: "Core Platform",
