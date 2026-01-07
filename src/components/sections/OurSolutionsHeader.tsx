@@ -79,7 +79,7 @@ const OurSolutionsHeader = () => {
                     alt=""
                     className="absolute inset-0 w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
                 </>
               )}
               <div className={`h-1.5 ${solution.accentColor} relative z-10`} />
