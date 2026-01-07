@@ -22,7 +22,7 @@ const OurSolutionsHeader = () => {
   };
 
   return (
-    <section className="pt-32 md:pt-40 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
+    <section className="pt-40 md:pt-48 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
           <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
