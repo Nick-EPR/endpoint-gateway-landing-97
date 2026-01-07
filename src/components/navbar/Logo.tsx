@@ -5,6 +5,9 @@ interface LogoProps {
   scrolled: boolean;
 }
 
+// Pages with dark/video backgrounds that need light logo in light mode
+const darkBackgroundPages = ['/ans'];
+
 const Logo = ({ scrolled }: LogoProps) => {
   const location = useLocation();
   const isMobile = useIsMobile();
@@ -18,6 +21,9 @@ const Logo = ({ scrolled }: LogoProps) => {
 
   // Show emblem only on mobile (limited screen width)
   const showEmblem = isMobile;
+  
+  // Check if current page has a dark background requiring light logo
+  const hasDarkBackground = darkBackgroundPages.includes(location.pathname);
 
   // Full text logos
   const lightModeLogo = "/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png";
@@ -31,9 +37,9 @@ const Logo = ({ scrolled }: LogoProps) => {
       showEmblem ? 'w-8 md:w-10' : 'w-[120px] md:w-[150px]'
     }`}>
       <Link to="/" onClick={handleLogoClick}>
-        {/* Full logo - light mode */}
+        {/* Full logo - light mode (use dark logo for pages with dark backgrounds) */}
         <img 
-          src={lightModeLogo}
+          src={hasDarkBackground ? darkModeLogo : lightModeLogo}
           alt="Lifetime EndPoint Resources"
           className={`absolute top-0 left-0 h-full w-auto transition-opacity duration-300 dark:opacity-0 ${
             showEmblem ? 'opacity-0' : 'opacity-100'
