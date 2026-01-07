@@ -53,13 +53,13 @@ const OurSolutionsHeader = () => {
         <p className="text-center text-base md:text-lg mb-8 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
           Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-up max-w-4xl mx-auto" style={{ animationDelay: '100ms' }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {solutions.map((solution, index) => (
             <Card
               key={solution.title}
               onClick={solution.onClick}
-              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700"
-              style={{ animationDelay: `${(index + 1) * 100}ms` }}
+              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0"
+              style={{ animationDelay: `${200 + index * 150}ms`, animationFillMode: 'forwards' }}
             >
               <div className={`h-1.5 ${solution.accentColor}`} />
               <CardHeader className="pt-5 pb-2">
