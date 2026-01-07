@@ -28,7 +28,7 @@ const OurSolutionsHeader = () => {
       description: "Lifetime EPR's full IT asset lifecycle management",
       onClick: handleCorePlatformClick,
       accentColor: "bg-primary",
-      icon: "/lovable-uploads/fd6a644f-7ba7-4e3b-84b7-c8c3ad303a49.png",
+      icon: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
       iconType: "image" as const,
     },
     {
