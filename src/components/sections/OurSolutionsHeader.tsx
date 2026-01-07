@@ -64,11 +64,11 @@ const OurSolutionsHeader = () => {
             <Card
               key={solution.title}
               onClick={solution.onClick}
-              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0"
+              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full"
               style={{ animationDelay: `${200 + index * 150}ms`, animationFillMode: 'forwards' }}
             >
               <div className={`h-1.5 ${solution.accentColor}`} />
-              <CardHeader className="pt-5 pb-2">
+              <CardHeader className="pt-5 pb-2 flex-1">
                 <div className="flex items-center gap-3">
                   {solution.iconType === "image" ? (
                     <img 
@@ -85,7 +85,7 @@ const OurSolutionsHeader = () => {
                   {solution.description}
                 </CardDescription>
               </CardHeader>
-              <CardFooter className="pt-0 pb-4">
+              <CardFooter className="pt-0 pb-4 mt-auto">
                 <span className="text-sm font-medium text-primary flex items-center gap-1 group-hover:gap-2 transition-all">
                   Learn More <ArrowRight className="w-4 h-4" />
                 </span>
