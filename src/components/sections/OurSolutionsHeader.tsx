@@ -1,87 +1,65 @@
 import { useNavigate } from "react-router-dom";
 import { Layers, ArrowRight, TowerControl } from "lucide-react";
 import { Card, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
-
 const OurSolutionsHeader = () => {
   const navigate = useNavigate();
-
   const handleCorePlatformClick = () => {
     const section = document.getElementById('perfect-itam-solution');
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
   const handlePCaaSClick = () => {
     window.scrollTo(0, 0);
     navigate('/pcaas');
   };
-
   const handleNetworkSolutionsClick = () => {
     window.scrollTo(0, 0);
     navigate('/partnerships/movius');
   };
-
-  const solutions = [
-    {
-      title: "Core Platform",
-      description: "Lifetime EPR's full IT asset lifecycle management",
-      onClick: handleCorePlatformClick,
-      accentColor: "bg-primary",
-      icon: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
-      iconType: "image" as const,
-      iconSize: "w-7 h-7",
-    },
-    {
-      title: "PC as a Service",
-      description: "First to market device solution combining 5G connectivity with IT services for SMBs",
-      onClick: handlePCaaSClick,
-      accentColor: "bg-[#E20074]",
-      icon: "/lovable-uploads/t-mobile-emblem.webp",
-      iconType: "image" as const,
-      iconSize: "w-5 h-5",
-    },
-    {
-      title: "Advanced Network Solutions",
-      description: "Purpose built coverage for seamless connectivity and enhanced security",
-      onClick: handleNetworkSolutionsClick,
-      accentColor: "bg-[#FF4E3C]",
-      icon: TowerControl,
-      iconType: "lucide" as const,
-      iconSize: "w-8 h-8",
-    },
-  ];
-
-  return (
-    <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
+  const solutions = [{
+    title: "Core Platform",
+    description: "Lifetime EPR's full IT asset lifecycle management",
+    onClick: handleCorePlatformClick,
+    accentColor: "bg-primary",
+    icon: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
+    iconType: "image" as const,
+    iconSize: "w-7 h-7"
+  }, {
+    title: "PC as a Service",
+    description: "First to market device solution combining 5G connectivity with IT services for SMBs",
+    onClick: handlePCaaSClick,
+    accentColor: "bg-[#E20074]",
+    icon: "/lovable-uploads/t-mobile-emblem.webp",
+    iconType: "image" as const,
+    iconSize: "w-5 h-5"
+  }, {
+    title: "Advanced Network Solutions",
+    description: "Purpose built coverage for seamless connectivity and enhanced security",
+    onClick: handleNetworkSolutionsClick,
+    accentColor: "bg-[#FF4E3C]",
+    icon: TowerControl,
+    iconType: "lucide" as const,
+    iconSize: "w-8 h-8"
+  }];
+  return <section className="pt-48 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section">
       <div className="container mx-auto px-4 max-w-7xl">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-3 animate-fade-up flex items-center justify-center gap-2 dark:text-white">
           <Layers className="w-8 h-8 text-neutral-700 dark:text-neutral-300" />
           Our Solutions
         </h2>
-        <p className="text-center text-base md:text-lg mb-8 animate-fade-up max-w-2xl mx-auto dark:text-neutral-300">
-          Comprehensive device lifecycle management with AI/ML-powered predictive maintenance
-        </p>
+        
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {solutions.map((solution, index) => (
-            <Card
-              key={solution.title}
-              onClick={solution.onClick}
-              className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full"
-              style={{ animationDelay: `${200 + index * 150}ms`, animationFillMode: 'forwards' }}
-            >
+          {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-up opacity-0 flex flex-col h-full" style={{
+          animationDelay: `${200 + index * 150}ms`,
+          animationFillMode: 'forwards'
+        }}>
               <div className={`h-1.5 ${solution.accentColor}`} />
               <CardHeader className="pt-5 pb-2 flex-1">
                 <div className="flex items-center gap-3">
-                  {solution.iconType === "image" ? (
-                    <img 
-                      src={solution.icon as string} 
-                      alt={solution.title} 
-                      className={`${solution.iconSize} object-contain`}
-                    />
-                  ) : (
-                    <solution.icon className={`${solution.iconSize} text-[#FF4E3C]`} />
-                  )}
+                  {solution.iconType === "image" ? <img src={solution.icon as string} alt={solution.title} className={`${solution.iconSize} object-contain`} /> : <solution.icon className={`${solution.iconSize} text-[#FF4E3C]`} />}
                   <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
                 </div>
                 <CardDescription className="text-sm leading-relaxed mt-2">
@@ -93,12 +71,9 @@ const OurSolutionsHeader = () => {
                   Learn More <ArrowRight className="w-4 h-4" />
                 </span>
               </CardFooter>
-            </Card>
-          ))}
+            </Card>)}
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default OurSolutionsHeader;
