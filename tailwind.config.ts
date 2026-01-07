@@ -144,6 +144,14 @@ export default {
             backgroundPosition: "10px 10px",
           },
         },
+        "dot-pulse": {
+          "0%, 100%": {
+            opacity: "0.5",
+          },
+          "50%": {
+            opacity: "0.8",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
@@ -155,6 +163,7 @@ export default {
         "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out 1s both",
         "fade-left": "fade-left 0.5s ease-out forwards",
         "drift": "drift 20s ease-in-out infinite",
+        "dot-pulse": "dot-pulse 4s ease-in-out infinite",
       },
     },
   },
