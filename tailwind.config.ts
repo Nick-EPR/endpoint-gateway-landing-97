@@ -134,7 +134,7 @@ export default {
         "emblem-wave-in": "emblem-wave-in 0.6s ease-out both",
         "emblem-wave-out": "emblem-wave-out 0.4s ease-in forwards",
         "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
-        "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out 2s both",
+        "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out 1s both",
       },
     },
   },
