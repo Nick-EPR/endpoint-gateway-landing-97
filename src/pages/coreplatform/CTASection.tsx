@@ -1,10 +1,15 @@
+import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const CTASection = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { isVisible } = useIntersectionObserver(sectionRef, { threshold: 0.1 });
+
   return (
-    <section className="py-20 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-sm relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-20 right-0 w-72 h-72 bg-blue-500/5 dark:bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -12,7 +17,7 @@ const CTASection = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-5xl mx-auto bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-800 rounded-3xl shadow-xl dark:shadow-blue-500/5 overflow-hidden border border-blue-100/50 dark:border-blue-800/20">
+        <div className={`max-w-5xl mx-auto bg-gradient-to-br from-blue-50 to-white dark:from-blue-900/20 dark:to-neutral-800 rounded-3xl shadow-xl dark:shadow-blue-500/5 overflow-hidden border border-blue-100/50 dark:border-blue-800/20 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="grid md:grid-cols-2 items-center">
             <div className="p-8 md:p-12">
               <h2 className="text-3xl font-bold mb-6 dark:text-white">
