@@ -48,7 +48,7 @@ const OurSolutionsHeader = () => {
       accentColor: "bg-[#FF4E3C]",
       icon: TowerControl,
       iconType: "lucide" as const,
-      iconSize: "w-7 h-7",
+      iconSize: "w-8 h-8",
     },
   ];
 
