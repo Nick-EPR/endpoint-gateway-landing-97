@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import HeroSection from "./coreplatform/HeroSection";
 import FeaturesSection from "./coreplatform/FeaturesSection";
 
-import CTASection from "./coreplatform/CTASection";
+
 import Products from "@/components/sections/Products";
 import Features from "@/components/sections/Features";
 import AdditionalCapabilities from "@/components/sections/features/AdditionalCapabilities";
@@ -59,7 +59,6 @@ const CorePlatform = () => {
       <section className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
         <FeaturesSection />
       </section>
-      <CTASection />
       <Footer />
     </div>
   );
