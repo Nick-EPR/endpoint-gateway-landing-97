@@ -9,6 +9,7 @@ const articles = [
     source: "T-Mobile Business",
     url: "https://www.t-mobile.com/business/enterprise/boston-childrens-hospital",
     icon: Building2,
+    thumbnail: "/lovable-uploads/boston-childrens.webp",
   },
   {
     title: "Healthcare Industry Solutions",
@@ -16,6 +17,7 @@ const articles = [
     source: "T-Mobile Business",
     url: "https://www.t-mobile.com/business/industry-solutions/healthcare",
     icon: Stethoscope,
+    thumbnail: "/lovable-uploads/t-mobile-emblem.webp",
   },
   {
     title: "5G Investment Boosts Connections Beyond Hospital",
@@ -23,6 +25,7 @@ const articles = [
     source: "HFM Magazine",
     url: "https://www.hfmmagazine.com/articles/4950-5g-investment-boosts-connections-beyond-hospital",
     icon: Wifi,
+    thumbnail: "/images/5g-cell-tower.jpg",
   },
 ];
 
@@ -51,28 +54,38 @@ const LearnMoreSection = () => {
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-card border border-border rounded-xl p-6 hover:shadow-lg hover:border-primary/30 transition-all duration-300"
+                className="group bg-card border border-border rounded-xl overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-300"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <Badge variant="secondary" className="text-xs">
-                    {article.source}
-                  </Badge>
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={article.thumbnail} 
+                    alt={article.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {article.title}
-                </h3>
-                
-                <p className="text-sm text-muted-foreground mb-4">
-                  {article.description}
-                </p>
-                
-                <div className="flex items-center gap-2 text-sm font-medium text-primary">
-                  Read Article
-                  <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <Badge variant="secondary" className="text-xs">
+                      {article.source}
+                    </Badge>
+                  </div>
+                  
+                  <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {article.title}
+                  </h3>
+                  
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {article.description}
+                  </p>
+                  
+                  <div className="flex items-center gap-2 text-sm font-medium text-primary">
+                    Read Article
+                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </a>
             );
