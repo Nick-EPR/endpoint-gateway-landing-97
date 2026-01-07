@@ -47,7 +47,7 @@ const OurSolutionsHeader = () => {
       <div 
         className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
         style={{
-          backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.5) 1.5px, transparent 1.5px)',
+          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.5) 1.5px, transparent 1.5px)',
           backgroundSize: '20px 20px'
         }}
       />
