@@ -34,7 +34,7 @@ const ANSHero = () => {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover blur-sm scale-105"
         >
           <source src={hospitalVideo} type="video/mp4" />
         </video>
