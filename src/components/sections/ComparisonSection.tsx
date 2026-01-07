@@ -9,7 +9,7 @@ const ComparisonSection = () => {
     <section className="py-20 bg-transparent">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 flex items-center justify-center gap-2 dark:text-white">
-          <Table2 className="w-8 h-8 md:w-10 md:h-10 dark:text-neutral-300" />
+          <Table2 className="w-8 h-8 md:w-10 md:h-10 text-primary" />
           ITAM Solution Comparison
         </h2>
         <p className="text-center text-base md:text-lg mb-10 max-w-2xl mx-auto text-neutral-600 dark:text-neutral-400">
