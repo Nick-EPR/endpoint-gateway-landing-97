@@ -30,6 +30,7 @@ const OurSolutionsHeader = () => {
       accentColor: "bg-primary",
       icon: "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png",
       iconType: "image" as const,
+      iconSize: "w-7 h-7",
     },
     {
       title: "PC as a Service",
@@ -38,6 +39,7 @@ const OurSolutionsHeader = () => {
       accentColor: "bg-[#E20074]",
       icon: "/lovable-uploads/t-mobile-emblem.webp",
       iconType: "image" as const,
+      iconSize: "w-5 h-5",
     },
     {
       title: "Advanced Network Solutions",
@@ -46,6 +48,7 @@ const OurSolutionsHeader = () => {
       accentColor: "bg-[#FF4E3C]",
       icon: TowerControl,
       iconType: "lucide" as const,
+      iconSize: "w-7 h-7",
     },
   ];
 
@@ -74,10 +77,10 @@ const OurSolutionsHeader = () => {
                     <img 
                       src={solution.icon as string} 
                       alt={solution.title} 
-                      className="w-7 h-7 object-contain"
+                      className={`${solution.iconSize} object-contain`}
                     />
                   ) : (
-                    <solution.icon className="w-7 h-7 text-[#FF4E3C]" />
+                    <solution.icon className={`${solution.iconSize} text-[#FF4E3C]`} />
                   )}
                   <CardTitle className="text-lg dark:text-white">{solution.title}</CardTitle>
                 </div>
