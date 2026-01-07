@@ -146,10 +146,10 @@ export default {
         },
         "dot-pulse": {
           "0%, 100%": {
-            opacity: "0.5",
+            opacity: "0.2",
           },
           "50%": {
-            opacity: "0.8",
+            opacity: "1",
           },
         },
       },
