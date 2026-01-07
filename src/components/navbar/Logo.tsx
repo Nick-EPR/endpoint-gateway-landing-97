@@ -6,7 +6,7 @@ interface LogoProps {
 }
 
 // Pages with dark/video backgrounds that need light logo in light mode
-const darkBackgroundPages = ['/ans'];
+const darkBackgroundPages = ['/ans', '/contact'];
 
 const Logo = ({ scrolled }: LogoProps) => {
   const location = useLocation();
