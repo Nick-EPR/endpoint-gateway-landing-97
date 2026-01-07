@@ -13,9 +13,9 @@ interface PlatformFeaturesProps {
 
 const FeatureTitle = memo(({ children, description }: { children: React.ReactNode; description?: string }) => (
   <div className="text-center mb-12">
-    <div className="flex items-center justify-center gap-2 mb-2 animate-fade-up">
-      <Package className="w-8 h-8 text-primary" />
-      <h3 className="text-xl font-semibold dark:text-white">{children}</h3>
+    <div className="flex items-center justify-center gap-3 mb-4 animate-fade-up">
+      <Package className="w-10 h-10 md:w-12 md:h-12 text-primary" />
+      <h2 className="text-4xl md:text-6xl font-bold dark:text-white">{children}</h2>
     </div>
     {description && (
       <p className="text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '100ms' }}>
