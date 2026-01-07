@@ -151,7 +151,7 @@ const FeaturesSection = () => {
                 </div>
                 
                 <div className="order-1 md:order-2 relative">
-                  <div className="aspect-video rounded-xl overflow-hidden shadow-lg dark:shadow-primary/10">
+                  <div className="overflow-hidden">
                     {feature.video ? (
                       <video 
                         src={feature.video}
@@ -159,13 +159,13 @@ const FeaturesSection = () => {
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto"
                       />
                     ) : (
                       <img 
                         src={feature.image}
                         alt={feature.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-auto"
                       />
                     )}
                   </div>
