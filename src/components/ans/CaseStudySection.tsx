@@ -83,19 +83,13 @@ const CaseStudySection = () => {
                 isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
               }`}
             >
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/20 to-primary/5 dark:from-primary/30 dark:to-primary/10 border border-border">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center p-8">
-                    <Building2 className="w-16 h-16 text-primary/40 mx-auto mb-4" />
-                    <p className="text-muted-foreground text-sm">
-                      Modern healthcare network infrastructure
-                    </p>
-                  </div>
-                </div>
-                {/* Decorative elements */}
-                <div className="absolute top-4 right-4 w-20 h-20 border-2 border-primary/20 rounded-full" />
-                <div className="absolute bottom-8 left-8 w-32 h-32 border-2 border-primary/10 rounded-full" />
-              </div>
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-border shadow-lg">
+              <img
+                src="/lovable-uploads/boston-childrens.webp"
+                alt="Boston Children's Hospital - Enterprise network deployment"
+                className="w-full h-full object-cover"
+              />
+            </div>
             </div>
           </div>
         </div>
