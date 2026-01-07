@@ -22,6 +22,7 @@ import News from "./pages/News";
 import NewsArticle from "./pages/NewsArticle";
 import Billboard from "./pages/Billboard";
 import ANS from "./pages/ANS";
+import CorePlatform from "./pages/CorePlatform";
 import ChatButton from "./components/ChatButton";
 import ScrollToTop from "./components/ScrollToTop";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
@@ -55,6 +56,7 @@ function AppContent() {
           <Route path="/news/:slug" element={<NewsArticle />} />
           <Route path="/billboard" element={<Billboard />} />
           <Route path="/ans" element={<ANS />} />
+          <Route path="/core-platform" element={<CorePlatform />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} /> */}
