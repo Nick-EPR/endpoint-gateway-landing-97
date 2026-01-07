@@ -152,6 +152,28 @@ export default {
             opacity: "1",
           },
         },
+        "dot-wave": {
+          "0%": {
+            backgroundPosition: "0% 0%",
+            opacity: "0.3",
+          },
+          "25%": {
+            backgroundPosition: "50% 25%",
+            opacity: "0.7",
+          },
+          "50%": {
+            backgroundPosition: "100% 50%",
+            opacity: "1",
+          },
+          "75%": {
+            backgroundPosition: "50% 75%",
+            opacity: "0.7",
+          },
+          "100%": {
+            backgroundPosition: "0% 100%",
+            opacity: "0.3",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
