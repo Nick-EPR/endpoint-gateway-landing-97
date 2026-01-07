@@ -54,7 +54,7 @@ const SolutionSection = () => {
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              Advanced Network Solutions (ANS)
+              <span className="text-[#FF4E3C]">Advanced Network Solutions</span> (ANS)
             </h2>
 
             <p
