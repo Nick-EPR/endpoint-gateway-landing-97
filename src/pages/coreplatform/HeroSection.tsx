@@ -53,13 +53,7 @@ const HeroSection = () => {
             <span className="text-primary">
                 {displayText}
                 {!isTypingComplete && <span className="animate-pulse">|</span>}
-                {isTypingComplete && (
-                  <img 
-                    src="/lovable-uploads/Lifetime_EPR_Emblem.png" 
-                    alt="" 
-                    className="inline-block w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 ml-0.5 align-baseline animate-slide-fade-in-left"
-                  />
-                )}
+                {isTypingComplete && <img src="/lovable-uploads/Lifetime_EPR_Emblem.png" alt="" className="inline-block w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 ml-0.5 align-baseline animate-slide-fade-in-left" />}
               </span>
             </h1>
             
@@ -73,11 +67,7 @@ const HeroSection = () => {
                   Get Started <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link to="/contact">
-                <Button size="lg" variant="outline" className="gap-2 rounded-full border-white/30 text-white hover:bg-white/10">
-                  Schedule Demo
-                </Button>
-              </Link>
+              
             </div>
           </div>
           
