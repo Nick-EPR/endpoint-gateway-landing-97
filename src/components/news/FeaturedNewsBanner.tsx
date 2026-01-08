@@ -141,19 +141,19 @@ const FeaturedNewsBanner = () => {
                   
                   return (
                     <CarouselItem key={article.id} className="!pt-0 basis-full h-6 flex items-center">
-                      {isExternal ? (
+                    {isExternal ? (
                         <a
                           href={article.external_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block group"
+                          className="block group w-full"
                         >
                           {content}
                         </a>
                       ) : (
                         <Link
                           to={`/news/${article.slug}`}
-                          className="block group"
+                          className="block group w-full"
                         >
                           {content}
                         </Link>
