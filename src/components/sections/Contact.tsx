@@ -105,11 +105,11 @@ const Contact = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 flex items-center justify-center gap-3 text-neutral-900 dark:text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 text-neutral-900 dark:text-white">
               <MessageSquare className="w-8 h-8 text-primary dark:text-primary-foreground" />
               Get in Touch
             </h2>
-            <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-8">
+            <p className="text-lg text-neutral-600 dark:text-neutral-300 mb-8 animate-on-scroll">
               Let's discuss how we can help transform your IT asset management
             </p>
           </div>
