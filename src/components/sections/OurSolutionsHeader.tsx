@@ -52,7 +52,7 @@ const OurSolutionsHeader = () => {
         }}
       />
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <div className="flex flex-col items-center mb-8 md:mb-12 mt-8 md:mt-0 animate-fade-up">
+        <div className="flex flex-col items-center mb-8 md:mb-12 mt-8 md:mt-0">
           <img 
             src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
             alt="Decorative triangle" 

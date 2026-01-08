@@ -48,11 +48,11 @@ const Partners = () => {
   return <section className="py-24 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll flex items-center justify-center gap-3 dark:text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 flex items-center justify-center gap-3 dark:text-white">
             <Star className="w-8 h-8 text-primary" />
             Our Partners
           </h2>
-          <p className="text-lg text-neutral dark:text-neutral-300 mb-8 animate-on-scroll">
+          <p className="text-lg text-neutral dark:text-neutral-300 mb-8">
             Working with industry leaders to deliver comprehensive IT asset management solutions
           </p>
         </div>
