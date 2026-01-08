@@ -28,8 +28,6 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
   return (
     <div className="md:hidden bg-white dark:bg-neutral-900 shadow-lg dark:shadow-black/30">
       <nav className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-        <ProductsDropdown scrolled={scrolled} isMobile onItemClick={onClose} />
-        
         <div className="space-y-2">
           <button 
             onClick={() => setShowSolutions(!showSolutions)}
