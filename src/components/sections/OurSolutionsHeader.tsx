@@ -44,13 +44,6 @@ const OurSolutionsHeader = () => {
     imageBackground: "/images/5g-cell-tower.jpg"
   }];
   return <section className="relative pt-[32rem] md:pt-64 pb-20 md:pb-32 overflow-hidden">
-      <div 
-        className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, rgba(147, 200, 81, 0.5) 1.5px, transparent 1.5px)',
-          backgroundSize: '20px 20px'
-        }}
-      />
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="flex flex-col items-center mb-8 md:mb-12 mt-8 md:mt-0">
           <img 
