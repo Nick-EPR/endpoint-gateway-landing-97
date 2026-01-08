@@ -52,25 +52,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
     return `${baseClasses} ${isActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
   };
 
-  // Check if Features is active (on homepage with #perfect-itam-solution hash)
-  const isFeatureActive = (location.pathname === '/' && location.hash === '#perfect-itam-solution') || location.hash === '#perfect-itam-solution';
-  
-  // Use the same style logic for features as other links
-  const getFeaturesClasses = () => {
-    const baseClasses = 'transition-colors duration-200';
-    
-    if (forceLight) {
-      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-200 hover:text-white'}`;
-    }
-    
-    if (scrolled) {
-      // Use Tailwind dark: variants to prevent flash on initial load
-      return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-white'}`;
-    }
-    
-    return `${baseClasses} ${isFeatureActive ? 'text-primary font-medium' : 'text-white hover:text-primary'}`;
-  };
-
   return (
     <>
       <div className="relative">
@@ -124,24 +105,6 @@ const NavLinks = ({ scrolled, onClose, forceLight }: NavLinksProps) => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      
-      <a 
-        href="/#perfect-itam-solution" 
-        className={getFeaturesClasses()}
-        onClick={(e) => {
-          e.preventDefault();
-          if (location.pathname !== '/') {
-            window.location.href = '/#perfect-itam-solution';
-          } else {
-            document.getElementById('perfect-itam-solution')?.scrollIntoView({ behavior: 'smooth' });
-            // Update URL with hash
-            window.history.pushState(null, '', `#perfect-itam-solution`);
-          }
-          if (onClose) onClose();
-        }}
-      >
-        Features
-      </a>
 
       <Link 
         to="/security" 
