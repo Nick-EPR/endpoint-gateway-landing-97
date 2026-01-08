@@ -23,7 +23,7 @@ const IndexSections = () => {
 
   return (
     <>
-      <AnimatedSection>
+      <AnimatedSection className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
         <Suspense fallback={<SectionLoading />}>
           <OurSolutionsHeader />
         </Suspense>
