@@ -23,7 +23,7 @@ const IndexSections = () => {
 
   return (
     <>
-      <AnimatedSection className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
+      <AnimatedSection className="bg-slate-50 dark:bg-[#020817] parallelogram-section !mt-0">
         <div 
           className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
           style={{
@@ -31,9 +31,11 @@ const IndexSections = () => {
             backgroundSize: '20px 20px'
           }}
         />
-        <Suspense fallback={<SectionLoading />}>
-          <OurSolutionsHeader />
-        </Suspense>
+        <div className="w-full">
+          <Suspense fallback={<SectionLoading />}>
+            <OurSolutionsHeader />
+          </Suspense>
+        </div>
       </AnimatedSection>
 
       <AnimatedSection delay={100}>
