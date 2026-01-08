@@ -43,7 +43,7 @@ const OurSolutionsHeader = () => {
     iconSize: "w-8 h-8",
     imageBackground: "/images/5g-cell-tower.jpg"
   }];
-  return <section className="relative pt-[32rem] md:pt-96 pb-20 md:pb-32 overflow-hidden">
+  return <section className="relative pt-48 md:pt-64 pb-20 md:pb-32 overflow-hidden">
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         <div className="flex flex-col items-center mb-8 md:mb-12 mt-8 md:mt-0">
           <img 
