@@ -5,6 +5,8 @@ import NavLinks from "./NavLinks";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { useUnreadNews } from "@/hooks/useUnreadNews";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -16,6 +18,7 @@ interface MobileMenuProps {
 const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuProps) => {
   const [showSolutions, setShowSolutions] = useState(false);
   const location = useLocation();
+  const { data: unreadCount = 0 } = useUnreadNews();
 
   // Check if we're currently on the features section
   const isFeatureActive = location.pathname === '/' && location.hash === '#features';
@@ -38,6 +41,20 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
           
           {showSolutions && (
             <div className="pl-4 space-y-2 border-l border-neutral-200 dark:border-neutral-700">
+              <Link 
+                to="/core-platform" 
+                className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 block py-1"
+                onClick={onClose}
+              >
+                Core Platform
+              </Link>
+              <Link 
+                to="/ans" 
+                className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 block py-1"
+                onClick={onClose}
+              >
+                ANS
+              </Link>
               <Link 
                 to="/partnerships/movius" 
                 className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 block py-1"
@@ -82,6 +99,21 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
           onClick={onClose}
         >
           Mission
+        </Link>
+        <Link 
+          to="/news" 
+          className="text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 relative inline-flex items-center gap-1.5"
+          onClick={onClose}
+        >
+          News
+          {unreadCount > 0 && (
+            <Badge 
+              variant="destructive" 
+              className="h-5 min-w-5 px-1 text-xs animate-pulse"
+            >
+              {unreadCount}
+            </Badge>
+          )}
         </Link>
         <Link 
           to="/contact" 
