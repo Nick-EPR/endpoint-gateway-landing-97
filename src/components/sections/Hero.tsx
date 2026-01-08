@@ -87,7 +87,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-fade-up text-white">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
             <span className="text-white">Complete</span>
             &nbsp;ITAM Solutions for&nbsp;
             <span className="relative inline-block min-w-[140px] md:min-w-[200px]">
@@ -98,10 +98,10 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
               <span className="invisible">{rotatingWords2[currentWord2]}</span>
             </span>
           </h2>
-          <p className="text-xl md:text-2xl mb-8 animate-fade-up text-white/90" style={{ animationDelay: "0.2s" }}>
+          <p className="text-xl md:text-2xl mb-8 text-white/90">
             {subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button 
               onClick={handleWhyChooseUs}
               className="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2"

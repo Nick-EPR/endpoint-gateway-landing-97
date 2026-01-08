@@ -1,18 +1,8 @@
-
 import { Suspense, lazy, memo } from "react";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { SectionKey, sections } from "@/pages/sections";
+import AnimatedSection from "@/components/ui/AnimatedSection";
 
-// Create a memoized section wrapper component
-const SectionWrapper = memo(({ className, children }: { className: string; children: React.ReactNode }) => (
-  <section className={className}>
-    {children}
-  </section>
-));
-
-SectionWrapper.displayName = "SectionWrapper";
-
-// Create a memoized loading component
 const SectionLoading = memo(() => (
   <div className="flex items-center justify-center min-h-[200px]">
     <LoadingSpinner />
@@ -21,12 +11,10 @@ const SectionLoading = memo(() => (
 
 SectionLoading.displayName = "SectionLoading";
 
-// Lazily load the Hero component since it's above the fold
 const Hero = lazy(() => import("@/components/sections/Hero"));
 const OurSolutionsHeader = lazy(() => import("@/components/sections/OurSolutionsHeader"));
 
 const IndexSections = () => {
-  // Memoize the renderSection function
   const renderSection = (Component: React.ComponentType) => (
     <Suspense fallback={<SectionLoading />}>
       <Component />
@@ -35,42 +23,46 @@ const IndexSections = () => {
 
   return (
     <>
-      <Suspense fallback={<SectionLoading />}>
-        <OurSolutionsHeader />
-      </Suspense>
+      <AnimatedSection>
+        <Suspense fallback={<SectionLoading />}>
+          <OurSolutionsHeader />
+        </Suspense>
+      </AnimatedSection>
 
-      <Suspense fallback={<SectionLoading />}>
-        <Hero 
-          title="Comprehensive ITAM Solutions for Your Enterprise" 
-          subtitle="Transform your IT asset management with our end-to-end solution" 
-          buttonText="Get Started" 
-        />
-      </Suspense>
+      <AnimatedSection delay={100}>
+        <Suspense fallback={<SectionLoading />}>
+          <Hero 
+            title="Comprehensive ITAM Solutions for Your Enterprise" 
+            subtitle="Transform your IT asset management with our end-to-end solution" 
+            buttonText="Get Started" 
+          />
+        </Suspense>
+      </AnimatedSection>
 
       <main>
-        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
+        <AnimatedSection className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
           {renderSection(sections.comparison)}
-        </SectionWrapper>
+        </AnimatedSection>
 
-        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
+        <AnimatedSection className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
           {renderSection(sections.roi)}
-        </SectionWrapper>
+        </AnimatedSection>
 
-        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
+        <AnimatedSection className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.tmobile)}
-        </SectionWrapper>
+        </AnimatedSection>
 
-        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
+        <AnimatedSection className="bg-slate-100 dark:bg-[#0F172A] parallelogram-section">
           {renderSection(sections.partners)}
-        </SectionWrapper>
+        </AnimatedSection>
 
-        <SectionWrapper className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
+        <AnimatedSection className="bg-slate-50 dark:bg-[#020817] parallelogram-section">
           {renderSection(sections.partnership)}
-        </SectionWrapper>
+        </AnimatedSection>
 
-        <SectionWrapper className="bg-slate-100 dark:bg-[#0F172A]">
+        <AnimatedSection className="bg-slate-100 dark:bg-[#0F172A]">
           {renderSection(sections.contact)}
-        </SectionWrapper>
+        </AnimatedSection>
       </main>
     </>
   );

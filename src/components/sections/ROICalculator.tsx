@@ -104,7 +104,7 @@ const ROICalculator = () => {
             isCalculatorVisible={isSectionVisible}
           />
 
-          <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 animate-fade-up transform hover:shadow-xl transition-all duration-300">
+          <div className="glass-card dark:bg-neutral-800/50 rounded-2xl p-4 sm:p-8 transform hover:shadow-xl transition-all duration-300">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="flex items-center">
                 <div className="bg-primary/10 dark:bg-primary/5 p-2 rounded-lg mr-3">
