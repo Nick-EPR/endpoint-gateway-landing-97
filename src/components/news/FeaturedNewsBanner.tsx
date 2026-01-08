@@ -11,7 +11,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { ExternalLink, Newspaper, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
+import MarqueeText from "@/components/ui/marquee-text";
 const FeaturedNewsBanner = () => {
   const [isDismissed, setIsDismissed] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
@@ -125,8 +125,10 @@ const FeaturedNewsBanner = () => {
                       {!article.is_featured && (
                         <Newspaper className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#93C852' }} />
                       )}
-                      <span className="truncate text-foreground group-hover:text-primary transition-colors">
-                        {article.title}
+                      <span className="flex-1 min-w-0">
+                        <MarqueeText className="text-foreground group-hover:text-primary transition-colors">
+                          {article.title}
+                        </MarqueeText>
                       </span>
                       <span className="text-muted-foreground text-xs flex-shrink-0 hidden sm:inline">
                         — {sourceLabel}
