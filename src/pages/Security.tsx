@@ -49,10 +49,10 @@ const Security = () => {
       description: "On-site data drive shredding performed by R2V3-certified partners, ensuring the highest standards of data destruction and environmental responsibility.",
       certification: {
         name: "R2v3 Certified",
-        logo: "/certification-logos/r2v3-logo.png",
+        logo: "/certification-logos/r2v3-logo.png?v=2",
         alt: "R2v3 Certification Logo"
       }
-    }, 
+    },
     {
       icon: <Lock className="w-8 h-8 text-primary" />,
       title: "ISO27001:2023 Compliance",
