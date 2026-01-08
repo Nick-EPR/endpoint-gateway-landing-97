@@ -75,7 +75,7 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
   };
 
   return (
-    <section className="relative pt-48 pb-20 md:pt-40 md:pb-32 overflow-hidden">
+    <section className="relative pt-56 pb-20 md:pt-40 md:pb-32 overflow-hidden">
       <div className="absolute inset-0 w-full h-full z-0">
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
         <img
