@@ -137,6 +137,10 @@ export default {
           },
         },
       },
+      "marquee": {
+        "0%": { transform: "translateX(0)" },
+        "100%": { transform: "translateX(-50%)" },
+      },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
@@ -146,6 +150,7 @@ export default {
         "emblem-grid-pulse": "emblem-grid-pulse 4s ease-in-out 2s infinite",
         "slide-fade-in-left": "slide-fade-in-left 0.4s ease-out 1s both",
         "fade-left": "fade-left 0.5s ease-out forwards",
+        "marquee": "marquee 12s linear infinite",
       },
     },
   },
