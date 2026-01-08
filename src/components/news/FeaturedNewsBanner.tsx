@@ -121,22 +121,22 @@ const FeaturedNewsBanner = () => {
                     : article.category;
                   
                   const content = (
-                    <span className="flex items-center gap-2 text-sm">
+                    <div className="flex items-center gap-2 text-sm w-full">
                       {!article.is_featured && (
                         <Newspaper className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#93C852' }} />
                       )}
-                      <span className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0">
                         <MarqueeText className="text-foreground group-hover:text-primary transition-colors">
                           {article.title}
                         </MarqueeText>
-                      </span>
+                      </div>
                       <span className="text-muted-foreground text-xs flex-shrink-0 hidden sm:inline">
                         — {sourceLabel}
                       </span>
                       {isExternal && (
                         <ExternalLink className="w-3 h-3 text-muted-foreground flex-shrink-0" />
                       )}
-                    </span>
+                    </div>
                   );
                   
                   return (
