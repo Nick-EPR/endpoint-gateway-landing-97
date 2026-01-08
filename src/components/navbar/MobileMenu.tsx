@@ -20,9 +20,6 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
   const location = useLocation();
   const { data: unreadCount = 0 } = useUnreadNews();
 
-  // Check if we're currently on the features section
-  const isFeatureActive = location.pathname === '/' && location.hash === '#features';
-
   if (!isOpen) return null;
 
   return (
@@ -70,18 +67,6 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
             </div>
           )}
         </div>
-        
-        <a
-          href="/#features"
-          className={`text-neutral-600 dark:text-neutral-200 hover:text-primary dark:hover:text-primary transition-colors duration-200 text-left py-2 ${isFeatureActive ? 'text-primary font-medium' : ''}`}
-          onClick={(e) => {
-            e.preventDefault();
-            onFeatureClick();
-            onClose();
-          }}
-        >
-          Features
-        </a>
         
         <Link 
           to="/security" 
