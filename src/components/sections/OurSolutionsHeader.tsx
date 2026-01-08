@@ -43,7 +43,7 @@ const OurSolutionsHeader = () => {
     iconSize: "w-8 h-8",
     imageBackground: "/images/5g-cell-tower.jpg"
   }];
-  return <section className="relative pt-80 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
+  return <section className="relative pt-96 md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
       <div 
         className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
         style={{
