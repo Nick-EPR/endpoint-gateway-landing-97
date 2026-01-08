@@ -66,9 +66,40 @@ const OurSolutionsHeader = () => {
           </h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-8 md:mb-12">
-          {solutions.map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-left opacity-0 flex flex-col h-full relative" style={{
-          animationDelay: `${200 + index * 150}ms`,
+        {/* PCaaS card - full width */}
+        <div className="max-w-md mx-auto mb-6 md:mb-8">
+          <Card onClick={handlePCaaSClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-left opacity-0 flex flex-col h-full relative" style={{
+            animationDelay: '200ms',
+            animationFillMode: 'forwards'
+          }}>
+            <img
+              src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80" />
+            <div className="h-1.5 bg-[#E20074] relative z-10" />
+            <CardHeader className="pt-5 pb-2 flex-1 relative z-10 text-white">
+              <div className="flex items-center gap-3">
+                <img src="/lovable-uploads/t-mobile-emblem.webp" alt="PC as a Service" className="w-5 h-5 object-contain" />
+                <CardTitle className="text-lg text-white">PC as a Service</CardTitle>
+              </div>
+              <CardDescription className="text-sm leading-relaxed mt-2 text-white/90">
+                First to market device solution combining 5G connectivity with IT services for SMBs
+              </CardDescription>
+            </CardHeader>
+            <CardFooter className="pt-0 pb-4 mt-auto relative z-10 text-white">
+              <span className="text-sm font-medium flex items-center gap-1 group-hover:gap-2 transition-all text-white">
+                Learn More <ArrowRight className="w-4 h-4" />
+              </span>
+            </CardFooter>
+          </Card>
+        </div>
+
+        {/* Other solutions - 2 column grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto mb-8 md:mb-12">
+          {solutions.filter(s => s.title !== "PC as a Service").map((solution, index) => <Card key={solution.title} onClick={solution.onClick} className="group cursor-pointer overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1 dark:bg-slate-900/50 dark:border-slate-700 animate-fade-left opacity-0 flex flex-col h-full relative" style={{
+          animationDelay: `${350 + index * 150}ms`,
           animationFillMode: 'forwards'
         }}>
               {solution.videoBackground && (
