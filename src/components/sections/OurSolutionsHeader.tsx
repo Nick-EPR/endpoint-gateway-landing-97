@@ -43,7 +43,7 @@ const OurSolutionsHeader = () => {
     iconSize: "w-8 h-8",
     imageBackground: "/images/5g-cell-tower.jpg"
   }];
-  return <section className="relative pt-[28rem] md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
+  return <section className="relative pt-[32rem] md:pt-64 pb-20 md:pb-32 bg-slate-50 dark:bg-[#020817] parallelogram-section overflow-hidden">
       <div 
         className="parallelogram-bg absolute inset-0 z-[1] pointer-events-none"
         style={{
@@ -52,7 +52,7 @@ const OurSolutionsHeader = () => {
         }}
       />
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <div className="flex flex-col items-center mb-8 md:mb-12 animate-fade-up">
+        <div className="flex flex-col items-center mb-8 md:mb-12 mt-8 md:mt-0 animate-fade-up">
           <img 
             src="/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png" 
             alt="Decorative triangle" 
