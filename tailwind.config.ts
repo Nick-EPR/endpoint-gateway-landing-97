@@ -136,10 +136,10 @@ export default {
             transform: "translateX(0)",
           },
         },
-      },
-      "marquee": {
-        "0%": { transform: "translateX(0)" },
-        "100%": { transform: "translateX(-50%)" },
+        "marquee": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
