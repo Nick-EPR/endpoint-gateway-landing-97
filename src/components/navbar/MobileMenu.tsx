@@ -122,7 +122,7 @@ const MobileMenu = ({ isOpen, scrolled, onClose, onFeatureClick }: MobileMenuPro
         </Link>
         
         <a 
-          href="https://app.lifetimeepr.io"
+          href="https://lifetimeepr.app"
           className="bg-[#93C851] text-white px-6 py-2 rounded-lg hover:bg-[#84b449] transition-colors duration-200 inline-block text-center"
           target="_blank"
           rel="noopener noreferrer"
