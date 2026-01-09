@@ -14,7 +14,7 @@ const PartnershipSection = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div
-            className={`inline-flex items-center gap-3 bg-primary/10 dark:bg-primary/20 text-primary px-6 py-3 mb-6 transition-all duration-700 ${
+            className={`inline-flex items-center gap-3 text-primary px-6 py-3 mb-6 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
