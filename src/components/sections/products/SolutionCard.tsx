@@ -35,7 +35,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
                 src={solution.logo} 
                 alt={`${solution.title} icon`}
                 loading="lazy"
-                className="h-8 w-8 object-contain"
+                className="h-12 w-12 object-contain"
               />
               <h3 className="text-4xl font-semibold text-primary">
                 {solution.title}
