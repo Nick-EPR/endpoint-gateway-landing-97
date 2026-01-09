@@ -45,12 +45,12 @@ const ChallengeSection = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <div
-              className={`inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full px-4 py-2 mb-6 transition-all duration-700 ${
+              className={`inline-flex items-center gap-3 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full px-6 py-3 mb-6 transition-all duration-700 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              <AlertTriangle className="w-4 h-4" />
-              <span className="text-sm font-medium">The Challenge</span>
+              <AlertTriangle className="w-8 h-8" />
+              <span className="text-xl font-medium">The Challenge</span>
             </div>
 
             <h2
