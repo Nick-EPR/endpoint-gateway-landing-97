@@ -29,18 +29,32 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
         }}
       >
         {solution.logo ? (
-          <div className="mb-6 h-16 flex items-center justify-center">
-            <img 
-              src={solution.logo} 
-              alt={`${solution.title} logo`}
-              loading="lazy"
-              className={`object-contain ${
-                solution.title === 'HeliAM' ? 'h-12' : 
-                solution.title === 'Luemin' ? 'max-w-[160px]' : 
-                'max-h-8'
-              }`} 
-            />
-          </div>
+          solution.iconMode ? (
+            <div className="mb-6 flex items-center justify-center gap-3">
+              <img 
+                src={solution.logo} 
+                alt={`${solution.title} icon`}
+                loading="lazy"
+                className="h-8 w-8 object-contain"
+              />
+              <h3 className="text-xl font-semibold glass-text">
+                {solution.title}
+              </h3>
+            </div>
+          ) : (
+            <div className="mb-6 h-16 flex items-center justify-center">
+              <img 
+                src={solution.logo} 
+                alt={`${solution.title} logo`}
+                loading="lazy"
+                className={`object-contain ${
+                  solution.title === 'HeliAM' ? 'h-12' : 
+                  solution.title === 'Luemin' ? 'max-w-[160px]' : 
+                  'max-h-8'
+                }`} 
+              />
+            </div>
+          )
         ) : (
           <h3 className="text-xl font-semibold mb-6 glass-text">
             {solution.title}
