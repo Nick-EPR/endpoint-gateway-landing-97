@@ -30,16 +30,21 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
       >
         {solution.logo ? (
           solution.iconMode ? (
-            <div className="mb-6 flex items-center justify-center gap-3">
-              <img 
-                src={solution.logo} 
-                alt={`${solution.title} icon`}
-                loading="lazy"
-                className="h-8 w-8 object-contain"
-              />
-              <h3 className="text-xl font-semibold glass-text">
-                {solution.title}
-              </h3>
+            <div className="mb-6 flex flex-col items-center justify-center gap-1">
+              <div className="flex items-center gap-3">
+                <img 
+                  src={solution.logo} 
+                  alt={`${solution.title} icon`}
+                  loading="lazy"
+                  className="h-8 w-8 object-contain"
+                />
+                <h3 className="text-xl font-semibold glass-text">
+                  {solution.title}
+                </h3>
+              </div>
+              <span className="text-xs text-muted-foreground">
+                Powered by D&H
+              </span>
             </div>
           ) : (
             <div className="mb-6 h-16 flex items-center justify-center">
