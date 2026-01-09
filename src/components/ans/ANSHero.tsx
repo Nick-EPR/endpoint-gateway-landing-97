@@ -54,12 +54,12 @@ const ANSHero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Top Badge */}
           <div
-            className={`inline-flex items-center gap-2 bg-white/20 text-white rounded-full px-4 py-2 mb-6 transition-all duration-700 ${
+            className={`inline-flex items-center gap-3 bg-white/20 text-white rounded-full px-6 py-3 mb-6 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
           >
-            <TowerControl className="w-4 h-4" />
-            <span className="text-sm font-medium">Secure 5G Network Services</span>
+            <TowerControl className="w-8 h-8" />
+            <span className="text-xl font-medium">Secure 5G Network Services</span>
           </div>
 
           {/* H1 */}
