@@ -17,16 +17,20 @@ const Solutions = () => {
     description: "Integrated suite of tools within HeliAM that optimizes asset tracking, security, and management throughout the lifecycle",
     logo: toolboxLogo
   }, {
-  title: "Luemin",
+    title: "Luemin",
     description: "Unified Endpoint Management (UEM) solution integrated into the Lifetime EPR platform for comprehensive device management",
     logo: lueminLogo
+  }, {
+    title: "Marketplace",
+    description: "Streamlined hardware procurement for IT asset managers. Order desktops, laptops, and peripherals with native HeliAM integration for purchase orders and shipment tracking, while Toolbox handles the logistics.",
+    comingSoon: true
   }];
 
   return (
     <section id="solutions" className="py-8 md:py-12 bg-transparent">
       <div className="container mx-auto px-4">
         <SectionHeader triangleImage={triangleImage} />
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
           {solutions.map((solution, index) => (
             <SolutionCard
               key={solution.title}
