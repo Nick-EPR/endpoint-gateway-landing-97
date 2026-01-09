@@ -26,6 +26,7 @@ const Solutions = () => {
     title: "Marketplace",
     description: "Streamlined hardware procurement for IT asset managers. Order desktops, laptops, and peripherals with native HeliAM integration for purchase orders and shipment tracking, while Toolbox handles the logistics.",
     logo: marketplaceLogo,
+    iconMode: true,
     comingSoon: true
   }];
 
