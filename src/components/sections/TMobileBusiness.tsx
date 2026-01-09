@@ -9,7 +9,18 @@ const TMobileBusiness = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-8 md:mb-16">
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-              <img src="/lovable-uploads/b256dcc1-0c91-4c89-84dd-fa02e6675757.png" alt="Lifetime EndPoint Resources" className="h-12 md:h-16 w-auto" />
+              <div className="relative h-12 md:h-16">
+                <img 
+                  src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png" 
+                  alt="Lifetime EndPoint Resources" 
+                  className="h-12 md:h-16 w-auto dark:hidden" 
+                />
+                <img 
+                  src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" 
+                  alt="Lifetime EndPoint Resources" 
+                  className="h-12 md:h-16 w-auto hidden dark:block" 
+                />
+              </div>
               <span className="text-xl md:text-2xl font-semibold text-neutral dark:text-white">+</span>
               <img src="/lovable-uploads/db5c2503-a1b3-49cc-a4d8-2e1cca8144e9.png" alt="T-Mobile" className="h-12 md:h-16 w-auto" />
             </div>
