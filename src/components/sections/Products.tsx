@@ -30,15 +30,24 @@ const Solutions = () => {
     <section id="solutions" className="py-8 md:py-12 bg-transparent">
       <div className="container mx-auto px-4">
         <SectionHeader triangleImage={triangleImage} />
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {solutions.map((solution, index) => (
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          {solutions.slice(0, 3).map((solution, index) => (
             <SolutionCard
               key={solution.title}
               solution={solution}
               index={index}
-              totalSolutions={solutions.length}
+              totalSolutions={3}
             />
           ))}
+        </div>
+        <div className="flex justify-center mt-8 max-w-5xl mx-auto">
+          <div className="w-full md:w-2/3 lg:w-1/2">
+            <SolutionCard
+              solution={solutions[3]}
+              index={0}
+              totalSolutions={1}
+            />
+          </div>
         </div>
       </div>
     </section>
