@@ -24,7 +24,7 @@ const Solutions = () => {
     logo: lueminLogo
   }, {
     title: "Marketplace",
-    description: "Streamlined hardware procurement for IT asset managers. Order desktops, laptops, and peripherals with native HeliAM integration for purchase orders and shipment tracking, while Toolbox handles the logistics.",
+    description: "Streamlined hardware procurement for IT asset managers. Order & deploy desktops, laptops, and peripherals with native HeliAM integration for purchase orders and shipment tracking, while Toolbox handles the logistics.\n\nIn one click.",
     logo: marketplaceLogo,
     iconMode: true,
     comingSoon: true
