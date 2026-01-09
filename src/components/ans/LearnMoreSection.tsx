@@ -34,7 +34,7 @@ const LearnMoreSection = () => {
     <section className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 bg-primary/10 dark:bg-primary/20 text-primary px-6 py-3 mb-6">
+          <div className="inline-flex items-center gap-3 text-primary px-6 py-3 mb-6">
             <ExternalLink className="w-8 h-8" />
             <span className="text-xl font-medium">Learn More</span>
           </div>
