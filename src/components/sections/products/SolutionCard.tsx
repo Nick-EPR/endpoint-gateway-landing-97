@@ -65,7 +65,7 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
         </p>
         {solution.comingSoon ? (
           <div className="flex justify-center mt-4">
-            <span className="text-primary font-medium dark:text-primary-foreground">Coming Soon</span>
+            <span className="text-primary font-medium dark:text-primary">Coming Soon</span>
           </div>
         ) : solution.path && (
           <Link to={solution.path} className="block w-full">
