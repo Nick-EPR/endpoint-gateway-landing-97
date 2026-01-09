@@ -75,9 +75,10 @@ const TMobileBusiness = () => {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 md:gap-12 max-w-6xl mx-auto mb-12 md:mb-16">
-            
-            <FeatureCard title="PCaaS Solutions" description="Transform your IT infrastructure with our PC-as-a-Service model, offering flexible, subscription-based access to the latest technology without significant upfront investments." icon={Cpu} benefits={["All-inclusive device lifecycle management", "Predictable monthly costs for easier budgeting", "Scalable services that grow with your business"]} />
+          <div className="flex justify-center max-w-6xl mx-auto mb-12 md:mb-16">
+            <div className="w-full md:w-1/2">
+              <FeatureCard title="PCaaS Solutions" description="Transform your IT infrastructure with our PC-as-a-Service model, offering flexible, subscription-based access to the latest technology without significant upfront investments." icon={Cpu} benefits={["All-inclusive device lifecycle management", "Predictable monthly costs for easier budgeting", "Scalable services that grow with your business"]} />
+            </div>
           </div>
 
           <div className="max-w-5xl mx-auto">
