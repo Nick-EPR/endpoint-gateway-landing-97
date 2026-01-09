@@ -40,13 +40,15 @@ const Solutions = () => {
             />
           ))}
         </div>
-        <div className="flex justify-center mt-8 max-w-5xl mx-auto">
-          <div className="w-full md:w-2/3 lg:w-1/2">
-            <SolutionCard
-              solution={solutions[3]}
-              index={0}
-              totalSolutions={1}
-            />
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto mt-8">
+          <div className="md:col-span-2 flex justify-center">
+            <div className="w-full md:w-1/2">
+              <SolutionCard
+                solution={solutions[3]}
+                index={0}
+                totalSolutions={1}
+              />
+            </div>
           </div>
         </div>
       </div>
