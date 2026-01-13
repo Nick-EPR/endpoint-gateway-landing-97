@@ -76,41 +76,14 @@ const Hero = ({ title, subtitle, buttonText, onButtonClick }: HeroProps) => {
 
   return (
     <section className="relative pt-[28rem] pb-20 md:pt-40 md:pb-32 overflow-hidden">
-      {/* Base gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-800"></div>
-
-      {/* Tech pattern overlay - dotted grid */}
-      <div 
-        className="absolute inset-0 opacity-15 animate-emblem-grid-pulse"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2393C851' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-          backgroundSize: '30px'
-        }}
-      />
-
-      {/* Digital circuit lines */}
-      <div className="absolute inset-0 overflow-hidden opacity-20">
-        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-          <path d="M0,20 L100,20" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M0,40 L100,40" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M0,60 L100,60" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M0,80 L100,80" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M20,0 L20,100" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M40,0 L40,100" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M60,0 L60,100" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-          <path d="M80,0 L80,100" stroke="hsl(var(--primary))" strokeOpacity="0.3" strokeWidth="0.2" />
-        </svg>
+      <div className="absolute inset-0 w-full h-full z-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40 z-10"></div>
+        <img
+          src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
+          alt="IT Asset Management Background"
+          className="w-full h-full object-cover"
+        />
       </div>
-
-      {/* Animated floating orbs */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-primary/10 blur-3xl animate-float" />
-        <div className="absolute top-1/2 -left-24 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-float [animation-delay:1.5s]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 rounded-full bg-primary/8 blur-3xl animate-float [animation-delay:3s]" />
-      </div>
-
-      {/* Top gradient for navbar readability */}
-      <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-neutral-950/80 to-transparent z-10" />
 
       <div className="container mx-auto px-4 relative z-20">
         <div className="max-w-4xl mx-auto text-center">
