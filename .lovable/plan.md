@@ -1,25 +1,19 @@
 
-# Update Contact Hero Section
+
+# Reduce "Our Locations" Map Section Height
 
 ## Overview
-Simplify the ContactHero section by removing the envelope icon, changing the title, removing the description text, and removing the Email Us card.
+Make the map background section shorter by changing from full-screen height to a more compact layout.
 
-## Changes Required
+## Current State
+The section uses `min-h-screen` which makes it take up the full viewport height.
 
-### File: `src/components/contact/ContactHero.tsx`
+## Change Required
 
-1. **Remove Mail icon import** - Remove `Mail` from lucide-react imports
-2. **Remove EmailContact import** - No longer needed
-3. **Remove Mail icon element** - Delete line 39: `<Mail className="w-12 h-12 text-primary mx-auto mb-6" />`
-4. **Change heading text** - Change "Contact Us" to "Our Locations"
-5. **Remove description paragraph** - Delete the `<p>` element with "Get in touch with our team..."
-6. **Remove EmailContact component** - Delete `<EmailContact />` from the grid
-7. **Update grid layout** - Change from `md:grid-cols-3` to keep the 3 location cards properly laid out (since we're removing the 4th card that spanned all 3 columns)
+### File: `src/components/sections/contact/ContactHero.tsx`
+- Change `min-h-screen` to a fixed height like `min-h-[70vh]` or `min-h-[600px]` to reduce the section height while still providing enough space for the map and location cards
 
 ## Technical Details
+- Line 17: Change `className="relative min-h-screen bg-background overflow-hidden"` to `className="relative min-h-[70vh] bg-background overflow-hidden"`
+- This reduces the section from 100vh to 70vh, making it noticeably shorter while maintaining the visual impact of the map background
 
-The grid currently has:
-- 3 LocationCard components (East Coast, West Coast, Jacksonville)
-- 1 EmailContact component with `md:col-span-3`
-
-After removing EmailContact, the 3 location cards will display in a row on medium+ screens, which is the desired layout.
