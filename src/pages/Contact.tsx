@@ -75,10 +75,10 @@ const Contact = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar scrolled={scrolled} onMouseEnter={handleMouseEnter} />
-      <ContactHero />
-      
       {/* Contact Form Section */}
       <ContactForm />
+      
+      <ContactHero />
       
       {/* Leadership Profiles */}
       <section className="relative py-24 bg-muted">
