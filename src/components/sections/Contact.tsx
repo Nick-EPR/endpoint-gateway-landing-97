@@ -101,7 +101,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 md:py-40 bg-transparent">
+    <section id="contact" className="pt-32 pb-16 md:pt-40 md:pb-24 bg-transparent">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
