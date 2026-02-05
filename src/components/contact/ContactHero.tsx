@@ -14,7 +14,7 @@ const ContactHero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen bg-background overflow-hidden">
+    <section className="relative min-h-[70vh] bg-background overflow-hidden">
       {/* Map Background */}
       <div className="absolute inset-0 w-full h-full">
         <LocationMap />
