@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { 
   Search,
   Layers, 
@@ -7,9 +8,11 @@ import {
   Zap,
   Settings,
   Database,
-  FileCheck
+  FileCheck,
+  ArrowRight
 } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { Button } from "@/components/ui/button";
 
 const FeaturesSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -161,6 +164,16 @@ const FeaturesSection = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* CTA Button */}
+        <div className={`mt-16 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "1300ms" }}>
+          <Button asChild size="lg" className="gap-2">
+            <Link to="/contact">
+              Get Started
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
