@@ -1,19 +1,35 @@
 
-
-# Reduce "Our Locations" Map Section Height
+# Add "Get Started" Button to FeaturesSection
 
 ## Overview
-Make the map background section shorter by changing from full-screen height to a more compact layout.
-
-## Current State
-The section uses `min-h-screen` which makes it take up the full viewport height.
+Add a centered "Get Started" call-to-action button at the bottom of the FeaturesSection on the Core Platform page.
 
 ## Change Required
 
-### File: `src/components/sections/contact/ContactHero.tsx`
-- Change `min-h-screen` to a fixed height like `min-h-[70vh]` or `min-h-[600px]` to reduce the section height while still providing enough space for the map and location cards
+### File: `src/pages/coreplatform/FeaturesSection.tsx`
 
-## Technical Details
-- Line 17: Change `className="relative min-h-screen bg-background overflow-hidden"` to `className="relative min-h-[70vh] bg-background overflow-hidden"`
-- This reduces the section from 100vh to 70vh, making it noticeably shorter while maintaining the visual impact of the map background
+Add a new div after the capabilities grid (after line 163, before the closing `</div>` of the container) containing:
+- A centered container with appropriate top margin
+- A "Get Started" button using the existing Button component
+- Link to the contact page using react-router-dom's Link component
+- Include an arrow icon for visual interest
+- Apply the same fade-in animation pattern used in other elements
 
+## Code Addition
+
+```tsx
+{/* CTA Button */}
+<div className={`mt-16 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "1300ms" }}>
+  <Button asChild size="lg" className="gap-2">
+    <Link to="/contact">
+      Get Started
+      <ArrowRight className="w-4 h-4" />
+    </Link>
+  </Button>
+</div>
+```
+
+## Additional Changes
+- Import `Button` from `@/components/ui/button`
+- Import `Link` from `react-router-dom`
+- Import `ArrowRight` from `lucide-react`
