@@ -32,6 +32,11 @@ import { Toaster } from "./components/ui/toaster";
 // Create a client
 const queryClient = new QueryClient();
 
+const ExternalRedirect = ({ to }: { to: string }) => {
+  window.location.replace(to);
+  return null;
+};
+
 function AppContent() {
   const { isChatOpen, handleChatClick } = useNavigation();
   
@@ -59,6 +64,7 @@ function AppContent() {
           <Route path="/ans" element={<ANS />} />
           <Route path="/core-platform" element={<CorePlatform />} />
           <Route path="/legal-week-2026" element={<LegalWeek2026 />} />
+          <Route path="/omnia" element={<ExternalRedirect to="https://lifetimeepr.app/pcaas/omnia" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} /> */}
