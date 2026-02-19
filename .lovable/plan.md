@@ -1,35 +1,27 @@
 
-# Add "Get Started" Button to FeaturesSection
+
+# Create /legal-week-2026 Page
 
 ## Overview
-Add a centered "Get Started" call-to-action button at the bottom of the FeaturesSection on the Core Platform page.
+Add a new "Legal Week 2026" page with a simple "Coming Soon" message, following existing page patterns.
 
-## Change Required
+## Changes Required
 
-### File: `src/pages/coreplatform/FeaturesSection.tsx`
+### 1. New File: `src/pages/LegalWeek2026.tsx`
+- Simple page with Navbar, a centered "Coming Soon" message, and Footer
+- Follow the same layout pattern as other pages (e.g., Terms, Privacy)
+- Include a heading "Legal Week 2026" and a "Coming Soon" subtext
+- Dark hero-style section with gradient background for visual consistency
 
-Add a new div after the capabilities grid (after line 163, before the closing `</div>` of the container) containing:
-- A centered container with appropriate top margin
-- A "Get Started" button using the existing Button component
-- Link to the contact page using react-router-dom's Link component
-- Include an arrow icon for visual interest
-- Apply the same fade-in animation pattern used in other elements
+### 2. Update: `src/App.tsx`
+- Import the new `LegalWeek2026` component
+- Add route: `<Route path="/legal-week-2026" element={<LegalWeek2026 />} />`
 
-## Code Addition
+## Technical Details
 
-```tsx
-{/* CTA Button */}
-<div className={`mt-16 text-center transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "1300ms" }}>
-  <Button asChild size="lg" className="gap-2">
-    <Link to="/contact">
-      Get Started
-      <ArrowRight className="w-4 h-4" />
-    </Link>
-  </Button>
-</div>
-```
+The page component will:
+- Import and render Navbar (with `scrolled={true}` for white background) and Footer
+- Display a centered section with the title and coming soon message
+- Use existing Tailwind classes consistent with other pages
+- Include NavigationProgress for consistency
 
-## Additional Changes
-- Import `Button` from `@/components/ui/button`
-- Import `Link` from `react-router-dom`
-- Import `ArrowRight` from `lucide-react`
