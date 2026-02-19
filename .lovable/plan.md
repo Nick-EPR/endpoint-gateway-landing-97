@@ -1,27 +1,31 @@
 
 
-# Create /legal-week-2026 Page
+# Redirect /omnia to External URL
 
 ## Overview
-Add a new "Legal Week 2026" page with a simple "Coming Soon" message, following existing page patterns.
+Add a redirect so that visiting `/omnia` sends the user to `https://lifetimeepr.app/pcaas/omnia`.
 
-## Changes Required
+## Change Required
 
-### 1. New File: `src/pages/LegalWeek2026.tsx`
-- Simple page with Navbar, a centered "Coming Soon" message, and Footer
-- Follow the same layout pattern as other pages (e.g., Terms, Privacy)
-- Include a heading "Legal Week 2026" and a "Coming Soon" subtext
-- Dark hero-style section with gradient background for visual consistency
+### File: `src/App.tsx`
+- Add a new route for `/omnia` that performs an external redirect
+- Use a small helper component that calls `window.location.replace()` on mount to navigate to the external URL
+- Place the route before the catch-all `*` route
 
-### 2. Update: `src/App.tsx`
-- Import the new `LegalWeek2026` component
-- Add route: `<Route path="/legal-week-2026" element={<LegalWeek2026 />} />`
+### Implementation
+Create an inline redirect component directly in `App.tsx`:
 
-## Technical Details
+```tsx
+const ExternalRedirect = ({ to }: { to: string }) => {
+  window.location.replace(to);
+  return null;
+};
+```
 
-The page component will:
-- Import and render Navbar (with `scrolled={true}` for white background) and Footer
-- Display a centered section with the title and coming soon message
-- Use existing Tailwind classes consistent with other pages
-- Include NavigationProgress for consistency
+Then add the route:
+```tsx
+<Route path="/omnia" element={<ExternalRedirect to="https://lifetimeepr.app/pcaas/omnia" />} />
+```
+
+No new files needed -- just a small addition to the existing routing setup.
 
