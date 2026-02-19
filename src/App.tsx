@@ -23,6 +23,7 @@ import NewsArticle from "./pages/NewsArticle";
 import Billboard from "./pages/Billboard";
 import ANS from "./pages/ANS";
 import CorePlatform from "./pages/CorePlatform";
+import LegalWeek2026 from "./pages/LegalWeek2026";
 import ChatButton from "./components/ChatButton";
 import ScrollToTop from "./components/ScrollToTop";
 import { NavigationProvider, useNavigation } from "./hooks/useNavigation";
@@ -57,6 +58,7 @@ function AppContent() {
           <Route path="/billboard" element={<Billboard />} />
           <Route path="/ans" element={<ANS />} />
           <Route path="/core-platform" element={<CorePlatform />} />
+          <Route path="/legal-week-2026" element={<LegalWeek2026 />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <ChatButton isOpen={isChatOpen} onToggle={handleChatClick} /> */}
