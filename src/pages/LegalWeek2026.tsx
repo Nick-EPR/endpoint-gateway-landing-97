@@ -24,6 +24,11 @@ const LegalWeek2026 = () => {
         <div className="absolute inset-0 w-full h-full z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-black/95 to-black/80 z-10" />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent z-10" />
+          <img
+            src="/images/refinery-rooftop.jpg"
+            alt="Refinery Hotel Rooftop"
+            className="w-full h-full object-cover"
+          />
         </div>
         <div className="container mx-auto px-4 relative z-20">
           <div className="max-w-4xl mx-auto text-center">
