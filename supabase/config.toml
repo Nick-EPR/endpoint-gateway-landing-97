@@ -3,3 +3,6 @@ project_id = "enqatyvjcztoicadviix"
 
 [functions.api-v1-news]
 verify_jwt = false
+
+[functions.send-rsvp-notification]
+verify_jwt = false

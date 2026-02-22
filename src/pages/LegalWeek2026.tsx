@@ -1,8 +1,15 @@
+import { useState } from "react";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import NavigationProgress from "@/components/NavigationProgress";
-import { Calendar, MapPin, Clock, DollarSign, RefreshCw, Lock, ShieldCheck, Trash2, Mail, Wifi } from "lucide-react";
+import { Calendar, MapPin, Clock, DollarSign, RefreshCw, Lock, ShieldCheck, Trash2, Mail, Wifi, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { supabase } from "@/integrations/supabase/client";
 
 const features = [
   { icon: Clock, title: "24/7 Support", description: "Round-the-clock technical assistance for your team" },
@@ -14,6 +21,87 @@ const features = [
 ];
 
 const LegalWeek2026 = () => {
+  const isMobile = useIsMobile();
+  const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const resetForm = () => {
+    setName("");
+    setEmail("");
+    setCompany("");
+    setError("");
+    setSuccess(false);
+  };
+
+  const handleOpenChange = (isOpen: boolean) => {
+    setOpen(isOpen);
+    if (!isOpen) resetForm();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+
+    if (!name.trim() || !email.trim() || !company.trim()) {
+      setError("All fields are required.");
+      return;
+    }
+    const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { error: fnError } = await supabase.functions.invoke("send-rsvp-notification", {
+        body: { name, email, company },
+      });
+      if (fnError) throw fnError;
+      setSuccess(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formContent = success ? (
+    <div className="flex flex-col items-center justify-center py-8 gap-4">
+      <CheckCircle className="w-16 h-16 text-primary" />
+      <h3 className="text-xl font-semibold text-foreground">You're on the list!</h3>
+      <p className="text-muted-foreground text-center">We'll see you March 10th at Refinery Hotel.</p>
+      <Button variant="outline" onClick={() => handleOpenChange(false)} className="mt-2">Close</Button>
+    </div>
+  ) : (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <div className="space-y-2">
+        <Label htmlFor="rsvp-name">Name</Label>
+        <Input id="rsvp-name" placeholder="Jane Smith" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} required />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="rsvp-email">Email</Label>
+        <Input id="rsvp-email" type="email" placeholder="jane@firm.com" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={255} required />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="rsvp-company">Company</Label>
+        <Input id="rsvp-company" placeholder="Acme LLP" value={company} onChange={(e) => setCompany(e.target.value)} maxLength={200} required />
+      </div>
+      {error && <p className="text-sm text-destructive">{error}</p>}
+      <Button type="submit" disabled={loading} className="w-full gap-2">
+        {loading ? "Sending…" : <><Mail className="w-4 h-4" /> RSVP</>}
+      </Button>
+    </form>
+  );
+
+  const modalTitle = "RSVP — LegalWeek Happy Hour";
+  const modalDesc = "March 10th · 5:30–8:30 PM · Refinery Hotel, NYC";
+
   return (
     <div className="min-h-screen bg-background">
       <NavigationProgress />
@@ -111,11 +199,9 @@ const LegalWeek2026 = () => {
             Join us for an evening of networking and learn how PCaaS can transform
             your firm's endpoint strategy.
           </p>
-          <Button size="lg" className="gap-2" asChild>
-            <a href="mailto:sales@lifetimeepr.com">
-              <Mail className="w-5 h-5" />
-              RSVP Now
-            </a>
+          <Button size="lg" className="gap-2" onClick={() => setOpen(true)}>
+            <Mail className="w-5 h-5" />
+            RSVP Now
           </Button>
 
           <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-8">
@@ -132,6 +218,29 @@ const LegalWeek2026 = () => {
           </div>
         </div>
       </section>
+
+      {/* RSVP Modal/Drawer */}
+      {isMobile ? (
+        <Drawer open={open} onOpenChange={handleOpenChange}>
+          <DrawerContent>
+            <DrawerHeader className="text-left">
+              <DrawerTitle>{modalTitle}</DrawerTitle>
+              <DrawerDescription>{modalDesc}</DrawerDescription>
+            </DrawerHeader>
+            <div className="px-4 pb-6">{formContent}</div>
+          </DrawerContent>
+        </Drawer>
+      ) : (
+        <Dialog open={open} onOpenChange={handleOpenChange}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>{modalTitle}</DialogTitle>
+              <DialogDescription>{modalDesc}</DialogDescription>
+            </DialogHeader>
+            {formContent}
+          </DialogContent>
+        </Dialog>
+      )}
 
       <Footer />
     </div>
