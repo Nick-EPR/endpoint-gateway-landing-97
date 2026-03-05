@@ -90,7 +90,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "Lifetime EPR <noreply@notify.lifetimeepr.app>",
-      to: "nick@lifetimeepr.com",
+      to: "sales@lifetimeepr.com",
       subject: `New Contact Form Submission from ${escapeHtml(formData.name)}`,
       html: `
         <h1>New Contact Form Submission</h1>
