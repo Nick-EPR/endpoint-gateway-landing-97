@@ -1,15 +1,15 @@
 
 
-# Update Contact Form Email Sender Address
+# Update Contact Form Notification Recipient
 
 ## Change
-Update `supabase/functions/send-contact-notification/index.ts` to change the `from` address from the Resend sandbox to the verified domain, matching the RSVP function:
+Update `supabase/functions/send-contact-notification/index.ts` line 93 to change the recipient from `nick@lifetimeepr.com` to `sales@lifetimeepr.com`:
 
 ```
-from: "Lifetime EPR <onboarding@resend.dev>"
+to: "nick@lifetimeepr.com"
 →
-from: "Lifetime EPR <noreply@notify.lifetimeepr.app>"
+to: "sales@lifetimeepr.com"
 ```
 
-Single-line change on line 83, then redeploy.
+Single-line change, then redeploy.
 
