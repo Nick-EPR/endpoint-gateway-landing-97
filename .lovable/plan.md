@@ -1,20 +1,19 @@
 
 
-# Fix Mobile RSVP Form Interaction Issues
+# Enable Mobile Autofill for RSVP Form
 
 ## Problem
-The Vaul `Drawer` component on mobile interferes with form input interactions. The drawer's drag-to-dismiss gesture conflicts with tapping/focusing on input fields, making it difficult or impossible to fill out the form on iPhone.
+Mobile browsers (especially Safari on iPhone) rely on `name` and `autoComplete` attributes to trigger autofill suggestions. The current inputs lack these attributes, so iOS won't offer autofill.
 
-## Solution
-Replace the mobile Drawer with a full-screen Dialog on mobile. The Dialog component doesn't have drag gestures that conflict with form inputs, providing a reliable interaction experience.
+## Change
 
-## Changes
+**`src/pages/LegalWeek2026.tsx`** — Add `name` and `autoComplete` attributes to the three input fields:
 
-**`src/pages/LegalWeek2026.tsx`**
-- Remove the conditional `isMobile` rendering that switches between Drawer and Dialog
-- Use Dialog for all screen sizes
-- On mobile, make the Dialog content full-width with proper padding for comfortable touch interactions
-- Remove the `useIsMobile` hook import and Drawer-related imports since they'll no longer be needed
+| Field | `name` | `autoComplete` |
+|-------|--------|----------------|
+| Name | `name` | `name` |
+| Email | `email` | `email` |
+| Company | `organization` | `organization` |
 
-This is a straightforward change: remove the Drawer branch entirely and keep only the Dialog, which works reliably on all devices.
+Three single-line additions to existing `<Input>` elements.
 
