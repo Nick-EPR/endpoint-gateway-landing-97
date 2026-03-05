@@ -147,10 +147,12 @@ const LegalWeek2026 = () => {
               </div>
             </div>
 
-            <Button size="lg" className="mt-6 gap-2 animate-fade-up" style={{ animationDelay: "0.3s" }} onClick={() => setOpen(true)}>
-              <Mail className="w-5 h-5" />
-              RSVP Now
-            </Button>
+            <div className="mt-6 animate-fade-up" style={{ animationDelay: "0.3s" }}>
+              <Button size="lg" className="gap-2" onClick={() => setOpen(true)}>
+                <Mail className="w-5 h-5" />
+                RSVP Now
+              </Button>
+            </div>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
