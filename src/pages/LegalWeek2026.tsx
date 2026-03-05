@@ -79,15 +79,15 @@ const LegalWeek2026 = () => {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <div className="space-y-2">
         <Label htmlFor="rsvp-name">Name</Label>
-        <Input id="rsvp-name" placeholder="Jane Smith" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} required />
+        <Input id="rsvp-name" name="name" autoComplete="name" placeholder="Jane Smith" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} required />
       </div>
       <div className="space-y-2">
         <Label htmlFor="rsvp-email">Email</Label>
-        <Input id="rsvp-email" type="email" placeholder="jane@firm.com" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={255} required />
+        <Input id="rsvp-email" name="email" autoComplete="email" type="email" placeholder="jane@firm.com" value={email} onChange={(e) => setEmail(e.target.value)} maxLength={255} required />
       </div>
       <div className="space-y-2">
         <Label htmlFor="rsvp-company">Company</Label>
-        <Input id="rsvp-company" placeholder="Acme LLP" value={company} onChange={(e) => setCompany(e.target.value)} maxLength={200} required />
+        <Input id="rsvp-company" name="organization" autoComplete="organization" placeholder="Acme LLP" value={company} onChange={(e) => setCompany(e.target.value)} maxLength={200} required />
       </div>
       {error && <p className="text-sm text-destructive">{error}</p>}
       <Button type="submit" disabled={loading} className="w-full gap-2">
