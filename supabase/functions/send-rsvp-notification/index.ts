@@ -57,7 +57,7 @@ const handler = async (req: Request): Promise<Response> => {
     const data = validateInput(rawData);
 
     const emailResponse = await resend.emails.send({
-      from: "Lifetime EPR <onboarding@resend.dev>",
+      from: "Lifetime EPR <noreply@notify.lifetimeepr.app>",
       to: "sales@lifetimeepr.com",
       subject: `LegalWeek 2026 RSVP from ${escapeHtml(data.name)}`,
       html: `
