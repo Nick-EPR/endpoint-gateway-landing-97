@@ -7,8 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription } from "@/components/ui/drawer";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { supabase } from "@/integrations/supabase/client";
 
 const features = [
@@ -21,7 +19,6 @@ const features = [
 ];
 
 const LegalWeek2026 = () => {
-  const isMobile = useIsMobile();
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -226,28 +223,16 @@ const LegalWeek2026 = () => {
         </div>
       </section>
 
-      {/* RSVP Modal/Drawer */}
-      {isMobile ? (
-        <Drawer open={open} onOpenChange={handleOpenChange}>
-          <DrawerContent>
-            <DrawerHeader className="text-left">
-              <DrawerTitle>{modalTitle}</DrawerTitle>
-              <DrawerDescription>{modalDesc}</DrawerDescription>
-            </DrawerHeader>
-            <div className="px-4 pb-6">{formContent}</div>
-          </DrawerContent>
-        </Drawer>
-      ) : (
-        <Dialog open={open} onOpenChange={handleOpenChange}>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle>{modalTitle}</DialogTitle>
-              <DialogDescription>{modalDesc}</DialogDescription>
-            </DialogHeader>
-            {formContent}
-          </DialogContent>
-        </Dialog>
-      )}
+      {/* RSVP Modal */}
+      <Dialog open={open} onOpenChange={handleOpenChange}>
+        <DialogContent className="w-[calc(100%-2rem)] max-w-md rounded-lg">
+          <DialogHeader>
+            <DialogTitle>{modalTitle}</DialogTitle>
+            <DialogDescription>{modalDesc}</DialogDescription>
+          </DialogHeader>
+          {formContent}
+        </DialogContent>
+      </Dialog>
 
       <Footer />
     </div>
