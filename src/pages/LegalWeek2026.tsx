@@ -146,6 +146,11 @@ const LegalWeek2026 = () => {
                 <span>Refinery Hotel, NYC</span>
               </div>
             </div>
+
+            <Button size="lg" className="mt-6 gap-2 animate-fade-up" style={{ animationDelay: "0.3s" }} onClick={() => setOpen(true)}>
+              <Mail className="w-5 h-5" />
+              RSVP Now
+            </Button>
           </div>
         </div>
         <div className="absolute bottom-0 left-0 w-full overflow-hidden rotate-180">
