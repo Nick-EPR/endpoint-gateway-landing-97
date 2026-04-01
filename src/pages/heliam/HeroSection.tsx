@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
+import heliamLogoDark from "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png";
 const HeroSection = () => {
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   return <section className="relative pt-24 pb-16 overflow-hidden">
