@@ -11,6 +11,7 @@ import {
   CloudCog,
 } from "lucide-react";
 import lueminLogo from "/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png";
+import lueminLogoDark from "/lovable-uploads/luemin-large-inverted.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
