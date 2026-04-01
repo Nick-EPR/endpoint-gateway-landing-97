@@ -51,8 +51,20 @@ const SolutionCard = memo(({ solution, index, totalSolutions }: SolutionCardProp
                   solution.title === 'HeliAM' ? 'h-12' : 
                   solution.title === 'Luemin' ? 'max-w-[160px]' : 
                   'max-h-8'
-                }`} 
+                } ${solution.darkLogo ? 'block dark:hidden' : ''}`} 
               />
+              {solution.darkLogo && (
+                <img 
+                  src={solution.darkLogo} 
+                  alt={`${solution.title} logo`}
+                  loading="lazy"
+                  className={`object-contain hidden dark:block ${
+                    solution.title === 'HeliAM' ? 'h-12' : 
+                    solution.title === 'Luemin' ? 'max-w-[160px]' : 
+                    'max-h-8'
+                  }`} 
+                />
+              )}
             </div>
           )
         ) : (

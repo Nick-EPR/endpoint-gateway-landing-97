@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowRight, BarChart, Layers, Zap } from "lucide-react";
 import heliamLogo from "/lovable-uploads/e008c00c-4bf6-4ab1-81fa-ad040f234e85.png";
+import heliamLogoDark from "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png";
 
 const IntegrationSection = () => {
   return (
@@ -19,7 +20,8 @@ const IntegrationSection = () => {
           <div className="bg-white dark:bg-neutral-800/60 rounded-xl shadow-lg dark:shadow-none p-8 mb-12">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="flex-shrink-0">
-                <img src={heliamLogo} alt="HeliAM Logo" className="h-12" />
+                <img src={heliamLogo} alt="HeliAM Logo" className="h-12 block dark:hidden" />
+                <img src={heliamLogoDark} alt="HeliAM Logo" className="h-12 hidden dark:block" />
               </div>
               <div className="h-px md:h-20 md:w-px bg-neutral-200 dark:bg-neutral-700"></div>
               <div className="flex-grow">

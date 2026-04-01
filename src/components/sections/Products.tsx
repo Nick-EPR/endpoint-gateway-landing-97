@@ -6,6 +6,9 @@ import { Solution } from "@/types/solution";
 import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
 import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
 import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
+import heliamLogoDark from "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png";
+import toolboxLogoDark from "/lovable-uploads/8dd82be9-672a-44e1-ad3e-e474a8ef097a.png";
+import lueminLogoDark from "/lovable-uploads/luemin-large-inverted.png";
 import marketplaceLogo from "/lovable-uploads/marketplace-logo.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 
@@ -13,15 +16,18 @@ const Solutions = () => {
   const solutions: Solution[] = [{
     title: "HeliAM",
     description: "Our core IT asset management platform that provides comprehensive lifecycle management within the Lifetime EPR ecosystem",
-    logo: heliamLogo
+    logo: heliamLogo,
+    darkLogo: heliamLogoDark
   }, {
     title: "Toolbox",
     description: "Integrated suite of tools within HeliAM that optimizes asset tracking, security, and management throughout the lifecycle",
-    logo: toolboxLogo
+    logo: toolboxLogo,
+    darkLogo: toolboxLogoDark
   }, {
     title: "Luemin",
     description: "Unified Endpoint Management (UEM) solution integrated into the Lifetime EPR platform for comprehensive device management",
-    logo: lueminLogo
+    logo: lueminLogo,
+    darkLogo: lueminLogoDark
   }, {
     title: "Marketplace",
     description: "Streamlined hardware procurement for IT asset managers. Order & deploy desktops, laptops, and peripherals with native HeliAM integration for purchase orders and shipment tracking, while Toolbox handles the logistics.\n\nIn one click.",

@@ -11,6 +11,7 @@ import {
   CloudCog,
 } from "lucide-react";
 import lueminLogo from "/lovable-uploads/07886d9e-4595-41a4-b460-0ea37b032e61.png";
+import lueminLogoDark from "/lovable-uploads/luemin-large-inverted.png";
 import triangleImage from "/lovable-uploads/fd6a644f-7ba7-44e3-b09d-3edb949ad75a.png";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
@@ -89,7 +90,8 @@ const Luemin = () => {
         </div>
         <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
-            <img src={lueminLogo} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in" />
+            <img src={lueminLogo} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in block dark:hidden" />
+            <img src={lueminLogoDark} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in hidden dark:block" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fade-in [animation-delay:200ms]">
               Unified Endpoint Management
             </h1>

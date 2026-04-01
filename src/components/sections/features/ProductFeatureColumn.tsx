@@ -10,7 +10,11 @@ interface ProductFeatureColumnProps {
 }
 
 export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeatureColumnProps) => {
-  const darkModeToolboxLogo = "/lovable-uploads/8dd82be9-672a-44e1-ad3e-e474a8ef097a.png";
+  const darkModeLogos: Record<string, string> = {
+    "Toolbox": "/lovable-uploads/8dd82be9-672a-44e1-ad3e-e474a8ef097a.png",
+    "HeliAM": "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png",
+  };
+  const darkLogo = darkModeLogos[logoAlt] || logo;
   
   return (
     <div>
@@ -21,7 +25,7 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
           className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"} block dark:hidden`} 
         />
         <img 
-          src={logoAlt === "Toolbox" ? darkModeToolboxLogo : logo} 
+          src={darkLogo} 
           alt={logoAlt} 
           className={`mx-auto ${logoAlt === "HeliAM" ? "h-10" : "h-8"} hidden dark:block`} 
         />

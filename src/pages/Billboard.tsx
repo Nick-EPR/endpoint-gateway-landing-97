@@ -9,10 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 
-// Product logos
-import heliamLogo from "/lovable-uploads/86e03333-0375-4f28-821b-9566b23c8ce4.png";
-import toolboxLogo from "/lovable-uploads/c1f14b18-5227-48a7-bed0-d8e8a08ffc32.png";
-import lueminLogo from "/lovable-uploads/8c6d4f78-d6a8-4d31-8e1f-502cbfc3e160.png";
 
 // Partner logos for PCaaS
 const tMobileLogo = "/lovable-uploads/ee44a1eb-a16e-4d5f-a307-d13e5e3b9f8c.png";
