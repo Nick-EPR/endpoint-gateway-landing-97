@@ -20,7 +20,8 @@ const IntegrationSection = () => {
           <div className="bg-white dark:bg-neutral-800/60 rounded-xl shadow-lg dark:shadow-none p-8 mb-12">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <div className="flex-shrink-0">
-                <img src={heliamLogo} alt="HeliAM Logo" className="h-12" />
+                <img src={heliamLogo} alt="HeliAM Logo" className="h-12 block dark:hidden" />
+                <img src={heliamLogoDark} alt="HeliAM Logo" className="h-12 hidden dark:block" />
               </div>
               <div className="h-px md:h-20 md:w-px bg-neutral-200 dark:bg-neutral-700"></div>
               <div className="flex-grow">

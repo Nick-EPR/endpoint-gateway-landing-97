@@ -90,7 +90,8 @@ const Luemin = () => {
         </div>
         <div className="container mx-auto relative z-20">
           <div className="flex flex-col items-center text-center mb-12">
-            <img src={lueminLogo} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in" />
+            <img src={lueminLogo} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in block dark:hidden" />
+            <img src={lueminLogoDark} alt="Luemin Logo" className="h-16 mb-8 animate-fade-in hidden dark:block" />
             <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white animate-fade-in [animation-delay:200ms]">
               Unified Endpoint Management
             </h1>

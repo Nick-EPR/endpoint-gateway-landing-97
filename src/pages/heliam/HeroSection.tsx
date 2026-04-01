@@ -69,7 +69,8 @@ const HeroSection = () => {
             <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl dark:shadow-blue-500/10 lg:ml-12 border border-blue-200/30 dark:border-blue-500/20">
               <img src="https://images.unsplash.com/photo-1606765962248-7ff407b51667?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="HeliAM Dashboard" className="w-full h-auto rounded-xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <img src={heliamLogo} alt="HeliAM Logo" className="absolute bottom-4 right-4 h-12" />
+              <img src={heliamLogo} alt="HeliAM Logo" className="absolute bottom-4 right-4 h-12 block dark:hidden" />
+              <img src={heliamLogoDark} alt="HeliAM Logo" className="absolute bottom-4 right-4 h-12 hidden dark:block" />
             </div>
             
             {/* Stats card - updated with blue theme */}
