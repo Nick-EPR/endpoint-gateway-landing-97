@@ -13,6 +13,7 @@ export const ProductFeatureColumn = ({ logo, features, logoAlt }: ProductFeature
   const darkModeLogos: Record<string, string> = {
     "Toolbox": "/lovable-uploads/8dd82be9-672a-44e1-ad3e-e474a8ef097a.png",
     "HeliAM": "/lovable-uploads/89972c5d-a519-465a-a07e-c1513af67d51.png",
+    "Luemin": "/lovable-uploads/luemin-large-inverted.png",
   };
   const darkLogo = darkModeLogos[logoAlt] || logo;
   
