@@ -47,12 +47,6 @@ const PartnershipHero = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in [animation-delay:400ms]">
-              <Button asChild size="lg" className="gap-2">
-                <Link to="/contact">
-                  Schedule a Consultation
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
               
               <Button asChild variant="outline" size="lg">
                 <Link to="/contact">
