@@ -18,7 +18,12 @@ const PartnershipHero = () => {
               <img 
                 src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
                 alt="Movius Logo" 
-                className="h-10"
+                className="h-10 dark:hidden"
+              />
+              <img 
+                src="/lovable-uploads/movius-dark-logo.png" 
+                alt="Movius Logo" 
+                className="h-10 hidden dark:block"
               />
               <div className="bg-neutral-400 h-8 w-px"></div>
               <img 

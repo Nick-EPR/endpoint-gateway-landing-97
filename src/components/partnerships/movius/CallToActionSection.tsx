@@ -70,7 +70,12 @@ const CallToActionSection = () => {
               <img 
                 src="/lovable-uploads/451c6e0c-a782-43f8-99d3-0354cd584350.png" 
                 alt="Movius Logo" 
-                className="h-8"
+                className="h-8 dark:hidden"
+              />
+              <img 
+                src="/lovable-uploads/movius-dark-logo.png" 
+                alt="Movius Logo" 
+                className="h-8 hidden dark:block"
               />
             </div>
           </div>
