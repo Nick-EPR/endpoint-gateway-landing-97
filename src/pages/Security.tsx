@@ -38,9 +38,9 @@ const Security = () => {
       title: "DoD-Standard Data Wiping",
       description: "Secure data erasure following Department of Defense standards, with certified hard drive destruction services for complete data security.",
       certification: {
-        name: "DoD 5220.22-M",
-        logo: "/certification-logos/dod-logo.svg",
-        alt: "Department of Defense Logo"
+        name: "SP 800-171",
+        logo: "/certification-logos/nist-logo.png",
+        alt: "NIST SP 800-171 Logo"
       }
     }, 
     {
