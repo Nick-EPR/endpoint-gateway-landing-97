@@ -60,7 +60,12 @@ const CallToActionSection = () => {
               <img 
                 src="/lovable-uploads/2f749bc8-b845-4784-bf84-c8c3ad303a49.png" 
                 alt="Lifetime EPR Logo" 
-                className="h-8"
+                className="h-8 dark:hidden"
+              />
+              <img 
+                src="/lovable-uploads/d617d373-5a61-48c7-bae3-04ab533555b5.png" 
+                alt="Lifetime EPR Logo" 
+                className="h-8 hidden dark:block"
               />
               <div className="h-8 w-px bg-neutral-300 dark:bg-neutral-600 hidden md:block"></div>
               <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base">
@@ -75,7 +80,7 @@ const CallToActionSection = () => {
               <img 
                 src="/lovable-uploads/movius-dark-logo.png" 
                 alt="Movius Logo" 
-                className="h-8 hidden dark:block"
+                className="h-10 hidden dark:block"
               />
             </div>
           </div>
